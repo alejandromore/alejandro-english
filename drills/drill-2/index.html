@@ -313,6 +313,23 @@ function updateProgress(){
 }
 
 buildDrills();
+
+function saveResults(){
+var now=new Date();var ts=now.toISOString().slice(0,19).replace(/[:T]/g,'-');
+var title=document.querySelector('h1')?document.querySelector('h1').textContent:'TOEFL Drill';
+var L=[];L.push('=================================');L.push(title);L.push('Date: '+now.toLocaleString());L.push('=================================');L.push('');
+var tas=document.querySelectorAll('textarea');var rc=0;
+for(var i=0;i<tas.length;i++){var v=tas[i].value.trim();if(v&&v.length>5&&tas[i].id!=='promptText'&&!tas[i].id.startsWith('wp')){rc++;L.push('--- Response #'+rc+' ('+tas[i].id+') ---');L.push(v);L.push('');}}
+var seen=new Set();
+document.querySelectorAll('.check-result,.check-item,.check-pass,.check-fail,.check-warn,.score-display').forEach(function(el){var t=el.innerText.trim();if(t&&!seen.has(t)){seen.add(t);L.push(t);}});
+document.querySelectorAll('[id*="check"],[id*="result"],[id*="score"]').forEach(function(el){var t=el.innerText.trim();if(t&&t.length>5&&!seen.has(t)){seen.add(t);L.push(t);}});
+L.push('');L.push('--- End of Report ---');
+var blob=new Blob([L.join('\n')],{type:'text/plain'});var a=document.createElement('a');
+a.href=URL.createObjectURL(blob);a.download='drill-2-results-'+ts+'.txt';a.click();URL.revokeObjectURL(a.href);
+}
 </script>
+<div style="text-align:center;padding:20px 0;">
+<button onclick="saveResults()" style="font-size:1rem;padding:12px 28px;background:#00b4a6;color:#fff;border:none;border-radius:4px;cursor:pointer;font-weight:600;">💾 Save Results to .txt</button>
+</div>
 </body>
 </html>
