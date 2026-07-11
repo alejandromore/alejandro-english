@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colegio Rodrigo - Practice Center</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Tahoma,sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;color:#333}
+.container{max-width:800px;width:90%;margin:0 auto;padding:20px}
+.header{text-align:center;color:#fff;padding:30px 0}
+.header h1{font-size:2.5em;margin-bottom:10px;text-shadow:2px 2px 4px rgba(0,0,0,0.2)}
+.header p{font-size:1.2em;opacity:0.9}
+.header .subtitle{font-size:0.95em;opacity:0.7;margin-top:5px}
+.card{background:#fff;border-radius:20px;padding:30px;margin:20px 0;box-shadow:0 8px 25px rgba(0,0,0,0.15)}
+.card h2{font-size:1.4em;color:#667eea;margin-bottom:20px;text-align:center}
+.course-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.course-btn{border:none;border-radius:15px;padding:25px;cursor:pointer;transition:transform 0.3s,box-shadow 0.3s;text-align:center;color:#fff;font-family:inherit;position:relative;overflow:hidden}
+.course-btn:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,0.2)}
+.course-btn.english{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%)}
+.course-btn.science{background:linear-gradient(135deg,#0be8e8 0%,#2b58d6 100%)}
+.course-btn .icon{font-size:4em;display:block;margin-bottom:10px}
+.course-btn .title{font-size:1.5em;font-weight:bold;display:block;margin-bottom:5px}
+.course-btn .desc{font-size:0.95em;opacity:0.9;display:block;margin-bottom:10px}
+.course-btn .info{font-size:0.85em;opacity:0.8;display:block;background:rgba(255,255,255,0.2);border-radius:8px;padding:5px 10px;margin-top:8px}
+.footer{text-align:center;color:#fff;opacity:0.7;font-size:0.85em;margin-top:20px}
+.welcome{text-align:center;color:#fff;margin:15px 0;font-size:1.1em}
+@media(max-width:600px){.header h1{font-size:1.8em}.course-btn .icon{font-size:3em}.course-btn .title{font-size:1.2em}.container{padding:10px}.card{padding:20px}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>🎓 Colegio Rodrigo</h1>
+<p>Practice Center</p>
+<p class="subtitle">6th Grade · II Term · Final Exam Preparation</p>
+</div>
+<div class="welcome">👋 Hi Alejandro! Choose a subject to practice:</div>
+<div class="card">
+<h2>📚 Choose Your Subject</h2>
+<div class="course-grid">
+<a href="ingles/index.html" style="text-decoration:none">
+<button class="course-btn english">
+<span class="icon">📖</span>
+<span class="title">English</span>
+<span class="desc">Grammar & Vocabulary Practice</span>
+<span class="info">3 Units · 10 Topics · 100 Exercises</span>
+</button>
+</a>
+<a href="ciencias/index.html" style="text-decoration:none">
+<button class="course-btn science">
+<span class="icon">🔬</span>
+<span class="title">Science</span>
+<span class="desc">Cells, Life Cycles & Reproduction</span>
+<span class="info">2 Units · 6 Topics · 60 Exercises</span>
+</button>
+</a>
+</div>
+</div>
+<div class="footer">
+<p>⭐ Keep practicing, stay curious, and do your best! ⭐</p>
+<p style="margin-top:5px">Your progress is saved automatically on this device.</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Science Practice - Colegio Rodrigo</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Tahoma,sans-serif;background:linear-gradient(135deg,#0be8e8 0%,#2b58d6 100%);min-height:100vh;color:#333}
+.container{max-width:900px;margin:0 auto;padding:20px}
+.header{text-align:center;color:#fff;padding:20px 0}
+.header h1{font-size:2em;margin-bottom:5px}
+.header p{font-size:1em;opacity:0.9}
+.score-bar{background:rgba(255,255,255,0.2);border-radius:20px;padding:10px 20px;margin:15px 0;display:flex;justify-content:space-around;color:#fff;font-size:1em;flex-wrap:wrap;gap:10px}
+.score-item{display:flex;align-items:center;gap:5px}
+.card{background:#fff;border-radius:15px;padding:25px;margin:15px 0;box-shadow:0 4px 15px rgba(0,0,0,0.1)}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}
+.menu-btn{background:linear-gradient(135deg,#43e97b 0%,#38f9d7 100%);color:#fff;border:none;border-radius:12px;padding:20px;font-size:1.1em;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;text-align:left}
+.menu-btn:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,0.2)}
+.menu-btn.blue{background:linear-gradient(135deg,#4facfe 0%,#00f2fe 100%)}
+.menu-btn.purple{background:linear-gradient(135deg,#a18cd1 0%,#fbc2eb 100%)}
+.menu-btn.orange{background:linear-gradient(135deg,#fa709a 0%,#fee140 100%)}
+.menu-btn .icon{font-size:1.5em;display:block;margin-bottom:5px}
+.menu-btn .desc{font-size:0.8em;opacity:0.9;margin-top:5px}
+.unit-title{font-size:1.3em;color:#2b58d6;margin-bottom:15px;border-bottom:2px solid #eee;padding-bottom:8px}
+.question{font-size:1.15em;margin-bottom:15px;font-weight:600}
+.options{display:grid;grid-template-columns:1fr;gap:10px}
+.option{background:#f8f9fa;border:2px solid #e0e0e0;border-radius:10px;padding:12px 15px;cursor:pointer;transition:all 0.2s;font-size:1em}
+.option:hover{border-color:#2b58d6;background:#f0f4ff}
+.option.selected{border-color:#2b58d6;background:#e8ecff}
+.option.correct{border-color:#43e97b;background:#d4f8d4}
+.option.wrong{border-color:#f5576c;background:#f8d4d4}
+.fill-input{width:100%;padding:12px;border:2px solid #e0e0e0;border-radius:10px;font-size:1em;margin-bottom:10px}
+.fill-input:focus{border-color:#2b58d6;outline:none}
+.btn{background:#2b58d6;color:#fff;border:none;border-radius:10px;padding:12px 25px;font-size:1em;cursor:pointer;transition:transform 0.2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.green{background:#43e97b}
+.btn.red{background:#f5576c}
+.feedback{padding:12px;border-radius:10px;margin:10px 0;text-align:center;font-weight:600}
+.feedback.correct{background:#d4f8d4;color:#2d7a2d}
+.feedback.wrong{background:#f8d4d4;color:#7a2d2d}
+.progress{background:#e0e0e0;border-radius:10px;height:8px;margin:10px 0;overflow:hidden}
+.progress-fill{background:linear-gradient(90deg,#0be8e8,#2b58d6);height:100%;transition:width 0.3s;border-radius:10px}
+.result-box{text-align:center;padding:30px}
+.result-box .stars{font-size:3em;margin:10px 0}
+.result-box .score-text{font-size:2em;color:#2b58d6;margin:10px 0}
+.back-btn{background:rgba(255,255,255,0.2);color:#fff;border:none;border-radius:20px;padding:8px 20px;cursor:pointer;font-size:0.9em;margin-bottom:10px}
+.back-btn:hover{background:rgba(255,255,255,0.3)}
+.hidden{display:none}
+.info-box{background:#e8f4f8;border-left:4px solid #2b58d6;padding:12px;border-radius:8px;margin:10px 0;font-size:0.95em}
+.label-img{font-size:3em;text-align:center;margin:10px 0}
+@media(max-width:600px){.header h1{font-size:1.5em}.container{padding:10px}.card{padding:15px}.menu-btn{padding:15px;font-size:1em}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>🔬 Science Practice</h1>
+<p>Colegio Rodrigo · 6th Grade · II Term</p>
+</div>
+<div id="scoreBar" class="score-bar hidden">
+<div class="score-item">⭐ <span id="totalScore">0</span> points</div>
+<div class="score-item">✅ <span id="correctCount">0</span> correct</div>
+<div class="score-item">📊 <span id="progressText">0/0</span></div>
+</div>
+<div id="backBtnContainer"></div>
+<div id="content"></div>
+</div>
+<script src="sci-exercises.js"></script>
+<script src="sci-app.js"></script>
+</body>
+</html>
