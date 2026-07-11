@@ -25,6 +25,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#1a2744;color:#fff;m
 .btn{padding:10px 20px;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Segoe UI',sans-serif}
 .btn-play{background:#00b4a6;color:#fff}
 .btn-play:disabled{opacity:.5;cursor:not-allowed}
+.btn-stop:disabled{opacity:.5;cursor:not-allowed}
 .btn-submit{background:#1a2744;color:#fff}
 .btn-submit:disabled{opacity:.5;cursor:not-allowed}
 .btn-save{background:#f39c12;color:#fff}
@@ -145,7 +146,7 @@ questions:[
 ]
 }
 ];
-var state={currentSet:null,audioPlaying:false,notes:{},answers:{},scores:{}};
+var state={currentSet:null,audioPlaying:false,currentInterval:null,notes:{},answers:{},scores:{}};
 var timerIntervals={};
 function formatTime(s){var m=Math.floor(s/60);var sec=Math.floor(s%60);return m+':'+(sec<10?'0':'')+sec;}
 function renderSets(){
@@ -157,6 +158,7 @@ html+='<div class="set-title">'+set.title+'</div>';
 html+='<div class="set-desc">'+set.desc+'</div>';
 html+='<div class="audio-controls">';
 html+='<button class="btn btn-play" id="playBtn'+set.id+'" onclick="playAudio('+set.id+')">\u25B6 Play Audio</button>';
+html+='<button class="btn btn-stop" id="stopBtn'+set.id+'" onclick="stopAudio('+set.id+')" style="background:#e74c3c;color:#fff;display:none;">\u25A0 Stop</button>';
 html+='<div class="progress-wrap"><div class="progress-bar" id="progressBar'+set.id+'"></div><div class="progress-label" id="progressLabel'+set.id+'">0:00 / '+formatTime(set.duration)+'</div></div>';
 html+='</div>';
 html+='<div style="margin-bottom:8px;font-size:13px;color:#6a7a8a;">\uD83D\uDCDD Take notes while listening:</div>';
@@ -191,12 +193,49 @@ if(state.audioPlaying)return;
 state.audioPlaying=true;state.currentSet=setId;
 var set=sets.find(function(s){return s.id===setId;});
 var btn=document.getElementById('playBtn'+setId);
+var stopBtn=document.getElementById('stopBtn'+setId);
 btn.disabled=true;btn.textContent='\uD83D\uDD0A Playing...';
+stopBtn.style.display='inline-block';
 var notes=document.getElementById('notes'+setId);
 notes.disabled=false;notes.placeholder='Type your notes here while listening...';
 var bar=document.getElementById('progressBar'+setId);
 var label=document.getElementById('progressLabel'+setId);
+var transcriptBtn=document.getElementById('transcriptBtn'+setId);
 var elapsed=0;
+var lineIdx=0;
+var totalLines=set.transcript.length;
+var voices=window.speechSynthesis.getVoices();
+var engVoice=voices.find(function(v){return v.lang.indexOf('en')===0;})||null;
+function speakLine(){
+if(lineIdx>=totalLines){
+clearInterval(interval);
+btn.textContent='\u2713 Audio Complete';
+btn.disabled=false;
+stopBtn.style.display='none';
+state.audioPlaying=false;
+transcriptBtn.disabled=false;
+showQuestions(setId);
+startTimer(setId);
+return;
+}
+var line=set.transcript[lineIdx];
+var utter=new SpeechSynthesisUtterance(line.speaker+': '+line.text);
+utter.lang='en-US';
+if(engVoice)utter.voice=engVoice;
+utter.rate=0.95;
+utter.pitch=1;
+utter.onend=function(){lineIdx++;speakLine();};
+window.speechSynthesis.speak(utter);
+}
+if(!window.speechSynthesis){
+alert('Your browser does not support speech synthesis. Please use Chrome, Edge, or Safari.');
+btn.disabled=false;btn.textContent='\u25B6 Play Audio';
+stopBtn.style.display='none';
+state.audioPlaying=false;
+return;
+}
+window.speechSynthesis.cancel();
+speakLine();
 var interval=setInterval(function(){
 elapsed+=0.1;
 var pct=(elapsed/set.duration)*100;
@@ -204,14 +243,24 @@ bar.style.width=Math.min(pct,100)+'%';
 label.textContent=formatTime(elapsed)+' / '+formatTime(set.duration);
 if(elapsed>=set.duration){
 clearInterval(interval);
-btn.textContent='\u2713 Audio Complete';
-btn.disabled=false;
-state.audioPlaying=false;
-document.getElementById('transcriptBtn'+setId).disabled=false;
-showQuestions(setId);
-startTimer(setId);
 }
 },100);
+state.currentInterval=interval;
+}
+function stopAudio(setId){
+if(!state.audioPlaying||state.currentSet!==setId)return;
+window.speechSynthesis.cancel();
+if(state.currentInterval){clearInterval(state.currentInterval);state.currentInterval=null;}
+var btn=document.getElementById('playBtn'+setId);
+var stopBtn=document.getElementById('stopBtn'+setId);
+var bar=document.getElementById('progressBar'+setId);
+var label=document.getElementById('progressLabel'+setId);
+var set=sets.find(function(s){return s.id===setId;});
+btn.disabled=false;btn.textContent='\u25B6 Play Audio';
+stopBtn.style.display='none';
+bar.style.width='0%';
+label.textContent='0:00 / '+formatTime(set.duration);
+state.audioPlaying=false;state.currentSet=null;
 }
 function showQuestions(setId){document.getElementById('questions'+setId).style.display='block';}
 function toggleTranscript(setId){
