@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice Coach — local speech + sentiment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Voice Coach</h1>
+  </header>
+
+  <div class="topbar">
+    <span class="topbar-lbl">Idioma / Language</span>
+    <div class="seg" id="langSeg">
+      <button data-lang="english" aria-pressed="true">English</button>
+      <button data-lang="spanish" aria-pressed="false">Español</button>
+    </div>
+    <span class="model-badge" id="modelBadge" data-state="idle"><span class="mb-dot"></span><span id="modelBadgeText">Modelos: en espera</span></span>
+  </div>
+
+  <div id="modelsPanel" class="models-panel" style="display:none">
+    <div class="ms-head"><span class="ms-title">Estado de los modelos</span><button class="ms-close" aria-label="Cerrar">✕</button></div>
+    <div class="ms-list"></div>
+    <div class="ms-note">Se descargan la 1ª vez y quedan en caché. Si uno falla (p. ej. sin señal), toca ↻ para recargarlo. La voz natural pesa más — mejor con wifi.</div>
+  </div>
+
+  <!-- practice prompt -->
+  <div class="prompt">
+    <div class="q">
+      <span class="lbl">Practice prompt</span>
+      <button id="clearBtn" class="clear-btn" title="Borrar texto" aria-label="Borrar texto">✕</button>
+      <textarea id="promptText" rows="6" placeholder="Escribe aquí el texto que quieres practicar o escuchar…">Walk me through a time you had to make a high-stakes technical decision under regulatory constraints.</textarea>
+      <div class="prompt-read" id="promptRead" style="display:none"></div>
+      <div class="doc-view" id="promptDoc" style="display:none" title="Toca para editar"></div>
+    </div>
+    <div class="prompt-actions">
+      <button class="speak" id="speakBtn"><span class="ic">▶</span><span id="speakLabel">Reproducir</span></button>
+      <button class="pause-btn" id="pauseBtn" style="display:none"><span class="ic" id="pauseIc">⏸</span><span id="pauseLabel">Pausa</span></button>
+      <button class="shuffle" id="warmBtn">⚡ Preparar voz</button>
+      <button class="dl-audio" id="dlAudioBtn"><span class="ic">⬇</span><span id="dlAudioLabel">Descargar MP3</span></button>
+      <button class="shuffle" id="phonBtn" aria-pressed="false">🔤 Fonética</button>
+      <button class="shuffle" id="wordBtn" aria-pressed="false">🎯 Palabras</button>
+      <button class="shuffle" id="docxBtn">📄 Word</button>
+      <button class="shuffle" id="shuffleBtn">↻ New</button>
+      <input type="file" id="docxInput" accept=".docx" hidden>
+    </div>
+    <div class="voice-status" id="voiceStatus"></div>
+  </div>
+
+  <div id="docxPanel" class="docx-panel" style="display:none">
+    <div class="docx-head">
+      <span class="t">📄 Bloques — toca para seleccionar</span>
+      <span class="docx-name" id="docxName"></span>
+      <button class="docx-sel" id="docxSel" disabled>Cargar selección (0)</button>
+      <button class="docx-all" id="docxAll">Todo</button>
+      <button class="docx-close" id="docxClose" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="docx-list" id="docxList"></div>
+  </div>
+
+  <div id="phoneticPanel">
+    <div class="phon-head">
+      <span class="t">Fonética para hispanohablante</span>
+      <span class="phon-note">Re-deletreo aproximado · el acento marca la sílaba tónica · el IPA es la referencia exacta</span>
+    </div>
+    <div class="phon-words" id="phonWords"></div>
+  </div>
+
+  <div id="wordPanel">
+    <div class="wp-head">
+      <span class="t">Práctica de palabras · estilo ELSA</span>
+      <span class="note">Escucha el modelo, grábate y mira qué sonidos clavaste</span>
+    </div>
+    <div class="wp-pick">
+      <div class="wp-pick-note" id="wpPickNote"></div>
+      <div class="wp-chips" id="wpChips"></div>
+      <div class="wp-custom">
+        <input id="wpInput" type="text" placeholder="…o escribe cualquier palabra en inglés" autocomplete="off" spellcheck="false">
+        <button class="wp-load" id="wpLoadBtn">Cargar</button>
+      </div>
+    </div>
+    <div class="wp-card" id="wpCard" style="display:none">
+      <div class="wp-word" id="wpWord"></div>
+      <div class="wp-forms"><span class="wp-ipa" id="wpIpa"></span><span class="wp-es" id="wpEs"></span></div>
+      <div class="wp-phon" id="wpPhon"></div>
+      <div class="wp-syl-hint" id="wpSylHint">👆 Toca una sílaba para ver cómo pronunciarla</div>
+      <div class="wp-mouth" id="wpMouth" style="display:none"></div>
+      <div class="wp-actions">
+        <button class="wp-btn listen" id="wpListen"><span class="ic">🔊</span> Escuchar</button>
+        <button class="wp-btn slow" id="wpListenSlow"><span class="ic">🐢</span> Lento</button>
+        <button class="wp-btn rec" id="wpRec"><span class="dot"></span><span id="wpRecLabel">Record</span></button>
+        <label class="wp-btn upload" id="wpUploadLabel">⬆ Upload audio
+          <input type="file" id="wpFileInput" hidden>
+        </label>
+      </div>
+      <div class="wp-result" id="wpResult"></div>
+      <div class="wp-help">
+        <span class="wp-help-lbl">¿Cómo se pronuncia? — escucha a nativos reales</span>
+        <a id="wpYouglish" class="wp-help-btn" target="_blank" rel="noopener noreferrer">🎬 Videos reales (YouGlish)</a>
+        <a id="wpYoutube" class="wp-help-btn" target="_blank" rel="noopener noreferrer">▶️ YouTube</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- main panel -->
+  <div class="panel">
+    <p class="panel-title" data-i18n="setup">Setup</p>
+    <div class="config">
+      <div class="field">
+        <label data-i18n="accuracy">Accuracy vs. speed</label>
+        <div class="seg" id="sizeSeg">
+          <button data-size="tiny" aria-pressed="false">Faster</button>
+          <button data-size="base" aria-pressed="true">Balanced</button>
+          <button data-size="small" aria-pressed="false">Best</button>
+        </div>
+      </div>
+      <div class="field">
+        <label data-i18n="sentiment">Sentiment analysis</label>
+        <div class="seg" id="sentSeg">
+          <button data-sent="on" aria-pressed="true">On</button>
+          <button data-sent="off" aria-pressed="false">Off</button>
+        </div>
+      </div>
+      <div class="field">
+        <label data-i18n="compareRead">Comparar lectura</label>
+        <div class="seg" id="readSeg">
+          <button data-read="on" aria-pressed="false">On</button>
+          <button data-read="off" aria-pressed="true">Off</button>
+        </div>
+      </div>
+      <div class="field">
+        <label data-i18n="readingVoice">Voz de lectura</label>
+        <div class="seg" id="voiceSeg">
+          <button data-voice="system" aria-pressed="true">Sistema</button>
+          <button data-voice="natural" aria-pressed="false">Natural</button>
+        </div>
+      </div>
+      <div class="field">
+        <label data-i18n="docView">Vista del texto</label>
+        <div class="seg" id="docViewSeg">
+          <button data-docview="simple" aria-pressed="true">Simple</button>
+          <button data-docview="document" aria-pressed="false">Documento</button>
+        </div>
+      </div>
+      <div class="field">
+        <label data-i18n="engine">Motor (modo Palabras)</label>
+        <select id="wpEngineSel" class="field-select">
+          <option value="whisper" selected>Whisper (fiable)</option>
+          <option value="acoustic">wav2vec2 acústico (experimental)</option>
+        </select>
+        <span class="mid" id="wpEngineMid"></span>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="rec" id="recBtn">
+        <span class="dot"></span><span id="recLabel">Record</span>
+        <span class="timer" id="timer" style="display:none">0:00</span>
+      </button>
+      <span class="divider-or" data-i18n="or">or</span>
+      <label class="upload">
+        <span data-i18n="upload">⭡ Upload audio</span>
+        <input type="file" id="fileInput" hidden>
+      </label>
+    </div>
+    <div class="upload-hint" id="uploadHint"></div>
+
+    <div id="status">Models load on first use (~50–200 MB, cached afterwards).</div>
+    <div class="bar" id="bar" style="display:none"><i></i></div>
+  </div>
+
+  <!-- results -->
+  <div id="results">
+    <div class="panel">
+      <p class="panel-title">Analysis</p>
+
+      <div class="metrics" id="metrics"></div>
+
+      <div class="arc-wrap" id="readWrap" style="display:none">
+        <div class="arc-head">
+          <h3>Lectura vs. texto</h3>
+          <div class="legend">
+            <span><i style="background:var(--pos)"></i>Correcta</span>
+            <span><i style="background:var(--neu)"></i>Aproximada</span>
+            <span><i style="background:var(--neg)"></i>Fallada/omitida</span>
+          </div>
+        </div>
+        <div class="read-score" id="readScore"></div>
+        <div class="read-diff" id="readDiff"></div>
+        <div class="read-note" id="readNote"></div>
+      </div>
+
+      <div class="arc-wrap" id="sentWrap">
+        <div class="arc-head">
+          <h3>Sentiment arc</h3>
+          <div class="legend">
+            <span><i style="background:var(--pos)"></i>Positive</span>
+            <span><i style="background:var(--neu)"></i>Neutral</span>
+            <span><i style="background:var(--neg)"></i>Negative</span>
+          </div>
+        </div>
+        <div class="arc" id="arc"></div>
+        <div class="baseline"></div>
+      </div>
+
+      <div class="arc-wrap" id="rhythmWrap" style="display:none">
+        <div class="arc-head">
+          <h3>Ritmo y pausas</h3>
+          <div class="legend">
+            <span><i style="background:var(--pos)"></i>Buen ritmo</span>
+            <span><i style="background:var(--neu)"></i>Algo lento/rápido</span>
+            <span><i style="background:var(--neg)"></i>Muy lento/rápido</span>
+            <span><i style="background:var(--ink)"></i>Pausa</span>
+          </div>
+        </div>
+        <div class="rhythm-track" id="rhythmTrack">
+          <div class="rhythm-bars" id="rhythmBars"></div>
+          <div class="rhythm-pauses" id="rhythmPauses"></div>
+        </div>
+        <div class="rhythm-axis" id="rhythmAxis"></div>
+        <div class="rhythm-metrics" id="rhythmMetrics"></div>
+        <div class="rhythm-note" id="rhythmNote"></div>
+      </div>
+
+      <div class="transcript">
+        <h3>Transcript</h3>
+        <div class="doc" id="doc"></div>
+        <button class="copy" id="copyBtn">Copy transcript</button>
+        <span class="docx-area" id="docxArea"></span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Speech: <code>Xenova/whisper-{base|tiny}</code> · Sentiment: <code>multilingual-sentiment</code> · Engine:
+    <a href="https://github.com/huggingface/transformers.js" target="_blank" rel="noopener">Transformers.js</a>.
+    Inspired by Hugging Face <a href="https://huggingface.co/spaces/Xenova/whisper-web" target="_blank" rel="noopener">Whisper Web</a>.
+  </footer>
+</div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
