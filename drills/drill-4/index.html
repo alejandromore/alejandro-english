@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEFL Speaking — Drill #4</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#1a2744;color:#333;line-height:1.6}
+.container{max-width:900px;margin:0 auto;padding:20px}
+.header{text-align:center;padding:30px 20px;background:linear-gradient(135deg,#1a2744,#2d3e5f);border-radius:8px;margin-bottom:20px;color:#fff}
+.header h1{font-size:28px;margin-bottom:8px}
+.header .subtitle{font-size:14px;color:#00b4a6;font-weight:600}
+.back-link{display:inline-block;margin-bottom:15px;color:#00b4a6;text-decoration:none;font-size:14px;font-weight:600}
+.back-link:hover{text-decoration:underline}
+.card{background:#fff;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.15);padding:25px;margin-bottom:20px}
+.instructions{background:#f8f9fa;border-left:4px solid #00b4a6;padding:15px 20px;border-radius:8px;margin-bottom:20px;font-size:14px;color:#555}
+.task-section{display:none}
+.task-section.active{display:block}
+.task-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}
+.task-badge{background:#00b4a6;color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700}
+.task-title{font-size:20px;font-weight:700;color:#1a2744}
+.timer-container{display:flex;justify-content:center;align-items:center;margin:20px 0}
+.timer-circle{position:relative;width:120px;height:120px}
+.timer-svg{transform:rotate(-90deg)}
+.timer-bg{fill:none;stroke:#e0e0e0;stroke-width:8}
+.timer-fg{fill:none;stroke:#00b4a6;stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset 1s linear}
+.timer-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.timer-num{font-size:32px;font-weight:700;color:#1a2744}
+.timer-label{font-size:11px;color:#999;text-transform:uppercase}
+.reading-passage{background:#f0f4f8;border-radius:8px;padding:15px;margin:10px 0;font-size:14px;line-height:1.7}
+.reading-passage strong{color:#1a2744}
+.transcript{background:#f9f9f9;border-radius:8px;padding:15px;margin:10px 0;font-size:14px;line-height:1.8;white-space:pre-line}
+.prompt-box{background:#eef7f6;border-left:4px solid #00b4a6;padding:12px 16px;border-radius:8px;margin:10px 0;font-size:15px;font-weight:500;color:#1a2744}
+textarea{width:100%;min-height:120px;padding:12px;border:2px solid #ddd;border-radius:8px;font-family:inherit;font-size:14px;resize:vertical;transition:border-color 0.3s}
+textarea:focus{outline:none;border-color:#00b4a6}
+textarea:disabled{background:#f5f5f5;cursor:not-allowed}
+.btn{display:inline-block;padding:10px 24px;border:none;border-radius:8px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.3s}
+.btn-primary{background:#00b4a6;color:#fff}
+.btn-primary:hover{background:#009d90}
+.btn-primary:disabled{background:#ccc;cursor:not-allowed}
+.btn-secondary{background:#1a2744;color:#fff}
+.btn-secondary:hover{background:#2d3e5f}
+.btn-warning{background:#f39c12;color:#fff}
+.btn-warning:hover{background:#d68910}
+.timer-phase{text-align:center;font-size:13px;color:#666;margin-bottom:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px}
+.self-check{margin-top:20px}
+.check-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #eee}
+.check-icon{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0}
+.check-pass{background:#00b4a6;color:#fff}
+.check-fail{background:#e74c3c;color:#fff}
+.check-warn{background:#f39c12;color:#fff}
+.check-text{font-size:13px;flex:1}
+.check-text strong{color:#1a2744}
+.consonant-test{margin-top:15px}
+.consonant-input{display:inline-block;margin:5px}
+.consonant-input input{width:100px;padding:6px;border:2px solid #ddd;border-radius:4px;font-size:13px}
+.consonant-input label{display:block;font-size:11px;color:#666;margin-bottom:2px}
+.consonant-result{display:inline-block;margin-left:5px;font-size:13px;font-weight:700}
+.task-nav{display:flex;justify-content:space-between;align-items:center;margin-top:20px}
+.progress-bar{display:flex;gap:5px;margin:20px 0}
+.progress-dot{flex:1;height:6px;border-radius:3px;background:#e0e0e0;transition:background 0.3s}
+.progress-dot.done{background:#00b4a6}
+.progress-dot.current{background:#f39c12}
+.band-report{display:none}
+.band-report.active{display:block}
+.band-score{text-align:center;padding:20px;background:linear-gradient(135deg,#1a2744,#2d3e5f);border-radius:8px;color:#fff;margin:15px 0}
+.band-score .score-num{font-size:48px;font-weight:700;color:#00b4a6}
+.band-score .score-label{font-size:14px;color:#aaa}
+.task-scores{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:15px 0}
+.task-score-card{background:#f8f9fa;border-radius:8px;padding:12px;text-align:center}
+.task-score-card .ts-title{font-size:12px;color:#666;font-weight:600}
+.task-score-card .ts-score{font-size:24px;font-weight:700;color:#1a2744}
+.pattern-list{list-style:none;padding:0}
+.pattern-list li{padding:6px 0;border-bottom:1px solid #eee;font-size:13px}
+.pattern-list li:before{content:"⚠ ";color:#f39c12}
+.comparison-box{background:#eef7f6;border-radius:8px;padding:15px;margin:15px 0;font-size:14px}
+.comparison-box strong{color:#00b4a6}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="../../index.html" class="back-link">← Back to Training Hub</a>
+<div class="header">
+<h1>TOEFL Speaking — Drill #4</h1>
+<div class="subtitle">Full Mock Exam · All 4 Tasks · Timed · Week 4</div>
+</div>
+<div class="card">
+<div class="instructions">
+This is a full TOEFL Speaking mock exam. You will complete all 4 tasks in sequence. Each task has preparation time and response time. Type your response for self-check. At the end, you'll get a band report with your estimated score.
+</div>
+<div class="progress-bar">
+<div class="progress-dot current" id="dot-0"></div>
+<div class="progress-dot" id="dot-1"></div>
+<div class="progress-dot" id="dot-2"></div>
+<div class="progress-dot" id="dot-3"></div>
+</div>
+</div>
+<div id="task-0" class="task-section active card">
+<div class="task-header"><span class="task-title">Task 1 — Independent Speaking</span><span class="task-badge">15s prep / 45s resp</span></div>
+<div class="prompt-box">Some people believe that success comes from taking risks. Others believe that careful planning leads to success. Which view do you agree with and why?</div>
+<div class="timer-phase" id="phase-0">Press Start to Begin</div>
+<div class="timer-container"><div class="timer-circle"><svg class="timer-svg" width="120" height="120"><circle class="timer-bg" cx="60" cy="60" r="52"/><circle class="timer-fg" id="circle-0" cx="60" cy="60" r="52"/></svg><div class="timer-text"><div class="timer-num" id="time-0">15</div><div class="timer-label" id="tlabel-0">Prep</div></div></div></div>
+<div id="reading-0" class="hidden"></div>
+<div id="transcript-0" class="hidden"></div>
+<textarea id="resp-0" placeholder="Type your response here..." disabled></textarea>
+<div style="margin-top:10px;text-align:center">
+<button class="btn btn-primary" id="start-0" onclick="startTask(0)">Start Task</button>
+<button class="btn btn-primary hidden" id="submit-0" onclick="submitTask(0)">Submit Response</button>
+</div>
+<div class="self-check" id="check-0"></div>
+</div>
+<div id="task-1" class="task-section card">
+<div class="task-header"><span class="task-title">Task 2 — Integrated Campus</span><span class="task-badge">30s prep / 60s resp</span></div>
+<div class="prompt-box">The woman expresses her opinion about the online evaluation system. State her opinion and explain the reasons she gives.</div>
+<div id="reading-1" class="reading-passage hidden"><strong>Reading Passage (45s):</strong><br>The university is planning to replace the current paper-based course evaluation system with an online system. Administrators believe this will increase response rates and provide faster feedback to instructors.</div>
+<div id="transcript-1" class="transcript hidden"><strong>Conversation Transcript:</strong>
+Man: Did you see the announcement about online course evaluations?
+Woman: Yes, and I think it's actually a good idea. With the paper system, most students just rush through it at the end of class when they're tired. An online system lets you do it on your own time, so you can give more thoughtful feedback. Also, the results get to professors faster, which means they can improve the course for the next semester instead of waiting months.</div>
+<div class="timer-phase" id="phase-1">Press Start to Begin</div>
+<div class="timer-container"><div class="timer-circle"><svg class="timer-svg" width="120" height="120"><circle class="timer-bg" cx="60" cy="60" r="52"/><circle class="timer-fg" id="circle-1" cx="60" cy="60" r="52"/></svg><div class="timer-text"><div class="timer-num" id="time-1">45</div><div class="timer-label" id="tlabel-1">Reading</div></div></div></div>
+<textarea id="resp-1" placeholder="Type your response here..." disabled></textarea>
+<div style="margin-top:10px;text-align:center">
+<button class="btn btn-primary" id="start-1" onclick="startTask(1)">Start Task</button>
+<button class="btn btn-primary hidden" id="submit-1" onclick="submitTask(1)">Submit Response</button>
+</div>
+<div class="self-check" id="check-1"></div>
+</div>
+<div id="task-2" class="task-section card">
+<div class="task-header"><span class="task-title">Task 3 — Integrated Academic</span><span class="task-badge">30s prep / 60s resp</span></div>
+<div class="prompt-box">Using the examples from the lecture, explain the concept of alarm calls.</div>
+<div id="reading-2" class="reading-passage hidden"><strong>Reading Passage (45s):</strong><br>Alarm Calls are warning signals produced by animals to alert other members of their species about nearby predators. These calls can benefit the group but often put the caller at increased risk by drawing the predator's attention.</div>
+<div id="transcript-2" class="transcript hidden"><strong>Lecture Transcript:</strong>
+Let's consider two examples of alarm calls. First, vervet monkeys produce different alarm calls for different predators — one for leopards, another for eagles, and a third for snakes. When a vervet hears a leopard call, it runs into trees. For an eagle call, it looks up and hides in bushes. This shows that alarm calls can carry specific information. Second, consider the prairie dog. Prairie dogs give alarm calls when predators approach, and interestingly, they can even describe the predator's size, color, and speed. However, by calling, the prairie dog makes itself more visible and vulnerable to the predator, which is a significant cost.</div>
+<div class="timer-phase" id="phase-2">Press Start to Begin</div>
+<div class="timer-container"><div class="timer-circle"><svg class="timer-svg" width="120" height="120"><circle class="timer-bg" cx="60" cy="60" r="52"/><circle class="timer-fg" id="circle-2" cx="60" cy="60" r="52"/></svg><div class="timer-text"><div class="timer-num" id="time-2">45</div><div class="timer-label" id="tlabel-2">Reading</div></div></div></div>
+<textarea id="resp-2" placeholder="Type your response here..." disabled></textarea>
+<div style="margin-top:10px;text-align:center">
+<button class="btn btn-primary" id="start-2" onclick="startTask(2)">Start Task</button>
+<button class="btn btn-primary hidden" id="submit-2" onclick="submitTask(2)">Submit Response</button>
+</div>
+<div class="self-check" id="check-2"></div>
+</div>
+<div id="task-3" class="task-section card">
+<div class="task-header"><span class="task-title">Task 4 — Integrated Audio Only</span><span class="task-badge">20s prep / 60s resp</span></div>
+<div class="prompt-box">Using points and examples from the lecture, explain the concept of surrogate advertising.</div>
+<div id="transcript-3" class="transcript hidden"><strong>Lecture Transcript (Audio Simulation):</strong>
+Today we'll discuss the concept of surrogate advertising. This is a marketing strategy used when a company cannot directly advertise a particular product, often due to legal restrictions. Instead, the company promotes a different, associated product or brand that carries the same name. For example, in many countries, tobacco advertising is banned on television. So tobacco companies create advertisements for other products — like clothing, accessories, or even social events — that feature their brand name prominently. When consumers see these ads, they associate the brand with the restricted product. Another example is alcohol companies sponsoring sports teams or music festivals. They cannot advertise the alcohol directly during certain broadcasts, but their brand logo appears on team jerseys and event banners, keeping the brand visible to the public.</div>
+<div class="timer-phase" id="phase-3">Press Start to Begin</div>
+<div class="timer-container"><div class="timer-circle"><svg class="timer-svg" width="120" height="120"><circle class="timer-bg" cx="60" cy="60" r="52"/><circle class="timer-fg" id="circle-3" cx="60" cy="60" r="52"/></svg><div class="timer-text"><div class="timer-num" id="time-3">20</div><div class="timer-label" id="tlabel-3">Prep</div></div></div></div>
+<textarea id="resp-3" placeholder="Type your response here..." disabled></textarea>
+<div style="margin-top:10px;text-align:center">
+<button class="btn btn-primary" id="start-3" onclick="startTask(3)">Start Task</button>
+<button class="btn btn-primary hidden" id="submit-3" onclick="submitTask(3)">Submit Response</button>
+</div>
+<div class="self-check" id="check-3"></div>
+</div>
+<div id="band-report" class="band-report card">
+<div class="task-header"><span class="task-title">Band Report — Full Mock Diagnosis</span></div>
+<div class="band-score"><div class="score-num" id="overall-score">--</div><div class="score-label">Overall Estimated Score (0-30)</div></div>
+<div class="task-scores" id="task-scores-grid"></div>
+<div class="comparison-box" id="comparison-box"></div>
+<div style="margin-top:15px"><strong style="color:#1a2744">Patterns to Work On:</strong><ul class="pattern-list" id="pattern-list"></ul></div>
+<div style="margin-top:20px;text-align:center"><button class="btn btn-secondary" onclick="location.href='../../index.html'">Back to Training Hub</button></div>
+</div>
+</div>
+<script>
+const TASKS=[
+{prep:15,resp:45,reading:0,readTime:0,type:'independent'},
+{prep:30,resp:60,reading:1,readTime:45,type:'campus'},
+{prep:30,resp:60,reading:1,readTime:45,type:'academic'},
+{prep:20,resp:60,reading:0,readTime:0,type:'audio'}
+];
+const CONSONANT_WORDS=["success","risks","planning","evaluation","online","alarm","predators","surrogate","advertising","restrictions"];
+const CONSONANT_ANSWERS=["s","s","ng","on","e","m","s","e","ng","s"];
+const CIRC=2*Math.PI*52;
+let currentTask=-1;
+let timerInterval=null;
+let taskResults=[];
+let phaseState={};
+
+function setCircle(idx,frac){
+const el=document.getElementById('circle-'+idx);
+el.style.strokeDasharray=CIRC;
+el.style.strokeDashoffset=CIRC*(1-frac);
+}
+
+function startTask(idx){
+currentTask=idx;
+document.getElementById('start-'+idx).classList.add('hidden');
+const t=TASKS[idx];
+phaseState[idx]={phase:'reading',time:t.readTime};
+if(t.readTime>0){
+document.getElementById('reading-'+idx).classList.remove('hidden');
+document.getElementById('transcript-'+idx).classList.remove('hidden');
+document.getElementById('phase-'+idx).textContent='Reading Passage';
+document.getElementById('tlabel-'+idx).textContent='Reading';
+runTimer(idx);
+}else{
+beginPrep(idx);
+}
+}
+
+function beginPrep(idx){
+phaseState[idx]={phase:'prep',time:TASKS[idx].prep};
+document.getElementById('phase-'+idx).textContent='Preparation Time';
+document.getElementById('tlabel-'+idx).textContent='Prep';
+if(TASKS[idx].reading===0){
+document.getElementById('transcript-'+idx).classList.remove('hidden');
+}
+runTimer(idx);
+}
+
+function beginResponse(idx){
+phaseState[idx]={phase:'response',time:TASKS[idx].resp};
+document.getElementById('phase-'+idx).textContent='Response Time — Type Now!';
+document.getElementById('tlabel-'+idx).textContent='Response';
+const ta=document.getElementById('resp-'+idx);
+ta.disabled=false;
+ta.focus();
+document.getElementById('submit-'+idx).classList.remove('hidden');
+runTimer(idx);
+}
+
+function runTimer(idx){
+if(timerInterval)clearInterval(timerInterval);
+const t=TASKS[idx];
+let total=phaseState[idx].phase==='reading'?t.readTime:phaseState[idx].phase==='prep'?t.prep:t.resp;
+let time=phaseState[idx].time;
+document.getElementById('time-'+idx).textContent=time;
+setCircle(idx,time/total);
+timerInterval=setInterval(function(){
+time--;
+phaseState[idx].time=time;
+document.getElementById('time-'+idx).textContent=Math.max(0,time);
+setCircle(idx,Math.max(0,time)/total);
+const c=document.getElementById('circle-'+idx);
+if(time<=5)c.style.stroke='#e74c3c';
+else if(time<=10)c.style.stroke='#f39c12';
+else c.style.stroke='#00b4a6';
+if(time<=0){
+clearInterval(timerInterval);
+timerInterval=null;
+if(phaseState[idx].phase==='reading')beginPrep(idx);
+else if(phaseState[idx].phase==='prep')beginResponse(idx);
+}
+},1000);
+}
+
+function submitTask(idx){
+if(timerInterval){clearInterval(timerInterval);timerInterval=null;}
+const resp=document.getElementById('resp-'+idx).value;
+document.getElementById('resp-'+idx).disabled=true;
+document.getElementById('submit-'+idx).classList.add('hidden');
+document.getElementById('phase-'+idx).textContent='Response Submitted';
+document.getElementById('time-'+idx).textContent='✓';
+document.getElementById('tlabel-'+idx).textContent='Done';
+setCircle(idx,1);
+document.getElementById('circle-'+idx).style.stroke='#00b4a6';
+const checks=runSelfChecks(idx,resp);
+taskResults[idx]=checks;
+renderChecks(idx,checks);
+document.getElementById('dot-'+idx).classList.remove('current');
+document.getElementById('dot-'+idx).classList.add('done');
+if(idx<3){
+document.getElementById('dot-'+(idx+1)).classList.add('current');
+document.getElementById('task-'+idx).classList.remove('active');
+document.getElementById('task-'+(idx+1)).classList.add('active');
+document.getElementById('task-'+(idx+1)).scrollIntoView({behavior:'smooth'});
+}else{
+showBandReport();
+}
+}
+
+function runSelfChecks(idx,resp){
+const checks=[];
+const lower=resp.toLowerCase();
+const words=resp.trim().split(/\s+/).filter(w=>w.length>0);
+const wordCount=words.length;
+const type=TASKS[idx].type;
+
+// 1. "be" auxiliary check
+const beForms=['am','is','are','was','were','been','being','be'];
+let beCount=0;
+words.forEach(w=>{
+const clean=w.toLowerCase().replace(/[^a-z]/g,'');
+if(beForms.includes(clean))beCount++;
+});
+if(beCount>=2)checks.push({pass:true,text:'<strong>"Be" auxiliary check:</strong> '+beCount+' "be" forms found. Good use of auxiliary verbs.'});
+else if(beCount===1)checks.push({pass:false,text:'<strong>"Be" auxiliary check:</strong> Only 1 "be" form found. Try using more auxiliary verbs for complex sentences.'});
+else checks.push({pass:false,text:'<strong>"Be" auxiliary check:</strong> No "be" forms found. Use auxiliary verbs to build complex sentences.'});
+
+// 2. Structure check (task-specific)
+if(type==='independent'){
+const hasStance=/(agree|believe|think|prefer|support)/i.test(resp);
+const hasReason=/(because|since|reason|why|first|second)/i.test(resp);
+const hasExample=/(for example|for instance|such as|like|when|if)/i.test(resp);
+if(hasStance&&hasReason&&hasExample)checks.push({pass:true,text:'<strong>Structure check:</strong> Stance + reason + example detected. Well-structured response.'});
+else checks.push({pass:false,text:'<strong>Structure check:</strong> Missing elements — need stance (agree/disagree), reason, and example. Found: '+[hasStance?'stance':'',hasReason?'reason':'',hasExample?'example':''].filter(Boolean).join(', ')||'none'});
+}else if(type==='campus'){
+const hasProposal=/(online|evaluation|system|replace|paper)/i.test(resp);
+const hasOpinion=/(opinion|agree|support|good|thinks|believes)/i.test(resp);
+const hasReasons=/(because|reason|first|second|also|faster|thoughtful|time)/i.test(resp);
+if(hasProposal&&hasOpinion&&hasReasons)checks.push({pass:true,text:'<strong>Structure check:</strong> Proposal + opinion + reasons detected. Well-structured.'});
+else checks.push({pass:false,text:'<strong>Structure check:</strong> Need proposal summary, opinion, and reasons. Found: '+[hasProposal?'proposal':'',hasOpinion?'opinion':'',hasReasons?'reasons':''].filter(Boolean).join(', ')||'none'});
+}else if(type==='academic'){
+const hasConcept=/(alarm|call|warning|signal|predator)/i.test(resp);
+const hasExamples=/(vervet|monkey|prairie dog|leopard|eagle|snake)/i.test(resp);
+const hasExplain=/(example|show|demonstrate|however|cost|risk|benefit)/i.test(resp);
+if(hasConcept&&hasExamples&&hasExplain)checks.push({pass:true,text:'<strong>Structure check:</strong> Concept + examples + explanation detected. Well-structured.'});
+else checks.push({pass:false,text:'<strong>Structure check:</strong> Need concept definition, examples, and explanation. Found: '+[hasConcept?'concept':'',hasExamples?'examples':'',hasExplain?'explanation':''].filter(Boolean).join(', ')||'none'});
+}else if(type==='audio'){
+const hasSummary=/(surrogate|advertising|marketing|brand|restrict)/i.test(resp);
+const hasExamples=/(tobacco|alcohol|clothing|sponsor|jersey|festival|banner)/i.test(resp);
+const hasExplain=/(example|because|cannot|instead|associate|visible)/i.test(resp);
+if(hasSummary&&hasExamples&&hasExplain)checks.push({pass:true,text:'<strong>Structure check:</strong> Summary + examples + explanation detected. Well-structured.'});
+else checks.push({pass:false,text:'<strong>Structure check:</strong> Need summary, examples, and explanation. Found: '+[hasSummary?'summary':'',hasExamples?'examples':'',hasExplain?'explanation':''].filter(Boolean).join(', ')||'none'});
+}
+
+// 3. Connectors count
+const connectors=['however','therefore','moreover','furthermore','additionally','also','first','second','third','finally','because','since','although','while','but','and','so','for example','for instance','in addition','consequently'];
+let connCount=0;
+connectors.forEach(c=>{
+const re=new RegExp('\\b'+c.replace(/\s/g,'\\s')+'\\b','gi');
+const m=resp.match(re);
+if(m)connCount+=m.length;
+});
+if(connCount>=4)checks.push({pass:true,text:'<strong>Connectors check:</strong> '+connCount+' connectors found. Excellent cohesion.'});
+else if(connCount>=2)checks.push({pass:false,text:'<strong>Connectors check:</strong> '+connCount+' connectors found. Aim for 4+ for better flow.'});
+else checks.push({pass:false,text:'<strong>Connectors check:</strong> Only '+connCount+' connector(s) found. Use more transitional phrases.'});
+
+// 4. Length check
+const minLen=type==='independent'?60:80;
+const maxLen=type==='independent'?120:150;
+if(wordCount>=minLen&&wordCount<=maxLen)checks.push({pass:true,text:'<strong>Length check:</strong> '+wordCount+' words. Within ideal range ('+minLen+'-'+maxLen+').'});
+else if(wordCount<minLen)checks.push({pass:false,text:'<strong>Length check:</strong> '+wordCount+' words. Too short — aim for '+minLen+'-'+maxLen+' words.'});
+else checks.push({pass:false,text:'<strong>Length check:</strong> '+wordCount+' words. Too long — aim for '+minLen+'-'+maxLen+' words.'});
+
+// 5. Final consonant test (CASE SENSITIVE)
+const consonantResults=CONSONANT_WORDS.map((w,i)=>{
+const expected=CONSONANT_ANSWERS[i];
+return{word:w,expected:expected};
+});
+checks.push({pass:true,text:'<strong>Final consonant test:</strong> See below.',consonant:true,consonantData:consonantResults});
+
+return checks;
+}
+
+function renderChecks(idx,checks){
+const container=document.getElementById('check-'+idx);
+let html='<h3 style="color:#1a2744;margin-bottom:10px;font-size:16px">Self-Check Results</h3>';
+checks.forEach(c=>{
+if(c.consonant){
+html+='<div class="check-item"><div class="check-icon check-pass">✓</div><div class="check-text">'+c.text+'</div></div>';
+html+='<div class="consonant-test"><p style="font-size:13px;color:#666;margin-bottom:5px">Type the final consonant sound (CASE SENSITIVE) for each word:</p>';
+c.consonantData.forEach((cd,i)=>{
+const id='cons-'+idx+'-'+i;
+html+='<div class="consonant-input"><label>'+cd.word+'</label><input type="text" id="'+id+'" maxlength="3" onkeyup="checkConsonant('+idx+','+i+',\''+cd.expected+'\')"><span class="consonant-result" id="cr-'+idx+'-'+i+'"></span></div>';
+});
+html+='</div>';
+}else{
+const cls=c.pass?'check-pass':'check-fail';
+const icon=c.pass?'✓':'✗';
+html+='<div class="check-item"><div class="check-icon '+cls+'">'+icon+'</div><div class="check-text">'+c.text+'</div></div>';
+}
+});
+container.innerHTML=html;
+}
+
+function checkConsonant(taskIdx,wordIdx,expected){
+const input=document.getElementById('cons-'+taskIdx+'-'+wordIdx);
+const result=document.getElementById('cr-'+taskIdx+'-'+wordIdx);
+const val=input.value.trim();
+if(val===''){result.textContent='';result.style.color='';return;}
+// CASE SENSITIVE check
+if(val===expected){
+result.textContent='✓ Correct';
+result.style.color='#00b4a6';
+}else{
+result.textContent='✗ Try again';
+result.style.color='#e74c3c';
+}
+}
+
+function showBandReport(){
+document.getElementById('band-report').classList.add('active');
+const taskNames=['Task 1: Independent','Task 2: Campus','Task 3: Academic','Task 4: Audio'];
+let totalScore=0;
+let allPatterns=[];
+const grid=document.getElementById('task-scores-grid');
+let gridHtml='';
+taskResults.forEach((checks,idx)=>{
+let failCount=checks.filter(c=>!c.pass).length;
+let score;
+if(failCount===0)score=23+Math.floor(Math.random()*4);
+else if(failCount<=2)score=18+Math.floor(Math.random()*5);
+else score=15+Math.floor(Math.random()*4);
+totalScore+=score;
+gridHtml+='<div class="task-score-card"><div class="ts-title">'+taskNames[idx]+'</div><div class="ts-score">'+score+'</div></div>';
+checks.filter(c=>!c.pass).forEach(c=>{
+if(!c.consonant){
+const cleanText=c.text.replace(/<[^>]*>/g,'').split(':')[0];
+if(!allPatterns.includes(cleanText))allPatterns.push(cleanText);
+}
+});
+});
+grid.innerHTML=gridHtml;
+const overall=Math.round(totalScore/4);
+document.getElementById('overall-score').textContent=overall;
+let compHtml='<strong>Previous Level:</strong> B1-high / B2-low (18-23)<br><strong>Current Estimate:</strong> ';
+if(overall>=24)compHtml+='B2-mid to B2-high ('+overall+'/30) — Strong improvement!';
+else if(overall>=20)compHtml+='B2-low ('+overall+'/30) — Consistent with previous level.';
+else compHtml+='B1-high ('+overall+'/30) — Below target. Review weak areas.';
+compHtml+='<br><strong>Target:</strong> 24+ (B2-mid) for most university programs';
+document.getElementById('comparison-box').innerHTML=compHtml;
+const pl=document.getElementById('pattern-list');
+if(allPatterns.length===0){
+pl.innerHTML='<li style="border:none">No major patterns detected — excellent work!</li>';
+}else{
+pl.innerHTML=allPatterns.map(p=>'<li>'+p+'</li>').join('');
+}
+document.getElementById('band-report').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

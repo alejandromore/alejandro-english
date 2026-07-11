@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEFL Speaking — Drill #2</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#1a2744;color:#333;line-height:1.6}
+.container{max-width:900px;margin:0 auto;padding:20px}
+.header{text-align:center;padding:30px 20px;background:linear-gradient(135deg,#1a2744,#2c3e6b);border-radius:8px;margin-bottom:20px;color:#fff}
+.header h1{font-size:28px;margin-bottom:5px}
+.header p{font-size:14px;color:#00b4a6}
+.card{background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.15);padding:20px;margin-bottom:20px}
+.card h2{font-size:20px;color:#1a2744;margin-bottom:15px;border-bottom:2px solid #00b4a6;padding-bottom:8px}
+.focus-panel{cursor:pointer}
+.focus-header{display:flex;justify-content:space-between;align-items:center}
+.focus-header h2{border:none;margin:0;padding:0}
+.focus-content{margin-top:15px;display:none}
+.focus-content.open{display:block}
+.focus-item{margin-bottom:10px;padding:10px;background:#f0f4f8;border-radius:6px;border-left:4px solid #00b4a6}
+.focus-item strong{color:#1a2744}
+.focus-item .desc{font-size:14px;color:#555}
+.toggle-icon{font-size:20px;color:#00b4a6;transition:transform .3s}
+.toggle-icon.open{transform:rotate(180deg)}
+.drill{border:1px solid #e0e0e0;border-radius:8px;padding:15px;margin-bottom:15px;background:#fafafa}
+.drill-prompt{font-size:15px;color:#1a2744;margin-bottom:10px;font-weight:600}
+.timer-container{display:flex;align-items:center;gap:15px;margin:10px 0}
+.timer-circle{width:60px;height:60px;position:relative}
+.timer-circle svg{transform:rotate(-90deg)}
+.timer-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:18px;font-weight:bold;color:#1a2744}
+.timer-label{font-size:13px;color:#666}
+.timer-label.active{color:#e74c3c;font-weight:bold}
+textarea{width:100%;min-height:100px;padding:10px;border:2px solid #ddd;border-radius:6px;font-family:inherit;font-size:14px;resize:vertical}
+textarea:focus{border-color:#00b4a6;outline:none}
+.btn{padding:10px 20px;border:none;border-radius:6px;cursor:pointer;font-size:14px;font-weight:600;transition:background .2s}
+.btn-primary{background:#00b4a6;color:#fff}
+.btn-primary:hover{background:#009690}
+.btn-primary:disabled{background:#ccc;cursor:not-allowed}
+.results{margin-top:15px;padding:15px;background:#f8f9fa;border-radius:6px;display:none}
+.results.show{display:block}
+.check-item{margin-bottom:8px;padding:8px;border-radius:4px;font-size:13px}
+.check-pass{background:#e0f5f3;color:#006b65;border-left:4px solid #00b4a6}
+.check-fail{background:#fdeaea;color:#a93226;border-left:4px solid #e74c3c}
+.check-warn{background:#fef3e0;color:#8a6d1b;border-left:4px solid #f39c12}
+.model-answer{background:#f0f4f8;padding:15px;border-radius:6px;font-size:14px;line-height:1.8}
+.hl-green{background:#d4f4f0;color:#006b65;padding:2px 4px;border-radius:3px;font-weight:600}
+.hl-blue{background:#d0e4ff;color:#1a4a8a;padding:2px 4px;border-radius:3px;font-weight:600}
+.hl-yellow{background:#fff3d0;color:#8a6d1b;padding:2px 4px;border-radius:3px;font-weight:600}
+.structure-note{background:#fff8e0;border-left:4px solid #f39c12;padding:15px;border-radius:6px;font-size:14px}
+.goal-tracker{padding:15px}
+.goal-item{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:14px}
+.goal-item input[type=checkbox]{width:18px;height:18px;accent-color:#00b4a6}
+.progress-msg{margin-top:10px;padding:10px;border-radius:6px;text-align:center;font-weight:600}
+.progress-done{background:#d4f4f0;color:#006b65}
+.progress-pending{background:#f0f4f8;color:#666}
+.back-link{display:block;text-align:center;padding:15px;color:#00b4a6;text-decoration:none;font-size:14px;font-weight:600}
+.back-link:hover{color:#009690}
+.consonant-test{margin-top:15px}
+.consonant-word{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.consonant-word label{min-width:120px;font-size:13px;font-weight:600;color:#1a2744}
+.consonant-word input{padding:5px 8px;border:2px solid #ddd;border-radius:4px;font-size:13px;width:150px}
+.consonant-word .score{font-size:13px;font-weight:bold}
+.score-2{color:#00b4a6}
+.score-1{color:#f39c12}
+.score-0{color:#e74c3c}
+.consonant-total{margin-top:10px;font-size:15px;font-weight:bold;color:#1a2744}
+</style>
+</head>
+<body>
+<div class="container">
+<!-- Header -->
+<div class="header">
+<h1>TOEFL Speaking — Drill #2</h1>
+<p>Task 1 · Fluency Under Pressure · Week 2</p>
+</div>
+
+<!-- Focus Panel -->
+<div class="card focus-panel">
+<div class="focus-header" onclick="toggleFocus()">
+<h2>This Week's Focus</h2>
+<span class="toggle-icon" id="focusIcon">▼</span>
+</div>
+<div class="focus-content" id="focusContent">
+<div class="focus-item"><strong>Coherence</strong><div class="desc">Keep the central idea clear from start to finish — no losing the thread mid-sentence</div></div>
+<div class="focus-item"><strong>"be" auxiliary</strong><div class="desc">Still drill am/is/are/was/were in every sentence that needs it</div></div>
+<div class="focus-item"><strong>Final consonants</strong><div class="desc">-s, -t, -ct must be pronounced</div></div>
+<div class="focus-item"><strong>Connectors</strong><div class="desc">Use transition words to maintain flow (however, therefore, moreover, additionally, for instance, as a result)</div></div>
+<div class="focus-item"><strong>Speed</strong><div class="desc">Aim for natural pace — not too fast (loses structure), not too slow (runs out of time)</div></div>
+</div>
+</div>
+
+<!-- Drill Practice -->
+<div class="card">
+<h2>Drill Practice — 5 Prompts (Task 1 Independent)</h2>
+<div id="drillsContainer"></div>
+</div>
+
+<!-- Model Answer -->
+<div class="card">
+<h2>Example Model Answer (Prompt 1)</h2>
+<div class="model-answer">
+<span class="hl-green">I agree</span> that students should be required to take physical education classes in college. <span class="hl-blue">First</span>, regular exercise is essential for maintaining both physical and mental health, especially during stressful academic periods. <span class="hl-yellow">For example, when I was</span> in university, the students who exercised regularly were more focused and performed better in their classes. <span class="hl-blue">Moreover</span>, physical education provides a necessary break from sitting in classrooms all day, which helps students stay energized and productive.
+</div>
+</div>
+
+<!-- Structure Note -->
+<div class="card">
+<h2>Structure Note</h2>
+<div class="structure-note">
+Task 1 requires: (1) clear stance in first sentence, (2) one reason with a connector, (3) concrete example. This week, focus on maintaining coherence — do NOT let the idea drift. Use connectors to bridge your thoughts.
+</div>
+</div>
+
+<!-- Daily Goal Tracker -->
+<div class="card">
+<h2>Daily Goal Tracker</h2>
+<div class="goal-tracker">
+<p style="margin-bottom:12px;font-size:14px;color:#666;">Goal: 5 prompts/day · Transcribe each response · Correct grammar · Track coherence score</p>
+<div class="goal-item"><input type="checkbox" id="goal1" onchange="updateProgress()"><label for="goal1">Prompt 1 completed</label></div>
+<div class="goal-item"><input type="checkbox" id="goal2" onchange="updateProgress()"><label for="goal2">Prompt 2 completed</label></div>
+<div class="goal-item"><input type="checkbox" id="goal3" onchange="updateProgress()"><label for="goal3">Prompt 3 completed</label></div>
+<div class="goal-item"><input type="checkbox" id="goal4" onchange="updateProgress()"><label for="goal4">Prompt 4 completed</label></div>
+<div class="goal-item"><input type="checkbox" id="goal5" onchange="updateProgress()"><label for="goal5">Prompt 5 completed</label></div>
+<div class="progress-msg progress-pending" id="progressMsg">0 of 5 prompts completed. Keep going!</div>
+</div>
+</div>
+
+<!-- Back link -->
+<a class="back-link" href="../../index.html">← Back to Training Hub</a>
+</div>
+
+<script>
+var prompts=[
+"Do you agree or disagree: students should be required to take physical education classes in college?",
+"Some people think the best way to learn a new skill is by taking a class. Others think self-study is better. Which do you prefer and why?",
+"Do you agree or disagree: it is better to save money for the future than to spend it on experiences now?",
+"Some people prefer to plan their free time carefully. Others prefer to be spontaneous. Which approach do you prefer and why?",
+"Do you agree or disagree: social media has a positive impact on personal relationships?"
+];
+var consonantWords=["students","required","best","class","spend","experiences","plan","spontaneous","impact","relationships"];
+var timers={};
+
+function toggleFocus(){
+  var c=document.getElementById('focusContent');
+  var i=document.getElementById('focusIcon');
+  c.classList.toggle('open');
+  i.classList.toggle('open');
+}
+
+function buildDrills(){
+  var c=document.getElementById('drillsContainer');
+  for(var i=0;i<prompts.length;i++){
+    var d=document.createElement('div');
+    d.className='drill';
+    d.innerHTML='<div class="drill-prompt">'+(i+1)+'. '+prompts[i]+'</div>'
+      +'<div class="timer-container">'
+      +'<div class="timer-circle" id="circle'+i+'">'
+      +'<svg width="60" height="60"><circle cx="30" cy="30" r="26" stroke="#e0e0e0" stroke-width="4" fill="none"/>'
+      +'<circle id="progress'+i+'" cx="30" cy="30" r="26" stroke="#00b4a6" stroke-width="4" fill="none" stroke-dasharray="163.36" stroke-dashoffset="0"/></svg>'
+      +'<div class="timer-text" id="timerText'+i+'">15</div></div>'
+      +'<div class="timer-label" id="timerLabel'+i+'">Prep time — read & plan</div></div>'
+      +'<textarea id="response'+i+'" placeholder="Type your spoken response here (case sensitive)..." disabled></textarea>'
+      +'<div style="margin-top:10px;">'
+      +'<button class="btn btn-primary" id="startBtn'+i+'" onclick="startTimer('+i+')">Start Prep (15s)</button> '
+      +'<button class="btn btn-primary" id="submitBtn'+i+'" onclick="runCheck('+i+')" style="display:none;">Submit &amp; Self-Check</button></div>'
+      +'<div class="results" id="results'+i+'"></div>';
+    c.appendChild(d);
+  }
+}
+
+function startTimer(i){
+  document.getElementById('startBtn'+i).style.display='none';
+  document.getElementById('timerLabel'+i).classList.add('active');
+  runCountdown(i,15,'prep',function(){
+    document.getElementById('timerLabel'+i).textContent='Response time — speak now!';
+    document.getElementById('timerLabel'+i).classList.add('active');
+    document.getElementById('response'+i).disabled=false;
+    document.getElementById('response'+i).focus();
+    runCountdown(i,45,'resp',function(){
+      document.getElementById('timerLabel'+i).textContent='Time up!';
+      document.getElementById('timerLabel'+i).classList.remove('active');
+      document.getElementById('timerLabel'+i).style.color='#e74c3c';
+      document.getElementById('submitBtn'+i).style.display='inline-block';
+    });
+    document.getElementById('submitBtn'+i).style.display='inline-block';
+  });
+}
+
+function runCountdown(i,secs,phase,cb){
+  var total=secs;
+  var remaining=secs;
+  var circ=163.36;
+  var color=phase==='prep'?'#f39c12':'#e74c3c';
+  document.getElementById('progress'+i).style.stroke=color;
+  if(timers[i])clearInterval(timers[i]);
+  timers[i]=setInterval(function(){
+    remaining--;
+    var off=circ*(1-remaining/total);
+    document.getElementById('progress'+i).style.strokeDashoffset=off;
+    document.getElementById('timerText'+i).textContent=remaining;
+    if(remaining<=0){
+      clearInterval(timers[i]);
+      document.getElementById('timerText'+i).textContent='0';
+      document.getElementById('progress'+i).style.strokeDashoffset=circ;
+      if(cb)cb();
+    }
+  },1000);
+}
+
+function runCheck(i){
+  var text=document.getElementById('response'+i).value;
+  var r=document.getElementById('results'+i);
+  r.classList.add('show');
+  var html='<h3 style="margin-bottom:10px;color:#1a2744;">Self-Check Results</h3>';
+  // Check 1: be auxiliary
+  var beIssues=checkBeAux(text);
+  if(beIssues.length===0){
+    html+='<div class="check-item check-pass">✓ "be" auxiliary: No missing am/is/are/was/were detected before -ing verbs.</div>';
+  }else{
+    html+='<div class="check-item check-fail">✗ "be" auxiliary: Missing "be" before: '+beIssues.join(', ')+'</div>';
+  }
+  // Check 2: Coherence/Structure
+  var stance=/(I prefer|I agree|I disagree|I believe|I think|In my opinion)/i.test(text);
+  var reason=/(because|since|for this reason|due to)/i.test(text);
+  var example=/(for example|for instance|in my experience|when I|I once)/i.test(text);
+  html+='<div class="check-item '+(stance?'check-pass':'check-fail')+'">'+(stance?'✓':'✗')+' Clear stance in first sentence (I prefer/agree/disagree/believe/think/In my opinion)</div>';
+  html+='<div class="check-item '+(reason?'check-pass':'check-fail')+'">'+(reason?'✓':'✗')+' At least one reason given (because/since/for this reason/due to)</div>';
+  html+='<div class="check-item '+(example?'check-pass':'check-fail')+'">'+(example?'✓':'✗')+' Concrete example provided (for example/for instance/in my experience/when I/I once)</div>';
+  // Check 3: Connectors
+  var connectors=['however','therefore','moreover','additionally','for instance','as a result','furthermore','consequently','nevertheless','on the other hand'];
+  var cnt=0;var found=[];
+  var lower=text.toLowerCase();
+  for(var c=0;c<connectors.length;c++){
+    if(lower.indexOf(connectors[c])>=0){cnt++;found.push(connectors[c]);}
+  }
+  if(cnt===0)html+='<div class="check-item check-warn">⚠ Connectors: 0 found. Add transition words to improve flow.</div>';
+  else if(cnt<=2)html+='<div class="check-item check-pass">✓ Connectors: '+cnt+' found ('+found.join(', ')+'). Good.</div>';
+  else html+='<div class="check-item check-pass">✓ Connectors: '+cnt+' found ('+found.join(', ')+'). Excellent!</div>';
+  // Check 4: Length
+  var words=text.trim().split(/\s+/).filter(function(w){return w.length>0;});
+  var wc=words.length;
+  if(wc<40)html+='<div class="check-item check-warn">⚠ Length: '+wc+' words. Too short — aim for 40-100 words.</div>';
+  else if(wc>100)html+='<div class="check-item check-warn">⚠ Length: '+wc+' words. May be too long for 45s.</div>';
+  else html+='<div class="check-item check-pass">✓ Length: '+wc+' words. Good for 45s response.</div>';
+  // Check 5: Final consonant test
+  html+='<div class="consonant-test"><h4 style="color:#1a2744;margin-bottom:8px;">Final Consonant Test (Case Sensitive)</h4>';
+  html+='<p style="font-size:12px;color:#888;margin-bottom:8px;">Type each target word. Exact match=2pts, correct spelling wrong case=1pt, wrong=0pts.</p>';
+  for(var w=0;w<consonantWords.length;w++){
+    html+='<div class="consonant-word"><label>'+consonantWords[w]+'</label>';
+    html+='<input type="text" id="cw'+i+'_'+w+'" oninput="scoreConsonant('+i+','+w+')">';
+    html+='<span class="score" id="cs'+i+'_'+w+'"></span></div>';
+  }
+  html+='<div class="consonant-total" id="ctotal'+i+'">Total: 0 / 20</div>';
+  html+='</div>';
+  r.innerHTML=html;
+}
+
+function checkBeAux(text){
+  var issues=[];
+  var pats=[[/\bwe\s+\w+ing\b/gi,'we ...ing'],[/\bthey\s+\w+ing\b/gi,'they ...ing'],[/\bI\s+\w+ing\b/gi,'I ...ing'],[/\byou\s+\w+ing\b/gi,'you ...ing'],[/\bhe\s+\w+ing\b/gi,'he ...ing'],[/\bshe\s+\w+ing\b/gi,'she ...ing']];
+  var beWords=['am','is','are','was','were','been','being'];
+  for(var p=0;p<pats.length;p++){
+    var m=text.match(pats[p][0]);
+    if(m){
+      for(var mi=0;mi<m.length;mi++){
+        var parts=m[mi].split(/\s+/);
+        var verb=parts[parts.length-1];
+        var before=text.substring(0,text.indexOf(m[mi]));
+        var beforeWords=before.trim().split(/\s+/);
+        var lastBefore=beforeWords[beforeWords.length-1];
+        if(beWords.indexOf(lastBefore.toLowerCase())<0){
+          issues.push(m[mi]);
+        }
+      }
+    }
+  }
+  return issues;
+}
+
+function scoreConsonant(drillIdx,wordIdx){
+  var target=consonantWords[wordIdx];
+  var input=document.getElementById('cw'+drillIdx+'_'+wordIdx).value;
+  var span=document.getElementById('cs'+drillIdx+'_'+wordIdx);
+  var score=0;
+  if(input===target)score=2;
+  else if(input.toLowerCase()===target.toLowerCase()&&input.length>0)score=1;
+  span.className='score score-'+score;
+  span.textContent=score===2?'2/2 ✓':score===1?'1/2 (case)':'0/2';
+  // Update total
+  var total=0;
+  for(var w=0;w<consonantWords.length;w++){
+    var s=document.getElementById('cs'+drillIdx+'_'+w).textContent;
+    if(s.startsWith('2'))total+=2;
+    else if(s.startsWith('1'))total+=1;
+  }
+  document.getElementById('ctotal'+drillIdx).textContent='Total: '+total+' / 20';
+}
+
+function updateProgress(){
+  var done=0;
+  for(var i=1;i<=5;i++){
+    if(document.getElementById('goal'+i).checked)done++;
+  }
+  var msg=document.getElementById('progressMsg');
+  if(done===5){
+    msg.className='progress-msg progress-done';
+    msg.textContent='🎉 All 5 prompts completed! Great work!';
+  }else{
+    msg.className='progress-msg progress-pending';
+    msg.textContent=done+' of 5 prompts completed. Keep going!';
+  }
+}
+
+buildDrills();
+</script>
+</body>
+</html>

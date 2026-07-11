@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEFL Speaking — Drill #3</title>
+<style>
+:root{--navy:#1a2744;--navy-light:#243352;--teal:#00b4a6;--coral:#e74c3c;--amber:#f39c12;--blue:#3498db;--gray:#7f8c8d;--light:#ecf0f1}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--navy);color:#fff;line-height:1.6}
+.container{max-width:900px;margin:0 auto;padding:20px}
+.header{text-align:center;padding:30px 20px;background:linear-gradient(135deg,var(--navy),var(--navy-light));border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.3);margin-bottom:20px}
+.header h1{font-size:1.8em;color:#fff;margin-bottom:5px}
+.header .subtitle{color:var(--teal);font-size:.95em}
+.card{background:#fff;color:#333;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.15);padding:20px;margin-bottom:20px}
+.card h2{color:var(--navy);font-size:1.3em;margin-bottom:10px;border-bottom:2px solid var(--teal);padding-bottom:8px}
+.card h3{color:var(--navy);font-size:1.1em;margin:15px 0 8px}
+.card p{margin-bottom:8px}
+.focus-panel{margin-bottom:20px}
+.focus-toggle{cursor:pointer;background:var(--navy-light);color:#fff;padding:12px 20px;border-radius:8px;display:flex;justify-content:space-between;align-items:center;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.focus-toggle:hover{background:var(--navy)}
+.focus-content{display:none;background:#fff;border-radius:8px;padding:20px;margin-top:2px;box-shadow:0 2px 8px rgba(0,0,0,.15);color:#333}
+.focus-content.active{display:block}
+.focus-content ul{list-style:none;padding-left:0}
+.focus-content li{padding:6px 0;border-bottom:1px solid var(--light)}
+.focus-content li:last-child{border-bottom:none}
+.focus-content strong{color:var(--navy)}
+.connector{color:var(--blue);font-weight:600}
+.practice-item{border:1px solid var(--light);border-radius:8px;padding:15px;margin-bottom:15px;background:#fafafa}
+.practice-item .item-label{display:inline-block;background:var(--navy);color:#fff;padding:3px 12px;border-radius:4px;font-size:.85em;margin-bottom:10px}
+.reading-box{background:#fff3cd;border:2px solid var(--amber);border-radius:8px;padding:15px;margin:10px 0;font-style:italic}
+.audio-box{background:#d4edda;border:2px solid var(--teal);border-radius:8px;padding:15px;margin:10px 0;white-space:pre-line}
+.audio-box .speaker{font-weight:700;color:var(--navy)}
+.prompt-box{background:var(--light);border-radius:8px;padding:12px;margin:10px 0}
+.prompt-box strong{color:var(--navy)}
+.timer-container{display:flex;align-items:center;gap:15px;margin:10px 0;flex-wrap:wrap}
+.timer-circle{width:60px;height:60px;position:relative;display:inline-block}
+.timer-circle svg{transform:rotate(-90deg)}
+.timer-circle .bg{fill:none;stroke:var(--light);stroke-width:4}
+.timer-circle .progress{fill:none;stroke:var(--teal);stroke-width:4;stroke-linecap:round;transition:stroke-dashoffset 1s linear}
+.timer-circle .time-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1.1em;font-weight:700;color:var(--navy)}
+.timer-label{font-weight:600;color:var(--navy)}
+.timer-btn{padding:8px 20px;border:none;border-radius:4px;cursor:pointer;font-size:.9em;font-weight:600;color:#fff;transition:opacity .2s}
+.timer-btn:hover{opacity:.85}
+.btn-teal{background:var(--teal)}
+.btn-coral{background:var(--coral)}
+.btn-navy{background:var(--navy)}
+.btn-amber{background:var(--amber)}
+textarea{width:100%;min-height:120px;padding:12px;border:2px solid var(--light);border-radius:8px;font-family:inherit;font-size:.95em;resize:vertical;color:#333}
+textarea:focus{outline:none;border-color:var(--teal)}
+.word-count{font-size:.85em;color:var(--gray);margin-top:4px;text-align:right}
+.section-tabs{display:flex;gap:5px;margin-bottom:15px;flex-wrap:wrap}
+.section-tab{padding:10px 20px;background:var(--light);color:var(--navy);border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:.9em;transition:all .2s}
+.section-tab.active{background:var(--navy);color:#fff}
+.section-tab:hover{opacity:.85}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.check-section{background:#f8f9fa;border-radius:8px;padding:15px;margin-top:10px}
+.check-item{display:flex;align-items:flex-start;gap:8px;padding:6px 0}
+.check-item input[type=checkbox]{margin-top:3px;accent-color:var(--teal)}
+.check-result{margin-top:10px;padding:10px;border-radius:4px;display:none}
+.check-result.show{display:block}
+.check-result.good{background:#d4edda;color:#155724;border:1px solid var(--teal)}
+.check-result.warn{background:#fff3cd;color:#856404;border:1px solid var(--amber)}
+.check-result.bad{background:#f8d7da;color:#721c24;border:1px solid var(--coral)}
+.connector-list{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.connector-tag{background:var(--blue);color:#fff;padding:2px 10px;border-radius:12px;font-size:.8em}
+.consonant-test{margin-top:10px}
+.consonant-word{display:inline-block;margin:4px;padding:8px 12px;border:2px solid var(--light);border-radius:4px;font-weight:600}
+.consonant-word.correct{border-color:var(--teal);background:#d4edda;color:#155724}
+.consonant-word.wrong{border-color:var(--coral);background:#f8d7da;color:#721c24}
+.consonant-input{width:100px;padding:4px 8px;border:1px solid var(--light);border-radius:4px;font-size:.9em}
+.model-answer{background:#e8f4fd;border:2px solid var(--blue);border-radius:8px;padding:15px;margin:10px 0;line-height:1.8}
+.model-answer .hl-connector{color:var(--blue);font-weight:700;background:#d4e6fd;padding:1px 4px;border-radius:3px}
+.model-answer .hl-opinion{color:var(--teal);font-weight:700;background:#d4f4f0;padding:1px 4px;border-radius:3px}
+.structure-note{background:var(--navy);color:#fff;border-radius:8px;padding:15px;margin:10px 0}
+.structure-note strong{color:var(--teal)}
+.back-link{display:inline-block;color:var(--teal);text-decoration:none;font-weight:600;padding:10px 0;font-size:1em}
+.back-link:hover{text-decoration:underline}
+.hidden{display:none}
+@media(max-width:600px){.container{padding:10px}.header h1{font-size:1.4em}.timer-container{gap:8px}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>TOEFL Speaking — Drill #3</h1>
+<p class="subtitle">Tasks 2-3 · Integrated · Structure &amp; Connectors · Week 3</p>
+</div>
+<a class="back-link" href="../../index.html">← Back to Training Hub</a>
+
+<div class="focus-panel">
+<div class="focus-toggle" onclick="toggleFocus()">
+<span>📋 This Week's Focus — Structure &amp; Connectors</span>
+<span id="focus-arrow">▼</span>
+</div>
+<div class="focus-content" id="focus-content">
+<ul>
+<li><strong>Task 2 structure:</strong> Summarize the change/proposal from reading, then state the student's opinion from audio, then give the reasons</li>
+<li><strong>Task 3 structure:</strong> Define the concept from reading, then explain using the examples from the lecture</li>
+<li><strong>Connectors:</strong> <span class="connector">however</span>, <span class="connector">therefore</span>, <span class="connector">moreover</span>, <span class="connector">additionally</span>, <span class="connector">for instance</span>, <span class="connector">as a result</span>, <span class="connector">in contrast</span>, <span class="connector">while</span>, <span class="connector">whereas</span></li>
+<li><strong>"be" auxiliary:</strong> Still check am/is/are/was/were</li>
+<li><strong>Final consonants:</strong> Still check -s, -t, -ct</li>
+</ul>
+</div>
+</div>
+
+<div class="section-tabs">
+<button class="section-tab active" onclick="switchTab('task2')">Task 2 — Campus</button>
+<button class="section-tab" onclick="switchTab('task3')">Task 3 — Academic</button>
+<button class="section-tab" onclick="switchTab('model')">Model Answer</button>
+<button class="section-tab" onclick="switchTab('notes')">Structure Notes</button>
+</div>
+
+<div id="tab-task2" class="tab-content active">
+<div class="card">
+<h2>Task 2 — Integrated Speaking (Campus Situation)</h2>
+<p>Read a short passage (45s) → Listen to a conversation (simulated) → 30s prep → 60s response</p>
+</div>
+
+<div class="card">
+<h2>Practice Item 1</h2>
+<div class="practice-item">
+<span class="item-label">Reading Passage — 45 seconds</span>
+<div class="reading-box" id="t2i1-reading">
+"The university has announced a new policy requiring all first-year students to live on campus. Administrators believe this will help students build stronger social connections and improve academic performance. The policy will take effect next fall semester."
+</div>
+<div class="timer-container">
+<button class="timer-btn btn-teal" onclick="startTimer('t2i1-read',45,'t2i1-read-btn')">Start 45s Reading</button>
+<div class="timer-circle" id="t2i1-read-circle" style="display:none">
+<svg width="60" height="60"><circle class="bg" cx="30" cy="30" r="26"/><circle class="progress" cx="30" cy="30" r="26" stroke-dasharray="163.36" stroke-dashoffset="0"/></svg>
+<span class="time-text" id="t2i1-read-time">45</span>
+</div>
+<span class="timer-label" id="t2i1-read-label"></span>
+</div>
+</div>
+
+<div class="practice-item">
+<span class="item-label">Conversation (Simulated Audio Transcript)</span>
+<div class="audio-box"><span class="speaker">Man:</span> Did you hear about the new housing policy?
+<span class="speaker">Woman:</span> Yeah, and I think it's a terrible idea. First, it forces students to pay for dorm housing, which is often more expensive than off-campus options. Many students rely on cheaper apartments nearby. Also, living off campus teaches independence — managing your own cooking, cleaning, and budgeting. The university shouldn't take that away.</div>
+</div>
+
+<div class="practice-item">
+<span class="item-label">Prompt</span>
+<div class="prompt-box"><strong>The woman expresses her opinion about the new housing policy. State her opinion and explain the reasons she gives for holding that opinion.</strong></div>
+<div class="timer-container">
+<button class="timer-btn btn-amber" onclick="startTimer('t2i1-prep',30,'t2i1-prep-btn')">Start 30s Prep</button>
+<div class="timer-circle" id="t2i1-prep-circle" style="display:none">
+<svg width="60" height="60"><circle class="bg" cx="30" cy="30" r="26"/><circle class="progress" cx="30" cy="30" r="26" stroke-dasharray="163.36" stroke-dashoffset="0" style="stroke:var(--amber)"/></svg>
+<span class="time-text" id="t2i1-prep-time">30</span>
+</div>
+<button class="timer-btn btn-coral" onclick="startTimer('t2i1-resp',60,'t2i1-resp-btn')">Start 60s Response</button>
+<div class="timer-circle" id="t2i1-resp-circle" style="display:none">
+<svg width="60" height="60"><circle class="bg" cx="30" cy="30" r="26"/><circle class="progress" cx="30" cy="30" r="26" stroke-dasharray="163.36" stroke-dashoffset="0" style="stroke:var(--coral)"/></svg>
+<span class="time-text" id="t2i1-resp-time">60</span>
+</div>
+</div>
+<textarea id="t2i1-response" placeholder="Type your 60-second response here..." oninput="updateWordCount('t2i1-response','t2i1-wc')"></textarea>
+<div class="word-count" id="t2i1-wc">0 words</div>
+<button class="timer-btn btn-navy" onclick="runSelfCheck('t2i1','task2')">Submit &amp; Self-Check</button>
+<div id="t2i1-check"></div>
+</div>
+</div>
+
+<div class="card">
+<h2>Practice Item 2</h2>
+<div class="practice-item">
+<span class="item-label">Reading Passage — 45 seconds</span>
+<div class="reading-box" id="t2i2-reading">
+"The library has proposed extending its hours to 24/7 during final exam week. Librarians argue that many students study late at night and would benefit from having a quiet, resource-rich environment available at all hours."
+</div>
+<div class="timer-container">
+<button class="timer-btn btn-teal" onclick="startTimer('t2i2-read',45,'t2i2-read-btn')">Start 45s Reading</button>
+<div class="timer-circle" id="t2i2-read-circle" style="display:none">
+<svg width="60" height="60"><circle class="bg" cx="30" cy="30" r="26"/><circle class="progress" cx="30" cy="30" r="26" stroke-dasharray="163.36" stroke-dashoffset="0"/></svg>
+<span class="time-text" id="t2i2-read-time">45</span>
+</div>
+<span class="timer-label" id="t2i2-read-label"></span>
+</div>
+</div>
+
+<div class="practice-item">
+<span class="item-label">Conversation (Simulated Audio Transcript)</span>
+<div class="audio-box"><span class="speaker">Man:</span> I think the 24/7 library is a great idea. I always study best late at night when it's quiet, and right now I have to go home at midnight. Also, the library has reference materials and computers that I don't have at my apartment. It would really help during finals.</div>
+</div>
+
+<div class="practice-item">
+<span class="item-label">Prompt</span>
+<div class="prompt-box"><strong>The man expresses his opinion about the library proposal. State his opinion and explain the reasons he gives.</strong></div>
+<div class="timer-container">
+<button class="timer-btn btn-amber" onclick="startTimer('t2i2-prep',30,'t2i2-prep-btn')">Start 30s Prep</button>
+<div class="timer-circle" id="t2i2-prep-circle" style="display:none">
+<svg width="60" height="60"><circle class="bg" cx="30" cy="30" r="26"/><circle class="progress" cx="30" cy="30" r="26" stroke-dasharray="163.36" stroke-dashoffset="0" style="stroke:var(--amber)"/></svg>
+<span class="time-text" id="t2i2-prep-time">30</span>
+</div>
+<button class="timer-btn btn-coral" onclick="startTimer('t2i2-resp',60,'t2i2-resp-btn')">Start 60s Response</button>
+<div class="timer-circle" id="t2i2-resp-circle" style="display:none">
+<svg width="60" height="60"><circle class="bg" cx="30" cy="30" r="26"/><circle class="progress" cx="30" cy="30" r="26" stroke-dasharray="163.36" stroke-dashoffset="0" style="stroke:var(--coral)"/></svg>
+<span class="time-text" id="t2i2-resp-time">60</span>
+</div>
+</div>
+<textarea id="t2i2-response" placeholder="Type your 60-second response here..." oninput="updateWordCount('t2i2-response','t2i2-wc')"></textarea>
+<div class="word-count" id="t2i2-wc">0 words</div>
+<button class="timer-btn btn-navy" onclick="runSelfCheck('t2i2','task2')">Submit &amp; Self-Check</button>
+<div id="t2i2-check"></div>
+</div>
+</div>
+</div>
+
+<div id="tab-task3" class="tab-content">
+<div class="card">
+<h2>Task 3 — Integrated Speaking (Academic)</h2>
+<p>Read a short passage (45s) → Listen to a lecture excerpt (simulated) → 30s prep → 60s response</p>
+</div>
+
+<div class="card">
+<h2>Practice Item 1</h2>
+<div class="practice-item">
+<span class="item-label">Reading Passage — 45 seconds</span>
+<div class="reading-box" id="t3i1-reading">
+"Cognitive Dissonance is a psychological theory that describes the mental discomfort experienced when a person holds two conflicting beliefs or attitudes simultaneously. To reduce this discomfort, people often change their beliefs, justify their actions, or avoid situations that create conflict."
+</div>
+<div class="timer-container">
+<button class="timer-btn btn-teal" onclick="startTimer('t3i1-read',45,'t3i1-read-btn')">Start 45s Reading</button>
+<div class="timer-circle" id="t3i1-read-circle" style="display:none">
+<svg width="60" height="60"><circle class="bg" cx="30" cy="30" r="26"/><circle class="progress" cx="30" cy="30" r="26" stroke-dasharray="163.36" stroke-dashoffset="0"/></svg>
+<span class="time-text" id="t3i1-read-time">45</span>
+</div>
+<span class="timer-label" id="t3i1-read-label"></span>
+</div>
+</div>
+
+<div class="practice-item">
+<span class="item-label">Lecture Excerpt (Simulated Audio Transcript)</span>
+<div class="audio-box">So, let's look at a classic example. Imagine a student who knows that smoking is harmful to health, but continues to smoke anyway. This creates cognitive dissonance — the student knows the facts but acts against them. To reduce the discomfort, the student might convince themselves that the research is exaggerated, or that they'll quit soon, or they might avoid reading health articles altogether. Another example: a person who values environmental conservation but drives a large, fuel-inefficient car. They might justify it by saying they need it for work, or they might donate to environmental causes to offset the guilt.</div>
+</div>
+
+<div class="practice-item">
+<span class="item-label">Prompt</span>
+<div class="prompt-box"><strong>Using the examples from the lecture, explain the concept of cognitive dissonance.</strong></div>
+<div class="timer-container">
+<button class="timer-btn btn-amber" onclick="startTimer('t3i1-prep',30,'t3i1-prep-btn')">Start 30s Prep</button>
+<div class="timer-circle" id="t3i1-prep-circle" style="display:none">
+<svg width="60" height="60"><circle class="bg" cx="30" cy="30" r="26"/><circle class="progress" cx="30" cy="30" r="26" stroke-dasharray="163.36" stroke-dashoffset="0" style="stroke:var(--amber)"/></svg>
+<span class="time-text" id="t3i1-prep-time">30</span>
+</div>
+<button class="timer-btn btn-coral" onclick="startTimer('t3i1-resp',60,'t3i1-resp-btn')">Start 60s Response</button>
+<div class="timer-circle" id="t3i1-resp-circle" style="display:none">
+<svg width="60" height="60"><circle class="bg" cx="30" cy="30" r="26"/><circle class="progress" cx="30" cy="30" r="26" stroke-dasharray="163.36" stroke-dashoffset="0" style="stroke:var(--coral)"/></svg>
+<span class="time-text" id="t3i1-resp-time">60</span>
+</div>
+</div>
+<textarea id="t3i1-response" placeholder="Type your 60-second response here..." oninput="updateWordCount('t3i1-response','t3i1-wc')"></textarea>
+<div class="word-count" id="t3i1-wc">0 words</div>
+<button class="timer-btn btn-navy" onclick="runSelfCheck('t3i1','task3')">Submit &amp; Self-Check</button>
+<div id="t3i1-check"></div>
+</div>
+</div>
+
+<div class="card">
+<h2>Practice Item 2</h2>
+<div class="practice-item">
+<span class="item-label">Reading Passage — 45 seconds</span>
+<div class="reading-box" id="t3i2-reading">
+"The Hawthorne Effect refers to the phenomenon where people modify their behavior when they know they are being observed. This effect was first identified during studies at a factory in the 1920s, where workers increased productivity simply because researchers were watching them."
+</div>
+<div class="timer-container">
+<button class="timer-btn btn-teal" onclick="startTimer('t3i2-read',45,'t3i2-read-btn')">Start 45s Reading</button>
+<div class="timer-circle" id="t3i2-read-circle" style="display:none">
+<svg width="60" height="60"><circle class="bg" cx="30" cy="30" r="26"/><circle class="progress" cx="30" cy="30" r="26" stroke-dasharray="163.36" stroke-dashoffset="0"/></svg>
+<span class="time-text" id="t3i2-read-time">45</span>
+</div>
+<span class="timer-label" id="t3i2-read-label"></span>
+</div>
+</div>
+
+<div class="practice-item">
+<span class="item-label">Lecture Excerpt (Simulated Audio Transcript)</span>
+<div class="audio-box">The original study took place at the Hawthorne Works factory. Researchers wanted to see if changing lighting conditions would affect productivity. Surprisingly, productivity increased regardless of whether lighting was improved or worsened. The key factor was that workers knew they were being studied, so they worked harder. We see this in modern contexts too. For instance, in a software company, developers might write cleaner code when they know their work is being reviewed by peers. Or in a hospital, staff might follow hygiene protocols more carefully when they know inspectors are present.</div>
+</div>
+
+<div class="practice-item">
+<span class="item-label">Prompt</span>
+<div class="prompt-box"><strong>Using the examples from the lecture, explain the Hawthorne Effect.</strong></div>
+<div class="timer-container">
+<button class="timer-btn btn-amber" onclick="startTimer('t3i2-prep',30,'t3i2-prep-btn')">Start 30s Prep</button>
+<div class="timer-circle" id="t3i2-prep-circle" style="display:none">
+<svg width="60" height="60"><circle class="bg" cx="30" cy="30" r="26"/><circle class="progress" cx="30" cy="30" r="26" stroke-dasharray="163.36" stroke-dashoffset="0" style="stroke:var(--amber)"/></svg>
+<span class="time-text" id="t3i2-prep-time">30</span>
+</div>
+<button class="timer-btn btn-coral" onclick="startTimer('t3i2-resp',60,'t3i2-resp-btn')">Start 60s Response</button>
+<div class="timer-circle" id="t3i2-resp-circle" style="display:none">
+<svg width="60" height="60"><circle class="bg" cx="30" cy="30" r="26"/><circle class="progress" cx="30" cy="30" r="26" stroke-dasharray="163.36" stroke-dashoffset="0" style="stroke:var(--coral)"/></svg>
+<span class="time-text" id="t3i2-resp-time">60</span>
+</div>
+</div>
+<textarea id="t3i2-response" placeholder="Type your 60-second response here..." oninput="updateWordCount('t3i2-response','t3i2-wc')"></textarea>
+<div class="word-count" id="t3i2-wc">0 words</div>
+<button class="timer-btn btn-navy" onclick="runSelfCheck('t3i2','task3')">Submit &amp; Self-Check</button>
+<div id="t3i2-check"></div>
+</div>
+</div>
+</div>
+
+<div id="tab-model" class="tab-content">
+<div class="card">
+<h2>Example Model Answer — Task 2, Item 1</h2>
+<div class="model-answer">
+"The university has announced a new policy requiring first-year students to live on campus. <span class="hl-connector">However</span>, <span class="hl-opinion">she argues</span> that dorm housing is often more expensive than off-campus options, and many students rely on cheaper apartments nearby. <span class="hl-connector">Additionally</span>, she points out that living off campus teaches students independence, such as managing their own cooking, cleaning, and budgeting. <span class="hl-connector">Therefore</span>, she believes the university should not take that choice away from students."
+</div>
+<h3>Highlights</h3>
+<p><span class="hl-connector">However</span> — connector (contrast)</p>
+<p><span class="hl-opinion">She argues</span> — opinion statement (green)</p>
+<p><span class="hl-connector">Additionally</span> + <span class="hl-connector">Therefore</span> — connectors (blue)</p>
+</div>
+</div>
+
+<div id="tab-notes" class="tab-content">
+<div class="card">
+<h2>Structure Notes</h2>
+<div class="structure-note">
+<h3 style="color:var(--teal)">Task 2 Structure</h3>
+<p>(1) Summarize the change/proposal, (2) State the student's opinion, (3) Give the reasons from the conversation.</p>
+</div>
+<div class="structure-note">
+<h3 style="color:var(--teal)">Task 3 Structure</h3>
+<p>(1) Define the concept from reading, (2) Explain using lecture examples, (3) Connect definition to examples with connectors.</p>
+</div>
+<h3>Connector Reference</h3>
+<p>Use these to link ideas smoothly:</p>
+<div class="connector-list">
+<span class="connector-tag">however</span><span class="connector-tag">therefore</span><span class="connector-tag">moreover</span><span class="connector-tag">additionally</span><span class="connector-tag">for instance</span><span class="connector-tag">as a result</span><span class="connector-tag">in contrast</span><span class="connector-tag">while</span><span class="connector-tag">whereas</span><span class="connector-tag">first</span><span class="connector-tag">second</span><span class="connector-tag">also</span>
+</div>
+</div>
+</div>
+
+<script>
+var activeTimers={};
+function toggleFocus(){
+  var c=document.getElementById('focus-content');
+  var a=document.getElementById('focus-arrow');
+  c.classList.toggle('active');
+  a.textContent=c.classList.contains('active')?'▲':'▼';
+}
+function switchTab(tab){
+  document.querySelectorAll('.tab-content').forEach(function(t){t.classList.remove('active');});
+  document.querySelectorAll('.section-tab').forEach(function(t){t.classList.remove('active');});
+  document.getElementById('tab-'+tab).classList.add('active');
+  event.target.classList.add('active');
+}
+function startTimer(id,seconds,btnId){
+  if(activeTimers[id]){clearInterval(activeTimers[id]);}
+  var circle=document.getElementById(id+'-circle');
+  var timeEl=document.getElementById(id+'-time');
+  var labelEl=document.getElementById(id+'-label');
+  var btn=document.getElementById(btnId);
+  circle.style.display='inline-block';
+  var remaining=seconds;
+  var circumference=163.36;
+  timeEl.textContent=remaining;
+  var prog=circle.querySelector('.progress');
+  prog.setAttribute('stroke-dashoffset','0');
+  labelEl.textContent='Running...';
+  if(btn)btn.disabled=true;
+  activeTimers[id]=setInterval(function(){
+    remaining--;
+    timeEl.textContent=remaining;
+    var offset=circumference*(1-remaining/seconds);
+    prog.setAttribute('stroke-dashoffset',offset);
+    if(remaining<=0){
+      clearInterval(activeTimers[id]);
+      delete activeTimers[id];
+      timeEl.textContent='0';
+      labelEl.textContent='Time up!';
+      labelEl.style.color='var(--coral)';
+      if(btn)btn.disabled=false;
+    }
+  },1000);
+}
+function updateWordCount(taId,wcId){
+  var text=document.getElementById(taId).value.trim();
+  var words=text?text.split(/\s+/).length:0;
+  document.getElementById(wcId).textContent=words+' words';
+}
+var CONNECTORS=['however','therefore','moreover','additionally','for instance','as a result','in contrast','while','whereas','first','second','also'];
+var BE_FORMS=['am','is','are','was','were'];
+var CONSONANT_WORDS=['campus','students','policy','library','cognitive','dissonance','effect','factory','productivity','concept'];
+function runSelfCheck(id,taskType){
+  var text=document.getElementById(id+'-response').value.trim();
+  var checkDiv=document.getElementById(id+'-check');
+  if(!text){checkDiv.innerHTML='<div class="check-result bad show">Please type a response first.</div>';return;}
+  var words=text.split(/\s+/);
+  var wordCount=words.length;
+  var lowerText=text.toLowerCase();
+  var html='<div class="check-section">';
+  // Check 1: Structure
+  html+='<h3>Check 1 — Structure ('+(taskType==='task2'?'Task 2':'Task 3')+')</h3>';
+  if(taskType==='task2'){
+    html+='<div class="check-item"><input type="checkbox" id="'+id+'-s1"><label for="'+id+'-s1">Did you mention the change/proposal from the reading?</label></div>';
+    html+='<div class="check-item"><input type="checkbox" id="'+id+'-s2"><label for="'+id+'-s2">Did you state the student\'s opinion?</label></div>';
+    html+='<div class="check-item"><input type="checkbox" id="'+id+'-s3"><label for="'+id+'-s3">Did you include the reasons?</label></div>';
+  }else{
+    html+='<div class="check-item"><input type="checkbox" id="'+id+'-s1"><label for="'+id+'-s1">Did you define the concept?</label></div>';
+    html+='<div class="check-item"><input type="checkbox" id="'+id+'-s2"><label for="'+id+'-s2">Did you use examples from the lecture?</label></div>';
+    html+='<div class="check-item"><input type="checkbox" id="'+id+'-s3"><label for="'+id+'-s3">Did you connect the definition to the examples?</label></div>';
+  }
+  // Check 2: Connectors
+  html+='<h3>Check 2 — Connectors</h3>';
+  var foundConnectors=[];
+  CONNECTORS.forEach(function(c){
+    if(lowerText.includes(c.toLowerCase()))foundConnectors.push(c);
+  });
+  html+='<p>Connectors found: '+foundConnectors.length+' (target: at least 2)</p>';
+  if(foundConnectors.length>0){
+    html+='<div class="connector-list">';
+    foundConnectors.forEach(function(c){html+='<span class="connector-tag">'+c+'</span>';});
+    html+='</div>';
+  }
+  if(foundConnectors.length>=2){
+    html+='<div class="check-result good show">✓ Great! You used '+foundConnectors.length+' connector(s).</div>';
+  }else{
+    html+='<div class="check-result warn show">⚠ Try to use at least 2 connectors (however, therefore, additionally, etc.)</div>';
+  }
+  // Check 3: "be" auxiliary
+  html+='<h3>Check 3 — "be" Auxiliary Check</h3>';
+  var beFound=[];
+  BE_FORMS.forEach(function(b){
+    var re=new RegExp('\\b'+b+'\\b','i');
+    if(re.test(text))beFound.push(b);
+  });
+  if(beFound.length>0){
+    html+='<p>"be" forms found: '+beFound.join(', ')+'</p>';
+    html+='<div class="check-result good show">✓ "be" auxiliary forms detected.</div>';
+  }else{
+    html+='<div class="check-result warn show">⚠ No "be" auxiliary forms (am/is/are/was/were) found. Check your grammar.</div>';
+  }
+  // Check 4: Length
+  html+='<h3>Check 4 — Length</h3>';
+  html+='<p>Word count: <strong>'+wordCount+'</strong> (ideal: 60-120 words for 60s)</p>';
+  if(wordCount>=60&&wordCount<=120){
+    html+='<div class="check-result good show">✓ Good length for a 60-second response.</div>';
+  }else if(wordCount<60){
+    html+='<div class="check-result warn show">⚠ Too short — aim for at least 60 words.</div>';
+  }else{
+    html+='<div class="check-result warn show">⚠ May be too long for 60 seconds — consider trimming.</div>';
+  }
+  // Check 5: Final consonant test
+  html+='<h3>Check 5 — Final Consonant Test (Case Sensitive)</h3>';
+  html+='<p>Type each word exactly (case sensitive). Correct spelling confirms final consonants.</p>';
+  html+='<div class="consonant-test" id="'+id+'-consonant-test">';
+  CONSONANT_WORDS.forEach(function(w,i){
+    html+='<div style="display:inline-block;margin:4px;text-align:center">';
+    html+='<div style="font-size:.8em;color:var(--gray);margin-bottom:2px">'+w+'</div>';
+    html+='<input type="text" class="consonant-input" id="'+id+'-cw-'+i+'" placeholder="type...">';
+    html+='<div class="consonant-word" id="'+id+'-cw-result-'+i+'">—</div>';
+    html+='</div>';
+  });
+  html+='</div>';
+  html+='<button class="timer-btn btn-teal" style="margin-top:10px" onclick="scoreConsonants(\''+id+'\')">Score Consonants</button>';
+  html+='<div id="'+id+'-consonant-result"></div>';
+  html+='</div>';
+  checkDiv.innerHTML=html;
+}
+function scoreConsonants(id){
+  var score=0;
+  var results=[];
+  CONSONANT_WORDS.forEach(function(w,i){
+    var input=document.getElementById(id+'-cw-'+i).value;
+    var resultEl=document.getElementById(id+'-cw-result-'+i);
+    if(input===w){
+      resultEl.textContent='✓';
+      resultEl.className='consonant-word correct';
+      score++;
+    }else{
+      resultEl.textContent='✗';
+      resultEl.className='consonant-word wrong';
+    }
+  });
+  var resultDiv=document.getElementById(id+'-consonant-result');
+  var cls=score===CONSONANT_WORDS.length?'good':(score>=7?'warn':'bad');
+  resultDiv.innerHTML='<div class="check-result '+cls+' show">Consonant test: '+score+'/'+CONSONANT_WORDS.length+' correct (case sensitive)</div>';
+}
+</script>
+</body>
+</html>
