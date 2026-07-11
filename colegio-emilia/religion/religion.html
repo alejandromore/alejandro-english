@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Tuki y la Religión 🕊️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky:#3AC7E0; --sky-deep:#1E9FBF; --sun:#FFC93C; --sun-deep:#F5A623;
+    --leaf:#4CAF6D; --leaf-deep:#2E9450; --coral:#FF6B5B; --coral-deep:#E8503F;
+    --purple:#9B6BFF; --purple-deep:#7C4FE0; --cream:#FFF8EC; --ink:#2B2440;
+    --white:#FFFFFF; --shadow: 0 8px 0 rgba(43,36,64,0.18);
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
+  html,body{height:100%;}
+  body{margin:0;font-family:'Nunito',sans-serif;background:linear-gradient(180deg,#5B8DEF 0%,#7BA8F0 55%,#CFF3E4 100%);min-height:100vh;color:var(--ink);overflow-x:hidden;position:relative;}
+  h1,h2,h3,.display{font-family:'Fredoka',sans-serif;}
+  .cloud{position:absolute;opacity:.9;z-index:0;pointer-events:none;}
+  .hill{position:fixed;bottom:0;left:0;width:100%;z-index:0;pointer-events:none;}
+  .screen{position:relative;z-index:2;min-height:100vh;display:none;flex-direction:column;align-items:center;padding:18px 14px 40px;}
+  .screen.active{display:flex;}
+  .topbar{width:100%;max-width:900px;display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+  .backBtn{background:var(--white);border:none;border-radius:16px;padding:10px 16px;font-family:'Fredoka';font-weight:600;font-size:16px;color:var(--ink);box-shadow:var(--shadow);cursor:pointer;display:flex;align-items:center;gap:6px;}
+  .backBtn:active{transform:translateY(4px);box-shadow:0 4px 0 rgba(43,36,64,0.18);}
+  .starCounter{background:var(--white);border-radius:16px;padding:8px 16px;font-family:'Fredoka';font-weight:600;font-size:16px;box-shadow:var(--shadow);display:flex;align-items:center;gap:6px;}
+  .musicBtn{position:fixed;top:14px;right:14px;z-index:10;background:var(--white);border:none;border-radius:50%;width:46px;height:46px;cursor:pointer;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;font-size:22px;transition:transform .1s ease;}
+  .musicBtn:active{transform:translateY(3px);}
+  .homeHeader{text-align:center;margin:6px 0 6px;}
+  .homeHeader h1{font-size:clamp(28px,6vw,44px);color:var(--white);text-shadow:0 4px 0 rgba(43,36,64,0.25);margin:6px 0 2px;}
+  .homeHeader p{color:var(--white);font-weight:800;font-size:clamp(14px,3vw,18px);margin:0;opacity:.95;}
+  .mascotWrap{width:150px;margin:0 auto;}
+  .menuGrid{display:grid;grid-template-columns:repeat(2,minmax(150px,1fr));gap:16px;width:100%;max-width:760px;margin-top:18px;}
+  @media(min-width:620px){.menuGrid{grid-template-columns:repeat(3,minmax(150px,1fr));}}
+  .card{border:none;cursor:pointer;border-radius:26px;padding:18px 12px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--white);font-family:'Fredoka';font-weight:600;box-shadow:var(--shadow);transition:transform .08s ease;}
+  .card:active{transform:translateY(4px);box-shadow:0 4px 0 rgba(43,36,64,0.18);}
+  .card svg{width:64px;height:64px;}
+  .card span{font-size:clamp(13px,3.2vw,16px);text-align:center;line-height:1.15;}
+  .c1{background:linear-gradient(160deg,var(--coral),var(--coral-deep));}
+  .c2{background:linear-gradient(160deg,var(--purple),var(--purple-deep));}
+  .c3{background:linear-gradient(160deg,var(--leaf),var(--leaf-deep));}
+  .c4{background:linear-gradient(160deg,var(--sun),var(--sun-deep));color:var(--ink);}
+  .exWrap{width:100%;max-width:640px;background:var(--white);border-radius:28px;padding:22px 18px 26px;box-shadow:var(--shadow);margin-top:8px;text-align:center;}
+  .progressBar{width:100%;height:14px;background:#EDEAF7;border-radius:10px;overflow:hidden;margin-bottom:16px;}
+  .progressFill{height:100%;background:linear-gradient(90deg,var(--leaf),var(--sun));width:0%;transition:width .4s ease;}
+  .exTitle{font-size:clamp(18px,4.5vw,24px);margin:0 0 4px;}
+  .exSub{color:#6B6285;font-weight:700;margin:0 0 14px;font-size:clamp(13px,3vw,15px);}
+  .stageBox{min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;margin-bottom:14px;}
+  .optionsRow{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;}
+  .optBtn{font-family:'Fredoka';font-weight:600;font-size:clamp(16px,4vw,20px);background:var(--cream);border:3px solid #EADFC5;border-radius:18px;min-width:64px;padding:12px 18px;cursor:pointer;color:var(--ink);max-width:90%;text-align:center;}
+  .optBtn:active{transform:translateY(3px);}
+  .optBtn.correct{background:var(--leaf);border-color:var(--leaf-deep);color:var(--white);}
+  .optBtn.wrong{background:var(--coral);border-color:var(--coral-deep);color:var(--white);}
+  .tfBtn{font-family:'Fredoka';font-weight:700;font-size:18px;width:110px;height:54px;border-radius:16px;border:3px solid #EADFC5;background:var(--cream);cursor:pointer;color:var(--ink);}
+  .tfBtn:active{transform:translateY(3px);}
+  .tfBtn.correct{background:var(--leaf);border-color:var(--leaf-deep);color:var(--white);}
+  .tfBtn.wrong{background:var(--coral);border-color:var(--coral-deep);color:var(--white);}
+  .questionCard{background:var(--cream);border:3px solid #EADFC5;border-radius:18px;padding:14px 16px;margin-bottom:10px;text-align:left;font-weight:700;font-size:clamp(14px,3.5vw,17px);line-height:1.5;color:var(--ink);width:100%;}
+  .exImage{max-width:100%;max-height:220px;border-radius:18px;border:3px solid #EADFC5;object-fit:cover;margin-bottom:6px;box-shadow:0 4px 0 rgba(43,36,64,0.1);}
+  .exImageWrap{display:flex;justify-content:center;margin-bottom:8px;}
+  .exSvg{max-width:280px;max-height:180px;}
+  .feedback{min-height:34px;font-family:'Fredoka';font-weight:700;font-size:18px;}
+  .feedback.ok{color:var(--leaf-deep);}
+  .feedback.bad{color:var(--coral-deep);}
+  .continueBtn{display:none;margin-top:10px;font-family:'Fredoka';font-weight:700;font-size:18px;background:var(--sun);border:none;border-radius:16px;padding:12px 26px;box-shadow:0 5px 0 var(--sun-deep);cursor:pointer;color:var(--ink);}
+  .endWrap{text-align:center;}
+  .endWrap h2{font-size:clamp(22px,5vw,30px);}
+  .endWrap p{font-weight:700;color:#6B6285;}
+  .primaryBtn{font-family:'Fredoka';font-weight:700;font-size:18px;color:var(--white);background:linear-gradient(160deg,var(--leaf),var(--leaf-deep));border:none;border-radius:18px;padding:14px 28px;margin-top:14px;cursor:pointer;box-shadow:0 6px 0 var(--leaf-deep);}
+  .confetti-piece{position:fixed;top:-20px;width:10px;height:14px;z-index:50;pointer-events:none;animation:fall linear forwards;}
+  @keyframes fall{to{transform:translateY(105vh) rotate(400deg);opacity:0.9;}}
+  @media(max-width:380px){.card svg{width:52px;height:52px;}.exWrap{padding:16px 10px 20px;}}
+</style>
+</head>
+<body>
+<svg class="hill" viewBox="0 0 1440 200" preserveAspectRatio="none" style="height:110px;">
+  <path fill="#CFF3E4" d="M0,120 C240,60 420,180 720,110 C1000,50 1220,150 1440,90 L1440,200 L0,200 Z"></path>
+  <path fill="#B7EAD1" d="M0,160 C260,120 480,190 760,150 C1040,110 1240,190 1440,150 L1440,200 L0,200 Z"></path>
+</svg>
+<button class="musicBtn" id="musicBtn" onclick="toggleMusic()">🔇</button>
+
+<!-- HOME SCREEN -->
+<div class="screen active" id="screen-home">
+  <div class="homeHeader">
+    <div class="mascotWrap" id="mascotHome"></div>
+    <h1>¡Hola! Soy Tuki 🕊️</h1>
+    <p>Elige un tema para aprender religión</p>
+  </div>
+  <div class="menuGrid">
+    <button class="card c1" onclick="startTopic('sagradaFamilia')">
+      <svg viewBox="0 0 64 64"><circle cx="20" cy="20" r="8" fill="#fff" opacity=".9"/><circle cx="44" cy="20" r="8" fill="#fff" opacity=".9"/><circle cx="32" cy="40" r="10" fill="#fff"/><path d="M20 28 Q32 36 44 28" stroke="#fff" stroke-width="2" fill="none"/></svg>
+      <span>La Sagrada Familia</span>
+    </button>
+    <button class="card c2" onclick="startTopic('eucaristia')">
+      <svg viewBox="0 0 64 64"><circle cx="32" cy="28" r="10" fill="#fff"/><path d="M22 40 L42 40 L38 54 L26 54 Z" fill="#fff"/><line x1="32" y1="18" x2="32" y2="14" stroke="#fff" stroke-width="2"/></svg>
+      <span>La Eucaristía</span>
+    </button>
+    <button class="card c3" onclick="startTopic('josemaria')">
+      <svg viewBox="0 0 64 64"><circle cx="32" cy="22" r="10" fill="#fff"/><path d="M22 34 L42 34 L40 54 L24 54 Z" fill="#fff"/><circle cx="32" cy="22" r="5" fill="none" stroke="#fff" stroke-width="1.5"/></svg>
+      <span>San Josemaría Escrivá</span>
+    </button>
+    <button class="card c4" onclick="startTopic('pedroPablo')">
+      <svg viewBox="0 0 64 64"><circle cx="22" cy="22" r="8" fill="#fff"/><circle cx="42" cy="22" r="8" fill="#fff"/><path d="M14 32 L30 50 L22 54 Z" fill="#fff"/><path d="M50 32 L34 50 L42 54 Z" fill="#fff"/></svg>
+      <span>San Pedro y San Pablo</span>
+    </button>
+  </div>
+</div>
+
+<!-- EXERCISE SCREEN -->
+<div class="screen" id="screen-exercise">
+  <div class="topbar">
+    <button class="backBtn" onclick="goHome()">🏠 Menú</button>
+    <div class="starCounter">⭐ <span id="starCount">0</span></div>
+  </div>
+  <div class="exWrap">
+    <div class="progressBar"><div class="progressFill" id="progressFill"></div></div>
+    <h2 class="exTitle" id="exTitle">Título</h2>
+    <p class="exSub" id="exSub">Instrucción</p>
+    <div class="stageBox" id="stageBox"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="continueBtn" id="continueBtn" onclick="nextQuestion()">Siguiente ➜</button>
+  </div>
+</div>
+
+<!-- END SCREEN -->
+<div class="screen" id="screen-end">
+  <div class="topbar"><div></div><div></div></div>
+  <div class="exWrap endWrap">
+    <div class="mascotWrap" id="mascotEnd" style="width:130px;"></div>
+    <h2 id="endTitle">¡Muy bien!</h2>
+    <p id="endMsg">Terminaste el juego</p>
+    <button class="primaryBtn" onclick="goHome()">Volver al menú</button>
+  </div>
+</div>
+
+<script>
+/* MASCOT SVG */
+const mascotSVG=`<svg viewBox="0 0 160 160" width="100%"><ellipse cx="80" cy="145" rx="34" ry="8" fill="rgba(43,36,64,0.15)"/><path d="M50 90 Q40 60 62 45 Q80 34 98 45 Q120 60 110 90 Q112 120 80 128 Q48 120 50 90 Z" fill="#2B2440"/><path d="M56 85 Q50 62 66 50 Q80 42 94 50 Q110 62 104 85 Q106 110 80 116 Q54 110 56 85 Z" fill="#4CAF6D"/><circle cx="68" cy="66" r="7" fill="#fff"/><circle cx="70" cy="66" r="3.4" fill="#2B2440"/><path d="M78 74 Q100 70 118 78 Q100 86 78 82 Z" fill="#FFC93C"/><path d="M60 108 Q80 118 100 108 Q100 122 80 126 Q60 122 60 108 Z" fill="#FF6B5B"/><path d="M40 92 Q22 88 20 70 Q34 76 44 88 Z" fill="#3AC7E0"/><path d="M120 92 Q138 88 140 70 Q126 76 116 88 Z" fill="#3AC7E0"/></svg>`;
+document.getElementById('mascotHome').innerHTML=mascotSVG;
+document.getElementById('mascotEnd').innerHTML=mascotSVG;
+
+/* AUDIO */
+let audioCtx=null;
+function ctx(){if(!audioCtx){audioCtx=new(window.AudioContext||window.webkitAudioContext)();}return audioCtx;}
+function tone(f,s,d,t='sine',g=0.18){const c=ctx();const o=c.createOscillator();const gn=c.createGain();o.type=t;o.frequency.value=f;gn.gain.value=g;o.connect(gn);gn.connect(c.destination);o.start(c.currentTime+s);gn.gain.setValueAtTime(g,c.currentTime+s);gn.gain.exponentialRampToValueAtTime(0.001,c.currentTime+s+d);o.stop(c.currentTime+s+d+0.02);}
+function playCorrect(){tone(523,0,0.12);tone(659,0.1,0.12);tone(784,0.2,0.22);}
+function playWrong(){tone(220,0,0.18,'sawtooth',0.12);tone(160,0.15,0.25,'sawtooth',0.12);}
+function playTap(){tone(400,0,0.06,'triangle',0.08);}
+function playWin(){tone(523,0,0.12);tone(659,0.12,0.12);tone(784,0.24,0.12);tone(1046,0.36,0.3);}
+
+/* MUSIC */
+let musicOn=false,musicTimer=null,musicNoteIndex=0;
+const MELODY=[523,659,784,659,523,587,659,587,659,784,880,784,659,587,523,587,784,659,523,659,587,523,494,523,523,659,784,880,784,659,587,523];
+const BASS=[131,131,165,165,147,147,196,196,165,165,196,196,131,131,147,147,196,196,131,131,165,165,147,147,131,131,165,165,196,196,147,147];
+function playMusicNote(){if(!musicOn)return;const c=ctx();const t=c.currentTime;const mf=MELODY[musicNoteIndex%MELODY.length];const om=c.createOscillator();const gm=c.createGain();om.type='triangle';om.frequency.value=mf;gm.gain.setValueAtTime(0,t);gm.gain.linearRampToValueAtTime(0.08,t+0.02);gm.gain.exponentialRampToValueAtTime(0.001,t+0.35);om.connect(gm);gm.connect(c.destination);om.start(t);om.stop(t+0.38);const bf=BASS[musicNoteIndex%BASS.length];const ob=c.createOscillator();const gb=c.createGain();ob.type='sine';ob.frequency.value=bf;gb.gain.setValueAtTime(0,t);gb.gain.linearRampToValueAtTime(0.05,t+0.02);gb.gain.exponentialRampToValueAtTime(0.001,t+0.4);ob.connect(gb);gb.connect(c.destination);ob.start(t);ob.stop(t+0.42);musicNoteIndex++;musicTimer=setTimeout(playMusicNote,300);}
+function toggleMusic(){musicOn=!musicOn;const b=document.getElementById('musicBtn');if(musicOn){b.textContent='🎵';ctx().resume();playMusicNote();}else{b.textContent='🔇';if(musicTimer){clearTimeout(musicTimer);musicTimer=null;}}}
+
+/* CONFETTI */
+function confettiBurst(){const cs=['#FF6B5B','#FFC93C','#4CAF6D','#3AC7E0','#9B6BFF'];for(let i=0;i<26;i++){const e=document.createElement('div');e.className='confetti-piece';e.style.left=Math.random()*100+'vw';e.style.background=cs[Math.floor(Math.random()*cs.length)];e.style.animationDuration=(1.6+Math.random()*1.2)+'s';e.style.borderRadius=Math.random()>0.5?'50%':'2px';document.body.appendChild(e);setTimeout(()=>e.remove(),3200);}}
+
+/* STATE */
+let stars=0,currentTopic=null,qIndex=0;const TOTAL_Q=6;let questionAnswered=false;
+const TOPIC_META={
+  sagradaFamilia:{title:'La Sagrada Familia',sub:'Aprende sobre Jesús, María y José'},
+  eucaristia:{title:'La Eucaristía',sub:'El regalo de Jesús para nosotros'},
+  josemaria:{title:'San Josemaría Escrivá',sub:'Santidad en la vida cotidiana'},
+  pedroPablo:{title:'San Pedro y San Pablo',sub:'Los grandes apóstoles'}
+};
+function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+
+/* IMAGE HELPERS */
+function showImg(stage,path){
+  const w=document.createElement('div');w.className='exImageWrap';
+  const img=document.createElement('img');img.className='exImage';img.src=path;img.onerror=()=>{w.style.display='none';};
+  w.appendChild(img);stage.appendChild(w);
+}
+function showSVG(stage,svg){
+  const w=document.createElement('div');w.className='exImageWrap';
+  const d=document.createElement('div');d.className='exSvg';d.innerHTML=svg;
+  w.appendChild(d);stage.appendChild(w);
+}
+
+/* SVG ILLUSTRATIONS */
+const SVGS={
+  sagradaFamilia:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><path d="M80 140 Q80 100 110 95 Q140 90 170 95 Q200 100 200 140 Z" fill="#8B7355"/><circle cx="125" cy="80" r="22" fill="#FFD700" opacity=".3"/><circle cx="175" cy="80" r="22" fill="#FFD700" opacity=".3"/><circle cx="150" cy="60" r="18" fill="#FFD700" opacity=".3"/><circle cx="125" cy="75" r="12" fill="#F4C2A1"/><circle cx="175" cy="75" r="12" fill="#F4C2A1"/><circle cx="150" cy="55" r="10" fill="#F4C2A1"/><path d="M125 87 Q150 95 175 87" stroke="#8B4513" stroke-width="1.5" fill="none"/><path d="M140 65 Q150 70 160 65" stroke="#8B4513" stroke-width="1" fill="none"/><circle cx="125" cy="75" r="2" fill="#333"/><circle cx="175" cy="75" r="2" fill="#333"/><circle cx="150" cy="55" r="2" fill="#333"/><path d="M120 95 Q120 85 125 80" stroke="#8B4513" stroke-width="2" fill="none"/><path d="M180 95 Q180 85 175 80" stroke="#8B4513" stroke-width="2" fill="none"/><text x="150" y="175" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#8B7355" font-weight="600">La Sagrada Familia</text></svg>`,
+  eucaristia:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><path d="M120 40 L120 50 L115 55 L115 120 Q115 135 150 135 Q185 135 185 120 L185 55 L180 50 L180 40 Z" fill="#FFD700" stroke="#DAA520" stroke-width="2"/><circle cx="150" cy="35" r="18" fill="#F5DEB3" stroke="#DAA520" stroke-width="2"/><path d="M140 35 L160 35 M150 25 L150 45" stroke="#DAA520" stroke-width="1" opacity=".5"/><rect x="100" y="140" width="100" height="8" fill="#8B7355" rx="2"/><rect x="130" y="148" width="40" height="30" fill="#6B4226" rx="2"/><circle cx="80" cy="50" r="4" fill="#FF6B5B"/><circle cx="220" cy="60" r="4" fill="#FF6B5B"/><circle cx="90" cy="170" r="4" fill="#FF6B5B"/><circle cx="210" cy="165" r="4" fill="#FF6B5B"/><text x="150" y="190" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#8B7355" font-weight="600">La Eucaristía</text></svg>`,
+  josemaria:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><circle cx="150" cy="70" r="25" fill="#F4C2A1"/><path d="M125 95 L175 95 L170 160 L130 160 Z" fill="#4CAF6D"/><circle cx="143" cy="65" r="3" fill="#333"/><circle cx="157" cy="65" r="3" fill="#333"/><path d="M140 78 Q150 83 160 78" stroke="#333" stroke-width="1.5" fill="none"/><path d="M135 55 Q150 48 165 55" stroke="#333" stroke-width="2" fill="none"/><rect x="140" y="58" width="20" height="8" fill="none" stroke="#333" stroke-width="1.5" rx="2"/><rect x="60" y="140" width="50" height="25" fill="#8B7355" rx="2"/><rect x="190" y="140" width="50" height="25" fill="#8B7355" rx="2"/><path d="M85 140 L85 125 L100 125 L100 140" fill="none" stroke="#6B4226" stroke-width="2"/><path d="M215 140 L215 125 L230 125 L230 140" fill="none" stroke="#6B4226" stroke-width="2"/><text x="150" y="185" text-anchor="middle" font-family="Fredoka" font-size="13" fill="#8B7355" font-weight="600">San Josemaría Escrivá</text></svg>`,
+  pedroPablo:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><circle cx="100" cy="65" r="22" fill="#F4C2A1"/><path d="M78 87 L122 87 L118 160 L82 160 Z" fill="#5B8DEF"/><circle cx="200" cy="65" r="22" fill="#F4C2A1"/><path d="M178 87 L222 87 L218 160 L182 160 Z" fill="#FF6B5B"/><circle cx="93" cy="60" r="3" fill="#333"/><circle cx="107" cy="60" r="3" fill="#333"/><circle cx="193" cy="60" r="3" fill="#333"/><circle cx="207" cy="60" r="3" fill="#333"/><path d="M90 72 Q100 77 110 72" stroke="#333" stroke-width="1.5" fill="none"/><path d="M190 72 Q200 77 210 72" stroke="#333" stroke-width="1.5" fill="none"/><path d="M75 55 Q100 45 125 55" stroke="#333" stroke-width="2" fill="none"/><path d="M175 55 Q200 45 225 55" stroke="#333" stroke-width="2" fill="none"/><circle cx="135" cy="50" r="15" fill="#FFD700" opacity=".4"/><text x="100" y="175" text-anchor="middle" font-family="Fredoka" font-size="12" fill="#5B8DEF" font-weight="600">San Pedro</text><text x="200" y="175" text-anchor="middle" font-family="Fredoka" font-size="12" fill="#FF6B5B" font-weight="600">San Pablo</text></svg>`,
+  joseCarpintero:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><rect x="50" y="100" width="120" height="15" fill="#8B7355" rx="2"/><rect x="60" y="80" width="8" height="40" fill="#6B4226"/><rect x="100" y="70" width="8" height="50" fill="#6B4226"/><circle cx="200" cy="70" r="20" fill="#F4C2A1"/><path d="M180 90 L220 90 L215 160 L185 160 Z" fill="#8B7355"/><circle cx="140" cy="90" r="15" fill="#F4C2A1"/><path d="M125 105 L155 105 L152 150 L128 150 Z" fill="#4CAF6D"/><text x="150" y="180" text-anchor="middle" font-family="Fredoka" font-size="13" fill="#8B7355" font-weight="600">José carpintero</text></svg>`,
+  ultimaCena:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><rect x="40" y="120" width="220" height="15" fill="#8B7355" rx="2"/><circle cx="150" cy="80" r="18" fill="#F4C2A1"/><path d="M132 98 L168 98 L163 120 L137 120 Z" fill="#5B8DEF"/><circle cx="80" cy="95" r="12" fill="#F4C2A1"/><circle cx="220" cy="95" r="12" fill="#F4C2A1"/><circle cx="110" cy="95" r="12" fill="#F4C2A1"/><circle cx="190" cy="95" r="12" fill="#F4C2A1"/><rect x="140" y="125" width="20" height="6" fill="#DAA520" rx="3"/><path d="M130 128 L170 128" stroke="#8B0000" stroke-width="2"/><text x="150" y="170" text-anchor="middle" font-family="Fredoka" font-size="13" fill="#8B7355" font-weight="600">La Última Cena</text></svg>`,
+  hostiaVino:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><circle cx="100" cy="80" r="25" fill="#F5DEB3" stroke="#DAA520" stroke-width="2"/><path d="M85 80 L115 80 M100 65 L100 95" stroke="#DAA520" stroke-width="1" opacity=".4"/><path d="M170 50 L170 60 L165 65 L165 120 Q165 135 200 135 Q235 135 235 120 L235 65 L230 60 L230 50 Z" fill="#FFD700" stroke="#DAA520" stroke-width="2"/><path d="M175 70 Q200 75 225 70 L225 115 Q225 128 200 128 Q175 128 175 115 Z" fill="#8B0000" opacity=".6"/><text x="150" y="170" text-anchor="middle" font-family="Fredoka" font-size="13" fill="#8B7355" font-weight="600">Hostia y Vino</text></svg>`,
+  nazaretHogar:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><path d="M80 100 L150 60 L220 100 L220 160 L80 160 Z" fill="#D4A574" stroke="#8B7355" stroke-width="2"/><rect x="125" y="110" width="50" height="50" fill="#6B4226"/><rect x="140" y="125" width="20" height="35" fill="#3B2210"/><circle cx="150" cy="142" r="3" fill="#FFD700"/><circle cx="100" cy="130" r="15" fill="#F4C2A1"/><circle cx="200" cy="130" r="12" fill="#F4C2A1"/><circle cx="150" cy="95" r="10" fill="#F4C2A1"/><text x="150" y="185" text-anchor="middle" font-family="Fredoka" font-size="13" fill="#8B7355" font-weight="600">Hogar en Nazaret</text></svg>`,
+  pedroPescador:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#E0F0FF" rx="12"/><path d="M0 140 Q150 130 300 140 L300 200 L0 200 Z" fill="#5B8DEF" opacity=".5"/><path d="M80 120 L120 120 L115 145 L85 145 Z" fill="#8B7355"/><circle cx="100" cy="95" r="18" fill="#F4C2A1"/><path d="M82 113 L118 113 L114 120 L86 120 Z" fill="#5B8DEF"/><path d="M120 100 Q140 90 160 100" stroke="#333" stroke-width="2" fill="none"/><circle cx="155" cy="100" r="3" fill="#333"/><text x="150" y="180" text-anchor="middle" font-family="Fredoka" font-size="13" fill="#5B8DEF" font-weight="600">Pedro pescador</text></svg>`,
+  pabloCartas:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><circle cx="100" cy="70" r="20" fill="#F4C2A1"/><path d="M80 90 L120 90 L116 160 L84 160 Z" fill="#FF6B5B"/><rect x="160" y="60" width="80" height="100" fill="#FFF" stroke="#8B7355" stroke-width="2" rx="2"/><path d="M170 75 L230 75 M170 85 L230 85 M170 95 L220 95 M170 105 L230 105 M170 115 L210 115 M170 125 L230 125 M170 135 L220 135" stroke="#8B7355" stroke-width="1" opacity=".4"/><path d="M120 110 Q140 105 160 100" stroke="#8B7355" stroke-width="2" fill="none"/><text x="150" y="185" text-anchor="middle" font-family="Fredoka" font-size="13" fill="#FF6B5B" font-weight="600">Pablo escribiendo</text></svg>`,
+  misaComunion:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><rect x="120" y="120" width="60" height="40" fill="#8B7355" rx="2"/><rect x="140" y="100" width="20" height="20" fill="#FFD700"/><circle cx="150" cy="70" r="18" fill="#F4C2A1"/><path d="M132 88 L168 88 L164 100 L136 100 Z" fill="#FFFFFF" stroke="#333" stroke-width="1"/><circle cx="80" cy="130" r="12" fill="#F4C2A1"/><circle cx="220" cy="130" r="12" fill="#F4C2A1"/><circle cx="110" cy="135" r="10" fill="#F4C2A1"/><circle cx="190" cy="135" r="10" fill="#F4C2A1"/><path d="M145 105 L145 120 M155 105 L155 120" stroke="#DAA520" stroke-width="2"/><text x="150" y="180" text-anchor="middle" font-family="Fredoka" font-size="13" fill="#8B7355" font-weight="600">La Misa</text></svg>`,
+  jesusAyuda:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><circle cx="100" cy="70" r="18" fill="#F4C2A1"/><path d="M82 88 L118 88 L114 150 L86 150 Z" fill="#4CAF6D"/><circle cx="180" cy="65" r="20" fill="#F4C2A1"/><path d="M160 85 L200 85 L196 150 L164 150 Z" fill="#5B8DEF"/><rect x="70" y="120" width="160" height="10" fill="#87CEEB" opacity=".5" rx="2"/><circle cx="120" cy="125" r="5" fill="#87CEEB" opacity=".7"/><text x="150" y="180" text-anchor="middle" font-family="Fredoka" font-size="13" fill="#4CAF6D" font-weight="600">Jesús ayuda en casa</text></svg>`
+};
+
+/* NAVIGATION */
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function goHome(){showScreen('screen-home');}
+function startTopic(t){currentTopic=t;qIndex=0;document.getElementById('exTitle').textContent=TOPIC_META[t].title;document.getElementById('exSub').textContent=TOPIC_META[t].sub;showScreen('screen-exercise');loadQuestion();}
+function updateProgress(){document.getElementById('progressFill').style.width=(qIndex/TOTAL_Q*100)+'%';}
+function loadQuestion(){questionAnswered=false;updateProgress();document.getElementById('feedback').textContent='';document.getElementById('feedback').className='feedback';document.getElementById('continueBtn').style.display='none';const s=document.getElementById('stageBox');s.innerHTML='';if(qIndex>=TOTAL_Q){return endGame();}const builders={sagradaFamilia:buildSagradaFamilia,eucaristia:buildEucaristia,josemaria:buildJosemaria,pedroPablo:buildPedroPablo};builders[currentTopic](s);}
+function nextQuestion(){qIndex++;loadQuestion();}
+function markResult(ok,el){if(questionAnswered)return;questionAnswered=true;const fb=document.getElementById('feedback');if(ok){stars++;document.getElementById('starCount').textContent=stars;fb.textContent='¡Muy bien, lo lograste! 🎉';fb.className='feedback ok';playCorrect();confettiBurst();if(el)el.classList.add('correct');}else{fb.textContent='Casi... ¡vuelve a intentarlo! 💪';fb.className='feedback bad';playWrong();if(el)el.classList.add('wrong');}document.getElementById('continueBtn').style.display='inline-block';}
+function endGame(){showScreen('screen-end');playWin();confettiBurst();const t=document.getElementById('endTitle'),m=document.getElementById('endMsg');if(stars>=TOTAL_Q*4/5){t.textContent='¡Eres un campeón de la fe! 🏆';}else if(stars>=TOTAL_Q/2){t.textContent='¡Buen trabajo! Sigue aprendiendo 🌟';}else{t.textContent='¡Lo intentaste con ganas! 🕊️';}m.textContent=`Ganaste ${stars} estrellas en total.`;}
+
+/* MULTIPLE CHOICE */
+function buildMultipleChoice(stage,q,opt,correct){
+  const card=document.createElement('div');card.className='questionCard';card.innerHTML='📖 '+q;stage.appendChild(card);
+  const row=document.createElement('div');row.className='optionsRow';
+  shuffle(opt.map((o,i)=>({text:o,correct:i===correct}))).forEach(item=>{
+    const b=document.createElement('button');b.className='optBtn';b.textContent=item.text;
+    b.onclick=()=>{playTap();markResult(item.correct,b);if(!item.correct){[...row.children].find(c=>c.textContent===opt[correct]).classList.add('correct');}[...row.children].forEach(c=>c.disabled=true);};
+    row.appendChild(b);
+  });
+  stage.appendChild(row);
+}
+
+/* TRUE/FALSE */
+function buildTrueFalse(stage,q,correct){
+  const card=document.createElement('div');card.className='questionCard';card.innerHTML='📖 '+q;stage.appendChild(card);
+  const row=document.createElement('div');row.className='optionsRow';
+  [{t:'Verdadero ✅',v:true},{t:'Falso ❌',v:false}].forEach(item=>{
+    const b=document.createElement('button');b.className='tfBtn';b.textContent=item.t;
+    b.onclick=()=>{playTap();markResult(item.v===correct,b);if(item.v!==correct){[...row.children].find(c=>c.textContent.includes(correct?'Verdadero':'Falso')).classList.add('correct');}[...row.children].forEach(c=>c.disabled=true);};
+    row.appendChild(b);
+  });
+  stage.appendChild(row);
+}
+
+/* ================= LA SAGRADA FAMILIA ================= */
+function buildSagradaFamilia(stage){
+  const qs=[
+    {type:'mc',q:'¿Quiénes forman la Sagrada Familia?',opt:['Jesús, María y José','Pedro, Pablo y Juan','Adán, Eva y Caín','Abraham, Isaac y Jacob'],correct:0,img:'sagrada-familia.png',svg:'sagradaFamilia'},
+    {type:'mc',q:'¿Dónde vivía la familia de Jesús?',opt:['En Nazaret','En Belén','En Jerusalén','En Egipto'],correct:0,img:'nazaret-hogar.png',svg:'nazaretHogar'},
+    {type:'tf',q:'José era bueno y trabajador. Era carpintero.',correct:true,img:'jose-carpintero.png',svg:'joseCarpintero'},
+    {type:'tf',q:'María era muy floja y no le gustaba cuidar a Jesús.',correct:false,img:'sagrada-familia.png',svg:'sagradaFamilia'},
+    {type:'tf',q:'Jesús era un niño triste y desobediente.',correct:false,img:'nazaret-hogar.png',svg:'nazaretHogar'},
+    {type:'tf',q:'En la casita de Nazaret había mucho amor.',correct:true,img:'nazaret-hogar.png',svg:'nazaretHogar'},
+    {type:'mc',q:'¿Cómo es la familia de Jesús?',opt:['Amable y amorosa','Mala y triste','Triste y aburrida','Floja y desobediente'],correct:0,img:'sagrada-familia.png',svg:'sagradaFamilia'},
+    {type:'mc',q:'¿Qué trabajaba San José?',opt:['Era carpintero','Era pescador','Era médico','Era pastor'],correct:0,img:'jose-carpintero.png',svg:'joseCarpintero'},
+    {type:'tf',q:'La Sagrada Familia es un modelo de amor para todas las familias.',correct:true,img:'sagrada-familia.png',svg:'sagradaFamilia'},
+    {type:'mc',q:'¿Quién es la mamá de Jesús?',opt:['María','Isabel','Ana','Marta'],correct:0,img:'sagrada-familia.png',svg:'sagradaFamilia'}
+  ];
+  const item=qs[rand(0,qs.length-1)];
+  showImg(stage,'images/'+item.img);showSVG(stage,SVGS[item.svg]);
+  if(item.type==='mc')buildMultipleChoice(stage,item.q,item.opt,item.correct);
+  else buildTrueFalse(stage,item.q,item.correct);
+}
+
+/* ================= LA EUCARISTÍA ================= */
+function buildEucaristia(stage){
+  const qs=[
+    {type:'tf',q:'La Eucaristía es un regalo que Jesús nos dejó.',correct:true,img:'eucaristia.png',svg:'eucaristia'},
+    {type:'tf',q:'Vamos a la Misa solo para encontrarnos con nuestros amigos.',correct:false,img:'misa-comunion.png',svg:'misaComunion'},
+    {type:'tf',q:'En la Consagración, la hostia se convierte en el cuerpo de Jesús.',correct:true,img:'hostia-vino.png',svg:'hostiaVino'},
+    {type:'tf',q:'En la Consagración, el vino se convierte en la sangre de Jesús.',correct:true,img:'hostia-vino.png',svg:'hostiaVino'},
+    {type:'tf',q:'Jesús NO está presente en la Eucaristía.',correct:false,img:'eucaristia.png',svg:'eucaristia'},
+    {type:'mc',q:'¿Cuándo Jesús instituye la Eucaristía?',opt:['En la Bajada de Reyes','En la Última Cena','En las bodas de Juan','En el bautismo'],correct:1,img:'ultima-cena.png',svg:'ultimaCena'},
+    {type:'mc',q:'¿Qué les pide Jesús a sus discípulos después de convertir el pan y vino?',opt:['Que hicieran esto siempre para recordarlo','Que coman rápido y beban despacio','Que no lo recuperen nunca','Que se vayan a dormir'],correct:0,img:'ultima-cena.png',svg:'ultimaCena'},
+    {type:'mc',q:'¿Qué palabras dice Jesús al consagrar el pan?',opt:['"Esto es mi Cuerpo"','"Esto es mi Sangre"','"Hola a todos"','"Vamos a comer"'],correct:0,img:'hostia-vino.png',svg:'hostiaVino'},
+    {type:'mc',q:'¿Qué palabras dice Jesús al consagrar el vino?',opt:['"Esta es mi Sangre"','"Esto es mi Cuerpo"','"Buen provecho"','"Vamos a beber"'],correct:0,img:'hostia-vino.png',svg:'hostiaVino'},
+    {type:'mc',q:'¿Por qué es importante la Eucaristía?',opt:['Porque Jesús alimenta nuestra alma con amor','Porque todos debemos comer para estar sanos','Porque Jesús NO quiere que estemos cerca de Dios','Porque nos alimenta con muchos dulces'],correct:0,img:'eucaristia.png',svg:'eucaristia'},
+    {type:'mc',q:'La Eucaristía nos ayuda a...',opt:['Acercarnos más a Dios','Alejarnos de Dios','Pelear con otros','No ir a la Iglesia'],correct:0,img:'misa-comunion.png',svg:'misaComunion'},
+    {type:'mc',q:'La Eucaristía nos une como...',opt:['Familia en la Iglesia','Extraños en la calle','Amigos en el parque','Hermanos en el colegio'],correct:0,img:'misa-comunion.png',svg:'misaComunion'},
+    {type:'mc',q:'La Eucaristía es el alimento de...',opt:['Nuestra alma','Nuestro cuerpo','Nuestros dientes','Nuestros ojos'],correct:0,img:'eucaristia.png',svg:'eucaristia'},
+    {type:'mc',q:'¿Qué elementos se usan en la Eucaristía?',opt:['Pan (hostia) y vino','Agua y sal','Pan y queso','Vino y fruta'],correct:0,img:'hostia-vino.png',svg:'hostiaVino'}
+  ];
+  const item=qs[rand(0,qs.length-1)];
+  showImg(stage,'images/'+item.img);showSVG(stage,SVGS[item.svg]);
+  if(item.type==='mc')buildMultipleChoice(stage,item.q,item.opt,item.correct);
+  else buildTrueFalse(stage,item.q,item.correct);
+}
+
+/* ================= SAN JOSEMARÍA ESCRIVÁ ================= */
+function buildJosemaria(stage){
+  const qs=[
+    {type:'mc',q:'San Josemaría Escrivá nos enseñó a encontrar a Dios...',opt:['En la vida cotidiana','Solo en la iglesia','Solo rezando','Solo de noche'],correct:0,img:'josemaria.png',svg:'josemaria'},
+    {type:'tf',q:'Jesús ayudaba a María a lavar la ropa.',correct:true,img:'jesus-ayuda-maria.png',svg:'jesusAyuda'},
+    {type:'tf',q:'Jesús aprendió de José a hacer carpintería.',correct:true,img:'jose-carpintero.png',svg:'joseCarpintero'},
+    {type:'tf',q:'Jesús obedecía a sus padres con alegría.',correct:true,img:'nazaret-hogar.png',svg:'nazaretHogar'},
+    {type:'tf',q:'Jesús predicaba la palabra de Dios.',correct:true,img:'josemaria.png',svg:'josemaria'},
+    {type:'mc',q:'San Josemaría Escrivá fundó...',opt:['El Opus Dei','Los franciscanos','Los jesuitas','Los dominicos'],correct:0,img:'josemaria.png',svg:'josemaria'},
+    {type:'mc',q:'¿Qué nos enseña San Josemaría sobre el trabajo?',opt:['Que el trabajo es una forma de orar','Que el trabajo es aburrido','Que no hay que trabajar','Que solo hay que rezar'],correct:0,img:'jose-carpintero.png',svg:'joseCarpintero'},
+    {type:'tf',q:'Podemos ser santos haciendo bien nuestro trabajo diario.',correct:true,img:'jesus-ayuda-maria.png',svg:'jesusAyuda'},
+    {type:'mc',q:'¿Qué hacía Jesús en su casa de Nazaret?',opt:['Ayudaba a María y aprendía de José','Jugaba todo el día sin ayudar','No hacía nada','Se escondía de sus padres'],correct:0,img:'nazaret-hogar.png',svg:'nazaretHogar'},
+    {type:'tf',q:'Jesús obedecía a Dios y cumplía su misión.',correct:true,img:'josemaria.png',svg:'josemaria'},
+    {type:'mc',q:'San Josemaría nos dice que las cosas pequeñas...',opt:['Hechas con amor son muy importantes','No importan nada','Son aburridas','Son difíciles'],correct:0,img:'josemaria.png',svg:'josemaria'},
+    {type:'tf',q:'Podemos encontrar a Dios en las cosas normales de cada día.',correct:true,img:'jesus-ayuda-maria.png',svg:'jesusAyuda'}
+  ];
+  const item=qs[rand(0,qs.length-1)];
+  showImg(stage,'images/'+item.img);showSVG(stage,SVGS[item.svg]);
+  if(item.type==='mc')buildMultipleChoice(stage,item.q,item.opt,item.correct);
+  else buildTrueFalse(stage,item.q,item.correct);
+}
+
+/* ================= SAN PEDRO Y SAN PABLO ================= */
+function buildPedroPablo(stage){
+  const qs=[
+    {type:'mc',q:'San Pedro era...',opt:['Un pescador','Un médico','Un carpintero','Un rey'],correct:0,img:'pedro-pescador.png',svg:'pedroPescador'},
+    {type:'mc',q:'San Pablo era...',opt:['Un fariseo que se convirtió','Un pescador','Un soldado','Un rey'],correct:0,img:'pablo-cartas.png',svg:'pabloCartas'},
+    {type:'mc',q:'¿Quién fue el primer Papa de la Iglesia?',opt:['San Pedro','San Pablo','San Juan','San Mateo'],correct:0,img:'pedro-pablo.png',svg:'pedroPablo'},
+    {type:'tf',q:'San Pedro negó a Jesús tres veces.',correct:true,img:'pedro-pescador.png',svg:'pedroPescador'},
+    {type:'tf',q:'San Pedro fue crucificado boca abajo por amor a Jesús.',correct:true,img:'pedro-pablo.png',svg:'pedroPablo'},
+    {type:'mc',q:'El nombre original de San Pedro era...',opt:['Simón','Juan','Mateo','Lucas'],correct:0,img:'pedro-pescador.png',svg:'pedroPescador'},
+    {type:'mc',q:'Jesús le dijo a Pedro: "Tú eres..."',opt:['Pedro y sobre esta piedra edificaré mi Iglesia','El mejor pescador','El más alto','El más fuerte'],correct:0,img:'pedro-pablo.png',svg:'pedroPablo'},
+    {type:'mc',q:'El nombre original de San Pablo era...',opt:['Saulo','Pedro','Tomás','Andrés'],correct:0,img:'pablo-cartas.png',svg:'pabloCartas'},
+    {type:'tf',q:'San Pablo viajó mucho para predicar el Evangelio.',correct:true,img:'pablo-cartas.png',svg:'pabloCartas'},
+    {type:'tf',q:'San Pablo escribió muchas cartas a los cristianos.',correct:true,img:'pablo-cartas.png',svg:'pabloCartas'},
+    {type:'mc',q:'San Pedro y San Pablo son patronos de...',opt:['La ciudad de Roma','La ciudad de Madrid','La ciudad de París','La ciudad de Londres'],correct:0,img:'pedro-pablo.png',svg:'pedroPablo'},
+    {type:'tf',q:'San Pedro y San Pablo murieron mártires por su fe en Jesús.',correct:true,img:'pedro-pablo.png',svg:'pedroPablo'},
+    {type:'mc',q:'¿Qué le preguntó Jesús a Pedro tres veces?',opt:['"¿Me amas?"','"¿Tienes hambre?"','"¿Dónde vives?"','"¿Cuántos años tienes?"'],correct:0,img:'pedro-pescador.png',svg:'pedroPescador'},
+    {type:'tf',q:'San Pablo se encontró con Jesús en el camino a Damasco.',correct:true,img:'pablo-cartas.png',svg:'pabloCartas'}
+  ];
+  const item=qs[rand(0,qs.length-1)];
+  showImg(stage,'images/'+item.img);showSVG(stage,SVGS[item.svg]);
+  if(item.type==='mc')buildMultipleChoice(stage,item.q,item.opt,item.correct);
+  else buildTrueFalse(stage,item.q,item.correct);
+}
+</script>
+</body>
+</html>
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colegio Emilia 📚</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{--coral:#FF6B5B;--coral-d:#E8503F;--purple:#9B6BFF;--purple-d:#7C4FE0;--leaf:#4CAF6D;--leaf-d:#2E9450;--sun:#FFC93C;--sun-d:#F5A623;--sky:#3AC7E0;--sky-d:#1E9FBF;--ink:#2B2440;--shadow:0 8px 0 rgba(43,36,64,0.18);}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{margin:0;font-family:'Nunito',sans-serif;background:linear-gradient(180deg,#5B8DEF 0%,#7BA8F0 55%,#CFF3E4 100%);min-height:100vh;color:var(--ink);display:flex;flex-direction:column;align-items:center;padding:20px;}
+  h1{font-family:'Fredoka',sans-serif;font-size:clamp(28px,6vw,44px);color:#fff;text-shadow:0 4px 0 rgba(43,36,64,0.25);margin:10px 0 4px;}
+  .sub{color:#fff;font-weight:800;font-size:clamp(14px,3vw,18px);opacity:.95;margin:0 0 24px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px;width:100%;max-width:800px;}
+  .card{border:none;cursor:pointer;border-radius:26px;padding:24px 16px;display:flex;flex-direction:column;align-items:center;gap:10px;color:#fff;font-family:'Fredoka',sans-weight:600;font-size:18px;box-shadow:var(--shadow);transition:transform .08s;text-decoration:none;}
+  .card:active{transform:translateY(4px);box-shadow:0 4px 0 rgba(43,36,64,0.18);}
+  .card svg{width:64px;height:64px;}
+  .c1{background:linear-gradient(160deg,var(--coral),var(--coral-d));}
+  .c2{background:linear-gradient(160deg,var(--purple),var(--purple-d));}
+  .c3{background:linear-gradient(160deg,var(--leaf),var(--leaf-d));}
+  .c4{background:linear-gradient(160deg,var(--sun),var(--sun-d));color:var(--ink);}
+  .c5{background:linear-gradient(160deg,var(--sky),var(--sky-d));}
+  .heart{font-size:14px;color:#fff;opacity:.7;margin-top:20px;}
+</style>
+</head>
+<body>
+  <h1>📚 Colegio Emilia</h1>
+  <p class="sub">¡Elige una materia para practicar!</p>
+  <div class="grid">
+    <a class="card c4" href="matematicas/tuki-numeros.html">
+      <svg viewBox="0 0 64 64"><circle cx="20" cy="32" r="14" fill="#fff" opacity=".9"/><text x="20" y="37" text-anchor="middle" font-size="16" fill="#F5A623" font-weight="bold">1</text><circle cx="44" cy="32" r="14" fill="#fff" opacity=".9"/><text x="44" y="37" text-anchor="middle" font-size="16" fill="#F5A623" font-weight="bold">2</text></svg>
+      <span>Matemáticas</span>
+    </a>
+    <a class="card c1" href="religion/religion.html">
+      <svg viewBox="0 0 64 64"><circle cx="20" cy="20" r="8" fill="#fff" opacity=".9"/><circle cx="44" cy="20" r="8" fill="#fff" opacity=".9"/><circle cx="32" cy="40" r="10" fill="#fff"/><path d="M20 28 Q32 36 44 28" stroke="#fff" stroke-width="2" fill="none"/></svg>
+      <span>Religión</span>
+    </a>
+    <a class="card c2" href="ingles/ingles.html">
+      <svg viewBox="0 0 64 64"><text x="32" y="40" text-anchor="middle" font-size="28" fill="#fff" font-weight="bold" font-family="Fredoka">ABC</text></svg>
+      <span>English</span>
+    </a>
+    <a class="card c3" href="social/social.html">
+      <svg viewBox="0 0 64 64"><path d="M10 50 L20 30 L30 50 Z" fill="#fff"/><path d="M28 50 L38 26 L48 50 Z" fill="#fff" opacity=".8"/><rect x="14" y="50" width="36" height="6" fill="#fff" rx="2"/></svg>
+      <span>Social Studies</span>
+    </a>
+  </div>
+  <p class="heart">Hecho con ❤️ para Emilia</p>
+</body>
+</html>

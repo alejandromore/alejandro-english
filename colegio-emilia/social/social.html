@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Tuki Social Studies 🌍</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky:#3AC7E0; --sky-deep:#1E9FBF; --sun:#FFC93C; --sun-deep:#F5A623;
+    --leaf:#4CAF6D; --leaf-deep:#2E9450; --coral:#FF6B5B; --coral-deep:#E8503F;
+    --purple:#9B6BFF; --purple-deep:#7C4FE0; --cream:#FFF8EC; --ink:#2B2440;
+    --white:#FFFFFF; --shadow: 0 8px 0 rgba(43,36,64,0.18);
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
+  html,body{height:100%;}
+  body{margin:0;font-family:'Nunito',sans-serif;background:linear-gradient(180deg,#5B8DEF 0%,#7BA8F0 55%,#CFF3E4 100%);min-height:100vh;color:var(--ink);overflow-x:hidden;position:relative;}
+  h1,h2,h3,.display{font-family:'Fredoka',sans-serif;}
+  .cloud{position:absolute;opacity:.9;z-index:0;pointer-events:none;}
+  .hill{position:fixed;bottom:0;left:0;width:100%;z-index:0;pointer-events:none;}
+  .screen{position:relative;z-index:2;min-height:100vh;display:none;flex-direction:column;align-items:center;padding:18px 14px 40px;}
+  .screen.active{display:flex;}
+  .topbar{width:100%;max-width:900px;display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+  .backBtn{background:var(--white);border:none;border-radius:16px;padding:10px 16px;font-family:'Fredoka';font-weight:600;font-size:16px;color:var(--ink);box-shadow:var(--shadow);cursor:pointer;display:flex;align-items:center;gap:6px;}
+  .backBtn:active{transform:translateY(4px);box-shadow:0 4px 0 rgba(43,36,64,0.18);}
+  .starCounter{background:var(--white);border-radius:16px;padding:8px 16px;font-family:'Fredoka';font-weight:600;font-size:16px;box-shadow:var(--shadow);display:flex;align-items:center;gap:6px;}
+  .musicBtn{position:fixed;top:14px;right:14px;z-index:10;background:var(--white);border:none;border-radius:50%;width:46px;height:46px;cursor:pointer;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;font-size:22px;transition:transform .1s ease;}
+  .musicBtn:active{transform:translateY(3px);}
+  .homeHeader{text-align:center;margin:6px 0 6px;}
+  .homeHeader h1{font-size:clamp(28px,6vw,44px);color:var(--white);text-shadow:0 4px 0 rgba(43,36,64,0.25);margin:6px 0 2px;}
+  .homeHeader p{color:var(--white);font-weight:800;font-size:clamp(14px,3vw,18px);margin:0;opacity:.95;}
+  .mascotWrap{width:150px;margin:0 auto;}
+  .menuGrid{display:grid;grid-template-columns:repeat(2,minmax(150px,1fr));gap:16px;width:100%;max-width:760px;margin-top:18px;}
+  @media(min-width:620px){.menuGrid{grid-template-columns:repeat(3,minmax(150px,1fr));}}
+  .card{border:none;cursor:pointer;border-radius:26px;padding:18px 12px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--white);font-family:'Fredoka';font-weight:600;box-shadow:var(--shadow);transition:transform .08s ease;}
+  .card:active{transform:translateY(4px);box-shadow:0 4px 0 rgba(43,36,64,0.18);}
+  .card svg{width:64px;height:64px;}
+  .card span{font-size:clamp(13px,3.2vw,16px);text-align:center;line-height:1.15;}
+  .c1{background:linear-gradient(160deg,var(--coral),var(--coral-deep));}
+  .c2{background:linear-gradient(160deg,var(--purple),var(--purple-deep));}
+  .c3{background:linear-gradient(160deg,var(--leaf),var(--leaf-deep));}
+  .c4{background:linear-gradient(160deg,var(--sun),var(--sun-deep));color:var(--ink);}
+  .exWrap{width:100%;max-width:640px;background:var(--white);border-radius:28px;padding:22px 18px 26px;box-shadow:var(--shadow);margin-top:8px;text-align:center;}
+  .progressBar{width:100%;height:14px;background:#EDEAF7;border-radius:10px;overflow:hidden;margin-bottom:16px;}
+  .progressFill{height:100%;background:linear-gradient(90deg,var(--leaf),var(--sun));width:0%;transition:width .4s ease;}
+  .exTitle{font-size:clamp(18px,4.5vw,24px);margin:0 0 4px;}
+  .exSub{color:#6B6285;font-weight:700;margin:0 0 14px;font-size:clamp(13px,3vw,15px);}
+  .stageBox{min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;margin-bottom:14px;}
+  .optionsRow{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;}
+  .optBtn{font-family:'Fredoka';font-weight:600;font-size:clamp(16px,4vw,20px);background:var(--cream);border:3px solid #EADFC5;border-radius:18px;min-width:64px;padding:12px 18px;cursor:pointer;color:var(--ink);max-width:90%;text-align:center;}
+  .optBtn:active{transform:translateY(3px);}
+  .optBtn.correct{background:var(--leaf);border-color:var(--leaf-deep);color:var(--white);}
+  .optBtn.wrong{background:var(--coral);border-color:var(--coral-deep);color:var(--white);}
+  .tfBtn{font-family:'Fredoka';font-weight:700;font-size:18px;width:110px;height:54px;border-radius:16px;border:3px solid #EADFC5;background:var(--cream);cursor:pointer;color:var(--ink);}
+  .tfBtn:active{transform:translateY(3px);}
+  .tfBtn.correct{background:var(--leaf);border-color:var(--leaf-deep);color:var(--white);}
+  .tfBtn.wrong{background:var(--coral);border-color:var(--coral-deep);color:var(--white);}
+  .questionCard{background:var(--cream);border:3px solid #EADFC5;border-radius:18px;padding:14px 16px;margin-bottom:10px;text-align:left;font-weight:700;font-size:clamp(14px,3.5vw,17px);line-height:1.5;color:var(--ink);width:100%;}
+  .exImage{max-width:100%;max-height:220px;border-radius:18px;border:3px solid #EADFC5;object-fit:cover;margin-bottom:6px;box-shadow:0 4px 0 rgba(43,36,64,0.1);}
+  .exImageWrap{display:flex;justify-content:center;margin-bottom:8px;}
+  .exSvg{max-width:280px;max-height:180px;}
+  .feedback{min-height:34px;font-family:'Fredoka';font-weight:700;font-size:18px;}
+  .feedback.ok{color:var(--leaf-deep);}
+  .feedback.bad{color:var(--coral-deep);}
+  .continueBtn{display:none;margin-top:10px;font-family:'Fredoka';font-weight:700;font-size:18px;background:var(--sun);border:none;border-radius:16px;padding:12px 26px;box-shadow:0 5px 0 var(--sun-deep);cursor:pointer;color:var(--ink);}
+  .endWrap{text-align:center;}
+  .endWrap h2{font-size:clamp(22px,5vw,30px);}
+  .endWrap p{font-weight:700;color:#6B6285;}
+  .primaryBtn{font-family:'Fredoka';font-weight:700;font-size:18px;color:var(--white);background:linear-gradient(160deg,var(--leaf),var(--leaf-deep));border:none;border-radius:18px;padding:14px 28px;margin-top:14px;cursor:pointer;box-shadow:0 6px 0 var(--leaf-deep);}
+  .confetti-piece{position:fixed;top:-20px;width:10px;height:14px;z-index:50;pointer-events:none;animation:fall linear forwards;}
+  @keyframes fall{to{transform:translateY(105vh) rotate(400deg);opacity:0.9;}}
+  @media(max-width:380px){.card svg{width:52px;height:52px;}.exWrap{padding:16px 10px 20px;}}
+</style>
+</head>
+<body>
+<svg class="hill" viewBox="0 0 1440 200" preserveAspectRatio="none" style="height:110px;">
+  <path fill="#CFF3E4" d="M0,120 C240,60 420,180 720,110 C1000,50 1220,150 1440,90 L1440,200 L0,200 Z"></path>
+  <path fill="#B7EAD1" d="M0,160 C260,120 480,190 760,150 C1040,110 1240,190 1440,150 L1440,200 L0,200 Z"></path>
+</svg>
+<button class="musicBtn" id="musicBtn" onclick="toggleMusic()">🔇</button>
+
+<!-- HOME SCREEN -->
+<div class="screen active" id="screen-home">
+  <div class="homeHeader">
+    <div class="mascotWrap" id="mascotHome"></div>
+    <h1>Tuki Social Studies 🌍</h1>
+    <p>Choose a topic to learn about our community</p>
+  </div>
+  <div class="menuGrid">
+    <button class="card c1" onclick="startTopic('communityHelpers')">
+      <svg viewBox="0 0 64 64"><circle cx="20" cy="18" r="7" fill="#fff"/><path d="M14 26 L26 26 L24 40 L16 40 Z" fill="#fff"/><circle cx="44" cy="18" r="7" fill="#fff"/><path d="M38 26 L50 26 L48 40 L40 40 Z" fill="#fff"/><path d="M20 11 Q20 6 24 8" stroke="#fff" stroke-width="2" fill="none"/><path d="M44 11 Q44 6 48 8" stroke="#fff" stroke-width="2" fill="none"/></svg>
+      <span>Community Helpers</span>
+    </button>
+    <button class="card c2" onclick="startTopic('communityPlaces')">
+      <svg viewBox="0 0 64 64"><rect x="8" y="20" width="18" height="30" fill="#fff" rx="2"/><rect x="30" y="14" width="22" height="36" fill="#fff" rx="2"/><rect x="12" y="26" width="4" height="4" fill="#9B6BFF"/><rect x="36" y="20" width="5" height="5" fill="#9B6BFF"/><rect x="43" y="20" width="5" height="5" fill="#9B6BFF"/><path d="M30 14 L41 8 L52 14" fill="#fff"/></svg>
+      <span>Community Places</span>
+    </button>
+    <button class="card c3" onclick="startTopic('goodsServices')">
+      <svg viewBox="0 0 64 64"><path d="M10 24 L54 24 L50 50 L14 50 Z" fill="#fff"/><rect x="24" y="28" width="16" height="10" fill="#4CAF6D"/><circle cx="20" cy="18" r="4" fill="#fff"/><circle cx="32" cy="16" r="4" fill="#fff"/><circle cx="44" cy="18" r="4" fill="#fff"/></svg>
+      <span>Goods and Services</span>
+    </button>
+  </div>
+</div>
+
+<!-- EXERCISE SCREEN -->
+<div class="screen" id="screen-exercise">
+  <div class="topbar">
+    <button class="backBtn" onclick="goHome()">🏠 Menu</button>
+    <div class="starCounter">⭐ <span id="starCount">0</span></div>
+  </div>
+  <div class="exWrap">
+    <div class="progressBar"><div class="progressFill" id="progressFill"></div></div>
+    <h2 class="exTitle" id="exTitle">Title</h2>
+    <p class="exSub" id="exSub">Instruction</p>
+    <div class="stageBox" id="stageBox"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="continueBtn" id="continueBtn" onclick="nextQuestion()">Next ➜</button>
+  </div>
+</div>
+
+<!-- END SCREEN -->
+<div class="screen" id="screen-end">
+  <div class="topbar"><div></div><div></div></div>
+  <div class="exWrap endWrap">
+    <div class="mascotWrap" id="mascotEnd" style="width:130px;"></div>
+    <h2 id="endTitle">Great job!</h2>
+    <p id="endMsg">You finished the game</p>
+    <button class="primaryBtn" onclick="goHome()">Back to menu</button>
+  </div>
+</div>
+
+<script>
+/* MASCOT SVG */
+const mascotSVG=`<svg viewBox="0 0 160 160" width="100%"><ellipse cx="80" cy="145" rx="34" ry="8" fill="rgba(43,36,64,0.15)"/><path d="M50 90 Q40 60 62 45 Q80 34 98 45 Q120 60 110 90 Q112 120 80 128 Q48 120 50 90 Z" fill="#2B2440"/><path d="M56 85 Q50 62 66 50 Q80 42 94 50 Q110 62 104 85 Q106 110 80 116 Q54 110 56 85 Z" fill="#4CAF6D"/><circle cx="68" cy="66" r="7" fill="#fff"/><circle cx="70" cy="66" r="3.4" fill="#2B2440"/><path d="M78 74 Q100 70 118 78 Q100 86 78 82 Z" fill="#FFC93C"/><path d="M60 108 Q80 118 100 108 Q100 122 80 126 Q60 122 60 108 Z" fill="#FF6B5B"/><path d="M40 92 Q22 88 20 70 Q34 76 44 88 Z" fill="#3AC7E0"/><path d="M120 92 Q138 88 140 70 Q126 76 116 88 Z" fill="#3AC7E0"/></svg>`;
+document.getElementById('mascotHome').innerHTML=mascotSVG;
+document.getElementById('mascotEnd').innerHTML=mascotSVG;
+
+/* AUDIO */
+let audioCtx=null;
+function ctx(){if(!audioCtx){audioCtx=new(window.AudioContext||window.webkitAudioContext)();}return audioCtx;}
+function tone(f,s,d,t='sine',g=0.18){const c=ctx();const o=c.createOscillator();const gn=c.createGain();o.type=t;o.frequency.value=f;gn.gain.value=g;o.connect(gn);gn.connect(c.destination);o.start(c.currentTime+s);gn.gain.setValueAtTime(g,c.currentTime+s);gn.gain.exponentialRampToValueAtTime(0.001,c.currentTime+s+d);o.stop(c.currentTime+s+d+0.02);}
+function playCorrect(){tone(523,0,0.12);tone(659,0.1,0.12);tone(784,0.2,0.22);}
+function playWrong(){tone(220,0,0.18,'sawtooth',0.12);tone(160,0.15,0.25,'sawtooth',0.12);}
+function playTap(){tone(400,0,0.06,'triangle',0.08);}
+function playWin(){tone(523,0,0.12);tone(659,0.12,0.12);tone(784,0.24,0.12);tone(1046,0.36,0.3);}
+
+/* MUSIC */
+let musicOn=false,musicTimer=null,musicNoteIndex=0;
+const MELODY=[523,659,784,659,523,587,659,587,659,784,880,784,659,587,523,587,784,659,523,659,587,523,494,523,523,659,784,880,784,659,587,523];
+const BASS=[131,131,165,165,147,147,196,196,165,165,196,196,131,131,147,147,196,196,131,131,165,165,147,147,131,131,165,165,196,196,147,147];
+function playMusicNote(){if(!musicOn)return;const c=ctx();const t=c.currentTime;const mf=MELODY[musicNoteIndex%MELODY.length];const om=c.createOscillator();const gm=c.createGain();om.type='triangle';om.frequency.value=mf;gm.gain.setValueAtTime(0,t);gm.gain.linearRampToValueAtTime(0.08,t+0.02);gm.gain.exponentialRampToValueAtTime(0.001,t+0.35);om.connect(gm);gm.connect(c.destination);om.start(t);om.stop(t+0.38);const bf=BASS[musicNoteIndex%BASS.length];const ob=c.createOscillator();const gb=c.createGain();ob.type='sine';ob.frequency.value=bf;gb.gain.setValueAtTime(0,t);gb.gain.linearRampToValueAtTime(0.05,t+0.02);gb.gain.exponentialRampToValueAtTime(0.001,t+0.4);ob.connect(gb);gb.connect(c.destination);ob.start(t);ob.stop(t+0.42);musicNoteIndex++;musicTimer=setTimeout(playMusicNote,300);}
+function toggleMusic(){musicOn=!musicOn;const b=document.getElementById('musicBtn');if(musicOn){b.textContent='🎵';ctx().resume();playMusicNote();}else{b.textContent='🔇';if(musicTimer){clearTimeout(musicTimer);musicTimer=null;}}}
+
+/* CONFETTI */
+function confettiBurst(){const cs=['#FF6B5B','#FFC93C','#4CAF6D','#3AC7E0','#9B6BFF'];for(let i=0;i<26;i++){const e=document.createElement('div');e.className='confetti-piece';e.style.left=Math.random()*100+'vw';e.style.background=cs[Math.floor(Math.random()*cs.length)];e.style.animationDuration=(1.6+Math.random()*1.2)+'s';e.style.borderRadius=Math.random()>0.5?'50%':'2px';document.body.appendChild(e);setTimeout(()=>e.remove(),3200);}}
+
+/* STATE */
+let stars=0,currentTopic=null,qIndex=0;const TOTAL_Q=6;let questionAnswered=false;
+const TOPIC_META={
+  communityHelpers:{title:'Community Helpers',sub:'Learn about people who help us'},
+  communityPlaces:{title:'Community Places',sub:'Learn about places in our community'},
+  goodsServices:{title:'Goods and Services',sub:'Learn about things we buy and use'}
+};
+function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+
+/* IMAGE HELPERS */
+function showImg(stage,path){
+  const w=document.createElement('div');w.className='exImageWrap';
+  const img=document.createElement('img');img.className='exImage';img.src=path;img.onerror=()=>{w.style.display='none';};
+  w.appendChild(img);stage.appendChild(w);
+}
+function showSVG(stage,svg){
+  const w=document.createElement('div');w.className='exImageWrap';
+  const d=document.createElement('div');d.className='exSvg';d.innerHTML=svg;
+  w.appendChild(d);stage.appendChild(w);
+}
+
+/* SVG ILLUSTRATIONS */
+const SVGS={
+  helpers:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><circle cx="80" cy="60" r="20" fill="#F4C2A1"/><path d="M60 80 L100 80 L96 150 L64 150 Z" fill="#FF6B5B"/><circle cx="150" cy="55" r="20" fill="#F4C2A1"/><path d="M130 75 L170 75 L166 150 L134 150 Z" fill="#5B8DEF"/><rect x="140" y="35" width="20" height="12" fill="#FFD700"/><circle cx="220" cy="60" r="20" fill="#F4C2A1"/><path d="M200 80 L240 80 L236 150 L204 150 Z" fill="#4CAF6D"/><circle cx="80" cy="55" r="2" fill="#333"/><circle cx="150" cy="50" r="2" fill="#333"/><circle cx="220" cy="55" r="2" fill="#333"/><text x="150" y="180" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#8B7355" font-weight="600">Community Helpers</text></svg>`,
+  firefighter:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><path d="M120 40 Q120 25 150 25 Q180 25 180 40 L180 55 L120 55 Z" fill="#FF6B5B"/><circle cx="150" cy="70" r="22" fill="#F4C2A1"/><path d="M128 92 L172 92 L168 160 L132 160 Z" fill="#FF6B5B"/><rect x="140" y="110" width="20" height="15" fill="#FFD700" rx="2"/><circle cx="143" cy="65" r="2" fill="#333"/><circle cx="157" cy="65" r="2" fill="#333"/><path d="M140 78 Q150 83 160 78" stroke="#333" stroke-width="1.5" fill="none"/><path d="M100 120 Q80 110 75 90 Q90 100 105 120 Z" fill="#FFC93C" opacity=".6"/><text x="150" y="185" text-anchor="middle" font-family="Fredoka" font-size="13" fill="#FF6B5B" font-weight="600">Firefighter</text></svg>`,
+  doctor:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><circle cx="150" cy="65" r="22" fill="#F4C2A1"/><path d="M128 87 L172 87 L168 160 L132 160 Z" fill="#FFFFFF" stroke="#333" stroke-width="1"/><rect x="140" y="40" width="20" height="15" fill="#FFFFFF" stroke="#333" stroke-width="1" rx="2"/><path d="M150 40 L150 55 M140 47 L160 47" stroke="#FF6B5B" stroke-width="2"/><circle cx="143" cy="60" r="2" fill="#333"/><circle cx="157" cy="60" r="2" fill="#333"/><path d="M140 73 Q150 78 160 73" stroke="#333" stroke-width="1.5" fill="none"/><path d="M125 100 L175 100" stroke="#3AC7E0" stroke-width="3"/><text x="150" y="185" text-anchor="middle" font-family="Fredoka" font-size="13" fill="#3AC7E0" font-weight="600">Doctor</text></svg>`,
+  police:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><path d="M125 35 Q125 25 150 25 Q175 25 175 35 L175 50 L125 50 Z" fill="#3AC7E0"/><circle cx="150" cy="70" r="22" fill="#F4C2A1"/><path d="M128 92 L172 92 L168 160 L132 160 Z" fill="#5B8DEF"/><circle cx="150" cy="100" r="8" fill="#FFD700"/><circle cx="143" cy="65" r="2" fill="#333"/><circle cx="157" cy="65" r="2" fill="#333"/><path d="M140 78 Q150 83 160 78" stroke="#333" stroke-width="1.5" fill="none"/><text x="150" y="185" text-anchor="middle" font-family="Fredoka" font-size="13" fill="#5B8DEF" font-weight="600">Police Officer</text></svg>`,
+  places:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><rect x="30" y="80" width="60" height="80" fill="#8B7355" rx="2"/><rect x="45" y="100" width="12" height="12" fill="#FFD700"/><rect x="63" y="100" width="12" height="12" fill="#FFD700"/><rect x="120" y="60" width="70" height="100" fill="#5B8DEF" rx="2"/><path d="M120 60 L155 40 L190 60" fill="#FF6B5B"/><rect x="140" y="80" width="12" height="12" fill="#fff"/><rect x="158" y="80" width="12" height="12" fill="#fff"/><rect x="140" y="100" width="12" height="12" fill="#fff"/><rect x="158" y="100" width="12" height="12" fill="#fff"/><rect x="210" y="90" width="60" height="70" fill="#4CAF6D" rx="2"/><path d="M210 90 L240 70 L270 90" fill="#FFC93C"/><text x="150" y="185" text-anchor="middle" font-family="Fredoka" font-size="13" fill="#8B7355" font-weight="600">Community Places</text></svg>`,
+  school:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><rect x="60" y="80" width="180" height="80" fill="#FF6B5B" rx="2"/><path d="M60 80 L150 50 L240 80" fill="#8B4226"/><rect x="100" y="100" width="25" height="30" fill="#6B4226"/><rect x="175" y="100" width="25" height="30" fill="#6B4226"/><rect x="135" y="110" width="30" height="50" fill="#6B4226"/><circle cx="155" cy="135" r="3" fill="#FFD700"/><rect x="140" y="35" width="20" height="20" fill="#FFFFFF"/><path d="M150 35 L150 55 M140 45 L160 45" stroke="#FF6B5B" stroke-width="2"/><text x="150" y="185" text-anchor="middle" font-family="Fredoka" font-size="13" fill="#FF6B5B" font-weight="600">School</text></svg>`,
+  hospital:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><rect x="70" y="60" width="160" height="110" fill="#FFFFFF" stroke="#333" stroke-width="2" rx="2"/><rect x="100" y="80" width="20" height="20" fill="#3AC7E0"/><rect x="160" y="80" width="20" height="20" fill="#3AC7E0"/><rect x="100" y="120" width="20" height="20" fill="#3AC7E0"/><rect x="160" y="120" width="20" height="20" fill="#3AC7E0"/><rect x="130" y="90" width="40" height="40" fill="#FF6B5B"/><path d="M150 90 L150 130 M130 110 L170 110" stroke="#FFFFFF" stroke-width="4"/><text x="150" y="185" text-anchor="middle" font-family="Fredoka" font-size="13" fill="#FF6B5B" font-weight="600">Hospital</text></svg>`,
+  store:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><rect x="50" y="80" width="200" height="90" fill="#4CAF6D" rx="2"/><path d="M50 80 L60 60 L240 60 L250 80 Z" fill="#FFC93C"/><rect x="120" y="110" width="60" height="60" fill="#6B4226"/><rect x="140" y="130" width="20" height="40" fill="#3B2210"/><circle cx="150" cy="150" r="3" fill="#FFD700"/><rect x="70" y="90" width="30" height="20" fill="#FFFFFF" opacity=".7"/><rect x="200" y="90" width="30" height="20" fill="#FFFFFF" opacity=".7"/><text x="150" y="185" text-anchor="middle" font-family="Fredoka" font-size="13" fill="#4CAF6D" font-weight="600">Store</text></svg>`,
+  goods:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><rect x="40" y="60" width="50" height="50" fill="#FF6B5B" rx="4"/><rect x="110" y="60" width="50" height="50" fill="#3AC7E0" rx="4"/><rect x="180" y="60" width="50" height="50" fill="#FFC93C" rx="4"/><circle cx="65" cy="140" r="20" fill="#4CAF6D"/><circle cx="135" cy="140" r="20" fill="#9B6BFF"/><circle cx="205" cy="140" r="20" fill="#FF6B5B"/><text x="150" y="185" text-anchor="middle" font-family="Fredoka" font-size="13" fill="#8B7355" font-weight="600">Goods</text></svg>`,
+  services:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><circle cx="80" cy="70" r="22" fill="#F4C2A1"/><path d="M58 92 L102 92 L98 150 L62 150 Z" fill="#9B6BFF"/><circle cx="200" cy="70" r="22" fill="#F4C2A1"/><path d="M178 92 L222 92 L218 150 L182 150 Z" fill="#4CAF6D"/><path d="M120 100 Q150 90 180 100" stroke="#FFD700" stroke-width="3" fill="none"/><path d="M145 95 L155 95 L150 85 Z" fill="#FFD700"/><text x="150" y="180" text-anchor="middle" font-family="Fredoka" font-size="13" fill="#9B6BFF" font-weight="600">Services</text></svg>`,
+  needs:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><path d="M60 80 L60 130 Q60 150 85 150 Q110 150 110 130 L110 80 Z" fill="#3AC7E0" opacity=".7"/><path d="M60 80 Q85 65 110 80" fill="#3AC7E0"/><circle cx="170" cy="100" r="30" fill="#FFC93C"/><circle cx="170" cy="100" r="20" fill="#FFD700"/><path d="M220 70 L240 70 L235 140 L225 140 Z" fill="#FF6B5B"/><text x="150" y="180" text-anchor="middle" font-family="Fredoka" font-size="13" fill="#8B7355" font-weight="600">Needs</text></svg>`
+};
+
+/* NAVIGATION */
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function goHome(){showScreen('screen-home');}
+function startTopic(t){currentTopic=t;qIndex=0;document.getElementById('exTitle').textContent=TOPIC_META[t].title;document.getElementById('exSub').textContent=TOPIC_META[t].sub;showScreen('screen-exercise');loadQuestion();}
+function updateProgress(){document.getElementById('progressFill').style.width=(qIndex/TOTAL_Q*100)+'%';}
+function loadQuestion(){questionAnswered=false;updateProgress();document.getElementById('feedback').textContent='';document.getElementById('feedback').className='feedback';document.getElementById('continueBtn').style.display='none';const s=document.getElementById('stageBox');s.innerHTML='';if(qIndex>=TOTAL_Q){return endGame();}const builders={communityHelpers:buildCommunityHelpers,communityPlaces:buildCommunityPlaces,goodsServices:buildGoodsServices};builders[currentTopic](s);}
+function nextQuestion(){qIndex++;loadQuestion();}
+function markResult(ok,el){if(questionAnswered)return;questionAnswered=true;const fb=document.getElementById('feedback');if(ok){stars++;document.getElementById('starCount').textContent=stars;fb.textContent='Great job, you got it! 🎉';fb.className='feedback ok';playCorrect();confettiBurst();if(el)el.classList.add('correct');}else{fb.textContent='Almost... try again! 💪';fb.className='feedback bad';playWrong();if(el)el.classList.add('wrong');}document.getElementById('continueBtn').style.display='inline-block';}
+function endGame(){showScreen('screen-end');playWin();confettiBurst();const t=document.getElementById('endTitle'),m=document.getElementById('endMsg');if(stars>=TOTAL_Q*4/5){t.textContent='You are a community champion! 🏆';}else if(stars>=TOTAL_Q/2){t.textContent='Great work! Keep learning 🌟';}else{t.textContent='You tried your best! 🌍';}m.textContent=`You earned ${stars} stars in total.`;}
+
+/* MULTIPLE CHOICE */
+function buildMultipleChoice(stage,q,opt,correct){
+  const card=document.createElement('div');card.className='questionCard';card.innerHTML='📖 '+q;stage.appendChild(card);
+  const row=document.createElement('div');row.className='optionsRow';
+  shuffle(opt.map((o,i)=>({text:o,correct:i===correct}))).forEach(item=>{
+    const b=document.createElement('button');b.className='optBtn';b.textContent=item.text;
+    b.onclick=()=>{playTap();markResult(item.correct,b);if(!item.correct){[...row.children].find(c=>c.textContent===opt[correct]).classList.add('correct');}[...row.children].forEach(c=>c.disabled=true);};
+    row.appendChild(b);
+  });
+  stage.appendChild(row);
+}
+
+/* TRUE/FALSE */
+function buildTrueFalse(stage,q,correct){
+  const card=document.createElement('div');card.className='questionCard';card.innerHTML='📖 '+q;stage.appendChild(card);
+  const row=document.createElement('div');row.className='optionsRow';
+  [{t:'True ✅',v:true},{t:'False ❌',v:false}].forEach(item=>{
+    const b=document.createElement('button');b.className='tfBtn';b.textContent=item.t;
+    b.onclick=()=>{playTap();markResult(item.v===correct,b);if(item.v!==correct){[...row.children].find(c=>c.textContent.includes(correct?'True':'False')).classList.add('correct');}[...row.children].forEach(c=>c.disabled=true);};
+    row.appendChild(b);
+  });
+  stage.appendChild(row);
+}
+
+/* ================= COMMUNITY HELPERS ================= */
+function buildCommunityHelpers(stage){
+  const qs=[
+    {type:'mc',q:'Who puts out fires?',opt:['A firefighter','A doctor','A teacher','A baker'],correct:0,img:'firefighter.png',svg:'firefighter'},
+    {type:'mc',q:'Who helps sick people?',opt:['A doctor','A firefighter','A pilot','A farmer'],correct:0,img:'doctor.png',svg:'doctor'},
+    {type:'mc',q:'Who keeps us safe and catches bad guys?',opt:['A police officer','A doctor','A chef','A librarian'],correct:0,img:'police.png',svg:'police'},
+    {type:'mc',q:'Who teaches us at school?',opt:['A teacher','A doctor','A firefighter','A pilot'],correct:0,img:'community-helpers.png',svg:'helpers'},
+    {type:'tf',q:'A firefighter drives a fire truck.',correct:true,img:'firefighter.png',svg:'firefighter'},
+    {type:'tf',q:'A doctor works in a hospital.',correct:true,img:'doctor.png',svg:'doctor'},
+    {type:'mc',q:'Who delivers our mail?',opt:['A mail carrier','A doctor','A firefighter','A teacher'],correct:0,img:'community-helpers.png',svg:'helpers'},
+    {type:'mc',q:'Who cooks food in a restaurant?',opt:['A chef','A doctor','A teacher','A police officer'],correct:0,img:'community-helpers.png',svg:'helpers'},
+    {type:'tf',q:'Community helpers make our community better.',correct:true,img:'community-helpers.png',svg:'helpers'},
+    {type:'mc',q:'What does a nurse do?',opt:['Helps sick people','Puts out fires','Delivers mail','Teaches children'],correct:0,img:'doctor.png',svg:'doctor'}
+  ];
+  const item=qs[rand(0,qs.length-1)];
+  showImg(stage,'images/'+item.img);showSVG(stage,SVGS[item.svg]);
+  if(item.type==='mc')buildMultipleChoice(stage,item.q,item.opt,item.correct);
+  else buildTrueFalse(stage,item.q,item.correct);
+}
+
+/* ================= COMMUNITY PLACES ================= */
+function buildCommunityPlaces(stage){
+  const qs=[
+    {type:'mc',q:'Where do we go to learn?',opt:['School','Hospital','Park','Bank'],correct:0,img:'school.png',svg:'school'},
+    {type:'mc',q:'Where do we go when we are sick?',opt:['Hospital','School','Library','Park'],correct:0,img:'hospital.png',svg:'hospital'},
+    {type:'mc',q:'Where do we borrow books?',opt:['Library','Hospital','School','Store'],correct:0,img:'community-places.png',svg:'places'},
+    {type:'mc',q:'Where do we buy food?',opt:['Grocery store','Hospital','School','Park'],correct:0,img:'store.png',svg:'store'},
+    {type:'tf',q:'We play at the park.',correct:true,img:'community-places.png',svg:'places'},
+    {type:'tf',q:'We go to the bank to swim.',correct:false,img:'community-places.png',svg:'places'},
+    {type:'mc',q:'Where do we play and have fun?',opt:['Park','Hospital','Bank','Library'],correct:0,img:'community-places.png',svg:'places'},
+    {type:'mc',q:'Where do firemen work?',opt:['Fire station','School','Library','Park'],correct:0,img:'community-places.png',svg:'places'},
+    {type:'tf',q:'The post office is where we send letters.',correct:true,img:'community-places.png',svg:'places'},
+    {type:'mc',q:'Where do we go to pray?',opt:['Church','Hospital','Park','Store'],correct:0,img:'community-places.png',svg:'places'}
+  ];
+  const item=qs[rand(0,qs.length-1)];
+  showImg(stage,'images/'+item.img);showSVG(stage,SVGS[item.svg]);
+  if(item.type==='mc')buildMultipleChoice(stage,item.q,item.opt,item.correct);
+  else buildTrueFalse(stage,item.q,item.correct);
+}
+
+/* ================= GOODS AND SERVICES ================= */
+function buildGoodsServices(stage){
+  const qs=[
+    {type:'mc',q:'What is a GOOD?',opt:['A toy you can buy','A haircut','A lesson','A checkup'],correct:0,img:'goods-services.png',svg:'goods'},
+    {type:'mc',q:'What is a SERVICE?',opt:['A haircut','An apple','A book','A toy'],correct:0,img:'goods-services.png',svg:'services'},
+    {type:'mc',q:'Which is a NEED?',opt:['Water','Toys','Candy','Video games'],correct:0,img:'goods-services.png',svg:'needs'},
+    {type:'mc',q:'Which is a WANT?',opt:['A new toy','Food','Water','Clothes'],correct:0,img:'goods-services.png',svg:'goods'},
+    {type:'tf',q:'Food is a need.',correct:true,img:'goods-services.png',svg:'needs'},
+    {type:'tf',q:'Toys are a need.',correct:false,img:'goods-services.png',svg:'goods'},
+    {type:'mc',q:'Who makes goods?',opt:['Producers','Consumers','Helpers','Teachers'],correct:0,img:'goods-services.png',svg:'goods'},
+    {type:'mc',q:'Who buys goods?',opt:['Consumers','Producers','Doctors','Firefighters'],correct:0,img:'store.png',svg:'store'},
+    {type:'tf',q:'A teacher provides a service.',correct:true,img:'goods-services.png',svg:'services'},
+    {type:'mc',q:'Which is a service?',opt:['Getting a haircut','Buying an apple','Buying a book','Buying a toy'],correct:0,img:'goods-services.png',svg:'services'},
+    {type:'tf',q:'We need water and food to live.',correct:true,img:'goods-services.png',svg:'needs'}
+  ];
+  const item=qs[rand(0,qs.length-1)];
+  showImg(stage,'images/'+item.img);showSVG(stage,SVGS[item.svg]);
+  if(item.type==='mc')buildMultipleChoice(stage,item.q,item.opt,item.correct);
+  else buildTrueFalse(stage,item.q,item.correct);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Tuki English 🌟</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky:#3AC7E0; --sky-deep:#1E9FBF; --sun:#FFC93C; --sun-deep:#F5A623;
+    --leaf:#4CAF6D; --leaf-deep:#2E9450; --coral:#FF6B5B; --coral-deep:#E8503F;
+    --purple:#9B6BFF; --purple-deep:#7C4FE0; --cream:#FFF8EC; --ink:#2B2440;
+    --white:#FFFFFF; --shadow: 0 8px 0 rgba(43,36,64,0.18);
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
+  html,body{height:100%;}
+  body{margin:0;font-family:'Nunito',sans-serif;background:linear-gradient(180deg,#5B8DEF 0%,#7BA8F0 55%,#CFF3E4 100%);min-height:100vh;color:var(--ink);overflow-x:hidden;position:relative;}
+  h1,h2,h3,.display{font-family:'Fredoka',sans-serif;}
+  .cloud{position:absolute;opacity:.9;z-index:0;pointer-events:none;}
+  .hill{position:fixed;bottom:0;left:0;width:100%;z-index:0;pointer-events:none;}
+  .screen{position:relative;z-index:2;min-height:100vh;display:none;flex-direction:column;align-items:center;padding:18px 14px 40px;}
+  .screen.active{display:flex;}
+  .topbar{width:100%;max-width:900px;display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+  .backBtn{background:var(--white);border:none;border-radius:16px;padding:10px 16px;font-family:'Fredoka';font-weight:600;font-size:16px;color:var(--ink);box-shadow:var(--shadow);cursor:pointer;display:flex;align-items:center;gap:6px;}
+  .backBtn:active{transform:translateY(4px);box-shadow:0 4px 0 rgba(43,36,64,0.18);}
+  .starCounter{background:var(--white);border-radius:16px;padding:8px 16px;font-family:'Fredoka';font-weight:600;font-size:16px;box-shadow:var(--shadow);display:flex;align-items:center;gap:6px;}
+  .musicBtn{position:fixed;top:14px;right:14px;z-index:10;background:var(--white);border:none;border-radius:50%;width:46px;height:46px;cursor:pointer;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;font-size:22px;transition:transform .1s ease;}
+  .musicBtn:active{transform:translateY(3px);}
+  .homeHeader{text-align:center;margin:6px 0 6px;}
+  .homeHeader h1{font-size:clamp(28px,6vw,44px);color:var(--white);text-shadow:0 4px 0 rgba(43,36,64,0.25);margin:6px 0 2px;}
+  .homeHeader p{color:var(--white);font-weight:800;font-size:clamp(14px,3vw,18px);margin:0;opacity:.95;}
+  .mascotWrap{width:150px;margin:0 auto;}
+  .menuGrid{display:grid;grid-template-columns:repeat(2,minmax(150px,1fr));gap:16px;width:100%;max-width:760px;margin-top:18px;}
+  @media(min-width:620px){.menuGrid{grid-template-columns:repeat(3,minmax(150px,1fr));}}
+  .card{border:none;cursor:pointer;border-radius:26px;padding:18px 12px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--white);font-family:'Fredoka';font-weight:600;box-shadow:var(--shadow);transition:transform .08s ease;}
+  .card:active{transform:translateY(4px);box-shadow:0 4px 0 rgba(43,36,64,0.18);}
+  .card svg{width:64px;height:64px;}
+  .card span{font-size:clamp(13px,3.2vw,16px);text-align:center;line-height:1.15;}
+  .c1{background:linear-gradient(160deg,var(--coral),var(--coral-deep));}
+  .c2{background:linear-gradient(160deg,var(--purple),var(--purple-deep));}
+  .c3{background:linear-gradient(160deg,var(--leaf),var(--leaf-deep));}
+  .c4{background:linear-gradient(160deg,var(--sun),var(--sun-deep));color:var(--ink);}
+  .exWrap{width:100%;max-width:640px;background:var(--white);border-radius:28px;padding:22px 18px 26px;box-shadow:var(--shadow);margin-top:8px;text-align:center;}
+  .progressBar{width:100%;height:14px;background:#EDEAF7;border-radius:10px;overflow:hidden;margin-bottom:16px;}
+  .progressFill{height:100%;background:linear-gradient(90deg,var(--leaf),var(--sun));width:0%;transition:width .4s ease;}
+  .exTitle{font-size:clamp(18px,4.5vw,24px);margin:0 0 4px;}
+  .exSub{color:#6B6285;font-weight:700;margin:0 0 14px;font-size:clamp(13px,3vw,15px);}
+  .stageBox{min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;margin-bottom:14px;}
+  .optionsRow{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;}
+  .optBtn{font-family:'Fredoka';font-weight:600;font-size:clamp(16px,4vw,20px);background:var(--cream);border:3px solid #EADFC5;border-radius:18px;min-width:64px;padding:12px 18px;cursor:pointer;color:var(--ink);max-width:90%;text-align:center;}
+  .optBtn:active{transform:translateY(3px);}
+  .optBtn.correct{background:var(--leaf);border-color:var(--leaf-deep);color:var(--white);}
+  .optBtn.wrong{background:var(--coral);border-color:var(--coral-deep);color:var(--white);}
+  .tfBtn{font-family:'Fredoka';font-weight:700;font-size:18px;width:110px;height:54px;border-radius:16px;border:3px solid #EADFC5;background:var(--cream);cursor:pointer;color:var(--ink);}
+  .tfBtn:active{transform:translateY(3px);}
+  .tfBtn.correct{background:var(--leaf);border-color:var(--leaf-deep);color:var(--white);}
+  .tfBtn.wrong{background:var(--coral);border-color:var(--coral-deep);color:var(--white);}
+  .questionCard{background:var(--cream);border:3px solid #EADFC5;border-radius:18px;padding:14px 16px;margin-bottom:10px;text-align:left;font-weight:700;font-size:clamp(14px,3.5vw,17px);line-height:1.5;color:var(--ink);width:100%;}
+  .exImage{max-width:100%;max-height:220px;border-radius:18px;border:3px solid #EADFC5;object-fit:cover;margin-bottom:6px;box-shadow:0 4px 0 rgba(43,36,64,0.1);}
+  .exImageWrap{display:flex;justify-content:center;margin-bottom:8px;}
+  .exSvg{max-width:280px;max-height:180px;}
+  .feedback{min-height:34px;font-family:'Fredoka';font-weight:700;font-size:18px;}
+  .feedback.ok{color:var(--leaf-deep);}
+  .feedback.bad{color:var(--coral-deep);}
+  .continueBtn{display:none;margin-top:10px;font-family:'Fredoka';font-weight:700;font-size:18px;background:var(--sun);border:none;border-radius:16px;padding:12px 26px;box-shadow:0 5px 0 var(--sun-deep);cursor:pointer;color:var(--ink);}
+  .endWrap{text-align:center;}
+  .endWrap h2{font-size:clamp(22px,5vw,30px);}
+  .endWrap p{font-weight:700;color:#6B6285;}
+  .primaryBtn{font-family:'Fredoka';font-weight:700;font-size:18px;color:var(--white);background:linear-gradient(160deg,var(--leaf),var(--leaf-deep));border:none;border-radius:18px;padding:14px 28px;margin-top:14px;cursor:pointer;box-shadow:0 6px 0 var(--leaf-deep);}
+  .confetti-piece{position:fixed;top:-20px;width:10px;height:14px;z-index:50;pointer-events:none;animation:fall linear forwards;}
+  @keyframes fall{to{transform:translateY(105vh) rotate(400deg);opacity:0.9;}}
+  @media(max-width:380px){.card svg{width:52px;height:52px;}.exWrap{padding:16px 10px 20px;}}
+</style>
+</head>
+<body>
+<svg class="hill" viewBox="0 0 1440 200" preserveAspectRatio="none" style="height:110px;">
+  <path fill="#CFF3E4" d="M0,120 C240,60 420,180 720,110 C1000,50 1220,150 1440,90 L1440,200 L0,200 Z"></path>
+  <path fill="#B7EAD1" d="M0,160 C260,120 480,190 760,150 C1040,110 1240,190 1440,150 L1440,200 L0,200 Z"></path>
+</svg>
+<button class="musicBtn" id="musicBtn" onclick="toggleMusic()">🔇</button>
+
+<!-- HOME SCREEN -->
+<div class="screen active" id="screen-home">
+  <div class="homeHeader">
+    <div class="mascotWrap" id="mascotHome"></div>
+    <h1>Tuki English 🌟</h1>
+    <p>Choose a topic to practice English</p>
+  </div>
+  <div class="menuGrid">
+    <button class="card c1" onclick="startTopic('funOnTheFarm')">
+      <svg viewBox="0 0 64 64"><path d="M8 40 L56 40 L52 56 L12 56 Z" fill="#fff" opacity=".9"/><path d="M28 40 L28 28 L36 28 L36 40" fill="#fff"/><circle cx="20" cy="30" r="6" fill="#fff" opacity=".9"/><circle cx="46" cy="32" r="5" fill="#fff" opacity=".8"/><path d="M14 30 Q14 26 16 26" stroke="#fff" stroke-width="1.5" fill="none"/></svg>
+      <span>Fun on The Farm</span>
+    </button>
+    <button class="card c2" onclick="startTopic('iLikeFood')">
+      <svg viewBox="0 0 64 64"><path d="M16 36 Q16 24 32 22 Q48 24 48 36 L48 48 L16 48 Z" fill="#fff" opacity=".9"/><circle cx="26" cy="30" r="3" fill="#fff"/><circle cx="38" cy="32" r="2.5" fill="#fff"/><path d="M22 22 Q22 16 26 16 M32 20 Q32 14 36 14 M40 22 Q40 18 44 18" stroke="#fff" stroke-width="2" fill="none"/></svg>
+      <span>I Like Food</span>
+    </button>
+    <button class="card c3" onclick="startTopic('questionsLike')">
+      <svg viewBox="0 0 64 64"><path d="M32 12 Q20 12 20 24 Q20 32 28 36 L28 42 L36 42 L36 36 Q44 32 44 24 Q44 12 32 12 Z" fill="#fff" opacity=".9"/><circle cx="32" cy="50" r="4" fill="#fff"/></svg>
+      <span>Questions with Like</span>
+    </button>
+    <button class="card c4" onclick="startTopic('canIHave')">
+      <svg viewBox="0 0 64 64"><path d="M10 20 Q10 12 22 12 L42 12 Q54 12 54 20 L54 34 Q54 42 42 42 L28 42 L20 50 L20 42 Q10 42 10 34 Z" fill="#fff" opacity=".9"/><circle cx="22" cy="27" r="2" fill="#fff"/><circle cx="32" cy="27" r="2" fill="#fff"/><circle cx="42" cy="27" r="2" fill="#fff"/></svg>
+      <span>Can I Have...? / Would You Like...?</span>
+    </button>
+  </div>
+</div>
+
+<!-- EXERCISE SCREEN -->
+<div class="screen" id="screen-exercise">
+  <div class="topbar">
+    <button class="backBtn" onclick="goHome()">🏠 Menu</button>
+    <div class="starCounter">⭐ <span id="starCount">0</span></div>
+  </div>
+  <div class="exWrap">
+    <div class="progressBar"><div class="progressFill" id="progressFill"></div></div>
+    <h2 class="exTitle" id="exTitle">Title</h2>
+    <p class="exSub" id="exSub">Instruction</p>
+    <div class="stageBox" id="stageBox"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="continueBtn" id="continueBtn" onclick="nextQuestion()">Next ➜</button>
+  </div>
+</div>
+
+<!-- END SCREEN -->
+<div class="screen" id="screen-end">
+  <div class="topbar"><div></div><div></div></div>
+  <div class="exWrap endWrap">
+    <div class="mascotWrap" id="mascotEnd" style="width:130px;"></div>
+    <h2 id="endTitle">Great job!</h2>
+    <p id="endMsg">You finished the game</p>
+    <button class="primaryBtn" onclick="goHome()">Back to menu</button>
+  </div>
+</div>
+
+<script>
+/* MASCOT SVG */
+const mascotSVG=`<svg viewBox="0 0 160 160" width="100%"><ellipse cx="80" cy="145" rx="34" ry="8" fill="rgba(43,36,64,0.15)"/><path d="M50 90 Q40 60 62 45 Q80 34 98 45 Q120 60 110 90 Q112 120 80 128 Q48 120 50 90 Z" fill="#2B2440"/><path d="M56 85 Q50 62 66 50 Q80 42 94 50 Q110 62 104 85 Q106 110 80 116 Q54 110 56 85 Z" fill="#4CAF6D"/><circle cx="68" cy="66" r="7" fill="#fff"/><circle cx="70" cy="66" r="3.4" fill="#2B2440"/><path d="M78 74 Q100 70 118 78 Q100 86 78 82 Z" fill="#FFC93C"/><path d="M60 108 Q80 118 100 108 Q100 122 80 126 Q60 122 60 108 Z" fill="#FF6B5B"/><path d="M40 92 Q22 88 20 70 Q34 76 44 88 Z" fill="#3AC7E0"/><path d="M120 92 Q138 88 140 70 Q126 76 116 88 Z" fill="#3AC7E0"/></svg>`;
+document.getElementById('mascotHome').innerHTML=mascotSVG;
+document.getElementById('mascotEnd').innerHTML=mascotSVG;
+
+/* AUDIO */
+let audioCtx=null;
+function ctx(){if(!audioCtx){audioCtx=new(window.AudioContext||window.webkitAudioContext)();}return audioCtx;}
+function tone(f,s,d,t='sine',g=0.18){const c=ctx();const o=c.createOscillator();const gn=c.createGain();o.type=t;o.frequency.value=f;gn.gain.value=g;o.connect(gn);gn.connect(c.destination);o.start(c.currentTime+s);gn.gain.setValueAtTime(g,c.currentTime+s);gn.gain.exponentialRampToValueAtTime(0.001,c.currentTime+s+d);o.stop(c.currentTime+s+d+0.02);}
+function playCorrect(){tone(523,0,0.12);tone(659,0.1,0.12);tone(784,0.2,0.22);}
+function playWrong(){tone(220,0,0.18,'sawtooth',0.12);tone(160,0.15,0.25,'sawtooth',0.12);}
+function playTap(){tone(400,0,0.06,'triangle',0.08);}
+function playWin(){tone(523,0,0.12);tone(659,0.12,0.12);tone(784,0.24,0.12);tone(1046,0.36,0.3);}
+
+/* MUSIC */
+let musicOn=false,musicTimer=null,musicNoteIndex=0;
+const MELODY=[523,659,784,659,523,587,659,587,659,784,880,784,659,587,523,587,784,659,523,659,587,523,494,523,523,659,784,880,784,659,587,523];
+const BASS=[131,131,165,165,147,147,196,196,165,165,196,196,131,131,147,147,196,196,131,131,165,165,147,147,131,131,165,165,196,196,147,147];
+function playMusicNote(){if(!musicOn)return;const c=ctx();const t=c.currentTime;const mf=MELODY[musicNoteIndex%MELODY.length];const om=c.createOscillator();const gm=c.createGain();om.type='triangle';om.frequency.value=mf;gm.gain.setValueAtTime(0,t);gm.gain.linearRampToValueAtTime(0.08,t+0.02);gm.gain.exponentialRampToValueAtTime(0.001,t+0.35);om.connect(gm);gm.connect(c.destination);om.start(t);om.stop(t+0.38);const bf=BASS[musicNoteIndex%BASS.length];const ob=c.createOscillator();const gb=c.createGain();ob.type='sine';ob.frequency.value=bf;gb.gain.setValueAtTime(0,t);gb.gain.linearRampToValueAtTime(0.05,t+0.02);gb.gain.exponentialRampToValueAtTime(0.001,t+0.4);ob.connect(gb);gb.connect(c.destination);ob.start(t);ob.stop(t+0.42);musicNoteIndex++;musicTimer=setTimeout(playMusicNote,300);}
+function toggleMusic(){musicOn=!musicOn;const b=document.getElementById('musicBtn');if(musicOn){b.textContent='🎵';ctx().resume();playMusicNote();}else{b.textContent='🔇';if(musicTimer){clearTimeout(musicTimer);musicTimer=null;}}}
+
+/* CONFETTI */
+function confettiBurst(){const cs=['#FF6B5B','#FFC93C','#4CAF6D','#3AC7E0','#9B6BFF'];for(let i=0;i<26;i++){const e=document.createElement('div');e.className='confetti-piece';e.style.left=Math.random()*100+'vw';e.style.background=cs[Math.floor(Math.random()*cs.length)];e.style.animationDuration=(1.6+Math.random()*1.2)+'s';e.style.borderRadius=Math.random()>0.5?'50%':'2px';document.body.appendChild(e);setTimeout(()=>e.remove(),3200);}}
+
+/* STATE */
+let stars=0,currentTopic=null,qIndex=0;const TOTAL_Q=10;let questionAnswered=false;
+const TOPIC_META={
+  funOnTheFarm:{title:'Fun on The Farm',sub:'Learn about farm animals'},
+  iLikeFood:{title:'I Like Food',sub:'Practice talking about food'},
+  questionsLike:{title:'Questions with Like',sub:'Ask and answer about likes'},
+  canIHave:{title:'Can I Have...? / Would You Like...?',sub:'Polite requests and offers'}
+};
+function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+
+/* IMAGE HELPERS */
+function showImg(stage,path){
+  const w=document.createElement('div');w.className='exImageWrap';
+  const img=document.createElement('img');img.className='exImage';img.src=path;img.onerror=()=>{w.style.display='none';};
+  w.appendChild(img);stage.appendChild(w);
+}
+function showSVG(stage,svg){
+  const w=document.createElement('div');w.className='exImageWrap';
+  const d=document.createElement('div');d.className='exSvg';d.innerHTML=svg;
+  w.appendChild(d);stage.appendChild(w);
+}
+
+/* SVG ILLUSTRATIONS */
+const SVGS={
+  farm:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#E8F5E9" rx="12"/><path d="M0 120 Q150 110 300 120 L300 200 L0 200 Z" fill="#81C784" opacity=".5"/><path d="M60 120 L60 80 L50 75 L50 60 L70 60 L70 75 L60 80" fill="#FF6B5B"/><rect x="55" y="80" width="50" height="40" fill="#FF6B5B" rx="2"/><rect x="65" y="95" width="15" height="25" fill="#8B4513"/><circle cx="150" cy="90" r="20" fill="#FFF8E8"/><circle cx="145" cy="85" r="2" fill="#333"/><circle cx="155" cy="85" r="2" fill="#333"/><path d="M140 95 Q150 100 160 95" stroke="#333" stroke-width="1.5" fill="none"/><path d="M130 75 Q150 65 170 75" stroke="#8B4513" stroke-width="2" fill="none"/><circle cx="220" cy="100" r="15" fill="#FFF8E8"/><path d="M205 100 Q220 90 235 100" stroke="#333" stroke-width="1" fill="none"/><text x="150" y="180" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#4CAF6D" font-weight="600">Farm Animals</text></svg>`,
+  cow:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><ellipse cx="150" cy="110" rx="55" ry="35" fill="#FFF8E8"/><ellipse cx="150" cy="110" rx="55" ry="35" fill="none" stroke="#333" stroke-width="2"/><path d="M100 95 Q120 85 140 95" fill="#333"/><path d="M160 95 Q180 85 200 95" fill="#333"/><circle cx="195" cy="80" r="18" fill="#FFF8E8" stroke="#333" stroke-width="2"/><circle cx="190" cy="75" r="3" fill="#333"/><circle cx="200" cy="75" r="3" fill="#333"/><path d="M188 88 Q195 92 202 88" stroke="#333" stroke-width="1.5" fill="none"/><path d="M95 90 Q85 80 80 85 L90 95 Z" fill="#FFD9C0"/><path d="M95 90 Q85 80 80 85 L90 95 Z" fill="none" stroke="#333" stroke-width="1.5"/><path d="M120 140 L115 155 M140 140 L135 155 M160 140 L165 155 M180 140 L185 155" stroke="#333" stroke-width="3"/><text x="150" y="185" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#8B4513" font-weight="600">Cow</text></svg>`,
+  chicken:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><ellipse cx="120" cy="110" rx="35" ry="30" fill="#FFD700"/><circle cx="145" cy="85" r="18" fill="#FFD700"/><path d="M145 70 Q140 60 150 55 Q160 60 155 70" fill="#FF6B5B"/><path d="M155 85 L170 85 L160 95 Z" fill="#FFA500"/><circle cx="140" cy="82" r="3" fill="#333"/><path d="M100 135 L95 150 M115 135 L110 150 M130 135 L125 150" stroke="#FFA500" stroke-width="3"/><ellipse cx="210" cy="115" rx="30" ry="25" fill="#F5F5F5"/><circle cx="230" cy="100" r="15" fill="#F5F5F5"/><path d="M230 88 Q225 80 235 75 Q245 80 240 88" fill="#8B4513"/><path d="M240 100 L252 100 L244 108 Z" fill="#FFA500"/><circle cx="226" cy="97" r="2.5" fill="#333"/><path d="M195 135 L190 150 M210 135 L205 150 M225 135 L220 150" stroke="#8B4513" stroke-width="3"/><text x="150" y="185" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#DAA520" font-weight="600">Chicken &amp; Goat</text></svg>`,
+  sheep:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><ellipse cx="100" cy="110" rx="40" ry="30" fill="#F5F5F5"/><circle cx="70" cy="95" r="18" fill="#F5F5F5"/><circle cx="80" cy="80" r="15" fill="#F5F5F5"/><circle cx="100" cy="75" r="15" fill="#F5F5F5"/><circle cx="120" cy="80" r="15" fill="#F5F5F5"/><circle cx="130" cy="95" r="18" fill="#F5F5F5"/><circle cx="70" cy="90" r="12" fill="#333"/><circle cx="66" cy="87" r="2" fill="#fff"/><path d="M60 100 L55 115 M80 135 L75 150 M100 135 L95 150 M120 135 L125 150" stroke="#333" stroke-width="3"/><ellipse cx="210" cy="110" rx="35" ry="25" fill="#FFF8E8"/><circle cx="235" cy="95" r="15" fill="#FFF8E8"/><circle cx="240" cy="92" r="2" fill="#333"/><path d="M248 98 L256 98 L250 104 Z" fill="#FFA500"/><path d="M180 130 L175 145 M200 135 L195 150 M220 135 L215 150 M240 135 L245 150" stroke="#FFA500" stroke-width="3"/><text x="150" y="185" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#666" font-weight="600">Sheep &amp; Duck</text></svg>`,
+  food:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><ellipse cx="150" cy="140" rx="80" ry="15" fill="#E0E0E0"/><circle cx="150" cy="120" r="60" fill="#fff" stroke="#EADFC5" stroke-width="3"/><circle cx="120" cy="100" r="12" fill="#FF6B5B"/><circle cx="160" cy="95" r="10" fill="#4CAF6D"/><circle cx="175" cy="115" r="8" fill="#FFC93C"/><circle cx="130" cy="125" r="9" fill="#9B6BFF"/><path d="M140 90 Q150 80 160 90" stroke="#8B4513" stroke-width="2" fill="none"/><text x="150" y="180" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#FF6B5B" font-weight="600">Yummy Food</text></svg>`,
+  pizza:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><circle cx="150" cy="100" r="60" fill="#FFD700"/><circle cx="150" cy="100" r="55" fill="#FF6B5B" opacity=".3"/><circle cx="130" cy="85" r="6" fill="#FF6B5B"/><circle cx="170" cy="90" r="5" fill="#FF6B5B"/><circle cx="160" cy="115" r="7" fill="#FF6B5B"/><circle cx="135" cy="110" r="5" fill="#FF6B5B"/><circle cx="150" cy="95" r="4" fill="#4CAF6D"/><circle cx="175" cy="105" r="3" fill="#4CAF6D"/><text x="150" y="180" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#DAA520" font-weight="600">Pizza</text></svg>`,
+  burger:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><path d="M90 70 Q150 40 210 70 L210 85 L90 85 Z" fill="#D4A574"/><rect x="90" y="85" width="120" height="10" fill="#4CAF6D"/><rect x="90" y="95" width="120" height="12" fill="#8B4513"/><rect x="90" y="107" width="120" height="8" fill="#FFC93C"/><path d="M90 115 Q150 145 210 115 L210 130 L90 130 Z" fill="#D4A574"/><circle cx="110" cy="60" r="3" fill="#F5DEB3"/><circle cx="140" cy="55" r="3" fill="#F5DEB3"/><circle cx="170" cy="58" r="3" fill="#F5DEB3"/><circle cx="190" cy="62" r="3" fill="#F5DEB3"/><text x="150" y="170" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#8B4513" font-weight="600">Burger</text></svg>`,
+  fruit:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><circle cx="80" cy="110" r="25" fill="#FFC93C"/><path d="M80 85 Q85 75 80 70" stroke="#4CAF6D" stroke-width="3" fill="none"/><circle cx="140" cy="100" r="22" fill="#FF6B5B"/><circle cx="200" cy="110" r="25" fill="#9B6BFF"/><path d="M200 85 Q205 75 200 70" stroke="#4CAF6D" stroke-width="3" fill="none"/><circle cx="120" cy="140" r="15" fill="#4CAF6D"/><circle cx="180" cy="145" r="15" fill="#FF6B5B" opacity=".7"/><text x="150" y="180" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#4CAF6D" font-weight="600">Fruit</text></svg>`,
+  question:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><path d="M150 40 Q110 40 110 80 Q110 105 135 115 L135 130 L165 130 L165 115 Q190 105 190 80 Q190 40 150 40 Z" fill="#9B6BFF"/><circle cx="150" cy="150" r="12" fill="#9B6BFF"/><text x="150" y="85" text-anchor="middle" font-family="Fredoka" font-size="40" fill="#fff" font-weight="700">?</text><text x="150" y="180" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#9B6BFF" font-weight="600">Questions</text></svg>`,
+  like:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><path d="M150 160 C150 160 80 120 80 85 Q80 60 105 60 Q125 60 150 85 Q175 60 195 60 Q220 60 220 85 Q220 120 150 160 Z" fill="#FF6B5B"/><path d="M120 90 Q130 80 140 90" stroke="#fff" stroke-width="2" fill="none"/><path d="M160 90 Q170 80 180 90" stroke="#fff" stroke-width="2" fill="none"/><text x="150" y="185" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#FF6B5B" font-weight="600">I Like It!</text></svg>`,
+  kids:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><circle cx="100" cy="70" r="20" fill="#F4C2A1"/><path d="M80 90 L120 90 L116 160 L84 160 Z" fill="#5B8DEF"/><circle cx="93" cy="65" r="3" fill="#333"/><circle cx="107" cy="65" r="3" fill="#333"/><path d="M90 78 Q100 83 110 78" stroke="#333" stroke-width="1.5" fill="none"/><circle cx="200" cy="70" r="20" fill="#F4C2A1"/><path d="M180 90 L220 90 L216 160 L184 160 Z" fill="#FF6B5B"/><circle cx="193" cy="65" r="3" fill="#333"/><circle cx="207" cy="65" r="3" fill="#333"/><path d="M190 78 Q200 83 210 78" stroke="#333" stroke-width="1.5" fill="none"/><text x="150" y="185" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#5B8DEF" font-weight="600">Kids</text></svg>`,
+  dialogue:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><path d="M30 40 Q30 25 50 25 L130 25 Q150 25 150 40 L150 80 Q150 95 130 95 L80 95 L60 110 L60 95 Q30 95 30 80 Z" fill="#5B8DEF"/><circle cx="60" cy="60" r="3" fill="#fff"/><circle cx="80" cy="60" r="3" fill="#fff"/><circle cx="100" cy="60" r="3" fill="#fff"/><path d="M170 80 Q170 65 190 65 L250 65 Q270 65 270 80 L270 120 Q270 135 250 135 L220 135 L200 150 L200 135 Q170 135 170 120 Z" fill="#FF6B5B"/><circle cx="200" cy="100" r="3" fill="#fff"/><circle cx="220" cy="100" r="3" fill="#fff"/><circle cx="240" cy="100" r="3" fill="#fff"/><text x="150" y="180" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#5B8DEF" font-weight="600">Dialogue</text></svg>`,
+  request:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><path d="M120 140 L120 80 Q120 65 135 65 Q150 65 150 80 L150 110 L180 110 Q195 110 195 125 L195 140 Z" fill="#F4C2A1" stroke="#333" stroke-width="2"/><path d="M135 65 Q135 50 145 50 Q155 50 155 65" fill="none" stroke="#333" stroke-width="2"/><circle cx="135" cy="85" r="3" fill="#333"/><path d="M160 50 Q170 40 165 30" stroke="#FFC93C" stroke-width="3" fill="none"/><text x="150" y="175" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#FFC93C" font-weight="600">Can I have...?</text></svg>`,
+  offer:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><circle cx="150" cy="80" r="30" fill="#FFD700" opacity=".3"/><path d="M130 100 L170 100 L165 150 L135 150 Z" fill="#FF6B5B"/><path d="M140 100 L140 80 Q140 70 150 70 Q160 70 160 80 L160 100" fill="none" stroke="#8B4513" stroke-width="3"/><circle cx="150" cy="60" r="8" fill="#FFC93C"/><text x="150" y="175" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#FF6B5B" font-weight="600">Would you like...?</text></svg>`,
+  menu:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><rect x="90" y="40" width="120" height="130" fill="#fff" stroke="#8B4513" stroke-width="3" rx="4"/><path d="M90 40 L150 30 L210 40" fill="#8B4513"/><text x="150" y="65" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#8B4513" font-weight="700">MENU</text><path d="M105 80 L195 80 M105 95 L195 95 M105 110 L195 110 M105 125 L195 125 M105 140 L195 140" stroke="#EADFC5" stroke-width="1"/><text x="150" y="185" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#8B4513" font-weight="600">Menu</text></svg>`,
+  drink:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><path d="M110 60 L190 60 L180 150 L120 150 Z" fill="#FFA500" opacity=".8" stroke="#8B4513" stroke-width="2"/><path d="M115 70 L185 70 L178 145 L122 145 Z" fill="#FFC93C" opacity=".5"/><rect x="100" y="50" width="100" height="12" fill="#8B4513" rx="2"/><path d="M190 80 Q210 80 210 100 Q210 120 190 120" fill="none" stroke="#8B4513" stroke-width="3"/><circle cx="130" cy="40" r="4" fill="#FFC93C"/><circle cx="160" cy="35" r="3" fill="#FFC93C"/><text x="150" y="180" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#FFA500" font-weight="600">Drink</text></svg>`
+};
+
+/* NAVIGATION */
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function goHome(){showScreen('screen-home');}
+function startTopic(t){currentTopic=t;qIndex=0;document.getElementById('exTitle').textContent=TOPIC_META[t].title;document.getElementById('exSub').textContent=TOPIC_META[t].sub;showScreen('screen-exercise');loadQuestion();}
+function updateProgress(){document.getElementById('progressFill').style.width=(qIndex/TOTAL_Q*100)+'%';}
+function loadQuestion(){questionAnswered=false;updateProgress();document.getElementById('feedback').textContent='';document.getElementById('feedback').className='feedback';document.getElementById('continueBtn').style.display='none';const s=document.getElementById('stageBox');s.innerHTML='';if(qIndex>=TOTAL_Q){return endGame();}const builders={funOnTheFarm:buildFunOnTheFarm,iLikeFood:buildILikeFood,questionsLike:buildQuestionsLike,canIHave:buildCanIHave};builders[currentTopic](s);}
+function nextQuestion(){qIndex++;loadQuestion();}
+function markResult(ok,el){if(questionAnswered)return;questionAnswered=true;const fb=document.getElementById('feedback');if(ok){stars++;document.getElementById('starCount').textContent=stars;fb.textContent='Great job! You got it! 🎉';fb.className='feedback ok';playCorrect();confettiBurst();if(el)el.classList.add('correct');}else{fb.textContent='Almost... try again! 💪';fb.className='feedback bad';playWrong();if(el)el.classList.add('wrong');}document.getElementById('continueBtn').style.display='inline-block';}
+function endGame(){showScreen('screen-end');playWin();confettiBurst();const t=document.getElementById('endTitle'),m=document.getElementById('endMsg');if(stars>=TOTAL_Q*4/5){t.textContent='You are an English champion! 🏆';}else if(stars>=TOTAL_Q/2){t.textContent='Good work! Keep practicing 🌟';}else{t.textContent='You tried your best! 🌟';}m.textContent=`You earned ${stars} stars in total.`;}
+
+/* MULTIPLE CHOICE */
+function buildMultipleChoice(stage,q,opt,correct){
+  const card=document.createElement('div');card.className='questionCard';card.innerHTML='📖 '+q;stage.appendChild(card);
+  const row=document.createElement('div');row.className='optionsRow';
+  shuffle(opt.map((o,i)=>({text:o,correct:i===correct}))).forEach(item=>{
+    const b=document.createElement('button');b.className='optBtn';b.textContent=item.text;
+    b.onclick=()=>{playTap();markResult(item.correct,b);if(!item.correct){[...row.children].find(c=>c.textContent===opt[correct]).classList.add('correct');}[...row.children].forEach(c=>c.disabled=true);};
+    row.appendChild(b);
+  });
+  stage.appendChild(row);
+}
+
+/* TRUE/FALSE */
+function buildTrueFalse(stage,q,correct){
+  const card=document.createElement('div');card.className='questionCard';card.innerHTML='📖 '+q;stage.appendChild(card);
+  const row=document.createElement('div');row.className='optionsRow';
+  [{t:'True ✅',v:true},{t:'False ❌',v:false}].forEach(item=>{
+    const b=document.createElement('button');b.className='tfBtn';b.textContent=item.t;
+    b.onclick=()=>{playTap();markResult(item.v===correct,b);if(item.v!==correct){[...row.children].find(c=>c.textContent.includes(correct?'True':'False')).classList.add('correct');}[...row.children].forEach(c=>c.disabled=true);};
+    row.appendChild(b);
+  });
+  stage.appendChild(row);
+}
+
+/* ================= FUN ON THE FARM ================= */
+function buildFunOnTheFarm(stage){
+  const qs=[
+    {type:'mc',q:"What animal says 'Moo'?",opt:['Cow','Pig','Dog','Cat'],correct:0,img:'cow.png',svg:'cow'},
+    {type:'mc',q:"What animal says 'Baa'?",opt:['Sheep','Duck','Cow','Horse'],correct:0,img:'sheep-duck.png',svg:'sheep'},
+    {type:'mc',q:"What animal says 'Cluck cluck'?",opt:['Chicken','Cow','Sheep','Goat'],correct:0,img:'chicken-goat.png',svg:'chicken'},
+    {type:'mc',q:"What animal says 'Quack quack'?",opt:['Duck','Pig','Horse','Cat'],correct:0,img:'sheep-duck.png',svg:'sheep'},
+    {type:'tf',q:'A cow gives us milk.',correct:true,img:'cow.png',svg:'cow'},
+    {type:'tf',q:'A pig can fly.',correct:false,img:'fun-on-the-farm.png',svg:'farm'},
+    {type:'mc',q:'What do hens lay?',opt:['Eggs','Milk','Wool','Apples'],correct:0,img:'chicken-goat.png',svg:'chicken'},
+    {type:'mc',q:'What do sheep give us?',opt:['Wool','Eggs','Milk','Honey'],correct:0,img:'sheep-duck.png',svg:'sheep'},
+    {type:'tf',q:'Horses can run fast.',correct:true,img:'fun-on-the-farm.png',svg:'farm'},
+    {type:'mc',q:'Where do farm animals live?',opt:['On the farm','In the ocean','In the jungle','In the city'],correct:0,img:'fun-on-the-farm.png',svg:'farm'}
+  ];
+  const item=qs[rand(0,qs.length-1)];
+  showImg(stage,'images/'+item.img);showSVG(stage,SVGS[item.svg]);
+  if(item.type==='mc')buildMultipleChoice(stage,item.q,item.opt,item.correct);
+  else buildTrueFalse(stage,item.q,item.correct);
+}
+
+/* ================= I LIKE FOOD ================= */
+function buildILikeFood(stage){
+  const qs=[
+    {type:'mc',q:'I like ___.',opt:['pizza','running','sleeping','reading'],correct:0,img:'pizza-burger.png',svg:'pizza'},
+    {type:'mc',q:'Do you like ice cream?',opt:['Yes, I do!','No, I don\'t','Maybe','I don\'t know'],correct:0,img:'cake-banana.png',svg:'fruit'},
+    {type:'tf',q:'I like bananas.',correct:true,img:'cake-banana.png',svg:'fruit'},
+    {type:'mc',q:'What is your favorite food?',opt:['Pizza','Pencil','Book','Shoe'],correct:0,img:'pizza-burger.png',svg:'pizza'},
+    {type:'mc',q:'I don\'t like ___.',opt:['broccoli','apples','grapes','bread'],correct:0,img:'kids-eating.png',svg:'food'},
+    {type:'tf',q:'Apples are a fruit.',correct:true,img:'cake-banana.png',svg:'fruit'},
+    {type:'mc',q:'Which one is a drink?',opt:['Juice','Bread','Cake','Rice'],correct:0,img:'kids-eating.png',svg:'food'},
+    {type:'mc',q:'Which one is NOT food?',opt:['Table','Apple','Cheese','Fish'],correct:0,img:'i-like-food.png',svg:'food'},
+    {type:'tf',q:'We eat pizza with our hands.',correct:true,img:'pizza-burger.png',svg:'pizza'},
+    {type:'mc',q:'What do we eat for breakfast?',opt:['Cereal','Pizza','Burger','Sushi'],correct:0,img:'kids-eating.png',svg:'food'}
+  ];
+  const item=qs[rand(0,qs.length-1)];
+  showImg(stage,'images/'+item.img);showSVG(stage,SVGS[item.svg]);
+  if(item.type==='mc')buildMultipleChoice(stage,item.q,item.opt,item.correct);
+  else buildTrueFalse(stage,item.q,item.correct);
+}
+
+/* ================= QUESTIONS WITH LIKE ================= */
+function buildQuestionsLike(stage){
+  const qs=[
+    {type:'mc',q:'Do you like pizza?',opt:['Yes, I do','Yes, I am','Yes, I can','Yes, I have'],correct:0,img:'pizza-burger.png',svg:'question'},
+    {type:'mc',q:'___ you like ice cream?',opt:['Do','Are','Can','Have'],correct:0,img:'kids-eating.png',svg:'question'},
+    {type:'mc',q:'Do you like broccoli?',opt:['No, I don\'t','No, I am not','No, I can\'t','No, I haven\'t'],correct:0,img:'kids-eating.png',svg:'like'},
+    {type:'mc',q:'Does she like apples?',opt:['Yes, she does','Yes, she do','Yes, she is','Yes, she can'],correct:0,img:'kids-eating.png',svg:'kids'},
+    {type:'tf',q:"We use 'Do' with I, you, we, they.",correct:true,img:'kids-eating.png',svg:'dialogue'},
+    {type:'tf',q:"We use 'Does' with he, she, it.",correct:true,img:'kids-eating.png',svg:'dialogue'},
+    {type:'mc',q:'___ he like cake?',opt:['Does','Do','Are','Is'],correct:0,img:'pizza-burger.png',svg:'question'},
+    {type:'mc',q:'Do they like milk?',opt:['Yes, they do','Yes, they are','Yes, they can','Yes, they have'],correct:0,img:'kids-eating.png',svg:'kids'},
+    {type:'tf',q:"We say 'I like' not 'I likes'.",correct:true,img:'kids-eating.png',svg:'like'},
+    {type:'mc',q:'Does it like fish? (about a cat)',opt:['Yes, it does','Yes, it do','Yes, it is','Yes, it can'],correct:0,img:'kids-eating.png',svg:'kids'}
+  ];
+  const item=qs[rand(0,qs.length-1)];
+  showImg(stage,'images/'+item.img);showSVG(stage,SVGS[item.svg]);
+  if(item.type==='mc')buildMultipleChoice(stage,item.q,item.opt,item.correct);
+  else buildTrueFalse(stage,item.q,item.correct);
+}
+
+/* ================= CAN I HAVE / WOULD YOU LIKE ================= */
+function buildCanIHave(stage){
+  const qs=[
+    {type:'mc',q:'Can I have ___ apple, please?',opt:['an','a','the','is'],correct:0,img:'dialogue-burger.png',svg:'request'},
+    {type:'mc',q:'Can I have ___ banana, please?',opt:['a','an','the','is'],correct:0,img:'dialogue-juice.png',svg:'request'},
+    {type:'mc',q:'Would you like ___ juice?',opt:['some','a','an','the'],correct:0,img:'dialogue-juice.png',svg:'offer'},
+    {type:'mc',q:'Would you like a cookie?',opt:['Yes, please!','No, thank you','Maybe','I don\'t know'],correct:0,img:'dialogue-burger.png',svg:'offer'},
+    {type:'tf',q:"We say 'Can I have' to ask for something.",correct:true,img:'dialogue-burger.png',svg:'request'},
+    {type:'tf',q:"We say 'Would you like' to offer something.",correct:true,img:'dialogue-juice.png',svg:'offer'},
+    {type:'mc',q:'Can I have some water, ___?',opt:['please','thanks','yes','no'],correct:0,img:'dialogue-juice.png',svg:'request'},
+    {type:'mc',q:'___ you like some cake?',opt:['Would','Do','Are','Can'],correct:0,img:'dialogue-burger.png',svg:'offer'},
+    {type:'mc',q:'Can I have ___ orange juice?',opt:['some','a','an','the'],correct:0,img:'dialogue-juice.png',svg:'drink'},
+    {type:'tf',q:"We say 'please' to be polite.",correct:true,img:'dialogue-burger.png',svg:'menu'}
+  ];
+  const item=qs[rand(0,qs.length-1)];
+  showImg(stage,'images/'+item.img);showSVG(stage,SVGS[item.svg]);
+  if(item.type==='mc')buildMultipleChoice(stage,item.q,item.opt,item.correct);
+  else buildTrueFalse(stage,item.q,item.correct);
+}
+</script>
+</body>
+</html>

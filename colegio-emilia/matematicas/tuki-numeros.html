@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Tuki y los Números 🦜</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky:#3AC7E0;
+    --sky-deep:#1E9FBF;
+    --sun:#FFC93C;
+    --sun-deep:#F5A623;
+    --leaf:#4CAF6D;
+    --leaf-deep:#2E9450;
+    --coral:#FF6B5B;
+    --coral-deep:#E8503F;
+    --purple:#9B6BFF;
+    --purple-deep:#7C4FE0;
+    --cream:#FFF8EC;
+    --ink:#2B2440;
+    --white:#FFFFFF;
+    --shadow: 0 8px 0 rgba(43,36,64,0.18);
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    font-family:'Nunito', sans-serif;
+    background: linear-gradient(180deg, var(--sky) 0%, #7FDCEE 55%, #CFF3E4 100%);
+    min-height:100vh;
+    color:var(--ink);
+    overflow-x:hidden;
+    position:relative;
+  }
+  h1,h2,h3, .display{ font-family:'Fredoka', sans-serif; }
+
+  /* ---------- Background decor ---------- */
+  .cloud{position:absolute; opacity:.9; z-index:0; pointer-events:none;}
+  .hill{position:fixed; bottom:0; left:0; width:100%; z-index:0; pointer-events:none;}
+
+  /* ---------- Layout shells ---------- */
+  .screen{
+    position:relative; z-index:2;
+    min-height:100vh;
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    padding: 18px 14px 40px;
+  }
+  .screen.active{display:flex;}
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    width:100%; max-width:900px;
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:10px;
+  }
+  .backBtn{
+    background:var(--white); border:none; border-radius:16px;
+    padding:10px 16px; font-family:'Fredoka'; font-weight:600; font-size:16px;
+    color:var(--ink); box-shadow:var(--shadow); cursor:pointer;
+    display:flex; align-items:center; gap:6px;
+  }
+  .backBtn:active{ transform:translateY(4px); box-shadow:0 4px 0 rgba(43,36,64,0.18); }
+  .starCounter{
+    background:var(--white); border-radius:16px; padding:8px 16px;
+    font-family:'Fredoka'; font-weight:600; font-size:16px;
+    box-shadow:var(--shadow); display:flex; align-items:center; gap:6px;
+  }
+  .musicBtn{
+    position:fixed; top:14px; right:14px; z-index:10;
+    background:var(--white); border:none; border-radius:50%;
+    width:46px; height:46px; cursor:pointer;
+    box-shadow:var(--shadow); display:flex; align-items:center; justify-content:center;
+    font-size:22px; transition: transform .1s ease;
+  }
+  .musicBtn:active{ transform:translateY(3px); }
+
+  /* ---------- Home / menu ---------- */
+  .homeHeader{ text-align:center; margin: 6px 0 6px; }
+  .homeHeader h1{
+    font-size: clamp(28px, 6vw, 44px); color:var(--white);
+    text-shadow: 0 4px 0 rgba(43,36,64,0.25);
+    margin: 6px 0 2px;
+  }
+  .homeHeader p{
+    color: var(--white); font-weight:800; font-size: clamp(14px,3vw,18px);
+    margin:0; opacity:.95;
+  }
+  .mascotWrap{ width: 150px; margin: 0 auto; }
+
+  .menuGrid{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+    gap: 16px;
+    width:100%; max-width: 760px;
+    margin-top: 18px;
+  }
+  @media (min-width: 620px){
+    .menuGrid{ grid-template-columns: repeat(3, minmax(150px,1fr)); }
+  }
+  .card{
+    border:none; cursor:pointer; border-radius:26px;
+    padding: 18px 12px 16px;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    color:var(--white); font-family:'Fredoka'; font-weight:600;
+    box-shadow: var(--shadow);
+    transition: transform .08s ease;
+  }
+  .card:active{ transform: translateY(4px); box-shadow:0 4px 0 rgba(43,36,64,0.18); }
+  .card svg{ width:64px; height:64px; }
+  .card span{ font-size: clamp(13px,3.2vw,16px); text-align:center; line-height:1.15; }
+  .c1{ background: linear-gradient(160deg, var(--coral), var(--coral-deep)); }
+  .c2{ background: linear-gradient(160deg, var(--purple), var(--purple-deep)); }
+  .c3{ background: linear-gradient(160deg, var(--leaf), var(--leaf-deep)); }
+  .c4{ background: linear-gradient(160deg, var(--sun), var(--sun-deep)); color:var(--ink); }
+  .c5{ background: linear-gradient(160deg, var(--sky), var(--sky-deep)); }
+
+  /* ---------- Exercise card ---------- */
+  .exWrap{
+    width:100%; max-width: 640px;
+    background: var(--white);
+    border-radius: 28px;
+    padding: 22px 18px 26px;
+    box-shadow: var(--shadow);
+    margin-top: 8px;
+    text-align:center;
+  }
+  .progressBar{
+    width:100%; height:14px; background:#EDEAF7; border-radius:10px; overflow:hidden; margin-bottom:16px;
+  }
+  .progressFill{
+    height:100%; background: linear-gradient(90deg, var(--leaf), var(--sun)); width:0%;
+    transition: width .4s ease;
+  }
+  .exTitle{ font-size: clamp(18px,4.5vw,24px); margin: 0 0 4px; }
+  .exSub{ color:#6B6285; font-weight:700; margin:0 0 14px; font-size: clamp(13px,3vw,15px); }
+
+  .stageBox{ min-height: 180px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; margin-bottom: 14px; }
+
+  .optionsRow{ display:flex; flex-wrap:wrap; justify-content:center; gap:12px; }
+  .optBtn{
+    font-family:'Fredoka'; font-weight:600; font-size: clamp(18px,4.5vw,22px);
+    background: var(--cream); border: 3px solid #EADFC5; border-radius:18px;
+    min-width:64px; padding: 12px 18px; cursor:pointer; color:var(--ink);
+  }
+  .optBtn:active{ transform: translateY(3px); }
+  .optBtn.correct{ background: var(--leaf); border-color:var(--leaf-deep); color:var(--white); }
+  .optBtn.wrong{ background: var(--coral); border-color:var(--coral-deep); color:var(--white); }
+
+  .signRow{ display:flex; gap:14px; justify-content:center; }
+  .signBtn{
+    font-family:'Fredoka'; font-weight:700; font-size: 30px;
+    width:64px; height:64px; border-radius:16px; border:3px solid #EADFC5;
+    background:var(--cream); cursor:pointer; color:var(--ink);
+  }
+
+  .numberChip{
+    font-family:'Fredoka'; font-weight:700; font-size: clamp(20px,5vw,28px);
+    background: var(--purple); color:var(--white);
+    border-radius: 16px; padding: 12px 20px; cursor:pointer; border:none;
+    box-shadow: 0 5px 0 var(--purple-deep);
+  }
+  .numberChip.picked{ opacity:.35; pointer-events:none; }
+  .orderSlots{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; min-height:56px; }
+  .slot{
+    width:56px; height:56px; border-radius:14px; border:3px dashed #C9C1E8;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fredoka'; font-weight:700; font-size:22px; color:var(--purple-deep);
+  }
+
+  .vertOp{
+    font-family:'Fredoka'; font-weight:700; font-size: clamp(30px,8vw,44px);
+    display:inline-block; text-align:right; line-height:1.15;
+  }
+  .vertOp .row{ display:flex; justify-content:flex-end; gap:10px; }
+  .vertOp .opsign{ width:40px; text-align:left; }
+  .vertOp .digits{ display:flex; gap:10px; }
+  .vertOp .digit{ width:44px; text-align:center; }
+  .vertOp hr{ border:none; border-top:5px solid var(--ink); margin:6px 0; }
+  .carryRow{ display:flex; justify-content:flex-end; gap:10px; margin-bottom:2px; }
+  .carryBox{ width:44px; text-align:center; font-size:16px; color:var(--coral-deep); font-weight:800; min-height:20px; }
+
+  .keypad{
+    display:grid; grid-template-columns: repeat(3, 60px); gap:10px; justify-content:center; margin-top:16px;
+  }
+  .keypad button{
+    font-family:'Fredoka'; font-weight:700; font-size:22px; border-radius:14px; border:none;
+    background:var(--cream); border:3px solid #EADFC5; height:52px; cursor:pointer; color:var(--ink);
+  }
+  .keypad button.wide{ grid-column: span 3; background:var(--leaf); color:var(--white); border-color:var(--leaf-deep); }
+  .answerDisplay{
+    font-family:'Fredoka'; font-weight:700; font-size: 30px;
+    background:var(--cream); border-radius:14px; min-height:52px; min-width:110px;
+    display:flex; align-items:center; justify-content:center; margin: 10px auto; padding: 0 14px;
+    border:3px solid #EADFC5;
+  }
+
+  .feedback{
+    min-height: 34px; font-family:'Fredoka'; font-weight:700; font-size: 18px;
+  }
+  .feedback.ok{ color: var(--leaf-deep); }
+  .feedback.bad{ color: var(--coral-deep); }
+
+  .continueBtn{
+    display:none; margin-top: 10px;
+    font-family:'Fredoka'; font-weight:700; font-size:18px;
+    background: var(--sun); border:none; border-radius:16px; padding: 12px 26px;
+    box-shadow: 0 5px 0 var(--sun-deep); cursor:pointer; color:var(--ink);
+  }
+
+  /* ---------- End screen ---------- */
+  .endWrap{ text-align:center; }
+  .endWrap h2{ font-size: clamp(22px,5vw,30px); }
+  .endWrap p{ font-weight:700; color:#6B6285; }
+  .primaryBtn{
+    font-family:'Fredoka'; font-weight:700; font-size:18px; color:var(--white);
+    background: linear-gradient(160deg, var(--leaf), var(--leaf-deep));
+    border:none; border-radius:18px; padding: 14px 28px; margin-top: 14px; cursor:pointer;
+    box-shadow: 0 6px 0 var(--leaf-deep);
+  }
+
+  /* Confetti */
+  .confetti-piece{
+    position:fixed; top:-20px; width:10px; height:14px; z-index:50; pointer-events:none;
+    animation: fall linear forwards;
+  }
+  @keyframes fall{
+    to{ transform: translateY(105vh) rotate(400deg); opacity:0.9; }
+  }
+
+  @media (max-width:380px){
+    .card svg{ width:52px; height:52px; }
+    .exWrap{ padding: 16px 10px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<svg class="hill" viewBox="0 0 1440 200" preserveAspectRatio="none" style="height:110px;">
+  <path fill="#CFF3E4" d="M0,120 C240,60 420,180 720,110 C1000,50 1220,150 1440,90 L1440,200 L0,200 Z"></path>
+  <path fill="#B7EAD1" d="M0,160 C260,120 480,190 760,150 C1040,110 1240,190 1440,150 L1440,200 L0,200 Z"></path>
+</svg>
+
+<!-- Music toggle button -->
+<button class="musicBtn" id="musicBtn" onclick="toggleMusic()">🔇</button>
+
+<!-- ============ HOME SCREEN ============ -->
+<div class="screen active" id="screen-home">
+  <div class="homeHeader">
+    <div class="mascotWrap" id="mascotHome"></div>
+    <h1>¡Hola! Soy Tuki 🦜</h1>
+    <p>Elige un juego para aprender los números</p>
+  </div>
+  <div class="menuGrid">
+    <button class="card c1" onclick="startTopic('codificar')">
+      <svg viewBox="0 0 64 64"><rect x="6" y="30" width="10" height="10" rx="2" fill="#fff"/><rect x="18" y="30" width="10" height="10" rx="2" fill="#fff"/><rect x="30" y="30" width="10" height="10" rx="2" fill="#fff"/><rect x="6" y="18" width="10" height="10" rx="2" fill="#fff" opacity=".8"/><rect x="18" y="18" width="10" height="10" rx="2" fill="#fff" opacity=".8"/><circle cx="49" cy="24" r="9" fill="#fff"/><text x="49" y="29" font-size="12" text-anchor="middle" fill="#FF6B5B" font-family="Fredoka" font-weight="700">7</text></svg>
+      <span>Contar y escribir hasta 20</span>
+    </button>
+    <button class="card c2" onclick="startTopic('descomponer')">
+      <svg viewBox="0 0 64 64"><rect x="8" y="14" width="20" height="36" rx="4" fill="#fff"/><text x="18" y="36" font-size="14" text-anchor="middle" fill="#7C4FE0" font-family="Fredoka" font-weight="700">15</text><path d="M32 32 L40 32" stroke="#fff" stroke-width="3"/><rect x="42" y="10" width="14" height="14" rx="3" fill="#fff" opacity=".9"/><rect x="42" y="28" width="14" height="14" rx="3" fill="#fff" opacity=".9"/></svg>
+      <span>Descomponer números (D y U)</span>
+    </button>
+    <button class="card c3" onclick="startTopic('comparar')">
+      <svg viewBox="0 0 64 64"><circle cx="16" cy="32" r="12" fill="#fff"/><text x="16" y="37" font-size="13" text-anchor="middle" fill="#2E9450" font-family="Fredoka" font-weight="700">9</text><text x="32" y="37" font-size="20" text-anchor="middle" fill="#fff" font-family="Fredoka" font-weight="700">&gt;</text><circle cx="48" cy="32" r="12" fill="#fff"/><text x="48" y="37" font-size="13" text-anchor="middle" fill="#2E9450" font-family="Fredoka" font-weight="700">4</text></svg>
+      <span>Comparar y ordenar</span>
+    </button>
+    <button class="card c4" onclick="startTopic('sumarestasin')">
+      <svg viewBox="0 0 64 64"><text x="32" y="30" font-size="20" text-anchor="middle" fill="#fff" font-family="Fredoka" font-weight="700">23</text><text x="8" y="46" font-size="18" fill="#fff" font-family="Fredoka" font-weight="700">+</text><text x="32" y="46" font-size="20" text-anchor="middle" fill="#fff" font-family="Fredoka" font-weight="700">15</text><line x1="8" y1="50" x2="56" y2="50" stroke="#fff" stroke-width="3"/></svg>
+      <span>Sumas y restas sin llevar</span>
+    </button>
+    <button class="card c5" onclick="startTopic('sumarestacon')">
+      <svg viewBox="0 0 64 64"><circle cx="18" cy="14" r="7" fill="#FFC93C"/><text x="18" y="18" font-size="9" text-anchor="middle" fill="#2B2440" font-family="Fredoka" font-weight="700">1</text><text x="32" y="34" font-size="20" text-anchor="middle" fill="#fff" font-family="Fredoka" font-weight="700">28</text><text x="8" y="50" font-size="18" fill="#fff" font-family="Fredoka" font-weight="700">+</text><text x="32" y="50" font-size="20" text-anchor="middle" fill="#fff" font-family="Fredoka" font-weight="700">15</text><line x1="8" y1="54" x2="56" y2="54" stroke="#fff" stroke-width="3"/></svg>
+      <span>Sumas llevando y restas prestando</span>
+    </button>
+    <button class="card c1" onclick="startTopic('valorposicional')">
+      <svg viewBox="0 0 64 64"><rect x="6" y="10" width="14" height="40" rx="3" fill="#fff"/><text x="13" y="34" font-size="11" text-anchor="middle" fill="#FF6B5B" font-family="Fredoka" font-weight="700">D</text><rect x="24" y="30" width="14" height="20" rx="3" fill="#fff" opacity=".9"/><text x="31" y="44" font-size="11" text-anchor="middle" fill="#FF6B5B" font-family="Fredoka" font-weight="700">U</text><text x="48" y="38" font-size="16" text-anchor="middle" fill="#fff" font-family="Fredoka" font-weight="700">?</text></svg>
+      <span>Valor posicional</span>
+    </button>
+    <button class="card c3" onclick="startTopic('sumasdel10')">
+      <svg viewBox="0 0 64 64"><text x="14" y="30" font-size="16" text-anchor="middle" fill="#fff" font-family="Fredoka" font-weight="700">10</text><text x="28" y="30" font-size="14" text-anchor="middle" fill="#fff" font-family="Fredoka" font-weight="700">+</text><text x="42" y="30" font-size="16" text-anchor="middle" fill="#fff" font-family="Fredoka" font-weight="700">4</text><text x="56" y="30" font-size="14" text-anchor="middle" fill="#fff" font-family="Fredoka" font-weight="700">=</text><text x="32" y="52" font-size="18" text-anchor="middle" fill="#fff" font-family="Fredoka" font-weight="700">?</text></svg>
+      <span>Sumas y restas del 10</span>
+    </button>
+    <button class="card c4" onclick="startTopic('problemas')">
+      <svg viewBox="0 0 64 64"><path d="M10 14 L10 50 L54 50 L54 22 L38 22 L32 14 Z" fill="#fff" rx="3"/><text x="32" y="40" font-size="20" text-anchor="middle" fill="#F5A623" font-family="Fredoka" font-weight="700">?</text></svg>
+      <span>Problemas con palabras</span>
+    </button>
+  </div>
+</div>
+
+<!-- ============ EXERCISE SCREEN ============ -->
+<div class="screen" id="screen-exercise">
+  <div class="topbar">
+    <button class="backBtn" onclick="goHome()">🏠 Menú</button>
+    <div class="starCounter">⭐ <span id="starCount">0</span></div>
+  </div>
+  <div class="exWrap">
+    <div class="progressBar"><div class="progressFill" id="progressFill"></div></div>
+    <h2 class="exTitle" id="exTitle">Título</h2>
+    <p class="exSub" id="exSub">Instrucción</p>
+    <div class="stageBox" id="stageBox"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="continueBtn" id="continueBtn" onclick="nextQuestion()">Siguiente ➜</button>
+  </div>
+</div>
+
+<!-- ============ END SCREEN ============ -->
+<div class="screen" id="screen-end">
+  <div class="topbar"><div></div><div></div></div>
+  <div class="exWrap endWrap">
+    <div class="mascotWrap" id="mascotEnd" style="width:130px;"></div>
+    <h2 id="endTitle">¡Muy bien!</h2>
+    <p id="endMsg">Terminaste el juego</p>
+    <button class="primaryBtn" onclick="goHome()">Volver al menú</button>
+  </div>
+</div>
+
+<script>
+/* ================= MASCOT SVG ================= */
+const mascotSVG = `
+<svg viewBox="0 0 160 160" width="100%">
+  <ellipse cx="80" cy="145" rx="34" ry="8" fill="rgba(43,36,64,0.15)"/>
+  <path d="M50 90 Q40 60 62 45 Q80 34 98 45 Q120 60 110 90 Q112 120 80 128 Q48 120 50 90 Z" fill="#2B2440"/>
+  <path d="M56 85 Q50 62 66 50 Q80 42 94 50 Q110 62 104 85 Q106 110 80 116 Q54 110 56 85 Z" fill="#4CAF6D"/>
+  <circle cx="68" cy="66" r="7" fill="#fff"/>
+  <circle cx="70" cy="66" r="3.4" fill="#2B2440"/>
+  <path d="M78 74 Q100 70 118 78 Q100 86 78 82 Z" fill="#FFC93C"/>
+  <path d="M78 74 Q100 70 118 78" fill="none" stroke="#F5A623" stroke-width="1"/>
+  <path d="M60 108 Q80 118 100 108 Q100 122 80 126 Q60 122 60 108 Z" fill="#FF6B5B"/>
+  <path d="M40 92 Q22 88 20 70 Q34 76 44 88 Z" fill="#3AC7E0"/>
+  <path d="M120 92 Q138 88 140 70 Q126 76 116 88 Z" fill="#3AC7E0"/>
+</svg>`;
+document.getElementById('mascotHome').innerHTML = mascotSVG;
+document.getElementById('mascotEnd').innerHTML = mascotSVG;
+
+/* ================= AUDIO (Web Audio API, no files) ================= */
+let audioCtx = null;
+function ctx(){ if(!audioCtx){ audioCtx = new (window.AudioContext||window.webkitAudioContext)(); } return audioCtx; }
+function tone(freq, start, dur, type='sine', gain=0.18){
+  const c = ctx();
+  const osc = c.createOscillator();
+  const g = c.createGain();
+  osc.type = type; osc.frequency.value = freq;
+  g.gain.value = gain;
+  osc.connect(g); g.connect(c.destination);
+  osc.start(c.currentTime + start);
+  g.gain.setValueAtTime(gain, c.currentTime + start);
+  g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + start + dur);
+  osc.stop(c.currentTime + start + dur + 0.02);
+}
+function playCorrect(){ tone(523,0,0.12); tone(659,0.1,0.12); tone(784,0.2,0.22); }
+function playWrong(){ tone(220,0,0.18,'sawtooth',0.12); tone(160,0.15,0.25,'sawtooth',0.12); }
+function playTap(){ tone(400,0,0.06,'triangle',0.08); }
+function playWin(){ tone(523,0,0.12); tone(659,0.12,0.12); tone(784,0.24,0.12); tone(1046,0.36,0.3); }
+
+/* ================= BACKGROUND MUSIC (Web Audio API, no files) ================= */
+let musicOn = false;
+let musicTimer = null;
+let musicNoteIndex = 0;
+
+// Cheerful melody in C major - looped, kid-friendly
+const MELODY = [
+  523, 659, 784, 659,  523, 587, 659, 587,
+  659, 784, 880, 784,  659, 587, 523, 587,
+  784, 659, 523, 659,  587, 523, 494, 523,
+  523, 659, 784, 880,  784, 659, 587, 523
+];
+const BASS = [
+  131, 131, 165, 165,  147, 147, 196, 196,
+  165, 165, 196, 196,  131, 131, 147, 147,
+  196, 196, 131, 131,  165, 165, 147, 147,
+  131, 131, 165, 165,  196, 196, 147, 147
+];
+
+function playMusicNote(){
+  if(!musicOn) return;
+  const c = ctx();
+  const t = c.currentTime;
+
+  // Melody
+  const melFreq = MELODY[musicNoteIndex % MELODY.length];
+  const oscMel = c.createOscillator();
+  const gMel = c.createGain();
+  oscMel.type = 'triangle';
+  oscMel.frequency.value = melFreq;
+  gMel.gain.setValueAtTime(0, t);
+  gMel.gain.linearRampToValueAtTime(0.08, t + 0.02);
+  gMel.gain.exponentialRampToValueAtTime(0.001, t + 0.35);
+  oscMel.connect(gMel); gMel.connect(c.destination);
+  oscMel.start(t); oscMel.stop(t + 0.38);
+
+  // Bass
+  const bassFreq = BASS[musicNoteIndex % BASS.length];
+  const oscBass = c.createOscillator();
+  const gBass = c.createGain();
+  oscBass.type = 'sine';
+  oscBass.frequency.value = bassFreq;
+  gBass.gain.setValueAtTime(0, t);
+  gBass.gain.linearRampToValueAtTime(0.05, t + 0.02);
+  gBass.gain.exponentialRampToValueAtTime(0.001, t + 0.4);
+  oscBass.connect(gBass); gBass.connect(c.destination);
+  oscBass.start(t); oscBass.stop(t + 0.42);
+
+  musicNoteIndex++;
+  musicTimer = setTimeout(playMusicNote, 300);
+}
+
+function toggleMusic(){
+  musicOn = !musicOn;
+  const btn = document.getElementById('musicBtn');
+  if(musicOn){
+    btn.textContent = '🎵';
+    ctx().resume();
+    playMusicNote();
+  } else {
+    btn.textContent = '🔇';
+    if(musicTimer){ clearTimeout(musicTimer); musicTimer = null; }
+  }
+}
+
+/* ================= CONFETTI ================= */
+function confettiBurst(){
+  const colors = ['#FF6B5B','#FFC93C','#4CAF6D','#3AC7E0','#9B6BFF'];
+  for(let i=0;i<26;i++){
+    const el = document.createElement('div');
+    el.className='confetti-piece';
+    el.style.left = Math.random()*100+'vw';
+    el.style.background = colors[Math.floor(Math.random()*colors.length)];
+    el.style.animationDuration = (1.6+Math.random()*1.2)+'s';
+    el.style.borderRadius = Math.random()>0.5 ? '50%' : '2px';
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(), 3200);
+  }
+}
+
+/* ================= STATE ================= */
+let stars = 0;
+let currentTopic = null;
+let qIndex = 0;
+const TOTAL_Q = 6;
+let questionAnswered = false;
+let currentCheck = null; // function to validate current question
+
+const TOPIC_META = {
+  codificar:      {title:'Contar y escribir', sub:'Cuenta los bloques y elige el número'},
+  descomponer:    {title:'Descomponer números', sub:'¿Cuántas decenas y unidades tiene?'},
+  comparar:       {title:'Comparar y ordenar', sub:'Compara u ordena los números'},
+  sumarestasin:   {title:'Sumas y restas', sub:'Sin llevar ni prestar'},
+  sumarestacon:   {title:'Sumas y restas', sub:'Llevando y prestando'},
+  valorposicional:{title:'Valor posicional', sub:'Relaciona los bloques con el número'},
+  sumasdel10:     {title:'Sumas y restas del 10', sub:'10 + algo o algo − 10'},
+  problemas:      {title:'Problemas con palabras', sub:'Lee y resuelve el problema'}
+};
+
+function rand(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+
+/* ================= NAVIGATION ================= */
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function goHome(){ showScreen('screen-home'); }
+
+function startTopic(topic){
+  currentTopic = topic;
+  qIndex = 0;
+  document.getElementById('exTitle').textContent = TOPIC_META[topic].title;
+  document.getElementById('exSub').textContent = TOPIC_META[topic].sub;
+  showScreen('screen-exercise');
+  loadQuestion();
+}
+
+function updateProgress(){
+  document.getElementById('progressFill').style.width = (qIndex/TOTAL_Q*100)+'%';
+}
+
+function loadQuestion(){
+  questionAnswered = false;
+  updateProgress();
+  document.getElementById('feedback').textContent = '';
+  document.getElementById('feedback').className = 'feedback';
+  document.getElementById('continueBtn').style.display = 'none';
+  const stage = document.getElementById('stageBox');
+  stage.innerHTML = '';
+  if(qIndex >= TOTAL_Q){ return endGame(); }
+
+  if(currentTopic==='codificar') buildCodificar(stage);
+  else if(currentTopic==='descomponer') buildDescomponer(stage);
+  else if(currentTopic==='comparar') buildComparar(stage);
+  else if(currentTopic==='sumarestasin') buildOperacion(stage, false);
+  else if(currentTopic==='sumarestacon') buildOperacion(stage, true);
+  else if(currentTopic==='valorposicional') buildValorPosicional(stage);
+  else if(currentTopic==='sumasdel10') buildSumasDel10(stage);
+  else if(currentTopic==='problemas') buildProblemas(stage);
+}
+
+function nextQuestion(){ qIndex++; loadQuestion(); }
+
+function markResult(isCorrect, el){
+  if(questionAnswered) return;
+  questionAnswered = true;
+  const fb = document.getElementById('feedback');
+  if(isCorrect){
+    stars++;
+    document.getElementById('starCount').textContent = stars;
+    fb.textContent = '¡Muy bien, lo lograste! 🎉';
+    fb.className = 'feedback ok';
+    playCorrect();
+    confettiBurst();
+    if(el) el.classList.add('correct');
+  } else {
+    fb.textContent = 'Casi... ¡vuelve a intentarlo la próxima! 💪';
+    fb.className = 'feedback bad';
+    playWrong();
+    if(el) el.classList.add('wrong');
+  }
+  document.getElementById('continueBtn').style.display = 'inline-block';
+}
+
+function endGame(){
+  showScreen('screen-end');
+  playWin();
+  confettiBurst();
+  const title = document.getElementById('endTitle');
+  const msg = document.getElementById('endMsg');
+  if(stars >= TOTAL_Q * 4/5) { title.textContent='¡Eres un campeón de los números! 🏆'; }
+  else if(stars >= TOTAL_Q/2){ title.textContent='¡Buen trabajo! Sigue practicando 🌟'; }
+  else { title.textContent='¡Lo intentaste con ganas! 🦜'; }
+  msg.textContent = `Ganaste ${stars} estrellas en total.`;
+}
+
+/* ================= SVG helpers: decenas y unidades ================= */
+function blockSVG(count){
+  // draws base-10 blocks: full tens as 2x5 grid bars, loose units as small squares
+  const tens = Math.floor(count/10);
+  const units = count % 10;
+  let html = '<div style="display:flex; gap:14px; flex-wrap:wrap; justify-content:center; align-items:flex-end;">';
+  for(let t=0;t<tens;t++){
+    html += tenBarSVG();
+  }
+  if(units>0){
+    html += '<div style="display:grid; grid-template-columns:repeat(5,16px); gap:4px;">';
+    for(let u=0;u<units;u++){
+      html += `<div style="width:16px;height:16px;border-radius:4px;background:var(--coral);border:2px solid var(--coral-deep);"></div>`;
+    }
+    html += '</div>';
+  }
+  html += '</div>';
+  return html;
+}
+function tenBarSVG(){
+  let squares='';
+  for(let i=0;i<10;i++){
+    squares += `<div style="width:16px;height:16px;border-radius:4px;background:var(--sky);border:2px solid var(--sky-deep);"></div>`;
+  }
+  return `<div style="display:grid; grid-template-columns:repeat(2,16px); grid-template-rows:repeat(5,16px); gap:4px; padding:4px; background:#EAF9FC; border-radius:8px;">${squares}</div>`;
+}
+
+/* ================= 1. CODIFICAR (contar hasta 20) ================= */
+function buildCodificar(stage){
+  const n = rand(1,20);
+  const wrap = document.createElement('div');
+  wrap.innerHTML = blockSVG(n);
+  stage.appendChild(wrap);
+
+  const opts = new Set([n]);
+  while(opts.size<4){ opts.add(rand(Math.max(1,n-5), Math.min(20,n+5))); }
+  const arr = shuffle([...opts]);
+
+  const row = document.createElement('div');
+  row.className = 'optionsRow';
+  row.style.marginTop='16px';
+  arr.forEach(val=>{
+    const b = document.createElement('button');
+    b.className='optBtn';
+    b.textContent = val;
+    b.onclick = ()=>{
+      playTap();
+      markResult(val===n, b);
+      if(val!==n){
+        [...row.children].find(c=>parseInt(c.textContent)===n).classList.add('correct');
+      }
+      [...row.children].forEach(c=>c.disabled=true);
+    };
+    row.appendChild(b);
+  });
+  stage.appendChild(row);
+}
+
+/* ================= 2. DESCOMPONER (D y U) ================= */
+function buildDescomponer(stage){
+  const n = rand(11,20);
+  const correctD = Math.floor(n/10);
+  const correctU = n % 10;
+  let selD = null, selU = null;
+
+  const title = document.createElement('div');
+  title.innerHTML = `<div class="display" style="font-size:34px; font-weight:700; margin-bottom:10px;">${n} = <span id="dSel" style="color:var(--purple-deep);">?</span> D + <span id="uSel" style="color:var(--coral-deep);">?</span> U</div>`;
+  stage.appendChild(title);
+
+  const dRow = document.createElement('div');
+  dRow.innerHTML = '<p style="font-weight:800; margin:6px 0 4px; color:#6B6285;">Decenas</p>';
+  const dBtns = document.createElement('div'); dBtns.className='optionsRow';
+  [0,1,2].forEach(d=>{
+    const b=document.createElement('button'); b.className='optBtn'; b.textContent=d;
+    b.onclick=()=>{ playTap(); selD=d; document.getElementById('dSel').textContent=d;
+      [...dBtns.children].forEach(c=>c.style.background='var(--cream)');
+      b.style.background='#E4DBFB'; tryCheckDescomponer(); };
+    dBtns.appendChild(b);
+  });
+  dRow.appendChild(dBtns); stage.appendChild(dRow);
+
+  const uRow = document.createElement('div');
+  uRow.innerHTML = '<p style="font-weight:800; margin:10px 0 4px; color:#6B6285;">Unidades</p>';
+  const uBtns = document.createElement('div'); uBtns.className='optionsRow';
+  const uOptions = new Set([correctU]);
+  while(uOptions.size<4){ uOptions.add(rand(0,9)); }
+  shuffle([...uOptions]).forEach(u=>{
+    const b=document.createElement('button'); b.className='optBtn'; b.textContent=u;
+    b.onclick=()=>{ playTap(); selU=u; document.getElementById('uSel').textContent=u;
+      [...uBtns.children].forEach(c=>c.style.background='var(--cream)');
+      b.style.background='#FDE0DC'; tryCheckDescomponer(); };
+    uBtns.appendChild(b);
+  });
+  uRow.appendChild(uBtns); stage.appendChild(uRow);
+
+  function tryCheckDescomponer(){
+    if(selD===null || selU===null || questionAnswered) return;
+    const ok = (selD===correctD && selU===correctU);
+    markResult(ok, null);
+    [...dBtns.children,...uBtns.children].forEach(c=>c.disabled=true);
+  }
+}
+
+/* ================= 3. COMPARAR Y ORDENAR ================= */
+function buildComparar(stage){
+  const mode = Math.random()<0.5 ? 'signo' : 'orden';
+  if(mode==='signo'){
+    let a = rand(1,20), b = rand(1,20);
+    while(a===b) b = rand(1,20);
+    const box = document.createElement('div');
+    box.style.display='flex'; box.style.gap='24px'; box.style.alignItems='center'; box.style.justifyContent='center';
+    box.innerHTML = `
+      <div style="text-align:center;">${blockSVG(a)}<div style="font-family:'Fredoka';font-weight:700;font-size:26px;margin-top:6px;">${a}</div></div>
+      <div id="signSlot" style="font-family:'Fredoka';font-weight:700;font-size:34px; color:var(--purple-deep);">?</div>
+      <div style="text-align:center;">${blockSVG(b)}<div style="font-family:'Fredoka';font-weight:700;font-size:26px;margin-top:6px;">${b}</div></div>
+    `;
+    stage.appendChild(box);
+    const correctSign = a>b ? '>' : (a<b ? '<' : '=');
+    const row = document.createElement('div');
+    row.className='signRow'; row.style.marginTop='18px';
+    ['>','=','<'].forEach(s=>{
+      const btn=document.createElement('button'); btn.className='signBtn'; btn.textContent=s;
+      btn.onclick=()=>{ playTap(); document.getElementById('signSlot').textContent=s;
+        markResult(s===correctSign, btn);
+        [...row.children].forEach(c=>c.disabled=true);
+      };
+      row.appendChild(btn);
+    });
+    stage.appendChild(row);
+  } else {
+    const asc = Math.random()<0.5;
+    const count = 4;
+    let nums = new Set();
+    while(nums.size<count) nums.add(rand(1,20));
+    nums = [...nums];
+    const sorted = [...nums].sort((x,y)=> asc ? x-y : y-x);
+    let picked = [];
+
+    const instr = document.createElement('p');
+    instr.style.fontWeight='800'; instr.style.color='#6B6285'; instr.style.margin='0 0 10px';
+    instr.textContent = asc ? 'Toca los números del más pequeño al más grande' : 'Toca los números del más grande al más pequeño';
+    stage.appendChild(instr);
+
+    const slots = document.createElement('div');
+    slots.className='orderSlots';
+    for(let i=0;i<count;i++){
+      const s = document.createElement('div'); s.className='slot'; s.id='slot'+i;
+      slots.appendChild(s);
+    }
+    stage.appendChild(slots);
+
+    const chipsRow = document.createElement('div');
+    chipsRow.className='optionsRow'; chipsRow.style.marginTop='16px';
+    shuffle(nums).forEach(n=>{
+      const chip = document.createElement('button');
+      chip.className='numberChip'; chip.textContent=n;
+      chip.onclick=()=>{
+        if(questionAnswered || chip.classList.contains('picked')) return;
+        playTap();
+        chip.classList.add('picked');
+        document.getElementById('slot'+picked.length).textContent = n;
+        picked.push(n);
+        if(picked.length===count){
+          const ok = picked.every((v,i)=>v===sorted[i]);
+          markResult(ok, null);
+          if(!ok){
+            for(let i=0;i<count;i++) document.getElementById('slot'+i).textContent = sorted[i];
+          }
+        }
+      };
+      chipsRow.appendChild(chip);
+    });
+    stage.appendChild(chipsRow);
+  }
+}
+
+/* ================= 4 & 5. OPERACIONES (sumas/restas) ================= */
+function buildOperacion(stage, withCarry){
+  const isSum = Math.random()<0.5;
+  let a,b,result;
+
+  if(isSum){
+    if(withCarry){
+      // fuerza acarreo en unidades
+      do {
+        a = rand(15,79); b = rand(15,79);
+      } while ( (a%10 + b%10) < 10 || (a+b) > 99 );
+    } else {
+      do {
+        a = rand(10,79); b = rand(10,89);
+      } while ( (a%10 + b%10) >= 10 || (a+b) > 99 );
+    }
+    result = a+b;
+  } else {
+    if(withCarry){
+      do {
+        a = rand(20,89); b = rand(11, a-1>10?Math.min(a-1,89):11);
+      } while ( b>=a || (a%10) >= (b%10) || (a-b)<0 );
+    } else {
+      do {
+        a = rand(20,89); b = rand(10, a);
+      } while ( b>=a || (a%10) < (b%10) );
+    }
+    result = a-b;
+  }
+
+  const aT = Math.floor(a/10), aU = a%10;
+  const bT = Math.floor(b/10), bU = b%10;
+
+  const opWrap = document.createElement('div');
+  opWrap.className='vertOp';
+  opWrap.innerHTML = `
+    <div class="carryRow"><div class="carryBox" id="carryTen"></div><div class="carryBox" id="carryUnit"></div></div>
+    <div class="row"><div class="digits"><div class="digit">${aT}</div><div class="digit">${aU}</div></div></div>
+    <div class="row"><div class="opsign">${isSum?'+':'−'}</div><div class="digits"><div class="digit">${bT}</div><div class="digit">${bU}</div></div></div>
+    <hr>
+    <div class="row"><div class="digits"><div class="digit" id="resT">_</div><div class="digit" id="resU">_</div></div></div>
+  `;
+  stage.appendChild(opWrap);
+
+  if(withCarry){
+    const hint = document.createElement('p');
+    hint.style.cssText='color:#6B6285;font-weight:700;font-size:13px;margin:4px 0 0;';
+    hint.textContent = isSum ? '¡Recuerda llevar la decena!' : '¡Recuerda pedir prestado!';
+    stage.appendChild(hint);
+  }
+
+  let answer = '';
+  const display = document.createElement('div');
+  display.className='answerDisplay';
+  display.textContent = '_ _';
+  stage.appendChild(display);
+
+  const pad = document.createElement('div');
+  pad.className='keypad';
+  for(let d=1;d<=9;d++){ pad.appendChild(makeKey(d)); }
+  pad.appendChild(makeKey('⌫', true));
+  pad.appendChild(makeKey(0));
+  const okKey = document.createElement('button');
+  okKey.className='wide'; okKey.textContent='Comprobar ✓';
+  okKey.onclick = ()=>{
+    if(questionAnswered) return;
+    playTap();
+    const val = parseInt(answer||'-1',10);
+    const ok = val===result;
+    document.getElementById('resT').textContent = Math.floor(result/10);
+    document.getElementById('resU').textContent = result%10;
+    if(withCarry){
+      if(isSum) document.getElementById('carryUnit').textContent = (aU+bU>=10)?'1':'';
+      else document.getElementById('carryTen').textContent = (aU<bU)?'préstamo':'';
+    }
+    markResult(ok, null);
+  };
+  pad.appendChild(okKey);
+  stage.appendChild(pad);
+
+  function makeKey(val, isDel){
+    const b = document.createElement('button');
+    b.textContent = val;
+    b.onclick = ()=>{
+      if(questionAnswered) return;
+      playTap();
+      if(isDel){ answer = answer.slice(0,-1); }
+      else if(answer.length<2){ answer += val; }
+      display.textContent = answer.length? answer : '_ _';
+    };
+    return b;
+  }
+}
+
+/* ================= 6. VALOR POSICIONAL ================= */
+function buildValorPosicional(stage){
+  // Show base-10 blocks and ask which number they represent
+  // or show a number and ask to count tens and units
+  const mode = Math.random() < 0.5 ? 'blocksToNum' : 'numToTable';
+
+  if(mode === 'blocksToNum'){
+    // Show blocks, pick the correct number
+    const n = rand(11, 99);
+    const wrap = document.createElement('div');
+    wrap.innerHTML = blockSVG(n);
+    stage.appendChild(wrap);
+
+    const label = document.createElement('p');
+    label.style.cssText = 'font-weight:800; color:#6B6285; margin:10px 0;';
+    label.textContent = '¿Qué número forman estos bloques?';
+    stage.appendChild(label);
+
+    const opts = new Set([n]);
+    while(opts.size < 4){
+      const delta = rand(-12, 12);
+      if(delta !== 0) opts.add(Math.max(10, Math.min(99, n + delta)));
+    }
+    const arr = shuffle([...opts]);
+
+    const row = document.createElement('div');
+    row.className = 'optionsRow';
+    arr.forEach(val => {
+      const b = document.createElement('button');
+      b.className = 'optBtn';
+      b.textContent = val;
+      b.onclick = () => {
+        playTap();
+        markResult(val === n, b);
+        if(val !== n) [...row.children].find(c => parseInt(c.textContent) === n).classList.add('correct');
+        [...row.children].forEach(c => c.disabled = true);
+      };
+      row.appendChild(b);
+    });
+    stage.appendChild(row);
+  } else {
+    // Show a number in a D|U table and ask to fill tens and units
+    const n = rand(11, 99);
+    const correctD = Math.floor(n / 10);
+    const correctU = n % 10;
+
+    const tableWrap = document.createElement('div');
+    tableWrap.innerHTML = `
+      <div style="display:inline-flex; flex-direction:column; align-items:center; gap:8px;">
+        <div style="display:flex; gap:4px;">
+          <div style="width:70px; height:36px; background:var(--purple); color:#fff; border-radius:10px; display:flex; align-items:center; justify-content:center; font-family:'Fredoka'; font-weight:700; font-size:18px;">Decenas</div>
+          <div style="width:70px; height:36px; background:var(--coral); color:#fff; border-radius:10px; display:flex; align-items:center; justify-content:center; font-family:'Fredoka'; font-weight:700; font-size:18px;">Unidades</div>
+        </div>
+        <div style="display:flex; gap:4px;">
+          <div style="width:70px; height:50px; background:var(--cream); border:3px solid #EADFC5; border-radius:10px; display:flex; align-items:center; justify-content:center; font-family:'Fredoka'; font-weight:700; font-size:24px; color:var(--purple-deep);">${correctD}</div>
+          <div style="width:70px; height:50px; background:var(--cream); border:3px solid #EADFC5; border-radius:10px; display:flex; align-items:center; justify-content:center; font-family:'Fredoka'; font-weight:700; font-size:24px; color:var(--coral-deep);">${correctU}</div>
+        </div>
+      </div>
+    `;
+    stage.appendChild(tableWrap);
+
+    const label = document.createElement('p');
+    label.style.cssText = 'font-weight:800; color:#6B6285; margin:14px 0 6px;';
+    label.textContent = `¿Qué número es ${correctD} decenas y ${correctU} unidades?`;
+    stage.appendChild(label);
+
+    const opts = new Set([n]);
+    while(opts.size < 4){
+      const delta = rand(-15, 15);
+      if(delta !== 0) opts.add(Math.max(1, Math.min(99, n + delta)));
+    }
+    const arr = shuffle([...opts]);
+
+    const row = document.createElement('div');
+    row.className = 'optionsRow';
+    arr.forEach(val => {
+      const b = document.createElement('button');
+      b.className = 'optBtn';
+      b.textContent = val;
+      b.onclick = () => {
+        playTap();
+        markResult(val === n, b);
+        if(val !== n) [...row.children].find(c => parseInt(c.textContent) === n).classList.add('correct');
+        [...row.children].forEach(c => c.disabled = true);
+      };
+      row.appendChild(b);
+    });
+    stage.appendChild(row);
+  }
+}
+
+/* ================= 7. SUMAS Y RESTAS DEL 10 ================= */
+function buildSumasDel10(stage){
+  const isSum = Math.random() < 0.5;
+  let a, b, result, question;
+
+  if(isSum){
+    // 10 + n = ?
+    b = rand(1, 9);
+    a = 10;
+    result = a + b;
+    question = `${a} + ${b} = ?`;
+  } else {
+    // n - 10 = ?
+    result = rand(1, 9);
+    a = 10 + result;
+    b = 10;
+    question = `${a} − ${b} = ?`;
+  }
+
+  const qDisplay = document.createElement('div');
+  qDisplay.style.cssText = 'font-family:"Fredoka"; font-weight:700; font-size:clamp(32px,8vw,44px); color:var(--ink); margin-bottom:10px;';
+  qDisplay.textContent = question;
+  stage.appendChild(qDisplay);
+
+  // Visual hint: show blocks
+  const hint = document.createElement('div');
+  hint.style.cssText = 'margin:6px 0 10px;';
+  if(isSum){
+    hint.innerHTML = `
+      <div style="display:flex; gap:16px; justify-content:center; align-items:flex-end;">
+        <div style="text-align:center;">
+          ${tenBarSVG()}
+          <div style="font-size:12px; font-weight:800; color:#6B6285; margin-top:4px;">10</div>
+        </div>
+        <div style="font-size:28px; color:var(--purple-deep); align-self:center;">${isSum ? '+' : '−'}</div>
+        <div style="text-align:center;">
+          <div style="display:grid; grid-template-columns:repeat(5,16px); gap:4px;">
+            ${Array(b).fill(`<div style="width:16px;height:16px;border-radius:4px;background:var(--coral);border:2px solid var(--coral-deep);"></div>`).join('')}
+          </div>
+          <div style="font-size:12px; font-weight:800; color:#6B6285; margin-top:4px;">${b}</div>
+        </div>
+      </div>
+    `;
+  } else {
+    hint.innerHTML = `
+      <div style="display:flex; gap:16px; justify-content:center; align-items:flex-end;">
+        <div style="text-align:center;">
+          ${blockSVG(a)}
+          <div style="font-size:12px; font-weight:800; color:#6B6285; margin-top:4px;">${a}</div>
+        </div>
+        <div style="font-size:28px; color:var(--purple-deep); align-self:center;">−</div>
+        <div style="text-align:center;">
+          ${tenBarSVG()}
+          <div style="font-size:12px; font-weight:800; color:#6B6285; margin-top:4px;">10</div>
+        </div>
+      </div>
+    `;
+  }
+  stage.appendChild(hint);
+
+  // Options
+  const opts = new Set([result]);
+  while(opts.size < 4){
+    const delta = rand(-5, 5);
+    if(delta !== 0) opts.add(Math.max(0, result + delta));
+  }
+  const arr = shuffle([...opts]);
+
+  const row = document.createElement('div');
+  row.className = 'optionsRow';
+  row.style.marginTop = '12px';
+  arr.forEach(val => {
+    const b2 = document.createElement('button');
+    b2.className = 'optBtn';
+    b2.textContent = val;
+    b2.onclick = () => {
+      playTap();
+      markResult(val === result, b2);
+      if(val !== result) [...row.children].find(c => parseInt(c.textContent) === result).classList.add('correct');
+      [...row.children].forEach(c => c.disabled = true);
+    };
+    row.appendChild(b2);
+  });
+  stage.appendChild(row);
+}
+
+/* ================= 8. PROBLEMAS VERBALES ================= */
+function buildProblemas(stage){
+  const problems = [
+    {text: 'Ana tenía 85 naranjas y vendió 69. ¿Cuántas naranjas le quedan?', a: 85, b: 69, op: '−'},
+    {text: 'Juan tiene 24 canicas y su amigo le regala 15. ¿Cuántas canicas tiene ahora?', a: 24, b: 15, op: '+'},
+    {text: 'María tenía 90 lápices y regaló 40. ¿Cuántos lápices le quedan?', a: 90, b: 40, op: '−'},
+    {text: 'En una granja hay 32 gallinas y 27 patos. ¿Cuántos animales hay en total?', a: 32, b: 27, op: '+'},
+    {text: 'Pedro tenía 50 stickers y usó 28. ¿Cuántos stickers le sobraron?', a: 50, b: 28, op: '−'},
+    {text: 'Lucía recogió 18 flores y su hermana recogió 13. ¿Cuántas flores tienen juntas?', a: 18, b: 13, op: '+'},
+    {text: 'Había 64 galletas en una caja y se comieron 35. ¿Cuántas galletas quedan?', a: 64, b: 35, op: '−'},
+    {text: 'Tomás ahorró 45 soles y su mamá le dio 20. ¿Cuántos soles tiene ahora?', a: 45, b: 20, op: '+'},
+    {text: 'En un bus iban 48 personas y se bajaron 19. ¿Cuántas personas quedan en el bus?', a: 48, b: 19, op: '−'},
+    {text: 'Carla tiene 36 cromos y su primo le da 25 más. ¿Cuántos cromos tiene en total?', a: 36, b: 25, op: '+'}
+  ];
+
+  const prob = problems[rand(0, problems.length - 1)];
+  const result = prob.op === '+' ? prob.a + prob.b : prob.a - prob.b;
+
+  // Problem card
+  const card = document.createElement('div');
+  card.style.cssText = 'background:var(--cream); border:3px solid #EADFC5; border-radius:18px; padding:16px 18px; margin-bottom:14px; text-align:left; font-weight:700; font-size:clamp(14px,3.5vw,17px); line-height:1.5; color:var(--ink);';
+  card.innerHTML = `📖 ${prob.text}`;
+  stage.appendChild(card);
+
+  // Visual operation
+  const opDisplay = document.createElement('div');
+  opDisplay.style.cssText = 'font-family:"Fredoka"; font-weight:700; font-size:clamp(26px,6vw,34px); color:var(--ink); margin:8px 0;';
+  opDisplay.textContent = `${prob.a} ${prob.op} ${prob.b} = ?`;
+  stage.appendChild(opDisplay);
+
+  // Answer options
+  const opts = new Set([result]);
+  while(opts.size < 4){
+    const delta = rand(-12, 12);
+    if(delta !== 0) opts.add(Math.max(0, result + delta));
+  }
+  const arr = shuffle([...opts]);
+
+  const row = document.createElement('div');
+  row.className = 'optionsRow';
+  row.style.marginTop = '10px';
+  arr.forEach(val => {
+    const b = document.createElement('button');
+    b.className = 'optBtn';
+    b.textContent = val;
+    b.onclick = () => {
+      playTap();
+      markResult(val === result, b);
+      if(val !== result) [...row.children].find(c => parseInt(c.textContent) === result).classList.add('correct');
+      [...row.children].forEach(c => c.disabled = true);
+    };
+    row.appendChild(b);
+  });
+  stage.appendChild(row);
+}
+
+/* ================= UTIL ================= */
+function shuffle(arr){
+  const a = [...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+</script>
+</body>
+</html>
