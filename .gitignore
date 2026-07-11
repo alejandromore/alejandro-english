@@ -5,6 +5,11 @@ find_sections.py
 # Extracted book texts (regenerate from PDFs)
 books_extracted/
 
+# PDFs (kept locally, not tracked in git)
+books/*.pdf
+books/*.PDF
+books/*.pdf.pdf
+
 # OS files
 Thumbs.db
 .DS_Store
