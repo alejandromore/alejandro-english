@@ -392,8 +392,9 @@ var CONSONANT_SETS=[
 ];
 // Rotate variants on each load
 var _vk='drill3-variant';
-var _vi=parseInt(localStorage.getItem(_vk)||'0');
-_vi=(_vi+1)%3;
+var _prev=parseInt(localStorage.getItem(_vk)||'-1');
+var _vi;
+do{_vi=Math.floor(Math.random()*3);}while(_vi===_prev);
 localStorage.setItem(_vk,_vi);
 var CONSONANT_WORDS=CONSONANT_SETS[_vi];
 

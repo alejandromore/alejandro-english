@@ -187,8 +187,9 @@ var consonantSets=[
 ];
 // Rotate variants on each load
 var _vk='drill1-variant';
-var _vi=parseInt(localStorage.getItem(_vk)||'0');
-_vi=(_vi+1)%3;
+var _prev=parseInt(localStorage.getItem(_vk)||'-1');
+var _vi;
+do{_vi=Math.floor(Math.random()*3);}while(_vi===_prev);
 localStorage.setItem(_vk,_vi);
 var prompts=promptSets[_vi];
 var consonantWords=consonantSets[_vi];
