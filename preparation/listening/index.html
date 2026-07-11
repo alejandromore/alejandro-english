@@ -126,7 +126,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#1a2744;color:#fff;m
 <button class="btn btn-play" id="newAudioBtn" onclick="loadRandomAudio()" style="background:#2c3e50;">🔀 New Random Audio</button>
 </div>
 
-<div class="transcript" id="realTranscript" style="white-space:pre-wrap;font-size:14px;line-height:1.8;"></div>
+<div class="transcript" id="realTranscript" style="font-size:14px;line-height:1.8;"></div>
 
 <div id="evaluationResult" style="display:none;background:#f5f7fa;border-radius:8px;padding:20px;margin-bottom:16px;"></div>
 <div id="evalLoading" style="display:none;text-align:center;padding:20px;">
@@ -512,8 +512,19 @@ function loadRandomAudio() {
   document.getElementById('evalLoading').style.display = 'none';
   document.getElementById('evaluateBtn').disabled = false;
   
-  // Set transcript text
-  document.getElementById('realTranscript').textContent = currentAudioData.transcript;
+  // Set transcript text (structured with speakers)
+  var transcriptEl = document.getElementById('realTranscript');
+  transcriptEl.innerHTML = '';
+  if (currentAudioData.transcriptStructured && currentAudioData.transcriptStructured.length > 0) {
+    currentAudioData.transcriptStructured.forEach(function(line) {
+      var div = document.createElement('div');
+      div.className = 'transcript-line';
+      div.innerHTML = '<span class="transcript-speaker">' + line.speaker + ':</span> ' + line.text;
+      transcriptEl.appendChild(div);
+    });
+  } else {
+    transcriptEl.textContent = currentAudioData.transcript;
+  }
 }
 
 function toggleRealTranscript() {
@@ -541,6 +552,9 @@ function evaluateNotes() {
   }
   
   var transcript = currentAudioData.transcript;
+  if (currentAudioData.transcriptStructured && currentAudioData.transcriptStructured.length > 0) {
+    transcript = currentAudioData.transcriptStructured.map(function(l) { return l.speaker + ': ' + l.text; }).join('\n');
+  }
   var btn = document.getElementById('evaluateBtn');
   var loading = document.getElementById('evalLoading');
   var result = document.getElementById('evaluationResult');
