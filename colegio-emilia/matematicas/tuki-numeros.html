@@ -666,38 +666,71 @@ function buildComparar(stage){
     let nums = new Set();
     while(nums.size<count) nums.add(rand(1,20));
     nums = [...nums];
-    const sorted = [...nums].sort((x,y)=> asc ? x-y : y-x);
+    /* Sort: explicit separate cases to avoid ternary-in-comparator issues */
+    const sorted = asc ? [...nums].sort(function(a,b){return a-b;}) : [...nums].sort(function(a,b){return b-a;});
     let picked = [];
 
-    const instr = document.createElement('p');
-    instr.style.fontWeight='800'; instr.style.color='#6B6285'; instr.style.margin='0 0 10px';
-    instr.textContent = asc ? 'Toca los números del más pequeño al más grande' : 'Toca los números del más grande al más pequeño';
+    /* --- Instruction with arrow indicator --- */
+    var arrowColor = asc ? '#2E9450' : '#E8503F';
+    var arrowIcon  = asc ? '\u2B06' : '\u2B07';
+    var dirText    = asc ? 'De menor a mayor' : 'De mayor a menor';
+    var instr = document.createElement('div');
+    instr.style.cssText = 'font-weight:800; margin:0 0 12px; display:flex; align-items:center; justify-content:center; gap:10px; font-size:clamp(15px,3.8vw,19px); color:#6B6285;';
+    instr.innerHTML = '<span style="font-size:34px; line-height:1; color:'+arrowColor+';">'+arrowIcon+'</span><span>'+dirText+'</span>';
     stage.appendChild(instr);
 
-    const slots = document.createElement('div');
-    slots.className='orderSlots';
-    for(let i=0;i<count;i++){
-      const s = document.createElement('div'); s.className='slot'; s.id='slot'+i;
-      slots.appendChild(s);
+    /* --- Slots with direction arrows between them --- */
+    var slotsWrap = document.createElement('div');
+    slotsWrap.style.cssText = 'display:flex; gap:4px; justify-content:center; flex-wrap:wrap; align-items:center;';
+    for(var i=0;i<count;i++){
+      var s = document.createElement('div'); s.className='slot'; s.id='slot'+i;
+      slotsWrap.appendChild(s);
+      if(i<count-1){
+        var arrEl = document.createElement('span');
+        arrEl.style.cssText = 'font-size:24px; color:'+arrowColor+'; font-weight:700; padding:0 2px;';
+        arrEl.textContent = asc ? '\u203A' : '\u2039';
+        slotsWrap.appendChild(arrEl);
+      }
     }
-    stage.appendChild(slots);
+    stage.appendChild(slotsWrap);
 
-    const chipsRow = document.createElement('div');
-    chipsRow.className='optionsRow'; chipsRow.style.marginTop='16px';
-    shuffle(nums).forEach(n=>{
-      const chip = document.createElement('button');
+    /* --- Position labels under slots --- */
+    var labelsRow = document.createElement('div');
+    labelsRow.style.cssText = 'display:flex; gap:4px; justify-content:center; flex-wrap:wrap; align-items:center; margin-top:4px;';
+    for(var li=0;li<count;li++){
+      var lbl = document.createElement('div');
+      lbl.style.cssText = 'width:56px; text-align:center; font-size:11px; font-weight:700; color:#9B92B5;';
+      lbl.textContent = (li+1)+'\u00B0';
+      labelsRow.appendChild(lbl);
+      if(li<count-1){
+        var sp = document.createElement('span');
+        sp.style.cssText = 'width:24px; text-align:center;';
+        labelsRow.appendChild(sp);
+      }
+    }
+    stage.appendChild(labelsRow);
+
+    /* --- Number chips --- */
+    var chipsRow = document.createElement('div');
+    chipsRow.className='optionsRow'; chipsRow.style.marginTop='12px';
+    shuffle(nums).forEach(function(n){
+      var chip = document.createElement('button');
       chip.className='numberChip'; chip.textContent=n;
-      chip.onclick=()=>{
+      chip.onclick = function(){
         if(questionAnswered || chip.classList.contains('picked')) return;
         playTap();
         chip.classList.add('picked');
         document.getElementById('slot'+picked.length).textContent = n;
         picked.push(n);
         if(picked.length===count){
-          const ok = picked.every((v,i)=>v===sorted[i]);
+          /* Robust comparison: explicit Number conversion, loop instead of every */
+          var ok = true;
+          for(var ci=0; ci<count; ci++){
+            if(Number(picked[ci]) !== Number(sorted[ci])){ ok = false; break; }
+          }
           markResult(ok, null);
           if(!ok){
-            for(let i=0;i<count;i++) document.getElementById('slot'+i).textContent = sorted[i];
+            for(var si=0; si<count; si++) document.getElementById('slot'+si).textContent = sorted[si];
           }
         }
       };
