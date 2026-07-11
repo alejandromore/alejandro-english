@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learning Videos — TOEFL English Preparation</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f0f2f5;color:#1a2744;line-height:1.6}
+.container{max-width:960px;margin:0 auto;padding:20px}
+.header{text-align:center;color:#fff;padding:30px 0 20px;background:linear-gradient(135deg,#1a2744 0%,#2d3d5e 100%);border-radius:0 0 12px 12px;margin:-20px -20px 0;padding:30px 20px}
+.header h1{font-size:1.8rem;margin-bottom:6px}
+.header .subtitle{font-size:.85rem;opacity:.7}
+.back-link{display:inline-block;margin:15px 0;color:#00b4a6;text-decoration:none;font-size:.85rem}
+.back-link:hover{text-decoration:underline}
+/* Search */
+.search-bar{width:100%;padding:12px 18px;border:2px solid #e0e0e0;border-radius:10px;font-size:15px;font-family:inherit;margin-bottom:16px;background:#fff;transition:border-color .2s}
+.search-bar:focus{outline:none;border-color:#00b4a6}
+/* Tabs */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.tab{padding:8px 18px;border-radius:20px;border:2px solid #e0e0e0;background:#fff;cursor:pointer;font-size:.82rem;font-weight:600;transition:all .2s;color:#666}
+.tab:hover{border-color:#00b4a6;color:#00b4a6}
+.tab.active{background:#00b4a6;color:#fff;border-color:#00b4a6}
+/* Progress */
+.progress-bar{display:flex;align-items:center;gap:12px;background:#fff;border-radius:10px;padding:14px 18px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.progress-track{flex:1;height:8px;background:#e0e0e0;border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#00b4a6,#00d4c6);border-radius:4px;transition:width .3s}
+.progress-text{font-size:.82rem;font-weight:600;color:#666;white-space:nowrap}
+/* Video grid */
+.video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.video-card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08);transition:transform .2s,box-shadow .2s;cursor:pointer;position:relative}
+.video-card:hover{transform:translateY(-4px);box-shadow:0 6px 20px rgba(0,0,0,.12)}
+.video-card.watched{opacity:.75}
+.video-card.watched .thumb::after{content:"✓ Watched";position:absolute;top:8px;right:8px;background:#00b4a6;color:#fff;padding:3px 10px;border-radius:12px;font-size:.7rem;font-weight:700}
+.thumb{height:140px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;position:relative}
+.thumb::before{content:"▶";position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.7);color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.video-body{padding:14px}
+.video-body h3{font-size:.95rem;margin-bottom:4px;color:#1a2744}
+.video-body p{font-size:.78rem;color:#666;margin-bottom:8px}
+.video-meta{display:flex;gap:8px;flex-wrap:wrap}
+.video-meta span{font-size:.7rem;padding:2px 8px;border-radius:4px;font-weight:600}
+.meta-channel{background:#e8eaf6;color:#5c6bc0}
+.meta-duration{background:#f5f5f5;color:#888}
+.meta-level{background:#fff3e0;color:#f39c12}
+/* Modal */
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);z-index:1000;justify-content:center;align-items:center}
+.modal-overlay.show{display:flex}
+.modal{background:#fff;border-radius:12px;max-width:800px;width:90%;max-height:90vh;overflow-y:auto;position:relative}
+.modal-close{position:absolute;top:10px;right:14px;font-size:1.8rem;cursor:pointer;color:#999;z-index:10;background:#fff;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.modal-close:hover{color:#333}
+.modal-video{width:100%;aspect-ratio:16/9;border-radius:12px 12px 0 0;border:none}
+.modal-body{padding:20px}
+.modal-body h2{font-size:1.2rem;margin-bottom:8px;color:#1a2744}
+.modal-body p{font-size:.88rem;color:#555;margin-bottom:12px}
+.modal-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.modal-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border:none;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;font-family:inherit}
+.btn-yt{background:#ff0000;color:#fff}
+.btn-yt:hover{background:#cc0000}
+.btn-mark{background:#00b4a6;color:#fff}
+.btn-mark:hover{background:#00897b}
+.btn-mark.marked{background:#e0e0e0;color:#666}
+/* Channels */
+.channels{background:#fff;border-radius:10px;padding:20px;margin-top:24px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.channels h2{font-size:1.1rem;margin-bottom:12px;color:#1a2744}
+.channel-list{display:flex;gap:12px;flex-wrap:wrap}
+.channel-link{display:flex;align-items:center;gap:8px;padding:8px 14px;border:2px solid #e0e0e0;border-radius:8px;text-decoration:none;color:#555;font-size:.82rem;transition:all .2s}
+.channel-link:hover{border-color:#ff0000;color:#ff0000}
+/* Category title */
+.cat-title{font-size:1.1rem;color:#1a2744;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.cat-title .count{font-size:.78rem;color:#999;font-weight:400}
+/* No results */
+.no-results{text-align:center;padding:40px;color:#999;font-size:.9rem;display:none}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>📺 Learning Videos</h1>
+    <p class="subtitle">Curated YouTube videos for TOEFL preparation · Grammar · Skills · Strategies</p>
+  </div>
+  <a href="../index.html" class="back-link">← Back to Hub</a>
+
+  <input type="text" class="search-bar" id="searchBar" placeholder="🔍 Search videos by title, topic, or keyword...">
+
+  <div class="tabs" id="tabs"></div>
+
+  <div class="progress-bar">
+    <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    <span class="progress-text" id="progressText">0 / 0 watched</span>
+  </div>
+
+  <div class="cat-title" id="catTitle"></div>
+  <div class="video-grid" id="videoGrid"></div>
+  <div class="no-results" id="noResults">No videos found. Try a different search.</div>
+
+  <div class="channels">
+    <h2>🎬 Recommended YouTube Channels</h2>
+    <div class="channel-list" id="channelList"></div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-close" onclick="closeModal()">&times;</div>
+    <iframe class="modal-video" id="modalVideo" src="" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture"></iframe>
+    <div class="modal-body">
+      <h2 id="modalTitle"></h2>
+      <p id="modalDesc"></p>
+      <div class="modal-tags" id="modalTags"></div>
+      <div class="modal-actions">
+        <a class="btn btn-yt" id="modalYtLink" target="_blank">▶ Watch on YouTube</a>
+        <button class="btn btn-mark" id="modalMarkBtn" onclick="toggleWatched()">✓ Mark as Watched</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="video-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
