@@ -99,7 +99,7 @@ This is a full TOEFL Speaking mock exam. You will complete all 4 tasks in sequen
 </div>
 <div id="task-0" class="task-section active card">
 <div class="task-header"><span class="task-title">Task 1 — Independent Speaking</span><span class="task-badge">15s prep / 45s resp</span></div>
-<div class="prompt-box">Some people believe that success comes from taking risks. Others believe that careful planning leads to success. Which view do you agree with and why?</div>
+<div class="prompt-box" id="prompt-0">Some people believe that success comes from taking risks. Others believe that careful planning leads to success. Which view do you agree with and why?</div>
 <div class="timer-phase" id="phase-0">Press Start to Begin</div>
 <div class="timer-container"><div class="timer-circle"><svg class="timer-svg" width="120" height="120"><circle class="timer-bg" cx="60" cy="60" r="52"/><circle class="timer-fg" id="circle-0" cx="60" cy="60" r="52"/></svg><div class="timer-text"><div class="timer-num" id="time-0">15</div><div class="timer-label" id="tlabel-0">Prep</div></div></div></div>
 <div id="reading-0" class="hidden"></div>
@@ -113,7 +113,7 @@ This is a full TOEFL Speaking mock exam. You will complete all 4 tasks in sequen
 </div>
 <div id="task-1" class="task-section card">
 <div class="task-header"><span class="task-title">Task 2 — Integrated Campus</span><span class="task-badge">30s prep / 60s resp</span></div>
-<div class="prompt-box">The woman expresses her opinion about the online evaluation system. State her opinion and explain the reasons she gives.</div>
+<div class="prompt-box" id="prompt-1">The woman expresses her opinion about the online evaluation system. State her opinion and explain the reasons she gives.</div>
 <div id="reading-1" class="reading-passage hidden"><strong>Reading Passage (45s):</strong><br>The university is planning to replace the current paper-based course evaluation system with an online system. Administrators believe this will increase response rates and provide faster feedback to instructors.</div>
 <div id="transcript-1" class="transcript hidden"><strong>Conversation Transcript:</strong>
 Man: Did you see the announcement about online course evaluations?
@@ -129,7 +129,7 @@ Woman: Yes, and I think it's actually a good idea. With the paper system, most s
 </div>
 <div id="task-2" class="task-section card">
 <div class="task-header"><span class="task-title">Task 3 — Integrated Academic</span><span class="task-badge">30s prep / 60s resp</span></div>
-<div class="prompt-box">Using the examples from the lecture, explain the concept of alarm calls.</div>
+<div class="prompt-box" id="prompt-2">Using the examples from the lecture, explain the concept of alarm calls.</div>
 <div id="reading-2" class="reading-passage hidden"><strong>Reading Passage (45s):</strong><br>Alarm Calls are warning signals produced by animals to alert other members of their species about nearby predators. These calls can benefit the group but often put the caller at increased risk by drawing the predator's attention.</div>
 <div id="transcript-2" class="transcript hidden"><strong>Lecture Transcript:</strong>
 Let's consider two examples of alarm calls. First, vervet monkeys produce different alarm calls for different predators — one for leopards, another for eagles, and a third for snakes. When a vervet hears a leopard call, it runs into trees. For an eagle call, it looks up and hides in bushes. This shows that alarm calls can carry specific information. Second, consider the prairie dog. Prairie dogs give alarm calls when predators approach, and interestingly, they can even describe the predator's size, color, and speed. However, by calling, the prairie dog makes itself more visible and vulnerable to the predator, which is a significant cost.</div>
@@ -144,7 +144,7 @@ Let's consider two examples of alarm calls. First, vervet monkeys produce differ
 </div>
 <div id="task-3" class="task-section card">
 <div class="task-header"><span class="task-title">Task 4 — Integrated Audio Only</span><span class="task-badge">20s prep / 60s resp</span></div>
-<div class="prompt-box">Using points and examples from the lecture, explain the concept of surrogate advertising.</div>
+<div class="prompt-box" id="prompt-3">Using points and examples from the lecture, explain the concept of surrogate advertising.</div>
 <div id="transcript-3" class="transcript hidden"><strong>Lecture Transcript (Audio Simulation):</strong>
 Today we'll discuss the concept of surrogate advertising. This is a marketing strategy used when a company cannot directly advertise a particular product, often due to legal restrictions. Instead, the company promotes a different, associated product or brand that carries the same name. For example, in many countries, tobacco advertising is banned on television. So tobacco companies create advertisements for other products — like clothing, accessories, or even social events — that feature their brand name prominently. When consumers see these ads, they associate the brand with the restricted product. Another example is alcohol companies sponsoring sports teams or music festivals. They cannot advertise the alcohol directly during certain broadcasts, but their brand logo appears on team jerseys and event banners, keeping the brand visible to the public.</div>
 <div class="timer-phase" id="phase-3">Press Start to Begin</div>
@@ -172,8 +172,75 @@ const TASKS=[
 {prep:30,resp:60,reading:1,readTime:45,type:'academic'},
 {prep:20,resp:60,reading:0,readTime:0,type:'audio'}
 ];
-const CONSONANT_WORDS=["success","risks","planning","evaluation","online","alarm","predators","surrogate","advertising","restrictions"];
-const CONSONANT_ANSWERS=["s","s","ng","on","e","m","s","e","ng","s"];
+// === Variant data for rotating prompts, readings, transcripts, and consonant words ===
+var VARIANT_DATA=[
+{
+consonantWords:["success","risks","planning","evaluation","online","alarm","predators","surrogate","advertising","restrictions"],
+consonantAnswers:["s","s","ng","on","e","m","s","e","ng","s"],
+p0:"Some people believe that success comes from taking risks. Others believe that careful planning leads to success. Which view do you agree with and why?",
+p1:"The woman expresses her opinion about the online evaluation system. State her opinion and explain the reasons she gives.",
+r1:'<strong>Reading Passage (45s):</strong><br>The university is planning to replace the current paper-based course evaluation system with an online system. Administrators believe this will increase response rates and provide faster feedback to instructors.',
+tr1:'<strong>Conversation Transcript:</strong>\nMan: Did you see the announcement about online course evaluations?\nWoman: Yes, and I think it\'s actually a good idea. With the paper system, most students just rush through it at the end of class when they\'re tired. An online system lets you do it on your own time, so you can give more thoughtful feedback. Also, the results get to professors faster, which means they can improve the course for the next semester instead of waiting months.',
+c1p:"online|evaluation|system|replace|paper",c1o:"opinion|agree|support|good|thinks|believes",c1r:"because|reason|first|second|also|faster|thoughtful|time",
+p2:"Using the examples from the lecture, explain the concept of alarm calls.",
+r2:'<strong>Reading Passage (45s):</strong><br>Alarm Calls are warning signals produced by animals to alert other members of their species about nearby predators. These calls can benefit the group but often put the caller at increased risk by drawing the predator\'s attention.',
+tr2:'<strong>Lecture Transcript:</strong>\nLet\'s consider two examples of alarm calls. First, vervet monkeys produce different alarm calls for different predators — one for leopards, another for eagles, and a third for snakes. When a vervet hears a leopard call, it runs into trees. For an eagle call, it looks up and hides in bushes. This shows that alarm calls can carry specific information. Second, consider the prairie dog. Prairie dogs give alarm calls when predators approach, and interestingly, they can even describe the predator\'s size, color, and speed. However, by calling, the prairie dog makes itself more visible and vulnerable to the predator, which is a significant cost.',
+c2c:"alarm|call|warning|signal|predator",c2e:"vervet|monkey|prairie dog|leopard|eagle|snake",c2x:"example|show|demonstrate|however|cost|risk|benefit",
+p3:"Using points and examples from the lecture, explain the concept of surrogate advertising.",
+tr3:'<strong>Lecture Transcript (Audio Simulation):</strong>\nToday we\'ll discuss the concept of surrogate advertising. This is a marketing strategy used when a company cannot directly advertise a particular product, often due to legal restrictions. Instead, the company promotes a different, associated product or brand that carries the same name. For example, in many countries, tobacco advertising is banned on television. So tobacco companies create advertisements for other products — like clothing, accessories, or even social events — that feature their brand name prominently. When consumers see these ads, they associate the brand with the restricted product. Another example is alcohol companies sponsoring sports teams or music festivals. They cannot advertise the alcohol directly during certain broadcasts, but their brand logo appears on team jerseys and event banners, keeping the brand visible to the public.',
+c3s:"surrogate|advertising|marketing|brand|restrict",c3e:"tobacco|alcohol|clothing|sponsor|jersey|festival|banner",c3x:"example|because|cannot|instead|associate|visible"
+},
+{
+consonantWords:["leadership","experience","teamwork","deadline","schedule","conflict","resolution","compromise","negotiation","collaboration"],
+consonantAnswers:["p","e","k","e","e","t","n","e","n","n"],
+p0:"Some people believe that leaders should be strict and authoritative. Others believe that leaders should be collaborative and open. Which view do you agree with and why?",
+p1:"The man expresses his opinion about the group work policy. State his opinion and explain the reasons he gives.",
+r1:'<strong>Reading Passage (45s):</strong><br>The university has announced that all courses will now require at least one group project per semester. Administrators believe this will help students develop teamwork and communication skills essential for the workplace.',
+tr1:'<strong>Conversation Transcript:</strong>\nMan: I think the group project requirement is a bad idea. In my experience, one or two people end up doing all the work while others just coast. It\'s unfair to the students who actually care about their grades. Also, scheduling meetings outside of class is really difficult when everyone has different jobs and commitments.',
+c1p:"group|project|course|require|teamwork",c1o:"opinion|agree|support|bad|good|thinks|believes",c1r:"because|reason|first|second|also|unfair|difficult|schedule",
+p2:"Using the examples from the lecture, explain the concept of classical conditioning.",
+r2:'<strong>Reading Passage (45s):</strong><br>Classical Conditioning is a learning process where a neutral stimulus becomes associated with a meaningful stimulus, eventually producing the same response. This concept was first described by Ivan Pavlov through his famous experiments with dogs.',
+tr2:'<strong>Lecture Transcript:</strong>\nLet\'s look at two examples of classical conditioning. First, Pavlov\'s dogs: he rang a bell before giving food. After repeated pairings, the dogs salivated at the sound of the bell alone, even without food. The neutral stimulus — the bell — became a conditioned stimulus. Second, consider a child who was bitten by a dog. Now, the child fears all dogs, not just the one that bit them. The neutral stimulus — seeing a dog — became associated with the pain of the bite. These examples show how neutral stimuli can trigger automatic responses through association.',
+c2c:"conditioning|stimulus|response|pavlov|association",c2e:"dog|bell|saliva|child|bite|fear|food",c2x:"example|show|demonstrate|first|second|trigger|associate",
+p3:"Using points and examples from the lecture, explain the concept of economies of scale.",
+tr3:'<strong>Lecture Transcript (Audio Simulation):</strong>\nToday we\'ll discuss economies of scale. This is the cost advantage that arises when production increases. As a company produces more units, the cost per unit decreases because fixed costs are spread over more output. For example, a car manufacturer that produces 100,000 cars per year can spread its factory and equipment costs over many units, making each car cheaper. A small manufacturer producing only 1,000 cars has much higher per-unit costs. Another example is a software company. The cost of developing an app is fixed, but each additional download costs almost nothing. So the more users, the lower the cost per user. This is why large companies often have a competitive advantage over smaller ones.',
+c3s:"economies|scale|cost|production|advantage",c3e:"car|manufacturer|software|download|factory|equipment|company",c3x:"example|because|spread|fixed|lower|advantage|cheaper"
+},
+{
+consonantWords:["creativity","innovation","research","experiment","hypothesis","variable","conclusion","evidence","theory","analysis"],
+consonantAnswers:["y","n","h","t","s","e","n","e","y","s"],
+p0:"Some people believe that creativity is an innate talent. Others believe it can be developed through practice. Which view do you agree with and why?",
+p1:"The woman expresses her opinion about the research requirement. State her opinion and explain the reasons she gives.",
+r1:'<strong>Reading Passage (45s):</strong><br>The university has proposed requiring all undergraduate students to complete a research project before graduation. Administrators argue this will prepare students for graduate school and develop critical thinking skills.',
+tr1:'<strong>Conversation Transcript:</strong>\nMan: Did you hear about the new research requirement?\nWoman: Yes, and I think it\'s a wonderful idea. Right now, many students graduate without any real research experience. Completing a project will help us understand how knowledge is created. Also, it gives us something concrete to show in job interviews or graduate school applications. It might be challenging, but it\'s worth it.',
+c1p:"research|project|require|undergraduate|graduation",c1o:"opinion|agree|support|wonderful|good|thinks|believes",c1r:"because|reason|first|second|also|experience|challenging|worth",
+p2:"Using the examples from the lecture, explain the concept of opportunity cost.",
+r2:'<strong>Reading Passage (45s):</strong><br>Opportunity Cost refers to the value of the next best alternative that is given up when making a choice. Every decision involves trade-offs, and understanding opportunity cost helps individuals and businesses make more rational decisions.',
+tr2:'<strong>Lecture Transcript:</strong>\nLet me give you two examples. First, imagine a student who has a free evening. They can either study for an exam or work a shift at their job. If they choose to study, the opportunity cost is the wages they would have earned. If they work, the opportunity cost is potentially a lower exam grade. Second, consider a farmer who has a piece of land. They can grow either corn or soybeans. If they choose corn, the opportunity cost is the profit they would have made from soybeans. These examples show that every choice has an implicit cost — the value of what you didn\'t choose.',
+c2c:"opportunity|cost|alternative|choice|trade",c2e:"student|study|work|exam|farmer|corn|soybean|wage",c2x:"example|show|first|second|choose|value|implicit",
+p3:"Using points and examples from the lecture, explain the concept of cognitive biases.",
+tr3:'<strong>Lecture Transcript (Audio Simulation):</strong>\nToday we\'ll explore cognitive biases — systematic errors in thinking that affect our decisions. One common bias is the confirmation bias, where people seek information that confirms their existing beliefs. For example, a person who believes a certain diet works will only read articles supporting it and ignore studies showing it doesn\'t. Another bias is the anchoring effect. When people estimate a number, they often rely on the first piece of information they receive. For instance, if a store shows a "was $200" price tag next to a "$100" sale price, customers think it\'s a great deal, even if the item was never actually worth $200. These biases show that our minds take shortcuts that can lead to poor decisions.',
+c3s:"cognitive|bias|thinking|decision|error",c3e:"confirmation|anchoring|diet|store|price|belief|estimate",c3x:"example|because|show|first|another|shortcuts|lead"
+}
+];
+// Rotate variants on each load
+var _vk='drill4-variant';
+var _vi=parseInt(localStorage.getItem(_vk)||'0');
+_vi=(_vi+1)%3;
+localStorage.setItem(_vk,_vi);
+var V=VARIANT_DATA[_vi];
+const CONSONANT_WORDS=V.consonantWords;
+const CONSONANT_ANSWERS=V.consonantAnswers;
+// Apply content to DOM
+document.getElementById('prompt-0').textContent=V.p0;
+document.getElementById('prompt-1').textContent=V.p1;
+document.getElementById('reading-1').innerHTML=V.r1;
+document.getElementById('transcript-1').innerHTML=V.tr1;
+document.getElementById('prompt-2').textContent=V.p2;
+document.getElementById('reading-2').innerHTML=V.r2;
+document.getElementById('transcript-2').innerHTML=V.tr2;
+document.getElementById('prompt-3').textContent=V.p3;
+document.getElementById('transcript-3').innerHTML=V.tr3;
 const CIRC=2*Math.PI*52;
 let currentTask=-1;
 let timerInterval=null;
@@ -299,21 +366,21 @@ const hasExample=/(for example|for instance|such as|like|when|if)/i.test(resp);
 if(hasStance&&hasReason&&hasExample)checks.push({pass:true,text:'<strong>Structure check:</strong> Stance + reason + example detected. Well-structured response.'});
 else checks.push({pass:false,text:'<strong>Structure check:</strong> Missing elements — need stance (agree/disagree), reason, and example. Found: '+[hasStance?'stance':'',hasReason?'reason':'',hasExample?'example':''].filter(Boolean).join(', ')||'none'});
 }else if(type==='campus'){
-const hasProposal=/(online|evaluation|system|replace|paper)/i.test(resp);
-const hasOpinion=/(opinion|agree|support|good|thinks|believes)/i.test(resp);
-const hasReasons=/(because|reason|first|second|also|faster|thoughtful|time)/i.test(resp);
+const hasProposal=new RegExp(V.c1p,'i').test(resp);
+const hasOpinion=new RegExp(V.c1o,'i').test(resp);
+const hasReasons=new RegExp(V.c1r,'i').test(resp);
 if(hasProposal&&hasOpinion&&hasReasons)checks.push({pass:true,text:'<strong>Structure check:</strong> Proposal + opinion + reasons detected. Well-structured.'});
 else checks.push({pass:false,text:'<strong>Structure check:</strong> Need proposal summary, opinion, and reasons. Found: '+[hasProposal?'proposal':'',hasOpinion?'opinion':'',hasReasons?'reasons':''].filter(Boolean).join(', ')||'none'});
 }else if(type==='academic'){
-const hasConcept=/(alarm|call|warning|signal|predator)/i.test(resp);
-const hasExamples=/(vervet|monkey|prairie dog|leopard|eagle|snake)/i.test(resp);
-const hasExplain=/(example|show|demonstrate|however|cost|risk|benefit)/i.test(resp);
+const hasConcept=new RegExp(V.c2c,'i').test(resp);
+const hasExamples=new RegExp(V.c2e,'i').test(resp);
+const hasExplain=new RegExp(V.c2x,'i').test(resp);
 if(hasConcept&&hasExamples&&hasExplain)checks.push({pass:true,text:'<strong>Structure check:</strong> Concept + examples + explanation detected. Well-structured.'});
 else checks.push({pass:false,text:'<strong>Structure check:</strong> Need concept definition, examples, and explanation. Found: '+[hasConcept?'concept':'',hasExamples?'examples':'',hasExplain?'explanation':''].filter(Boolean).join(', ')||'none'});
 }else if(type==='audio'){
-const hasSummary=/(surrogate|advertising|marketing|brand|restrict)/i.test(resp);
-const hasExamples=/(tobacco|alcohol|clothing|sponsor|jersey|festival|banner)/i.test(resp);
-const hasExplain=/(example|because|cannot|instead|associate|visible)/i.test(resp);
+const hasSummary=new RegExp(V.c3s,'i').test(resp);
+const hasExamples=new RegExp(V.c3e,'i').test(resp);
+const hasExplain=new RegExp(V.c3x,'i').test(resp);
 if(hasSummary&&hasExamples&&hasExplain)checks.push({pass:true,text:'<strong>Structure check:</strong> Summary + examples + explanation detected. Well-structured.'});
 else checks.push({pass:false,text:'<strong>Structure check:</strong> Need summary, examples, and explanation. Found: '+[hasSummary?'summary':'',hasExamples?'examples':'',hasExplain?'explanation':''].filter(Boolean).join(', ')||'none'});
 }

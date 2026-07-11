@@ -131,14 +131,35 @@ Task 1 requires: (1) clear stance in first sentence, (2) one reason with a conne
 </div>
 
 <script>
-var prompts=[
-"Do you agree or disagree: students should be required to take physical education classes in college?",
+var promptSets=[
+["Do you agree or disagree: students should be required to take physical education classes in college?",
 "Some people think the best way to learn a new skill is by taking a class. Others think self-study is better. Which do you prefer and why?",
 "Do you agree or disagree: it is better to save money for the future than to spend it on experiences now?",
 "Some people prefer to plan their free time carefully. Others prefer to be spontaneous. Which approach do you prefer and why?",
-"Do you agree or disagree: social media has a positive impact on personal relationships?"
+"Do you agree or disagree: social media has a positive impact on personal relationships?"],
+["Do you agree or disagree: homework should be banned in elementary schools?",
+"Some people prefer to read fiction. Others prefer to read non-fiction. Which do you prefer and why?",
+"Do you agree or disagree: it is better to travel abroad than to explore your own country?",
+"Some people prefer to cook at home. Others prefer to eat out at restaurants. Which do you prefer and why?",
+"Do you agree or disagree: online learning is as effective as in-person learning?"],
+["Do you agree or disagree: teenagers should have part-time jobs while in high school?",
+"Some people prefer to exercise outdoors. Others prefer to exercise in a gym. Which do you prefer and why?",
+"Do you agree or disagree: it is better to have a few close friends than many casual friends?",
+"Some people prefer to watch movies at home. Others prefer to go to the cinema. Which do you prefer and why?",
+"Do you agree or disagree: governments should invest more in public transportation?"]
 ];
-var consonantWords=["students","required","best","class","spend","experiences","plan","spontaneous","impact","relationships"];
+var consonantSets=[
+["students","required","best","class","spend","experiences","plan","spontaneous","impact","relationships"],
+["homework","banned","schools","fiction","travel","abroad","cook","restaurants","online","effective"],
+["teenagers","jobs","high","exercise","outdoors","gym","close","friends","cinema","governments"]
+];
+// Rotate variants on each load
+var _vk='drill2-variant';
+var _vi=parseInt(localStorage.getItem(_vk)||'0');
+_vi=(_vi+1)%3;
+localStorage.setItem(_vk,_vi);
+var prompts=promptSets[_vi];
+var consonantWords=consonantSets[_vi];
 var timers={};
 
 function toggleFocus(){

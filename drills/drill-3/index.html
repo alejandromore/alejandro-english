@@ -137,13 +137,13 @@ textarea:focus{outline:none;border-color:var(--teal)}
 
 <div class="practice-item">
 <span class="item-label">Conversation (Simulated Audio Transcript)</span>
-<div class="audio-box"><span class="speaker">Man:</span> Did you hear about the new housing policy?
+<div class="audio-box" id="t2i1-audio"><span class="speaker">Man:</span> Did you hear about the new housing policy?
 <span class="speaker">Woman:</span> Yeah, and I think it's a terrible idea. First, it forces students to pay for dorm housing, which is often more expensive than off-campus options. Many students rely on cheaper apartments nearby. Also, living off campus teaches independence — managing your own cooking, cleaning, and budgeting. The university shouldn't take that away.</div>
 </div>
 
 <div class="practice-item">
 <span class="item-label">Prompt</span>
-<div class="prompt-box"><strong>The woman expresses her opinion about the new housing policy. State her opinion and explain the reasons she gives for holding that opinion.</strong></div>
+<div class="prompt-box" id="t2i1-prompt"><strong>The woman expresses her opinion about the new housing policy. State her opinion and explain the reasons she gives for holding that opinion.</strong></div>
 <div class="timer-container">
 <button class="timer-btn btn-amber" onclick="startTimer('t2i1-prep',30,'t2i1-prep-btn')">Start 30s Prep</button>
 <div class="timer-circle" id="t2i1-prep-circle" style="display:none">
@@ -182,12 +182,12 @@ textarea:focus{outline:none;border-color:var(--teal)}
 
 <div class="practice-item">
 <span class="item-label">Conversation (Simulated Audio Transcript)</span>
-<div class="audio-box"><span class="speaker">Man:</span> I think the 24/7 library is a great idea. I always study best late at night when it's quiet, and right now I have to go home at midnight. Also, the library has reference materials and computers that I don't have at my apartment. It would really help during finals.</div>
+<div class="audio-box" id="t2i2-audio"><span class="speaker">Man:</span> I think the 24/7 library is a great idea. I always study best late at night when it's quiet, and right now I have to go home at midnight. Also, the library has reference materials and computers that I don't have at my apartment. It would really help during finals.</div>
 </div>
 
 <div class="practice-item">
 <span class="item-label">Prompt</span>
-<div class="prompt-box"><strong>The man expresses his opinion about the library proposal. State his opinion and explain the reasons he gives.</strong></div>
+<div class="prompt-box" id="t2i2-prompt"><strong>The man expresses his opinion about the library proposal. State his opinion and explain the reasons he gives.</strong></div>
 <div class="timer-container">
 <button class="timer-btn btn-amber" onclick="startTimer('t2i2-prep',30,'t2i2-prep-btn')">Start 30s Prep</button>
 <div class="timer-circle" id="t2i2-prep-circle" style="display:none">
@@ -233,12 +233,12 @@ textarea:focus{outline:none;border-color:var(--teal)}
 
 <div class="practice-item">
 <span class="item-label">Lecture Excerpt (Simulated Audio Transcript)</span>
-<div class="audio-box">So, let's look at a classic example. Imagine a student who knows that smoking is harmful to health, but continues to smoke anyway. This creates cognitive dissonance — the student knows the facts but acts against them. To reduce the discomfort, the student might convince themselves that the research is exaggerated, or that they'll quit soon, or they might avoid reading health articles altogether. Another example: a person who values environmental conservation but drives a large, fuel-inefficient car. They might justify it by saying they need it for work, or they might donate to environmental causes to offset the guilt.</div>
+<div class="audio-box" id="t3i1-audio">So, let's look at a classic example. Imagine a student who knows that smoking is harmful to health, but continues to smoke anyway. This creates cognitive dissonance — the student knows the facts but acts against them. To reduce the discomfort, the student might convince themselves that the research is exaggerated, or that they'll quit soon, or they might avoid reading health articles altogether. Another example: a person who values environmental conservation but drives a large, fuel-inefficient car. They might justify it by saying they need it for work, or they might donate to environmental causes to offset the guilt.</div>
 </div>
 
 <div class="practice-item">
 <span class="item-label">Prompt</span>
-<div class="prompt-box"><strong>Using the examples from the lecture, explain the concept of cognitive dissonance.</strong></div>
+<div class="prompt-box" id="t3i1-prompt"><strong>Using the examples from the lecture, explain the concept of cognitive dissonance.</strong></div>
 <div class="timer-container">
 <button class="timer-btn btn-amber" onclick="startTimer('t3i1-prep',30,'t3i1-prep-btn')">Start 30s Prep</button>
 <div class="timer-circle" id="t3i1-prep-circle" style="display:none">
@@ -277,12 +277,12 @@ textarea:focus{outline:none;border-color:var(--teal)}
 
 <div class="practice-item">
 <span class="item-label">Lecture Excerpt (Simulated Audio Transcript)</span>
-<div class="audio-box">The original study took place at the Hawthorne Works factory. Researchers wanted to see if changing lighting conditions would affect productivity. Surprisingly, productivity increased regardless of whether lighting was improved or worsened. The key factor was that workers knew they were being studied, so they worked harder. We see this in modern contexts too. For instance, in a software company, developers might write cleaner code when they know their work is being reviewed by peers. Or in a hospital, staff might follow hygiene protocols more carefully when they know inspectors are present.</div>
+<div class="audio-box" id="t3i2-audio">The original study took place at the Hawthorne Works factory. Researchers wanted to see if changing lighting conditions would affect productivity. Surprisingly, productivity increased regardless of whether lighting was improved or worsened. The key factor was that workers knew they were being studied, so they worked harder. We see this in modern contexts too. For instance, in a software company, developers might write cleaner code when they know their work is being reviewed by peers. Or in a hospital, staff might follow hygiene protocols more carefully when they know inspectors are present.</div>
 </div>
 
 <div class="practice-item">
 <span class="item-label">Prompt</span>
-<div class="prompt-box"><strong>Using the examples from the lecture, explain the Hawthorne Effect.</strong></div>
+<div class="prompt-box" id="t3i2-prompt"><strong>Using the examples from the lecture, explain the Hawthorne Effect.</strong></div>
 <div class="timer-container">
 <button class="timer-btn btn-amber" onclick="startTimer('t3i2-prep',30,'t3i2-prep-btn')">Start 30s Prep</button>
 <div class="timer-circle" id="t3i2-prep-circle" style="display:none">
@@ -385,7 +385,79 @@ function updateWordCount(taId,wcId){
 }
 var CONNECTORS=['however','therefore','moreover','additionally','for instance','as a result','in contrast','while','whereas','first','second','also'];
 var BE_FORMS=['am','is','are','was','were'];
-var CONSONANT_WORDS=['campus','students','policy','library','cognitive','dissonance','effect','factory','productivity','concept'];
+var CONSONANT_SETS=[
+['campus','students','policy','library','cognitive','dissonance','effect','factory','productivity','concept'],
+['deadline','extension','proposal','cafeteria','budget','administrator','enrollment','tuition','scholarship','transcript'],
+['ecosystem','biodiversity','habitat','species','conservation','migration','predator','adaptation','symbiosis','evolution']
+];
+// Rotate variants on each load
+var _vk='drill3-variant';
+var _vi=parseInt(localStorage.getItem(_vk)||'0');
+_vi=(_vi+1)%3;
+localStorage.setItem(_vk,_vi);
+var CONSONANT_WORDS=CONSONANT_SETS[_vi];
+
+// Content variants for readings, audios, and prompts
+var _contentSets=[
+{
+t2i1r:'"The university has announced a new policy requiring all first-year students to live on campus. Administrators believe this will help students build stronger social connections and improve academic performance. The policy will take effect next fall semester."',
+t2i1a:'<span class="speaker">Man:</span> Did you hear about the new housing policy?\n<span class="speaker">Woman:</span> Yeah, and I think it\'s a terrible idea. First, it forces students to pay for dorm housing, which is often more expensive than off-campus options. Many students rely on cheaper apartments nearby. Also, living off campus teaches independence — managing your own cooking, cleaning, and budgeting. The university shouldn\'t take that away.',
+t2i1p:'The woman expresses her opinion about the new housing policy. State her opinion and explain the reasons she gives for holding that opinion.',
+t2i2r:'"The library has proposed extending its hours to 24/7 during final exam week. Librarians argue that many students study late at night and would benefit from having a quiet, resource-rich environment available at all hours."',
+t2i2a:'<span class="speaker">Man:</span> I think the 24/7 library is a great idea. I always study best late at night when it\'s quiet, and right now I have to go home at midnight. Also, the library has reference materials and computers that I don\'t have at my apartment. It would really help during finals.',
+t2i2p:'The man expresses his opinion about the library proposal. State his opinion and explain the reasons he gives.',
+t3i1r:'"Cognitive Dissonance is a psychological theory that describes the mental discomfort experienced when a person holds two conflicting beliefs or attitudes simultaneously. To reduce this discomfort, people often change their beliefs, justify their actions, or avoid situations that create conflict."',
+t3i1a:'So, let\'s look at a classic example. Imagine a student who knows that smoking is harmful to health, but continues to smoke anyway. This creates cognitive dissonance — the student knows the facts but acts against them. To reduce the discomfort, the student might convince themselves that the research is exaggerated, or that they\'ll quit soon, or they might avoid reading health articles altogether. Another example: a person who values environmental conservation but drives a large, fuel-inefficient car. They might justify it by saying they need it for work, or they might donate to environmental causes to offset the guilt.',
+t3i1p:'Using the examples from the lecture, explain the concept of cognitive dissonance.',
+t3i2r:'"The Hawthorne Effect refers to the phenomenon where people modify their behavior when they know they are being observed. This effect was first identified during studies at a factory in the 1920s, where workers increased productivity simply because researchers were watching them."',
+t3i2a:'The original study took place at the Hawthorne Works factory. Researchers wanted to see if changing lighting conditions would affect productivity. Surprisingly, productivity increased regardless of whether lighting was improved or worsened. The key factor was that workers knew they were being studied, so they worked harder. We see this in modern contexts too. For instance, in a software company, developers might write cleaner code when they know their work is being reviewed by peers. Or in a hospital, staff might follow hygiene protocols more carefully when they know inspectors are present.',
+t3i2p:'Using the examples from the lecture, explain the Hawthorne Effect.'
+},
+{
+t2i1r:'"The university has decided to increase the tuition fee by 10% for the upcoming academic year. Administrators state that the additional revenue will be used to improve campus facilities and hire more faculty members."',
+t2i1a:'<span class="speaker">Man:</span> Did you hear about the tuition increase?\n<span class="speaker">Woman:</span> Yes, and I think it\'s unfair. Many students are already struggling to afford college. A 10% increase will force some students to take on more debt or even drop out. Also, the administration hasn\'t been transparent about how the money will be spent. They should find other ways to fund improvements.',
+t2i1p:'The woman expresses her opinion about the tuition increase. State her opinion and explain the reasons she gives for holding that opinion.',
+t2i2r:'"The cafeteria has proposed switching to an all-organic menu starting next semester. Food services staff argue that organic options are healthier and more environmentally sustainable, though they will cost more."',
+t2i2a:'<span class="speaker">Man:</span> I actually support the switch to organic food. The current meals are often processed and not very nutritious. Organic food would be better for student health. Also, supporting sustainable farming practices is important for the environment. I think the extra cost is worth it.',
+t2i2p:'The man expresses his opinion about the organic food proposal. State his opinion and explain the reasons he gives.',
+t3i1r:'"The Halo Effect is a cognitive bias where a person\'s overall impression of someone influences how they evaluate that person\'s specific traits. For example, if we find someone physically attractive, we tend to assume they are also intelligent and kind."',
+t3i1a:'Let me give you two examples. First, in a study, researchers showed participants photos of people and asked them to rate their intelligence. People who were rated as more attractive were also rated as more intelligent, even though there was no evidence of a connection. Second, in the workplace, a well-dressed employee might be assumed to be more competent. A manager might give them better projects or faster promotions, even if their actual performance is average. The halo effect shows how one positive trait can distort our judgment of other traits.',
+t3i1p:'Using the examples from the lecture, explain the concept of the halo effect.',
+t3i2r:'"Emotional Intelligence refers to the ability to recognize, understand, and manage one\'s own emotions as well as the emotions of others. People with high emotional intelligence tend to have better relationships and perform well in collaborative environments."',
+t3i2a:'Consider two examples. First, a team leader who notices a team member seems frustrated during a meeting. Instead of ignoring it, the leader privately asks the team member what\'s wrong and adjusts the workload. This shows emotional awareness. Second, a customer service representative who stays calm when dealing with an angry customer. Rather than reacting defensively, they acknowledge the customer\'s frustration and work to find a solution. This demonstrates emotional regulation. In both cases, emotional intelligence leads to better outcomes than a purely logical approach.',
+t3i2p:'Using the examples from the lecture, explain the concept of emotional intelligence.'
+},
+{
+t2i1r:'"The university has announced a new policy requiring all students to complete 20 hours of community service before graduation. Administrators believe this will help students develop civic responsibility and strengthen ties with the local community."',
+t2i1a:'<span class="speaker">Man:</span> What do you think about the new community service requirement?\n<span class="speaker">Woman:</span> I think it\'s a great idea. Students often focus only on academics and miss the chance to engage with the community. Volunteering helps you develop real-world skills like communication and teamwork. Also, it looks good on a resume and can help with job applications after graduation.',
+t2i1p:'The woman expresses her opinion about the community service requirement. State her opinion and explain the reasons she gives for holding that opinion.',
+t2i2r:'"The university has proposed building a new student recreation center with a gym, pool, and sports courts. Administrators argue that better fitness facilities will improve student health and reduce stress, though the project will be funded by a student fee increase."',
+t2i2a:'<span class="speaker">Man:</span> I\'m against the new recreation center. The student fee increase would be a burden for many students who already pay a lot. Also, there\'s a public gym nearby that students can use for a discount. The university should focus on academic facilities like labs and classrooms instead of luxury amenities.',
+t2i2p:'The man expresses his opinion about the recreation center proposal. State his opinion and explain the reasons he gives.',
+t3i1r:'"Biodiversity refers to the variety of life forms within a given ecosystem. High biodiversity contributes to ecosystem stability, as different species can fulfill different roles and support each other, making the ecosystem more resilient to changes."',
+t3i1a:'Let\'s look at two examples. First, consider a coral reef with hundreds of species of fish, plants, and invertebrates. If a disease affects one species, others can fill its ecological role, so the reef continues to function. In contrast, a forest with only one type of tree could be destroyed by a single pest. Second, in agriculture, planting a single crop — monoculture — makes the entire harvest vulnerable to one disease. But when farmers plant multiple crops, a disease affecting one won\'t wipe out the entire food supply. These examples show how biodiversity provides insurance against disruption.',
+t3i1p:'Using the examples from the lecture, explain the concept of biodiversity.',
+t3i2r:'"Cultural Relativism is the principle that an individual\'s beliefs and activities should be understood by others in terms of that individual\'s own culture, rather than judged against the criteria of another culture. It emphasizes that different cultures have different moral standards and social norms."',
+t3i2a:'Consider two examples. First, in some cultures, it is customary to eat with one\'s hands rather than utensils. A person from a culture that uses forks might see this as impolite, but from a cultural relativist perspective, it is simply a different norm. Second, in some societies, arranged marriages are common and accepted. Someone from a culture that values individual choice in marriage might view this negatively, but cultural relativism asks us to understand the practice within its social context. The point is not to approve or disapprove, but to understand practices within their own cultural framework.',
+t3i2p:'Using the examples from the lecture, explain the concept of cultural relativism.'
+}
+];
+// Apply content variant
+(function(){
+var c=_contentSets[_vi];
+document.getElementById('t2i1-reading').textContent=c.t2i1r;
+document.getElementById('t2i1-audio').innerHTML=c.t2i1a;
+document.getElementById('t2i1-prompt').innerHTML='<strong>'+c.t2i1p+'</strong>';
+document.getElementById('t2i2-reading').textContent=c.t2i2r;
+document.getElementById('t2i2-audio').innerHTML=c.t2i2a;
+document.getElementById('t2i2-prompt').innerHTML='<strong>'+c.t2i2p+'</strong>';
+document.getElementById('t3i1-reading').textContent=c.t3i1r;
+document.getElementById('t3i1-audio').innerHTML=c.t3i1a;
+document.getElementById('t3i1-prompt').innerHTML='<strong>'+c.t3i1p+'</strong>';
+document.getElementById('t3i2-reading').textContent=c.t3i2r;
+document.getElementById('t3i2-audio').innerHTML=c.t3i2a;
+document.getElementById('t3i2-prompt').innerHTML='<strong>'+c.t3i2p+'</strong>';
+})();
 function runSelfCheck(id,taskType){
   var text=document.getElementById(id+'-response').value.trim();
   var checkDiv=document.getElementById(id+'-check');
