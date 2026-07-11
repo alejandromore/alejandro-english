@@ -1,0 +1,130 @@
+=================================
+TOEFL Speaking — Drill #1
+Date: 10/7/2026, 11:23:01 p.m.
+=================================
+
+--- Response #1 (resp-1) ---
+I prefer to study alone, because you can concentrate and repart aa you want. For example, some people are good in maths, however, other like chemical, so everybody can learn as they want.
+
+--- Response #2 (resp-2) ---
+I agree with a foreign languages, because now we are in a global economic and we can make business with other people. For example, execute from europe or asia can come to Peru to buy frouts and gifts.
+
+--- Response #3 (resp-3) ---
+I want to learn english and later portugess, because it is way to be international. For example, currently many companies from different countries are looking people in latim america because we can travel and they pay less money.
+
+Self-Check Results (Case Sensitive):
+✓
+Check 1 — "be" auxiliary: All sentences have proper auxiliaries. Great!
+✓
+Check 2a — Clear stance: Found: "I prefer"
+✓
+Check 2b — Reason: Found connector: "because"
+✓
+Check 2c — Concrete example: Found: "For example"
+⚠
+Check 3 — Length: 33 words. Too short — aim for 40-100 words.
+✓
+Check 1 — "be" auxiliary: All sentences have proper auxiliaries. Great!
+✓
+Check 2a — Clear stance: Found: "I prefer"
+✓
+Check 2b — Reason: Found connector: "because"
+✓
+Check 2c — Concrete example: Found: "For example"
+⚠
+Check 3 — Length: 33 words. Too short — aim for 40-100 words.
+Self-Check Results (Case Sensitive):
+✓
+Check 1 — "be" auxiliary: All sentences have proper auxiliaries. Great!
+✓
+Check 2a — Clear stance: Found: "I agree"
+✓
+Check 2b — Reason: Found connector: "because"
+✓
+Check 2c — Concrete example: Found: "For example"
+⚠
+Check 3 — Length: 38 words. Too short — aim for 40-100 words.
+✓
+Check 2a — Clear stance: Found: "I agree"
+⚠
+Check 3 — Length: 38 words. Too short — aim for 40-100 words.
+Self-Check Results (Case Sensitive):
+✓
+Check 1 — "be" auxiliary: All sentences have proper auxiliaries. Great!
+✗
+Check 2a — Clear stance: No clear stance in first sentence. Start with "I prefer", "I agree", etc.
+✓
+Check 2b — Reason: Found connector: "because"
+✓
+Check 2c — Concrete example: Found: "For example"
+⚠
+Check 3 — Length: 38 words. Too short — aim for 40-100 words.
+✗
+Check 2a — Clear stance: No clear stance in first sentence. Start with "I prefer", "I agree", etc.
+Consonant Spelling Results (Case Sensitive):
+✓
+students: typed "students" → 2 pts (exact match)
+✓
+require: typed "require" → 2 pts (exact match)
+✓
+class: typed "class" → 2 pts (exact match)
+✓
+spend: typed "spend" → 2 pts (exact match)
+✓
+plan: typed "plan" → 2 pts (exact match)
+✓
+shift: typed "shift" → 2 pts (exact match)
+✓
+contact: typed "contact" → 2 pts (exact match)
+✓
+product: typed "product" → 2 pts (exact match)
+✓
+trust: typed "trust" → 2 pts (exact match)
+✓
+adapt: typed "adapt" → 2 pts (exact match)
+Total: 20 / 20 pts
+✓
+students: typed "students" → 2 pts (exact match)
+✓
+require: typed "require" → 2 pts (exact match)
+✓
+class: typed "class" → 2 pts (exact match)
+✓
+spend: typed "spend" → 2 pts (exact match)
+✓
+plan: typed "plan" → 2 pts (exact match)
+✓
+shift: typed "shift" → 2 pts (exact match)
+✓
+contact: typed "contact" → 2 pts (exact match)
+✓
+product: typed "product" → 2 pts (exact match)
+✓
+trust: typed "trust" → 2 pts (exact match)
+✓
+adapt: typed "adapt" → 2 pts (exact match)
+Total: 20 / 20 pts
+Consonant Spelling Results (Case Sensitive):
+✓
+students: typed "students" → 2 pts (exact match)
+✓
+require: typed "require" → 2 pts (exact match)
+✓
+class: typed "class" → 2 pts (exact match)
+✓
+spend: typed "spend" → 2 pts (exact match)
+✓
+plan: typed "plan" → 2 pts (exact match)
+✓
+shift: typed "shift" → 2 pts (exact match)
+✓
+contact: typed "contact" → 2 pts (exact match)
+✓
+product: typed "product" → 2 pts (exact match)
+✓
+trust: typed "trust" → 2 pts (exact match)
+✓
+adapt: typed "adapt" → 2 pts (exact match)
+Total: 20 / 20 pts
+
+--- End of Report ---

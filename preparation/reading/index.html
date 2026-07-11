@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEFL Reading — Practice Section</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#1a2744;font-family:'Segoe UI',sans-serif;color:#333;line-height:1.6;padding:20px}
+.container{max-width:900px;margin:0 auto}
+.header{text-align:center;color:#fff;margin-bottom:20px}
+.header h1{font-size:28px;margin-bottom:5px}
+.header .subtitle{font-size:14px;color:#8899bb}
+.back-link{display:inline-block;margin-bottom:15px;color:#00b4a6;text-decoration:none;font-size:14px}
+.back-link:hover{text-decoration:underline}
+.card{background:#fff;border-radius:8px;padding:25px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,0.3)}
+.strategies-toggle{cursor:pointer;background:#f0f4f8;border-radius:8px;padding:12px 18px;font-size:16px;font-weight:600;display:flex;justify-content:space-between;align-items:center;color:#1a2744}
+.strategies-toggle:hover{background:#e0e8f0}
+.strategies-toggle .arrow{transition:transform 0.3s}
+.strategies-toggle.open .arrow{transform:rotate(180deg)}
+.strategies-content{max-height:0;overflow:hidden;transition:max-height 0.3s ease}
+.strategies-content.open{max-height:500px}
+.strategies-content ul{padding:20px 20px 20px 40px}
+.strategies-content li{margin-bottom:8px;color:#555}
+.passage-title{font-size:22px;color:#1a2744;margin-bottom:5px;font-weight:700}
+.passage-meta{font-size:13px;color:#888;margin-bottom:15px}
+.passage-text{font-size:15px;line-height:1.8;color:#444;margin-bottom:20px;white-space:pre-wrap}
+.passage-text .insert-marker{display:inline-block;background:#f39c12;color:#fff;border-radius:4px;padding:1px 6px;font-size:13px;font-weight:700;margin:0 2px;cursor:pointer}
+.passage-text .insert-marker.selected{background:#00b4a6}
+.timer-bar{display:flex;justify-content:space-between;align-items:center;background:#f0f4f8;border-radius:8px;padding:10px 18px;margin-bottom:15px}
+.timer-bar .timer{font-size:18px;font-weight:700;color:#1a2744}
+.timer-bar .timer.warning{color:#f39c12}
+.timer-bar .timer.danger{color:#e74c3c}
+.timer-bar .score{font-size:16px;font-weight:600;color:#00b4a6}
+.question{margin-bottom:25px;padding-bottom:20px;border-bottom:1px solid #eee}
+.question:last-child{border-bottom:none}
+.question-num{font-size:14px;font-weight:700;color:#00b4a6;margin-bottom:5px}
+.question-text{font-size:15px;color:#333;margin-bottom:12px}
+.question-text .insert-sentence{background:#fff3cd;border:1px solid #f39c12;border-radius:4px;padding:2px 8px;font-style:italic}
+.option{display:block;padding:10px 15px;margin-bottom:6px;border:1px solid #ddd;border-radius:8px;cursor:pointer;font-size:14px;transition:all 0.2s}
+.option:hover{background:#f0f4f8;border-color:#00b4a6}
+.option.selected{background:#e8f8f6;border-color:#00b4a6;font-weight:600}
+.option.correct{background:#d1f5f0;border-color:#00b4a6;color:#007a70;font-weight:600}
+.option.wrong{background:#fce4e4;border-color:#e74c3c;color:#c0392b;font-weight:600}
+.option.disabled{cursor:default}
+.option.disabled:hover{background:inherit;border-color:#ddd}
+.option .opt-label{font-weight:700;margin-right:8px}
+.explanation{margin-top:10px;padding:10px 15px;border-radius:8px;font-size:13px;display:none}
+.explanation.show{display:block}
+.explanation.correct-exp{background:#d1f5f0;color:#007a70}
+.explanation.wrong-exp{background:#fce4e4;color:#c0392b}
+.summary-instructions{font-size:14px;color:#f39c12;font-weight:600;margin-bottom:10px}
+.btn{display:inline-block;padding:10px 24px;border-radius:8px;border:none;cursor:pointer;font-size:15px;font-weight:600;font-family:'Segoe UI',sans-serif;transition:all 0.2s}
+.btn-primary{background:#00b4a6;color:#fff}
+.btn-primary:hover{background:#009690}
+.btn-save{background:#1a2744;color:#fff;margin-top:10px}
+.btn-save:hover{background:#2d3d5e}
+.submit-section{text-align:center;margin-top:15px}
+.results-summary{text-align:center;margin-top:15px;padding:15px;border-radius:8px;background:#f0f4f8;font-size:16px;color:#1a2744;font-weight:600;display:none}
+.results-summary.show{display:block}
+</style>
+</head>
+<body>
+<div class="container">
+  <a href="../../index.html" class="back-link">← Back to Hub</a>
+  <div class="header">
+    <h1>TOEFL Reading — Practice Section</h1>
+    <p class="subtitle">Based on The Official Guide to the TOEFL iBT Test 2021</p>
+  </div>
+
+  <div class="card">
+    <div class="strategies-toggle" id="strategiesToggle">
+      <span>📖 Reading Strategies</span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="strategies-content" id="strategiesContent">
+      <ul>
+        <li><strong>Skim the passage first</strong> for the main idea — read the first and last sentences of each paragraph.</li>
+        <li><strong>Read each question carefully</strong> — identify what type of question it is before looking at the options.</li>
+        <li><strong>Use context clues for vocabulary</strong> — look at surrounding sentences to determine word meaning.</li>
+        <li><strong>Look for transition words</strong> (however, therefore, although) — they signal relationships between ideas.</li>
+        <li><strong>Manage your time:</strong> approximately 20 minutes per passage set.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="passagesContainer"></div>
+
+  <div class="submit-section">
+    <button class="btn btn-save" onclick="saveResults()">💾 Save Results</button>
+  </div>
+  <div class="results-summary" id="resultsSummary"></div>
+</div>
+<script>
+/* PASSAGE DATA */
+const passages = [
+  {
+    id: 1,
+    title: "The Origins of Agriculture",
+    meta: "Approximately 400 words · 5 questions · 20 minutes",
+    text: `The transition from hunting and gathering to agriculture represents one of the most significant developments in human history. For most of our existence, humans survived by hunting wild animals and gathering wild plants. Then, beginning roughly 12,000 years ago, people in several parts of the world began to cultivate crops and domesticate animals. This shift, known as the Neolithic Revolution, fundamentally changed human societies.
+
+Agriculture did not begin in a single location and spread outward. Instead, it developed independently in at least three major regions of the world. The earliest evidence comes from the Fertile Crescent, a crescent-shaped region in the Middle East spanning modern-day Iraq, Syria, and Turkey. There, around 10,000 BCE, people began domesticating wheat, barley, peas, and lentils. The Fertile Crescent offered a unique combination of wild plant species that could be easily cultivated and a climate that supported year-round growing seasons.
+
+In East Asia, particularly along the Yangtze and Yellow River valleys, rice cultivation began around 9,000 BCE. Millet was also domesticated in northern China around the same time. These crops would eventually feed the largest populations in the ancient world and support complex civilizations. Meanwhile, in Mesoamerica, maize (corn) was domesticated from a wild grass called teosint approximately 7,000 BCE. The development of maize was remarkable because teosint bore little resemblance to modern corn, requiring centuries of selective breeding.
+
+Several factors explain why agriculture emerged in these specific regions. First, these areas had large populations of wild plants and animals suitable for domestication. Second, climate change at the end of the last Ice Age created conditions that encouraged settled farming. As temperatures rose and became more stable, wild food sources became more abundant and predictable, allowing people to stay in one place longer. Third, population pressure may have pushed communities to find more reliable food sources.
+
+The consequences of agriculture were profound. Food surpluses allowed populations to grow rapidly. People could specialize in crafts, trade, and governance rather than spending all their time acquiring food. This specialization led to the development of cities, writing systems, and complex social hierarchies. In effect, agriculture laid the foundation for nearly all aspects of modern civilization.`,
+    questions: [
+      {
+        type: "mc",
+        num: 1,
+        text: "What is the main idea of the passage?",
+        options: ["Agriculture was invented in the Fertile Crescent and spread to other regions.", "Agriculture developed independently in multiple regions and transformed human societies.", "Climate change was the sole reason agriculture began.", "The Neolithic Revolution occurred suddenly across the world."],
+        correct: 1,
+        explanation: "The passage emphasizes that agriculture developed independently in at least three regions (Fertile Crescent, East Asia, Mesoamerica) and that its consequences were profound, transforming societies. Option B captures both key ideas."
+      },
+      {
+        type: "mc",
+        num: 2,
+        text: "According to paragraph 2, which of the following was NOT one of the crops first domesticated in the Fertile Crescent?",
+        options: ["Wheat", "Barley", "Rice", "Lentils"],
+        correct: 2,
+        explanation: "Paragraph 2 lists wheat, barley, peas, and lentils as crops domesticated in the Fertile Crescent. Rice was domesticated in East Asia, not the Fertile Crescent."
+      },
+      {
+        type: "mc",
+        num: 3,
+        text: "The word \"abundant\" in paragraph 4 is closest in meaning to:",
+        options: ["Dangerous", "Plentiful", "Unusual", "Hidden"],
+        correct: 1,
+        explanation: "In context, \"wild food sources became more abundant and predictable\" means they became more plentiful — available in large quantities. \"Abundant\" is closest in meaning to \"plentiful.\""
+      },
+      {
+        type: "mc",
+        num: 4,
+        text: "What can be inferred about the relationship between teosint and modern corn?",
+        options: ["Teosint and modern corn were identical plants.", "Teosint required significant human intervention to become modern corn.", "Teosint was more nutritious than modern corn.", "Teosint could not grow in Mesoamerica."],
+        correct: 1,
+        explanation: "The passage states that \"teosint bore little resemblance to modern corn, requiring centuries of selective breeding.\" This implies significant human intervention was needed to transform teosint into modern corn."
+      },
+      {
+        type: "insert",
+        num: 5,
+        text: "Where would the following sentence best fit in paragraph 3?\n\n\"This parallel development suggests that different societies reached similar conclusions about the benefits of cultivation.\"",
+        insertSentence: "This parallel development suggests that different societies reached similar conclusions about the benefits of cultivation.",
+        correct: 2,
+        explanation: "The sentence refers to \"parallel development,\" which connects the discussion of East Asian rice/millet and Mesoamerican maize. It fits best after the mention of millet in northern China and before the transition to Mesoamerica, as it summarizes the parallel nature of these developments."
+      }
+    ]
+  },
+  {
+    id: 2,
+    title: "Coral Reef Ecosystems",
+    meta: "Approximately 400 words · 5 questions · 20 minutes",
+    text: `Coral reefs are among the most diverse and valuable ecosystems on Earth. Often called the "rainforests of the sea," they cover less than one percent of the ocean floor yet support nearly twenty-five percent of all marine species. These vibrant underwater structures are built by tiny animals called coral polyps, which secrete calcium carbonate to form hard skeletons. Over thousands of years, these skeletons accumulate into the massive reef structures we see today.
+
+Coral polyps live in a remarkable partnership with microscopic algae called zooxanthellae. The algae live inside the coral's tissues and provide them with food through photosynthesis, while the coral gives the algae a protected environment and nutrients. This relationship is what gives corals their brilliant colors. When ocean temperatures rise, corals become stressed and expel their algae in a process called bleaching. Without their algae, corals lose their color and their primary food source, making them appear white and leaving them vulnerable to disease.
+
+The biodiversity of coral reefs is staggering. A single reef can host thousands of species, including fish, crustaceans, mollusks, sea turtles, and sharks. Reef structures also provide crucial ecosystem services: they protect coastlines from storms and erosion, support fishing industries that feed millions of people, and attract tourists who contribute billions of dollars to local economies. For many coastal communities, reefs are not just beautiful — they are essential to survival.
+
+Unfortunately, coral reefs face unprecedented threats. Climate change is the most significant, as rising sea temperatures lead to more frequent and severe bleaching events. Ocean acidification, caused by the absorption of excess carbon dioxide, makes it harder for corals to build their skeletons. Pollution from coastal development, overfishing, and destructive fishing practices further degrade reef health. Scientists estimate that if current trends continue, most of the world's coral reefs could be lost within this century.
+
+Efforts to protect coral reefs are underway around the world. Marine protected areas have been established to limit fishing and development near reefs. Researchers are also studying heat-resistant coral species that might survive warmer oceans. However, most scientists agree that the long-term survival of coral reefs depends on addressing the root cause: reducing global carbon emissions that drive both warming and acidification.`,
+    questions: [
+      {
+        type: "mc",
+        num: 1,
+        text: "What is the main idea of the passage?",
+        options: ["Coral reefs are colorful underwater structures built by polyps.", "Coral reefs are highly diverse ecosystems that face serious threats from climate change and human activity.", "Zooxanthellae are microscopic algae that live inside coral tissues.", "Marine protected areas can save all coral reefs from destruction."],
+        correct: 1,
+        explanation: "The passage covers coral reef biodiversity, the threats they face, and conservation efforts. Option B captures the central theme: reefs are diverse ecosystems facing serious threats."
+      },
+      {
+        type: "mc",
+        num: 2,
+        text: "According to the passage, what percentage of marine species do coral reefs support?",
+        options: ["Less than one percent", "Nearly twenty-five percent", "Approximately fifty percent", "Over ninety percent"],
+        correct: 1,
+        explanation: "Paragraph 1 states that coral reefs \"cover less than one percent of the ocean floor yet support nearly twenty-five percent of all marine species.\""
+      },
+      {
+        type: "mc",
+        num: 3,
+        text: "The word \"they\" in the sentence \"they protect coastlines from storms and erosion\" (paragraph 3) refers to:",
+        options: ["Fish species", "Coral reefs", "Crustaceans", "Local economies"],
+        correct: 1,
+        explanation: "The sentence is describing ecosystem services provided by reef structures. \"They\" refers to the reef structures (coral reefs) mentioned in the preceding sentence."
+      },
+      {
+        type: "mc",
+        num: 4,
+        text: "Why does the author mention \"rainforests of the sea\" in paragraph 1?",
+        options: ["To explain how coral reefs produce rain", "To emphasize the extraordinary biodiversity of coral reefs by comparing them to rainforests", "To suggest that coral reefs are found in tropical rainforest regions", "To argue that rainforests and coral reefs contain the same species"],
+        correct: 1,
+        explanation: "The author uses the nickname \"rainforests of the sea\" to draw a comparison between the biodiversity of rainforests and that of coral reefs, emphasizing how diverse reefs are despite covering a small area."
+      },
+      {
+        type: "summary",
+        num: 5,
+        text: "Which of the following sentences express essential information from the passage? (Select 3)",
+        summaryInstructions: "Select the THREE statements that express the most essential ideas from the passage.",
+        options: ["Coral reefs support approximately twenty-five percent of all marine species despite covering less than one percent of the ocean floor.", "Coral polyps maintain a symbiotic relationship with zooxanthellae algae that provides food and color.", "Rising ocean temperatures cause coral bleaching, which makes corals vulnerable to disease.", "Coral reefs are found in every ocean on Earth.", "The word \"reef\" comes from an Old English word meaning \"barrier.\"", "Tourism at coral reefs generates exactly one billion dollars annually."],
+        correct: [0, 1, 2],
+        explanation: "The three essential ideas are: (1) reefs support 25% of marine species on <1% of ocean floor, (2) the coral-zooxanthellae symbiotic relationship, and (3) bleaching from rising temperatures. The other options are either false or not mentioned in the passage."
+      }
+    ]
+  }
+];
+
+/* LOGIC */
+// State management
+const state = {};
+passages.forEach(p => {
+  state[p.id] = {
+    answers: {},
+    submitted: {},
+    score: 0,
+    timeLeft: 1200,
+    timerInterval: null,
+    startTime: null,
+    elapsed: 0
+  };
+});
+
+// Strategies toggle
+document.getElementById('strategiesToggle').addEventListener('click', function() {
+  this.classList.toggle('open');
+  document.getElementById('strategiesContent').classList.toggle('open');
+});
+
+// Format time
+function formatTime(seconds) {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${m}:${s.toString().padStart(2, '0')}`;
+}
+
+// Start timer for a passage
+function startTimer(passageId) {
+  const s = state[passageId];
+  if (s.timerInterval) return;
+  s.startTime = Date.now();
+  s.timerInterval = setInterval(() => {
+    s.timeLeft--;
+    s.elapsed = 1200 - s.timeLeft;
+    const timerEl = document.getElementById(`timer-${passageId}`);
+    if (timerEl) {
+      timerEl.textContent = formatTime(s.timeLeft);
+      timerEl.classList.remove('warning', 'danger');
+      if (s.timeLeft <= 300) timerEl.classList.add('danger');
+      else if (s.timeLeft <= 600) timerEl.classList.add('warning');
+    }
+    if (s.timeLeft <= 0) {
+      clearInterval(s.timerInterval);
+      s.timerInterval = null;
+      submitPassage(passageId);
+    }
+  }, 1000);
+}
+
+// Render passages
+function renderPassages() {
+  const container = document.getElementById('passagesContainer');
+  container.innerHTML = passages.map(p => `
+    <div class="card" id="passage-${p.id}">
+      <div class="passage-title">${p.title}</div>
+      <div class="passage-meta">${p.meta}</div>
+      <div class="timer-bar">
+        <span class="timer" id="timer-${p.id}">20:00</span>
+        <span class="score" id="score-${p.id}">Score: 0 / ${p.questions.length}</span>
+      </div>
+      <div class="passage-text" id="text-${p.id}">${renderPassageText(p)}</div>
+      <div id="questions-${p.id}">${renderQuestions(p)}</div>
+      <div class="submit-section">
+        <button class="btn btn-primary" onclick="startTimer(${p.id}); submitPassage(${p.id})">Submit Answers</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Render passage text with insert markers for insert questions
+function renderPassageText(p) {
+  let text = p.text;
+  const insertQ = p.questions.find(q => q.type === 'insert');
+  if (insertQ) {
+    const paragraphs = text.split('\n\n');
+    const marked = paragraphs.map((para, i) => {
+      return `[${i}] ` + para;
+    });
+    text = marked.join('\n\n');
+  }
+  return text;
+}
+
+// Render questions for a passage
+function renderQuestions(p) {
+  return p.questions.map((q, qi) => {
+    let html = `<div class="question" id="q-${p.id}-${qi}">
+      <div class="question-num">Question ${q.num}</div>
+      <div class="question-text">`;
+
+    if (q.type === 'insert') {
+      html += `Where would the following sentence best fit?<br><span class="insert-sentence">"${q.insertSentence}"</span>`;
+    } else if (q.type === 'summary') {
+      html += `${q.text}<div class="summary-instructions">${q.summaryInstructions}</div>`;
+    } else {
+      html += q.text;
+    }
+    html += `</div>`;
+
+    if (q.type === 'insert') {
+      const paragraphs = p.text.split('\n\n');
+      html += `<div id="opts-${p.id}-${qi}">`;
+      paragraphs.forEach((para, i) => {
+        html += `<div class="option" onclick="selectInsert(${p.id},${qi},${i})" id="opt-${p.id}-${qi}-${i}">
+          <span class="opt-label">[${i}]</span> After this paragraph: "${para.substring(0, 60)}..."
+        </div>`;
+      });
+      html += `</div>`;
+    } else if (q.type === 'summary') {
+      html += `<div id="opts-${p.id}-${qi}">`;
+      q.options.forEach((opt, i) => {
+        html += `<div class="option" onclick="toggleSummary(${p.id},${qi},${i})" id="opt-${p.id}-${qi}-${i}">
+          <span class="opt-label">(${String.fromCharCode(65 + i)})</span> ${opt}
+        </div>`;
+      });
+      html += `</div>`;
+    } else {
+      html += `<div id="opts-${p.id}-${qi}">`;
+      q.options.forEach((opt, i) => {
+        html += `<div class="option" onclick="selectAnswer(${p.id},${qi},${i})" id="opt-${p.id}-${qi}-${i}">
+          <span class="opt-label">(${String.fromCharCode(65 + i)})</span> ${opt}
+        </div>`;
+      });
+      html += `</div>`;
+    }
+    html += `<div class="explanation" id="exp-${p.id}-${qi}"></div>`;
+    html += `</div>`;
+    return html;
+  }).join('');
+}
+
+// Select answer (single choice)
+function selectAnswer(pId, qIdx, optIdx) {
+  const s = state[pId];
+  if (s.submitted[qIdx]) return;
+  s.answers[qIdx] = [optIdx];
+  const opts = document.querySelectorAll(`#opts-${pId}-${qIdx} .option`);
+  opts.forEach(o => o.classList.remove('selected'));
+  document.getElementById(`opt-${pId}-${qIdx}-${optIdx}`).classList.add('selected');
+}
+
+// Toggle summary selection (multi choice)
+function toggleSummary(pId, qIdx, optIdx) {
+  const s = state[pId];
+  if (s.submitted[qIdx]) return;
+  if (!s.answers[qIdx]) s.answers[qIdx] = [];
+  const idx = s.answers[qIdx].indexOf(optIdx);
+  if (idx > -1) {
+    s.answers[qIdx].splice(idx, 1);
+    document.getElementById(`opt-${pId}-${qIdx}-${optIdx}`).classList.remove('selected');
+  } else {
+    if (s.answers[qIdx].length < 3) {
+      s.answers[qIdx].push(optIdx);
+      document.getElementById(`opt-${pId}-${qIdx}-${optIdx}`).classList.add('selected');
+    }
+  }
+}
+
+// Select insert position
+function selectInsert(pId, qIdx, optIdx) {
+  const s = state[pId];
+  if (s.submitted[qIdx]) return;
+  s.answers[qIdx] = [optIdx];
+  const opts = document.querySelectorAll(`#opts-${pId}-${qIdx} .option`);
+  opts.forEach(o => o.classList.remove('selected'));
+  document.getElementById(`opt-${pId}-${qIdx}-${optIdx}`).classList.add('selected');
+}
+
+// Submit a passage
+function submitPassage(pId) {
+  const s = state[pId];
+  const passage = passages.find(p => p.id === pId);
+  let score = 0;
+
+  passage.questions.forEach((q, qi) => {
+    s.submitted[qi] = true;
+    const userAns = s.answers[qi] || [];
+    const expEl = document.getElementById(`exp-${pId}-${qi}`);
+    const opts = document.querySelectorAll(`#opts-${pId}-${qi} .option`);
+
+    let isCorrect = false;
+    if (q.type === 'summary') {
+      isCorrect = userAns.length === q.correct.length &&
+        q.correct.every(c => userAns.includes(c));
+      q.correct.forEach(c => {
+        document.getElementById(`opt-${pId}-${qi}-${c}`).classList.add('correct');
+      });
+      userAns.forEach(a => {
+        if (!q.correct.includes(a)) {
+          document.getElementById(`opt-${pId}-${qi}-${a}`).classList.add('wrong');
+        }
+      });
+    } else {
+      isCorrect = userAns.length > 0 && userAns[0] === q.correct;
+      document.getElementById(`opt-${pId}-${qi}-${q.correct}`).classList.add('correct');
+      if (userAns.length > 0 && userAns[0] !== q.correct) {
+        document.getElementById(`opt-${pId}-${qi}-${userAns[0]}`).classList.add('wrong');
+      }
+    }
+
+    opts.forEach(o => o.classList.add('disabled'));
+
+    if (isCorrect) {
+      score++;
+      expEl.className = 'explanation show correct-exp';
+      expEl.innerHTML = `<strong>✓ Correct!</strong> ${q.explanation}`;
+    } else {
+      expEl.className = 'explanation show wrong-exp';
+      const userStr = userAns.length > 0 ? userAns.map(a => String.fromCharCode(65 + a)).join(', ') : 'No answer';
+      const correctStr = q.type === 'summary' ? q.correct.map(c => String.fromCharCode(65 + c)).join(', ') : String.fromCharCode(65 + q.correct);
+      expEl.innerHTML = `<strong>✗ Incorrect.</strong> Your answer: ${userStr}. Correct: ${correctStr}. ${q.explanation}`;
+    }
+  });
+
+  s.score = score;
+  document.getElementById(`score-${pId}`).textContent = `Score: ${score} / ${passage.questions.length}`;
+
+  if (s.timerInterval) {
+    clearInterval(s.timerInterval);
+    s.timerInterval = null;
+  }
+
+  checkAllSubmitted();
+}
+
+// Check if all passages submitted
+function checkAllSubmitted() {
+  const allDone = passages.every(p => Object.keys(state[p.id].submitted).length === p.questions.length);
+  if (allDone) {
+    const total = passages.reduce((sum, p) => sum + state[p.id].score, 0);
+    const max = passages.reduce((sum, p) => sum + p.questions.length, 0);
+    const summary = document.getElementById('resultsSummary');
+    summary.innerHTML = `📊 Total Score: ${total} / ${max} (${Math.round(total/max*100)}%)<br>Use "Save Results" to download your detailed report.`;
+    summary.classList.add('show');
+  }
+}
+
+// Save results to file
+function saveResults() {
+  const now = new Date();
+  const ts = now.toISOString().replace(/[:.]/g, '-').substring(0, 19);
+  let report = `TOEFL READING PRACTICE - RESULTS\n`;
+  report += `==================================\n\n`;
+  report += `Date: ${now.toLocaleString()}\n\n`;
+
+  passages.forEach(p => {
+    const s = state[p.id];
+    report += `PASSAGE ${p.id}: ${p.title}\n`;
+    report += `${'-'.repeat(40)}\n`;
+    report += `Score: ${s.score} / ${p.questions.length}\n`;
+    report += `Time Used: ${formatTime(s.elapsed)} of 20:00\n\n`;
+
+    p.questions.forEach((q, qi) => {
+      const userAns = s.answers[qi] || [];
+      const userStr = userAns.length > 0 ? userAns.map(a => String.fromCharCode(65 + a)).join(', ') : 'No answer';
+      const correctStr = q.type === 'summary' ? q.correct.map(c => String.fromCharCode(65 + c)).join(', ') : String.fromCharCode(65 + q.correct);
+      const isCorrect = q.type === 'summary'
+        ? (userAns.length === q.correct.length && q.correct.every(c => userAns.includes(c)))
+        : (userAns.length > 0 && userAns[0] === q.correct);
+      report += `Q${q.num}: ${isCorrect ? '✓ Correct' : '✗ Incorrect'}\n`;
+      report += `  Your Answer: ${userStr}\n`;
+      report += `  Correct Answer: ${correctStr}\n`;
+      report += `  Explanation: ${q.explanation}\n\n`;
+    });
+    report += `\n`;
+  });
+
+  const total = passages.reduce((sum, p) => sum + state[p.id].score, 0);
+  const max = passages.reduce((sum, p) => sum + p.questions.length, 0);
+  report += `\nOVERALL SCORE: ${total} / ${max} (${Math.round(total/max*100)}%)\n`;
+
+  const blob = new Blob([report], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `drill-reading-results-${ts}.txt`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// Initialize
+renderPassages();
+</script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEFL Listening — Practice Section</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#1a2744;color:#fff;min-height:100vh;padding:20px}
+.container{max-width:900px;margin:0 auto}
+.header{text-align:center;margin-bottom:24px}
+.header h1{font-size:28px;margin-bottom:6px}
+.header .subtitle{color:#8a9ab0;font-size:14px}
+.back-link{display:inline-block;color:#00b4a6;text-decoration:none;margin-bottom:16px;font-size:14px}
+.back-link:hover{text-decoration:underline}
+.card{background:#fff;color:#1a2744;border-radius:8px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.strategies-toggle{cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:18px;font-weight:600;color:#00b4a6}
+.strategies-content{margin-top:16px;display:none}
+.strategies-content ul{list-style:none;padding-left:0}
+.strategies-content li{padding:8px 0;border-bottom:1px solid #eee;font-size:14px}
+.strategies-content li:before{content:"💡 ";margin-right:4px}
+.set-title{font-size:20px;font-weight:700;margin-bottom:12px;color:#1a2744}
+.set-desc{color:#6a7a8a;font-size:14px;margin-bottom:16px}
+.audio-controls{display:flex;gap:12px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
+.btn{padding:10px 20px;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Segoe UI',sans-serif}
+.btn-play{background:#00b4a6;color:#fff}
+.btn-play:disabled{opacity:.5;cursor:not-allowed}
+.btn-submit{background:#1a2744;color:#fff}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed}
+.btn-save{background:#f39c12;color:#fff}
+.btn-save:disabled{opacity:.5;cursor:not-allowed}
+.btn-transcript{background:#e74c3c;color:#fff}
+.btn-transcript:disabled{opacity:.5;cursor:not-allowed}
+.progress-wrap{flex:1;min-width:200px;background:#e0e0e0;border-radius:8px;height:24px;overflow:hidden;position:relative}
+.progress-bar{height:100%;background:linear-gradient(90deg,#00b4a6,#00d4c6);width:0;transition:width .1s linear;border-radius:8px}
+.progress-label{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#1a2744}
+.notes-area{width:100%;min-height:120px;border:2px solid #e0e0e0;border-radius:8px;padding:12px;font-size:14px;font-family:'Segoe UI',sans-serif;resize:vertical;margin-bottom:16px}
+.notes-area:focus{border-color:#00b4a6;outline:none}
+.notes-area:disabled{background:#f5f5f5;cursor:not-allowed}
+.transcript{background:#f5f7fa;border-radius:8px;padding:16px;margin-bottom:16px;display:none;max-height:400px;overflow-y:auto}
+.transcript-line{margin-bottom:10px;font-size:14px;line-height:1.6}
+.transcript-speaker{font-weight:700;color:#00b4a6}
+.questions{display:none}
+.question{margin-bottom:20px;padding:16px;background:#f5f7fa;border-radius:8px}
+.question-text{font-size:15px;font-weight:600;margin-bottom:12px}
+.question-type{display:inline-block;background:#00b4a6;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;margin-bottom:8px}
+.option{display:block;padding:10px 14px;margin-bottom:6px;border:2px solid #e0e0e0;border-radius:8px;cursor:pointer;font-size:14px;transition:all .2s}
+.option:hover{border-color:#00b4a6;background:#f0fbfa}
+.option.selected{border-color:#1a2744;background:#e8ecf0}
+.option.correct{border-color:#00b4a6;background:#d4f5f0}
+.option.wrong{border-color:#e74c3c;background:#fde8e6}
+.option.disabled{cursor:default}
+.explanation{margin-top:8px;padding:10px;border-radius:8px;font-size:13px;display:none}
+.explanation.correct-exp{background:#d4f5f0;border-left:4px solid #00b4a6}
+.explanation.wrong-exp{background:#fde8e6;border-left:4px solid #e74c3c}
+.score-display{font-size:16px;font-weight:700;margin-top:12px;padding:12px;border-radius:8px;text-align:center}
+.score-perfect{background:#d4f5f0;color:#00b4a6}
+.score-good{background:#fef3cd;color:#856404}
+.score-poor{background:#fde8e6;color:#e74c3c}
+.timer{display:inline-block;padding:6px 14px;border-radius:8px;font-size:14px;font-weight:700;margin-bottom:12px}
+.timer-normal{background:#e8ecf0;color:#1a2744}
+.timer-warning{background:#fef3cd;color:#856404}
+.timer-danger{background:#fde8e6;color:#e74c3c;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.7}}
+.section-divider{height:2px;background:#3a4a6a;margin:24px 0;border-radius:2px}
+.footer{text-align:center;margin-top:24px}
+.footer .btn{font-size:16px;padding:14px 32px}
+.results-summary{display:none;margin-top:16px;padding:16px;background:#fff;border-radius:8px;color:#1a2744}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>TOEFL Listening — Practice Section</h1>
+<p class="subtitle">Based on Official TOEFL iBT Tests & Collins Skills</p>
+</div>
+<a href="../../index.html" class="back-link">← Back to Hub</a>
+<div class="card" id="strategiesCard">
+<div class="strategies-toggle" onclick="toggleStrategies()">
+<span>📋 Listening Strategies</span>
+<span id="stratArrow">▼</span>
+</div>
+<div class="strategies-content" id="strategiesContent">
+<ul>
+<li>Focus on the main idea first</li>
+<li>Take notes while listening (note-taking area provided)</li>
+<li>Pay attention to transition words and tone</li>
+<li>Watch for purpose questions ("Why does the professor mention...")</li>
+<li>Manage time: 10 min for questions after each audio</li>
+</ul>
+</div>
+</div>
+<div id="setsContainer"></div>
+<div class="footer">
+<button class="btn btn-save" id="saveBtn" onclick="saveResults()" disabled>💾 Save Results</button>
+</div>
+<div class="results-summary" id="resultsSummary"></div>
+</div>
+<script>
+function toggleStrategies(){var c=document.getElementById('strategiesContent');var a=document.getElementById('stratArrow');if(c.style.display==='block'){c.style.display='none';a.textContent='\u25BC';}else{c.style.display='block';a.textContent='\u25B2';}}
+var sets=[
+{id:1,title:"SET 1 \u2014 Conversation: Student & Academic Advisor",desc:"A 2-3 minute conversation between a student and an academic advisor about course registration.",duration:150,
+transcript:[
+{speaker:"Advisor",text:"Hi Maria, come in. Have a seat. You wanted to talk about your course registration for next semester?"},
+{speaker:"Student",text:"Yes, thank you, Dr. Phillips. I'm a bit confused about which electives to take. I've completed most of my core requirements, but I still need nine more credits of electives."},
+{speaker:"Advisor",text:"Let me pull up your transcript... Okay, so you've completed all your core computer science courses. You have a 3.4 GPA, which is solid. Now, for electives, you have quite a few options. What are you interested in?"},
+{speaker:"Student",text:"Well, I've been thinking about taking Database Systems, but I also saw there's a new course on Cloud Architecture. And I was considering an elective outside the department \u2014 maybe something in business."},
+{speaker:"Advisor",text:"That's a good mix. Database Systems is a classic \u2014 it covers relational design, SQL, and NoSQL. Very practical for industry. Cloud Architecture is new this semester, taught by Professor Chen. It focuses on AWS and Azure deployment patterns."},
+{speaker:"Student",text:"That sounds really relevant to what I want to do after graduation. I'm hoping to work as a cloud engineer. But I'm worried about the workload. Would taking both Database Systems and Cloud Architecture be too much?"},
+{speaker:"Advisor",text:"It would be challenging but doable. Both are project-heavy courses. However, I'd recommend also taking the business elective you mentioned. Employers increasingly value that combination \u2014 technical skills plus business awareness."},
+{speaker:"Student",text:"Which business course would you suggest?"},
+{speaker:"Advisor",text:"There's 'IT Project Management' in the business school. It counts toward your elective credits and complements the technical courses well. Many of our recent graduates who took it said it gave them an edge in interviews."},
+{speaker:"Student",text:"That's three courses then \u2014 Database Systems, Cloud Architecture, and IT Project Management. That's nine credits, right?"},
+{speaker:"Advisor",text:"Exactly. Three three-credit courses. That brings you to a full schedule. Just keep in mind that the add/drop deadline is the first Friday of the semester, so if the workload feels overwhelming, you can adjust."},
+{speaker:"Student",text:"That's good to know. One more question \u2014 I heard Cloud Architecture has a prerequisite. Is that true?"},
+{speaker:"Advisor",text:"Yes, the prerequisite is Distributed Systems, which you completed last fall with a B+. So you're all set. I'll approve your registration. Make sure to register early \u2014 Cloud Architecture caps at thirty students and it fills up fast."},
+{speaker:"Student",text:"Thank you so much, Dr. Phillips. I'll register right away."}
+],
+questions:[
+{type:"Main Idea",q:"What is the main purpose of the conversation?",options:["To discuss the student's academic performance and GPA","To help the student choose elective courses for next semester","To explain the prerequisites for Cloud Architecture","To plan the student's post-graduation career path"],correct:1,exp:"The conversation centers on the student seeking help selecting electives for next semester. While GPA, prerequisites, and career goals are mentioned, they are supporting details, not the main purpose."},
+{type:"Detail",q:"How many elective credits does the student still need?",options:["Six credits","Nine credits","Twelve credits","Three credits"],correct:1,exp:"The student states 'I still need nine more credits of electives.' The advisor later confirms that three three-credit courses equal nine credits."},
+{type:"Purpose",q:"Why does the advisor recommend IT Project Management?",options:["Because it is required for the computer science degree","Because it has no prerequisites","Because employers value the combination of technical and business skills","Because it is the easiest elective available"],correct:2,exp:"The advisor says 'Employers increasingly value that combination \u2014 technical skills plus business awareness' and that graduates who took it 'said it gave them an edge in interviews.'"},
+{type:"Inference",q:"What can be inferred about the Cloud Architecture course?",options:["It is a required course for all CS students","It has limited enrollment and is popular","It is only offered in the fall semester","It does not require any prerequisites"],correct:1,exp:"The advisor says 'Cloud Architecture caps at thirty students and it fills up fast,' indicating limited enrollment and popularity. It's a new elective, not required, and has a prerequisite (Distributed Systems)."},
+{type:"Speaker Meaning",q:"When the advisor says 'It would be challenging but doable,' what does she mean?",options:["The student should not take both courses","The courses are too difficult for the student","The workload is heavy but manageable with effort","The student needs to drop one course"],correct:2,exp:"The phrase 'challenging but doable' acknowledges difficulty while expressing that success is possible. The advisor doesn't discourage taking both courses \u2014 she proceeds to recommend a third course as well."}
+]
+},
+{id:2,title:"SET 2 \u2014 Lecture: Introduction to Behavioral Economics",desc:"A 4-5 minute lecture about how behavioral economics challenges classical economics.",duration:300,
+transcript:[
+{speaker:"Professor",text:"Good morning, everyone. Today we're going to explore a field that has fundamentally changed how we think about human decision-making: behavioral economics. Now, before we dive in, let me ask you \u2014 what does classical economics tell us about how people make choices?"},
+{speaker:"Professor",text:"Classical economics is built on a key assumption: that people are rational. We call this 'Homo economicus' \u2014 the economic man. This hypothetical person always has complete information, calculates costs and benefits perfectly, and consistently chooses the option that maximizes their utility. Sound realistic? I didn't think so."},
+{speaker:"Professor",text:"And that's exactly the point. Behavioral economics emerged because real people don't behave like Homo economicus. We have cognitive biases, we're influenced by emotions, and we often make decisions that are, well, predictably irrational. That's actually the title of a famous book by Dan Ariely, one of the key figures in this field."},
+{speaker:"Professor",text:"Let's look at three important concepts. First, the anchoring effect. This is our tendency to rely too heavily on the first piece of information we receive \u2014 the 'anchor' \u2014 when making decisions. For example, if you see a shirt originally priced at $100, now marked down to $50, you think it's a great deal. But if the same shirt were simply priced at $50 with no reference, you might not feel the same urgency. The $100 anchor shaped your perception."},
+{speaker:"Professor",text:"Second, loss aversion. Research by Daniel Kahneman and Amos Tversky \u2014 Kahneman won the Nobel Prize for this work in 2002 \u2014 showed that people feel losses about twice as intensely as equivalent gains. Losing $50 hurts more than gaining $50 feels good. This has enormous implications for marketing, investing, and policy design."},
+{speaker:"Professor",text:"Third, the endowment effect. Once we own something, we value it more than we did before we owned it. In a famous experiment, researchers gave half the students in a classroom a mug and asked them how much they'd sell it for. The other half, who didn't receive a mug, were asked how much they'd pay to buy one. The sellers wanted about twice as much as the buyers were willing to pay. Same mug, same people \u2014 but ownership changed the perceived value."},
+{speaker:"Professor",text:"Now, why does all this matter? Because these insights have been applied far beyond academia. Governments around the world have created 'nudge units' \u2014 teams that use behavioral insights to design better policies. The UK's Behavioural Insights Team, for example, redesigned tax reminder letters. By simply adding the line 'Most people pay their taxes on time,' they increased compliance significantly. That's the power of social proof, another behavioral concept."},
+{speaker:"Professor",text:"So, to summarize: behavioral economics doesn't reject classical economics \u2014 it enriches it. Classical models are still useful for building theoretical frameworks, but behavioral economics adds the messy, fascinating reality of how humans actually decide. Next week, we'll look at how these concepts apply specifically to consumer technology adoption. Read chapter three of Ariely's book before then. Any questions? ... Yes, in the back?"}
+],
+questions:[
+{type:"Main Idea",q:"What is the main topic of the lecture?",options:["How to apply classical economics to public policy","How behavioral economics challenges the assumption of rational decision-making","The history of Nobel Prize winners in economics","How to design effective marketing campaigns"],correct:1,exp:"The professor introduces behavioral economics as a field that emerged because 'real people don't behave like Homo economicus,' challenging classical economics' rationality assumption. All other topics are supporting examples."},
+{type:"Detail",q:"According to the professor, what does 'Homo economicus' refer to?",options:["A real person who makes irrational decisions","A hypothetical person who always makes perfectly rational choices","A research method used in behavioral economics","A type of cognitive bias studied by Kahneman"],correct:1,exp:"The professor defines Homo economicus as 'the economic man' \u2014 'This hypothetical person always has complete information, calculates costs and benefits perfectly, and consistently chooses the option that maximizes their utility.'"},
+{type:"Detail",q:"In the mug experiment, how much more did sellers want compared to what buyers were willing to pay?",options:["About the same amount","About half as much","About twice as much","About three times as much"],correct:2,exp:"The professor states: 'The sellers wanted about twice as much as the buyers were willing to pay.' This demonstrates the endowment effect."},
+{type:"Organization",q:"How does the professor organize the main part of the lecture?",options:["Chronologically, from oldest to newest research","By presenting three key concepts with examples for each","By comparing classical and behavioral economics point by point","By describing experiments and their failures"],correct:1,exp:"The professor says 'Let's look at three important concepts' and then discusses anchoring effect, loss aversion, and endowment effect, each with an example. This is a concept-by-concept structure."},
+{type:"Attitude",q:"What is the professor's attitude toward classical economics?",options:["He completely rejects it as useless","He sees it as enriched but still useful for theoretical frameworks","He believes it should be replaced by behavioral economics entirely","He thinks it is superior to behavioral economics"],correct:1,exp:"The professor concludes: 'behavioral economics doesn't reject classical economics \u2014 it enriches it. Classical models are still useful for building theoretical frameworks.' This shows a balanced, complementary view."},
+{type:"Connecting Information",q:"What does the UK's 'nudge unit' tax letter example illustrate about behavioral economics?",options:["That behavioral economics is only useful in academia","That behavioral insights can be applied to real-world policy design","That classical economics is better for government policy","That social proof is the most important concept"],correct:1,exp:"The professor uses the UK example to show that 'these insights have been applied far beyond academia' \u2014 specifically, that behavioral concepts like social proof can improve real-world policy outcomes like tax compliance."}
+]
+}
+];
+var state={currentSet:null,audioPlaying:false,notes:{},answers:{},scores:{}};
+var timerIntervals={};
+function formatTime(s){var m=Math.floor(s/60);var sec=Math.floor(s%60);return m+':'+(sec<10?'0':'')+sec;}
+function renderSets(){
+var container=document.getElementById('setsContainer');
+sets.forEach(function(set){
+var html='<div class="section-divider"></div>';
+html+='<div class="card">';
+html+='<div class="set-title">'+set.title+'</div>';
+html+='<div class="set-desc">'+set.desc+'</div>';
+html+='<div class="audio-controls">';
+html+='<button class="btn btn-play" id="playBtn'+set.id+'" onclick="playAudio('+set.id+')">\u25B6 Play Audio</button>';
+html+='<div class="progress-wrap"><div class="progress-bar" id="progressBar'+set.id+'"></div><div class="progress-label" id="progressLabel'+set.id+'">0:00 / '+formatTime(set.duration)+'</div></div>';
+html+='</div>';
+html+='<div style="margin-bottom:8px;font-size:13px;color:#6a7a8a;">\uD83D\uDCDD Take notes while listening:</div>';
+html+='<textarea class="notes-area" id="notes'+set.id+'" placeholder="Type your notes here..." disabled></textarea>';
+html+='<button class="btn btn-transcript" id="transcriptBtn'+set.id+'" onclick="toggleTranscript('+set.id+')" disabled>Show Transcript</button>';
+html+='<div class="transcript" id="transcript'+set.id+'">';
+set.transcript.forEach(function(line){
+html+='<div class="transcript-line"><span class="transcript-speaker">'+line.speaker+':</span> '+line.text+'</div>';
+});
+html+='</div>';
+html+='<div class="questions" id="questions'+set.id+'">';
+html+='<div class="timer timer-normal" id="timer'+set.id+'">\u23F1 Time remaining: 10:00</div>';
+set.questions.forEach(function(q,qi){
+html+='<div class="question" id="q'+set.id+'_'+qi+'">';
+html+='<span class="question-type">'+q.type+'</span>';
+html+='<div class="question-text">'+(qi+1)+'. '+q.q+'</div>';
+q.options.forEach(function(opt,oi){
+html+='<div class="option" onclick="selectAnswer('+set.id+','+qi+','+oi+')" id="opt'+set.id+'_'+qi+'_'+oi+'">'+opt+'</div>';
+});
+html+='<div class="explanation" id="exp'+set.id+'_'+qi+'"></div>';
+html+='</div>';
+});
+html+='<button class="btn btn-submit" id="submitBtn'+set.id+'" onclick="submitSet('+set.id+')">Submit Answers</button>';
+html+='<div class="score-display" id="score'+set.id+'" style="display:none;"></div>';
+html+='</div>';
+html+='</div>';
+container.insertAdjacentHTML('beforeend',html);
+});
+}
+function playAudio(setId){
+if(state.audioPlaying)return;
+state.audioPlaying=true;state.currentSet=setId;
+var set=sets.find(function(s){return s.id===setId;});
+var btn=document.getElementById('playBtn'+setId);
+btn.disabled=true;btn.textContent='\uD83D\uDD0A Playing...';
+var notes=document.getElementById('notes'+setId);
+notes.disabled=false;notes.placeholder='Type your notes here while listening...';
+var bar=document.getElementById('progressBar'+setId);
+var label=document.getElementById('progressLabel'+setId);
+var elapsed=0;
+var interval=setInterval(function(){
+elapsed+=0.1;
+var pct=(elapsed/set.duration)*100;
+bar.style.width=Math.min(pct,100)+'%';
+label.textContent=formatTime(elapsed)+' / '+formatTime(set.duration);
+if(elapsed>=set.duration){
+clearInterval(interval);
+btn.textContent='\u2713 Audio Complete';
+btn.disabled=false;
+state.audioPlaying=false;
+document.getElementById('transcriptBtn'+setId).disabled=false;
+showQuestions(setId);
+startTimer(setId);
+}
+},100);
+}
+function showQuestions(setId){document.getElementById('questions'+setId).style.display='block';}
+function toggleTranscript(setId){
+var t=document.getElementById('transcript'+setId);
+var b=document.getElementById('transcriptBtn'+setId);
+if(t.style.display==='block'){t.style.display='none';b.textContent='Show Transcript';}
+else{t.style.display='block';b.textContent='Hide Transcript';}
+}
+function startTimer(setId){
+var remaining=600;
+timerIntervals[setId]=setInterval(function(){
+remaining--;
+var m=Math.floor(remaining/60);
+var s=remaining%60;
+var timer=document.getElementById('timer'+setId);
+timer.textContent='\u23F1 Time remaining: '+m+':'+(s<10?'0':'')+s;
+if(remaining<=60){timer.className='timer timer-danger';}
+else if(remaining<=180){timer.className='timer timer-warning';}
+if(remaining<=0){clearInterval(timerIntervals[setId]);submitSet(setId,true);}
+},1000);
+}
+function selectAnswer(setId,qIdx,optIdx){
+if(state.answers[setId]&&state.answers[setId].submitted)return;
+if(!state.answers[setId])state.answers[setId]={};
+state.answers[setId][qIdx]=optIdx;
+var opts=document.querySelectorAll('[id^="opt'+setId+'_'+qIdx+'_"]');
+opts.forEach(function(o){o.classList.remove('selected');});
+document.getElementById('opt'+setId+'_'+qIdx+'_'+optIdx).classList.add('selected');
+}
+function submitSet(setId,auto){
+var set=sets.find(function(s){return s.id===setId;});
+if(!auto&&(!state.answers[setId]||Object.keys(state.answers[setId]).length<set.questions.length)){
+alert('Please answer all questions before submitting.');return;
+}
+if(timerIntervals[setId])clearInterval(timerIntervals[setId]);
+if(!state.answers[setId])state.answers[setId]={};
+state.answers[setId].submitted=true;
+var score=0;
+set.questions.forEach(function(q,qi){
+var userAns=state.answers[setId][qi];
+var expDiv=document.getElementById('exp'+setId+'_'+qi);
+var isCorrect=userAns===q.correct;
+if(isCorrect)score++;
+for(var oi=0;oi<q.options.length;oi++){
+var opt=document.getElementById('opt'+setId+'_'+qi+'_'+oi);
+opt.classList.add('disabled');
+opt.classList.remove('selected');
+if(oi===q.correct)opt.classList.add('correct');
+else if(oi===userAns&&oi!==q.correct)opt.classList.add('wrong');
+}
+expDiv.style.display='block';
+if(isCorrect){expDiv.className='explanation correct-exp';expDiv.innerHTML='<strong>\u2713 Correct!</strong> '+q.exp;}
+else{expDiv.className='explanation wrong-exp';expDiv.innerHTML='<strong>\u2717 Incorrect.</strong> The correct answer is: "'+q.options[q.correct]+'". '+q.exp;}
+});
+state.scores[setId]={correct:score,total:set.questions.length};
+var sd=document.getElementById('score'+setId);
+sd.style.display='block';
+var pct=Math.round((score/set.questions.length)*100);
+if(pct>=80){sd.className='score-display score-perfect';}
+else if(pct>=60){sd.className='score-display score-good';}
+else{sd.className='score-display score-poor';}
+sd.textContent='Score: '+score+'/'+set.questions.length+' ('+pct+'%)';
+document.getElementById('submitBtn'+setId).disabled=true;
+state.notes[setId]=document.getElementById('notes'+setId).value;
+checkAllComplete();
+}
+function checkAllComplete(){
+var allDone=sets.every(function(s){return state.scores[s.id];});
+if(allDone)document.getElementById('saveBtn').disabled=false;
+var summary=document.getElementById('resultsSummary');
+summary.style.display='block';
+var html='<h3 style="margin-bottom:12px;">\uD83D\uDCCA Results Summary</h3>';
+sets.forEach(function(s){
+if(state.scores[s.id]){var sc=state.scores[s.id];var pct=Math.round((sc.correct/sc.total)*100);
+html+='<div style="margin-bottom:6px;">Set '+s.id+': '+sc.correct+'/'+sc.total+' ('+pct+'%)</div>';}
+else{html+='<div style="margin-bottom:6px;color:#999;">Set '+s.id+': Not completed</div>';}
+});
+summary.innerHTML=html;
+}
+function saveResults(){
+var ts=new Date();
+var stamp=ts.getFullYear()+''+String(ts.getMonth()+1).padStart(2,'0')+''+String(ts.getDate()).padStart(2,'0')+'_'+String(ts.getHours()).padStart(2,'0')+''+String(ts.getMinutes()).padStart(2,'0');
+var lines=[];
+lines.push('========================================');
+lines.push('TOEFL LISTENING PRACTICE RESULTS');
+lines.push('Date: '+ts.toLocaleString());
+lines.push('========================================');
+lines.push('');
+sets.forEach(function(set){
+lines.push('--- '+set.title+' ---');
+lines.push('');
+if(state.scores[set.id]){var sc=state.scores[set.id];
+lines.push('Score: '+sc.correct+'/'+sc.total+' ('+Math.round((sc.correct/sc.total)*100)+'%)');
+}else{lines.push('Score: Not completed');}
+lines.push('');
+lines.push('Notes:');
+lines.push(state.notes[set.id]||'(no notes taken)');
+lines.push('');
+lines.push('Answers:');
+set.questions.forEach(function(q,qi){
+var ua=state.answers[set.id]&&state.answers[set.id][qi]!==undefined?state.answers[set.id][qi]:null;
+lines.push('  Q'+(qi+1)+' ['+q.type+']: '+(ua!==null?q.options[ua]:'(unanswered)'));
+lines.push('    Correct: '+q.options[q.correct]);
+lines.push('    '+(ua===q.correct?'\u2713 Correct':'\u2717 Wrong'));
+lines.push('');
+});
+lines.push('----------------------------------------');
+lines.push('');
+});
+var blob=new Blob([lines.join('\n')],{type:'text/plain'});
+var a=document.createElement('a');
+a.href=URL.createObjectURL(blob);
+a.download='drill-listening-results-'+stamp+'.txt';
+a.click();
+URL.revokeObjectURL(a.href);
+}
+renderSets();
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+# Python scripts (temporary extraction tools)
+extract_*.py
+find_sections.py
+
+# Extracted book texts (regenerate from PDFs)
+books_extracted/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Temp files
+*.tmp

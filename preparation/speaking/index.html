@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEFL Speaking — Full Practice Section</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#1a2744;font-family:'Segoe UI',sans-serif;color:#333;padding:20px;min-height:100vh}
+.container{max-width:900px;margin:0 auto}
+header{background:linear-gradient(135deg,#1a2744,#2c3e6b);border-radius:8px;padding:30px;margin-bottom:20px;text-align:center;border:1px solid #3d5680}
+header h1{color:#fff;font-size:1.8rem;margin-bottom:8px}
+header p{color:#a0b4d0;font-size:0.9rem}
+.back-link{display:inline-block;margin-bottom:20px;color:#00b4a6;text-decoration:none;font-size:0.85rem;padding:6px 14px;background:#fff;border-radius:8px;transition:background .2s}
+.back-link:hover{background:#e8f5f3}
+.card{background:#fff;border-radius:8px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.card h2{color:#1a2744;font-size:1.3rem;margin-bottom:12px;border-bottom:2px solid #00b4a6;padding-bottom:8px}
+.card h3{color:#2c3e6b;font-size:1.05rem;margin:14px 0 6px}
+.card h4{color:#2c3e6b;font-size:0.95rem;margin:10px 0 4px}
+.card p{margin-bottom:8px;line-height:1.5;font-size:0.9rem}
+.card ul{margin:6px 0 12px 20px;line-height:1.5;font-size:0.88rem}
+.card li{margin-bottom:4px}
+.collapsible-header{cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#2c3e6b;color:#fff;border-radius:8px;font-weight:600;font-size:0.95rem;user-select:none;transition:background .2s}
+.collapsible-header:hover{background:#3d5680}
+.collapsible-header .arrow{transition:transform .3s;font-size:1.1rem}
+.collapsible-header.open .arrow{transform:rotate(180deg)}
+.collapsible-body{display:none;padding:16px;background:#f8f9fa;border-radius:0 0 8px 8px;border:1px solid #e0e0e0;border-top:none}
+.collapsible-body.open{display:block}
+.task-card{background:#fff;border-radius:8px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.15);border-left:4px solid #00b4a6}
+.task-card h2{color:#1a2744;font-size:1.2rem;margin-bottom:8px}
+.task-badge{display:inline-block;background:#00b4a6;color:#fff;padding:3px 10px;border-radius:4px;font-size:0.75rem;font-weight:600;margin-bottom:8px}
+.task-badge.integrated{background:#f39c12}
+.task-prompt{background:#f0f4f8;border-radius:8px;padding:14px;margin:10px 0;font-size:0.9rem;line-height:1.5}
+.reading-passage{background:#fff8e1;border-radius:8px;padding:14px;margin:10px 0;font-size:0.88rem;line-height:1.5;border-left:3px solid #f39c12}
+.conversation{background:#e8f5f3;border-radius:8px;padding:14px;margin:10px 0;font-size:0.88rem;line-height:1.5;border-left:3px solid #00b4a6}
+.conversation .speaker{font-weight:600;color:#2c3e6b}
+.timer-container{display:flex;align-items:center;gap:16px;margin:14px 0}
+.timer-svg{width:80px;height:80px;flex-shrink:0}
+.timer-text{font-size:1.5rem;font-weight:700;fill:#1a2744}
+.timer-label{font-size:0.85rem;color:#666;font-weight:600}
+.timer-phase{font-size:0.8rem;color:#999;margin-top:2px}
+.timer-btn{padding:8px 20px;border:none;border-radius:6px;font-size:0.85rem;font-weight:600;cursor:pointer;transition:opacity .2s}
+.timer-btn.start{background:#00b4a6;color:#fff}
+.timer-btn.stop{background:#e74c3c;color:#fff}
+.timer-btn:hover{opacity:.85}
+textarea{width:100%;min-height:120px;padding:12px;border:2px solid #ddd;border-radius:8px;font-family:'Segoe UI',sans-serif;font-size:0.9rem;resize:vertical;transition:border-color .2s}
+textarea:focus{outline:none;border-color:#00b4a6}
+.check-btn{background:#00b4a6;color:#fff;border:none;padding:8px 20px;border-radius:6px;font-size:0.85rem;font-weight:600;cursor:pointer;margin-top:10px;transition:opacity .2s}
+.check-btn:hover{opacity:.85}
+.check-results{margin-top:12px;padding:12px;border-radius:8px;font-size:0.85rem;line-height:1.6}
+.check-results.pass{background:#e8f5f3;border:1px solid #00b4a6}
+.check-results.fail{background:#fdeaea;border:1px solid #e74c3c}
+.check-results .item{display:flex;align-items:flex-start;gap:6px;margin-bottom:4px}
+.check-results .icon{font-weight:700;flex-shrink:0}
+.check-results .icon.ok{color:#00b4a6}
+.check-results .icon.no{color:#e74c3c}
+.check-results .icon.warn{color:#f39c12}
+.model-answer{margin-top:14px}
+.model-answer-body{display:none;padding:14px;background:#f8f9fa;border-radius:0 0 8px 8px;border:1px solid #e0e0e0;border-top:none;font-size:0.88rem;line-height:1.6}
+.model-answer-body.open{display:block}
+.rubric-score{display:flex;gap:12px;padding:10px;margin-bottom:8px;border-radius:6px;background:#f0f4f8}
+.rubric-score .score-num{font-size:1.4rem;font-weight:700;color:#fff;background:#2c3e6b;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rubric-score .score-desc{font-size:0.85rem;line-height:1.5;align-self:center}
+.rubric-score.s4 .score-num{background:#00b4a6}
+.rubric-score.s3 .score-num{background:#2ecc71}
+.rubric-score.s2 .score-num{background:#f39c12}
+.rubric-score.s1 .score-num{background:#e67e22}
+.rubric-score.s0 .score-num{background:#e74c3c}
+.save-btn{display:block;width:100%;background:#00b4a6;color:#fff;border:none;padding:14px;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:10px;transition:opacity .2s}
+.save-btn:hover{opacity:.85}
+.strategy-task{background:#f0f4f8;border-radius:6px;padding:12px;margin-bottom:10px}
+.strategy-task h4{color:#00b4a6;margin-bottom:4px}
+footer{text-align:center;color:#5a6a8a;font-size:0.8rem;margin-top:20px;padding:20px}
+@media(max-width:600px){.timer-container{flex-direction:column;align-items:flex-start}header h1{font-size:1.4rem}}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="../../index.html" class="back-link">← Back to Hub</a>
+<header>
+<h1>TOEFL Speaking — Full Practice Section</h1>
+<p>Official Strategies &amp; Rubrics · Based on The Official Guide 2021</p>
+</header>
+
+<!-- Strategies Panel -->
+<div class="card">
+<div class="collapsible-header" onclick="togglePanel('strategies-body',this)">
+<span>📚 Speaking Strategies</span><span class="arrow">▼</span>
+</div>
+<div class="collapsible-body" id="strategies-body">
+<div class="strategy-task">
+<h4>Task 1 (Independent) — 15s prep, 45s response</h4>
+<p>State your preference clearly in the first sentence. Give 2 reasons with specific examples. Keep it simple and structured.</p>
+</div>
+<div class="strategy-task">
+<h4>Task 2 (Integrated - Campus) — Read 45s + Listen + 30s prep + 60s response</h4>
+<p>State the change proposed in the reading. State the student's opinion. Give 2 reasons from the conversation.</p>
+</div>
+<div class="strategy-task">
+<h4>Task 3 (Integrated - Academic) — Read 45s + Listen + 30s prep + 60s response</h4>
+<p>Define the concept from the reading. Give 2 examples from the lecture. Connect the examples back to the definition.</p>
+</div>
+<div class="strategy-task">
+<h4>Task 4 (Integrated - Listen Only) — Listen + 20s prep + 60s response</h4>
+<p>Summarize the main points of the lecture. Include specific examples. Organize coherently with transitions.</p>
+</div>
+<h4>General Tips</h4>
+<ul>
+<li>Do NOT memorize responses — speak naturally</li>
+<li>Use transition words (first, second, for example, however)</li>
+<li>Pace yourself — don't rush or speak too slowly</li>
+<li>Speak clearly with good pronunciation and intonation</li>
+<li>Use the full time allotted — don't finish too early</li>
+</ul>
+</div>
+</div>
+
+<!-- TASK 1 -->
+<div class="task-card">
+<span class="task-badge">Task 1 · Independent</span>
+<h2>Independent Speaking</h2>
+<div class="task-prompt">
+<strong>Prompt:</strong> Some people prefer to work from home, while others prefer to work in an office. Which do you prefer and why? Use specific reasons and examples to support your answer.
+</div>
+<div class="timer-container">
+<svg class="timer-svg" viewBox="0 0 80 80">
+<circle cx="40" cy="40" r="34" fill="none" stroke="#e0e0e0" stroke-width="6"/>
+<circle cx="40" cy="40" r="34" fill="none" stroke="#00b4a6" stroke-width="6" stroke-linecap="round" transform="rotate(-90 40 40)" id="task1-progress" stroke-dasharray="213.6" stroke-dashoffset="0"/>
+<text x="40" y="46" text-anchor="middle" class="timer-text" id="task1-display">15</text>
+</svg>
+<div>
+<div class="timer-label" id="task1-phase">Preparation Time</div>
+<div class="timer-phase">15s prep → 45s response</div>
+</div>
+<button class="timer-btn start" id="task1-btn" onclick="startTimer1()">Start</button>
+</div>
+<textarea id="task1-response" placeholder="Type your response here..."></textarea>
+<button class="check-btn" onclick="checkTask1()">Self-Check</button>
+<div id="task1-check"></div>
+<div class="model-answer">
+<div class="collapsible-header" onclick="togglePanel('task1-model',this)" style="background:#f0f4f8;color:#1a2744;font-size:0.85rem">
+<span>💡 Model Answer</span><span class="arrow">▼</span>
+</div>
+<div class="model-answer-body" id="task1-model">
+<p>I prefer working from home because it gives me more flexibility and saves commuting time. First, I can organize my schedule around my most productive hours. For example, as a cloud architect, I often need to think deeply about system design, and being at home lets me focus without office distractions. Second, I save about two hours every day that I would otherwise spend commuting. This extra time allows me to learn new technologies and improve my skills. For these reasons, working from home is the better choice for me.</p>
+</div>
+</div>
+</div>
+
+<!-- TASK 2 -->
+<div class="task-card">
+<span class="task-badge integrated">Task 2 · Integrated — Campus</span>
+<h2>Integrated Speaking — Campus Situation</h2>
+<div class="reading-passage">
+<strong>Reading Passage (45 seconds to read):</strong><br><br>
+<strong>Library Hours Extension</strong><br>
+The university has announced that the main library will extend its operating hours from 10 PM to midnight, seven days a week, starting next semester. The change is intended to accommodate students who study late, particularly during exam periods. The university will hire additional security staff to ensure safety during the extended hours.
+</div>
+<div class="conversation">
+<strong>Conversation Transcript:</strong><br><br>
+<span class="speaker">Man:</span> Did you see the announcement about the library staying open until midnight?<br><br>
+<span class="speaker">Woman:</span> Yes, and I think it's a great idea! I'm always studying late, especially during finals week. Last semester I had to leave the library at 10 PM right when I was in the middle of a project. Now I can stay two extra hours.<br><br>
+<span class="speaker">Man:</span> But won't it cost a lot to hire more security staff?<br><br>
+<span class="speaker">Woman:</span> That's true, but I think it's worth it. The library is the best place to study — it's quiet and has all the resources I need. Plus, having security there makes it safer for everyone. It's a small price to pay for better study conditions.
+</div>
+<div class="timer-container">
+<svg class="timer-svg" viewBox="0 0 80 80">
+<circle cx="40" cy="40" r="34" fill="none" stroke="#e0e0e0" stroke-width="6"/>
+<circle cx="40" cy="40" r="34" fill="none" stroke="#00b4a6" stroke-width="6" stroke-linecap="round" transform="rotate(-90 40 40)" id="task2-progress" stroke-dasharray="213.6" stroke-dashoffset="0"/>
+<text x="40" y="46" text-anchor="middle" class="timer-text" id="task2-display">30</text>
+</svg>
+<div>
+<div class="timer-label" id="task2-phase">Preparation Time</div>
+<div class="timer-phase">30s prep → 60s response</div>
+</div>
+<button class="timer-btn start" id="task2-btn" onclick="startTimer2()">Start</button>
+</div>
+<textarea id="task2-response" placeholder="Type your response here..."></textarea>
+<button class="check-btn" onclick="checkTask2()">Self-Check</button>
+<div id="task2-check"></div>
+<div class="model-answer">
+<div class="collapsible-header" onclick="togglePanel('task2-model',this)" style="background:#f0f4f8;color:#1a2744;font-size:0.85rem">
+<span>💡 Model Answer</span><span class="arrow">▼</span>
+</div>
+<div class="model-answer-body" id="task2-model">
+<p>The university plans to extend library hours from 10 PM to midnight, seven days a week, and will hire additional security staff. The woman in the conversation agrees with this change. First, she says she often needs to study late, especially during finals week, and previously had to leave the library at 10 PM in the middle of her work. Now she can stay two extra hours to finish her projects. Second, she mentions that while hiring security staff costs money, it makes the library safer for everyone, and the library is the best place to study because it's quiet and has all the resources she needs. She believes it's a small price to pay for better study conditions.</p>
+</div>
+</div>
+</div>
+
+<!-- Scoring Rubric -->
+<div class="card">
+<div class="collapsible-header" onclick="togglePanel('rubric-body',this)">
+<span>📋 Official Scoring Rubric (0–4)</span><span class="arrow">▼</span>
+</div>
+<div class="collapsible-body" id="rubric-body">
+<div class="rubric-score s4"><div class="score-num">4</div><div class="score-desc"><strong>General:</strong> Fulfills demands of the task. Highly intelligible and sustained coherent discourse. Effective grammar and vocabulary. Minor errors do not obscure meaning.</div></div>
+<div class="rubric-score s3"><div class="score-num">3</div><div class="score-desc"><strong>General:</strong> Addresses task appropriately. Generally intelligible and coherent. Some lapses in delivery or coherence.</div></div>
+<div class="rubric-score s2"><div class="score-num">2</div><div class="score-desc"><strong>General:</strong> Limited development of response. Problems with delivery or coherence. Meaning may be obscured at times.</div></div>
+<div class="rubric-score s1"><div class="score-num">1</div><div class="score-desc"><strong>General:</strong> Very limited content and coherence. Largely unintelligible due to pronunciation or delivery issues.</div></div>
+<div class="rubric-score s0"><div class="score-num">0</div><div class="score-desc"><strong>General:</strong> No response or off-topic response. Made no attempt to address the task.</div></div>
+</div>
+</div>
+
+<!-- TASK 3 -->
+<div class="task-card">
+<span class="task-badge integrated">Task 3 · Integrated — Academic</span>
+<h2>Integrated Speaking — Academic Course</h2>
+<div class="reading-passage">
+<strong>Reading Passage (45 seconds to read):</strong><br><br>
+<strong>Opportunistic Behavior</strong><br>
+In biology, opportunistic behavior refers to the tendency of certain organisms to take advantage of immediately available resources or conditions to survive and reproduce, without regard for long-term consequences. Opportunistic species often thrive in unstable or unpredictable environments where resources fluctuate. They typically reproduce quickly and in large numbers, allowing them to rapidly exploit favorable conditions when they arise.
+</div>
+<div class="conversation">
+<strong>Lecture Transcript:</strong><br><br>
+<span class="speaker">Professor:</span> Today we'll look at two examples of opportunistic behavior in animals. First, consider the locust. Locusts are normally solitary insects, but when conditions are right — plenty of food and the right temperature — they transform dramatically. They begin to swarm, reproducing rapidly and devouring all available vegetation. They don't consider the long-term effect on the ecosystem; they simply exploit the current abundance.<br><br>
+<span class="speaker">Professor:</span> A second example is the dandelion. Dandelions produce hundreds of seeds that scatter in the wind. They don't invest energy in producing a few well-protected seeds like oak trees do. Instead, they spread as many seeds as possible, taking advantage of any open patch of soil. This strategy allows them to quickly colonize disturbed ground, like a freshly plowed field, before other plants can establish themselves.
+</div>
+<div class="timer-container">
+<svg class="timer-svg" viewBox="0 0 80 80">
+<circle cx="40" cy="40" r="34" fill="none" stroke="#e0e0e0" stroke-width="6"/>
+<circle cx="40" cy="40" r="34" fill="none" stroke="#00b4a6" stroke-width="6" stroke-linecap="round" transform="rotate(-90 40 40)" id="task3-progress" stroke-dasharray="213.6" stroke-dashoffset="0"/>
+<text x="40" y="46" text-anchor="middle" class="timer-text" id="task3-display">30</text>
+</svg>
+<div>
+<div class="timer-label" id="task3-phase">Preparation Time</div>
+<div class="timer-phase">30s prep → 60s response</div>
+</div>
+<button class="timer-btn start" id="task3-btn" onclick="startTimer3()">Start</button>
+</div>
+<textarea id="task3-response" placeholder="Type your response here..."></textarea>
+<button class="check-btn" onclick="checkTask3()">Self-Check</button>
+<div id="task3-check"></div>
+<div class="model-answer">
+<div class="collapsible-header" onclick="togglePanel('task3-model',this)" style="background:#f0f4f8;color:#1a2744;font-size:0.85rem">
+<span>Model Answer</span><span class="arrow">v</span>
+</div>
+<div class="model-answer-body" id="task3-model">
+<p>The reading defines opportunistic behavior as the tendency of organisms to exploit immediately available resources without regard for long-term consequences. The professor gives two examples. First, locusts are normally solitary, but when food and temperature conditions are favorable, they swarm and reproduce rapidly, devouring all vegetation without considering the long-term impact on the ecosystem. Second, dandelions produce hundreds of lightweight seeds that scatter in the wind, unlike oak trees which invest in a few well-protected seeds. This allows dandelions to quickly colonize disturbed ground, such as a freshly plowed field, before competing plants can grow. Both examples illustrate how opportunistic species take advantage of immediate conditions to survive and reproduce.</p>
+</div>
+</div>
+</div>
+
+<!-- TASK 4 -->
+<div class="task-card">
+<span class="task-badge integrated">Task 4 · Integrated — Listen Only</span>
+<h2>Integrated Speaking — Lecture Summary</h2>
+<div class="conversation">
+<strong>Lecture Transcript:</strong><br><br>
+<span class="speaker">Professor:</span> Today we'll discuss the concept of cognitive load in psychology. Cognitive load refers to the amount of mental effort being used in working memory. When cognitive load is too high, learning and performance suffer. There are two main types I want to cover.<br><br>
+<span class="speaker">Professor:</span> First, there's intrinsic cognitive load. This is the inherent difficulty of the task itself. For example, learning to solve a complex calculus problem has a high intrinsic load because the material is inherently complex. You can't reduce this without breaking the task into simpler parts.<br><br>
+<span class="speaker">Professor:</span> Second, there's extraneous cognitive load. This is caused by how information is presented, not by the content itself. For instance, if a textbook has tiny font, poor organization, and distracting diagrams, the student uses mental energy just trying to decode the presentation. A well-designed textbook with clear layout reduces this extraneous load, freeing up mental resources for actual learning. Understanding both types helps educators design better learning experiences.
+</div>
+<div class="timer-container">
+<svg class="timer-svg" viewBox="0 0 80 80">
+<circle cx="40" cy="40" r="34" fill="none" stroke="#e0e0e0" stroke-width="6"/>
+<circle cx="40" cy="40" r="34" fill="none" stroke="#00b4a6" stroke-width="6" stroke-linecap="round" transform="rotate(-90 40 40)" id="task4-progress" stroke-dasharray="213.6" stroke-dashoffset="0"/>
+<text x="40" y="46" text-anchor="middle" class="timer-text" id="task4-display">20</text>
+</svg>
+<div>
+<div class="timer-label" id="task4-phase">Preparation Time</div>
+<div class="timer-phase">20s prep → 60s response</div>
+</div>
+<button class="timer-btn start" id="task4-btn" onclick="startTimer4()">Start</button>
+</div>
+<textarea id="task4-response" placeholder="Type your response here..."></textarea>
+<button class="check-btn" onclick="checkTask4()">Self-Check</button>
+<div id="task4-check"></div>
+<div class="model-answer">
+<div class="collapsible-header" onclick="togglePanel('task4-model',this)" style="background:#f0f4f8;color:#1a2744;font-size:0.85rem">
+<span>Model Answer</span><span class="arrow">v</span>
+</div>
+<div class="model-answer-body" id="task4-model">
+<p>The professor discusses cognitive load, which is the amount of mental effort used in working memory. When cognitive load is too high, learning and performance suffer. The professor describes two types. First, intrinsic cognitive load is the inherent difficulty of the task. For example, solving a complex calculus problem has high intrinsic load because the material is naturally complex, and it can only be reduced by breaking the task into simpler parts. Second, extraneous cognitive load is caused by how information is presented. For instance, a poorly designed textbook with tiny fonts and distracting diagrams forces students to use mental energy decoding the presentation. A well-designed textbook with clear layout reduces this load, freeing mental resources for learning. Understanding both types helps educators create better learning experiences.</p>
+</div>
+</div>
+</div>
+
+<!-- Save Results -->
+<div class="card">
+<h2>Save Your Results</h2>
+<p>Click below to download all your responses and self-check results as a text file.</p>
+<button class="save-btn" onclick="saveResults()">Save Results</button>
+</div>
+
+<footer>
+<p>TOEFL iBT Speaking Practice · Based on The Official Guide to the TOEFL Test (2021)</p>
+</footer>
+</div>
+
+<script>
+// Collapsible toggle
+function togglePanel(id, header) {
+  var body = document.getElementById(id);
+  body.classList.toggle('open');
+  header.classList.toggle('open');
+}
+
+// Timer state
+var timers = {};
+
+// Generic timer starter
+function startTimer(taskNum, prepTime, respTime) {
+  var key = 'task' + taskNum;
+  if (timers[key] && timers[key].running) {
+    // Stop timer
+    clearInterval(timers[key].interval);
+    timers[key].running = false;
+    document.getElementById(key + '-btn').textContent = 'Start';
+    document.getElementById(key + '-btn').className = 'timer-btn start';
+    return;
+  }
+  
+  var phase = 'prep';
+  var timeLeft = prepTime;
+  var totalTime = prepTime;
+  
+  timers[key] = { running: true, interval: null, phase: phase, timeLeft: timeLeft, totalTime: totalTime };
+  
+  document.getElementById(key + '-btn').textContent = 'Stop';
+  document.getElementById(key + '-btn').className = 'timer-btn stop';
+  
+  updateTimerDisplay(key, timeLeft, totalTime, phase);
+  
+  timers[key].interval = setInterval(function() {
+    timeLeft--;
+    timers[key].timeLeft = timeLeft;
+    updateTimerDisplay(key, timeLeft, totalTime, phase);
+    
+    if (timeLeft <= 0) {
+      if (phase === 'prep') {
+        phase = 'response';
+        timeLeft = respTime;
+        totalTime = respTime;
+        timers[key].phase = phase;
+        timers[key].totalTime = totalTime;
+        updateTimerDisplay(key, timeLeft, totalTime, phase);
+      } else {
+        clearInterval(timers[key].interval);
+        timers[key].running = false;
+        document.getElementById(key + '-btn').textContent = 'Start';
+        document.getElementById(key + '-btn').className = 'timer-btn start';
+        document.getElementById(key + '-display').textContent = '0';
+        document.getElementById(key + '-phase').textContent = 'Time Up!';
+      }
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay(key, timeLeft, totalTime, phase) {
+  var display = document.getElementById(key + '-display');
+  var phaseLabel = document.getElementById(key + '-phase');
+  var progress = document.getElementById(key + '-progress');
+  
+  display.textContent = timeLeft;
+  phaseLabel.textContent = phase === 'prep' ? 'Preparation Time' : 'Response Time';
+  
+  // Color changes
+  var color = '#00b4a6';
+  if (timeLeft <= 5) color = '#e74c3c';
+  else if (timeLeft <= 10) color = '#f39c12';
+  
+  progress.style.stroke = color;
+  
+  // Circle progress
+  var circumference = 213.6;
+  var offset = circumference * (1 - timeLeft / totalTime);
+  progress.style.strokeDashoffset = offset;
+}
+
+// Task-specific timer starters
+function startTimer1() { startTimer(1, 15, 45); }
+function startTimer2() { startTimer(2, 30, 60); }
+function startTimer3() { startTimer(3, 30, 60); }
+function startTimer4() { startTimer(4, 20, 60); }
+
+// Helper: render check results
+function renderChecks(divId, checks) {
+  var allPass = checks.every(function(c) { return c.status === 'ok'; });
+  var html = '<div class="check-results ' + (allPass ? 'pass' : 'fail') + '">';
+  checks.forEach(function(c) {
+    var iconClass = c.status === 'ok' ? 'ok' : (c.status === 'warn' ? 'warn' : 'no');
+    var icon = c.status === 'ok' ? 'PASS' : (c.status === 'warn' ? 'WARN' : 'FAIL');
+    html += '<div class="item"><span class="icon ' + iconClass + '">[' + icon + ']</span><span>' + c.msg + '</span></div>';
+  });
+  html += '</div>';
+  document.getElementById(divId).innerHTML = html;
+}
+
+// Helper: count "be" auxiliary verbs (CASE SENSITIVE)
+function countBeAux(text) {
+  var beForms = [' am ', ' is ', ' are ', ' was ', ' were ', ' be ', ' been ', ' being '];
+  var count = 0;
+  beForms.forEach(function(form) {
+    var idx = text.indexOf(form);
+    while (idx !== -1) { count++; idx = text.indexOf(form, idx + 1); }
+  });
+  // Also check at start of text
+  if (text.startsWith('Am ') || text.startsWith('Is ') || text.startsWith('Are ') || 
+      text.startsWith('Was ') || text.startsWith('Were ') || text.startsWith('Be ')) count++;
+  return count;
+}
+
+// Helper: count connectors
+function countConnectors(text) {
+  var connectors = ['First', 'Second', 'Third', 'first', 'second', 'third', 
+    'However', 'however', 'Therefore', 'therefore', 'Moreover', 'moreover',
+    'Furthermore', 'furthermore', 'For example', 'for example', 'In addition', 'in addition',
+    'Next', 'next', 'Finally', 'finally', 'Because', 'because', 'So', 'so', 'Also', 'also'];
+  var count = 0;
+  connectors.forEach(function(c) {
+    var idx = text.indexOf(c);
+    while (idx !== -1) { count++; idx = text.indexOf(c, idx + 1); }
+  });
+  return count;
+}
+
+// Helper: word count
+function wordCount(text) {
+  return text.trim().split(/\s+/).filter(function(w) { return w.length > 0; }).length;
+}
+
+// TASK 1 Self-Check
+function checkTask1() {
+  var text = document.getElementById('task1-response').value;
+  var checks = [];
+  
+  if (text.trim().length === 0) {
+    renderChecks('task1-check', [{status: 'no', msg: 'No response entered. Type your response first.'}]);
+    return;
+  }
+  
+  var words = wordCount(text);
+  var wordsLower = text.toLowerCase();
+  
+  // 1. Stance in first sentence
+  var firstSentence = text.split('.')[0];
+  var stanceWords = ['prefer', 'better', 'agree', 'choose', 'believe', 'think'];
+  var hasStance = stanceWords.some(function(w) { return firstSentence.toLowerCase().indexOf(w) !== -1; });
+  checks.push({status: hasStance ? 'ok' : 'no', msg: hasStance ? 'Stance stated in first sentence.' : 'No clear stance (prefer/better/choose) in first sentence.'});
+  
+  // 2. At least 2 reasons
+  var reasonWords = ['First', 'first', 'Second', 'second', 'reason', 'because', 'Also', 'also', 'Another', 'another', 'Additionally', 'additionally'];
+  var reasonCount = 0;
+  reasonWords.forEach(function(w) { if (text.indexOf(w) !== -1) reasonCount++; });
+  checks.push({status: reasonCount >= 2 ? 'ok' : 'no', msg: reasonCount >= 2 ? 'At least 2 reasons detected (' + reasonCount + ' markers).' : 'Only ' + reasonCount + ' reason marker(s) found. Need at least 2.'});
+  
+  // 3. Example provided
+  var exampleWords = ['For example', 'for example', 'For instance', 'for instance', 'such as', 'like when', 'e.g.'];
+  var hasExample = exampleWords.some(function(w) { return text.indexOf(w) !== -1; });
+  checks.push({status: hasExample ? 'ok' : 'warn', msg: hasExample ? 'Example provided.' : 'No explicit example marker found (e.g., "for example"). Consider adding one.'});
+  
+  // 4. "be" auxiliary check
+  var beCount = countBeAux(text);
+  checks.push({status: beCount >= 1 ? 'ok' : 'warn', msg: beCount >= 1 ? '"be" auxiliary verbs detected (' + beCount + ').' : 'No "be" auxiliary verbs (am/is/are/was/were) detected.'});
+  
+  // 5. Word count 40-100
+  checks.push({status: (words >= 40 && words <= 100) ? 'ok' : 'no', msg: 'Word count: ' + words + ' (target: 40-100).' + (words < 40 ? ' Too short.' : (words > 100 ? ' Too long.' : ''))});
+  
+  renderChecks('task1-check', checks);
+}
+
+// TASK 2 Self-Check
+function checkTask2() {
+  var text = document.getElementById('task2-response').value;
+  var checks = [];
+  
+  if (text.trim().length === 0) {
+    renderChecks('task2-check', [{status: 'no', msg: 'No response entered. Type your response first.'}]);
+    return;
+  }
+  
+  // 1. Mentions change
+  var changeWords = ['library', 'hours', 'extend', 'midnight', 'open'];
+  var changeCount = changeWords.filter(function(w) { return text.indexOf(w) !== -1; }).length;
+  checks.push({status: changeCount >= 2 ? 'ok' : 'no', msg: changeCount >= 2 ? 'Mentions the change (' + changeCount + ' keywords found).' : 'Does not clearly mention the library hours change (' + changeCount + ' keywords).'});
+  
+  // 2. States opinion
+  var opinionWords = ['agrees', 'agrees', 'supports', 'thinks', 'in favor', 'positive', 'happy'];
+  var hasOpinion = opinionWords.some(function(w) { return text.indexOf(w) !== -1; });
+  checks.push({status: hasOpinion ? 'ok' : 'no', msg: hasOpinion ? "Student's opinion stated." : "Does not clearly state the student's opinion (agrees/supports)."});
+  
+  // 3. Gives 2 reasons
+  var reasonMarkers = ['First', 'first', 'Second', 'second', 'because', 'Also', 'also', 'Another', 'another'];
+  var reasonCount = reasonMarkers.filter(function(w) { return text.indexOf(w) !== -1; }).length;
+  checks.push({status: reasonCount >= 2 ? 'ok' : 'no', msg: reasonCount >= 2 ? 'At least 2 reasons detected (' + reasonCount + ' markers).' : 'Only ' + reasonCount + ' reason marker(s). Need at least 2.'});
+  
+  // 4. Connectors count
+  var connCount = countConnectors(text);
+  checks.push({status: connCount >= 2 ? 'ok' : 'warn', msg: 'Connectors/transition words: ' + connCount + (connCount >= 2 ? '' : ' (aim for 2+).')});
+  
+  renderChecks('task2-check', checks);
+}
+
+// TASK 3 Self-Check
+function checkTask3() {
+  var text = document.getElementById('task3-response').value;
+  var checks = [];
+  
+  if (text.trim().length === 0) {
+    renderChecks('task3-check', [{status: 'no', msg: 'No response entered. Type your response first.'}]);
+    return;
+  }
+  
+  // 1. Defines concept
+  var conceptWords = ['opportunistic', 'behavior', 'resources', 'advantage', 'exploit'];
+  var conceptCount = conceptWords.filter(function(w) { return text.indexOf(w) !== -1; }).length;
+  checks.push({status: conceptCount >= 2 ? 'ok' : 'no', msg: conceptCount >= 2 ? 'Concept defined (' + conceptCount + ' keywords).' : 'Does not clearly define the concept (' + conceptCount + ' keywords).'});
+  
+  // 2. Uses examples from lecture
+  var exampleWords = ['locust', 'dandelion', 'seeds', 'swarm'];
+  var exampleCount = exampleWords.filter(function(w) { return text.indexOf(w) !== -1; }).length;
+  checks.push({status: exampleCount >= 2 ? 'ok' : 'no', msg: exampleCount >= 2 ? 'Examples from lecture used (' + exampleCount + ' keywords).' : 'Need more examples from the lecture (' + exampleCount + ' keywords).'});
+  
+  // 3. Connects definition to examples
+  var connectWords = ['illustrate', 'example', 'show', 'demonstrate', 'This', 'this', 'Both', 'both'];
+  var hasConnect = connectWords.some(function(w) { return text.indexOf(w) !== -1; });
+  checks.push({status: hasConnect ? 'ok' : 'warn', msg: hasConnect ? 'Connection between definition and examples detected.' : 'No explicit connection between definition and examples.'});
+  
+  // 4. Connectors
+  var connCount = countConnectors(text);
+  checks.push({status: connCount >= 2 ? 'ok' : 'warn', msg: 'Connectors/transition words: ' + connCount + (connCount >= 2 ? '' : ' (aim for 2+).')});
+  
+  renderChecks('task3-check', checks);
+}
+
+// TASK 4 Self-Check
+function checkTask4() {
+  var text = document.getElementById('task4-response').value;
+  var checks = [];
+  
+  if (text.trim().length === 0) {
+    renderChecks('task4-check', [{status: 'no', msg: 'No response entered. Type your response first.'}]);
+    return;
+  }
+  
+  // 1. Summarizes main points
+  var mainWords = ['cognitive load', 'intrinsic', 'extraneous', 'mental', 'working memory'];
+  var mainCount = mainWords.filter(function(w) { return text.indexOf(w) !== -1; }).length;
+  checks.push({status: mainCount >= 3 ? 'ok' : 'no', msg: mainCount >= 3 ? 'Main points summarized (' + mainCount + ' keywords).' : 'Missing key concepts (' + mainCount + ' keywords, need 3+).'});
+  
+  // 2. Includes examples
+  var exampleWords = ['calculus', 'textbook', 'font', 'diagrams', 'layout'];
+  var exampleCount = exampleWords.filter(function(w) { return text.indexOf(w) !== -1; }).length;
+  checks.push({status: exampleCount >= 2 ? 'ok' : 'no', msg: exampleCount >= 2 ? 'Examples included (' + exampleCount + ' keywords).' : 'Need more examples (' + exampleCount + ' keywords).'});
+  
+  // 3. Coherent structure
+  var connCount = countConnectors(text);
+  checks.push({status: connCount >= 2 ? 'ok' : 'warn', msg: 'Coherent structure - connectors: ' + connCount + (connCount >= 2 ? '' : ' (aim for 2+).')});
+  
+  // 4. Word count
+  var words = wordCount(text);
+  checks.push({status: (words >= 50 && words <= 150) ? 'ok' : 'warn', msg: 'Word count: ' + words + ' (target: 50-150).' + (words < 50 ? ' May be too short.' : (words > 150 ? ' May be too long.' : ''))});
+  
+  renderChecks('task4-check', checks);
+}
+
+// Save Results
+function saveResults() {
+  var timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+  var content = 'TOEFL iBT Speaking Practice Results\n';
+  content += 'Date: ' + new Date().toLocaleString() + '\n';
+  content += '='.repeat(50) + '\n\n';
+  
+  for (var i = 1; i <= 4; i++) {
+    var response = document.getElementById('task' + i + '-response').value;
+    var checkDiv = document.getElementById('task' + i + '-check');
+    var checkText = checkDiv.innerText || checkDiv.textContent || 'No checks run.';
+    
+    content += 'TASK ' + i + '\n';
+    content += '-'.repeat(20) + '\n';
+    content += 'Response:\n';
+    content += response.trim() || '(No response entered)';
+    content += '\n\nSelf-Check Results:\n';
+    content += checkText.trim() || '(No checks run)';
+    content += '\n\n' + '='.repeat(50) + '\n\n';
+  }
+  
+  content += '\nEnd of Report\n';
+  
+  var blob = new Blob([content], { type: 'text/plain' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'drill-speaking-results-' + timestamp + '.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>
+

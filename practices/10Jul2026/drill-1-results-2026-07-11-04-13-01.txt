@@ -1,0 +1,132 @@
+=================================
+TOEFL Speaking — Drill #1
+Date: 10/7/2026, 11:13:01 p.m.
+=================================
+
+--- Response #1 (resp-1) ---
+I prefer to work in a big company, because you can move to different positions and build a carrer path. For example: you can as a a trainee and move on a CEO. Additionally, it is a reference to work in another corporete.
+
+--- Response #2 (resp-2) ---
+I disagree with the communication technology, because in a face to face meeting you can identify the people reactions and see when an answer is true or not. For example, in a business negotiation it is very important to close the projects.
+
+--- Response #3 (resp-3) ---
+I decided to study an MBA in PUCP, because it is the best university in Peru and it has a partnership with USA. For example, at the end of the course I will go to USA to take some clases and apply for the degree in New Orleans.
+
+Self-Check Results (Case Sensitive):
+✓
+Check 1 — "be" auxiliary: All sentences have proper auxiliaries. Great!
+✓
+Check 2a — Clear stance: Found: "I prefer"
+✓
+Check 2b — Reason: Found connector: "because"
+✓
+Check 2c — Concrete example: Found: "For example"
+✓
+Check 3 — Length: 43 words. Good length for 45s.
+✓
+Check 1 — "be" auxiliary: All sentences have proper auxiliaries. Great!
+✓
+Check 2a — Clear stance: Found: "I prefer"
+✓
+Check 2b — Reason: Found connector: "because"
+✓
+Check 2c — Concrete example: Found: "For example"
+✓
+Check 3 — Length: 43 words. Good length for 45s.
+Self-Check Results (Case Sensitive):
+✓
+Check 1 — "be" auxiliary: All sentences have proper auxiliaries. Great!
+✓
+Check 2a — Clear stance: Found: "I disagree"
+✓
+Check 2b — Reason: Found connector: "because"
+✓
+Check 2c — Concrete example: Found: "For example"
+✓
+Check 3 — Length: 42 words. Good length for 45s.
+✓
+Check 2a — Clear stance: Found: "I disagree"
+✓
+Check 3 — Length: 42 words. Good length for 45s.
+Self-Check Results (Case Sensitive):
+✓
+Check 1 — "be" auxiliary: All sentences have proper auxiliaries. Great!
+✗
+Check 2a — Clear stance: No clear stance in first sentence. Start with "I prefer", "I agree", etc.
+✓
+Check 2b — Reason: Found connector: "because"
+✓
+Check 2c — Concrete example: Found: "For example"
+✓
+Check 3 — Length: 48 words. Good length for 45s.
+✗
+Check 2a — Clear stance: No clear stance in first sentence. Start with "I prefer", "I agree", etc.
+✓
+Check 3 — Length: 48 words. Good length for 45s.
+Consonant Spelling Results (Case Sensitive):
+✓
+projects: typed "projects" → 2 pts (exact match)
+✓
+platform: typed "platform" → 2 pts (exact match)
+✓
+why: typed "why" → 2 pts (exact match)
+✓
+first: typed "first" → 2 pts (exact match)
+✓
+cost: typed "cost" → 2 pts (exact match)
+✓
+trust: typed "trust" → 2 pts (exact match)
+✓
+shift: typed "shift" → 2 pts (exact match)
+✓
+adapt: typed "adapt" → 2 pts (exact match)
+✓
+contact: typed "contact" → 2 pts (exact match)
+✓
+product: typed "product" → 2 pts (exact match)
+Total: 20 / 20 pts
+✓
+projects: typed "projects" → 2 pts (exact match)
+✓
+platform: typed "platform" → 2 pts (exact match)
+✓
+why: typed "why" → 2 pts (exact match)
+✓
+first: typed "first" → 2 pts (exact match)
+✓
+cost: typed "cost" → 2 pts (exact match)
+✓
+trust: typed "trust" → 2 pts (exact match)
+✓
+shift: typed "shift" → 2 pts (exact match)
+✓
+adapt: typed "adapt" → 2 pts (exact match)
+✓
+contact: typed "contact" → 2 pts (exact match)
+✓
+product: typed "product" → 2 pts (exact match)
+Total: 20 / 20 pts
+Consonant Spelling Results (Case Sensitive):
+✓
+projects: typed "projects" → 2 pts (exact match)
+✓
+platform: typed "platform" → 2 pts (exact match)
+✓
+why: typed "why" → 2 pts (exact match)
+✓
+first: typed "first" → 2 pts (exact match)
+✓
+cost: typed "cost" → 2 pts (exact match)
+✓
+trust: typed "trust" → 2 pts (exact match)
+✓
+shift: typed "shift" → 2 pts (exact match)
+✓
+adapt: typed "adapt" → 2 pts (exact match)
+✓
+contact: typed "contact" → 2 pts (exact match)
+✓
+product: typed "product" → 2 pts (exact match)
+Total: 20 / 20 pts
+
+--- End of Report ---

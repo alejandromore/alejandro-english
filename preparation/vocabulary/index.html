@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEFL Vocabulary — Essential Words Practice</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#1a2744;color:#333;line-height:1.6}
+.container{max-width:900px;margin:0 auto;padding:20px}
+.header{text-align:center;color:#fff;padding:30px 0 20px}
+.header h1{font-size:28px;font-weight:700}
+.header .subtitle{color:#a0aec0;font-size:14px;margin-top:5px}
+.back-link{display:inline-block;margin-bottom:15px;color:#00b4a6;text-decoration:none;font-size:14px}
+.back-link:hover{text-decoration:underline}
+.card{background:#fff;border-radius:8px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
+.card h2{color:#1a2744;font-size:22px;margin-bottom:10px;border-bottom:2px solid #00b4a6;padding-bottom:8px}
+.card h3{color:#1a2744;font-size:18px;margin:15px 0 8px}
+.tips-toggle{cursor:pointer;color:#00b4a6;font-size:15px;font-weight:600;user-select:none}
+.tips-toggle:hover{color:#00897b}
+.tips-content{display:none;margin-top:12px;padding:12px;background:#f0f7f6;border-radius:8px}
+.tips-content ul{list-style:none;padding:0}
+.tips-content li{padding:6px 0 6px 24px;position:relative;color:#555}
+.tips-content li:before{content:"▶";position:absolute;left:0;color:#00b4a6;font-size:12px}
+.drill-section{margin-bottom:30px}
+.drill-section h2{color:#1a2744;font-size:20px;margin-bottom:15px;border-bottom:2px solid #00b4a6;padding-bottom:6px}
+.word-item{margin-bottom:18px;padding:14px;background:#f8f9fa;border-radius:8px;border-left:4px solid #00b4a6}
+.word-item .word{font-weight:700;font-size:17px;color:#1a2744}
+.word-item .word-num{color:#a0aec0;font-size:13px}
+.options{margin-top:10px}
+.option{display:block;padding:8px 12px;margin:5px 0;border:2px solid #e0e0e0;border-radius:6px;cursor:pointer;transition:all 0.2s}
+.option:hover{border-color:#00b4a6;background:#f0f7f6}
+.option.selected{border-color:#00b4a6;background:#e0f2f1}
+.option.correct{border-color:#00b4a6;background:#d4f5f0;color:#00695c;font-weight:600}
+.option.wrong{border-color:#e74c3c;background:#fdeaea;color:#c0392b}
+.option-label{font-weight:700;margin-right:8px}
+.input-field{width:100%;padding:10px 12px;border:2px solid #e0e0e0;border-radius:6px;font-size:15px;font-family:inherit;margin-top:8px}
+.input-field:focus{outline:none;border-color:#00b4a6}
+.input-field.correct{border-color:#00b4a6;background:#d4f5f0}
+.input-field.wrong{border-color:#e74c3c;background:#fdeaea}
+.feedback{margin-top:6px;font-size:14px;font-weight:600}
+.feedback.correct{color:#00b4a6}
+.feedback.wrong{color:#e74c3c}
+.feedback.partial{color:#f39c12}
+.correct-answer{color:#00b4a6;font-size:13px;margin-top:4px}
+.btn{display:inline-block;padding:10px 24px;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:inherit}
+.btn-primary{background:#00b4a6;color:#fff}
+.btn-primary:hover{background:#00897b}
+.btn-secondary{background:#1a2744;color:#fff}
+.btn-secondary:hover{background:#2c3e6b}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:15px}
+.score-display{display:flex;gap:15px;flex-wrap:wrap;margin-top:15px}
+.score-box{flex:1;min-width:140px;text-align:center;padding:14px;border-radius:8px;background:#f0f7f6}
+.score-box .label{font-size:13px;color:#666;text-transform:uppercase;letter-spacing:1px}
+.score-box .value{font-size:28px;font-weight:700;color:#1a2744;margin-top:4px}
+.score-box .pct{font-size:14px;color:#00b4a6;font-weight:600}
+.word-family-table{width:100%;border-collapse:collapse;margin-top:8px}
+.word-family-table th{background:#1a2744;color:#fff;padding:8px;font-size:13px;text-align:left}
+.word-family-table td{padding:8px;border-bottom:1px solid #e0e0e0}
+.word-family-table .root{font-weight:700;color:#1a2744}
+.wf-input{width:100%;padding:6px 8px;border:2px solid #e0e0e0;border-radius:4px;font-size:14px;font-family:inherit}
+.wf-input:focus{outline:none;border-color:#00b4a6}
+.wf-input.correct{border-color:#00b4a6;background:#d4f5f0}
+.wf-input.wrong{border-color:#e74c3c;background:#fdeaea}
+.wf-feedback{font-size:12px;margin-top:3px}
+.wf-feedback.correct{color:#00b4a6}
+.wf-feedback.wrong{color:#e74c3c}
+.sentence{font-size:16px;line-height:1.8;color:#333}
+.blank{display:inline-block;min-width:120px;border-bottom:2px solid #00b4a6;margin:0 4px}
+.case-note{font-size:12px;color:#f39c12;margin-top:4px}
+hr{border:none;border-top:1px solid #e0e0e0;margin:20px 0}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>TOEFL Vocabulary — Essential Words Practice</h1>
+    <p class="subtitle">Based on Barron's Essential Words for the TOEFL</p>
+  </div>
+  <a href="../../index.html" class="back-link">← Back to Hub</a>
+
+  <div class="card">
+    <span class="tips-toggle" onclick="toggleTips()">📚 Study Tips (click to expand)</span>
+    <div class="tips-content" id="tipsContent">
+      <ul>
+        <li>Learn word families (noun, verb, adjective, adverb forms)</li>
+        <li>Study collocations (words that commonly go together)</li>
+        <li>Practice with context, not just definitions</li>
+        <li>Review regularly using spaced repetition</li>
+        <li>Focus on academic vocabulary for TOEFL</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="score-display">
+      <div class="score-box"><div class="label">Drill 1</div><div class="value" id="score1">—</div><div class="pct" id="pct1"></div></div>
+      <div class="score-box"><div class="label">Drill 2</div><div class="value" id="score2">—</div><div class="pct" id="pct2"></div></div>
+      <div class="score-box"><div class="label">Drill 3</div><div class="value" id="score3">—</div><div class="pct" id="pct3"></div></div>
+      <div class="score-box"><div class="label">Total</div><div class="value" id="scoreTotal">—</div><div class="pct" id="pctTotal"></div></div>
+    </div>
+  </div>
+
+  <div class="card drill-section">
+    <h2>Drill 1 — Definition Match</h2>
+    <p style="color:#666;font-size:14px;margin-bottom:15px">Select the correct definition for each word. 20 words, 1 point each.</p>
+    <div id="drill1"></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="submitDrill1()">Submit Drill 1</button>
+    </div>
+  </div>
+
+  <div class="card drill-section">
+    <h2>Drill 2 — Sentence Completion</h2>
+    <p style="color:#666;font-size:14px;margin-bottom:5px">Type the missing word in each sentence. Case sensitive!</p>
+    <p class="case-note">⚠️ Exact match (correct case) = 2 pts | Correct spelling, wrong case = 1 pt | Wrong = 0 pts</p>
+    <div id="drill2" style="margin-top:15px"></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="submitDrill2()">Submit Drill 2</button>
+    </div>
+  </div>
+
+  <div class="card drill-section">
+    <h2>Drill 3 — Word Families</h2>
+    <p style="color:#666;font-size:14px;margin-bottom:5px">Type the noun, verb, adjective, and adverb forms for each root word. Case sensitive!</p>
+    <p class="case-note">⚠️ Each correct form = 1 pt. Pay attention to capitalization.</p>
+    <div id="drill3" style="margin-top:15px"></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="submitDrill3()">Submit Drill 3</button>
+    </div>
+  </div>
+
+  <div class="card" style="text-align:center">
+    <button class="btn btn-secondary" onclick="saveResults()">💾 Save Results</button>
+    <p style="color:#666;font-size:13px;margin-top:8px">Downloads a text file with all answers and scores</p>
+  </div>
+</div>
+
+<script>
+var drill1Words = [
+  {word:"ambiguous",correct:0,opts:["Having more than one possible meaning or interpretation","Having no meaning or significance at all","Being clearly and explicitly stated","Being extremely rare or uncommon"]},
+  {word:"arbitrary",correct:1,opts:["Following a strict set of rules or principles","Based on random choice or personal whim, not reason","Being mathematically precise and exact","Being legally binding and enforceable"]},
+  {word:"augment",correct:2,opts:["To reduce in size or importance","To completely replace something","To make something greater by adding to it","To divide into smaller parts"]},
+  {word:"coherent",correct:0,opts:["Logically consistent and forming a unified whole","Being physically sticky or adhesive","Being extremely complex and complicated","Being temporary or short-lived"]},
+  {word:"compel",correct:1,opts:["To voluntarily choose to do something","To force or oblige someone to do something","To prevent someone from acting","To persuade gently through reasoning"]},
+  {word:"concurrent",correct:2,opts:["Happening at different times sequentially","Being in opposition or conflict","Happening at the same time or simultaneously","Being final or conclusive"]},
+  {word:"conspicuous",correct:0,opts:["Clearly visible; attracting attention","Being hidden or difficult to see","Being of little importance","Being evenly distributed"]},
+  {word:"deplete",correct:1,opts:["To fill up or replenish completely","To reduce seriously or exhaust the supply of","To divide into equal portions","To increase gradually over time"]},
+  {word:"derive",correct:2,opts:["To destroy or eliminate completely","To hide or conceal from view","To obtain or get something from a specified source","To repeat or do again"]},
+  {word:"discrete",correct:0,opts:["Individually separate and distinct","Being continuous without breaks","Being part of a larger whole","Being secret or confidential"]},
+  {word:"diverge",correct:1,opts:["To come together and merge into one","To separate and go in different directions","To remain parallel and never meet","To move in a circular pattern"]},
+  {word:"eligible",correct:2,opts:["Being ineligible or disqualified","Being mandatory or required","Meeting the conditions to be chosen or allowed","Being permanent or irrevocable"]},
+  {word:"enhance",correct:0,opts:["To improve the quality, value, or extent of","To reduce the effectiveness of","To maintain in current state","To evaluate or assess carefully"]},
+  {word:"explicit",correct:1,opts:["Being vague or imprecise","Stated clearly and in detail, leaving no room for doubt","Being implied but not directly stated","Being overly complicated"]},
+  {word:"feasible",correct:2,opts:["Being impossible to achieve","Being dangerous or risky","Being possible and practical to do easily","Being theoretical but impractical"]},
+  {word:"inherent",correct:0,opts:["Existing as a natural or essential part of something","Being added externally or artificially","Being temporary or transient","Being optional or discretionary"]},
+  {word:"integral",correct:1,opts:["Being separate and removable","Essential or fundamental to completeness","Being decorative but unnecessary","Being supplementary or additional"]},
+  {word:"mitigate",correct:2,opts:["To increase the severity of something","To cause or bring about something","To make less severe or serious","To completely eliminate or remove"]},
+  {word:"negligible",correct:0,opts:["So small or unimportant as to be not worth considering","Being extremely large or significant","Being moderate in size or importance","Being exactly zero or nothing"]},
+  {word:"pertinent",correct:1,opts:["Being irrelevant or unrelated to the matter","Relevant or applicable to a particular matter","Being permanent or unchanging","Being controversial or debatable"]}
+];
+
+var drill2Sentences = [
+  {sentence:"The professor's instructions were ____, leaving students confused about what to submit.",answer:"ambiguous"},
+  {sentence:"The manager made an ____ decision to relocate the office without consulting anyone.",answer:"arbitrary"},
+  {sentence:"The company plans to ____ its workforce by hiring fifty new engineers.",answer:"augment"},
+  {sentence:"Her argument was ____, with each point logically following from the previous one.",answer:"coherent"},
+  {sentence:"The new regulations will ____ factories to reduce their carbon emissions.",answer:"compel"},
+  {sentence:"The two research projects are ____, both running during the same semester.",answer:"concurrent"},
+  {sentence:"The celebrity's arrival was ____, drawing attention from everyone in the restaurant.",answer:"conspicuous"},
+  {sentence:"Years of farming have ____ the soil of its nutrients in this region.",answer:"depleted"},
+  {sentence:"Many English words ____ their origins from Latin and Greek roots.",answer:"derive"},
+  {sentence:"The data consists of ____ categories, each independent of the others.",answer:"discrete"},
+  {sentence:"Their career paths ____ after college, one pursuing academia and the other industry.",answer:"diverge"},
+  {sentence:"Only students with a GPA above 3.0 are ____ for the scholarship program.",answer:"eligible"},
+  {sentence:"Adding interactive elements can ____ the user experience of the application.",answer:"enhance"},
+  {sentence:"The contract includes ____ terms regarding the deadline for project delivery.",answer:"explicit"},
+  {sentence:"Given the available budget, the proposed timeline is ____ and achievable.",answer:"feasible"}
+];
+
+var drill3Families = [
+  {root:"analyze",noun:"analysis",verb:"analyze",adj:"analytical",adv:"analytically"},
+  {root:"create",noun:"creation",verb:"create",adj:"creative",adv:"creatively"},
+  {root:"produce",noun:"production",verb:"produce",adj:"productive",adv:"productively"},
+  {root:"compete",noun:"competition",verb:"compete",adj:"competitive",adv:"competitively"},
+  {root:"evaluate",noun:"evaluation",verb:"evaluate",adj:"evaluative",adv:"evaluatively"},
+  {root:"generate",noun:"generation",verb:"generate",adj:"generative",adv:"generatively"},
+  {root:"motivate",noun:"motivation",verb:"motivate",adj:"motivational",adv:"motivationally"},
+  {root:"participate",noun:"participation",verb:"participate",adj:"participatory",adv:"participatorily"},
+  {root:"specify",noun:"specification",verb:"specify",adj:"specific",adv:"specifically"},
+  {root:"theorize",noun:"theory",verb:"theorize",adj:"theoretical",adv:"theoretically"}
+];
+
+var scores = {drill1:0,drill1Max:20,drill1Submitted:false,drill2:0,drill2Max:30,drill2Submitted:false,drill3:0,drill3Max:40,drill3Submitted:false};
+var drill1Answers = {};
+var drill2Results = [];
+var drill3Results = [];
+
+function toggleTips(){
+  var el = document.getElementById("tipsContent");
+  el.style.display = el.style.display === "block" ? "none" : "block";
+}
+
+function renderDrill1(){
+  var html = "";
+  drill1Words.forEach(function(w,i){
+    html += '<div class="word-item">';
+    html += '<span class="word-num">'+(i+1)+'. </span><span class="word">'+w.word+'</span>';
+    html += '<div class="options" id="d1opts'+i+'">';
+    var labels = ["A","B","C","D"];
+    w.opts.forEach(function(opt,j){
+      html += '<div class="option" onclick="selectOption('+i+','+j+')" id="d1_'+i+'_'+j+'">';
+      html += '<span class="option-label">'+labels[j]+'.</span>'+opt+'</div>';
+    });
+    html += '</div></div>';
+  });
+  document.getElementById("drill1").innerHTML = html;
+}
+
+function selectOption(wordIdx,optIdx){
+  if(scores.drill1Submitted) return;
+  for(var j=0;j<4;j++){
+    var el = document.getElementById("d1_"+wordIdx+"_"+j);
+    if(el) el.classList.remove("selected");
+  }
+  var sel = document.getElementById("d1_"+wordIdx+"_"+optIdx);
+  if(sel) sel.classList.add("selected");
+  drill1Answers[wordIdx] = optIdx;
+}
+
+function renderDrill2(){
+  var html = "";
+  drill2Sentences.forEach(function(s,i){
+    var parts = s.sentence.split("____");
+    html += '<div class="word-item">';
+    html += '<span class="word-num">'+(i+1)+'. </span>';
+    html += '<span class="sentence">'+parts[0]+'<input type="text" class="input-field" id="d2_'+i+'" style="display:inline;width:140px;margin:0 4px" placeholder="type word">'+parts[1]+'</span>';
+    html += '<div id="d2fb'+i+'"></div>';
+    html += '</div>';
+  });
+  document.getElementById("drill2").innerHTML = html;
+}
+
+function renderDrill3(){
+  var html = '<table class="word-family-table"><thead><tr><th>#</th><th>Root</th><th>Noun</th><th>Verb</th><th>Adjective</th><th>Adverb</th></tr></thead><tbody>';
+  drill3Families.forEach(function(f,i){
+    html += '<tr>';
+    html += '<td>'+(i+1)+'</td>';
+    html += '<td class="root">'+f.root+'</td>';
+    html += '<td><input type="text" class="wf-input" id="d3_'+i+'_noun" placeholder="noun"></td>';
+    html += '<td><input type="text" class="wf-input" id="d3_'+i+'_verb" placeholder="verb"></td>';
+    html += '<td><input type="text" class="wf-input" id="d3_'+i+'_adj" placeholder="adjective"></td>';
+    html += '<td><input type="text" class="wf-input" id="d3_'+i+'_adv" placeholder="adverb"></td>';
+    html += '</tr>';
+    html += '<tr id="d3fb'+i+'" style="display:none"><td colspan="5"></td></tr>';
+  });
+  html += '</tbody></table>';
+  document.getElementById("drill3").innerHTML = html;
+}
+
+function submitDrill1(){
+  if(scores.drill1Submitted) return;
+  scores.drill1Submitted = true;
+  var correct = 0;
+  drill1Words.forEach(function(w,i){
+    var userAns = drill1Answers[i];
+    for(var j=0;j<4;j++){
+      var el = document.getElementById("d1_"+i+"_"+j);
+      if(!el) continue;
+      el.style.cursor = "default";
+      if(j === w.correct){
+        el.classList.add("correct");
+        if(userAns === j) correct++;
+      } else if(userAns === j){
+        el.classList.add("wrong");
+      }
+    }
+  });
+  scores.drill1 = correct;
+  updateScores();
+}
+
+function submitDrill2(){
+  if(scores.drill2Submitted) return;
+  scores.drill2Submitted = true;
+  var total = 0;
+  drill2Sentences.forEach(function(s,i){
+    var input = document.getElementById("d2_"+i);
+    var userVal = input.value.trim();
+    var fb = document.getElementById("d2fb"+i);
+    var pts = 0;
+    var cls = "wrong";
+    var msg = "";
+    if(userVal === s.answer){
+      pts = 2; cls = "correct"; msg = "✓ Exact match — 2 pts";
+    } else if(userVal.toLowerCase() === s.answer.toLowerCase() && userVal !== ""){
+      pts = 1; cls = "partial"; msg = "⚠ Correct spelling, wrong case — 1 pt";
+    } else {
+      pts = 0; msg = "✗ Incorrect — 0 pts";
+    }
+    total += pts;
+    input.classList.add(cls === "correct" ? "correct" : "wrong");
+    input.disabled = true;
+    fb.innerHTML = '<div class="feedback '+cls+'">'+msg+'</div><div class="correct-answer">Correct answer: '+s.answer+'</div>';
+    drill2Results[i] = {user:userVal,correct:s.answer,pts:pts};
+  });
+  scores.drill2 = total;
+  updateScores();
+}
+
+function submitDrill3(){
+  if(scores.drill3Submitted) return;
+  scores.drill3Submitted = true;
+  var total = 0;
+  var forms = [["noun","noun"],["verb","verb"],["adj","adjective"],["adv","adverb"]];
+  drill3Families.forEach(function(f,i){
+    var row = document.getElementById("d3fb"+i);
+    var fbHtml = '<td colspan="5" style="padding:6px 8px;background:#f8f9fa">';
+    forms.forEach(function(fm){
+      var input = document.getElementById("d3_"+i+"_"+fm[0]);
+      var userVal = input.value.trim();
+      var correctVal = f[fm[0]];
+      var isCorrect = userVal === correctVal;
+      if(isCorrect) total++;
+      input.classList.add(isCorrect ? "correct" : "wrong");
+      input.disabled = true;
+      fbHtml += '<span class="wf-feedback '+(isCorrect?'correct':'wrong')+'">'+fm[1]+': '+(isCorrect?'✓':'✗ '+correctVal)+'</span>&nbsp;&nbsp;';
+      if(!drill3Results[i]) drill3Results[i] = {};
+      drill3Results[i][fm[0]] = {user:userVal,correct:correctVal,correct_bool:isCorrect};
+    });
+    fbHtml += '</td>';
+    row.innerHTML = fbHtml;
+    row.style.display = "table-row";
+  });
+  scores.drill3 = total;
+  updateScores();
+}
+
+function updateScores(){
+  var s1 = scores.drill1, s2 = scores.drill2, s3 = scores.drill3;
+  if(scores.drill1Submitted){
+    document.getElementById("score1").textContent = s1+"/"+scores.drill1Max;
+    document.getElementById("pct1").textContent = Math.round(s1/scores.drill1Max*100)+"%";
+  }
+  if(scores.drill2Submitted){
+    document.getElementById("score2").textContent = s2+"/"+scores.drill2Max;
+    document.getElementById("pct2").textContent = Math.round(s2/scores.drill2Max*100)+"%";
+  }
+  if(scores.drill3Submitted){
+    document.getElementById("score3").textContent = s3+"/"+scores.drill3Max;
+    document.getElementById("pct3").textContent = Math.round(s3/scores.drill3Max*100)+"%";
+  }
+  if(scores.drill1Submitted || scores.drill2Submitted || scores.drill3Submitted){
+    var total = s1+s2+s3;
+    var maxTotal = scores.drill1Max+scores.drill2Max+scores.drill3Max;
+    document.getElementById("scoreTotal").textContent = total+"/"+maxTotal;
+    document.getElementById("pctTotal").textContent = Math.round(total/maxTotal*100)+"%";
+  }
+}
+
+function saveResults(){
+  var ts = new Date().toISOString().replace(/[:.]/g,"-").slice(0,19);
+  var lines = [];
+  lines.push("TOEFL VOCABULARY PRACTICE RESULTS");
+  lines.push("==================================");
+  lines.push("Date: " + new Date().toLocaleString());
+  lines.push("User: Alejandro");
+  lines.push("");
+  lines.push("--- DRILL 1: Definition Match ---");
+  lines.push("Score: " + scores.drill1 + "/" + scores.drill1Max);
+  if(scores.drill1Submitted){
+    drill1Words.forEach(function(w,i){
+      var ua = drill1Answers[i];
+      var uLabel = ua !== undefined ? String.fromCharCode(65+ua) : "(no answer)";
+      var cLabel = String.fromCharCode(65+w.correct);
+      var isC = ua === w.correct;
+      lines.push((i+1)+". "+w.word+" → Your: "+uLabel+" | Correct: "+cLabel+" "+(isC?"✓":"✗"));
+    });
+  } else { lines.push("(Not submitted)"); }
+  lines.push("");
+  lines.push("--- DRILL 2: Sentence Completion ---");
+  lines.push("Score: " + scores.drill2 + "/" + scores.drill2Max);
+  if(scores.drill2Submitted){
+    drill2Sentences.forEach(function(s,i){
+      var r = drill2Results[i];
+      if(r){
+        lines.push((i+1)+". Your: \""+r.user+"\" | Correct: \""+r.correct+"\" | Pts: "+r.pts);
+      }
+    });
+  } else { lines.push("(Not submitted)"); }
+  lines.push("");
+  lines.push("--- DRILL 3: Word Families ---");
+  lines.push("Score: " + scores.drill3 + "/" + scores.drill3Max);
+  if(scores.drill3Submitted){
+    drill3Families.forEach(function(f,i){
+      var r = drill3Results[i];
+      if(r){
+        lines.push((i+1)+". Root: "+f.root);
+        lines.push("   Noun: \""+r.noun.user+"\" ("+(r.noun.correct_bool?"✓":"✗ "+r.noun.correct)+")");
+        lines.push("   Verb: \""+r.verb.user+"\" ("+(r.verb.correct_bool?"✓":"✗ "+r.verb.correct)+")");
+        lines.push("   Adj:  \""+r.adj.user+"\" ("+(r.adj.correct_bool?"✓":"✗ "+r.adj.correct)+")");
+        lines.push("   Adv:  \""+r.adv.user+"\" ("+(r.adv.correct_bool?"✓":"✗ "+r.adv.correct)+")");
+      }
+    });
+  } else { lines.push("(Not submitted)"); }
+  lines.push("");
+  lines.push("--- SUMMARY ---");
+  var total = scores.drill1+scores.drill2+scores.drill3;
+  var maxTotal = scores.drill1Max+scores.drill2Max+scores.drill3Max;
+  lines.push("Total Score: " + total + "/" + maxTotal);
+  lines.push("Percentage: " + Math.round(total/maxTotal*100) + "%");
+  lines.push("");
+  var content = lines.join("\n");
+  var blob = new Blob([content],{type:"text/plain"});
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "drill-vocabulary-results-"+ts+".txt";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+renderDrill1();
+renderDrill2();
+renderDrill3();
+</script>
+</body>
+</html>
