@@ -92,11 +92,57 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#1a2744;color:#fff;m
 </div>
 </div>
 <div id="setsContainer"></div>
+<div class="section-divider"></div>
+<div class="card">
+<div class="set-title">🎧 Collins TOEFL Listening — Audio Practice</div>
+<div class="set-desc">Practice with real audio passages from "Collins Skills for TOEFL iBT — Listening and Speaking". Listen to each passage, take notes, and answer the questions.</div>
+</div>
+<div id="audioSetsContainer"></div>
+
+<!-- Real Audio Practice Section -->
+<div class="section-divider"></div>
+<div class="card" id="realAudioCard">
+<div class="set-title">🎧 Real Audio Practice — Collins TOEFL Listening</div>
+<div class="set-desc" id="audioPracticeDesc">Listen to real audio passages, take notes, then evaluate your understanding. A random passage is selected each time you load the page.</div>
+
+<div id="audioPracticeArea">
+<div style="margin-bottom:12px;">
+<span id="audioCategoryBadge" style="display:inline-block;background:#00b4a6;color:#fff;padding:4px 12px;border-radius:4px;font-size:12px;font-weight:600;"></span>
+<span id="audioTypeBadge" style="display:inline-block;background:#1a2744;color:#fff;padding:4px 12px;border-radius:4px;font-size:12px;font-weight:600;margin-left:6px;"></span>
+</div>
+<div id="audioTitle" style="font-size:18px;font-weight:700;margin-bottom:8px;color:#1a2744;"></div>
+<div id="audioDescText" style="color:#6a7a8a;font-size:14px;margin-bottom:16px;"></div>
+
+<div class="audio-controls">
+<audio id="realAudioPlayer" controls style="width:100%;max-width:600px;"></audio>
+</div>
+
+<div style="margin-bottom:8px;font-size:13px;color:#6a7a8a;">📝 Take notes while listening:</div>
+<textarea class="notes-area" id="realAudioNotes" placeholder="Type your notes here while listening..."></textarea>
+
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;">
+<button class="btn btn-transcript" id="realTranscriptBtn" onclick="toggleRealTranscript()">Show Transcript</button>
+<button class="btn btn-save" id="evaluateBtn" onclick="evaluateNotes()" style="background:#8e44ad;color:#fff;">🤖 Evaluate My Notes</button>
+<button class="btn btn-play" id="newAudioBtn" onclick="loadRandomAudio()" style="background:#2c3e50;">🔀 New Random Audio</button>
+</div>
+
+<div class="transcript" id="realTranscript" style="white-space:pre-wrap;font-size:14px;line-height:1.8;"></div>
+
+<div id="evaluationResult" style="display:none;background:#f5f7fa;border-radius:8px;padding:20px;margin-bottom:16px;"></div>
+<div id="evalLoading" style="display:none;text-align:center;padding:20px;">
+<div style="display:inline-block;width:40px;height:40px;border:4px solid #e0e0e0;border-top:4px solid #00b4a6;border-radius:50%;animation:spin 1s linear infinite;"></div>
+<p style="margin-top:12px;color:#6a7a8a;">Evaluating your notes with AI...</p>
+</div>
+<style>@keyframes spin{to{transform:rotate(360deg)}}</style>
+</div>
+</div>
+
 <div class="footer">
 <button class="btn btn-save" id="saveBtn" onclick="saveResults()" disabled>💾 Save Results</button>
 </div>
 <div class="results-summary" id="resultsSummary"></div>
 </div>
+<script src="audio-data.js"></script>
 <script>
 function toggleStrategies(){var c=document.getElementById('strategiesContent');var a=document.getElementById('stratArrow');if(c.style.display==='block'){c.style.display='none';a.textContent='\u25BC';}else{c.style.display='block';a.textContent='\u25B2';}}
 var sets=[
@@ -162,8 +208,13 @@ html+='<button class="btn btn-stop" id="stopBtn'+set.id+'" onclick="stopAudio('+
 html+='<div class="progress-wrap"><div class="progress-bar" id="progressBar'+set.id+'"></div><div class="progress-label" id="progressLabel'+set.id+'">0:00 / '+formatTime(set.duration)+'</div></div>';
 html+='</div>';
 html+='<div style="margin-bottom:8px;font-size:13px;color:#6a7a8a;">\uD83D\uDCDD Take notes while listening:</div>';
-html+='<textarea class="notes-area" id="notes'+set.id+'" placeholder="Type your notes here..." disabled></textarea>';
-html+='<button class="btn btn-transcript" id="transcriptBtn'+set.id+'" onclick="toggleTranscript('+set.id+')" disabled>Show Transcript</button>';
+html+='<textarea class="notes-area" id="notes'+set.id+'" placeholder="Type your notes here while listening..."></textarea>';
+html+='<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;">';
+html+='<button class="btn btn-transcript" id="transcriptBtn'+set.id+'" onclick="toggleTranscript('+set.id+')">Show Transcript</button>';
+html+='<button class="btn" id="evalSetBtn'+set.id+'" onclick="evaluateSetNotes('+set.id+')" style="background:#8e44ad;color:#fff;">🤖 Evaluate My Notes</button>';
+html+='</div>';
+html+='<div id="evalSetResult'+set.id+'" style="display:none;background:#f5f7fa;border-radius:8px;padding:20px;margin-bottom:16px;"></div>';
+html+='<div id="evalSetLoading'+set.id+'" style="display:none;text-align:center;padding:20px;"><div style="display:inline-block;width:40px;height:40px;border:4px solid #e0e0e0;border-top:4px solid #00b4a6;border-radius:50%;animation:spin 1s linear infinite;"></div><p style="margin-top:12px;color:#6a7a8a;">Evaluating your notes with AI...</p></div>';
 html+='<div class="transcript" id="transcript'+set.id+'">';
 set.transcript.forEach(function(line){
 html+='<div class="transcript-line"><span class="transcript-speaker">'+line.speaker+':</span> '+line.text+'</div>';
@@ -196,8 +247,6 @@ var btn=document.getElementById('playBtn'+setId);
 var stopBtn=document.getElementById('stopBtn'+setId);
 btn.disabled=true;btn.textContent='\uD83D\uDD0A Playing...';
 stopBtn.style.display='inline-block';
-var notes=document.getElementById('notes'+setId);
-notes.disabled=false;notes.placeholder='Type your notes here while listening...';
 var bar=document.getElementById('progressBar'+setId);
 var label=document.getElementById('progressLabel'+setId);
 var transcriptBtn=document.getElementById('transcriptBtn'+setId);
@@ -377,7 +426,277 @@ a.download='drill-listening-results-'+stamp+'.txt';
 a.click();
 URL.revokeObjectURL(a.href);
 }
+function evaluateSetNotes(setId){
+var set=sets.find(function(s){return s.id===setId;});
+var userNotes=document.getElementById('notes'+setId).value.trim();
+if(!userNotes||userNotes.length<20){
+alert('Please write some notes (at least 20 characters) before evaluating.');return;
+}
+// Build flat transcript text from structured transcript
+var transcriptText=set.transcript.map(function(line){return line.speaker+': '+line.text;}).join('\n');
+var btn=document.getElementById('evalSetBtn'+setId);
+var loading=document.getElementById('evalSetLoading'+setId);
+var result=document.getElementById('evalSetResult'+setId);
+btn.disabled=true;
+loading.style.display='block';
+result.style.display='none';
+var prompt="You are a TOEFL listening instructor. Compare the student's notes with the actual transcript of a listening passage. Evaluate how well the notes capture the main ideas and key details. Give a score from 0-100 and specific feedback.\n\nTRANSCRIPT:\n"+transcriptText.substring(0,2000)+"\n\nSTUDENT NOTES:\n"+userNotes+"\n\nRespond in this format:\nSCORE: [number 0-100]\nFEEDBACK: [2-3 sentences of specific feedback]\nKEY POINTS CAPTURED: [list main points the student got right]\nKEY POINTS MISSED: [list important points the student missed]";
+var apiUrl="https://text.pollinations.ai/"+encodeURIComponent(prompt);
+fetch(apiUrl,{method:'GET'})
+.then(function(response){if(!response.ok)throw new Error('API error: '+response.status);return response.text();})
+.then(function(aiResponse){displaySetEvalResult(setId,aiResponse,userNotes,transcriptText);})
+.catch(function(error){console.log('AI eval failed, using local fallback:',error);var localResult=localEvaluateNotes(userNotes,transcriptText);displaySetEvalResult(setId,localResult,userNotes,transcriptText,true);});
+}
+function displaySetEvalResult(setId,responseText,userNotes,transcriptText,isLocal){
+var loading=document.getElementById('evalSetLoading'+setId);
+var result=document.getElementById('evalSetResult'+setId);
+var btn=document.getElementById('evalSetBtn'+setId);
+loading.style.display='none';result.style.display='block';btn.disabled=false;
+var scoreMatch=responseText.match(/SCORE:\s*(\d+)/i);
+var score=scoreMatch?parseInt(scoreMatch[1]):null;
+var feedbackMatch=responseText.match(/FEEDBACK:\s*([\s\S]*?)(?:\n\s*(?:KEY POINTS|$))/i);
+var feedback=feedbackMatch?feedbackMatch[1].trim():'';
+var capturedMatch=responseText.match(/KEY POINTS CAPTURED:\s*([\s\S]*?)(?:\n\s*(?:KEY POINTS MISSED|$))/i);
+var captured=capturedMatch?capturedMatch[1].trim():'';
+var missedMatch=responseText.match(/KEY POINTS MISSED:\s*([\s\S]*?)$/i);
+var missed=missedMatch?missedMatch[1].trim():'';
+var html='';
+if(isLocal){html+='<div style="margin-bottom:12px;padding:8px;background:#fef3cd;border-radius:6px;font-size:13px;color:#856404;">⚠️ AI service unavailable — showing local analysis based on keyword matching.</div>';}
+if(score!==null){
+var scoreColor=score>=80?'#00b4a6':(score>=60?'#f39c12':'#e74c3c');
+var scoreBg=score>=80?'#d4f5f0':(score>=60?'#fef3cd':'#fde8e6');
+html+='<div style="text-align:center;margin-bottom:16px;padding:16px;background:'+scoreBg+';border-radius:8px;"><div style="font-size:36px;font-weight:700;color:'+scoreColor+';">'+score+'/100</div><div style="font-size:14px;color:#6a7a8a;margin-top:4px;">'+(score>=80?'Excellent!':(score>=60?'Good — keep practicing':'Needs improvement'))+'</div></div>';
+}
+if(feedback){html+='<div style="margin-bottom:14px;"><strong style="color:#1a2744;">📋 Feedback:</strong><p style="margin-top:6px;font-size:14px;line-height:1.6;color:#333;">'+feedback.replace(/\n/g,'<br>')+'</p></div>';}
+if(captured){html+='<div style="margin-bottom:14px;"><strong style="color:#00b4a6;">✅ Key Points Captured:</strong><p style="margin-top:6px;font-size:14px;line-height:1.6;color:#333;">'+captured.replace(/\n/g,'<br>')+'</p></div>';}
+if(missed){html+='<div style="margin-bottom:14px;"><strong style="color:#e74c3c;">❌ Key Points Missed:</strong><p style="margin-top:6px;font-size:14px;line-height:1.6;color:#333;">'+missed.replace(/\n/g,'<br>')+'</p></div>';}
+if(!html){html='<pre style="white-space:pre-wrap;font-size:14px;color:#333;">'+responseText+'</pre>';}
+result.innerHTML=html;
+}
+
 renderSets();
+
+// ===== REAL AUDIO PRACTICE SECTION =====
+var currentAudioData = null;
+
+function loadRandomAudio() {
+  if (typeof AUDIO_DATA === 'undefined' || AUDIO_DATA.length === 0) {
+    document.getElementById('audioPracticeArea').innerHTML = '<p style="color:#e74c3c;">Error: Audio data not loaded.</p>';
+    return;
+  }
+  
+  // Pick a random audio different from current one if possible
+  var available = AUDIO_DATA;
+  if (currentAudioData && AUDIO_DATA.length > 1) {
+    available = AUDIO_DATA.filter(function(a) { return a.file !== currentAudioData.file; });
+  }
+  var randomIdx = Math.floor(Math.random() * available.length);
+  currentAudioData = available[randomIdx];
+  
+  // Update UI
+  document.getElementById('audioTitle').textContent = currentAudioData.title;
+  document.getElementById('audioDescText').textContent = currentAudioData.desc;
+  document.getElementById('audioCategoryBadge').textContent = currentAudioData.category;
+  document.getElementById('audioTypeBadge').textContent = currentAudioData.type;
+  
+  // Set audio source
+  var player = document.getElementById('realAudioPlayer');
+  player.src = currentAudioData.file;
+  player.load();
+  
+  // Reset notes and transcript
+  document.getElementById('realAudioNotes').value = '';
+  document.getElementById('realTranscript').style.display = 'none';
+  document.getElementById('realTranscriptBtn').textContent = 'Show Transcript';
+  document.getElementById('evaluationResult').style.display = 'none';
+  document.getElementById('evalLoading').style.display = 'none';
+  document.getElementById('evaluateBtn').disabled = false;
+  
+  // Set transcript text
+  document.getElementById('realTranscript').textContent = currentAudioData.transcript;
+}
+
+function toggleRealTranscript() {
+  var t = document.getElementById('realTranscript');
+  var b = document.getElementById('realTranscriptBtn');
+  if (t.style.display === 'block') {
+    t.style.display = 'none';
+    b.textContent = 'Show Transcript';
+  } else {
+    t.style.display = 'block';
+    b.textContent = 'Hide Transcript';
+  }
+}
+
+function evaluateNotes() {
+  if (!currentAudioData) {
+    alert('Please load an audio first.');
+    return;
+  }
+  
+  var userNotes = document.getElementById('realAudioNotes').value.trim();
+  if (!userNotes || userNotes.length < 20) {
+    alert('Please write some notes (at least 20 characters) before evaluating.');
+    return;
+  }
+  
+  var transcript = currentAudioData.transcript;
+  var btn = document.getElementById('evaluateBtn');
+  var loading = document.getElementById('evalLoading');
+  var result = document.getElementById('evaluationResult');
+  
+  btn.disabled = true;
+  loading.style.display = 'block';
+  result.style.display = 'none';
+  
+  // Try AI evaluation using Pollinations.ai (free, no API key needed)
+  var prompt = "You are a TOEFL listening instructor. Compare the student's notes with the actual transcript of a listening passage. " +
+    "Evaluate how well the notes capture the main ideas and key details. " +
+    "Give a score from 0-100 and specific feedback.\n\n" +
+    "TRANSCRIPT:\n" + transcript.substring(0, 2000) + "\n\n" +
+    "STUDENT NOTES:\n" + userNotes + "\n\n" +
+    "Respond in this format:\n" +
+    "SCORE: [number 0-100]\n" +
+    "FEEDBACK: [2-3 sentences of specific feedback]\n" +
+    "KEY POINTS CAPTURED: [list main points the student got right]\n" +
+    "KEY POINTS MISSED: [list important points the student missed]";
+  
+  var encodedPrompt = encodeURIComponent(prompt);
+  var apiUrl = "https://text.pollinations.ai/" + encodedPrompt;
+  
+  fetch(apiUrl, { method: 'GET' })
+    .then(function(response) {
+      if (!response.ok) throw new Error('API error: ' + response.status);
+      return response.text();
+    })
+    .then(function(aiResponse) {
+      displayEvaluationResult(aiResponse, userNotes, transcript);
+    })
+    .catch(function(error) {
+      console.log('AI eval failed, using local fallback:', error);
+      var localResult = localEvaluateNotes(userNotes, transcript);
+      displayEvaluationResult(localResult, userNotes, transcript, true);
+    });
+}
+
+function displayEvaluationResult(responseText, userNotes, transcript, isLocal) {
+  var loading = document.getElementById('evalLoading');
+  var result = document.getElementById('evaluationResult');
+  var btn = document.getElementById('evaluateBtn');
+  
+  loading.style.display = 'none';
+  result.style.display = 'block';
+  btn.disabled = false;
+  
+  // Parse the response
+  var scoreMatch = responseText.match(/SCORE:\s*(\d+)/i);
+  var score = scoreMatch ? parseInt(scoreMatch[1]) : null;
+  
+  var feedbackMatch = responseText.match(/FEEDBACK:\s*([\s\S]*?)(?:\n\s*(?:KEY POINTS|$))/i);
+  var feedback = feedbackMatch ? feedbackMatch[1].trim() : '';
+  
+  var capturedMatch = responseText.match(/KEY POINTS CAPTURED:\s*([\s\S]*?)(?:\n\s*(?:KEY POINTS MISSED|$))/i);
+  var captured = capturedMatch ? capturedMatch[1].trim() : '';
+  
+  var missedMatch = responseText.match(/KEY POINTS MISSED:\s*([\s\S]*?)$/i);
+  var missed = missedMatch ? missedMatch[1].trim() : '';
+  
+  // Build HTML result
+  var html = '';
+  
+  if (isLocal) {
+    html += '<div style="margin-bottom:12px;padding:8px;background:#fef3cd;border-radius:6px;font-size:13px;color:#856404;">⚠️ AI service unavailable — showing local analysis based on keyword matching.</div>';
+  }
+  
+  if (score !== null) {
+    var scoreColor = score >= 80 ? '#00b4a6' : (score >= 60 ? '#f39c12' : '#e74c3c');
+    var scoreBg = score >= 80 ? '#d4f5f0' : (score >= 60 ? '#fef3cd' : '#fde8e6');
+    html += '<div style="text-align:center;margin-bottom:16px;padding:16px;background:' + scoreBg + ';border-radius:8px;">';
+    html += '<div style="font-size:36px;font-weight:700;color:' + scoreColor + ';">' + score + '/100</div>';
+    html += '<div style="font-size:14px;color:#6a7a8a;margin-top:4px;">' + (score >= 80 ? 'Excellent!' : (score >= 60 ? 'Good — keep practicing' : 'Needs improvement')) + '</div>';
+    html += '</div>';
+  }
+  
+  if (feedback) {
+    html += '<div style="margin-bottom:14px;"><strong style="color:#1a2744;">📋 Feedback:</strong><p style="margin-top:6px;font-size:14px;line-height:1.6;color:#333;">' + feedback.replace(/\n/g, '<br>') + '</p></div>';
+  }
+  
+  if (captured) {
+    html += '<div style="margin-bottom:14px;"><strong style="color:#00b4a6;">✅ Key Points Captured:</strong><p style="margin-top:6px;font-size:14px;line-height:1.6;color:#333;">' + captured.replace(/\n/g, '<br>') + '</p></div>';
+  }
+  
+  if (missed) {
+    html += '<div style="margin-bottom:14px;"><strong style="color:#e74c3c;">❌ Key Points Missed:</strong><p style="margin-top:6px;font-size:14px;line-height:1.6;color:#333;">' + missed.replace(/\n/g, '<br>') + '</p></div>';
+  }
+  
+  if (!html) {
+    html = '<pre style="white-space:pre-wrap;font-size:14px;color:#333;">' + responseText + '</pre>';
+  }
+  
+  result.innerHTML = html;
+}
+
+function localEvaluateNotes(userNotes, transcript) {
+  // Fallback: simple keyword-based evaluation when AI is unavailable
+  var stopWords = {'the':1,'a':1,'an':1,'and':1,'or':1,'but':1,'in':1,'on':1,'at':1,'to':1,'for':1,'of':1,'with':1,'by':1,'from':1,'is':1,'are':1,'was':1,'were':1,'be':1,'been':1,'being':1,'have':1,'has':1,'had':1,'do':1,'does':1,'did':1,'will':1,'would':1,'could':1,'should':1,'may':1,'might':1,'must':1,'can':1,'this':1,'that':1,'these':1,'those':1,'i':1,'you':1,'he':1,'she':1,'it':1,'we':1,'they':1,'as':1,'if':1,'then':1,'than':1,'so':1,'not':1,'no':1,'yes':1,'about':1,'into':1,'through':1,'during':1,'before':1,'after':1,'above':1,'below':1,'up':1,'down':1,'out':1,'off':1,'over':1,'under':1,'again':1,'further':1,'once':1,'here':1,'there':1,'when':1,'where':1,'why':1,'how':1,'all':1,'each':1,'every':1,'both':1,'few':1,'more':1,'most':1,'other':1,'some':1,'such':1,'only':1,'own':1,'same':1,'very':1,'just':1,'also':1,'well':1,'any':1,'now':1};
+  
+  function getKeywords(text) {
+    var words = text.toLowerCase().match(/[a-z]{3,}/g) || [];
+    var freq = {};
+    words.forEach(function(w) {
+      if (!stopWords[w]) {
+        freq[w] = (freq[w] || 0) + 1;
+      }
+    });
+    return freq;
+  }
+  
+  var transcriptWords = getKeywords(transcript);
+  var notesWords = getKeywords(userNotes);
+  
+  // Count matches
+  var matched = 0;
+  var totalTranscriptKeywords = 0;
+  var matchedKeywords = [];
+  var missedKeywords = [];
+  
+  // Get top transcript keywords by frequency
+  var sortedTranscript = Object.keys(transcriptWords).sort(function(a, b) {
+    return transcriptWords[b] - transcriptWords[a];
+  });
+  
+  // Take top 30 keywords from transcript
+  var topKeywords = sortedTranscript.slice(0, 30);
+  totalTranscriptKeywords = topKeywords.length;
+  
+  topKeywords.forEach(function(kw) {
+    if (notesWords[kw]) {
+      matched++;
+      matchedKeywords.push(kw);
+    } else {
+      missedKeywords.push(kw);
+    }
+  });
+  
+  var score = Math.round((matched / totalTranscriptKeywords) * 100);
+  
+  var result = "SCORE: " + score + "\n";
+  result += "FEEDBACK: Your notes captured " + matched + " out of " + totalTranscriptKeywords + " key terms from the transcript. ";
+  if (score >= 80) {
+    result += "Excellent note-taking! You captured most of the important concepts.";
+  } else if (score >= 60) {
+    result += "Good effort. Try to include more specific terms and names mentioned in the audio.";
+  } else {
+    result += "Try to focus on the main ideas and key vocabulary. Listen again and add more details.";
+  }
+  result += "\nKEY POINTS CAPTURED: " + matchedKeywords.slice(0, 10).join(", ");
+  result += "\nKEY POINTS MISSED: " + missedKeywords.slice(0, 10).join(", ");
+  
+  return result;
+}
+
+// Load a random audio on page load
+loadRandomAudio();
 </script>
 </body>
 </html>
