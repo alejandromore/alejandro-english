@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alejandro — English Training Hub</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f0f2f5;color:#1a2744;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.hero{background:linear-gradient(135deg,#1a2744 0%,#2d3d5e 100%);color:#fff;width:100%;padding:48px 20px;text-align:center}
+.hero h1{font-size:2rem;margin-bottom:6px}
+.hero p{font-size:.9rem;opacity:.7}
+.hero .level{display:inline-block;margin-top:12px;background:rgba(0,180,166,.2);border:1px solid #00b4a6;color:#00b4a6;padding:4px 14px;border-radius:20px;font-size:.8rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:800px;width:100%;padding:32px 20px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.08);padding:24px;text-decoration:none;color:inherit;transition:transform .2s,box-shadow .2s;display:block}
+.card:hover{transform:translateY(-4px);box-shadow:0 6px 20px rgba(0,0,0,.12)}
+.card .icon{font-size:2.2rem;margin-bottom:10px}
+.card h2{font-size:1.15rem;margin-bottom:6px;color:#1a2744}
+.card p{font-size:.82rem;color:#666;line-height:1.5}
+.card .tag{display:inline-block;margin-top:10px;font-size:.7rem;padding:2px 8px;border-radius:4px;font-weight:600}
+.tag-drill{background:#e8f5f3;color:#00b4a6}
+.tag-tool{background:#e8eaf6;color:#5c6bc0}
+.tag-prep{background:#fff3e0;color:#f39c12}
+.card.disabled{opacity:.5;pointer-events:none}
+.footer{margin-top:auto;padding:20px;font-size:.75rem;color:#999;text-align:center}
+.footer a{color:#00b4a6;text-decoration:none}
+.section-title{max-width:800px;width:100%;padding:0 20px;margin-top:8px}
+.section-title h3{font-size:.85rem;text-transform:uppercase;letter-spacing:1px;color:#999;margin-bottom:0}
+.drill-list{max-width:800px;width:100%;padding:0 20px 20px}
+.drill-item{display:flex;align-items:center;gap:12px;background:#fff;border-radius:8px;padding:14px 18px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.06);text-decoration:none;color:inherit;transition:transform .15s}
+.drill-item:hover{transform:translateX(4px)}
+.drill-num{background:#1a2744;color:#fff;border-radius:6px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0}
+.drill-info h4{font-size:.9rem;color:#1a2744}
+.drill-info p{font-size:.75rem;color:#888;margin-top:2px}
+.drill-status{margin-left:auto;font-size:.7rem;padding:3px 10px;border-radius:12px;font-weight:600}
+.status-active{background:#e8f5f3;color:#00b4a6}
+.status-pending{background:#f5f5f5;color:#aaa}
+</style>
+</head>
+<body>
+<div class="hero">
+<h1>🗣️ Alejandro — English Training Hub</h1>
+<p>TOEFL Speaking preparation · Cloud Solutions Architect @ Huawei</p>
+<span class="level">Level: B1-high / B2-low · TOEFL Speaking ~18-23/30</span>
+</div>
+
+<div class="grid">
+<a class="card" href="voice-coach/index.html">
+<div class="icon">🎙️</div>
+<h2>Voice Coach</h2>
+<p>Local speech recognition + sentiment analysis. Record, transcribe, and practice pronunciation with phonetic feedback.</p>
+<span class="tag tag-tool">TOOL</span>
+</a>
+<a class="card" href="preparation/drill1_app.html">
+<div class="icon">📋</div>
+<h2>Preparation Materials</h2>
+<p>Diagnosis docs, evaluation results, and source drill documents (Word files).</p>
+<span class="tag tag-prep">PREP</span>
+</a>
+</div>
+
+<div class="section-title"><h3>Drills</h3></div>
+<div class="drill-list">
+<a class="drill-item" href="drills/drill-1/index.html">
+<div class="drill-num">1</div>
+<div class="drill-info">
+<h4>TOEFL Speaking — Drill #1: Task 1 (Independent)</h4>
+<p>3 opinion prompts · 15s prep / 45s resp · Self-check (case sensitive) · Final consonant test</p>
+</div>
+<span class="drill-status status-active">Active</span>
+</a>
+<a class="drill-item">
+<div class="drill-num">2</div>
+<div class="drill-info">
+<h4>Drill #2: Task 1 Fluency Under Pressure</h4>
+<p>5 opinion prompts/day · Transcribe & correct · Focus on coherence</p>
+</div>
+<span class="drill-status status-pending">Pending</span>
+</a>
+<a class="drill-item">
+<div class="drill-num">3</div>
+<div class="drill-info">
+<h4>Drill #3: Tasks 2-3 (Integrated)</h4>
+<p>Reading + audio summary · Connectors focus · 30s prep / 60s resp</p>
+</div>
+<span class="drill-status status-pending">Pending</span>
+</a>
+<a class="drill-item">
+<div class="drill-num">4</div>
+<div class="drill-info">
+<h4>Drill #4: Full Mock + Diagnosis</h4>
+<p>Complete Speaking section (4 tasks) · Timed · Band report</p>
+</div>
+<span class="drill-status status-pending">Pending</span>
+</a>
+</div>
+
+<div class="footer">
+<p>Repo: <a href="https://github.com/alejandromore/alejandro-english" target="_blank">github.com/alejandromore/alejandro-english</a></p>
+</div>
+</body>
+</html>

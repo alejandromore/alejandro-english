@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEFL Speaking — Drill #1</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f0f2f5;color:#1a2744}
+.header{background:#1a2744;color:#fff;padding:24px 20px;text-align:center}
+.header h1{font-size:1.6rem;margin-bottom:4px}
+.header p{font-size:.85rem;opacity:.7}
+.container{max-width:900px;margin:0 auto;padding:20px}
+.card{background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);padding:20px;margin-bottom:16px}
+.card h2{font-size:1.15rem;margin-bottom:12px;color:#1a2744}
+.card h3{font-size:1rem;margin-bottom:8px;color:#1a2744}
+.badge{display:inline-block;background:#e74c3c;color:#fff;font-size:.7rem;padding:2px 8px;border-radius:4px;margin-left:8px;vertical-align:middle}
+.collapsible{cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.collapsible:hover{opacity:.8}
+.content-hidden{display:none}
+.pattern{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.pattern-num{background:#1a2744;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0}
+.pattern-text{font-size:.85rem;line-height:1.5}
+.pattern-text strong{color:#e74c3c}
+.level-box{background:#f0f4ff;border-left:3px solid #00b4a6;padding:10px 14px;margin-top:10px;font-size:.85rem;border-radius:0 4px 4px 0}
+.task-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.task-card{background:#f8f9ff;border:1px solid #e0e6f0;border-radius:6px;padding:12px}
+.task-card .task-num{font-weight:700;color:#00b4a6;font-size:.8rem}
+.task-card .task-name{font-weight:600;font-size:.85rem;margin:4px 0}
+.task-card .task-time{font-size:.75rem;color:#666}
+.prompt-card{border:2px solid #e0e6f0;border-radius:8px;padding:16px;margin-bottom:16px;transition:border-color .3s}
+.prompt-card.active{border-color:#00b4a6}
+.prompt-card .prompt-label{font-size:.75rem;color:#00b4a6;font-weight:600;text-transform:uppercase}
+.prompt-card .prompt-text{font-size:.95rem;margin:8px 0;font-style:italic}
+.timer-row{display:flex;gap:12px;align-items:center;margin:12px 0}
+.timer-circle{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;border:3px solid #1a2744;position:relative;flex-shrink:0}
+.timer-circle.prep{border-color:#f39c12;color:#f39c12}
+.timer-circle.resp{border-color:#00b4a6;color:#00b4a6}
+.timer-circle.danger{border-color:#e74c3c;color:#e74c3c;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.timer-label{font-size:.75rem;color:#666}
+.btn{padding:8px 16px;border:none;border-radius:4px;cursor:pointer;font-size:.85rem;font-weight:600;transition:background .2s}
+.btn-primary{background:#1a2744;color:#fff}
+.btn-primary:hover{background:#2d3d5e}
+.btn-accent{background:#00b4a6;color:#fff}
+.btn-accent:hover{background:#009d8f}
+.btn-danger{background:#e74c3c;color:#fff}
+.btn-danger:hover{background:#c0392b}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+textarea{width:100%;min-height:80px;padding:10px;border:1px solid #d0d7e0;border-radius:4px;font-size:.85rem;font-family:inherit;resize:vertical}
+textarea:focus{outline:none;border-color:#00b4a6}
+.check-result{margin-top:12px;padding:12px;background:#f8f9ff;border-radius:6px;font-size:.82rem}
+.check-item{display:flex;gap:8px;align-items:flex-start;margin-bottom:8px}
+.check-icon{font-size:1rem;flex-shrink:0}
+.check-pass{color:#00b4a6}
+.check-fail{color:#e74c3c}
+.check-warn{color:#f39c12}
+.example-box{background:#f0f4ff;border-left:3px solid #00b4a6;padding:14px;border-radius:0 4px 4px 0;font-size:.85rem;line-height:1.6;margin-top:8px}
+.hl-stance{background:#d4f4e8;color:#1a2744;padding:1px 4px;border-radius:2px}
+.hl-reason{background:#d0e4ff;color:#1a2744;padding:1px 4px;border-radius:2px}
+.hl-example{background:#fff3d4;color:#1a2744;padding:1px 4px;border-radius:2px}
+.legend{display:flex;gap:16px;margin-top:8px;font-size:.75rem}
+.legend span{display:flex;align-items:center;gap:4px}
+.legend .dot{width:10px;height:10px;border-radius:2px;display:inline-block}
+table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:8px}
+th,td{border:1px solid #e0e6f0;padding:8px;text-align:left}
+th{background:#1a2744;color:#fff;font-weight:600}
+tr:nth-child(even){background:#f8f9ff}
+.next-steps{font-size:.85rem;line-height:1.8}
+.next-steps li{margin-bottom:6px}
+.consonant-test{margin-top:12px}
+.consonant-word{display:inline-flex;align-items:center;gap:6px;margin:4px 8px 4px 0}
+.consonant-word input{width:100px;padding:4px 8px;border:1px solid #d0d7e0;border-radius:3px;font-size:.8rem}
+.consonant-word label{font-size:.8rem;font-weight:600;min-width:80px}
+.score-display{font-size:1.1rem;font-weight:700;margin:8px 0}
+.score-perfect{color:#00b4a6}
+.score-partial{color:#f39c12}
+.score-zero{color:#e74c3c}
+.progress-bar{display:flex;gap:4px;margin-bottom:16px}
+.progress-step{flex:1;height:6px;border-radius:3px;background:#e0e6f0;transition:background .3s}
+.progress-step.done{background:#00b4a6}
+.progress-step.active{background:#f39c12}
+.section-note{background:#fff8e1;border-left:3px solid #f39c12;padding:10px 14px;border-radius:0 4px 4px 0;font-size:.82rem;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>TOEFL Speaking — Drill #1</h1>
+<p>Based on diagnosis of 3 recordings · 10 Jul 2026</p>
+</div>
+<div class="container">
+
+<!-- Diagnosis -->
+<div class="card">
+<h2 class="collapsible" onclick="toggleSection('diag')">📋 Diagnosis — Patterns to Fix <span id="diag-arrow">▼</span></h2>
+<div id="diag">
+<div class="pattern"><div class="pattern-num">1</div><div class="pattern-text"><strong>Final consonants dropped</strong> — "projects"→"projets", "platform"→"path", "why"→"wine". Classic Spanish transfer: softening /t/, /f/, /aɪ/ at word endings.</div></div>
+<div class="pattern"><div class="pattern-num">2</div><div class="pattern-text"><strong>"be" auxiliary disappears under pressure</strong> — "we going" instead of "we are going". Brain omits it under cognitive load.</div></div>
+<div class="pattern"><div class="pattern-num">3</div><div class="pattern-text"><strong>Coherence collapses in opinion questions</strong> — idea loses thread mid-sentence when topic is abstract.</div></div>
+<div class="level-box">📊 Current level: <strong>B1-high / B2-low</strong> spoken · TOEFL Speaking ~18-23/30</div>
+</div>
+</div>
+
+<!-- Format -->
+<div class="card">
+<h2>📐 TOEFL Speaking Format (4 Tasks)</h2>
+<div class="task-grid">
+<div class="task-card"><div class="task-num">TASK 1</div><div class="task-name">Independent</div><div class="task-time">Personal opinion · 15s prep / 45s resp</div></div>
+<div class="task-card"><div class="task-num">TASK 2</div><div class="task-name">Integrated (Campus)</div><div class="task-time">Reading + audio · 30s prep / 60s resp</div></div>
+<div class="task-card"><div class="task-num">TASK 3</div><div class="task-name">Integrated (Academic)</div><div class="task-time">Reading + lecture · 30s prep / 60s resp</div></div>
+<div class="task-card"><div class="task-num">TASK 4</div><div class="task-name">Integrated (Audio)</div><div class="task-time">Audio only · 20s prep / 60s resp</div></div>
+</div>
+</div>
+
+<!-- Drill Practice -->
+<div class="card">
+<h2>🎤 Drill Practice — Task 1 (Independent) <span class="badge">CASE SENSITIVE</span></h2>
+<div class="progress-bar"><div class="progress-step" id="prog-1"></div><div class="progress-step" id="prog-2"></div><div class="progress-step" id="prog-3"></div></div>
+<div id="prompts-container"></div>
+</div>
+
+<!-- Example -->
+<div class="card">
+<h2>📖 Example Model Answer (Prompt 1)</h2>
+<div class="example-box">
+<span class="hl-stance">I prefer</span> to work for a small company <span class="hl-reason">because</span> the impact of each person is more visible. In a small company, you are closer to the decision-making process, and your projects directly affect the business. <span class="hl-example">For example, when I was working</span> at a startup, I could see how my code changes improved the product within days. In a large company, that connection is often lost.
+</div>
+<div class="legend">
+<span><span class="dot" style="background:#d4f4e8"></span> Stance (1st sentence)</span>
+<span><span class="dot" style="background:#d0e4ff"></span> Reason connector</span>
+<span><span class="dot" style="background:#fff3d4"></span> Example + "be" auxiliary</span>
+</div>
+<div class="section-note">Task 1 requires: (1) clear stance in first sentence, (2) one reason, (3) concrete example. Keep it simple and grammatically correct rather than sophisticated and broken.</div>
+</div>
+
+<!-- Consonant Test -->
+<div class="card">
+<h2>🔤 Final Consonant Spelling Test <span class="badge">CASE SENSITIVE</span></h2>
+<p style="font-size:.82rem;margin-bottom:8px">Type each word exactly as shown (case matters!). Exact match = 2 pts · Correct spelling wrong case = 1 pt · Wrong = 0 pts.</p>
+<div id="consonant-test-area"></div>
+<button class="btn btn-accent" onclick="scoreConsonants()" style="margin-top:12px">Score Consonant Test</button>
+<div id="consonant-score"></div>
+</div>
+
+<!-- Schedule -->
+<div class="card">
+<h2>📅 4-Week Schedule</h2>
+<table>
+<tr><th>Week</th><th>Focus</th><th>Daily Activity</th><th>Deliverable</th></tr>
+<tr><td>1</td><td>Auxiliaries "be" + final consonants</td><td>10 min ELSA + 3 Task 1 recordings</td><td>3 audios/day with self-check</td></tr>
+<tr><td>2</td><td>Task 1 fluency under pressure</td><td>5 opinion prompts/day, transcribe & correct</td><td>Transcription folder</td></tr>
+<tr><td>3</td><td>Task 2-3 (Integrated) structure</td><td>Short reading + oral summary 60s, connectors</td><td>5 integrated recordings</td></tr>
+<tr><td>4</td><td>Full mock + diagnosis</td><td>1 complete Speaking section (4 tasks) timed</td><td>Estimated band report</td></tr>
+</table>
+</div>
+
+<!-- Next Steps -->
+<div class="card">
+<h2>🚀 Next Steps</h2>
+<ul class="next-steps">
+<li>Record the 3 prompts in Voice Coach today and share transcriptions</li>
+<li>Take EF SET (efset.org) this week for official CEFR baseline</li>
+<li>To move to Tasks 2-4 (integrated), upload "Skills for the TOEFL iBT" or Official Guide 2021</li>
+</ul>
+</div>
+
+</div>
+<script>
+var prompts=[
+{n:1,text:'Some people prefer to work for a large company. Others prefer to work for a small company. Which do you prefer and why?'},
+{n:2,text:'Do you agree or disagree: technology has made it easier for people to communicate with each other?'},
+{n:3,text:'Describe a decision that was difficult for you to make. Explain why it was difficult and what you decided.'}
+];
+var consonantWords=['projects','platform','why','first','cost','trust','shift','adapt','contact','product'];
+var timers={};
+
+function toggleSection(id){
+var el=document.getElementById(id);
+var arrow=document.getElementById(id+'-arrow');
+if(el.style.display==='none'){el.style.display='block';arrow.textContent='▼';}
+else{el.style.display='none';arrow.textContent='▶';}
+}
+
+function renderPrompts(){
+var c=document.getElementById('prompts-container');
+prompts.forEach(function(p){
+var html='<div class="prompt-card" id="pc-'+p.n+'">';
+html+='<div class="prompt-label">Prompt '+p.n+' — SAY (15s prep / 45s resp)</div>';
+html+='<div class="prompt-text">"'+p.text+'"</div>';
+html+='<div class="timer-row">';
+html+='<div class="timer-circle prep" id="timer-'+p.n+'">15</div>';
+html+='<div class="timer-label" id="timer-label-'+p.n+'">Preparation</div>';
+html+='<button class="btn btn-primary" onclick="startTimer('+p.n+')">Start Prep</button>';
+html+='<button class="btn btn-danger" onclick="stopTimer('+p.n+')" style="display:none" id="stop-'+p.n+'">Stop</button>';
+html+='</div>';
+html+='<textarea id="resp-'+p.n+'" placeholder="Type your response here for self-check..."></textarea>';
+html+='<button class="btn btn-accent" onclick="runSelfCheck('+p.n+')" style="margin-top:8px">Submit & Self-Check</button>';
+html+='<div id="check-'+p.n+'"></div>';
+html+='</div>';
+c.innerHTML+=html;
+});
+}
+
+function startTimer(n){
+clearTimer(n);
+var circle=document.getElementById('timer-'+n);
+var label=document.getElementById('timer-label-'+n);
+var stopBtn=document.getElementById('stop-'+n);
+stopBtn.style.display='inline-block';
+var phase='prep';
+var sec=15;
+circle.className='timer-circle prep';
+circle.textContent=sec;
+label.textContent='Preparation';
+document.getElementById('pc-'+n).classList.add('active');
+document.getElementById('prog-'+n).classList.add('active');
+timers[n]=setInterval(function(){
+sec--;
+circle.textContent=sec;
+if(sec<=5)circle.classList.add('danger');
+if(sec<=0){
+if(phase==='prep'){
+phase='resp';sec=45;
+circle.className='timer-circle resp';
+circle.textContent=sec;
+label.textContent='Response — SPEAK NOW';
+}else{
+clearTimer(n);
+circle.textContent='✓';
+circle.className='timer-circle resp';
+label.textContent='Time up!';
+stopBtn.style.display='none';
+}
+}
+},1000);
+}
+
+function stopTimer(n){
+clearTimer(n);
+var circle=document.getElementById('timer-'+n);
+var label=document.getElementById('timer-label-'+n);
+circle.textContent='15';
+circle.className='timer-circle prep';
+circle.classList.remove('danger');
+label.textContent='Preparation';
+document.getElementById('stop-'+n).style.display='none';
+}
+
+function clearTimer(n){
+if(timers[n]){clearInterval(timers[n]);delete timers[n];}
+var circle=document.getElementById('timer-'+n);
+if(circle)circle.classList.remove('danger');
+}
+
+function runSelfCheck(n){
+var text=document.getElementById('resp-'+n).value.trim();
+var result=document.getElementById('check-'+n);
+if(!text){result.innerHTML='<div class="check-result"><span class="check-fail">⚠ Please type your response first.</span></div>';return;}
+var html='<div class="check-result"><strong>Self-Check Results (Case Sensitive):</strong>';
+// Check 1: be auxiliary
+var beIssues=findMissingBe(text);
+html+='<div class="check-item"><span class="check-icon '+(!beIssues.length?'check-pass':'check-fail')+'">'+(!beIssues.length?'✓':'✗')+'</span>';
+html+='<div><strong>Check 1 — "be" auxiliary:</strong> ';
+if(!beIssues.length){html+='All sentences have proper auxiliaries. Great!';}
+else{html+='Missing "be" in: '+beIssues.join(', ');}
+html+='</div></div>';
+// Check 2: structure
+var stance=findStance(text);
+var reason=findReason(text);
+var example=findExample(text);
+html+='<div class="check-item"><span class="check-icon '+(stance?'check-pass':'check-fail')+'">'+(stance?'✓':'✗')+'</span>';
+html+='<div><strong>Check 2a — Clear stance:</strong> '+(stance?'Found: "'+stance+'"':'No clear stance in first sentence. Start with "I prefer", "I agree", etc.')+'</div></div>';
+html+='<div class="check-item"><span class="check-icon '+(reason?'check-pass':'check-fail')+'">'+(reason?'✓':'✗')+'</span>';
+html+='<div><strong>Check 2b — Reason:</strong> '+(reason?'Found connector: "'+reason+'"':'No reason connector found. Use "because", "since", etc.')+'</div></div>';
+html+='<div class="check-item"><span class="check-icon '+(example?'check-pass':'check-fail')+'">'+(example?'✓':'✗')+'</span>';
+html+='<div><strong>Check 2c — Concrete example:</strong> '+(example?'Found: "'+example+'"':'No example found. Use "for example", "when I", etc.')+'</div></div>';
+// Check 3: coherence
+var wordCount=text.split(/\s+/).length;
+html+='<div class="check-item"><span class="check-icon '+(wordCount>=40&&wordCount<=100?'check-pass':'check-warn')+'">'+(wordCount>=40&&wordCount<=100?'✓':'⚠')+'</span>';
+html+='<div><strong>Check 3 — Length:</strong> '+wordCount+' words. '+(wordCount<40?'Too short — aim for 40-100 words.':wordCount>100?'May be too long for 45s.':'Good length for 45s.')+'</div></div>';
+html+='</div>';
+result.innerHTML=html;
+document.getElementById('prog-'+n).classList.remove('active');
+document.getElementById('prog-'+n).classList.add('done');
+}
+
+function findMissingBe(text){
+var issues=[];
+var patterns=[/\b(we|they|you|I)\s+going\b/gi,/\b(we|they|you|I)\s+coming\b/gi,/\b(we|they|you|I)\s+working\b/gi,/\b(we|they|you|I)\s+doing\b/gi,/\b(we|they|you|I)\s+thinking\b/gi,/\b(we|they|you|I)\s+looking\b/gi,/\b(we|they|you|I)\s+talking\b/gi,/\b(we|they|you|I)\s+building\b/gi];
+var auxRe=/\b(am|is|are|was|were)\b/gi;
+patterns.forEach(function(re){
+var m;
+while((m=re.exec(text))!==null){
+var before=text.substring(Math.max(0,m.index-10),m.index);
+if(!auxRe.test(before)){issues.push('"'+m[0]+'"');}
+auxRe.lastIndex=0;
+}
+});
+return issues;
+}
+
+function findStance(text){
+var markers=['I prefer','I agree','I disagree','I believe','I think','In my opinion','I would','I favor'];
+var firstSentence=text.split(/[.!?]/)[0];
+for(var i=0;i<markers.length;i++){
+if(firstSentence.indexOf(markers[i])>-1)return markers[i];
+}
+return null;
+}
+
+function findReason(text){
+var markers=['because','since','for this reason','due to','as a result'];
+for(var i=0;i<markers.length;i++){
+var idx=text.toLowerCase().indexOf(markers[i]);
+if(idx>-1)return text.substring(idx,idx+markers[i].length);
+}
+return null;
+}
+
+function findExample(text){
+var markers=['for example','for instance','in my experience','when I','I once','personally'];
+for(var i=0;i<markers.length;i++){
+var idx=text.toLowerCase().indexOf(markers[i]);
+if(idx>-1)return text.substring(idx,idx+markers[i].length);
+}
+return null;
+}
+
+function renderConsonantTest(){
+var area=document.getElementById('consonant-test-area');
+var html='';
+consonantWords.forEach(function(w,i){
+html+='<div class="consonant-word"><label>'+w+':</label><input type="text" id="cw-'+i+'" autocomplete="off"></div>';
+});
+area.innerHTML=html;
+}
+
+function scoreConsonants(){
+var total=0,max=consonantWords.length*2;
+var html='<div class="check-result"><strong>Consonant Spelling Results (Case Sensitive):</strong>';
+consonantWords.forEach(function(w,i){
+var input=document.getElementById('cw-'+i).value;
+var score=0,cls='score-zero',icon='✗';
+if(input===w){score=2;cls='score-perfect';icon='✓';}
+else if(input.toLowerCase()===w.toLowerCase()){score=1;cls='score-partial';icon='⚠';}
+total+=score;
+html+='<div class="check-item"><span class="check-icon '+cls.replace('score-','check-')+'">'+icon+'</span>';
+html+='<div><strong>'+w+'</strong>: typed "'+input+'" → '+score+' pts '+(score===2?'(exact match)':score===1?'(correct spelling, wrong case)':'(incorrect)')+'</div></div>';
+});
+html+='<div class="score-display '+((total===max)?'score-perfect':total>=max*0.7?'score-partial':'score-zero')+'">Total: '+total+' / '+max+' pts</div>';
+html+='</div>';
+document.getElementById('consonant-score').innerHTML=html;
+}
+
+renderPrompts();
+renderConsonantTest();
+</script>
+</body>
+</html>
