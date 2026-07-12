@@ -146,7 +146,9 @@ function playTap(){tone(400,0,0.06,'triangle',0.08);}
 function playWin(){tone(523,0,0.12);tone(659,0.12,0.12);tone(784,0.24,0.12);tone(1046,0.36,0.3);}
 
 /* TEXT-TO-SPEECH */
-function speak(text,lang){if('speechSynthesis' in window){window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang=lang||'en-US';u.rate=0.9;window.speechSynthesis.speak(u);}}
+let _ttsVoices=[];
+if('speechSynthesis' in window){_ttsVoices=window.speechSynthesis.getVoices();window.speechSynthesis.onvoiceschanged=()=>{_ttsVoices=window.speechSynthesis.getVoices();};}
+function speak(text,lang){if(!('speechSynthesis' in window))return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang=lang||'en-US';u.rate=0.9;const v=_ttsVoices.find(v=>v.lang===u.lang)||_ttsVoices.find(v=>v.lang&&v.lang.startsWith(u.lang.split('-')[0]));if(v)u.voice=v;window.speechSynthesis.speak(u);}
 
 /* MUSIC */
 let musicOn=false,musicTimer=null,musicNoteIndex=0;
