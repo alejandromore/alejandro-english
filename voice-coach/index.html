@@ -117,14 +117,6 @@
     <p class="panel-title" data-i18n="setup">Setup</p>
     <div class="config">
       <div class="field">
-        <label data-i18n="accuracy">Accuracy vs. speed</label>
-        <div class="seg" id="sizeSeg">
-          <button data-size="tiny" aria-pressed="false">Faster</button>
-          <button data-size="base" aria-pressed="true">Balanced</button>
-          <button data-size="small" aria-pressed="false">Best</button>
-        </div>
-      </div>
-      <div class="field">
         <label data-i18n="sentiment">Sentiment analysis</label>
         <div class="seg" id="sentSeg">
           <button data-sent="on" aria-pressed="true">On</button>
@@ -152,15 +144,6 @@
           <button data-docview="document" aria-pressed="false">Documento</button>
         </div>
       </div>
-      <div class="field">
-        <label data-i18n="engine">Motor (modo Palabras)</label>
-        <select id="wpEngineSel" class="field-select">
-          <option value="whisper" selected>Whisper (fiable)</option>
-          <option value="acoustic">wav2vec2 acústico (experimental)</option>
-        </select>
-        <span class="mid" id="wpEngineMid"></span>
-      </div>
-    </div>
 
     <div class="controls">
       <button class="rec" id="recBtn">
