@@ -195,7 +195,7 @@ const UI_STRINGS = {
     compareRead:"Compare reading", readingVoice:"Reading voice", engine:"Engine (Words mode)",
     record:"Record", upload:"⭡ Upload audio", or:"or", pause:"Pause", resume:"Resume",
     docView:"Text view", docSimple:"Simple", docDoc:"Document", warmVoice:"⚡ Prepare voice",
-    voiceSystem:"System", voiceNatural:"Natural",
+    voiceSystem:"System", voicePitch:"Pitch", voiceNatural:"Natural",
     uploadHint:"Uploading a phone recording? In the picker, choose <b>More → Files</b>, then open <b>Recordings</b>." },
   spanish: { play:"Reproducir", stop:"Detener", generating:"Generando voz…", dlmp3:"Descargar MP3",
     phon:"🔤 Fonética", words:"🎯 Palabras", newq:"↻ Nueva frase", loading:"Buscando…",
@@ -204,7 +204,7 @@ const UI_STRINGS = {
     compareRead:"Comparar lectura", readingVoice:"Voz de lectura", engine:"Motor (modo Palabras)",
     record:"Grabar", upload:"⭡ Subir audio", or:"o", pause:"Pausa", resume:"Reanudar",
     docView:"Vista del texto", docSimple:"Simple", docDoc:"Documento", warmVoice:"⚡ Preparar voz",
-    voiceSystem:"Sistema", voiceNatural:"Natural",
+    voiceSystem:"Sistema", voicePitch:"Tono alto", voiceNatural:"Natural",
     uploadHint:"¿Subir una grabación del teléfono? En el selector elige <b>More → Files</b> y abre <b>Recordings</b>." }
   ,
   portuguese: { play:"Reproduzir", stop:"Parar", generating:"Gerando voz...", dlmp3:"Baixar MP3",
@@ -214,7 +214,7 @@ const UI_STRINGS = {
     compareRead:"Comparar leitura", readingVoice:"Voz de leitura", engine:"Motor (modo Palavras)",
     record:"Gravar", upload:"Subir audio", or:"ou", pause:"Pausar", resume:"Retomar",
     docView:"Vista do texto", docSimple:"Simples", docDoc:"Documento", warmVoice:"Preparar voz",
-    voiceSystem:"Sistema", voiceNatural:"Natural",
+    voiceSystem:"Sistema", voicePitch:"Tom agudo", voiceNatural:"Natural",
     uploadHint:"Subindo uma gravacao do telefone? No seletor escolha <b>More > Files</b> e abra <b>Recordings</b>." }
 };
 function t(key){ const s=UI_STRINGS[state.lang]||UI_STRINGS.english; return (key in s)?s[key]:key; }
@@ -911,6 +911,7 @@ function speakChunk(){
   u.lang = state.lang==="spanish" ? "es-ES" : state.lang==="portuguese" ? "pt-BR" : "en-US";
   const v = pickVoice(state.lang==="spanish" ? "es" : state.lang==="portuguese" ? "pt" : "en"); if(v) u.voice = v;
   u.rate = ttsRate;
+  u.pitch = state.voice === "pitch" ? 1.5 : 1.0;
   u.onboundary = (e)=>{
     if(e.name && e.name !== "word") return;
     const gi = ch.start + (e.charIndex || 0);
@@ -979,7 +980,7 @@ if(speakBtn){
       if(state.voice === "natural"){   // ya sabemos que la natural no funciona aquí
         setVoiceStatus(state.lang==="spanish" ? "Voz natural no disponible en este dispositivo; uso la del sistema." : state.lang==="portuguese" ? "Voz natural nao disponivel neste dispositivo; uso a do sistema." : "Natural voice unavailable on this device; using system voice.");
       }
-      speakSystem(raw);
+      speakSystem(raw);   // system y pitch usan speechSynthesis
     }
   });
   if(synth && synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = ()=>{}; }
