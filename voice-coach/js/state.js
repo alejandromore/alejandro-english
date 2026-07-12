@@ -1,4 +1,4 @@
-﻿/* ---------------- state: estado compartido y helpers ---------------- */
+/* ---------------- state: estado compartido y helpers ---------------- */
 import { pipeline, env } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.5";
 
 // Allow remote models from the Hugging Face Hub; disable local file lookups.
@@ -23,6 +23,8 @@ export const state = {
   startedAt: 0,
   last: null,
   docxUrl: null,
+  wpImproveWords: [],
+  analyzeCanceled: false,
 };
 
 export const $ = (id) => document.getElementById(id);
@@ -38,3 +40,22 @@ export function wireSeg(segId, key){
 }
 
 export function fmtDur(s){ const m=Math.floor(s/60), r=Math.round(s%60); return m?`${m}m ${r}s`:`${r}s`; }
+
+/* ---------------- UI helpers compartidos ---------------- */
+const _statusEl = () => $("status");
+const _bar = () => $("bar");
+const _barFill = () => { const b = $("bar"); return b ? b.querySelector("i") : null; };
+
+export function setStatus(msg, isErr=false){
+  const el = _statusEl(); if(!el) return;
+  el.innerHTML = msg; el.classList.toggle("err", isErr);
+}
+export function showBar(busy=true){
+  const b = _bar(); if(!b) return;
+  b.style.display="block"; b.classList.toggle("busy",busy);
+}
+export function setBar(p){
+  const f = _barFill(); if(!f) return;
+  f.style.width = Math.max(0,Math.min(100,p))+"%";
+}
+export function hideBar(){ const b = _bar(); if(!b) return; b.style.display="none"; setBar(0); }
