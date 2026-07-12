@@ -353,8 +353,9 @@ if(pauseBtn) pauseBtn.addEventListener("click", togglePause);
 let audioCtx=null, naturalSource=null, naturalRAF=null, natRAF=null, natSchedule=null, natWatchdog=null;
 const neuralCache = new Map();   // cache de audio neural por (idioma|texto): reproducción instantánea
 // ---- línea de estado de la voz (etapa + cronómetro), para ver dónde se traba ----
-let HF_TOKEN = localStorage.getItem("hf_token") || "";
-const HF_TTS_MODEL = "suno/bark";
+/* Edge TTS (Microsoft neural voices) - free, no API key needed */
+const EDGE_TTS_URL = "wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4-FF12-4921-B7DB-57E5DDD1A4B2";
+const EDGE_VOICES = { english:"en-US-DavisNeural", spanish:"es-ES-AlvaroNeural", portuguese:"pt-BR-AntonioNeural" };
 let hfAudioEl = null;
 const hfCache = new Map();
 let voiceStage="", voiceHB=null, voiceT0=0;
@@ -946,27 +947,47 @@ function stopHfOrator(){
   if(hfAudioEl){ try{ hfAudioEl.pause(); }catch(e){} hfAudioEl=null; }
   stopVoiceStatus("");
 }
-async function hfTtsChunk(text){
-  const key = text.trim();
-  if(hfCache.has(key)) return hfCache.get(key);
-  let retries = 0;
-  while(retries < 3){
-    const res = await fetch(
-      `https://api-inference.huggingface.co/models/${HF_TTS_MODEL}`,
-      { headers:{ Authorization:`Bearer ${HF_TOKEN}`, "Content-Type":"application/json" },
-        method:"POST", body:JSON.stringify({ inputs:text }) }
-    );
-    if(res.status === 503){
-      await new Promise(r=>setTimeout(r, 5000));
-      retries++; continue;
-    }
-    if(!res.ok) throw new Error("HF API "+res.status);
-    const blob = await res.blob();
-    if(blob.size < 100) throw new Error("HF audio vacio");
-    hfCache.set(key, blob);
-    return blob;
-  }
-  throw new Error("HF timeout tras reintentos");
+function edgeTtsSpeak(text, voice, rate){
+  return new Promise((resolve, reject)=>{
+    const ws = new WebSocket(EDGE_TTS_URL);
+    const audioChunks = [];
+    let done = false;
+    const cleanup = ()=>{ try{ ws.close(); }catch(e){} };
+    ws.onopen = ()=>{
+      const ts = new Date().toISOString();
+      ws.send("X-Timestamp:"+ts+"\r\nContent-Type:application/json; charset=utf-8\r\nPath:speech.config\r\n\r\n{\"context\":{\"system\":{\"version\":\"2.1.0\"}}}");
+      const uuid = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2);
+      const ssml = "<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='"+voice.slice(0,5)+"'>"+
+        "<voice name='"+voice+"'><prosody pitch='0' rate='"+rate+"' volume='100'>"+text.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")+"</prosody></voice></speak>";
+      ws.send("X-Timestamp:"+ts+"\r\nX-RequestId:"+uuid+"\r\nContent-Type:application/ssml+xml\r\nPath:synthesis\r\n\r\n"+ssml);
+    };
+    ws.onmessage = (ev)=>{
+      if(typeof ev.data === "string"){
+        if(ev.data.includes("Path:synthesis.end")){ done=true; cleanup(); resolve(audioChunks); }
+      } else {
+        const dv = new DataView(ev.data);
+        const hdrLen = dv.getUint16(0);
+        audioChunks.push(ev.data.slice(2 + hdrLen));
+      }
+    };
+    ws.onerror = ()=>{ if(!done){ cleanup(); reject(new Error("Edge TTS WebSocket error")); } };
+    setTimeout(()=>{ if(!done){ cleanup(); reject(new Error("Edge TTS timeout")); } }, 30000);
+  });
+}
+function pcmToWavBlob(chunks){
+  let totalLen = 0;
+  for(const c of chunks) totalLen += c.byteLength;
+  const wav = new ArrayBuffer(44 + totalLen);
+  const dv = new DataView(wav);
+  const writeStr = (off,s)=>{ for(let i=0;i<s.length;i++) dv.setUint8(off+i, s.charCodeAt(i)); };
+  writeStr(0,"RIFF"); dv.setUint32(4, 36+totalLen, true); writeStr(8,"WAVE");
+  writeStr(12,"fmt "); dv.setUint32(16, 16, true); dv.setUint16(20, 1, true);
+  dv.setUint16(22, 1, true); dv.setUint32(24, 24000, true); dv.setUint32(28, 48000, true);
+  dv.setUint16(32, 2, true); dv.setUint16(34, 16, true);
+  writeStr(36,"data"); dv.setUint32(40, totalLen, true);
+  let off = 44;
+  for(const c of chunks){ new Uint8Array(wav, off, c.byteLength).set(new Uint8Array(c)); off += c.byteLength; }
+  return new Blob([wav], { type:"audio/wav" });
 }
 function playHfAudio(blob){
   return new Promise(resolve=>{
@@ -978,30 +999,35 @@ function playHfAudio(blob){
   });
 }
 async function speakHfOrator(raw){
-  if(!HF_TOKEN){
-    const tok=prompt(state.lang==="spanish"?"Pega tu token de Hugging Face (hf_...):":state.lang==="portuguese"?"Cole seu token do Hugging Face (hf_...):":"Paste your Hugging Face token (hf_...):");
-    if(!tok) return;
-    HF_TOKEN=tok.trim(); localStorage.setItem("hf_token",HF_TOKEN);
-  }
   const chunks = buildSpeechChunks(raw);
   ttsActive = true; lastBoundaryAt = 0;
   speakBtn.classList.add("speaking");
   speakLabel.textContent = speakStopLabel();
   showPause();
-  const stageMsg = state.lang==="spanish" ? "Generando voz IA" : state.lang==="portuguese" ? "Gerando voz IA" : "Generating AI voice";
+  const voice = EDGE_VOICES[state.lang] || EDGE_VOICES.english;
+  const rate = state.lang === "english" ? "0.9" : "0.85";
+  const stageMsg = state.lang==="spanish" ? "Generando voz" : state.lang==="portuguese" ? "Gerando voz" : "Generating voice";
   startVoiceStatus(stageMsg);
   for(let i=0; i<chunks.length; i++){
     if(!ttsActive) break;
     setVoiceStage(stageMsg+" "+(i+1)+"/"+chunks.length);
     try{
-      const blob = await hfTtsChunk(chunks[i].text);
-      if(!ttsActive) break;
+      const key = voice+"|"+rate+"|"+chunks[i].text.trim();
+      let blob;
+      if(hfCache.has(key)){
+        blob = hfCache.get(key);
+      } else {
+        const pcmChunks = await edgeTtsSpeak(chunks[i].text, voice, rate);
+        if(!ttsActive) break;
+        blob = pcmToWavBlob(pcmChunks);
+        hfCache.set(key, blob);
+      }
       stopVoiceStatus("");
       await playHfAudio(blob);
     }catch(err){
-      console.error("HF TTS error:", err);
+      console.error("Edge TTS error:", err);
       if(ttsActive){
-        stopVoiceStatus(state.lang==="spanish" ? "Error IA; usando voz del sistema" : state.lang==="portuguese" ? "Erro IA; usando voz do sistema" : "AI error; using system voice", true);
+        stopVoiceStatus(state.lang==="spanish" ? "Error; usando voz del sistema" : state.lang==="portuguese" ? "Erro; usando voz do sistema" : "Error; using system voice", true);
         ttsActive = false; hidePause(); speakBtn.classList.remove("speaking");
         speakSystem(raw);
         return;
