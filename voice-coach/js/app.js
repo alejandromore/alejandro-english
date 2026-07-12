@@ -146,6 +146,7 @@ const UI_STRINGS = {
     compareRead:"Compare reading", readingVoice:"Reading voice", engine:"Engine (Words mode)",
     record:"Record", upload:"⭡ Upload audio", or:"or", pause:"Pause", resume:"Resume",
     docView:"Text view", docSimple:"Simple", docDoc:"Document", warmVoice:"⚡ Prepare voice",
+    voiceSystem:"System", voiceNatural:"Natural",
     uploadHint:"Uploading a phone recording? In the picker, choose <b>More → Files</b>, then open <b>Recordings</b>." },
   spanish: { play:"Reproducir", stop:"Detener", generating:"Generando voz…", dlmp3:"Descargar MP3",
     phon:"🔤 Fonética", words:"🎯 Palabras", newq:"↻ Nueva frase", loading:"Buscando…",
@@ -154,6 +155,7 @@ const UI_STRINGS = {
     compareRead:"Comparar lectura", readingVoice:"Voz de lectura", engine:"Motor (modo Palabras)",
     record:"Grabar", upload:"⭡ Subir audio", or:"o", pause:"Pausa", resume:"Reanudar",
     docView:"Vista del texto", docSimple:"Simple", docDoc:"Documento", warmVoice:"⚡ Preparar voz",
+    voiceSystem:"Sistema", voiceNatural:"Natural",
     uploadHint:"¿Subir una grabación del teléfono? En el selector elige <b>More → Files</b> y abre <b>Recordings</b>." }
 };
 function t(key){ const s=UI_STRINGS[state.lang]||UI_STRINGS.english; return (key in s)?s[key]:key; }
