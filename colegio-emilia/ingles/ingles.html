@@ -163,6 +163,20 @@ function _findTtsVoice(lang){
   for(var i=0;i<voices.length;i++){if(voices[i].lang&&voices[i].lang.toLowerCase().indexOf(prefix)>=0)return voices[i];}
   return null;
 }
+var _mmsTTS=null,_mmsLoading=null,_mmsAudioCtx=null;
+async function _ensureMMS(){
+  if(_mmsTTS)return _mmsTTS;
+  if(_mmsLoading)return _mmsLoading;
+  _mmsLoading=(async()=>{
+    try{
+      var mod=await import("https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.5.2");
+      _mmsTTS=await mod.pipeline("text-to-speech","Xenova/mms-tts-spa",{dtype:"q8"});
+      return _mmsTTS;
+    }catch(e){_mmsLoading=null;throw e;}
+  })();
+  return _mmsLoading;
+}
+function _normalizeSamples(s){var p=0;for(var i=0;i<s.length;i++){var a=Math.abs(s[i]);if(a>p)p=a;}if(p>0.02&&p<0.98){var g=0.92/p;for(var i=0;i<s.length;i++)s[i]*=g;}return s;}
 function speak(text,lang){
   var l=lang||'es-ES';
   if(!text||!text.length)return;
@@ -178,7 +192,6 @@ function speak(text,lang){
     }
   }
   var done=false;
-  var ttsUrl='https://translate.google.com/translate_tts?ie=UTF-8&tl='+prefix+'&client=tw-ob&q='+encodeURIComponent(text);
   function _ttsFallback(){
     if(done)return;
     done=true;
@@ -190,37 +203,23 @@ function speak(text,lang){
       window.speechSynthesis.speak(u);
     }
   }
-  function _ttsPlayBlob(blob){
-    if(done)return;
-    try{
-      var url=URL.createObjectURL(blob);
-      var audio=new Audio(url);
-      audio.onerror=_ttsFallback;
-      audio.play().then(function(){done=true;}).catch(_ttsFallback);
-    }catch(e){_ttsFallback();}
-  }
-  function _ttsTryProxy(proxyIdx){
-    if(done)return;
-    var proxies=[
-      'https://api.allorigins.win/raw?url=',
-      'https://corsproxy.io/?url=',
-      'https://thingproxy.freeboard.io/fetch/'
-    ];
-    if(proxyIdx>=proxies.length){_ttsFallback();return;}
-    try{
-      fetch(proxies[proxyIdx]+encodeURIComponent(ttsUrl))
-        .then(function(r){return r.blob();})
-        .then(function(blob){
-          if(done)return;
-          if(blob.size>0){_ttsPlayBlob(blob);}
-          else{_ttsTryProxy(proxyIdx+1);}
-        })
-        .catch(function(){_ttsTryProxy(proxyIdx+1);});
-    }catch(e){_ttsTryProxy(proxyIdx+1);}
-  }
+  var ttsUrl='https://translate.google.com/translate_tts?ie=UTF-8&tl='+prefix+'&client=tw-ob&q='+encodeURIComponent(text);
   var audio=new Audio(ttsUrl);
-  audio.onerror=function(){if(!done)_ttsTryProxy(0);};
-  audio.play().then(function(){done=true;}).catch(function(){if(!done)_ttsTryProxy(0);});
+  audio.onerror=function(){};
+  audio.play().then(function(){done=true;}).catch(function(){});
+  _ensureMMS().then(function(tts){if(done)return;return tts(text);}).then(function(out){
+    if(done||!out)return;
+    done=true;
+    var samples=_normalizeSamples(out.audio);
+    var sr=out.sampling_rate||16000;
+    if(!_mmsAudioCtx)_mmsAudioCtx=new(window.AudioContext||window.webkitAudioContext)();
+    if(_mmsAudioCtx.state==='suspended')_mmsAudioCtx.resume();
+    var buf=_mmsAudioCtx.createBuffer(1,samples.length,sr);
+    if(buf.copyToChannel)buf.copyToChannel(samples,0);else buf.getChannelData(0).set(samples);
+    var src=_mmsAudioCtx.createBufferSource();
+    src.buffer=buf;src.connect(_mmsAudioCtx.destination);
+    src.start();
+  }).catch(function(){_ttsFallback();});
   if('speechSynthesis' in window){
     function _ttsRetry(){
       if(done)return;
