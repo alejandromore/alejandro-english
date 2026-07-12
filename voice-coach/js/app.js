@@ -26,7 +26,9 @@ const state = {
 /* ---------------- elements ---------------- */
 const $ = (id) => document.getElementById(id);
 const statusEl = $("status"), bar = $("bar"), barFill = bar.querySelector("i");
-const recBtn = $("recBtn"), recLabel = $("recLabel"), timerEl = $("timer");
+const recBtn = $("recBtn"), recLabel = $("recLabel"), timerEl = $("timer"), cancelBtn = $("cancelBtn");
+let analyzeCanceled = false;
+if(cancelBtn) cancelBtn.addEventListener("click", ()=>{ analyzeCanceled = true; cancelBtn.style.display="none"; setStatus("Analysis canceled."); hideBar(); setBusy(false); });
 const fileInput = $("fileInput"), results = $("results");
 
 /* ---------------- config toggles ---------------- */
@@ -2571,11 +2573,14 @@ async function transcribeLong(audio, sr, opts, onSeg){
 }
 
 async function analyze(blob){
+  analyzeCanceled = false;
+  if(cancelBtn) cancelBtn.style.display = "inline-block";
   setBusy(true);
   try{
     setStatus("Decoding audio…"); showBar(false); setBar(8);
     const { audio, duration } = await decodeTo16k(blob);
-    if(audio.length < 1600){ setStatus("That clip was too short to analyze. Try a few seconds of speech.", true); hideBar(); setBusy(false); return; }
+    if(audio.length < 1600){ setStatus("That clip was too short to analyze. Try a few seconds of speech.", true); hideBar(); setBusy(false); if(cancelBtn) cancelBtn.style.display="none"; return; }
+    if(analyzeCanceled){ if(cancelBtn) cancelBtn.style.display="none"; return; }
 
     // La transcripción principal siempre usa Whisper: es fiable en habla larga y con acento.
     // El motor acústico (wav2vec2) se reserva para el modo Palabras, donde el audio es corto.
@@ -2618,7 +2623,8 @@ async function analyze(blob){
     text = text.replace(/\((?:speaking[^)]*|inaudible|music|applause|foreign[^)]*|silence|no audio)\)/gi,"")
                .replace(/\[[^\]]{0,40}\]/g,"")
                .replace(/\s{2,}/g," ").trim();
-    if(!text){ setStatus("No speech was detected in that audio.", true); hideBar(); setBusy(false); return; }
+    if(!text){ setStatus("No speech was detected in that audio.", true); hideBar(); setBusy(false); if(cancelBtn) cancelBtn.style.display="none"; return; }
+    if(analyzeCanceled){ if(cancelBtn) cancelBtn.style.display="none"; return; }
 
     const sentences = splitSentences(text);
     let scored;
@@ -2653,9 +2659,9 @@ async function analyze(blob){
     hideBar();
   }finally{
     setBusy(false);
+    if(cancelBtn) cancelBtn.style.display="none";
   }
 }
-
 /* Modelo de 3 clases: positive/neutral/negative → positividad 0..1 (valor esperado). */
 function sentimentPositivity(result){
   const arr = Array.isArray(result) ? result : [result];
