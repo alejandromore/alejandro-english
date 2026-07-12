@@ -369,20 +369,24 @@ function _findTtsVoice(lang){
   for(var i=0;i<voices.length;i++){if(voices[i].lang&&voices[i].lang.toLowerCase().indexOf(prefix)>=0)return voices[i];}
   return null;
 }
-var _mmsTTS=null,_mmsLoading=null,_mmsAudioCtx=null;
-async function _ensureMMS(){
-  if(_mmsTTS)return _mmsTTS;
-  if(_mmsLoading)return _mmsLoading;
-  _mmsLoading=(async()=>{
-    try{
-      var mod=await import("https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.5.2");
-      _mmsTTS=await mod.pipeline("text-to-speech","Xenova/mms-tts-spa",{dtype:"q8"});
-      return _mmsTTS;
-    }catch(e){_mmsLoading=null;throw e;}
-  })();
-  return _mmsLoading;
+var _ttsWorker=null,_ttsSeq=0,_ttsJobs={};
+function _getTtsWorker(){
+  if(_ttsWorker)return _ttsWorker;
+  var src='import{pipeline}from"https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.5.2";var m=null;async function M(){if(m)return m;m=await pipeline("text-to-speech","Xenova/mms-tts-spa",{dtype:"q8"});return m;}self.onmessage=async(e)=>{try{var s=await M();var o=await s(e.data.text);var f=o.audio instanceof Float32Array?o.audio:Float32Array.from(o.audio);var p=0;for(var i=0;i<f.length;i++){var a=Math.abs(f[i]);if(a>p)p=a;}if(p>0.02&&p<0.98){var g=0.92/p;for(var i=0;i<f.length;i++)f[i]*=g;}self.postMessage({id:e.data.id,samples:f,sr:o.sampling_rate||16000},[f.buffer]);}catch(err){self.postMessage({id:e.data.id,error:(err&&err.message)||String(err)});}};';
+  var url=URL.createObjectURL(new Blob([src],{type:"text/javascript"}));
+  _ttsWorker=new Worker(url,{type:"module"});
+  _ttsWorker.onmessage=function(e){var cb=_ttsJobs[e.data.id];if(!cb)return;delete _ttsJobs[e.data.id];if(e.data.error)cb.reject(new Error(e.data.error));else cb.resolve({samples:e.data.samples,sr:e.data.sr});};
+  _ttsWorker.onerror=function(){for(var k in _ttsJobs){_ttsJobs[k].reject(new Error("worker error"));}_ttsJobs={};};
+  return _ttsWorker;
 }
-function _normalizeSamples(s){var p=0;for(var i=0;i<s.length;i++){var a=Math.abs(s[i]);if(a>p)p=a;}if(p>0.02&&p<0.98){var g=0.92/p;for(var i=0;i<s.length;i++)s[i]*=g;}return s;}
+function _speakMMS(text){
+  return new Promise(function(resolve,reject){
+    var id=++_ttsSeq;
+    _ttsJobs[id]={resolve:resolve,reject:reject};
+    _getTtsWorker().postMessage({id:id,text:text});
+  });
+}
+var _mmsAudioCtx=null;
 function speak(text,lang){
   var l=lang||'es-ES';
   if(!text||!text.length)return;
@@ -413,11 +417,10 @@ function speak(text,lang){
   var audio=new Audio(ttsUrl);
   audio.onerror=function(){};
   audio.play().then(function(){done=true;}).catch(function(){});
-  _ensureMMS().then(function(tts){if(done)return;return tts(text);}).then(function(out){
-    if(done||!out)return;
+  _speakMMS(text).then(function(out){
+    if(done)return;
     done=true;
-    var samples=_normalizeSamples(out.audio);
-    var sr=out.sampling_rate||16000;
+    var samples=out.samples,sr=out.sr;
     if(!_mmsAudioCtx)_mmsAudioCtx=new(window.AudioContext||window.webkitAudioContext)();
     if(_mmsAudioCtx.state==='suspended')_mmsAudioCtx.resume();
     var buf=_mmsAudioCtx.createBuffer(1,samples.length,sr);
