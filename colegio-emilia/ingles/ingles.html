@@ -150,9 +150,17 @@ function playTap(){tone(400,0,0.06,'triangle',0.08);}
 function playWin(){tone(523,0,0.12);tone(659,0.12,0.12);tone(784,0.24,0.12);tone(1046,0.36,0.3);}
 
 /* TEXT-TO-SPEECH */
-let _ttsVoices=[];
-if('speechSynthesis' in window){_ttsVoices=window.speechSynthesis.getVoices();window.speechSynthesis.onvoiceschanged=()=>{_ttsVoices=window.speechSynthesis.getVoices();};}
-function speak(text,lang){if(!('speechSynthesis' in window))return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang=lang||'en-US';u.rate=0.9;const v=_ttsVoices.find(v=>v.lang===u.lang)||_ttsVoices.find(v=>v.lang&&v.lang.startsWith(u.lang.split('-')[0]));if(v)u.voice=v;window.speechSynthesis.speak(u);}
+function speak(text,lang){
+  if(!('speechSynthesis' in window))return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang=lang||'en-US';
+  u.rate=0.9;
+  const voices=window.speechSynthesis.getVoices();
+  const match=voices.find(function(v){return v.lang===u.lang;})||voices.find(function(v){return v.lang&&v.lang.indexOf(u.lang.split('-')[0])===0;});
+  if(match)u.voice=match;
+  window.speechSynthesis.speak(u);
+}
 
 /* MUSIC */
 let musicOn=false,musicTimer=null,musicNoteIndex=0;
@@ -219,7 +227,11 @@ function endGame(){showScreen('screen-end');playWin();confettiBurst();const t=do
 
 /* MULTIPLE CHOICE */
 function buildMultipleChoice(stage,q,opt,correct){
-  const card=document.createElement('div');card.className='questionCard';card.innerHTML='📖 '+q+' <button onclick="speak(\''+q.replace(/'/g,"\\'")+'\',\'en-US\')" style="background:none;border:none;cursor:pointer;font-size:20px;vertical-align:middle;" title="Listen">🔊</button>';stage.appendChild(card);
+  const card=document.createElement('div');card.className='questionCard';
+  const txt=document.createElement('span');txt.textContent='📖 '+q;
+  const btn=document.createElement('button');btn.style.cssText='background:none;border:none;cursor:pointer;font-size:20px;vertical-align:middle;';btn.textContent='🔊';btn.title='Listen';
+  btn.onclick=function(){speak(q,'en-US');};
+  card.appendChild(txt);card.appendChild(btn);stage.appendChild(card);
   const row=document.createElement('div');row.className='optionsRow';
   shuffle(opt.map((o,i)=>({text:o,correct:i===correct}))).forEach(item=>{
     const b=document.createElement('button');b.className='optBtn';b.textContent=item.text;
@@ -231,7 +243,11 @@ function buildMultipleChoice(stage,q,opt,correct){
 
 /* TRUE/FALSE */
 function buildTrueFalse(stage,q,correct){
-  const card=document.createElement('div');card.className='questionCard';card.innerHTML='📖 '+q+' <button onclick="speak(\''+q.replace(/'/g,"\\'")+'\',\'en-US\')" style="background:none;border:none;cursor:pointer;font-size:20px;vertical-align:middle;" title="Listen">🔊</button>';stage.appendChild(card);
+  const card=document.createElement('div');card.className='questionCard';
+  const txt=document.createElement('span');txt.textContent='📖 '+q;
+  const btn=document.createElement('button');btn.style.cssText='background:none;border:none;cursor:pointer;font-size:20px;vertical-align:middle;';btn.textContent='🔊';btn.title='Listen';
+  btn.onclick=function(){speak(q,'en-US');};
+  card.appendChild(txt);card.appendChild(btn);stage.appendChild(card);
   const row=document.createElement('div');row.className='optionsRow';
   [{t:'True ✅',v:true},{t:'False ❌',v:false}].forEach(item=>{
     const b=document.createElement('button');b.className='tfBtn';b.textContent=item.t;

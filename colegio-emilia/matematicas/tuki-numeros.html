@@ -356,19 +356,15 @@ function playTap(){ tone(400,0,0.06,'triangle',0.08); }
 function playWin(){ tone(523,0,0.12); tone(659,0.12,0.12); tone(784,0.24,0.12); tone(1046,0.36,0.3); }
 
 /* ================= TEXT-TO-SPEECH ================= */
-let _ttsVoices=[];
-if('speechSynthesis' in window){
-  _ttsVoices=window.speechSynthesis.getVoices();
-  window.speechSynthesis.onvoiceschanged=()=>{_ttsVoices=window.speechSynthesis.getVoices();};
-}
 function speak(text, lang){
   if(!('speechSynthesis' in window)) return;
   window.speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
   u.lang = lang || 'es-ES';
   u.rate = 0.9;
-  const v = _ttsVoices.find(v=>v.lang===u.lang) || _ttsVoices.find(v=>v.lang && v.lang.startsWith(u.lang.split('-')[0]));
-  if(v) u.voice = v;
+  const voices = window.speechSynthesis.getVoices();
+  const match = voices.find(function(v){return v.lang===u.lang;}) || voices.find(function(v){return v.lang && v.lang.indexOf(u.lang.split('-')[0])===0;});
+  if(match) u.voice = match;
   window.speechSynthesis.speak(u);
 }
 
@@ -1086,7 +1082,10 @@ function buildProblemas(stage){
   // Problem card
   const card = document.createElement('div');
   card.style.cssText = 'background:var(--cream); border:3px solid #EADFC5; border-radius:18px; padding:16px 18px; margin-bottom:14px; text-align:left; font-weight:700; font-size:clamp(14px,3.5vw,17px); line-height:1.5; color:var(--ink);';
-  card.innerHTML = `📖 ${prob.text} <button onclick="speak('${prob.text.replace(/'/g,"\\'")}', 'es-ES')" style="background:none;border:none;cursor:pointer;font-size:20px;vertical-align:middle;" title="Escuchar">🔊</button>`;
+  const txt=document.createElement('span');txt.textContent='📖 '+prob.text;
+  const btn=document.createElement('button');btn.style.cssText='background:none;border:none;cursor:pointer;font-size:20px;vertical-align:middle;';btn.textContent='🔊';btn.title='Escuchar';
+  btn.onclick=function(){speak(prob.text,'es-ES');};
+  card.appendChild(txt);card.appendChild(btn);
   stage.appendChild(card);
 
   // Visual operation
