@@ -1467,7 +1467,7 @@ async function onDownloadAudio(){
 if(dlAudioBtn) dlAudioBtn.addEventListener("click", onDownloadAudio);
 
 
-}
+
 
 /* ---------------- fonética: inglés → IPA + re-deletreo para hispanohablante ---------------- */
 const phonBtn = $("phonBtn");
