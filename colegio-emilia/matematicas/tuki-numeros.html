@@ -356,6 +356,7 @@ function playTap(){ tone(400,0,0.06,'triangle',0.08); }
 function playWin(){ tone(523,0,0.12); tone(659,0.12,0.12); tone(784,0.24,0.12); tone(1046,0.36,0.3); }
 
 /* ================= TEXT-TO-SPEECH ================= */
+var _ttsSpinStyle=document.createElement('style');_ttsSpinStyle.textContent='@keyframes _spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}._ttsSpin{animation:_spin 0.8s linear infinite;display:inline-block}';document.head.appendChild(_ttsSpinStyle);
 var _ttsVoices=[];
 function _loadTtsVoices(){if('speechSynthesis' in window){_ttsVoices=window.speechSynthesis.getVoices();}}
 if('speechSynthesis' in window){_loadTtsVoices();window.speechSynthesis.onvoiceschanged=_loadTtsVoices;}
@@ -387,39 +388,36 @@ function _speakMMS(text){
   });
 }
 var _mmsAudioCtx=null;
-function speak(text,lang){
+function speak(text,lang,btn){
   var l=lang||'es-ES';
   if(!text||!text.length)return;
   var prefix=l.split('-')[0];
+  var origIcon='';
+  if(btn){origIcon=btn.textContent;btn.textContent='\u23F3';btn.classList.add('_ttsSpin');btn.disabled=true;}
+  function _btnDone(ok){if(!btn)return;btn.classList.remove('_ttsSpin');btn.disabled=false;if(ok){btn.textContent=origIcon;}else{btn.textContent='\u274C';setTimeout(function(){btn.textContent=origIcon;},2000);}}
   if('speechSynthesis' in window){
     window.speechSynthesis.cancel();
     var voice=_findTtsVoice(l);
     if(voice){
       var u=new SpeechSynthesisUtterance(text);
       u.lang=l;u.rate=0.9;u.voice=voice;
+      u.onend=function(){_btnDone(true);};
+      u.onerror=function(){_btnDone(false);};
       window.speechSynthesis.speak(u);
       return;
     }
   }
   var done=false;
-  function _ttsFallback(){
-    if(done)return;
-    done=true;
-    if('speechSynthesis' in window){
-      var u=new SpeechSynthesisUtterance(text);
-      u.lang=l;u.rate=0.9;
-      var v=_findTtsVoice(l);
-      if(v)u.voice=v;
-      window.speechSynthesis.speak(u);
-    }
-  }
+  var timeout=setTimeout(function(){if(!done){done=true;_btnDone(false);}},15000);
+  function _finish(ok){if(done)return;done=true;clearTimeout(timeout);_btnDone(ok);}
+  function _ttsFallback(){if(done)return;_finish(false);if('speechSynthesis' in window){var u=new SpeechSynthesisUtterance(text);u.lang=l;u.rate=0.9;var v=_findTtsVoice(l);if(v)u.voice=v;window.speechSynthesis.speak(u);}}
   var ttsUrl='https://translate.google.com/translate_tts?ie=UTF-8&tl='+prefix+'&client=tw-ob&q='+encodeURIComponent(text);
   var audio=new Audio(ttsUrl);
   audio.onerror=function(){};
-  audio.play().then(function(){done=true;}).catch(function(){});
+  audio.play().then(function(){_finish(true);}).catch(function(){});
   _speakMMS(text).then(function(out){
     if(done)return;
-    done=true;
+    _finish(true);
     var samples=out.samples,sr=out.sr;
     if(!_mmsAudioCtx)_mmsAudioCtx=new(window.AudioContext||window.webkitAudioContext)();
     if(_mmsAudioCtx.state==='suspended')_mmsAudioCtx.resume();
@@ -434,7 +432,7 @@ function speak(text,lang){
       if(done)return;
       var v=_findTtsVoice(l);
       if(v){
-        done=true;
+        _finish(true);
         window.speechSynthesis.cancel();
         var u=new SpeechSynthesisUtterance(text);
         u.lang=l;u.rate=0.9;u.voice=v;
@@ -1176,7 +1174,7 @@ function buildProblemas(stage){
   card.style.cssText = 'background:var(--cream); border:3px solid #EADFC5; border-radius:18px; padding:16px 18px; margin-bottom:14px; text-align:left; font-weight:700; font-size:clamp(14px,3.5vw,17px); line-height:1.5; color:var(--ink);';
   const txt=document.createElement('span');txt.textContent='📖 '+prob.text;
   const btn=document.createElement('button');btn.style.cssText='background:none;border:none;cursor:pointer;font-size:20px;vertical-align:middle;';btn.textContent='🔊';btn.title='Escuchar';
-  btn.onclick=function(){speak(prob.text,'es-ES');};
+  btn.onclick=function(){speak(prob.text,'es-ES',btn);};
   card.appendChild(txt);card.appendChild(btn);
   stage.appendChild(card);
 
