@@ -216,7 +216,7 @@ const UI_STRINGS = {
     setup:"Configuracao", accuracy:"Precisao vs. velocidade", sentiment:"Analise de sentimento",
     compareRead:"Comparar leitura", readingVoice:"Voz de leitura", engine:"Motor (modo Palavras)",
     record:"Gravar", upload:"Subir audio", or:"ou", pause:"Pausar", resume:"Retomar",
-    docView:"Vista do texto", docSimple:"Simples", docDoc:"Documento", warmVoice:"Preparar voz",
+    docView:"Vista do texto", docSimple:"Simples", docDoc:"Documento", 
     voiceSystem:"Sistema", voiceOrator:"Orador",
     uploadHint:"Subindo uma gravacao do telefone? No seletor escolha <b>More > Files</b> e abra <b>Recordings</b>." }
 };
@@ -240,7 +240,7 @@ function applyLang(){
   const pb=$("pauseBtn"); if(pb && pb.style.display!=="none"){ const pl=$("pauseLabel"); if(pl) pl.textContent = ttsPaused ? S.resume : S.pause; }
   const dvSeg=$("docViewSeg"); if(dvSeg){ const bs=dvSeg.querySelectorAll("button"); if(bs[0]) bs[0].textContent=S.docSimple; if(bs[1]) bs[1].textContent=S.docDoc; }
   const uh=$("uploadHint"); if(uh) uh.innerHTML = S.uploadHint;
-  const wbtn=$("warmBtn"); if(wbtn && wbtn.dataset.busy!=="1" && wbtn.dataset.ready!=="1") wbtn.textContent = S.warmVoice;
+  
   // Desactivar fonética para portugués (solo funciona para inglés/español)
   const phBtn=$("phonBtn");
   if(phBtn){ phBtn.disabled = state.lang==="portuguese"; phBtn.title = state.lang==="portuguese" ? "Fonética no disponible para portugués" : ""; }
@@ -297,7 +297,7 @@ function stopSpeaking(){
   if(synth){ try{ synth.resume(); }catch(e){} synth.cancel(); }                          // si estaba en pausa, reanuda antes de cancelar
   hidePause();
   if(typeof setMediaSession==="function") setMediaSession(false);
-  speakBtn.classList.remove("speaking");
+  speakBtn.classList.remove("speaking"); const sic=speakBtn.querySelector(".ic"); if(sic) sic.textContent="\u25B6";
   speakLabel.textContent = (typeof t==="function") ? t("play") : "Reproducir";
   exitReadingView();
 }
@@ -644,7 +644,7 @@ function playNaturalChunk(buf, ch){
 // Voz natural por bloques, generados en el worker (segundo plano) y encadenados sin huecos.
 async function speakNatural(raw){
   try{
-    speakBtn.classList.add("speaking"); speakLabel.textContent=t("generating");
+    speakBtn.classList.add("speaking"); const sic=speakBtn.querySelector(".ic"); if(sic) sic.textContent="\u25A0"; speakLabel.textContent=t("generating");
     startVoiceStatus(state.lang==="spanish" ? "Preparando voz" : state.lang==="portuguese" ? "Preparando voz" : "Preparing voice");
     const lang = state.lang;
     const chunks = buildSpeechChunks(raw);
@@ -972,13 +972,34 @@ async function elTtsChunk(text){
   }
   return await res.blob();
 }
-function playHfAudio(blob){
+function playHfAudio(blob, chunkStart, chunkText){
   return new Promise(resolve=>{
     const url = URL.createObjectURL(blob);
     hfAudioEl = new Audio(url);
+    // Highlight words during playback based on time progress
+    if(chunkStart != null && chunkText && typeof highlightWordByIndex === "function"){
+      hfAudioEl.ontimeupdate = ()=>{
+        if(!hfAudioEl || !hfAudioEl.duration) return;
+        const frac = hfAudioEl.currentTime / hfAudioEl.duration;
+        // Find words in readingWords that fall within this chunk
+        const chunkWords = [];
+        for(let i=0;i<readingWords.length;i++){
+          if(readingWords[i].start >= chunkStart && readingWords[i].start < chunkStart + chunkText.length){
+            chunkWords.push(i);
+          }
+        }
+        if(chunkWords.length > 0){
+          const idx = Math.min(Math.floor(frac * chunkWords.length), chunkWords.length-1);
+          highlightWordByIndex(chunkWords[idx]);
+        }
+      };
+    }
     hfAudioEl.onended = ()=>{ URL.revokeObjectURL(url); hfAudioEl=null; resolve(); };
     hfAudioEl.onerror = ()=>{ URL.revokeObjectURL(url); hfAudioEl=null; resolve(); };
     hfAudioEl.play().catch(()=>{ URL.revokeObjectURL(url); hfAudioEl=null; resolve(); });
+  });
+}
+;
   });
 }
 async function speakHfOrator(raw){
@@ -994,7 +1015,7 @@ async function speakHfOrator(raw){
   }
   const chunks = buildSpeechChunks(raw);
   ttsActive = true; lastBoundaryAt = 0;
-  speakBtn.classList.add("speaking");
+  speakBtn.classList.add("speaking"); const sic=speakBtn.querySelector(".ic"); if(sic) sic.textContent="\u25A0";
   speakLabel.textContent = speakStopLabel();
   showPause();
   const stageMsg = state.lang==="spanish" ? "Generando voz" : state.lang==="portuguese" ? "Gerando voz" : "Generating voice";
@@ -1033,12 +1054,12 @@ async function speakHfOrator(raw){
       const blob = await getChunk(i);
       if(!ttsActive || !blob) break;
       stopVoiceStatus("");
-      await playHfAudio(blob);
+      await playHfAudio(blob, chunks[i].start, chunks[i].text);
     }catch(err){
       console.error("ElevenLabs TTS error:", err);
       if(ttsActive){
         stopVoiceStatus(state.lang==="spanish" ? "Error IA; usando voz del sistema" : state.lang==="portuguese" ? "Erro IA; usando voz do sistema" : "AI error; using system voice", true);
-        ttsActive = false; hidePause(); speakBtn.classList.remove("speaking");
+        ttsActive = false; hidePause(); speakBtn.classList.remove("speaking"); const sic=speakBtn.querySelector(".ic"); if(sic) sic.textContent="\u25B6";
         speakSystem(raw);
         return;
       }
@@ -1056,7 +1077,7 @@ function speakSystem(raw){
   if(!synth){ setStatus("Tu navegador no soporta la voz del sistema.", true); stopSpeaking(); return; }
   speechChunks = buildSpeechChunks(raw);
   chunkIdx = 0; ttsRate = 0.8;
-  speakBtn.classList.add("speaking");
+  speakBtn.classList.add("speaking"); const sic=speakBtn.querySelector(".ic"); if(sic) sic.textContent="\u25A0";
   speakLabel.textContent = speakStopLabel();
   synth.cancel();
   speakChunk();
@@ -1447,34 +1468,7 @@ async function onDownloadAudio(){
 }
 if(dlAudioBtn) dlAudioBtn.addEventListener("click", onDownloadAudio);
 
-// "Preparar voz": compila el modelo (hilo principal) una sola vez, cuando el usuario decide,
-// para que después Reproducir sea inmediato. Congela unos segundos durante la compilación.
-if($("warmBtn")){
-  $("warmBtn").addEventListener("click", async ()=>{
-    const btn=$("warmBtn");
-    if(btn.dataset.busy==="1") return;
-    btn.dataset.busy="1";
-    const es = state.lang==="spanish";
-    const pt = state.lang==="portuguese";
-    btn.textContent = es ? "Preparando..." : pt ? "Preparando..." : "Preparing...";
-    setVoiceStatus(es ? "Preparando la voz en segundo plano..." : pt ? "Preparando a voz em segundo plano..." : "Preparing the voice - the screen may freeze for a few seconds.");
-    await new Promise(r=>setTimeout(r, 60));                 // deja pintar el estado antes de compilar
-    ttsDownloadTarget = (pct)=>{ setVoiceStatus((es?"Descargando modelo de voz ":pt?"Baixando modelo de voz ":"Downloading voice model ")+pct+"%"); };
-    try{
-      if(es || pt){
-        await genInWorker(state.lang, es ? "hola" : "ola", (pct)=>{ setVoiceStatus((es?"Descargando modelo de voz ":pt?"Baixando modelo de voz ":"Downloading voice model ")+pct+"%"); });
-      } else {
-        await neuralSamples(state.lang, "hello");  // Kokoro: frase minima en hilo principal
-      }
-    }catch(e){
-      console.error(e); ttsDownloadTarget=null;
-      btn.dataset.ready="";
-      btn.textContent = es ? "Preparar voz" : pt ? "Preparar voz" : "Prepare voice";
-      setVoiceStatus((es?"No se pudo preparar la voz: ":pt?"Nao foi possivel preparar a voz: ":"Couldn't prepare voice: ")+((e&&e.message)||e), true);
-    }finally{
-      btn.dataset.busy="0";
-    }
-  });
+
 }
 
 /* ---------------- fonética: inglés → IPA + re-deletreo para hispanohablante ---------------- */
@@ -2378,7 +2372,7 @@ function setModelBadge(st, text){
 /* ---- estado de cada modelo + panel con recarga ---- */
 const MODELS = {
   whisper:{ label:"Reconocimiento (Whisper)", state:"idle" },
-  sentiment:{ label:"Análisis de sentimiento", state:"idle" },
+  sentiment:{ label:"Analisis de sentimiento", state:"idle" },
 
 
 
