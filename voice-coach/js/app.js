@@ -1,4 +1,4 @@
-import { pipeline, env } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.5";
+﻿import { pipeline, env } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.5";
 
 // Allow remote models from the Hugging Face Hub; disable local file lookups.
 env.allowLocalModels = false;
@@ -195,7 +195,7 @@ const UI_STRINGS = {
     compareRead:"Compare reading", readingVoice:"Reading voice", engine:"Engine (Words mode)",
     record:"Record", upload:"⭡ Upload audio", or:"or", pause:"Pause", resume:"Resume",
     docView:"Text view", docSimple:"Simple", docDoc:"Document", warmVoice:"⚡ Prepare voice",
-    voiceSystem:"System", voicePitch:"Pitch", voiceNatural:"Natural",
+    voiceSystem:"System", voiceOrator:"Orator", voiceNatural:"Natural",
     uploadHint:"Uploading a phone recording? In the picker, choose <b>More → Files</b>, then open <b>Recordings</b>." },
   spanish: { play:"Reproducir", stop:"Detener", generating:"Generando voz…", dlmp3:"Descargar MP3",
     phon:"🔤 Fonética", words:"🎯 Palabras", newq:"↻ Nueva frase", paragraph:"¶ Párrafo", loading:"Buscando…",
@@ -204,7 +204,7 @@ const UI_STRINGS = {
     compareRead:"Comparar lectura", readingVoice:"Voz de lectura", engine:"Motor (modo Palabras)",
     record:"Grabar", upload:"⭡ Subir audio", or:"o", pause:"Pausa", resume:"Reanudar",
     docView:"Vista del texto", docSimple:"Simple", docDoc:"Documento", warmVoice:"⚡ Preparar voz",
-    voiceSystem:"Sistema", voicePitch:"Tono alto", voiceNatural:"Natural",
+    voiceSystem:"Sistema", voiceOrator:"Orador", voiceNatural:"Natural",
     uploadHint:"¿Subir una grabación del teléfono? En el selector elige <b>More → Files</b> y abre <b>Recordings</b>." }
   ,
   portuguese: { play:"Reproduzir", stop:"Parar", generating:"Gerando voz...", dlmp3:"Baixar MP3",
@@ -214,7 +214,7 @@ const UI_STRINGS = {
     compareRead:"Comparar leitura", readingVoice:"Voz de leitura", engine:"Motor (modo Palavras)",
     record:"Gravar", upload:"Subir audio", or:"ou", pause:"Pausar", resume:"Retomar",
     docView:"Vista do texto", docSimple:"Simples", docDoc:"Documento", warmVoice:"Preparar voz",
-    voiceSystem:"Sistema", voicePitch:"Tom agudo", voiceNatural:"Natural",
+    voiceSystem:"Sistema", voiceOrator:"Orador", voiceNatural:"Natural",
     uploadHint:"Subindo uma gravacao do telefone? No seletor escolha <b>More > Files</b> e abra <b>Recordings</b>." }
 };
 function t(key){ const s=UI_STRINGS[state.lang]||UI_STRINGS.english; return (key in s)?s[key]:key; }
@@ -289,6 +289,7 @@ function stopSpeaking(){
   ttsActive = false;
   stopMonitor();
   stopNatural();
+  stopHfOrator();
   if(audioCtx && audioCtx.state==="suspended"){ try{ audioCtx.resume(); }catch(e){} }  // deja el contexto listo para la próxima
   if(synth){ try{ synth.resume(); }catch(e){} synth.cancel(); }                          // si estaba en pausa, reanuda antes de cancelar
   hidePause();
@@ -323,6 +324,8 @@ async function togglePause(){
     ttsPaused = true;
     if(state.voice === "natural"){
       try{ if(audioCtx && audioCtx.state==="running") await audioCtx.suspend(); }catch(e){}
+    } else if(hfAudioEl){
+      try{ hfAudioEl.pause(); }catch(e){}
     } else if(synth){
       try{ synth.pause(); }catch(e){}
     }
@@ -333,6 +336,8 @@ async function togglePause(){
     ttsPaused = false;
     if(state.voice === "natural"){
       try{ if(audioCtx && audioCtx.state==="suspended") await audioCtx.resume(); }catch(e){}
+    } else if(hfAudioEl){
+      try{ hfAudioEl.play(); }catch(e){}
     } else if(synth){
       try{ synth.resume(); }catch(e){}
     }
@@ -348,6 +353,10 @@ if(pauseBtn) pauseBtn.addEventListener("click", togglePause);
 let audioCtx=null, naturalSource=null, naturalRAF=null, natRAF=null, natSchedule=null, natWatchdog=null;
 const neuralCache = new Map();   // cache de audio neural por (idioma|texto): reproducción instantánea
 // ---- línea de estado de la voz (etapa + cronómetro), para ver dónde se traba ----
+let HF_TOKEN = localStorage.getItem("hf_token") || "";
+const HF_TTS_MODEL = "suno/bark";
+let hfAudioEl = null;
+const hfCache = new Map();
 let voiceStage="", voiceHB=null, voiceT0=0;
 function setVoiceStatus(msg, isErr){ const el=$("voiceStatus"); if(!el) return; el.textContent=msg||""; el.classList.toggle("err", !!isErr); }
 function voiceTick(){ if(!voiceStage) return; const s=Math.floor((Date.now()-voiceT0)/1000); setVoiceStatus(`${voiceStage} · ${s}s`); }
@@ -819,7 +828,7 @@ function renderDocView(){
 }
 // Muestra la caja correcta según el modo (fuera de la reproducción).
 function applyDocView(){
-  const playing = ttsActive || naturalSource || (synth && (synth.speaking||synth.pending));
+  const playing = ttsActive || naturalSource || hfAudioEl || (synth && (synth.speaking||synth.pending));
   if(playing) return;   // durante la lectura manda promptRead
   const isDoc = state.docView==="document";
   $("promptText").style.display = isDoc ? "none" : "";
@@ -912,7 +921,7 @@ function speakChunk(){
   u.lang = state.lang==="spanish" ? "es-ES" : state.lang==="portuguese" ? "pt-BR" : "en-US";
   const v = pickVoice(state.lang==="spanish" ? "es" : state.lang==="portuguese" ? "pt" : "en"); if(v) u.voice = v;
   u.rate = ttsRate;
-  u.pitch = state.voice === "pitch" ? 1.5 : 1.0;
+  u.pitch = 1.0;
   u.onboundary = (e)=>{
     if(e.name && e.name !== "word") return;
     const gi = ch.start + (e.charIndex || 0);
@@ -933,6 +942,75 @@ function pickVoice(langCode){
       || null;
 }
 // Lee con la voz del sistema (speechSynthesis): instantánea, sin modelos.
+function stopHfOrator(){
+  if(hfAudioEl){ try{ hfAudioEl.pause(); }catch(e){} hfAudioEl=null; }
+  stopVoiceStatus("");
+}
+async function hfTtsChunk(text){
+  const key = text.trim();
+  if(hfCache.has(key)) return hfCache.get(key);
+  let retries = 0;
+  while(retries < 3){
+    const res = await fetch(
+      `https://api-inference.huggingface.co/models/${HF_TTS_MODEL}`,
+      { headers:{ Authorization:`Bearer ${HF_TOKEN}`, "Content-Type":"application/json" },
+        method:"POST", body:JSON.stringify({ inputs:text }) }
+    );
+    if(res.status === 503){
+      await new Promise(r=>setTimeout(r, 5000));
+      retries++; continue;
+    }
+    if(!res.ok) throw new Error("HF API "+res.status);
+    const blob = await res.blob();
+    if(blob.size < 100) throw new Error("HF audio vacio");
+    hfCache.set(key, blob);
+    return blob;
+  }
+  throw new Error("HF timeout tras reintentos");
+}
+function playHfAudio(blob){
+  return new Promise(resolve=>{
+    const url = URL.createObjectURL(blob);
+    hfAudioEl = new Audio(url);
+    hfAudioEl.onended = ()=>{ URL.revokeObjectURL(url); hfAudioEl=null; resolve(); };
+    hfAudioEl.onerror = ()=>{ URL.revokeObjectURL(url); hfAudioEl=null; resolve(); };
+    hfAudioEl.play().catch(()=>{ URL.revokeObjectURL(url); hfAudioEl=null; resolve(); });
+  });
+}
+async function speakHfOrator(raw){
+  if(!HF_TOKEN){
+    const tok=prompt(state.lang==="spanish"?"Pega tu token de Hugging Face (hf_...):":state.lang==="portuguese"?"Cole seu token do Hugging Face (hf_...):":"Paste your Hugging Face token (hf_...):");
+    if(!tok) return;
+    HF_TOKEN=tok.trim(); localStorage.setItem("hf_token",HF_TOKEN);
+  }
+  const chunks = buildSpeechChunks(raw);
+  ttsActive = true; lastBoundaryAt = 0;
+  speakBtn.classList.add("speaking");
+  speakLabel.textContent = speakStopLabel();
+  showPause();
+  const stageMsg = state.lang==="spanish" ? "Generando voz IA" : state.lang==="portuguese" ? "Gerando voz IA" : "Generating AI voice";
+  startVoiceStatus(stageMsg);
+  for(let i=0; i<chunks.length; i++){
+    if(!ttsActive) break;
+    setVoiceStage(stageMsg+" "+(i+1)+"/"+chunks.length);
+    try{
+      const blob = await hfTtsChunk(chunks[i].text);
+      if(!ttsActive) break;
+      stopVoiceStatus("");
+      await playHfAudio(blob);
+    }catch(err){
+      console.error("HF TTS error:", err);
+      if(ttsActive){
+        stopVoiceStatus(state.lang==="spanish" ? "Error IA; usando voz del sistema" : state.lang==="portuguese" ? "Erro IA; usando voz do sistema" : "AI error; using system voice", true);
+        ttsActive = false; hidePause(); speakBtn.classList.remove("speaking");
+        speakSystem(raw);
+        return;
+      }
+    }
+  }
+  if(ttsActive) stopSpeaking();
+}
+
 function speakSystem(raw){
   if(!synth){ setStatus("Tu navegador no soporta la voz del sistema.", true); stopSpeaking(); return; }
   speechChunks = buildSpeechChunks(raw);
@@ -957,7 +1035,7 @@ function fallbackToSystem(raw){
 if(speakBtn){
 
   speakBtn.addEventListener("click", async ()=>{
-    if(ttsActive || (synth && (synth.speaking||synth.pending)) || naturalSource){ stopSpeaking(); return; }
+    if(ttsActive || (synth && (synth.speaking||synth.pending)) || naturalSource || hfAudioEl){ stopSpeaking(); return; }
     const raw = $("promptText").value;
     if(!raw.trim()) return;
 
@@ -977,6 +1055,8 @@ if(speakBtn){
       // prepara el AudioContext dentro del gesto del usuario (política de autoplay)
       try{ if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)(); if(audioCtx.state==="suspended") await audioCtx.resume(); }catch(e){}
       speakNatural(raw);
+    } else if(state.voice === "orator"){
+      speakHfOrator(raw);
     } else {
       if(state.voice === "natural"){   // ya sabemos que la natural no funciona aquí
         setVoiceStatus(state.lang==="spanish" ? "Voz natural no disponible en este dispositivo; uso la del sistema." : state.lang==="portuguese" ? "Voz natural nao disponivel neste dispositivo; uso a do sistema." : "Natural voice unavailable on this device; using system voice.");
@@ -992,7 +1072,7 @@ const clearBtn = $("clearBtn"), promptTextEl = $("promptText");
 function updateClearBtn(){ clearBtn.style.display = promptTextEl.value.trim() ? "flex" : "none"; }
 if(clearBtn){
   clearBtn.addEventListener("click", ()=>{
-    if(synth && (ttsActive || synth.speaking || synth.pending)) stopSpeaking();
+    if(ttsActive || hfAudioEl || (synth && (synth.speaking || synth.pending))) stopSpeaking();
     promptTextEl.value = "";
     updateClearBtn();
     promptTextEl.focus();
