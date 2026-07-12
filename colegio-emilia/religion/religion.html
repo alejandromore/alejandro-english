@@ -149,6 +149,9 @@ function playWrong(){tone(220,0,0.18,'sawtooth',0.12);tone(160,0.15,0.25,'sawtoo
 function playTap(){tone(400,0,0.06,'triangle',0.08);}
 function playWin(){tone(523,0,0.12);tone(659,0.12,0.12);tone(784,0.24,0.12);tone(1046,0.36,0.3);}
 
+/* TEXT-TO-SPEECH */
+function speak(text,lang){if('speechSynthesis' in window){window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang=lang||'es-ES';u.rate=0.9;window.speechSynthesis.speak(u);}}
+
 /* MUSIC */
 let musicOn=false,musicTimer=null,musicNoteIndex=0;
 const MELODY=[523,659,784,659,523,587,659,587,659,784,880,784,659,587,523,587,784,659,523,659,587,523,494,523,523,659,784,880,784,659,587,523];
@@ -210,7 +213,7 @@ function endGame(){showScreen('screen-end');playWin();confettiBurst();const t=do
 
 /* MULTIPLE CHOICE */
 function buildMultipleChoice(stage,q,opt,correct){
-  const card=document.createElement('div');card.className='questionCard';card.innerHTML='📖 '+q;stage.appendChild(card);
+  const card=document.createElement('div');card.className='questionCard';card.innerHTML='📖 '+q+' <button onclick="speak(\''+q.replace(/'/g,"\\'")+'\',\'es-ES\')" style="background:none;border:none;cursor:pointer;font-size:20px;vertical-align:middle;" title="Escuchar">🔊</button>';stage.appendChild(card);
   const row=document.createElement('div');row.className='optionsRow';
   shuffle(opt.map((o,i)=>({text:o,correct:i===correct}))).forEach(item=>{
     const b=document.createElement('button');b.className='optBtn';b.textContent=item.text;
@@ -222,7 +225,7 @@ function buildMultipleChoice(stage,q,opt,correct){
 
 /* TRUE/FALSE */
 function buildTrueFalse(stage,q,correct){
-  const card=document.createElement('div');card.className='questionCard';card.innerHTML='📖 '+q;stage.appendChild(card);
+  const card=document.createElement('div');card.className='questionCard';card.innerHTML='📖 '+q+' <button onclick="speak(\''+q.replace(/'/g,"\\'")+'\',\'es-ES\')" style="background:none;border:none;cursor:pointer;font-size:20px;vertical-align:middle;" title="Escuchar">🔊</button>';stage.appendChild(card);
   const row=document.createElement('div');row.className='optionsRow';
   [{t:'Verdadero ✅',v:true},{t:'Falso ❌',v:false}].forEach(item=>{
     const b=document.createElement('button');b.className='tfBtn';b.textContent=item.t;

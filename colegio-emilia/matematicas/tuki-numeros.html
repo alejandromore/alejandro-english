@@ -355,6 +355,17 @@ function playWrong(){ tone(220,0,0.18,'sawtooth',0.12); tone(160,0.15,0.25,'sawt
 function playTap(){ tone(400,0,0.06,'triangle',0.08); }
 function playWin(){ tone(523,0,0.12); tone(659,0.12,0.12); tone(784,0.24,0.12); tone(1046,0.36,0.3); }
 
+/* ================= TEXT-TO-SPEECH ================= */
+function speak(text, lang){
+  if('speechSynthesis' in window){
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang || 'es-ES';
+    u.rate = 0.9;
+    window.speechSynthesis.speak(u);
+  }
+}
+
 /* ================= BACKGROUND MUSIC (Web Audio API, no files) ================= */
 let musicOn = false;
 let musicTimer = null;
@@ -777,25 +788,32 @@ function buildOperacion(stage, withCarry){
 
   if(isSum){
     if(withCarry){
-      // fuerza acarreo en unidades
+      // fuerza acarreo en unidades, resultado siempre de 2 dígitos
       do {
         a = rand(15,79); b = rand(15,79);
-      } while ( (a%10 + b%10) < 10 || (a+b) > 99 );
+      } while ( (a%10 + b%10) < 10 || (a+b) > 99 || (a+b) < 10 );
     } else {
       do {
         a = rand(10,79); b = rand(10,89);
-      } while ( (a%10 + b%10) >= 10 || (a+b) > 99 );
+      } while ( (a%10 + b%10) >= 10 || (a+b) > 99 || (a+b) < 10 );
     }
     result = a+b;
   } else {
     if(withCarry){
-      do {
-        a = rand(20,89); b = rand(11, a-1>10?Math.min(a-1,89):11);
-      } while ( b>=a || (a%10) >= (b%10) || (a-b)<0 );
+      // Generar dígitos directamente para garantizar préstamo y resultado de 2 dígitos
+      // aT: decenas de a (3-8), aU: unidades de a (0-8, nunca 9 para que bU > aU exista)
+      // bU: unidades de b (aU+1 a 9, fuerza préstamo), bT: decenas de b (1 a aT-2, asegura resultado >= 10)
+      const aT = rand(3, 8);
+      const aU = rand(0, 8);
+      const bU = rand(aU + 1, 9);
+      const bT = rand(1, aT - 2);
+      a = aT * 10 + aU;
+      b = bT * 10 + bU;
     } else {
+      // Sin préstamo, resultado siempre de 2 dígitos
       do {
         a = rand(20,89); b = rand(10, a);
-      } while ( b>=a || (a%10) < (b%10) );
+      } while ( b>=a || (a%10) < (b%10) || (a-b) < 10 );
     }
     result = a-b;
   }
@@ -1062,7 +1080,7 @@ function buildProblemas(stage){
   // Problem card
   const card = document.createElement('div');
   card.style.cssText = 'background:var(--cream); border:3px solid #EADFC5; border-radius:18px; padding:16px 18px; margin-bottom:14px; text-align:left; font-weight:700; font-size:clamp(14px,3.5vw,17px); line-height:1.5; color:var(--ink);';
-  card.innerHTML = `📖 ${prob.text}`;
+  card.innerHTML = `📖 ${prob.text} <button onclick="speak('${prob.text.replace(/'/g,"\\'")}', 'es-ES')" style="background:none;border:none;cursor:pointer;font-size:20px;vertical-align:middle;" title="Escuchar">🔊</button>`;
   stage.appendChild(card);
 
   // Visual operation
