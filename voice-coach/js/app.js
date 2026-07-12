@@ -2662,8 +2662,8 @@ function normReadWord(s){ return (s||"").toLowerCase().normalize("NFD").replace(
 function renderReadEval(promptTarget, transcript){
   const wrap = $("readWrap");
   wpImproveWords = [];   // se recalcula en cada anÃ¡lisis
-  const tgtRaw = (promptTarget||"").match(/[A-Za-zÃ€-Ã¿0-9'â€™-]+/g) || [];
-  const spkRaw = (transcript||"").match(/[A-Za-zÃ€-Ã¿0-9'â€™-]+/g) || [];
+  const tgtRaw = (promptTarget||"").match(/[A-Za-z\u00C0-\u00FF0-9\x27\u2019-]+/g) || [];
+  const spkRaw = (transcript||"").match(/[A-Za-z\u00C0-\u00FF0-9\x27\u2019-]+/g) || [];
   if(tgtRaw.length < 1 || spkRaw.length < 1){ wrap.style.display = "none"; return; }
 
   const tgt = tgtRaw.map(normReadWord), spk = spkRaw.map(normReadWord);
