@@ -1013,7 +1013,7 @@ async function speakHfOrator(raw){
   }
   const chunks = buildSpeechChunks(raw);
   ttsActive = true; lastBoundaryAt = 0;
-  speakBtn.classList.add("speaking"); const sic=speakBtn.querySelector(".ic"); if(sic) sic.textContent="\u25A0";
+  // Don't change to Stop icon yet - wait until first chunk succeeds
   speakLabel.textContent = speakStopLabel();
   showPause();
   const stageMsg = state.lang==="spanish" ? "Generando voz" : state.lang==="portuguese" ? "Gerando voz" : "Generating voice";
@@ -1051,13 +1051,15 @@ async function speakHfOrator(raw){
     try{
       const blob = await getChunk(i);
       if(!ttsActive || !blob) break;
+      // First chunk succeeded - now show Stop icon
+      if(i === 0){ speakBtn.classList.add("speaking"); const sic=speakBtn.querySelector(".ic"); if(sic) sic.textContent="\u25A0"; }
       stopVoiceStatus("");
       await playHfAudio(blob, chunks[i].start, chunks[i].text);
     }catch(err){
       console.error("ElevenLabs TTS error:", err);
       if(ttsActive){
         stopVoiceStatus(state.lang==="spanish" ? "Error IA; usando voz del sistema" : state.lang==="portuguese" ? "Erro IA; usando voz do sistema" : "AI error; using system voice", true);
-        ttsActive = false; hidePause(); speakBtn.classList.remove("speaking"); const sic=speakBtn.querySelector(".ic"); if(sic) sic.textContent="\u25B6";
+        ttsActive = false; hidePause(); speakBtn.classList.remove("speaking"); const sic=speakBtn.querySelector(".ic"); if(sic) sic.textContent="\u25B6"; speakLabel.textContent = (typeof t==="function") ? t("play") : "Reproducir";
         speakSystem(raw);
         return;
       }
