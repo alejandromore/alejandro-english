@@ -356,7 +356,7 @@ const neuralCache = new Map();   // cache de audio neural por (idioma|texto): re
 /* Edge TTS (Microsoft neural voices) - free, no API key needed */
 /* ElevenLabs TTS - voces neurales de maxima calidad, plan free 10k chars/mes */
 let EL_API_KEY = localStorage.getItem("el_api_key") || "";
-const EL_VOICE_ID = "pNInzwlObgfsXTW1E5M0";  // Adam - voz grave y autoritativa
+const EL_VOICE_ID = "onwK4e9ZLuTAKqWW03F9";  // Daniel - Steady Broadcaster
 let hfAudioEl = null;
 const hfCache = new Map();
 let voiceStage="", voiceHB=null, voiceT0=0;
