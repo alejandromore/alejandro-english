@@ -176,46 +176,65 @@ function speak(text,lang){
       window.speechSynthesis.speak(u);
       return;
     }
-    var done=false;
-    function _ttsAttempt(){
+  }
+  var done=false;
+  var ttsUrl='https://translate.google.com/translate_tts?ie=UTF-8&tl='+prefix+'&client=tw-ob&q='+encodeURIComponent(text);
+  function _ttsFallback(){
+    if(done)return;
+    done=true;
+    if('speechSynthesis' in window){
+      var u=new SpeechSynthesisUtterance(text);
+      u.lang=l;u.rate=0.9;
+      var v=_findTtsVoice(l);
+      if(v)u.voice=v;
+      window.speechSynthesis.speak(u);
+    }
+  }
+  function _ttsPlayBlob(blob){
+    if(done)return;
+    try{
+      var url=URL.createObjectURL(blob);
+      var audio=new Audio(url);
+      audio.onerror=_ttsFallback;
+      audio.play().then(function(){done=true;}).catch(_ttsFallback);
+    }catch(e){_ttsFallback();}
+  }
+  function _ttsTryProxy(proxyIdx){
+    if(done)return;
+    var proxies=[
+      'https://api.allorigins.win/raw?url=',
+      'https://corsproxy.io/?url=',
+      'https://thingproxy.freeboard.io/fetch/'
+    ];
+    if(proxyIdx>=proxies.length){_ttsFallback();return;}
+    try{
+      fetch(proxies[proxyIdx]+encodeURIComponent(ttsUrl))
+        .then(function(r){return r.blob();})
+        .then(function(blob){
+          if(done)return;
+          if(blob.size>0){_ttsPlayBlob(blob);}
+          else{_ttsTryProxy(proxyIdx+1);}
+        })
+        .catch(function(){_ttsTryProxy(proxyIdx+1);});
+    }catch(e){_ttsTryProxy(proxyIdx+1);}
+  }
+  var audio=new Audio(ttsUrl);
+  audio.onerror=function(){if(!done)_ttsTryProxy(0);};
+  audio.play().then(function(){done=true;}).catch(function(){if(!done)_ttsTryProxy(0);});
+  if('speechSynthesis' in window){
+    function _ttsRetry(){
       if(done)return;
       var v=_findTtsVoice(l);
       if(v){
         done=true;
+        window.speechSynthesis.cancel();
         var u=new SpeechSynthesisUtterance(text);
         u.lang=l;u.rate=0.9;u.voice=v;
         window.speechSynthesis.speak(u);
       }
     }
-    setTimeout(_ttsAttempt,100);
-    setTimeout(_ttsAttempt,300);
-    setTimeout(function(){
-      if(done)return;
-      var url='https://translate.google.com/translate_tts?ie=UTF-8&tl='+prefix+'&client=tw-ob&q='+encodeURIComponent(text);
-      var audio=new Audio(url);
-      audio.onerror=function(){
-        if(done)return;
-        done=true;
-        var u=new SpeechSynthesisUtterance(text);
-        u.lang=l;u.rate=0.9;
-        var v=_findTtsVoice(l);
-        if(v)u.voice=v;
-        window.speechSynthesis.speak(u);
-      };
-      audio.play().then(function(){done=true;}).catch(function(){
-        if(done)return;
-        done=true;
-        var u=new SpeechSynthesisUtterance(text);
-        u.lang=l;u.rate=0.9;
-        var v=_findTtsVoice(l);
-        if(v)u.voice=v;
-        window.speechSynthesis.speak(u);
-      });
-    },500);
-  }else{
-    var url='https://translate.google.com/translate_tts?ie=UTF-8&tl='+prefix+'&client=tw-ob&q='+encodeURIComponent(text);
-    var audio=new Audio(url);
-    audio.play().catch(function(){});
+    setTimeout(_ttsRetry,150);
+    setTimeout(_ttsRetry,400);
   }
 }
 /* MUSIC */
