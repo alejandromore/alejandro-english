@@ -999,9 +999,7 @@ function playHfAudio(blob, chunkStart, chunkText){
     hfAudioEl.play().catch(()=>{ URL.revokeObjectURL(url); hfAudioEl=null; resolve(); });
   });
 }
-;
-  });
-}
+
 async function speakHfOrator(raw){
   if(!EL_API_KEY){
     const tok = prompt(
