@@ -77,7 +77,7 @@ $("voiceSeg").querySelectorAll("button").forEach(b=>{
     b.setAttribute("aria-pressed","true");
     if(typeof stopSpeaking==="function") stopSpeaking();
     state.voice = b.dataset.voice;
-    const os=$("oratorStyle"); if(os) os.style.display = (b.dataset.voice==="orator") ? "block" : "none";
+
   });
 });
 
@@ -196,7 +196,7 @@ const UI_STRINGS = {
     compareRead:"Compare reading", readingVoice:"Reading voice", engine:"Engine (Words mode)",
     record:"Record", upload:"⭡ Upload audio", or:"or", pause:"Pause", resume:"Resume",
     docView:"Text view", docSimple:"Simple", docDoc:"Document", warmVoice:"⚡ Prepare voice",
-    voiceSystem:"System", voiceOrator:"Orator", voiceNatural:"Natural", oratorBroadcaster:"Broadcaster", oratorPolitician:"Politician", oratorPreacher:"Preacher", oratorWarrior:"Warrior",
+    voiceSystem:"System", voiceOrator:"Orator",
     uploadHint:"Uploading a phone recording? In the picker, choose <b>More → Files</b>, then open <b>Recordings</b>." },
   spanish: { play:"Reproducir", stop:"Detener", generating:"Generando voz…", dlmp3:"Descargar MP3",
     phon:"🔤 Fonética", words:"🎯 Palabras", newq:"↻ Nueva frase", paragraph:"¶ Párrafo", loading:"Buscando…",
@@ -205,7 +205,7 @@ const UI_STRINGS = {
     compareRead:"Comparar lectura", readingVoice:"Voz de lectura", engine:"Motor (modo Palabras)",
     record:"Grabar", upload:"⭡ Subir audio", or:"o", pause:"Pausa", resume:"Reanudar",
     docView:"Vista del texto", docSimple:"Simple", docDoc:"Documento", warmVoice:"⚡ Preparar voz",
-    voiceSystem:"Sistema", voiceOrator:"Orador", voiceNatural:"Natural", oratorBroadcaster:"Locutor", oratorPolitician:"Político", oratorPreacher:"Predicador", oratorWarrior:"Guerrero",
+    voiceSystem:"Sistema", voiceOrator:"Orador",
     uploadHint:"¿Subir una grabación del teléfono? En el selector elige <b>More → Files</b> y abre <b>Recordings</b>." }
   ,
   portuguese: { play:"Reproduzir", stop:"Parar", generating:"Gerando voz...", dlmp3:"Baixar MP3",
@@ -215,7 +215,7 @@ const UI_STRINGS = {
     compareRead:"Comparar leitura", readingVoice:"Voz de leitura", engine:"Motor (modo Palavras)",
     record:"Gravar", upload:"Subir audio", or:"ou", pause:"Pausar", resume:"Retomar",
     docView:"Vista do texto", docSimple:"Simples", docDoc:"Documento", warmVoice:"Preparar voz",
-    voiceSystem:"Sistema", voiceOrator:"Orador", voiceNatural:"Natural", oratorBroadcaster:"Locutor", oratorPolitician:"Político", oratorPreacher:"Predicador", oratorWarrior:"Guerrero",
+    voiceSystem:"Sistema", voiceOrator:"Orador",
     uploadHint:"Subindo uma gravacao do telefone? No seletor escolha <b>More > Files</b> e abra <b>Recordings</b>." }
 };
 function t(key){ const s=UI_STRINGS[state.lang]||UI_STRINGS.english; return (key in s)?s[key]:key; }
@@ -357,14 +357,8 @@ const neuralCache = new Map();   // cache de audio neural por (idioma|texto): re
 /* Edge TTS (Microsoft neural voices) - free, no API key needed */
 /* ElevenLabs TTS - voces neurales de maxima calidad, plan free 10k chars/mes */
 let EL_API_KEY = localStorage.getItem("el_api_key") || "";
-const EL_VOICE_ID = "onwK4e9ZLuTAKqWW03F9";  // Daniel - Steady Broadcaster
-const oratorStyleSel = $("oratorStyle");
-const ORATOR_STYLES = {
-  broadcaster: { voice:"onwK4e9ZLuTAKqWW03F9", stability:0.35, style:0.55, sim:0.75 },  // Daniel
-  politician:  { voice:"pNInz6obpgDQGcFmaJgB", stability:0.20, style:0.80, sim:0.80 },  // Adam - Dominant
-  preacher:    { voice:"JBFqnCBsd6RMkjVDRZzb", stability:0.15, style:0.90, sim:0.70 },  // George - Captivating
-  warrior:     { voice:"SOYHLrjzK2X1ezoPC6cr", stability:0.10, style:0.95, sim:0.75 }   // Harry - Fierce
-};
+const EL_VOICE_ID = "JBFqnCBsd6RMkjVDRZzb";  // George - Preacher (warm, captivating)
+
 let hfAudioEl = null;
 const hfCache = new Map();
 let voiceStage="", voiceHB=null, voiceT0=0;
@@ -956,9 +950,8 @@ function stopHfOrator(){
   if(hfAudioEl){ try{ hfAudioEl.pause(); }catch(e){} hfAudioEl=null; }
   stopVoiceStatus("");
 }
-async function elTtsChunk(text, styleName){
-  const s = ORATOR_STYLES[styleName] || ORATOR_STYLES.broadcaster;
-  const res = await fetch("https://api.elevenlabs.io/v1/text-to-speech/"+s.voice, {
+async function elTtsChunk(text){
+  const res = await fetch("https://api.elevenlabs.io/v1/text-to-speech/"+EL_VOICE_ID, {
     method: "POST",
     headers: {
       "xi-api-key": EL_API_KEY,
@@ -968,7 +961,7 @@ async function elTtsChunk(text, styleName){
     body: JSON.stringify({
       text: text,
       model_id: "eleven_multilingual_v2",
-      voice_settings: { stability: s.stability, similarity_boost: s.sim, style: s.style, use_speaker_boost: true }
+      voice_settings: { stability: 0.15, similarity_boost: 0.70, style: 0.90, use_speaker_boost: true }
     })
   });
   if(!res.ok){
@@ -1013,7 +1006,7 @@ async function speakHfOrator(raw){
       if(hfCache.has(key)){
         blob = hfCache.get(key);
       } else {
-        blob = await elTtsChunk(chunks[i].text, oratorStyleSel ? oratorStyleSel.value : "broadcaster");
+        blob = await elTtsChunk(chunks[i].text);
         if(!ttsActive) break;
         hfCache.set(key, blob);
       }
