@@ -997,19 +997,39 @@ async function speakHfOrator(raw){
   showPause();
   const stageMsg = state.lang==="spanish" ? "Generando voz" : state.lang==="portuguese" ? "Gerando voz" : "Generating voice";
   startVoiceStatus(stageMsg);
+
+  /* Prefetch: generate chunks in parallel while playing.
+     We keep a map of pending promises. When we start playing chunk i,
+     we kick off generation of i+1 and i+2 so they're ready by the time
+     chunk i finishes playing. */
+  const prefetch = new Map();
+  function getChunk(i){
+    if(i >= chunks.length) return Promise.resolve(null);
+    if(prefetch.has(i)) return prefetch.get(i);
+    const key = chunks[i].text.trim();
+    if(hfCache.has(key)){
+      const p = Promise.resolve(hfCache.get(key));
+      prefetch.set(i, p);
+      return p;
+    }
+    const p = elTtsChunk(chunks[i].text).then(blob => {
+      if(!ttsActive) return null;
+      hfCache.set(key, blob);
+      return blob;
+    });
+    prefetch.set(i, p);
+    return p;
+  }
+
   for(let i=0; i<chunks.length; i++){
     if(!ttsActive) break;
     setVoiceStage(stageMsg+" "+(i+1)+"/"+chunks.length);
+    // Kick off prefetch for next 2 chunks while we wait for current
+    getChunk(i+1);
+    getChunk(i+2);
     try{
-      const key = chunks[i].text.trim();
-      let blob;
-      if(hfCache.has(key)){
-        blob = hfCache.get(key);
-      } else {
-        blob = await elTtsChunk(chunks[i].text);
-        if(!ttsActive) break;
-        hfCache.set(key, blob);
-      }
+      const blob = await getChunk(i);
+      if(!ttsActive || !blob) break;
       stopVoiceStatus("");
       await playHfAudio(blob);
     }catch(err){
