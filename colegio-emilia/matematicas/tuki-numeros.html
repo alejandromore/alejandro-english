@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -359,27 +359,71 @@ function playWin(){ tone(523,0,0.12); tone(659,0.12,0.12); tone(784,0.24,0.12); 
 var _ttsVoices=[];
 function _loadTtsVoices(){if('speechSynthesis' in window){_ttsVoices=window.speechSynthesis.getVoices();}}
 if('speechSynthesis' in window){_loadTtsVoices();window.speechSynthesis.onvoiceschanged=_loadTtsVoices;}
+function _findTtsVoice(lang){
+  var l=(lang||'es-ES').toLowerCase();
+  var prefix=l.split('-')[0];
+  if('speechSynthesis' in window){var fresh=window.speechSynthesis.getVoices();if(fresh.length>0)_ttsVoices=fresh;}
+  var voices=_ttsVoices;
+  for(var i=0;i<voices.length;i++){if(voices[i].lang&&voices[i].lang.toLowerCase()===l)return voices[i];}
+  for(var i=0;i<voices.length;i++){if(voices[i].lang&&voices[i].lang.toLowerCase().indexOf(prefix)===0)return voices[i];}
+  for(var i=0;i<voices.length;i++){if(voices[i].lang&&voices[i].lang.toLowerCase().indexOf(prefix)>=0)return voices[i];}
+  return null;
+}
 function speak(text,lang){
   var l=lang||'es-ES';
+  if(!text||!text.length)return;
   var prefix=l.split('-')[0];
-  var voices=_ttsVoices.length>0?_ttsVoices:('speechSynthesis' in window?window.speechSynthesis.getVoices():[]);
-  if(voices.length>0&&_ttsVoices.length===0)_ttsVoices=voices;
-  var match=null;
-  for(var i=0;i<voices.length;i++){if(voices[i].lang&&voices[i].lang.toLowerCase()===l.toLowerCase()){match=voices[i];break;}}
-  if(!match){for(var i=0;i<voices.length;i++){if(voices[i].lang&&voices[i].lang.toLowerCase().indexOf(prefix.toLowerCase())===0){match=voices[i];break;}}}
-  if(match){
+  if('speechSynthesis' in window){
     window.speechSynthesis.cancel();
-    var u=new SpeechSynthesisUtterance(text);
-    u.lang=l;u.rate=0.9;u.voice=match;
-    window.speechSynthesis.speak(u);
+    var voice=_findTtsVoice(l);
+    if(voice){
+      var u=new SpeechSynthesisUtterance(text);
+      u.lang=l;u.rate=0.9;u.voice=voice;
+      window.speechSynthesis.speak(u);
+      return;
+    }
+    var done=false;
+    function _ttsAttempt(){
+      if(done)return;
+      var v=_findTtsVoice(l);
+      if(v){
+        done=true;
+        var u=new SpeechSynthesisUtterance(text);
+        u.lang=l;u.rate=0.9;u.voice=v;
+        window.speechSynthesis.speak(u);
+      }
+    }
+    setTimeout(_ttsAttempt,100);
+    setTimeout(_ttsAttempt,300);
+    setTimeout(function(){
+      if(done)return;
+      var url='https://translate.google.com/translate_tts?ie=UTF-8&tl='+prefix+'&client=tw-ob&q='+encodeURIComponent(text);
+      var audio=new Audio(url);
+      audio.onerror=function(){
+        if(done)return;
+        done=true;
+        var u=new SpeechSynthesisUtterance(text);
+        u.lang=l;u.rate=0.9;
+        var v=_findTtsVoice(l);
+        if(v)u.voice=v;
+        window.speechSynthesis.speak(u);
+      };
+      audio.play().then(function(){done=true;}).catch(function(){
+        if(done)return;
+        done=true;
+        var u=new SpeechSynthesisUtterance(text);
+        u.lang=l;u.rate=0.9;
+        var v=_findTtsVoice(l);
+        if(v)u.voice=v;
+        window.speechSynthesis.speak(u);
+      });
+    },500);
   }else{
     var url='https://translate.google.com/translate_tts?ie=UTF-8&tl='+prefix+'&client=tw-ob&q='+encodeURIComponent(text);
     var audio=new Audio(url);
-    audio.onerror=function(){if('speechSynthesis' in window){window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(text);u.lang=l;u.rate=0.9;window.speechSynthesis.speak(u);}};
-    audio.play().catch(function(){audio.onerror();});
+    audio.play().catch(function(){});
   }
 }
-
 /* ================= BACKGROUND MUSIC (Web Audio API, no files) ================= */
 let musicOn = false;
 let musicTimer = null;
@@ -616,7 +660,7 @@ function buildCodificar(stage){
 
 /* ================= 2. DESCOMPONER (D y U) ================= */
 function buildDescomponer(stage){
-  const n = rand(11,20);
+  const n = rand(11,99);
   const correctD = Math.floor(n/10);
   const correctU = n % 10;
   let selD = null, selU = null;
@@ -628,7 +672,9 @@ function buildDescomponer(stage){
   const dRow = document.createElement('div');
   dRow.innerHTML = '<p style="font-weight:800; margin:6px 0 4px; color:#6B6285;">Decenas</p>';
   const dBtns = document.createElement('div'); dBtns.className='optionsRow';
-  [0,1,2].forEach(d=>{
+  const dOptions = new Set([correctD]);
+  while(dOptions.size<4){ dOptions.add(rand(0,9)); }
+  shuffle([...dOptions]).forEach(d=>{
     const b=document.createElement('button'); b.className='optBtn'; b.textContent=d;
     b.onclick=()=>{ playTap(); selD=d; document.getElementById('dSel').textContent=d;
       [...dBtns.children].forEach(c=>c.style.background='var(--cream)');
@@ -689,7 +735,7 @@ function buildComparar(stage){
     const asc = Math.random()<0.5;
     const count = 4;
     const numSet = new Set();
-    while(numSet.size<count) numSet.add(rand(1,20));
+    while(numSet.size<count) numSet.add(rand(1,10));
     const nums = [...numSet];
     const sorted = asc ? nums.slice().sort((a,b)=>a-b) : nums.slice().sort((a,b)=>b-a);
 
@@ -782,7 +828,7 @@ function buildComparar(stage){
               }
               markResult(ok, null);
               if(!ok){
-                for(let ci=0; ci<count; ci++) slotEls[ci].textContent = sorted[ci];
+                for(let ci=0; ci<count; ci++){ slotEls[ci].textContent = sorted[ci]; slotEls[ci].style.borderColor='#4CAF6D'; slotEls[ci].style.background='#E8F5E9'; }
               }
             }
             break;
@@ -1075,20 +1121,33 @@ function buildSumasDel10(stage){
 
 /* ================= 8. PROBLEMAS VERBALES ================= */
 function buildProblemas(stage){
-  const problems = [
-    {text: 'Ana tenía 85 naranjas y vendió 69. ¿Cuántas naranjas le quedan?', a: 85, b: 69, op: '−'},
-    {text: 'Juan tiene 24 canicas y su amigo le regala 15. ¿Cuántas canicas tiene ahora?', a: 24, b: 15, op: '+'},
-    {text: 'María tenía 90 lápices y regaló 40. ¿Cuántos lápices le quedan?', a: 90, b: 40, op: '−'},
-    {text: 'En una granja hay 32 gallinas y 27 patos. ¿Cuántos animales hay en total?', a: 32, b: 27, op: '+'},
-    {text: 'Pedro tenía 50 stickers y usó 28. ¿Cuántos stickers le sobraron?', a: 50, b: 28, op: '−'},
-    {text: 'Lucía recogió 18 flores y su hermana recogió 13. ¿Cuántas flores tienen juntas?', a: 18, b: 13, op: '+'},
-    {text: 'Había 64 galletas en una caja y se comieron 35. ¿Cuántas galletas quedan?', a: 64, b: 35, op: '−'},
-    {text: 'Tomás ahorró 45 soles y su mamá le dio 20. ¿Cuántos soles tiene ahora?', a: 45, b: 20, op: '+'},
-    {text: 'En un bus iban 48 personas y se bajaron 19. ¿Cuántas personas quedan en el bus?', a: 48, b: 19, op: '−'},
-    {text: 'Carla tiene 36 cromos y su primo le da 25 más. ¿Cuántos cromos tiene en total?', a: 36, b: 25, op: '+'}
-  ];
-
-  const prob = problems[rand(0, problems.length - 1)];
+  const nombres = ['Ana','Juan','Maria','Pedro','Lucia','Tomas','Carla','Diego','Sofia','Luis','Elena','Pablo','Rosa','Mateo','Valeria'];
+  const objetosS = ['naranjas','canicas','lapices','stickers','flores','galletas','cromos','monedas','figuras','pelotas'];
+  const animales = [['gallinas','patos'],['perros','gatos'],['conejos','ardillas'],['caballos','vacas'],['peces','tortugas']];
+  const isSumP = Math.random() < 0.5;
+  const nombre = nombres[rand(0, nombres.length - 1)];
+  let prob;
+  if (isSumP) {
+    const a = rand(12, 80), b = rand(5, 40);
+    const tpl = rand(0, 4);
+    let text;
+    if (tpl === 0) { const obj = objetosS[rand(0, objetosS.length - 1)]; text = nombre + ' tiene ' + a + ' ' + obj + ' y su amigo le regala ' + b + '. Cuantas ' + obj + ' tiene ahora?'; }
+    else if (tpl === 1) { const obj = objetosS[rand(0, objetosS.length - 1)]; text = nombre + ' recogio ' + a + ' ' + obj + ' y su hermana recogio ' + b + '. Cuantas ' + obj + ' tienen juntas?'; }
+    else if (tpl === 2) { const par = animales[rand(0, animales.length - 1)]; text = 'En una granja hay ' + a + ' ' + par[0] + ' y ' + b + ' ' + par[1] + '. Cuantos animales hay en total?'; }
+    else if (tpl === 3) { text = nombre + ' ahorro ' + a + ' soles y su mama le dio ' + b + '. Cuantos soles tiene ahora?'; }
+    else { const obj = objetosS[rand(0, objetosS.length - 1)]; text = nombre + ' tiene ' + a + ' ' + obj + ' y su primo le da ' + b + ' mas. Cuantos ' + obj + ' tiene en total?'; }
+    prob = { text: text, a: a, b: b, op: '+' };
+  } else {
+    const a = rand(30, 95), b = rand(5, Math.min(a - 1, 50));
+    const tpl = rand(0, 4);
+    let text;
+    if (tpl === 0) { const obj = objetosS[rand(0, objetosS.length - 1)]; text = nombre + ' tenia ' + a + ' ' + obj + ' y vendio ' + b + '. Cuantas ' + obj + ' le quedan?'; }
+    else if (tpl === 1) { const obj = objetosS[rand(0, objetosS.length - 1)]; text = nombre + ' tenia ' + a + ' ' + obj + ' y regalo ' + b + '. Cuantos ' + obj + ' le quedan?'; }
+    else if (tpl === 2) { const obj = objetosS[rand(0, objetosS.length - 1)]; text = 'Habia ' + a + ' ' + obj + ' en una caja y se comieron ' + b + '. Cuantas ' + obj + ' quedan?'; }
+    else if (tpl === 3) { text = 'En un bus iban ' + a + ' personas y se bajaron ' + b + '. Cuantas personas quedan en el bus?'; }
+    else { const obj = objetosS[rand(0, objetosS.length - 1)]; text = nombre + ' tenia ' + a + ' ' + obj + ' y uso ' + b + '. Cuantos ' + obj + ' le sobraron?'; }
+    prob = { text: text, a: a, b: b, op: '-' };
+  }
   const result = prob.op === '+' ? prob.a + prob.b : prob.a - prob.b;
 
   // Problem card

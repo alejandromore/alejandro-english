@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -153,27 +153,71 @@ function playWin(){tone(523,0,0.12);tone(659,0.12,0.12);tone(784,0.24,0.12);tone
 var _ttsVoices=[];
 function _loadTtsVoices(){if('speechSynthesis' in window){_ttsVoices=window.speechSynthesis.getVoices();}}
 if('speechSynthesis' in window){_loadTtsVoices();window.speechSynthesis.onvoiceschanged=_loadTtsVoices;}
-function speak(text,lang){
-  var l=lang||'en-US';
+function _findTtsVoice(lang){
+  var l=(lang||'es-ES').toLowerCase();
   var prefix=l.split('-')[0];
-  var voices=_ttsVoices.length>0?_ttsVoices:('speechSynthesis' in window?window.speechSynthesis.getVoices():[]);
-  if(voices.length>0&&_ttsVoices.length===0)_ttsVoices=voices;
-  var match=null;
-  for(var i=0;i<voices.length;i++){if(voices[i].lang&&voices[i].lang.toLowerCase()===l.toLowerCase()){match=voices[i];break;}}
-  if(!match){for(var i=0;i<voices.length;i++){if(voices[i].lang&&voices[i].lang.toLowerCase().indexOf(prefix.toLowerCase())===0){match=voices[i];break;}}}
-  if(match){
+  if('speechSynthesis' in window){var fresh=window.speechSynthesis.getVoices();if(fresh.length>0)_ttsVoices=fresh;}
+  var voices=_ttsVoices;
+  for(var i=0;i<voices.length;i++){if(voices[i].lang&&voices[i].lang.toLowerCase()===l)return voices[i];}
+  for(var i=0;i<voices.length;i++){if(voices[i].lang&&voices[i].lang.toLowerCase().indexOf(prefix)===0)return voices[i];}
+  for(var i=0;i<voices.length;i++){if(voices[i].lang&&voices[i].lang.toLowerCase().indexOf(prefix)>=0)return voices[i];}
+  return null;
+}
+function speak(text,lang){
+  var l=lang||'es-ES';
+  if(!text||!text.length)return;
+  var prefix=l.split('-')[0];
+  if('speechSynthesis' in window){
     window.speechSynthesis.cancel();
-    var u=new SpeechSynthesisUtterance(text);
-    u.lang=l;u.rate=0.9;u.voice=match;
-    window.speechSynthesis.speak(u);
+    var voice=_findTtsVoice(l);
+    if(voice){
+      var u=new SpeechSynthesisUtterance(text);
+      u.lang=l;u.rate=0.9;u.voice=voice;
+      window.speechSynthesis.speak(u);
+      return;
+    }
+    var done=false;
+    function _ttsAttempt(){
+      if(done)return;
+      var v=_findTtsVoice(l);
+      if(v){
+        done=true;
+        var u=new SpeechSynthesisUtterance(text);
+        u.lang=l;u.rate=0.9;u.voice=v;
+        window.speechSynthesis.speak(u);
+      }
+    }
+    setTimeout(_ttsAttempt,100);
+    setTimeout(_ttsAttempt,300);
+    setTimeout(function(){
+      if(done)return;
+      var url='https://translate.google.com/translate_tts?ie=UTF-8&tl='+prefix+'&client=tw-ob&q='+encodeURIComponent(text);
+      var audio=new Audio(url);
+      audio.onerror=function(){
+        if(done)return;
+        done=true;
+        var u=new SpeechSynthesisUtterance(text);
+        u.lang=l;u.rate=0.9;
+        var v=_findTtsVoice(l);
+        if(v)u.voice=v;
+        window.speechSynthesis.speak(u);
+      };
+      audio.play().then(function(){done=true;}).catch(function(){
+        if(done)return;
+        done=true;
+        var u=new SpeechSynthesisUtterance(text);
+        u.lang=l;u.rate=0.9;
+        var v=_findTtsVoice(l);
+        if(v)u.voice=v;
+        window.speechSynthesis.speak(u);
+      });
+    },500);
   }else{
     var url='https://translate.google.com/translate_tts?ie=UTF-8&tl='+prefix+'&client=tw-ob&q='+encodeURIComponent(text);
     var audio=new Audio(url);
-    audio.onerror=function(){if('speechSynthesis' in window){window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(text);u.lang=l;u.rate=0.9;window.speechSynthesis.speak(u);}};
-    audio.play().catch(function(){audio.onerror();});
+    audio.play().catch(function(){});
   }
 }
-
 /* MUSIC */
 let musicOn=false,musicTimer=null,musicNoteIndex=0;
 const MELODY=[523,659,784,659,523,587,659,587,659,784,880,784,659,587,523,587,784,659,523,659,587,523,494,523,523,659,784,880,784,659,587,523];
@@ -281,7 +325,15 @@ function buildFunOnTheFarm(stage){
     {type:'mc',q:'What do hens lay?',opt:['Eggs','Milk','Wool','Apples'],correct:0,img:'chicken-goat.png',svg:'chicken'},
     {type:'mc',q:'What do sheep give us?',opt:['Wool','Eggs','Milk','Honey'],correct:0,img:'sheep-duck.png',svg:'sheep'},
     {type:'tf',q:'Horses can run fast.',correct:true,img:'fun-on-the-farm.png',svg:'farm'},
-    {type:'mc',q:'Where do farm animals live?',opt:['On the farm','In the ocean','In the jungle','In the city'],correct:0,img:'fun-on-the-farm.png',svg:'farm'}
+    {type:'mc',q:'Where do farm animals live?',opt:['On the farm','In the ocean','In the jungle','In the city'],correct:0,img:'fun-on-the-farm.png',svg:'farm'},
+    {type:'mc',q:"What animal says 'Oink oink'?",opt:['Pig','Cow','Sheep','Duck'],correct:0,img:'fun-on-the-farm.png',svg:'farm'},
+    {type:'mc',q:"What animal says 'Neigh'?",opt:['Horse','Pig','Chicken','Duck'],correct:0,img:'fun-on-the-farm.png',svg:'farm'},
+    {type:'tf',q:'A duck can swim.',correct:true,img:'sheep-duck.png',svg:'sheep'},
+    {type:'tf',q:'A sheep gives us eggs.',correct:false,img:'sheep-duck.png',svg:'sheep'},
+    {type:'mc',q:'What do cows eat?',opt:['Grass','Meat','Fish','Pizza'],correct:0,img:'cow.png',svg:'cow'},
+    {type:'mc',q:'Which animal is big and gives us milk?',opt:['Cow','Cat','Dog','Rabbit'],correct:0,img:'cow.png',svg:'cow'},
+    {type:'tf',q:'Chickens live on the farm.',correct:true,img:'chicken-goat.png',svg:'chicken'},
+    {type:'mc',q:'What do goats eat?',opt:['Grass and plants','Meat','Fish','Bread'],correct:0,img:'chicken-goat.png',svg:'chicken'}
   ];
   const item=qs[rand(0,qs.length-1)];
   showImg(stage,'images/'+item.img);showSVG(stage,SVGS[item.svg]);
@@ -301,7 +353,15 @@ function buildILikeFood(stage){
     {type:'mc',q:'Which one is a drink?',opt:['Juice','Bread','Cake','Rice'],correct:0,img:'kids-eating.png',svg:'food'},
     {type:'mc',q:'Which one is NOT food?',opt:['Table','Apple','Cheese','Fish'],correct:0,img:'i-like-food.png',svg:'food'},
     {type:'tf',q:'We eat pizza with our hands.',correct:true,img:'pizza-burger.png',svg:'pizza'},
-    {type:'mc',q:'What do we eat for breakfast?',opt:['Cereal','Pizza','Burger','Sushi'],correct:0,img:'kids-eating.png',svg:'food'}
+    {type:'mc',q:'What do we eat for breakfast?',opt:['Cereal','Pizza','Burger','Sushi'],correct:0,img:'kids-eating.png',svg:'food'},
+    {type:'mc',q:'I like to eat ___.',opt:['fruit','paper','shoes','rocks'],correct:0,img:'cake-banana.png',svg:'fruit'},
+    {type:'tf',q:'Bananas are yellow.',correct:true,img:'cake-banana.png',svg:'fruit'},
+    {type:'mc',q:'Which one is a fruit?',opt:['Apple','Bread','Cheese','Milk'],correct:0,img:'cake-banana.png',svg:'fruit'},
+    {type:'mc',q:'Which one is a vegetable?',opt:['Carrot','Banana','Cake','Juice'],correct:0,img:'kids-eating.png',svg:'food'},
+    {type:'tf',q:'Burgers are healthy food.',correct:false,img:'pizza-burger.png',svg:'burger'},
+    {type:'mc',q:'What do we drink?',opt:['Water','Bread','Rice','Chicken'],correct:0,img:'kids-eating.png',svg:'food'},
+    {type:'mc',q:'I like to drink ___.',opt:['juice','shoes','books','pencils'],correct:0,img:'dialogue-juice.png',svg:'drink'},
+    {type:'tf',q:'Milk is a drink.',correct:true,img:'kids-eating.png',svg:'food'}
   ];
   const item=qs[rand(0,qs.length-1)];
   showImg(stage,'images/'+item.img);showSVG(stage,SVGS[item.svg]);
@@ -321,7 +381,15 @@ function buildQuestionsLike(stage){
     {type:'mc',q:'___ he like cake?',opt:['Does','Do','Are','Is'],correct:0,img:'pizza-burger.png',svg:'question'},
     {type:'mc',q:'Do they like milk?',opt:['Yes, they do','Yes, they are','Yes, they can','Yes, they have'],correct:0,img:'kids-eating.png',svg:'kids'},
     {type:'tf',q:"We say 'I like' not 'I likes'.",correct:true,img:'kids-eating.png',svg:'like'},
-    {type:'mc',q:'Does it like fish? (about a cat)',opt:['Yes, it does','Yes, it do','Yes, it is','Yes, it can'],correct:0,img:'kids-eating.png',svg:'kids'}
+    {type:'mc',q:'Does it like fish? (about a cat)',opt:['Yes, it does','Yes, it do','Yes, it is','Yes, it can'],correct:0,img:'kids-eating.png',svg:'kids'},
+    {type:'mc',q:'Do you like milk?',opt:['Yes, I do','Yes, I am','Yes, I can','Yes, I have'],correct:0,img:'kids-eating.png',svg:'question'},
+    {type:'mc',q:'___ they like pizza?',opt:['Do','Are','Can','Is'],correct:0,img:'pizza-burger.png',svg:'question'},
+    {type:'tf',q:"We say 'He likes' not 'He like'.",correct:true,img:'kids-eating.png',svg:'like'},
+    {type:'mc',q:'Does she like milk?',opt:['Yes, she does','Yes, she do','Yes, she is','Yes, she can'],correct:0,img:'kids-eating.png',svg:'kids'},
+    {type:'mc',q:'Do you like ___?',opt:['reading','read','reads','to reading'],correct:0,img:'kids-eating.png',svg:'like'},
+    {type:'tf',q:"'Do you like...' is a yes/no question.",correct:true,img:'kids-eating.png',svg:'dialogue'},
+    {type:'mc',q:'Does he like soccer?',opt:['Yes, he does','Yes, he do','Yes, he is','Yes, he can'],correct:0,img:'kids-eating.png',svg:'kids'},
+    {type:'mc',q:'I like ___.',opt:['ice cream','ice creams','an ice cream','ice creaming'],correct:0,img:'kids-eating.png',svg:'like'}
   ];
   const item=qs[rand(0,qs.length-1)];
   showImg(stage,'images/'+item.img);showSVG(stage,SVGS[item.svg]);
@@ -341,7 +409,15 @@ function buildCanIHave(stage){
     {type:'mc',q:'Can I have some water, ___?',opt:['please','thanks','yes','no'],correct:0,img:'dialogue-juice.png',svg:'request'},
     {type:'mc',q:'___ you like some cake?',opt:['Would','Do','Are','Can'],correct:0,img:'dialogue-burger.png',svg:'offer'},
     {type:'mc',q:'Can I have ___ orange juice?',opt:['some','a','an','the'],correct:0,img:'dialogue-juice.png',svg:'drink'},
-    {type:'tf',q:"We say 'please' to be polite.",correct:true,img:'dialogue-burger.png',svg:'menu'}
+    {type:'tf',q:"We say 'please' to be polite.",correct:true,img:'dialogue-burger.png',svg:'menu'},
+    {type:'mc',q:'Can I have ___ egg, please?',opt:['an','a','the','is'],correct:0,img:'dialogue-burger.png',svg:'request'},
+    {type:'mc',q:'Would you like ___ bread?',opt:['some','a','an','the'],correct:0,img:'dialogue-burger.png',svg:'offer'},
+    {type:'tf',q:"We use 'an' before vowel sounds.",correct:true,img:'dialogue-burger.png',svg:'menu'},
+    {type:'mc',q:'Can I have a ___, please?',opt:['burger','an burger','some burger','the burger'],correct:0,img:'dialogue-burger.png',svg:'request'},
+    {type:'mc',q:'Would you like some ___?',opt:['water','waters','a water','an water'],correct:0,img:'dialogue-juice.png',svg:'drink'},
+    {type:'tf',q:"We use 'some' with uncountable nouns.",correct:true,img:'dialogue-juice.png',svg:'menu'},
+    {type:'mc',q:'___ I have some cake, please?',opt:['Can','Do','Are','Is'],correct:0,img:'dialogue-burger.png',svg:'request'},
+    {type:'mc',q:'Would you like an ___?',opt:['apple','apples','some apple','a apple'],correct:0,img:'dialogue-juice.png',svg:'offer'}
   ];
   const item=qs[rand(0,qs.length-1)];
   showImg(stage,'images/'+item.img);showSVG(stage,SVGS[item.svg]);
