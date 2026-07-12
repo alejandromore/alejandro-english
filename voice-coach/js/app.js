@@ -1026,6 +1026,11 @@ async function speakHfOrator(raw){
 }
 
 function speakSystem(raw){
+  if(state.lang !== "english" && !pickVoice(state.lang==="spanish"?"es":"pt")){
+    if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+    if(audioCtx.state==="suspended") audioCtx.resume();
+    speakNatural(raw); return;
+  }
   if(!synth){ setStatus("Tu navegador no soporta la voz del sistema.", true); stopSpeaking(); return; }
   speechChunks = buildSpeechChunks(raw);
   chunkIdx = 0; ttsRate = 0.8;
@@ -2352,9 +2357,9 @@ function setModelBadge(st, text){
 const MODELS = {
   whisper:{ label:"Reconocimiento (Whisper)", state:"idle" },
   sentiment:{ label:"Análisis de sentimiento", state:"idle" },
-  voiceEn:{ label:"Voz natural · inglés (Kokoro)", state:"idle" },
-  voiceEs:{ label:"Voz natural · español (MMS)", state:"idle" },
-  voicePt:{ label:"Voz natural - portugues (MMS)", state:"idle" },
+
+
+
 };
 const MS_LABEL={ idle:"No cargado", loading:"Cargando…", ready:"Listo ✓", error:"Error" };
 function setMS(key, st){ if(MODELS[key]){ MODELS[key].state=st; updateBadge(); renderModelsPanel(true); } }
@@ -2382,9 +2387,9 @@ async function reloadModel(key){
   try{
     if(key==="whisper"){ state.asr=null; state.asrKey=null; state._asrPromise=null; await getASR(); }
     else if(key==="sentiment"){ state.sentiment=null; state._sentPromise=null; await getSentiment(); }
-    else if(key==="voiceEn"){ kokoroTTS=null; kokoroForceWasm=false; [...neuralCache.keys()].forEach(k=>{ if(!k.startsWith("spanish|") && !k.startsWith("portuguese|")) neuralCache.delete(k); }); await ensureKokoro(); }
-    else if(key==="voiceEs"){ mmsTTS=null; [...neuralCache.keys()].forEach(k=>{ if(k.startsWith("spanish|")) neuralCache.delete(k); }); await ensureMMS(); }
-    else if(key==="voicePt"){ mmsPtTTS=null; [...neuralCache.keys()].forEach(k=>{ if(k.startsWith("portuguese|")) neuralCache.delete(k); }); await ensureMMSPt(); }
+
+
+
   }catch(e){ console.error("reload "+key, e); setMS(key,"error"); }
 }
 if($("modelBadge")){
