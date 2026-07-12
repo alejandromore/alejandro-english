@@ -107,6 +107,37 @@ const FALLBACK_QUOTES = {
     "La vida es sueño, y los sueños, sueños son. — Calderón de la Barca",
     "Lo esencial es invisible a los ojos. — Antoine de Saint-Exupéry",
     "Verde que te quiero verde. Verde viento. Verdes ramas. — Federico García Lorca"
+  ],
+  portuguese: [
+    "A educação é a arma mais poderosa que você pode usar para mudar o mundo. — Nelson Mandela",
+    "O sucesso não é final, o fracasso não é fatal: é a coragem de continuar que conta. — Winston Churchill",
+    "O futuro pertence àqueles que acreditam na beleza de seus sonhos. — Eleanor Roosevelt",
+    "Sempre parece impossível até que esteja feito. — Nelson Mandela",
+    "O melhor jeito de prever o futuro é criá-lo. — Peter Drucker",
+    "No meio da dificuldade reside a oportunidade. — Albert Einstein",
+    "Faça o que puder, com o que tem, onde estiver. — Theodore Roosevelt",
+    "A jornada de mil milhas começa com um único passo. — Lao Tsé",
+    "Quem lê muito e anda muito, vê muito e sabe muito. — Miguel de Cervantes",
+    "A vida é um sonho, e os sonhos, sonhos são. — Calderón de la Barca"
+  ]
+};
+
+/* ---------------- párrafos de práctica (más largos) por idioma ---------------- */
+const FALLBACK_PARAGRAPHS = {
+  english: [
+    "Last year our team faced a critical production outage during a regulatory audit. The database replication lag caused inconsistent reports, and we had less than an hour to fix it before the auditors noticed. I decided to fail over to the standby node, even though it meant a brief downtime. It was risky, but the alternative — serving stale data during an audit — was worse. We recovered in twelve minutes, passed the audit, and I documented the incident so the team could prevent it next time.",
+    "When I joined the company, the deployment process was entirely manual and took about three hours. Developers would SSH into the server, pull the latest code, run migrations, and restart services by hand. I proposed moving to a containerized setup with automated CI/CD pipelines. It took six weeks to build and test, but once we shipped it, deployments dropped to seven minutes and our release frequency went from twice a month to three times a week.",
+    "I once had to give a presentation to the board about why our machine learning model was underperforming. The challenge was explaining technical concepts — like feature drift and training-serving skew — to an audience that cared about business outcomes, not algorithms. I restructured the talk around three KPIs they already tracked, showed how each one connected to a technical root cause, and proposed a concrete remediation plan with timelines. The board approved the budget I requested."
+  ],
+  spanish: [
+    "El año pasado nuestro equipo enfrentó una caída crítica de producción durante una auditoría regulatoria. El retraso en la replicación de la base de datos causó informes inconsistentes, y teníamos menos de una hora para arreglarlo antes de que los auditores lo notaran. Decidí conmutar al nodo de respaldo, aunque eso significaba un breve tiempo de inactividad. Era arriesgado, pero la alternativa — servir datos obsoletos durante una auditoría — era peor. Nos recuperamos en doce minutos, pasamos la auditoría, y documenté el incidente para que el equipo pudiera prevenirlo la próxima vez.",
+    "Cuando me uní a la empresa, el proceso de despliegue era completamente manual y tomaba unas tres horas. Los desarrolladores entraban por SSH al servidor, descargaban el código, ejecutaban migraciones y reiniciaban servicios a mano. Propuse pasar a una arquitectura de contenedores con pipelines automatizados de CI/CD. Tomó seis semanas construirlo y probarlo, pero una vez que lo lanzamos, los despliegues bajaron a siete minutos y nuestra frecuencia de liberación pasó de dos veces al mes a tres veces por semana.",
+    "Una vez tuve que dar una presentación al consejo sobre por qué nuestro modelo de aprendizaje automático tenía un rendimiento inferior al esperado. El desafío era explicar conceptos técnicos — como la deriva de características y el sesgo entre entrenamiento y producción — a una audiencia que se interesaba por los resultados de negocio, no por los algoritmos. Reestructuré la charla en torno a tres KPIs que ya seguían, mostré cómo cada uno se conectaba a una causa técnica raíz, y propuse un plan de remediación concreto con plazos. El consejo aprobó el presupuesto que solicité."
+  ],
+  portuguese: [
+    "No ano passado, nossa equipe enfrentou uma queda crítica de produção durante uma auditoria regulatória. O atraso na replicação do banco de dados causou relatórios inconsistentes, e tínhamos menos de uma hora para corrigir antes que os auditores notassem. Decidi fazer failover para o nó de standby, embora isso significasse um breve tempo de inatividade. Era arriscado, mas a alternativa — servir dados desatualizados durante uma auditoria — era pior. Nos recuperamos em doze minutos, passamos na auditoria, e documentei o incidente para que a equipe pudesse preveni-lo da próxima vez.",
+    "Quando entrei na empresa, o processo de deploy era inteiramente manual e levava cerca de três horas. Os desenvolvedores faziam SSH no servidor, baixavam o código, rodavam migrações e reiniciavam serviços à mão. Propus mudar para uma arquitetura de contêineres com pipelines automatizados de CI/CD. Levou seis semanas para construir e testar, mas depois que lançamos, os deploys caíram para sete minutos e nossa frequência de release passou de duas vezes por mês para três vezes por semana.",
+    "Uma vez tive que fazer uma apresentação para o conselho sobre por que nosso modelo de machine learning estava com desempenho abaixo do esperado. O desafio era explicar conceitos técnicos — como feature drift e training-serving skew — para uma audiência que se importava com resultados de negócio, não com algoritmos. Reestruturei a palestra em torno de três KPIs que eles já acompanhavam, mostrei como cada um se conectava a uma causa técnica raiz, e propus um plano de remediação concreto com prazos. O conselho aprovou o orçamento que solicitei."
   ]
 };
 function randFrom(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
@@ -117,6 +148,9 @@ async function fetchFamousQuote(lang){
     if(lang==="spanish"){
       const r = await fetch("https://frasedeldia.azurewebsites.net/api/phrase", { cache:"no-store" });
       if(r.ok){ const d = await r.json(); if(d && d.phrase) return `${d.phrase}${d.author?` — ${d.author}`:""}`; }
+    } else if(lang==="portuguese"){
+      const r = await fetch("https://api.quotable.io/random?maxLength=180", { cache:"no-store" });
+      if(r.ok){ const d = await r.json(); if(d && d.content) return `${d.content}${d.author?` — ${d.author}`:""}`; }
     } else {
       const r = await fetch("https://api.quotable.io/random?maxLength=180", { cache:"no-store" });
       if(r.ok){ const d = await r.json(); if(d && d.content) return `${d.content}${d.author?` — ${d.author}`:""}`; }
@@ -136,6 +170,21 @@ async function loadNewQuote(){
   if(btn){ btn.disabled = false; btn.textContent = t("newq"); }
 }
 $("shuffleBtn").addEventListener("click", loadNewQuote);
+
+/* Trae un párrafo de práctica (más largo que una frase) según el idioma. */
+async function loadNewParagraph(){
+  const btn = $("paragraphBtn"); const orig = btn ? btn.textContent : "";
+  if(btn){ btn.disabled = true; btn.textContent = t("loading"); }
+  const p = randFrom(FALLBACK_PARAGRAPHS[state.lang] || FALLBACK_PARAGRAPHS.english);
+  $("promptText").value = p;
+  if(typeof updateClearBtn==="function") updateClearBtn();
+  renderPhonetics();
+  wpImproveWords = [];
+  if(typeof wordPanel !== "undefined" && wordPanel.classList.contains("on")){ ensureDictThen(buildWpChips); }
+  if(btn){ btn.disabled = false; btn.textContent = t("paragraph"); }
+}
+const paragraphBtn = $("paragraphBtn");
+if(paragraphBtn) paragraphBtn.addEventListener("click", loadNewParagraph);
 
 /* Localización de la interfaz según el idioma seleccionado. */
 const UI_STRINGS = {
@@ -157,6 +206,16 @@ const UI_STRINGS = {
     docView:"Vista del texto", docSimple:"Simple", docDoc:"Documento", warmVoice:"⚡ Preparar voz",
     voiceSystem:"Sistema", voiceNatural:"Natural",
     uploadHint:"¿Subir una grabación del teléfono? En el selector elige <b>More → Files</b> y abre <b>Recordings</b>." }
+  ,
+  portuguese: { play:"Reproduzir", stop:"Parar", generating:"Gerando voz...", dlmp3:"Baixar MP3",
+    phon:"Fonetica", words:"Palavras", newq:"Nova frase", paragraph:"Paragrafo", loading:"Buscando...",
+    promptLbl:"Texto de pratica", promptPh:"Escreva ou cole o texto que quer praticar ou ouvir...",
+    setup:"Configuracao", accuracy:"Precisao vs. velocidade", sentiment:"Analise de sentimento",
+    compareRead:"Comparar leitura", readingVoice:"Voz de leitura", engine:"Motor (modo Palavras)",
+    record:"Gravar", upload:"Subir audio", or:"ou", pause:"Pausar", resume:"Retomar",
+    docView:"Vista do texto", docSimple:"Simples", docDoc:"Documento", warmVoice:"Preparar voz",
+    voiceSystem:"Sistema", voiceNatural:"Natural",
+    uploadHint:"Subindo uma gravacao do telefone? No seletor escolha <b>More > Files</b> e abra <b>Recordings</b>." }
 };
 function t(key){ const s=UI_STRINGS[state.lang]||UI_STRINGS.english; return (key in s)?s[key]:key; }
 function speakStopLabel(){ return t("stop"); }
@@ -178,6 +237,9 @@ function applyLang(){
   const dvSeg=$("docViewSeg"); if(dvSeg){ const bs=dvSeg.querySelectorAll("button"); if(bs[0]) bs[0].textContent=S.docSimple; if(bs[1]) bs[1].textContent=S.docDoc; }
   const uh=$("uploadHint"); if(uh) uh.innerHTML = S.uploadHint;
   const wbtn=$("warmBtn"); if(wbtn && wbtn.dataset.busy!=="1" && wbtn.dataset.ready!=="1") wbtn.textContent = S.warmVoice;
+  // Desactivar fonética para portugués (solo funciona para inglés/español)
+  const phBtn=$("phonBtn");
+  if(phBtn){ phBtn.disabled = state.lang==="portuguese"; phBtn.title = state.lang==="portuguese" ? "Fonética no disponible para portugués" : ""; }
   updateVoiceAvailability();
 }
 // La voz natural existe en inglés (Kokoro) y español (MMS), así que siempre está disponible.
@@ -298,7 +360,7 @@ function setMediaSession(active){
   try{
     const ms = navigator.mediaSession;
     if(active){
-      try{ ms.metadata = new MediaMetadata({ title:"Voice Coach", artist: state.lang==="spanish"?"Práctica de lectura":"Reading practice" }); }catch(e){}
+      try{ ms.metadata = new MediaMetadata({ title:"Voice Coach", artist: state.lang==="spanish"?"Práctica de lectura":state.lang==="portuguese"?"Prática de leitura":"Reading practice" }); }catch(e){}
       ms.playbackState = "playing";
       ms.setActionHandler("pause", ()=>{ try{ if($("pauseBtn") && !ttsPaused) togglePause(); }catch(e){} });
       ms.setActionHandler("play",  ()=>{ try{ if($("pauseBtn") && ttsPaused) togglePause(); }catch(e){} });
@@ -326,7 +388,7 @@ async function neuralBuffer(lang, txt){
   if(neuralCache.has(key)) return neuralCache.get(key);   // instantáneo si ya se generó
   let { samples, sr } = await neuralSamples(lang, txt);
   // recuperación: si Kokoro por WebGPU devolvió silencio, cambia a WASM y regenera
-  if(lang!=="spanish" && kokoroDevice==="webgpu" && isSilent(samples)){
+  if(lang!=="spanish" && lang!=="portuguese" && kokoroDevice==="webgpu" && isSilent(samples)){
     console.warn("Kokoro WebGPU devolvió silencio; cambio a WASM y regenero.");
     kokoroTTS=null; kokoroForceWasm=true; neuralCache.clear();
     ({ samples, sr } = await neuralSamples(lang, txt));
@@ -346,7 +408,7 @@ async function neuralBuffer(lang, txt){
 const TTS_WORKER_SRC = `
 import { pipeline, env } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.5";
 env.allowLocalModels = false;
-let kokoro=null, mms=null, kokoroWasm=false, _kp=null, _mp=null, _pid=null;
+let kokoro=null, mms=null, mmsPt=null, kokoroWasm=false, _kp=null, _mp=null, _mpp=null, _pid=null;
 function prog(p){ if(p&&p.status==="progress"&&p.file&&_pid!=null) self.postMessage({type:"progress",id:_pid,progress:p.progress||0}); }
 function norm(s){ let pk=0; for(let i=0;i<s.length;i++){const a=Math.abs(s[i]); if(a>pk)pk=a;} if(pk>0.02&&pk<0.98){const g=0.92/pk; for(let i=0;i<s.length;i++)s[i]*=g;} return s; }
 function silent(s){ let m=0,st=Math.max(1,Math.floor(s.length/4000)); for(let i=0;i<s.length;i+=st){const a=Math.abs(s[i]); if(a>m)m=a;} return m<1e-3; }
@@ -370,6 +432,11 @@ async function ensureMMS(){
   _mp=(async()=>{ mms=await pipeline("text-to-speech","Xenova/mms-tts-spa",{dtype:"q8",progress_callback:prog}); return mms; })();
   return _mp;
 }
+async function ensureMMSPt(){
+  if(mmsPt) return mmsPt; if(_mpp) return _mpp;
+  _mpp=(async()=>{ mmsPt=await pipeline("text-to-speech","Xenova/mms-tts-por",{dtype:"q8",progress_callback:prog}); return mmsPt; })();
+  return _mpp;
+}
 self.onmessage=async(e)=>{
   const d=e.data, id=d.id;
   if(d.type==="probe"){                       // ¿este worker puede WebGPU? (sin cargar modelo)
@@ -383,6 +450,9 @@ self.onmessage=async(e)=>{
     if(d.lang==="spanish"){
       try{ const s=await ensureMMS(); const o=await s(d.text); samples=o.audio; sr=o.sampling_rate||16000; }
       catch(err){ mms=null; _mp=null; const s=await ensureMMS(); const o=await s(d.text); samples=o.audio; sr=o.sampling_rate||16000; }
+    } else if(d.lang==="portuguese"){
+      try{ const s=await ensureMMSPt(); const o=await s(d.text); samples=o.audio; sr=o.sampling_rate||16000; }
+      catch(err){ mmsPt=null; _mpp=null; const s=await ensureMMSPt(); const o=await s(d.text); samples=o.audio; sr=o.sampling_rate||16000; }
     } else {
       let tts=await ensureKokoro();
       let o=await tts.generate(d.text,{voice:"af_heart",speed:0.9});
@@ -435,7 +505,8 @@ function decideTTSRoute(){
   if(_ttsRouteP) return _ttsRouteP;
   _ttsRouteP=(async()=>{
     const es = state.lang==="spanish";
-    setVoiceStage(es?"Detectando WebGPU":"Detecting WebGPU");
+    const pt = state.lang==="portuguese";
+    setVoiceStage(es||pt ? "Detectando WebGPU" : "Detecting WebGPU");
     let workerGPU=false, mainGPU=false;
     try{ workerGPU = await probeWorkerGPU(); }catch(e){}
     try{ mainGPU = navigator.gpu ? !!(await withTimeout(navigator.gpu.requestAdapter(), 4000)) : false; }catch(e){ mainGPU=false; }
@@ -445,7 +516,7 @@ function decideTTSRoute(){
   return _ttsRouteP;
 }
 async function genMain(lang, txt, onProgress){        // genera en el hilo principal (WebGPU/WASM)
-  const loaded = lang==="spanish" ? !!mmsTTS : !!kokoroTTS;
+  const loaded = lang==="spanish" ? !!mmsTTS : lang==="portuguese" ? !!mmsPtTTS : !!kokoroTTS;
   if(!loaded && onProgress) ttsDownloadTarget = (pct)=>onProgress(pct);
   try{ return await neuralSamples(lang, txt); }        // {samples, sr}
   finally{ ttsDownloadTarget=null; }
@@ -537,7 +608,7 @@ function playNaturalChunk(buf, ch){
 async function speakNatural(raw){
   try{
     speakBtn.classList.add("speaking"); speakLabel.textContent=t("generating");
-    startVoiceStatus(state.lang==="spanish" ? "Preparando voz" : "Preparing voice");
+    startVoiceStatus(state.lang==="spanish" ? "Preparando voz" : state.lang==="portuguese" ? "Preparando voz" : "Preparing voice");
     const lang = state.lang;
     const chunks = buildSpeechChunks(raw);
     if(!chunks.length){ stopSpeaking(); return; }
@@ -559,7 +630,7 @@ async function speakNatural(raw){
       stopSpeaking();
     };
     const resetWatchdog=(ms)=>{ if(natWatchdog) clearTimeout(natWatchdog); natWatchdog=setTimeout(()=>{ if(ttsActive && !started) fallbackToSystem(raw); }, ms); };
-    const onGenProg=(pct)=>{ if(ttsActive && !started){ speakLabel.textContent=`Cargando voz ${pct}%`; setVoiceStage((state.lang==="spanish"?"Cargando modelo de voz ":"Loading voice model ")+pct+"%"); resetWatchdog(60000); } };
+    const onGenProg=(pct)=>{ if(ttsActive && !started){ speakLabel.textContent=`Cargando voz ${pct}%`; setVoiceStage((state.lang==="spanish"?"Cargando modelo de voz ":state.lang==="portuguese"?"Carregando modelo de voz ":"Loading voice model ")+pct+"%"); resetWatchdog(60000); } };
     const genChunk=(i)=> neuralBufferBG(lang, chunks[i].text, onGenProg).catch(()=> neuralBufferBG(lang, chunks[i].text));
 
     const pump=()=>{
@@ -816,8 +887,8 @@ function speakChunk(){
   if(chunkIdx >= speechChunks.length){ stopSpeaking(); return; }
   const ch = speechChunks[chunkIdx];
   const u = new SpeechSynthesisUtterance(ch.text);
-  u.lang = state.lang==="spanish" ? "es-ES" : "en-US";
-  const v = pickVoice(state.lang==="spanish" ? "es" : "en"); if(v) u.voice = v;
+  u.lang = state.lang==="spanish" ? "es-ES" : state.lang==="portuguese" ? "pt-BR" : "en-US";
+  const v = pickVoice(state.lang==="spanish" ? "es" : state.lang==="portuguese" ? "pt" : "en"); if(v) u.voice = v;
   u.rate = ttsRate;
   u.onboundary = (e)=>{
     if(e.name && e.name !== "word") return;
@@ -856,7 +927,7 @@ function fallbackToSystem(raw){
   if(natRAF){ cancelAnimationFrame(natRAF); natRAF=null; }
   if(natSchedule && natSchedule.sources){ for(const s of natSchedule.sources){ try{ s.onended=null; s.stop(); }catch(e){} } }
   natSchedule=null;
-  stopVoiceStatus(state.lang==="spanish" ? "Voz natural no disponible aquí; leyendo con la voz del sistema." : "Natural voice unavailable here; reading with system voice.");
+  stopVoiceStatus(state.lang==="spanish" ? "Voz natural no disponible aqui; leyendo con la voz del sistema." : state.lang==="portuguese" ? "Voz natural nao disponivel aqui; lendo com a voz do sistema." : "Natural voice unavailable here; reading with system voice.");
   ttsActive = true;                           // seguimos leyendo
   speakSystem(raw);
 }
@@ -885,7 +956,7 @@ if(speakBtn){
       speakNatural(raw);
     } else {
       if(state.voice === "natural"){   // ya sabemos que la natural no funciona aquí
-        setVoiceStatus(state.lang==="spanish" ? "Voz natural no disponible en este dispositivo; uso la del sistema." : "Natural voice unavailable on this device; using system voice.");
+        setVoiceStatus(state.lang==="spanish" ? "Voz natural no disponible en este dispositivo; uso la del sistema." : state.lang==="portuguese" ? "Voz natural nao disponivel neste dispositivo; uso a do sistema." : "Natural voice unavailable on this device; using system voice.");
       }
       speakSystem(raw);
     }
@@ -1113,6 +1184,20 @@ async function ensureMMS(){
   })();
   return _mmsP;
 }
+// Voz natural en portugués: MMS-TTS (VITS neural, Transformers.js). 16 kHz.
+let mmsPtTTS = null, _mmsPtP = null;
+async function ensureMMSPt(){
+  if(mmsPtTTS) return mmsPtTTS;
+  if(_mmsPtP) return _mmsPtP;
+  _mmsPtP=(async()=>{
+    setMS && setMS("voicePt","loading"); ttsSeen={};
+    try{
+      mmsPtTTS = await pipeline("text-to-speech", "Xenova/mms-tts-por", { dtype:"q8", progress_callback:ttsProgress });
+      setMS && setMS("voicePt","ready"); return mmsPtTTS;
+    }catch(e){ setMS && setMS("voicePt","error"); _mmsPtP=null; throw e; }
+  })();
+  return _mmsPtP;
+}
 // Sube el volumen al mismo nivel (MMS sale más bajo que Kokoro). Preserva el silencio.
 function normalizeSamples(samples){
   let peak=0; for(let i=0;i<samples.length;i++){ const a=Math.abs(samples[i]); if(a>peak) peak=a; }
@@ -1127,11 +1212,22 @@ async function neuralSamples(lang, text){
       const out = await s(text);
       return { samples: normalizeSamples(out.audio), sr: out.sampling_rate || 16000 };
     }catch(e){
-      // Red de seguridad: si una instancia previa quedó cargada en WebGPU y falla en la
-      // inferencia (GatherND int64), se rehace el modelo en WASM y se reintenta una vez.
       console.warn("MMS falló en inferencia; rehago en WASM y reintento:", e);
       mmsTTS=null; _mmsP=null;
       s = await ensureMMS();
+      const out = await s(text);
+      return { samples: normalizeSamples(out.audio), sr: out.sampling_rate || 16000 };
+    }
+  }
+  if(lang==="portuguese"){
+    let s = await ensureMMSPt();
+    try{
+      const out = await s(text);
+      return { samples: normalizeSamples(out.audio), sr: out.sampling_rate || 16000 };
+    }catch(e){
+      console.warn("MMS-PT falló en inferencia; rehago y reintento:", e);
+      mmsPtTTS=null; _mmsPtP=null;
+      s = await ensureMMSPt();
       const out = await s(text);
       return { samples: normalizeSamples(out.audio), sr: out.sampling_rate || 16000 };
     }
@@ -1192,7 +1288,7 @@ async function onDownloadAudio(){
     ttsAudioUrl = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = ttsAudioUrl;
-    a.download = (state.lang==="spanish" ? "pronunciacion-es" : "pronunciation-en") + ".mp3";
+    a.download = (state.lang==="spanish" ? "pronunciacion-es" : state.lang==="portuguese" ? "pronunciacao-pt" : "pronunciation-en") + ".mp3";
     document.body.appendChild(a); a.click(); a.remove();
 
     dlAudioLabel.textContent = "Descargado ✓";
@@ -1215,22 +1311,23 @@ if($("warmBtn")){
     if(btn.dataset.busy==="1") return;
     btn.dataset.busy="1";
     const es = state.lang==="spanish";
-    btn.textContent = es ? "⚡ Preparando…" : "⚡ Preparing…";
-    setVoiceStatus(es ? "Preparando la voz — la pantalla puede congelarse unos segundos…"
+    const pt = state.lang==="portuguese";
+    btn.textContent = es ? "Preparando..." : pt ? "Preparando..." : "Preparing...";
+    setVoiceStatus(es ? "Preparando la voz - la pantalla puede congelarse unos segundos." : pt ? "Preparando a voz - a tela pode congelar por alguns segundos." : "Preparing the voice - the screen may freeze for a few seconds.");
                       : "Preparing the voice — the screen may freeze for a few seconds…");
     await new Promise(r=>setTimeout(r, 60));                 // deja pintar el estado antes de compilar
-    ttsDownloadTarget = (pct)=>{ setVoiceStatus((es?"Descargando modelo de voz ":"Downloading voice model ")+pct+"%"); };
+    ttsDownloadTarget = (pct)=>{ setVoiceStatus((es?"Descargando modelo de voz ":pt?"Baixando modelo de voz ":"Downloading voice model ")+pct+"%"); };
     try{
       await neuralSamples(state.lang, es ? "hola" : "hello");  // frase mínima: descarga + compila + 1 inferencia
       ttsDownloadTarget=null;
       btn.dataset.ready="1";
-      btn.textContent = es ? "✓ Voz lista" : "✓ Voice ready";
-      setVoiceStatus(es ? "Voz lista. Ahora Reproducir en Natural es inmediato." : "Voice ready. Play (Natural) is now instant.");
+      btn.textContent = es ? "Voz lista" : pt ? "Voz pronta" : "Voice ready";
+      setVoiceStatus(es ? "Voz lista. Ahora Reproducir en Natural es inmediato." : pt ? "Voz pronta. Agora Reproduzir em Natural e imediato." : "Voice ready. Play (Natural) is now instant.");
     }catch(e){
       console.error(e); ttsDownloadTarget=null;
       btn.dataset.ready="";
-      btn.textContent = es ? "⚡ Preparar voz" : "⚡ Prepare voice";
-      setVoiceStatus((es?"No se pudo preparar la voz: ":"Couldn't prepare voice: ")+((e&&e.message)||e), true);
+      btn.textContent = es ? "Preparar voz" : pt ? "Preparar voz" : "Prepare voice";
+      setVoiceStatus((es?"No se pudo preparar la voz: ":pt?"Nao foi possivel preparar a voz: ":"Couldn't prepare voice: ")+((e&&e.message)||e), true);
     }finally{
       btn.dataset.busy="0";
     }
@@ -1664,7 +1761,7 @@ function renderTargetBlocks(){
     b.addEventListener("click", ()=>showSyllableMouth(idx));
     wpPhonEl.appendChild(b);
   };
-  if(state.lang==="spanish"){
+  if(state.lang==="spanish" || state.lang==="portuguese"){
     syllabifySpanish(wpTarget).forEach(s=>{ wpSyllables.push({ cstart:s.cstart, cend:s.cend, respell:s.str, letters:true }); addBlock(s.str); });
     return;
   }
@@ -1680,8 +1777,8 @@ function loadWord(word){
   const shown=(word||"").trim();
   if(!shown) return;
   wpStopRec(); wpStopListen();
-  const isEs = state.lang==="spanish";
-  wpTarget=shown.toLowerCase().replace(isEs?/[^a-záéíóúüñ']/g:/[^a-z']/g,"");
+  const isEs = state.lang==="spanish" || state.lang==="portuguese";
+  wpTarget=shown.toLowerCase().replace(isEs?/[^a-z\p{L}'-]/g:/[^a-z']/g,"");
   wpTargetPh = isEs ? null : wpPhonemes(wpTarget);
   wpCard.style.display="block";
   wpWordEl.textContent=shown;
@@ -1702,8 +1799,8 @@ function loadWord(word){
   // Recursos externos de pronunciación (nativos reales), útil sobre todo para palabras
   // que no están en el diccionario, como nombres de marca (p. ej. "revolut").
   const q = encodeURIComponent(wpTarget);
-  const yg = state.lang==="spanish" ? "spanish" : "english/us";
-  const ytq = state.lang==="spanish" ? "cómo+se+pronuncia+" : "how+to+pronounce+";
+  const yg = state.lang==="spanish" ? "spanish" : state.lang==="portuguese" ? "portuguese" : "english/us";
+  const ytq = state.lang==="spanish" ? "cómo+se+pronuncia+" : state.lang==="portuguese" ? "como+se+pronuncia+" : "how+to+pronounce+";
   $("wpYouglish").href = `https://youglish.com/pronounce/${q}/${yg}`;
   $("wpYoutube").href  = `https://www.youtube.com/results?search_query=${ytq}${q}`;
   [...wpChipsEl.children].forEach(c=>{ if(c.setAttribute) c.setAttribute("aria-pressed",(c.textContent||"").toLowerCase()===wpTarget?"true":"false"); });
@@ -1731,7 +1828,7 @@ function buildWpChips(){
 // Todas las palabras del texto (respaldo si no hay evaluación de lectura).
 function buildWpChipsAll(){
   const seen=new Set(), words=[];
-  const clean = state.lang==="spanish" ? /[^a-záéíóúüñ']/g : /[^a-z']/g;
+  const clean = state.lang==='spanish' || state.lang==='portuguese' ? /[^a-z\p{L}'-]/g : /[^a-z']/g;
   ($("promptText").value||"").split(/\s+/).forEach(w=>{
     const c=w.toLowerCase().replace(clean,"");
     if(c.length>=2 && !seen.has(c)){ seen.add(c); words.push(c); }
@@ -1774,8 +1871,8 @@ async function wpDoListen(rate=1){
   if(!synth) return;
   synth.cancel();
   const u=new SpeechSynthesisUtterance(word);
-  u.lang=state.lang==="spanish"?"es-ES":"en-US";
-  const v=pickVoice(state.lang==="spanish"?"es":"en"); if(v) u.voice=v;
+  u.lang=state.lang==="spanish"?"es-ES":state.lang==="portuguese"?"pt-BR":"en-US";
+  const v=pickVoice(state.lang==="spanish"?"es":state.lang==="portuguese"?"pt":"en"); if(v) u.voice=v;
   u.rate = rate<1 ? 0.5 : 0.75;
   synth.speak(u);
 }
@@ -1849,7 +1946,7 @@ async function wpScore(blob){
   }
 }
 function renderWordScore(heard, engine){
-  const isEs = state.lang==="spanish";
+  const isEs = state.lang==="spanish" || state.lang==="portuguese";
   const wordRe = isEs ? /[a-záéíóúüñ']+/g : /[a-z']+/g;
   const tokens=(heard.toLowerCase().match(wordRe))||[];
   let recog=tokens[0]||"";
@@ -1945,7 +2042,7 @@ function renderWordScore(heard, engine){
 }
 
 async function ensureDictThen(cb){
-  if(state.lang==="spanish" || cmudict){ cb(); return; }   // el español no usa el diccionario inglés
+  if(state.lang==="spanish" || state.lang==="portuguese" || cmudict){ cb(); return; }   // español/portugués no usan el diccionario inglés
   wpChipsEl.innerHTML='<span style="font-size:12px;color:var(--muted)">Cargando diccionario de pronunciación…</span>';
   try{ await ensureDict(); cb(); }
   catch(e){ console.error(e); wpChipsEl.innerHTML='<span style="font-size:12px;color:var(--neg)">No se pudo cargar el diccionario. Revisa tu conexión.</span>'; }
@@ -1954,8 +2051,10 @@ async function ensureDictThen(cb){
 if(wordBtn){
   function updateWpLangUI(){
     if(wpInput) wpInput.placeholder = state.lang==="spanish"
-      ? "…o escribe cualquier palabra en español"
-      : "…o escribe cualquier palabra en inglés";
+      ? "...o escribe cualquier palabra en español"
+      : state.lang==="portuguese"
+      ? "...ou escreva qualquer palavra em português"
+      : "...or type any word in English";
   }
   updateWpLangUI();
   wordBtn.addEventListener("click", ()=>{
@@ -2139,6 +2238,7 @@ const MODELS = {
   sentiment:{ label:"Análisis de sentimiento", state:"idle" },
   voiceEn:{ label:"Voz natural · inglés (Kokoro)", state:"idle" },
   voiceEs:{ label:"Voz natural · español (MMS)", state:"idle" },
+  voicePt:{ label:"Voz natural - portugues (MMS)", state:"idle" },
 };
 const MS_LABEL={ idle:"No cargado", loading:"Cargando…", ready:"Listo ✓", error:"Error" };
 function setMS(key, st){ if(MODELS[key]){ MODELS[key].state=st; updateBadge(); renderModelsPanel(true); } }
@@ -2166,8 +2266,9 @@ async function reloadModel(key){
   try{
     if(key==="whisper"){ state.asr=null; state.asrKey=null; state._asrPromise=null; await getASR(); }
     else if(key==="sentiment"){ state.sentiment=null; state._sentPromise=null; await getSentiment(); }
-    else if(key==="voiceEn"){ kokoroTTS=null; kokoroForceWasm=false; [...neuralCache.keys()].forEach(k=>{ if(!k.startsWith("spanish|")) neuralCache.delete(k); }); await ensureKokoro(); }
+    else if(key==="voiceEn"){ kokoroTTS=null; kokoroForceWasm=false; [...neuralCache.keys()].forEach(k=>{ if(!k.startsWith("spanish|") && !k.startsWith("portuguese|")) neuralCache.delete(k); }); await ensureKokoro(); }
     else if(key==="voiceEs"){ mmsTTS=null; [...neuralCache.keys()].forEach(k=>{ if(k.startsWith("spanish|")) neuralCache.delete(k); }); await ensureMMS(); }
+    else if(key==="voicePt"){ mmsPtTTS=null; [...neuralCache.keys()].forEach(k=>{ if(k.startsWith("portuguese|")) neuralCache.delete(k); }); await ensureMMSPt(); }
   }catch(e){ console.error("reload "+key, e); setMS(key,"error"); }
 }
 if($("modelBadge")){
@@ -2438,6 +2539,7 @@ function splitSentences(text){
 const FILLERS = {
   english: ["um","uh","uhh","umm","er","ah","hmm","like","basically","actually","literally","you know","i mean","kind of","sort of"],
   spanish: ["este","eh","em","mmm","o sea","pues","bueno","digamos","tipo","verdad","no sé"],
+  portuguese: ["é","hum","eh","mmm","tipo","né","então","quer dizer","assim","olha","vejam","bom"],
 };
 function countFillers(text, lang){
   const lower = " " + text.toLowerCase().replace(/[.,!?;:]/g," ") + " ";
@@ -2773,7 +2875,7 @@ async function buildDocxBlob(){
     });
   };
 
-  const langLabel = last.lang==="spanish" ? "Español" : "English";
+  const langLabel = last.lang==="spanish" ? "Español" : last.lang==="portuguese" ? "Português" : "English";
   const meta = `Idioma: ${langLabel}  ·  Duración: ${fmtDur(last.duration)}  ·  Palabras: ${last.words}  ·  Ritmo: ${last.wpm} ppm`
     + (withSent ? `  ·  Positividad: ${(last.overall*100).toFixed(0)}%` : "")
     + `  ·  Muletillas: ${last.fillers.total}  ·  Generado: ${new Date().toLocaleString()}`;
@@ -2838,4 +2940,5 @@ async function onDocxClick(){
 // Localiza la interfaz al idioma inicial y calienta los modelos tras un instante.
 if(typeof applyLang==="function") applyLang();
 setTimeout(()=>{ warmupModels(); }, 400);
+
 
