@@ -189,7 +189,7 @@ if(paragraphBtn) paragraphBtn.addEventListener("click", loadNewParagraph);
 /* Localización de la interfaz según el idioma seleccionado. */
 const UI_STRINGS = {
   english: { play:"Play", stop:"Stop", generating:"Generating…", dlmp3:"Download MP3",
-    phon:"🔤 Phonetics", words:"🎯 Words", newq:"↻ New phrase", loading:"Fetching…",
+    phon:"🔤 Phonetics", words:"🎯 Words", newq:"↻ New phrase", paragraph:"¶ Paragraph", loading:"Fetching…",
     promptLbl:"Practice prompt", promptPh:"Type or paste the text you want to practice or hear…",
     setup:"Setup", accuracy:"Accuracy vs. speed", sentiment:"Sentiment analysis",
     compareRead:"Compare reading", readingVoice:"Reading voice", engine:"Engine (Words mode)",
@@ -198,7 +198,7 @@ const UI_STRINGS = {
     voiceSystem:"System", voicePitch:"Pitch", voiceNatural:"Natural",
     uploadHint:"Uploading a phone recording? In the picker, choose <b>More → Files</b>, then open <b>Recordings</b>." },
   spanish: { play:"Reproducir", stop:"Detener", generating:"Generando voz…", dlmp3:"Descargar MP3",
-    phon:"🔤 Fonética", words:"🎯 Palabras", newq:"↻ Nueva frase", loading:"Buscando…",
+    phon:"🔤 Fonética", words:"🎯 Palabras", newq:"↻ Nueva frase", paragraph:"¶ Párrafo", loading:"Buscando…",
     promptLbl:"Texto de práctica", promptPh:"Escribe o pega el texto que quieres practicar o escuchar…",
     setup:"Configuración", accuracy:"Precisión vs. velocidad", sentiment:"Análisis de sentimiento",
     compareRead:"Comparar lectura", readingVoice:"Voz de lectura", engine:"Motor (modo Palabras)",
@@ -208,7 +208,7 @@ const UI_STRINGS = {
     uploadHint:"¿Subir una grabación del teléfono? En el selector elige <b>More → Files</b> y abre <b>Recordings</b>." }
   ,
   portuguese: { play:"Reproduzir", stop:"Parar", generating:"Gerando voz...", dlmp3:"Baixar MP3",
-    phon:"Fonetica", words:"Palavras", newq:"Nova frase", paragraph:"Paragrafo", loading:"Buscando...",
+    phon:"Fonetica", words:"Palavras", newq:"Nova frase", paragraph:"¶ Parágrafo", loading:"Buscando...",
     promptLbl:"Texto de pratica", promptPh:"Escreva ou cole o texto que quer praticar ou ouvir...",
     setup:"Configuracao", accuracy:"Precisao vs. velocidade", sentiment:"Analise de sentimento",
     compareRead:"Comparar leitura", readingVoice:"Voz de leitura", engine:"Motor (modo Palavras)",
@@ -232,6 +232,7 @@ function applyLang(){
   const phon=$("phonBtn"); if(phon) phon.textContent = S.phon;
   const wb=$("wordBtn"); if(wb) wb.textContent = S.words;
   const nb=$("shuffleBtn"); if(nb && !nb.disabled) nb.textContent = S.newq;
+  const pgb=$("paragraphBtn"); if(pgb) pgb.textContent = S.paragraph;
   const rl=$("recLabel"); if(rl && !state.recording) rl.textContent = S.record;
   const pb=$("pauseBtn"); if(pb && pb.style.display!=="none"){ const pl=$("pauseLabel"); if(pl) pl.textContent = ttsPaused ? S.resume : S.pause; }
   const dvSeg=$("docViewSeg"); if(dvSeg){ const bs=dvSeg.querySelectorAll("button"); if(bs[0]) bs[0].textContent=S.docSimple; if(bs[1]) bs[1].textContent=S.docDoc; }
