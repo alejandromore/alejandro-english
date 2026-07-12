@@ -1,4 +1,4 @@
-/* ---------------- state: estado compartido y helpers ---------------- */
+﻿/* ---------------- state: estado compartido y helpers ---------------- */
 import { pipeline, env } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.5";
 
 // Allow remote models from the Hugging Face Hub; disable local file lookups.
@@ -36,3 +36,5 @@ export function wireSeg(segId, key){
     });
   });
 }
+
+export function fmtDur(s){ const m=Math.floor(s/60), r=Math.round(s%60); return m?`${m}m ${r}s`:`${r}s`; }
