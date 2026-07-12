@@ -1314,11 +1314,10 @@ if($("warmBtn")){
     const pt = state.lang==="portuguese";
     btn.textContent = es ? "Preparando..." : pt ? "Preparando..." : "Preparing...";
     setVoiceStatus(es ? "Preparando la voz - la pantalla puede congelarse unos segundos." : pt ? "Preparando a voz - a tela pode congelar por alguns segundos." : "Preparing the voice - the screen may freeze for a few seconds.");
-                      : "Preparing the voice — the screen may freeze for a few seconds…");
     await new Promise(r=>setTimeout(r, 60));                 // deja pintar el estado antes de compilar
     ttsDownloadTarget = (pct)=>{ setVoiceStatus((es?"Descargando modelo de voz ":pt?"Baixando modelo de voz ":"Downloading voice model ")+pct+"%"); };
     try{
-      await neuralSamples(state.lang, es ? "hola" : "hello");  // frase mínima: descarga + compila + 1 inferencia
+      await neuralSamples(state.lang, es ? "hola" : state.lang==="portuguese" ? "ola" : "hello");  // frase minima: descarga + compila + 1 inferencia
       ttsDownloadTarget=null;
       btn.dataset.ready="1";
       btn.textContent = es ? "Voz lista" : pt ? "Voz pronta" : "Voice ready";
