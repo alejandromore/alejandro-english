@@ -1,32 +1,9 @@
-﻿import { pipeline, env } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.5";
-
-// Allow remote models from the Hugging Face Hub; disable local file lookups.
-env.allowLocalModels = false;
+﻿import { pipeline, env, state, $, wireSeg } from "./state.js";
+import { UI_STRINGS, t, speakStopLabel } from "./i18n.js";
 
 window.addEventListener("error", e => console.error("RUNTIME ERROR:", e.message, e.filename, e.lineno));
 window.addEventListener("unhandledrejection", e => console.error("UNHANDLED REJECTION:", e.reason));
-/* ---------------- state ---------------- */
-const state = {
-  lang: "english",
-  size: "base",
-  doSentiment: true,
-  compareRead: false,
-  voice: "system",
-  docView: "simple",
-  asr: null, asrKey: null,
-  sentiment: null,
-  recording: false,
-  mediaRecorder: null,
-  chunks: [],
-  stream: null,
-  timerId: null,
-  startedAt: 0,
-  last: null,
-  docxUrl: null,
-};
-
 /* ---------------- elements ---------------- */
-const $ = (id) => document.getElementById(id);
 const statusEl = $("status"), bar = $("bar"), barFill = bar.querySelector("i");
 const recBtn = $("recBtn"), recLabel = $("recLabel"), timerEl = $("timer"), cancelBtn = $("cancelBtn");
 let analyzeCanceled = false;
@@ -34,15 +11,6 @@ if(cancelBtn) cancelBtn.addEventListener("click", ()=>{ analyzeCanceled = true; 
 const fileInput = $("fileInput"), results = $("results");
 
 /* ---------------- config toggles ---------------- */
-function wireSeg(segId, key){
-  $(segId).querySelectorAll("button").forEach(b=>{
-    b.addEventListener("click", ()=>{
-      $(segId).querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed","false"));
-      b.setAttribute("aria-pressed","true");
-      state[key] = b.dataset[key] || b.dataset.lang || b.dataset.size;
-    });
-  });
-}
 wireSeg("langSeg","lang");
 // esenciales (Whisper/sentimiento) solo se recargan si cambia idioma/tamaño/sentimiento
 ["langSeg","sentSeg"].forEach(id=>{
@@ -191,38 +159,7 @@ const paragraphBtn = $("paragraphBtn");
 if(paragraphBtn) paragraphBtn.addEventListener("click", loadNewParagraph);
 
 /* Localización de la interfaz según el idioma seleccionado. */
-const UI_STRINGS = {
-  english: { play:"Play", stop:"Stop", generating:"Generating…", dlmp3:"Download MP3",
-    phon:"🔤 Phonetics", words:"🎯 Words", newq:"↻ New phrase", paragraph:"¶ Paragraph", loading:"Fetching…",
-    promptLbl:"Practice prompt", promptPh:"Type or paste the text you want to practice or hear…",
-    setup:"Setup", accuracy:"Accuracy vs. speed", sentiment:"Sentiment analysis",
-    compareRead:"Compare reading", readingVoice:"Reading voice", engine:"Engine (Words mode)",
-    record:"Record", upload:"⭡ Upload audio", or:"or", pause:"Pause", resume:"Resume",
-    docView:"Text view", docSimple:"Simple", docDoc:"Document", warmVoice:"⚡ Prepare voice",
-    voiceSystem:"System", voiceOrator:"Orator",
-    uploadHint:"Uploading a phone recording? In the picker, choose <b>More → Files</b>, then open <b>Recordings</b>." },
-  spanish: { play:"Reproducir", stop:"Detener", generating:"Generando voz…", dlmp3:"Descargar MP3",
-    phon:"🔤 Fonética", words:"🎯 Palabras", newq:"↻ Nueva frase", paragraph:"¶ Párrafo", loading:"Buscando…",
-    promptLbl:"Texto de práctica", promptPh:"Escribe o pega el texto que quieres practicar o escuchar…",
-    setup:"Configuración", accuracy:"Precisión vs. velocidad", sentiment:"Análisis de sentimiento",
-    compareRead:"Comparar lectura", readingVoice:"Voz de lectura", engine:"Motor (modo Palabras)",
-    record:"Grabar", upload:"⭡ Subir audio", or:"o", pause:"Pausa", resume:"Reanudar",
-    docView:"Vista del texto", docSimple:"Simple", docDoc:"Documento", warmVoice:"⚡ Preparar voz",
-    voiceSystem:"Sistema", voiceOrator:"Orador",
-    uploadHint:"¿Subir una grabación del teléfono? En el selector elige <b>More → Files</b> y abre <b>Recordings</b>." }
-  ,
-  portuguese: { play:"Reproduzir", stop:"Parar", generating:"Gerando voz...", dlmp3:"Baixar MP3",
-    phon:"Fonetica", words:"Palavras", newq:"Nova frase", paragraph:"¶ Parágrafo", loading:"Buscando...",
-    promptLbl:"Texto de pratica", promptPh:"Escreva ou cole o texto que quer praticar ou ouvir...",
-    setup:"Configuracao", accuracy:"Precisao vs. velocidade", sentiment:"Analise de sentimento",
-    compareRead:"Comparar leitura", readingVoice:"Voz de leitura", engine:"Motor (modo Palavras)",
-    record:"Gravar", upload:"Subir audio", or:"ou", pause:"Pausar", resume:"Retomar",
-    docView:"Vista do texto", docSimple:"Simples", docDoc:"Documento", 
-    voiceSystem:"Sistema", voiceOrator:"Orador",
-    uploadHint:"Subindo uma gravacao do telefone? No seletor escolha <b>More > Files</b> e abra <b>Recordings</b>." }
-};
-function t(key){ const s=UI_STRINGS[state.lang]||UI_STRINGS.english; return (key in s)?s[key]:key; }
-function speakStopLabel(){ return t("stop"); }
+
 function applyLang(){
   const S = UI_STRINGS[state.lang] || UI_STRINGS.english;
   // elementos con data-i18n (etiquetas de Setup, Record, Upload, etc.)
