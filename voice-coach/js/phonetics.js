@@ -287,7 +287,7 @@ if(wordBtn){
   wpInput.addEventListener("keydown", e=>{ if(e.key==="Enter"){ e.preventDefault(); wpLoadBtn.click(); } });
   wpListen.addEventListener("click", ()=>wpDoListen(1));
   const wpListenSlow=$("wpListenSlow"); if(wpListenSlow) wpListenSlow.addEventListener("click", ()=>wpDoListen(0.55));
-  if(!synth){ wpListen.disabled=true; wpListen.title="Tu navegador no soporta síntesis de voz."; }
+  if(!window.speechSynthesis){ wpListen.disabled=true; wpListen.title="Tu navegador no soporta síntesis de voz."; }
   wpRecBtn.addEventListener("click", ()=>{ wpRecording ? wpStopRec() : wpStartRec(); });
   const wpFileInput = $("wpFileInput"); if(wpFileInput) wpFileInput.addEventListener("change", async (e)=>{ const f = e.target.files[0]; if(f){ if(wpRecording) wpStopRec(); await wpScore(f); } e.target.value = ""; });
   const wpEngineSel = $("wpEngineSel"), wpEngineMid = $("wpEngineMid");
