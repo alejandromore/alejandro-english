@@ -356,16 +356,28 @@ function playTap(){ tone(400,0,0.06,'triangle',0.08); }
 function playWin(){ tone(523,0,0.12); tone(659,0.12,0.12); tone(784,0.24,0.12); tone(1046,0.36,0.3); }
 
 /* ================= TEXT-TO-SPEECH ================= */
-function speak(text, lang){
-  if(!('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = lang || 'es-ES';
-  u.rate = 0.9;
-  const voices = window.speechSynthesis.getVoices();
-  const match = voices.find(function(v){return v.lang===u.lang;}) || voices.find(function(v){return v.lang && v.lang.indexOf(u.lang.split('-')[0])===0;});
-  if(match) u.voice = match;
-  window.speechSynthesis.speak(u);
+var _ttsVoices=[];
+function _loadTtsVoices(){if('speechSynthesis' in window){_ttsVoices=window.speechSynthesis.getVoices();}}
+if('speechSynthesis' in window){_loadTtsVoices();window.speechSynthesis.onvoiceschanged=_loadTtsVoices;}
+function speak(text,lang){
+  var l=lang||'es-ES';
+  var prefix=l.split('-')[0];
+  var voices=_ttsVoices.length>0?_ttsVoices:('speechSynthesis' in window?window.speechSynthesis.getVoices():[]);
+  if(voices.length>0&&_ttsVoices.length===0)_ttsVoices=voices;
+  var match=null;
+  for(var i=0;i<voices.length;i++){if(voices[i].lang&&voices[i].lang.toLowerCase()===l.toLowerCase()){match=voices[i];break;}}
+  if(!match){for(var i=0;i<voices.length;i++){if(voices[i].lang&&voices[i].lang.toLowerCase().indexOf(prefix.toLowerCase())===0){match=voices[i];break;}}}
+  if(match){
+    window.speechSynthesis.cancel();
+    var u=new SpeechSynthesisUtterance(text);
+    u.lang=l;u.rate=0.9;u.voice=match;
+    window.speechSynthesis.speak(u);
+  }else{
+    var url='https://translate.google.com/translate_tts?ie=UTF-8&tl='+prefix+'&client=tw-ob&q='+encodeURIComponent(text);
+    var audio=new Audio(url);
+    audio.onerror=function(){if('speechSynthesis' in window){window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(text);u.lang=l;u.rate=0.9;window.speechSynthesis.speak(u);}};
+    audio.play().catch(function(){audio.onerror();});
+  }
 }
 
 /* ================= BACKGROUND MUSIC (Web Audio API, no files) ================= */
