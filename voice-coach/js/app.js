@@ -3,6 +3,8 @@
 // Allow remote models from the Hugging Face Hub; disable local file lookups.
 env.allowLocalModels = false;
 
+window.addEventListener("error", e => console.error("RUNTIME ERROR:", e.message, e.filename, e.lineno));
+window.addEventListener("unhandledrejection", e => console.error("UNHANDLED REJECTION:", e.reason));
 /* ---------------- state ---------------- */
 const state = {
   lang: "english",
@@ -423,7 +425,9 @@ async function neuralBuffer(lang, txt){
 const TTS_WORKER_SRC = `
 import { pipeline, env } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.5";
 env.allowLocalModels = false;
-let kokoro=null, mms=null, mmsPt=null, kokoroWasm=false, _kp=null, _mp=null, _mpp=null, _pid=null;
+
+window.addEventListener("error", e => console.error("RUNTIME ERROR:", e.message, e.filename, e.lineno));
+window.addEventListener("unhandledrejection", e => console.error("UNHANDLED REJECTION:", e.reason));let kokoro=null, mms=null, mmsPt=null, kokoroWasm=false, _kp=null, _mp=null, _mpp=null, _pid=null;
 function prog(p){ if(p&&p.status==="progress"&&p.file&&_pid!=null) self.postMessage({type:"progress",id:_pid,progress:p.progress||0}); }
 function norm(s){ let pk=0; for(let i=0;i<s.length;i++){const a=Math.abs(s[i]); if(a>pk)pk=a;} if(pk>0.02&&pk<0.98){const g=0.92/pk; for(let i=0;i<s.length;i++)s[i]*=g;} return s; }
 function silent(s){ let m=0,st=Math.max(1,Math.floor(s.length/4000)); for(let i=0;i<s.length;i+=st){const a=Math.abs(s[i]); if(a>m)m=a;} return m<1e-3; }
@@ -2280,7 +2284,9 @@ async function getASR(){
 const ASR_WORKER_SRC = `
 import { pipeline, env } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.5";
 env.allowLocalModels = false;
-let asr=null, curKey=null;
+
+window.addEventListener("error", e => console.error("RUNTIME ERROR:", e.message, e.filename, e.lineno));
+window.addEventListener("unhandledrejection", e => console.error("UNHANDLED REJECTION:", e.reason));let asr=null, curKey=null;
 self.onmessage = async (e)=>{
   const d = e.data, id = d.id;
   try{
