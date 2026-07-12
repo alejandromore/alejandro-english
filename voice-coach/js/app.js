@@ -42,9 +42,8 @@ function wireSeg(segId, key){
   });
 }
 wireSeg("langSeg","lang");
-wireSeg("sizeSeg","size");
 // esenciales (Whisper/sentimiento) solo se recargan si cambia idioma/tamaño/sentimiento
-["langSeg","sizeSeg","sentSeg"].forEach(id=>{
+["langSeg","sentSeg"].forEach(id=>{
   $(id).querySelectorAll("button").forEach(b=>b.addEventListener("click", ()=>{
     modelsReady=false;
     if(typeof warmupModels==="function") warmupModels();
@@ -2226,10 +2225,10 @@ if(wordBtn){
   });
   const wpEngineSel = $("wpEngineSel"), wpEngineMid = $("wpEngineMid");
   function updateEngineMid(){
-    wpEngineMid.textContent = wpEngine==="acoustic" ? ACOUSTIC_MODEL : `Xenova/whisper-${state.size}`;
+    if(wpEngineMid) wpEngineMid.textContent = wpEngine==="acoustic" ? ACOUSTIC_MODEL : `Xenova/whisper-${state.size}`;
   }
   updateEngineMid();
-  wpEngineSel.addEventListener("change", ()=>{ wpEngine = wpEngineSel.value; updateEngineMid(); });
+  if(wpEngineSel) wpEngineSel.addEventListener("change", ()=>{ wpEngine = wpEngineSel.value; updateEngineMid(); });
   $("promptText").addEventListener("input", ()=>{
     wpImproveWords = [];   // el texto cambió: la lista de "a mejorar" ya no aplica
     if(wordPanel.classList.contains("on")){ clearTimeout(window.__wpDeb); window.__wpDeb=setTimeout(buildWpChips,300); }
