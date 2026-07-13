@@ -71,6 +71,10 @@
   .confetti-piece{position:fixed;top:-20px;width:10px;height:14px;z-index:50;pointer-events:none;animation:fall linear forwards;}
   @keyframes fall{to{transform:translateY(105vh) rotate(400deg);opacity:0.9;}}
   @media(max-width:380px){.card svg{width:52px;height:52px;}.exWrap{padding:16px 10px 20px;}}
+  .preloadWrap{width:100%;max-width:400px;margin:10px auto 0;text-align:center;}
+  .preloadBar{width:100%;height:10px;background:rgba(255,255,255,0.3);border-radius:10px;overflow:hidden;margin-bottom:4px;}
+  .preloadFill{height:100%;background:linear-gradient(90deg,var(--leaf),var(--sun));width:0%;transition:width .3s ease;border-radius:10px;}
+  .preloadText{color:var(--white);font-weight:700;font-size:13px;font-family:'Nunito';}
 </style>
 </head>
 <body>
@@ -86,6 +90,10 @@
     <div class="mascotWrap" id="mascotHome"></div>
     <h1>Tuki English ??</h1>
     <p>Choose a topic to practice English</p>
+    <div class='preloadWrap' id='preloadWrap'>
+      <div class='preloadBar'><div class='preloadFill' id='preloadFill'></div></div>
+      <div class='preloadText' id='preloadText'>Loading audio... 0%</div>
+    </div>
   </div>
   <div class="menuGrid">
     <button class="card c1" onclick="startTopic('funOnTheFarm')">
@@ -275,13 +283,27 @@ var _allTexts=[
   'Can I have ___ egg, please?','Would you like ___ bread?',"We use 'an' before vowel sounds.",'Can I have a ___, please?','Would you like some ___?',"We use 'some' with uncountable nouns.",'___ I have some cake, please?','Would you like an ___?'
 ];
 function _preloadAudio(){
+  var _loaded=0,_total=_allTexts.length;
+  var _pFill=document.getElementById('preloadFill');
+  var _pText=document.getElementById('preloadText');
+  var _pWrap=document.getElementById('preloadWrap');
+  function _updateProgress(){
+    _loaded++;
+    var pct=Math.round(_loaded/_total*100);
+    if(_pFill)_pFill.style.width=pct+'%';
+    if(_pText)_pText.textContent='Loading audio... '+pct+'%';
+    if(_loaded>=_total){
+      if(_pWrap)_pWrap.style.display='none';
+    }
+  }
   _allTexts.forEach(function(text,i){
     setTimeout(function(){
-      if(_ttsCache[text])return;
+      if(_ttsCache[text]){_updateProgress();return;}
       var ttsUrl='https://translate.google.com/translate_tts?ie=UTF-8&tl=en&client=tw-ob&q='+encodeURIComponent(text);
       var audio=new Audio(ttsUrl);
       audio.preload='auto';
-      audio.onerror=function(){delete _ttsCache[text];};
+      audio.oncanplaythrough=function(){_updateProgress();};
+      audio.onerror=function(){delete _ttsCache[text];_updateProgress();};
       _ttsCache[text]={audio:audio};
       audio.load();
     },i*150);
