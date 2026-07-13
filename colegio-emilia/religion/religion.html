@@ -181,7 +181,7 @@ function _speakMMS(text){
     _getTtsWorker().postMessage({id:id,text:text});
   });
 }
-var _mmsAudioCtx=null;
+var _mmsAudioCtx=null,_ttsCache={};
 function speak(text,lang,btn){
   var l=lang||'es-ES';
   if(!text||!text.length)return;
@@ -189,6 +189,8 @@ function speak(text,lang,btn){
   var origIcon='';
   if(btn){origIcon=btn.textContent;btn.textContent='\u23F3';btn.classList.add('_ttsSpin');btn.disabled=true;}
   function _btnDone(ok){if(!btn)return;btn.classList.remove('_ttsSpin');btn.disabled=false;if(ok){btn.textContent=origIcon;}else{btn.textContent='\u274C';setTimeout(function(){btn.textContent=origIcon;},2000);}}
+  /* CACHE CHECK - play instantly if already loaded */
+  if(_ttsCache[text]){var cached=_ttsCache[text];_btnDone(true);if(cached.audio){cached.audio.currentTime=0;cached.audio.play().catch(function(){});return;}if(cached.samples){if(!_mmsAudioCtx)_mmsAudioCtx=new(window.AudioContext||window.webkitAudioContext)();if(_mmsAudioCtx.state==='suspended')_mmsAudioCtx.resume();var buf=_mmsAudioCtx.createBuffer(1,cached.samples.length,cached.sr);if(buf.copyToChannel)buf.copyToChannel(cached.samples,0);else buf.getChannelData(0).set(cached.samples);var src=_mmsAudioCtx.createBufferSource();src.buffer=buf;src.connect(_mmsAudioCtx.destination);src.start();return;}}
   if('speechSynthesis' in window){
     window.speechSynthesis.cancel();
     var voice=_findTtsVoice(l);
@@ -207,12 +209,14 @@ function speak(text,lang,btn){
   function _ttsFallback(){if(done)return;_finish(false);if('speechSynthesis' in window){var u=new SpeechSynthesisUtterance(text);u.lang=l;u.rate=0.9;var v=_findTtsVoice(l);if(v)u.voice=v;window.speechSynthesis.speak(u);}}
   var ttsUrl='https://translate.google.com/translate_tts?ie=UTF-8&tl='+prefix+'&client=tw-ob&q='+encodeURIComponent(text);
   var audio=new Audio(ttsUrl);
+  _ttsCache[text]={audio:audio};
   audio.onerror=function(){};
   audio.play().then(function(){_finish(true);}).catch(function(){});
   _speakMMS(text).then(function(out){
     if(done)return;
     _finish(true);
     var samples=out.samples,sr=out.sr;
+    _ttsCache[text]={samples:samples,sr:sr};
     if(!_mmsAudioCtx)_mmsAudioCtx=new(window.AudioContext||window.webkitAudioContext)();
     if(_mmsAudioCtx.state==='suspended')_mmsAudioCtx.resume();
     var buf=_mmsAudioCtx.createBuffer(1,samples.length,sr);
@@ -237,6 +241,39 @@ function speak(text,lang,btn){
     setTimeout(_ttsRetry,400);
   }
 }
+
+/* TTS PRELOAD */
+var _allTexts=["¿Quiénes forman la Sagrada Familia?","¿Dónde vivía la familia de Jesús?","José era bueno y trabajador. Era carpintero.","María era muy floja y no le gustaba cuidar a Jesús.","Jesús era un niño triste y desobediente.","En la casita de Nazaret había mucho amor.","¿Cómo es la familia de Jesús?","¿Qué trabajaba San José?","La Sagrada Familia es un modelo de amor para todas las familias.","¿Quién es la mamá de Jesús?","La Eucaristía es un regalo que Jesús nos dejó.","Vamos a la Misa solo para encontrarnos con nuestros amigos.","En la Consagración, la hostia se convierte en el cuerpo de Jesús.","En la Consagración, el vino se convierte en la sangre de Jesús.","Jesús NO está presente en la Eucaristía.","¿Cuándo Jesús instituye la Eucaristía?","¿Qué les pide Jesús a sus discípulos después de convertir el pan y vino?","¿Qué palabras dice Jesús al consagrar el pan?","¿Qué palabras dice Jesús al consagrar el vino?","¿Por qué es importante la Eucaristía?","La Eucaristía nos ayuda a...","La Eucaristía nos une como...","La Eucaristía es el alimento de...","¿Qué elementos se usan en la Eucaristía?","San Josemaría Escrivá nos enseñó a encontrar a Dios...","Jesús ayudaba a María a lavar la ropa.","Jesús aprendió de José a hacer carpintería.","Jesús obedecía a sus padres con alegría.","Jesús predicaba la palabra de Dios.","San Josemaría Escrivá fundó...","¿Qué nos enseña San Josemaría sobre el trabajo?","Podemos ser santos haciendo bien nuestro trabajo diario.","¿Qué hacía Jesús en su casa de Nazaret?","Jesús obedecía a Dios y cumplía su misión.","San Josemaría nos dice que las cosas pequeñas...","Podemos encontrar a Dios en las cosas normales de cada día.","San Pedro era...","San Pablo era...","¿Quién fue el primer Papa de la Iglesia?","San Pedro negó a Jesús tres veces.","San Pedro fue crucificado boca abajo por amor a Jesús.","El nombre original de San Pedro era...","Jesús le dijo a Pedro: \"Tú eres...\"","El nombre original de San Pablo era...","San Pablo viajó mucho para predicar el Evangelio.","San Pablo escribió muchas cartas a los cristianos.","San Pedro y San Pablo son patronos de...","San Pedro y San Pablo murieron mártires por su fe en Jesús.","¿Qué le preguntó Jesús a Pedro tres veces?","San Pablo se encontró con Jesús en el camino a Damasco.","Verdadero ✅","Falso ❌","Jesús, María y José","Pedro, Pablo y Juan","Adán, Eva y Caín","Abraham, Isaac y Jacob","En Nazaret","En Belén","En Jerusalén","En Egipto","Amable y amorosa","Mala y triste","Triste y aburrida","Floja y desobediente","Era carpintero","Era pescador","Era médico","Era pastor","María","Isabel","Ana","Marta","En la Bajada de Reyes","En la Última Cena","En las bodas de Juan","En el bautismo","Que hicieran esto siempre para recordarlo","Que coman rápido y beban despacio","Que no lo recuperen nunca","Que se vayan a dormir","\"Esto es mi Cuerpo\"","\"Esto es mi Sangre\"","\"Hola a todos\"","\"Vamos a comer\"","Esto es mi Cuerpo","Esto es mi Sangre","Hola a todos","Vamos a comer","\"Esta es mi Sangre\"","\"Buen provecho\"","\"Vamos a beber\"","Esta es mi Sangre","Buen provecho","Vamos a beber","Porque Jesús alimenta nuestra alma con amor","Porque todos debemos comer para estar sanos","Porque Jesús NO quiere que estemos cerca de Dios","Porque nos alimenta con muchos dulces","Acercarnos más a Dios","Alejarnos de Dios","Pelear con otros","No ir a la Iglesia","Familia en la Iglesia","Extraños en la calle","Amigos en el parque","Hermanos en el colegio","Nuestra alma","Nuestro cuerpo","Nuestros dientes","Nuestros ojos","Pan (hostia) y vino","Agua y sal","Pan y queso","Vino y fruta","En la vida cotidiana","Solo en la iglesia","Solo rezando","Solo de noche","El Opus Dei","Los franciscanos","Los jesuitas","Los dominicos","Que el trabajo es una forma de orar","Que el trabajo es aburrido","Que no hay que trabajar","Que solo hay que rezar","Ayudaba a María y aprendía de José","Jugaba todo el día sin ayudar","No hacía nada","Se escondía de sus padres","Hechas con amor son muy importantes","No importan nada","Son aburridas","Son difíciles","Un pescador","Un médico","Un carpintero","Un rey","Un fariseo que se convirtió","Un soldado","San Pedro","San Pablo","San Juan","San Mateo","Simón","Juan","Mateo","Lucas","Pedro y sobre esta piedra edificaré mi Iglesia","El mejor pescador","El más alto","El más fuerte","Saulo","Pedro","Tomás","Andrés","La ciudad de Roma","La ciudad de Madrid","La ciudad de París","La ciudad de Londres","\"¿Me amas?\"","\"¿Tienes hambre?\"","\"¿Dónde vives?\"","\"¿Cuántos años tienes?\"","¿Me amas?","¿Tienes hambre?","¿Dónde vives?","¿Cuántos años tienes?"];
+function _preloadTTS(){
+  var bar=document.createElement('div');
+  bar.style.cssText='position:fixed;top:0;left:0;right:0;z-index:9999;background:#1a1a2e;color:#fff;text-align:center;padding:6px;font-size:13px;font-family:sans-serif;';
+  var fill=document.createElement('div');
+  fill.style.cssText='height:3px;background:#4CAF50;width:0%;transition:width .2s;';
+  bar.innerHTML='<span id="_ptxt">Loading audio 0%</span>';
+  bar.appendChild(fill);
+  document.body.insertBefore(bar,document.body.firstChild);
+  var total=_allTexts.length,done=0;
+  var timer=setInterval(function(){
+    var pct=Math.round((done/total)*100);
+    fill.style.width=pct+'%';
+    document.getElementById('_ptxt').textContent='Loading audio '+pct+'% ('+done+'/'+total+')';
+    if(done>=total){clearInterval(timer);setTimeout(function(){bar.style.opacity='0';bar.style.transition='opacity .4s';setTimeout(function(){bar.remove();},400);},500);}
+  },200);
+  _allTexts.forEach(function(text,i){
+    setTimeout(function(){
+      var url='https://translate.google.com/translate_tts?ie=UTF-8&tl=es&client=tw-ob&q='+encodeURIComponent(text);
+      var a=new Audio(url);
+      a.preload='auto';
+      a.oncanplaythrough=function(){done++;};
+      a.onerror=function(){done++;};
+      _ttsCache[text]={audio:a};
+      a.load();
+    },i*100);
+  });
+  setTimeout(function(){done=total;},30000);
+}
+_preloadTTS();
+
 /* MUSIC */
 let musicOn=false,musicTimer=null,musicNoteIndex=0;
 const MELODY=[523,659,784,659,523,587,659,587,659,784,880,784,659,587,523,587,784,659,523,659,587,523,494,523,523,659,784,880,784,659,587,523];

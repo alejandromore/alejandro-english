@@ -177,7 +177,7 @@ function _speakMMS(text){
     _getTtsWorker().postMessage({id:id,text:text});
   });
 }
-var _mmsAudioCtx=null;
+var _mmsAudioCtx=null,_ttsCache={};
 function speak(text,lang,btn){
   var l=lang||'es-ES';
   if(!text||!text.length)return;
@@ -185,6 +185,8 @@ function speak(text,lang,btn){
   var origIcon='';
   if(btn){origIcon=btn.textContent;btn.textContent='\u23F3';btn.classList.add('_ttsSpin');btn.disabled=true;}
   function _btnDone(ok){if(!btn)return;btn.classList.remove('_ttsSpin');btn.disabled=false;if(ok){btn.textContent=origIcon;}else{btn.textContent='\u274C';setTimeout(function(){btn.textContent=origIcon;},2000);}}
+  /* CACHE CHECK - play instantly if already loaded */
+  if(_ttsCache[text]){var cached=_ttsCache[text];_btnDone(true);if(cached.audio){cached.audio.currentTime=0;cached.audio.play().catch(function(){});return;}if(cached.samples){if(!_mmsAudioCtx)_mmsAudioCtx=new(window.AudioContext||window.webkitAudioContext)();if(_mmsAudioCtx.state==='suspended')_mmsAudioCtx.resume();var buf=_mmsAudioCtx.createBuffer(1,cached.samples.length,cached.sr);if(buf.copyToChannel)buf.copyToChannel(cached.samples,0);else buf.getChannelData(0).set(cached.samples);var src=_mmsAudioCtx.createBufferSource();src.buffer=buf;src.connect(_mmsAudioCtx.destination);src.start();return;}}
   if('speechSynthesis' in window){
     window.speechSynthesis.cancel();
     var voice=_findTtsVoice(l);
@@ -203,12 +205,14 @@ function speak(text,lang,btn){
   function _ttsFallback(){if(done)return;_finish(false);if('speechSynthesis' in window){var u=new SpeechSynthesisUtterance(text);u.lang=l;u.rate=0.9;var v=_findTtsVoice(l);if(v)u.voice=v;window.speechSynthesis.speak(u);}}
   var ttsUrl='https://translate.google.com/translate_tts?ie=UTF-8&tl='+prefix+'&client=tw-ob&q='+encodeURIComponent(text);
   var audio=new Audio(ttsUrl);
+  _ttsCache[text]={audio:audio};
   audio.onerror=function(){};
   audio.play().then(function(){_finish(true);}).catch(function(){});
   _speakMMS(text).then(function(out){
     if(done)return;
     _finish(true);
     var samples=out.samples,sr=out.sr;
+    _ttsCache[text]={samples:samples,sr:sr};
     if(!_mmsAudioCtx)_mmsAudioCtx=new(window.AudioContext||window.webkitAudioContext)();
     if(_mmsAudioCtx.state==='suspended')_mmsAudioCtx.resume();
     var buf=_mmsAudioCtx.createBuffer(1,samples.length,sr);
@@ -233,6 +237,40 @@ function speak(text,lang,btn){
     setTimeout(_ttsRetry,400);
   }
 }
+
+/* TTS PRELOAD */
+var _allTexts=["Who puts out fires?","Who helps sick people?","Who keeps us safe and catches bad guys?","Who teaches us at school?","A firefighter drives a fire truck.","A doctor works in a hospital.","Who delivers our mail?","Who cooks food in a restaurant?","Community helpers make our community better.","What does a nurse do?","Where do we go to learn?","Where do we go when we are sick?","Where do we borrow books?","Where do we buy food?","We play at the park.","We go to the bank to swim.","Where do we play and have fun?","Where do firemen work?","The post office is where we send letters.","Where do we go to pray?","What is a GOOD?","What is a SERVICE?","Which is a NEED?","Which is a WANT?","Food is a need.","Toys are a need.","Who makes goods?","Who buys goods?","A teacher provides a service.","Which is a service?","We need water and food to live.","True ✅","False ❌","A firefighter","A doctor","A teacher","A baker","A pilot","A farmer","A police officer","A chef","A librarian","A mail carrier","Helps sick people","Puts out fires","Delivers mail","Teaches children","School","Hospital","Park","Bank","Library","Store","Grocery store","Fire station","Church","A toy you can buy","A haircut","A lesson","A checkup","An apple","A book","A toy","Water","Toys","Candy","Video games","A new toy","Food","Clothes","Producers","Consumers","Helpers","Teachers","Doctors","Firefighters","Getting a haircut","Buying an apple","Buying a book","Buying a toy"];
+function _preloadTTS(){
+  var bar=document.createElement('div');
+  bar.style.cssText='position:fixed;top:0;left:0;right:0;z-index:9999;background:#1a1a2e;color:#fff;text-align:center;padding:6px;font-size:13px;font-family:sans-serif;';
+  var fill=document.createElement('div');
+  fill.style.cssText='height:3px;background:#4CAF50;width:0%;transition:width .2s;';
+  bar.innerHTML='<span id="_ptxt">Loading audio 0%</span>';
+  bar.appendChild(fill);
+  document.body.insertBefore(bar,document.body.firstChild);
+  var total=_allTexts.length,done=0;
+  var timer=setInterval(function(){
+    var pct=Math.round((done/total)*100);
+    fill.style.width=pct+'%';
+    document.getElementById('_ptxt').textContent='Loading audio '+pct+'% ('+done+'/'+total+')';
+    if(done>=total){clearInterval(timer);setTimeout(function(){bar.style.opacity='0';bar.style.transition='opacity .4s';setTimeout(function(){bar.remove();},400);},500);}
+  },200);
+  _allTexts.forEach(function(text,i){
+    setTimeout(function(){
+      var lang=text.match(/[a-zA-Z]/)&&text.charCodeAt(0)<128?'en':'es';
+      var url='https://translate.google.com/translate_tts?ie=UTF-8&tl='+lang+'&client=tw-ob&q='+encodeURIComponent(text);
+      var a=new Audio(url);
+      a.preload='auto';
+      a.oncanplaythrough=function(){done++;};
+      a.onerror=function(){done++;};
+      _ttsCache[text]={audio:a};
+      a.load();
+    },i*100);
+  });
+  setTimeout(function(){done=total;},30000);
+}
+_preloadTTS();
+
 /* MUSIC */
 let musicOn=false,musicTimer=null,musicNoteIndex=0;
 const MELODY=[523,659,784,659,523,587,659,587,659,784,880,784,659,587,523,587,784,659,523,659,587,523,494,523,523,659,784,880,784,659,587,523];
