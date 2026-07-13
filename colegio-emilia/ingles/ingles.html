@@ -90,9 +90,9 @@
     <div class="mascotWrap" id="mascotHome"></div>
     <h1>Tuki English ??</h1>
     <p>Choose a topic to practice English</p>
-    <div class='preloadWrap' id='preloadWrap'>
-      <div class='preloadBar'><div class='preloadFill' id='preloadFill'></div></div>
-      <div class='preloadText' id='preloadText'>Loading audio... 0%</div>
+    <div class="preloadWrap" id="preloadWrap">
+      <div class="preloadBar"><div class="preloadFill" id="preloadFill"></div></div>
+      <div class="preloadText" id="preloadText">Loading audio... 0%</div>
     </div>
   </div>
   <div class="menuGrid">
@@ -283,30 +283,40 @@ var _allTexts=[
   'Can I have ___ egg, please?','Would you like ___ bread?',"We use 'an' before vowel sounds.",'Can I have a ___, please?','Would you like some ___?',"We use 'some' with uncountable nouns.",'___ I have some cake, please?','Would you like an ___?'
 ];
 function _preloadAudio(){
-  var _loaded=0,_total=_allTexts.length;
+  var _total=_allTexts.length,_started=0,_done=0;
   var _pFill=document.getElementById('preloadFill');
   var _pText=document.getElementById('preloadText');
   var _pWrap=document.getElementById('preloadWrap');
-  function _updateProgress(){
-    _loaded++;
-    var pct=Math.round(_loaded/_total*100);
+  if(!_pWrap)return;
+  /* Timer-based progress: updates every 200ms based on how many audios started + loaded */
+  var _timer=setInterval(function(){
+    var pct=Math.min(100,Math.round((_done/_total)*100));
     if(_pFill)_pFill.style.width=pct+'%';
-    if(_pText)_pText.textContent='Loading audio... '+pct+'%';
-    if(_loaded>=_total){
-      if(_pWrap)_pWrap.style.display='none';
+    if(_pText)_pText.textContent='Loading audio... '+pct+'% ('+_done+'/'+_total+')';
+    if(_done>=_total){
+      clearInterval(_timer);
+      _pWrap.style.transition='opacity .5s';
+      _pWrap.style.opacity='0';
+      setTimeout(function(){_pWrap.style.display='none';},500);
     }
-  }
+  },200);
+  /* Start loading all audios (staggered) */
   _allTexts.forEach(function(text,i){
     setTimeout(function(){
-      if(_ttsCache[text]){_updateProgress();return;}
+      _started++;
+      if(_ttsCache[text]){_done++;return;}
       var ttsUrl='https://translate.google.com/translate_tts?ie=UTF-8&tl=en&client=tw-ob&q='+encodeURIComponent(text);
       var audio=new Audio(ttsUrl);
       audio.preload='auto';
-      audio.oncanplaythrough=function(){_updateProgress();};
-      audio.onerror=function(){delete _ttsCache[text];_updateProgress();};
+      audio.oncanplaythrough=function(){_done++;};
+      audio.onerror=function(){delete _ttsCache[text];_done++;};
       _ttsCache[text]={audio:audio};
       audio.load();
-    },i*150);
+      /* Safety: if no event fires in 8s, count as done */
+      setTimeout(function(){
+        if(!audio.readyState||audio.readyState<2){_done++;}
+      },8000);
+    },i*120);
   });
 }
 
