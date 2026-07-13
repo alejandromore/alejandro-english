@@ -45,5 +45,55 @@
     </a>
   </div>
   <p class="heart">Hecho con ❤️ para Emilia</p>
+<script>
+var _allTexts=[
+  "What animal says 'Moo'?","What animal says 'Baa'?","What animal says 'Cluck cluck'?","What animal says 'Quack quack'?",
+  'A cow gives us milk.','A pig can fly.','What do hens lay?','What do sheep give us?','Horses can run fast.','Where do farm animals live?',
+  "What animal says 'Oink oink'?","What animal says 'Neigh'?",'A duck can swim.','A sheep gives us eggs.','What do cows eat?','Which animal is big and gives us milk?','Chickens live on the farm.','What do goats eat?',
+  'I like ___.','Do you like ice cream?','I like bananas.','What is your favorite food?',"I don't like ___.",'Apples are a fruit.','Which one is a drink?','Which one is NOT food?','We eat pizza with our hands.','What do we eat for breakfast?',
+  'I like to eat ___.','Bananas are yellow.','Which one is a fruit?','Which one is a vegetable?','Burgers are healthy food.','What do we drink?','I like to drink ___.','Milk is a drink.',
+  'Do you like pizza?','___ you like ice cream?','Do you like broccoli?','Does she like apples?',"We use 'Do' with I, you, we, they.","We use 'Does' with he, she, it.",'___ he like cake?','Do they like milk?',"We say 'I like' not 'I likes'.",'Does it like fish? (about a cat)',
+  'Do you like milk?','___ they like pizza?',"We say 'He likes' not 'He like'.",'Does she like milk?','Do you like ___?',"'Do you like...' is a yes/no question.",'Does he like soccer?','I like ___.',
+  'Can I have ___ apple, please?','Can I have ___ banana, please?','Would you like ___ juice?','Would you like a cookie?',"We say 'Can I have' to ask for something.","We say 'Would you like' to offer something.",'Can I have some water, ___?','___ you like some cake?','Can I have ___ orange juice?',"We say 'please' to be polite.",
+  'Can I have ___ egg, please?','Would you like ___ bread?',"We use 'an' before vowel sounds.",'Can I have a ___, please?','Would you like some ___?',"We use 'some' with uncountable nouns.",'___ I have some cake, please?','Would you like an ___?'
+];
+(function(){
+  var total=_allTexts.length,done=0;
+  var bar=document.createElement('div');
+  bar.style.cssText='position:fixed;top:0;left:0;right:0;z-index:9999;background:#2B2440;padding:8px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 2px 8px rgba(0,0,0,0.3);transition:opacity .4s;opacity:1;';
+  var track=document.createElement('div');
+  track.style.cssText='flex:1;height:12px;background:rgba(255,255,255,0.2);border-radius:8px;overflow:hidden;';
+  var fill=document.createElement('div');
+  fill.style.cssText='height:100%;width:0%;background:linear-gradient(90deg,#4CAF6D,#FFC93C);border-radius:8px;transition:width .3s ease;';
+  track.appendChild(fill);
+  var label=document.createElement('div');
+  label.style.cssText='color:#fff;font-weight:700;font-size:13px;font-family:Nunito,sans-serif;white-space:nowrap;min-width:120px;text-align:right;';
+  label.textContent='Loading audio 0%';
+  bar.appendChild(track);
+  bar.appendChild(label);
+  document.body.appendChild(bar);
+  var timer=setInterval(function(){
+    var pct=Math.min(100,Math.round((done/total)*100));
+    fill.style.width=pct+'%';
+    label.textContent='Loading audio '+pct+'% ('+done+'/'+total+')';
+    if(done>=total){
+      clearInterval(timer);
+      bar.style.opacity='0';
+      setTimeout(function(){if(bar.parentNode)bar.parentNode.removeChild(bar);},400);
+    }
+  },200);
+  _allTexts.forEach(function(text,i){
+    setTimeout(function(){
+      var url='https://translate.google.com/translate_tts?ie=UTF-8&tl=en&client=tw-ob&q='+encodeURIComponent(text);
+      var a=new Audio(url);
+      a.preload='auto';
+      a.oncanplaythrough=function(){done++;};
+      a.onerror=function(){done++;};
+      a.load();
+      setTimeout(function(){if(!a.readyState||a.readyState<2){done++;}},8000);
+    },i*120);
+  });
+})();
+</script>
 </body>
 </html>
