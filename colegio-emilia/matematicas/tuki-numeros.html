@@ -415,7 +415,7 @@ function speak(text,lang,btn){
   function _ttsFallback(){if(done)return;_finish(false);if('speechSynthesis' in window){var u=new SpeechSynthesisUtterance(text);u.lang=l;u.rate=0.9;var v=_findTtsVoice(l);if(v)u.voice=v;window.speechSynthesis.speak(u);}}
   var ttsUrl='https://translate.google.com/translate_tts?ie=UTF-8&tl='+prefix+'&client=tw-ob&q='+encodeURIComponent(text);
   var audio=new Audio(ttsUrl);
-  _ttsCache[text]={audio:audio};
+  audio.oncanplaythrough=function(){_ttsCache[text]={audio:audio};};
   audio.onerror=function(){};
   audio.play().then(function(){_finish(true);}).catch(function(){});
   _speakMMS(text).then(function(out){

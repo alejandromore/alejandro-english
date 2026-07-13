@@ -228,9 +228,9 @@ function speak(text,lang,btn){
     /* Try 2: Google Translate TTS - cache the Audio element */
     var ttsUrl='https://translate.google.com/translate_tts?ie=UTF-8&tl='+prefix+'&client=tw-ob&q='+encodeURIComponent(text);
     var audio=new Audio(ttsUrl);
-    _ttsCache[text]={audio:audio};
     var audioDone=false;
     audio.oncanplaythrough=function(){
+      _ttsCache[text]={audio:audio};
       if(audioDone||done)return;audioDone=true;
       _finish(true);
       audio.play().catch(function(){});
@@ -309,7 +309,7 @@ function _preloadAudio(){
       audio.preload='auto';
       audio.oncanplaythrough=function(){_done++;};
       audio.onerror=function(){delete _ttsCache[text];_done++;};
-      _ttsCache[text]={audio:audio};
+      audio.addEventListener('canplaythrough',function(){_ttsCache[text]={audio:audio};},{once:true});
       audio.load();
       /* Safety: if no event fires in 8s, count as done */
       setTimeout(function(){
