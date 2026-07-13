@@ -167,7 +167,7 @@ function _findTtsVoice(lang){
 var _ttsWorker=null,_ttsSeq=0,_ttsJobs={},_ttsCache={};
 function _getTtsWorker(){
   if(_ttsWorker)return _ttsWorker;
-  var src='import{pipeline}from"https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.5.2";var m=null;async function M(){if(m)return m;m=await pipeline("text-to-speech","Xenova/mms-tts-spa",{dtype:"q8"});return m;}self.onmessage=async(e)=>{try{var s=await M();var o=await s(e.data.text);var f=o.audio instanceof Float32Array?o.audio:Float32Array.from(o.audio);var p=0;for(var i=0;i<f.length;i++){var a=Math.abs(f[i]);if(a>p)p=a;}if(p>0.02&&p<0.98){var g=0.92/p;for(var i=0;i<f.length;i++)f[i]*=g;}self.postMessage({id:e.data.id,samples:f,sr:o.sampling_rate||16000},[f.buffer]);}catch(err){self.postMessage({id:e.data.id,error:(err&&err.message)||String(err)});}};';
+  var src='import{pipeline}from"https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.5.2";var m=null;async function M(){if(m)return m;m=await pipeline("text-to-speech","Xenova/mms-tts-eng",{dtype:"q8"});return m;}self.onmessage=async(e)=>{try{var s=await M();var o=await s(e.data.text);var f=o.audio instanceof Float32Array?o.audio:Float32Array.from(o.audio);var p=0;for(var i=0;i<f.length;i++){var a=Math.abs(f[i]);if(a>p)p=a;}if(p>0.02&&p<0.98){var g=0.92/p;for(var i=0;i<f.length;i++)f[i]*=g;}self.postMessage({id:e.data.id,samples:f,sr:o.sampling_rate||16000},[f.buffer]);}catch(err){self.postMessage({id:e.data.id,error:(err&&err.message)||String(err)});}};';
   var url=URL.createObjectURL(new Blob([src],{type:"text/javascript"}));
   _ttsWorker=new Worker(url,{type:"module"});
   _ttsWorker.onmessage=function(e){var cb=_ttsJobs[e.data.id];if(!cb)return;delete _ttsJobs[e.data.id];if(e.data.error)cb.reject(new Error(e.data.error));else cb.resolve({samples:e.data.samples,sr:e.data.sr});};
@@ -182,6 +182,15 @@ function _speakMMS(text){
   });
 }
 var _mmsAudioCtx=null;
+function _playCachedSamples(cached){
+  if(!_mmsAudioCtx)_mmsAudioCtx=new(window.AudioContext||window.webkitAudioContext)();
+  if(_mmsAudioCtx.state==='suspended')_mmsAudioCtx.resume();
+  var buf=_mmsAudioCtx.createBuffer(1,cached.samples.length,cached.sr);
+  if(buf.copyToChannel)buf.copyToChannel(cached.samples,0);else buf.getChannelData(0).set(cached.samples);
+  var src=_mmsAudioCtx.createBufferSource();
+  src.buffer=buf;src.connect(_mmsAudioCtx.destination);
+  src.start();
+}
 function speak(text,lang,btn){
   var l=lang||'es-ES';
   if(!text||!text.length)return;
@@ -193,46 +202,64 @@ function speak(text,lang,btn){
   if(_ttsCache[text]){
     var cached=_ttsCache[text];
     _btnDone(true);
-    if(!_mmsAudioCtx)_mmsAudioCtx=new(window.AudioContext||window.webkitAudioContext)();
-    if(_mmsAudioCtx.state==='suspended')_mmsAudioCtx.resume();
-    var cbuf=_mmsAudioCtx.createBuffer(1,cached.samples.length,cached.sr);
-    if(cbuf.copyToChannel)cbuf.copyToChannel(cached.samples,0);else cbuf.getChannelData(0).set(cached.samples);
-    var csrc=_mmsAudioCtx.createBufferSource();
-    csrc.buffer=cbuf;csrc.connect(_mmsAudioCtx.destination);
-    csrc.start();
-    return;
+    if(cached.audio){cached.audio.currentTime=0;cached.audio.play().catch(function(){});return;}
+    if(cached.samples){_playCachedSamples(cached);return;}
   }
-  /* NO CACHE - process with MMS, cache result for next time */
+  /* NO CACHE - try MMS first, then Google TTS, then speechSynthesis */
   var done=false;
   var timeout=setTimeout(function(){if(!done){done=true;_btnDone(false);}},15000);
   function _finish(ok){if(done)return;done=true;clearTimeout(timeout);_btnDone(ok);}
-  function _ttsFallback(){if(done)return;_finish(false);if('speechSynthesis' in window){var u=new SpeechSynthesisUtterance(text);u.lang=l;u.rate=0.9;var v=_findTtsVoice(l);if(v)u.voice=v;window.speechSynthesis.speak(u);}}
+  /* Try 1: MMS (English model) */
   _speakMMS(text).then(function(out){
     if(done)return;
     _finish(true);
     var samples=out.samples,sr=out.sr;
     _ttsCache[text]={samples:samples,sr:sr};
-    if(!_mmsAudioCtx)_mmsAudioCtx=new(window.AudioContext||window.webkitAudioContext)();
-    if(_mmsAudioCtx.state==='suspended')_mmsAudioCtx.resume();
-    var buf=_mmsAudioCtx.createBuffer(1,samples.length,sr);
-    if(buf.copyToChannel)buf.copyToChannel(samples,0);else buf.getChannelData(0).set(samples);
-    var src=_mmsAudioCtx.createBufferSource();
-    src.buffer=buf;src.connect(_mmsAudioCtx.destination);
-    src.start();
+    _playCachedSamples({samples:samples,sr:sr});
   }).catch(function(){
-    /* MMS failed - try speechSynthesis as fallback */
-    if('speechSynthesis' in window){
-      var v=_findTtsVoice(l);
-      if(v){
-        _finish(true);
-        window.speechSynthesis.cancel();
-        var u=new SpeechSynthesisUtterance(text);
-        u.lang=l;u.rate=0.9;u.voice=v;
-        u.onend=function(){};
-        u.onerror=function(){_ttsFallback();};
-        window.speechSynthesis.speak(u);
-      }else{_ttsFallback();}
-    }else{_ttsFallback();}
+    if(done)return;
+    /* Try 2: Google Translate TTS - cache the Audio element */
+    var ttsUrl='https://translate.google.com/translate_tts?ie=UTF-8&tl='+prefix+'&client=tw-ob&q='+encodeURIComponent(text);
+    var audio=new Audio(ttsUrl);
+    audio.crossOrigin='anonymous';
+    var audioDone=false;
+    audio.oncanplaythrough=function(){
+      if(audioDone||done)return;audioDone=true;
+      _finish(true);
+      _ttsCache[text]={audio:audio};
+      audio.play().catch(function(){});
+    };
+    audio.onerror=function(){
+      if(audioDone||done)return;audioDone=true;
+      /* Try 3: speechSynthesis as final fallback (no cache) */
+      if('speechSynthesis' in window){
+        var v=_findTtsVoice(l);
+        if(v){
+          _finish(true);
+          window.speechSynthesis.cancel();
+          var u=new SpeechSynthesisUtterance(text);
+          u.lang=l;u.rate=0.9;u.voice=v;
+          window.speechSynthesis.speak(u);
+        }else{_finish(false);}
+      }else{_finish(false);}
+    };
+    audio.load();
+    /* Timeout for Google TTS */
+    setTimeout(function(){
+      if(!audioDone&&!done){
+        audioDone=true;
+        if('speechSynthesis' in window){
+          var v=_findTtsVoice(l);
+          if(v){
+            _finish(true);
+            window.speechSynthesis.cancel();
+            var u=new SpeechSynthesisUtterance(text);
+            u.lang=l;u.rate=0.9;u.voice=v;
+            window.speechSynthesis.speak(u);
+          }else{_finish(false);}
+        }else{_finish(false);}
+      }
+    },5000);
   });
 }
 /* MUSIC */
