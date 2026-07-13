@@ -395,8 +395,8 @@ function speak(text,lang,btn){
   var origIcon='';
   if(btn){origIcon=btn.textContent;btn.textContent='\u23F3';btn.classList.add('_ttsSpin');btn.disabled=true;}
   function _btnDone(ok){if(!btn)return;btn.classList.remove('_ttsSpin');btn.disabled=false;if(ok){btn.textContent=origIcon;}else{btn.textContent='\u274C';setTimeout(function(){btn.textContent=origIcon;},2000);}}
-  /* CACHE CHECK - play instantly if already loaded */
-  if(_ttsCache[text]){var cached=_ttsCache[text];_btnDone(true);if(cached.audio){cached.audio.currentTime=0;cached.audio.play().catch(function(){});return;}if(cached.samples){if(!_mmsAudioCtx)_mmsAudioCtx=new(window.AudioContext||window.webkitAudioContext)();if(_mmsAudioCtx.state==='suspended')_mmsAudioCtx.resume();var buf=_mmsAudioCtx.createBuffer(1,cached.samples.length,cached.sr);if(buf.copyToChannel)buf.copyToChannel(cached.samples,0);else buf.getChannelData(0).set(cached.samples);var src=_mmsAudioCtx.createBufferSource();src.buffer=buf;src.connect(_mmsAudioCtx.destination);src.start();return;}}
+  /* CACHE CHECK - play instantly if already loaded and ready */
+  if(_ttsCache[text]){var cached=_ttsCache[text];if(cached.audio&&cached.audio.readyState>=2){_btnDone(true);cached.audio.currentTime=0;cached.audio.play().catch(function(){});return;}if(cached.samples){_btnDone(true);if(!_mmsAudioCtx)_mmsAudioCtx=new(window.AudioContext||window.webkitAudioContext)();if(_mmsAudioCtx.state==='suspended')_mmsAudioCtx.resume();var buf=_mmsAudioCtx.createBuffer(1,cached.samples.length,cached.sr);if(buf.copyToChannel)buf.copyToChannel(cached.samples,0);else buf.getChannelData(0).set(cached.samples);var src=_mmsAudioCtx.createBufferSource();src.buffer=buf;src.connect(_mmsAudioCtx.destination);src.start();return;}}
   if('speechSynthesis' in window){
     window.speechSynthesis.cancel();
     var voice=_findTtsVoice(l);

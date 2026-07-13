@@ -206,12 +206,11 @@ function speak(text,lang,btn){
   var origIcon='';
   if(btn){origIcon=btn.textContent;btn.textContent='\u23F3';btn.classList.add('_ttsSpin');btn.disabled=true;}
   function _btnDone(ok){if(!btn)return;btn.classList.remove('_ttsSpin');btn.disabled=false;if(ok){btn.textContent=origIcon;}else{btn.textContent='\u274C';setTimeout(function(){btn.textContent=origIcon;},2000);}}
-  /* CACHE CHECK FIRST - play instantly if already processed */
+  /* CACHE CHECK - play instantly if already loaded and ready */
   if(_ttsCache[text]){
     var cached=_ttsCache[text];
-    _btnDone(true);
-    if(cached.audio){cached.audio.currentTime=0;cached.audio.play().catch(function(){});return;}
-    if(cached.samples){_playCachedSamples(cached);return;}
+    if(cached.audio&&cached.audio.readyState>=2){_btnDone(true);cached.audio.currentTime=0;cached.audio.play().catch(function(){});return;}
+    if(cached.samples){_btnDone(true);_playCachedSamples(cached);return;}
   }
   /* NO CACHE - try MMS first, then Google TTS, then speechSynthesis */
   var done=false;

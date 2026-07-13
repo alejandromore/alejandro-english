@@ -45,69 +45,7 @@
     </a>
   </div>
   <p class="heart">Hecho con ❤️ para Emilia</p>
-<script>
-var _allTexts=[
-  "What animal says 'Moo'?","What animal says 'Baa'?","What animal says 'Cluck cluck'?","What animal says 'Quack quack'?",
-  'A cow gives us milk.','A pig can fly.','What do hens lay?','What do sheep give us?','Horses can run fast.','Where do farm animals live?',
-  "What animal says 'Oink oink'?","What animal says 'Neigh'?",'A duck can swim.','A sheep gives us eggs.','What do cows eat?','Which animal is big and gives us milk?','Chickens live on the farm.','What do goats eat?',
-  'I like ___.','Do you like ice cream?','I like bananas.','What is your favorite food?',"I don't like ___.",'Apples are a fruit.','Which one is a drink?','Which one is NOT food?','We eat pizza with our hands.','What do we eat for breakfast?',
-  'I like to eat ___.','Bananas are yellow.','Which one is a fruit?','Which one is a vegetable?','Burgers are healthy food.','What do we drink?','I like to drink ___.','Milk is a drink.',
-  'Do you like pizza?','___ you like ice cream?','Do you like broccoli?','Does she like apples?',"We use 'Do' with I, you, we, they.","We use 'Does' with he, she, it.",'___ he like cake?','Do they like milk?',"We say 'I like' not 'I likes'.",'Does it like fish? (about a cat)',
-  'Do you like milk?','___ they like pizza?',"We say 'He likes' not 'He like'.",'Does she like milk?','Do you like ___?',"'Do you like...' is a yes/no question.",'Does he like soccer?','I like ___.',
-  'Can I have ___ apple, please?','Can I have ___ banana, please?','Would you like ___ juice?','Would you like a cookie?',"We say 'Can I have' to ask for something.","We say 'Would you like' to offer something.",'Can I have some water, ___?','___ you like some cake?','Can I have ___ orange juice?',"We say 'please' to be polite.",
-  'Can I have ___ egg, please?','Would you like ___ bread?',"We use 'an' before vowel sounds.",'Can I have a ___, please?','Would you like some ___?',"We use 'some' with uncountable nouns.",'___ I have some cake, please?','Would you like an ___?'
-];
-(function(){
-  var total=_allTexts.length,done=0;
-  var bar=document.createElement('div');
-  bar.style.cssText='position:fixed;top:0;left:0;right:0;z-index:9999;background:#2B2440;padding:8px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 2px 8px rgba(0,0,0,0.3);transition:opacity .4s;opacity:1;';
-  var track=document.createElement('div');
-  track.style.cssText='flex:1;height:12px;background:rgba(255,255,255,0.2);border-radius:8px;overflow:hidden;';
-  var fill=document.createElement('div');
-  fill.style.cssText='height:100%;width:0%;background:linear-gradient(90deg,#4CAF6D,#FFC93C);border-radius:8px;transition:width .3s ease;';
-  track.appendChild(fill);
-  var label=document.createElement('div');
-  label.style.cssText='color:#fff;font-weight:700;font-size:13px;font-family:Nunito,sans-serif;white-space:nowrap;min-width:120px;text-align:right;';
-  label.textContent='Loading audio 0%';
-  bar.appendChild(track);
-  bar.appendChild(label);
-  document.body.appendChild(bar);
-  var timer=setInterval(function(){
-    var pct=Math.min(100,Math.round((done/total)*100));
-    fill.style.width=pct+'%';
-    label.textContent='Loading audio '+pct+'% ('+done+'/'+total+')';
-    if(done>=total){
-      clearInterval(timer);
-      bar.style.opacity='0';
-      setTimeout(function(){if(bar.parentNode)bar.parentNode.removeChild(bar);},400);
-    }
-  },200);
-  _allTexts.forEach(function(text,i){
-    setTimeout(function(){
-      var url='https://translate.google.com/translate_tts?ie=UTF-8&tl=en&client=tw-ob&q='+encodeURIComponent(text);
-      var a=new Audio(url);
-      a.preload='auto';
-      a.oncanplaythrough=function(){done++;};
-      a.onerror=function(){done++;};
-      a.load();
-      setTimeout(function(){if(!a.readyState||a.readyState<2){done++;}},8000);
-    },i*120);
-  });
-})();
 
-/* Preload Spanish audio */
-var _esTexts=["¿Quiénes forman la Sagrada Familia?","¿Dónde vivía la familia de Jesús?","José era bueno y trabajador. Era carpintero.","María era muy floja y no le gustaba cuidar a Jesús.","Jesús era un niño triste y desobediente.","En la casita de Nazaret había mucho amor.","¿Cómo es la familia de Jesús?","¿Qué trabajaba San José?","La Sagrada Familia es un modelo de amor para todas las familias.","¿Quién es la mamá de Jesús?","La Eucaristía es un regalo que Jesús nos dejó.","Vamos a la Misa solo para encontrarnos con nuestros amigos.","En la Consagración, la hostia se convierte en el cuerpo de Jesús.","En la Consagración, el vino se convierte en la sangre de Jesús.","Jesús NO está presente en la Eucaristía.","¿Cuándo Jesús instituye la Eucaristía?","¿Qué les pide Jesús a sus discípulos después de convertir el pan y vino?","¿Qué palabras dice Jesús al consagrar el pan?","¿Qué palabras dice Jesús al consagrar el vino?","¿Por qué es importante la Eucaristía?","La Eucaristía nos ayuda a...","La Eucaristía nos une como...","La Eucaristía es el alimento de...","¿Qué elementos se usan en la Eucaristía?","San Josemaría Escrivá nos enseñó a encontrar a Dios...","Jesús ayudaba a María a lavar la ropa.","Jesús aprendió de José a hacer carpintería.","Jesús obedecía a sus padres con alegría.","Jesús predicaba la palabra de Dios.","San Josemaría Escrivá fundó...","¿Qué nos enseña San Josemaría sobre el trabajo?","Podemos ser santos haciendo bien nuestro trabajo diario.","¿Qué hacía Jesús en su casa de Nazaret?","Jesús obedecía a Dios y cumplía su misión.","San Josemaría nos dice que las cosas pequeñas...","Podemos encontrar a Dios en las cosas normales de cada día.","San Pedro era...","San Pablo era...","¿Quién fue el primer Papa de la Iglesia?","San Pedro negó a Jesús tres veces.","San Pedro fue crucificado boca abajo por amor a Jesús.","El nombre original de San Pedro era...","Jesús le dijo a Pedro: \"Tú eres...\"","El nombre original de San Pablo era...","San Pablo viajó mucho para predicar el Evangelio.","San Pablo escribió muchas cartas a los cristianos.","San Pedro y San Pablo son patronos de...","San Pedro y San Pablo murieron mártires por su fe en Jesús.","¿Qué le preguntó Jesús a Pedro tres veces?","San Pablo se encontró con Jesús en el camino a Damasco.","Jesús, María y José","Pedro, Pablo y Juan","Adán, Eva y Caín","Abraham, Isaac y Jacob","En Nazaret","En Belén","En Jerusalén","En Egipto","Amable y amorosa","Mala y triste","Triste y aburrida","Floja y desobediente","Era carpintero","Era pescador","Era médico","Era pastor","María","Isabel","Ana","Marta","En la Bajada de Reyes","En la Última Cena","En las bodas de Juan","En el bautismo","Que hicieran esto siempre para recordarlo","Que coman rápido y beban despacio","Que no lo recuperen nunca","Que se vayan a dormir","\"Esto es mi Cuerpo\"","\"Esto es mi Sangre\"","\"Hola a todos\"","\"Vamos a comer\"","Esto es mi Cuerpo","Esto es mi Sangre","Hola a todos","Vamos a comer","\"Esta es mi Sangre\"","\"Buen provecho\"","\"Vamos a beber\"","Esta es mi Sangre","Buen provecho","Vamos a beber","Porque Jesús alimenta nuestra alma con amor","Porque todos debemos comer para estar sanos","Porque Jesús NO quiere que estemos cerca de Dios","Porque nos alimenta con muchos dulces","Acercarnos más a Dios","Alejarnos de Dios","Pelear con otros","No ir a la Iglesia","Familia en la Iglesia","Extraños en la calle","Amigos en el parque","Hermanos en el colegio","Nuestra alma","Nuestro cuerpo","Nuestros dientes","Nuestros ojos","Pan (hostia) y vino","Agua y sal","Pan y queso","Vino y fruta","En la vida cotidiana","Solo en la iglesia","Solo rezando","Solo de noche","El Opus Dei","Los franciscanos","Los jesuitas","Los dominicos","Que el trabajo es una forma de orar","Que el trabajo es aburrido","Que no hay que trabajar","Que solo hay que rezar","Ayudaba a María y aprendía de José","Jugaba todo el día sin ayudar","No hacía nada","Se escondía de sus padres","Hechas con amor son muy importantes","No importan nada","Son aburridas","Son difíciles","Un pescador","Un médico","Un carpintero","Un rey","Un fariseo que se convirtió","Un soldado","San Pedro","San Pablo","San Juan","San Mateo","Simón","Juan","Mateo","Lucas","Pedro y sobre esta piedra edificaré mi Iglesia","El mejor pescador","El más alto","El más fuerte","Saulo","Pedro","Tomás","Andrés","La ciudad de Roma","La ciudad de Madrid","La ciudad de París","La ciudad de Londres","\"¿Me amas?\"","\"¿Tienes hambre?\"","\"¿Dónde vives?\"","\"¿Cuántos años tienes?\"","¿Me amas?","¿Tienes hambre?","¿Dónde vives?","¿Cuántos años tienes?","Verdadero ✅","Falso ❌","Who puts out fires?","Who helps sick people?","Who keeps us safe and catches bad guys?","Who teaches us at school?","A firefighter drives a fire truck.","A doctor works in a hospital.","Who delivers our mail?","Who cooks food in a restaurant?","Community helpers make our community better.","What does a nurse do?","Where do we go to learn?","Where do we go when we are sick?","Where do we borrow books?","Where do we buy food?","We play at the park.","We go to the bank to swim.","Where do we play and have fun?","Where do firemen work?","The post office is where we send letters.","Where do we go to pray?","What is a GOOD?","What is a SERVICE?","Which is a NEED?","Which is a WANT?","Food is a need.","Toys are a need.","Who makes goods?","Who buys goods?","A teacher provides a service.","Which is a service?","We need water and food to live.","A firefighter","A doctor","A teacher","A baker","A pilot","A farmer","A police officer","A chef","A librarian","A mail carrier","Helps sick people","Puts out fires","Delivers mail","Teaches children","School","Hospital","Park","Bank","Library","Store","Grocery store","Fire station","Church","A toy you can buy","A haircut","A lesson","A checkup","An apple","A book","A toy","Water","Toys","Candy","Video games","A new toy","Food","Clothes","Producers","Consumers","Helpers","Teachers","Doctors","Firefighters","Getting a haircut","Buying an apple","Buying a book","Buying a toy","True ✅","False ❌"];
-(function(){
-  var total=_esTexts.length,done=0;
-  _esTexts.forEach(function(text,i){
-    setTimeout(function(){
-      var url='https://translate.google.com/translate_tts?ie=UTF-8&tl=es&client=tw-ob&q='+encodeURIComponent(text);
-      var a=new Audio(url);
-      a.preload='auto';
-      a.load();
-    },i*80+8000);
-  });
-})();
-</script>
+
 </body>
 </html>
