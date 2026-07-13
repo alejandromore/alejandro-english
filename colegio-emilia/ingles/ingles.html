@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Tuki English 🌟</title>
+<title>Tuki English ??</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -78,13 +78,13 @@
   <path fill="#CFF3E4" d="M0,120 C240,60 420,180 720,110 C1000,50 1220,150 1440,90 L1440,200 L0,200 Z"></path>
   <path fill="#B7EAD1" d="M0,160 C260,120 480,190 760,150 C1040,110 1240,190 1440,150 L1440,200 L0,200 Z"></path>
 </svg>
-<button class="musicBtn" id="musicBtn" onclick="toggleMusic()">🔇</button>
+<button class="musicBtn" id="musicBtn" onclick="toggleMusic()">??</button>
 
 <!-- HOME SCREEN -->
 <div class="screen active" id="screen-home">
   <div class="homeHeader">
     <div class="mascotWrap" id="mascotHome"></div>
-    <h1>Tuki English 🌟</h1>
+    <h1>Tuki English ??</h1>
     <p>Choose a topic to practice English</p>
   </div>
   <div class="menuGrid">
@@ -110,8 +110,8 @@
 <!-- EXERCISE SCREEN -->
 <div class="screen" id="screen-exercise">
   <div class="topbar">
-    <button class="backBtn" onclick="goHome()">🏠 Menu</button>
-    <div class="starCounter">⭐ <span id="starCount">0</span></div>
+    <button class="backBtn" onclick="goHome()">?? Menu</button>
+    <div class="starCounter">? <span id="starCount">0</span></div>
   </div>
   <div class="exWrap">
     <div class="progressBar"><div class="progressFill" id="progressFill"></div></div>
@@ -119,7 +119,7 @@
     <p class="exSub" id="exSub">Instruction</p>
     <div class="stageBox" id="stageBox"></div>
     <div class="feedback" id="feedback"></div>
-    <button class="continueBtn" id="continueBtn" onclick="nextQuestion()">Next ➜</button>
+    <button class="continueBtn" id="continueBtn" onclick="nextQuestion()">Next ?</button>
   </div>
 </div>
 
@@ -221,16 +221,16 @@ function speak(text,lang,btn){
     /* Try 2: Google Translate TTS - cache the Audio element */
     var ttsUrl='https://translate.google.com/translate_tts?ie=UTF-8&tl='+prefix+'&client=tw-ob&q='+encodeURIComponent(text);
     var audio=new Audio(ttsUrl);
-    audio.crossOrigin='anonymous';
+    _ttsCache[text]={audio:audio};
     var audioDone=false;
     audio.oncanplaythrough=function(){
       if(audioDone||done)return;audioDone=true;
       _finish(true);
-      _ttsCache[text]={audio:audio};
       audio.play().catch(function(){});
     };
     audio.onerror=function(){
       if(audioDone||done)return;audioDone=true;
+      delete _ttsCache[text];
       /* Try 3: speechSynthesis as final fallback (no cache) */
       if('speechSynthesis' in window){
         var v=_findTtsVoice(l);
@@ -262,12 +262,38 @@ function speak(text,lang,btn){
     },5000);
   });
 }
+/* PRELOAD ALL AUDIO ON PAGE LOAD */
+var _allTexts=[
+  "What animal says 'Moo'?","What animal says 'Baa'?","What animal says 'Cluck cluck'?","What animal says 'Quack quack'?",
+  'A cow gives us milk.','A pig can fly.','What do hens lay?','What do sheep give us?','Horses can run fast.','Where do farm animals live?',
+  "What animal says 'Oink oink'?","What animal says 'Neigh'?",'A duck can swim.','A sheep gives us eggs.','What do cows eat?','Which animal is big and gives us milk?','Chickens live on the farm.','What do goats eat?',
+  'I like ___.','Do you like ice cream?','I like bananas.','What is your favorite food?',"I don't like ___.",'Apples are a fruit.','Which one is a drink?','Which one is NOT food?','We eat pizza with our hands.','What do we eat for breakfast?',
+  'I like to eat ___.','Bananas are yellow.','Which one is a fruit?','Which one is a vegetable?','Burgers are healthy food.','What do we drink?','I like to drink ___.','Milk is a drink.',
+  'Do you like pizza?','___ you like ice cream?','Do you like broccoli?','Does she like apples?',"We use 'Do' with I, you, we, they.","We use 'Does' with he, she, it.",'___ he like cake?','Do they like milk?',"We say 'I like' not 'I likes'.",'Does it like fish? (about a cat)',
+  'Do you like milk?','___ they like pizza?',"We say 'He likes' not 'He like'.",'Does she like milk?','Do you like ___?',"'Do you like...' is a yes/no question.",'Does he like soccer?','I like ___.',
+  'Can I have ___ apple, please?','Can I have ___ banana, please?','Would you like ___ juice?','Would you like a cookie?',"We say 'Can I have' to ask for something.","We say 'Would you like' to offer something.",'Can I have some water, ___?','___ you like some cake?','Can I have ___ orange juice?',"We say 'please' to be polite.",
+  'Can I have ___ egg, please?','Would you like ___ bread?',"We use 'an' before vowel sounds.",'Can I have a ___, please?','Would you like some ___?',"We use 'some' with uncountable nouns.",'___ I have some cake, please?','Would you like an ___?'
+];
+function _preloadAudio(){
+  _allTexts.forEach(function(text,i){
+    setTimeout(function(){
+      if(_ttsCache[text])return;
+      var ttsUrl='https://translate.google.com/translate_tts?ie=UTF-8&tl=en&client=tw-ob&q='+encodeURIComponent(text);
+      var audio=new Audio(ttsUrl);
+      audio.preload='auto';
+      audio.onerror=function(){delete _ttsCache[text];};
+      _ttsCache[text]={audio:audio};
+      audio.load();
+    },i*150);
+  });
+}
+
 /* MUSIC */
 let musicOn=false,musicTimer=null,musicNoteIndex=0;
 const MELODY=[523,659,784,659,523,587,659,587,659,784,880,784,659,587,523,587,784,659,523,659,587,523,494,523,523,659,784,880,784,659,587,523];
 const BASS=[131,131,165,165,147,147,196,196,165,165,196,196,131,131,147,147,196,196,131,131,165,165,147,147,131,131,165,165,196,196,147,147];
 function playMusicNote(){if(!musicOn)return;const c=ctx();const t=c.currentTime;const mf=MELODY[musicNoteIndex%MELODY.length];const om=c.createOscillator();const gm=c.createGain();om.type='triangle';om.frequency.value=mf;gm.gain.setValueAtTime(0,t);gm.gain.linearRampToValueAtTime(0.08,t+0.02);gm.gain.exponentialRampToValueAtTime(0.001,t+0.35);om.connect(gm);gm.connect(c.destination);om.start(t);om.stop(t+0.38);const bf=BASS[musicNoteIndex%BASS.length];const ob=c.createOscillator();const gb=c.createGain();ob.type='sine';ob.frequency.value=bf;gb.gain.setValueAtTime(0,t);gb.gain.linearRampToValueAtTime(0.05,t+0.02);gb.gain.exponentialRampToValueAtTime(0.001,t+0.4);ob.connect(gb);gb.connect(c.destination);ob.start(t);ob.stop(t+0.42);musicNoteIndex++;musicTimer=setTimeout(playMusicNote,300);}
-function toggleMusic(){musicOn=!musicOn;const b=document.getElementById('musicBtn');if(musicOn){b.textContent='🎵';ctx().resume();playMusicNote();}else{b.textContent='🔇';if(musicTimer){clearTimeout(musicTimer);musicTimer=null;}}}
+function toggleMusic(){musicOn=!musicOn;const b=document.getElementById('musicBtn');if(musicOn){b.textContent='??';ctx().resume();playMusicNote();}else{b.textContent='??';if(musicTimer){clearTimeout(musicTimer);musicTimer=null;}}}
 
 /* CONFETTI */
 function confettiBurst(){const cs=['#FF6B5B','#FFC93C','#4CAF6D','#3AC7E0','#9B6BFF'];for(let i=0;i<26;i++){const e=document.createElement('div');e.className='confetti-piece';e.style.left=Math.random()*100+'vw';e.style.background=cs[Math.floor(Math.random()*cs.length)];e.style.animationDuration=(1.6+Math.random()*1.2)+'s';e.style.borderRadius=Math.random()>0.5?'50%':'2px';document.body.appendChild(e);setTimeout(()=>e.remove(),3200);}}
@@ -322,14 +348,14 @@ function startTopic(t){currentTopic=t;qIndex=0;document.getElementById('exTitle'
 function updateProgress(){document.getElementById('progressFill').style.width=(qIndex/TOTAL_Q*100)+'%';}
 function loadQuestion(){questionAnswered=false;updateProgress();document.getElementById('feedback').textContent='';document.getElementById('feedback').className='feedback';document.getElementById('continueBtn').style.display='none';const s=document.getElementById('stageBox');s.innerHTML='';if(qIndex>=TOTAL_Q){return endGame();}const builders={funOnTheFarm:buildFunOnTheFarm,iLikeFood:buildILikeFood,questionsLike:buildQuestionsLike,canIHave:buildCanIHave};builders[currentTopic](s);}
 function nextQuestion(){qIndex++;loadQuestion();}
-function markResult(ok,el){if(questionAnswered)return;questionAnswered=true;const fb=document.getElementById('feedback');if(ok){stars++;document.getElementById('starCount').textContent=stars;fb.textContent='Great job! You got it! 🎉';fb.className='feedback ok';playCorrect();confettiBurst();if(el)el.classList.add('correct');}else{fb.textContent='Almost... try again! 💪';fb.className='feedback bad';playWrong();if(el)el.classList.add('wrong');}document.getElementById('continueBtn').style.display='inline-block';}
-function endGame(){showScreen('screen-end');playWin();confettiBurst();const t=document.getElementById('endTitle'),m=document.getElementById('endMsg');if(stars>=TOTAL_Q*4/5){t.textContent='You are an English champion! 🏆';}else if(stars>=TOTAL_Q/2){t.textContent='Good work! Keep practicing 🌟';}else{t.textContent='You tried your best! 🌟';}m.textContent=`You earned ${stars} stars in total.`;}
+function markResult(ok,el){if(questionAnswered)return;questionAnswered=true;const fb=document.getElementById('feedback');if(ok){stars++;document.getElementById('starCount').textContent=stars;fb.textContent='Great job! You got it! ??';fb.className='feedback ok';playCorrect();confettiBurst();if(el)el.classList.add('correct');}else{fb.textContent='Almost... try again! ??';fb.className='feedback bad';playWrong();if(el)el.classList.add('wrong');}document.getElementById('continueBtn').style.display='inline-block';}
+function endGame(){showScreen('screen-end');playWin();confettiBurst();const t=document.getElementById('endTitle'),m=document.getElementById('endMsg');if(stars>=TOTAL_Q*4/5){t.textContent='You are an English champion! ??';}else if(stars>=TOTAL_Q/2){t.textContent='Good work! Keep practicing ??';}else{t.textContent='You tried your best! ??';}m.textContent=`You earned ${stars} stars in total.`;}
 
 /* MULTIPLE CHOICE */
 function buildMultipleChoice(stage,q,opt,correct){
   const card=document.createElement('div');card.className='questionCard';
-  const txt=document.createElement('span');txt.textContent='📖 '+q;
-  const btn=document.createElement('button');btn.style.cssText='background:none;border:none;cursor:pointer;font-size:20px;vertical-align:middle;';btn.textContent='🔊';btn.title='Listen';
+  const txt=document.createElement('span');txt.textContent='?? '+q;
+  const btn=document.createElement('button');btn.style.cssText='background:none;border:none;cursor:pointer;font-size:20px;vertical-align:middle;';btn.textContent='??';btn.title='Listen';
   btn.onclick=function(){speak(q,'en-US',btn);};
   card.appendChild(txt);card.appendChild(btn);stage.appendChild(card);
   const row=document.createElement('div');row.className='optionsRow';
@@ -344,12 +370,12 @@ function buildMultipleChoice(stage,q,opt,correct){
 /* TRUE/FALSE */
 function buildTrueFalse(stage,q,correct){
   const card=document.createElement('div');card.className='questionCard';
-  const txt=document.createElement('span');txt.textContent='📖 '+q;
-  const btn=document.createElement('button');btn.style.cssText='background:none;border:none;cursor:pointer;font-size:20px;vertical-align:middle;';btn.textContent='🔊';btn.title='Listen';
+  const txt=document.createElement('span');txt.textContent='?? '+q;
+  const btn=document.createElement('button');btn.style.cssText='background:none;border:none;cursor:pointer;font-size:20px;vertical-align:middle;';btn.textContent='??';btn.title='Listen';
   btn.onclick=function(){speak(q,'en-US',btn);};
   card.appendChild(txt);card.appendChild(btn);stage.appendChild(card);
   const row=document.createElement('div');row.className='optionsRow';
-  [{t:'True ✅',v:true},{t:'False ❌',v:false}].forEach(item=>{
+  [{t:'True ?',v:true},{t:'False ?',v:false}].forEach(item=>{
     const b=document.createElement('button');b.className='tfBtn';b.textContent=item.t;
     b.onclick=()=>{playTap();markResult(item.v===correct,b);if(item.v!==correct){[...row.children].find(c=>c.textContent.includes(correct?'True':'False')).classList.add('correct');}[...row.children].forEach(c=>c.disabled=true);};
     row.appendChild(b);
@@ -468,6 +494,7 @@ function buildCanIHave(stage){
   if(item.type==='mc')buildMultipleChoice(stage,item.q,item.opt,item.correct);
   else buildTrueFalse(stage,item.q,item.correct);
 }
+_preloadAudio();
 </script>
 </body>
 </html>
