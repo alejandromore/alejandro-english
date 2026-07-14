@@ -1,0 +1,130 @@
+=================================
+TOEFL Speaking — Drill #1
+Date: 13/7/2026, 9:34:46 p.m.
+=================================
+
+--- Response #1 (resp-1) ---
+I prefer to study in grpup, because you can learn from different opinions and specialistations. However, sometimes you need to focus and be more productive, in that case I prefer to study alone.
+
+--- Response #2 (resp-2) ---
+I fully agree, because in my opinion a foreign language is very important to know about the world. However, we need to guarente that these new languages is usefull for the profession.
+
+--- Response #3 (resp-3) ---
+I like to improve my soft skill, because I realized that these kind of skill are very important for the communication. However, we need to balance hard and soft skill for the professional carrier path, in order to be an specialist in our.
+
+Self-Check Results (Case Sensitive):
+✓
+Check 1 — "be" auxiliary: All sentences have proper auxiliaries. Great!
+✓
+Check 2a — Clear stance: Found: "I prefer"
+✓
+Check 2b — Reason: Found connector: "because"
+✗
+Check 2c — Concrete example: No example found. Use "for example", "when I", etc.
+⚠
+Check 3 — Length: 33 words. Too short — aim for 40-100 words.
+✓
+Check 1 — "be" auxiliary: All sentences have proper auxiliaries. Great!
+✓
+Check 2a — Clear stance: Found: "I prefer"
+✓
+Check 2b — Reason: Found connector: "because"
+✗
+Check 2c — Concrete example: No example found. Use "for example", "when I", etc.
+⚠
+Check 3 — Length: 33 words. Too short — aim for 40-100 words.
+Self-Check Results (Case Sensitive):
+✓
+Check 1 — "be" auxiliary: All sentences have proper auxiliaries. Great!
+✗
+Check 2a — Clear stance: No clear stance in first sentence. Start with "I prefer", "I agree", etc.
+✓
+Check 2b — Reason: Found connector: "because"
+✗
+Check 2c — Concrete example: No example found. Use "for example", "when I", etc.
+⚠
+Check 3 — Length: 32 words. Too short — aim for 40-100 words.
+✗
+Check 2a — Clear stance: No clear stance in first sentence. Start with "I prefer", "I agree", etc.
+⚠
+Check 3 — Length: 32 words. Too short — aim for 40-100 words.
+Self-Check Results (Case Sensitive):
+✓
+Check 1 — "be" auxiliary: All sentences have proper auxiliaries. Great!
+✗
+Check 2a — Clear stance: No clear stance in first sentence. Start with "I prefer", "I agree", etc.
+✓
+Check 2b — Reason: Found connector: "because"
+✗
+Check 2c — Concrete example: No example found. Use "for example", "when I", etc.
+✓
+Check 3 — Length: 43 words. Good length for 45s.
+✓
+Check 3 — Length: 43 words. Good length for 45s.
+Consonant Spelling Results (Case Sensitive):
+✓
+students: typed "students" → 2 pts (exact match)
+✓
+require: typed "require" → 2 pts (exact match)
+✓
+class: typed "class" → 2 pts (exact match)
+✓
+spend: typed "spend" → 2 pts (exact match)
+✓
+plan: typed "plan" → 2 pts (exact match)
+✓
+shift: typed "shift" → 2 pts (exact match)
+✓
+contact: typed "contact" → 2 pts (exact match)
+✓
+product: typed "product" → 2 pts (exact match)
+✓
+trust: typed "trust" → 2 pts (exact match)
+✓
+adapt: typed "adapt" → 2 pts (exact match)
+Total: 20 / 20 pts
+✓
+students: typed "students" → 2 pts (exact match)
+✓
+require: typed "require" → 2 pts (exact match)
+✓
+class: typed "class" → 2 pts (exact match)
+✓
+spend: typed "spend" → 2 pts (exact match)
+✓
+plan: typed "plan" → 2 pts (exact match)
+✓
+shift: typed "shift" → 2 pts (exact match)
+✓
+contact: typed "contact" → 2 pts (exact match)
+✓
+product: typed "product" → 2 pts (exact match)
+✓
+trust: typed "trust" → 2 pts (exact match)
+✓
+adapt: typed "adapt" → 2 pts (exact match)
+Total: 20 / 20 pts
+Consonant Spelling Results (Case Sensitive):
+✓
+students: typed "students" → 2 pts (exact match)
+✓
+require: typed "require" → 2 pts (exact match)
+✓
+class: typed "class" → 2 pts (exact match)
+✓
+spend: typed "spend" → 2 pts (exact match)
+✓
+plan: typed "plan" → 2 pts (exact match)
+✓
+shift: typed "shift" → 2 pts (exact match)
+✓
+contact: typed "contact" → 2 pts (exact match)
+✓
+product: typed "product" → 2 pts (exact match)
+✓
+trust: typed "trust" → 2 pts (exact match)
+✓
+adapt: typed "adapt" → 2 pts (exact match)
+Total: 20 / 20 pts
+
+--- End of Report ---

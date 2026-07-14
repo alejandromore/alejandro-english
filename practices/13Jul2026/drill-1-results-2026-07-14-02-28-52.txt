@@ -1,0 +1,134 @@
+=================================
+TOEFL Speaking — Drill #1
+Date: 13/7/2026, 9:28:52 p.m.
+=================================
+
+--- Response #1 (resp-1) ---
+I prefer to live in a small city, because you can spend more time with your family and personal activities. For example, in Lima you spend between 2 or 3 hours for transportation, because the traffic is terrible, however in province is not.
+
+--- Response #2 (resp-2) ---
+I agree that the money is important, because you can buy many things, ensure your live and in case a problem issues you can have a good treatment. However, you need to expend time with your family.
+
+--- Response #3 (resp-3) ---
+I like my father, because he was a reference in my life in the academic, professional and personal life. However, he doesn´t spend too much time with because he was very busy in his work.
+
+Self-Check Results (Case Sensitive):
+✓
+Check 1 — "be" auxiliary: All sentences have proper auxiliaries. Great!
+✓
+Check 2a — Clear stance: Found: "I prefer"
+✓
+Check 2b — Reason: Found connector: "because"
+✓
+Check 2c — Concrete example: Found: "For example"
+✓
+Check 3 — Length: 43 words. Good length for 45s.
+✓
+Check 1 — "be" auxiliary: All sentences have proper auxiliaries. Great!
+✓
+Check 2a — Clear stance: Found: "I prefer"
+✓
+Check 2b — Reason: Found connector: "because"
+✓
+Check 2c — Concrete example: Found: "For example"
+✓
+Check 3 — Length: 43 words. Good length for 45s.
+Self-Check Results (Case Sensitive):
+✓
+Check 1 — "be" auxiliary: All sentences have proper auxiliaries. Great!
+✓
+Check 2a — Clear stance: Found: "I agree"
+✓
+Check 2b — Reason: Found connector: "because"
+✗
+Check 2c — Concrete example: No example found. Use "for example", "when I", etc.
+⚠
+Check 3 — Length: 37 words. Too short — aim for 40-100 words.
+✓
+Check 2a — Clear stance: Found: "I agree"
+✗
+Check 2c — Concrete example: No example found. Use "for example", "when I", etc.
+⚠
+Check 3 — Length: 37 words. Too short — aim for 40-100 words.
+Self-Check Results (Case Sensitive):
+✓
+Check 1 — "be" auxiliary: All sentences have proper auxiliaries. Great!
+✗
+Check 2a — Clear stance: No clear stance in first sentence. Start with "I prefer", "I agree", etc.
+✓
+Check 2b — Reason: Found connector: "because"
+✗
+Check 2c — Concrete example: No example found. Use "for example", "when I", etc.
+⚠
+Check 3 — Length: 35 words. Too short — aim for 40-100 words.
+✗
+Check 2a — Clear stance: No clear stance in first sentence. Start with "I prefer", "I agree", etc.
+⚠
+Check 3 — Length: 35 words. Too short — aim for 40-100 words.
+Consonant Spelling Results (Case Sensitive):
+✓
+city: typed "city" → 2 pts (exact match)
+✓
+town: typed "town" → 2 pts (exact match)
+✓
+salary: typed "salary" → 2 pts (exact match)
+✓
+important: typed "important" → 2 pts (exact match)
+✓
+influence: typed "influence" → 2 pts (exact match)
+✓
+life: typed "life" → 2 pts (exact match)
+✓
+person: typed "person" → 2 pts (exact match)
+✓
+first: typed "first" → 2 pts (exact match)
+✓
+cost: typed "cost" → 2 pts (exact match)
+✓
+trust: typed "trust" → 2 pts (exact match)
+Total: 20 / 20 pts
+✓
+city: typed "city" → 2 pts (exact match)
+✓
+town: typed "town" → 2 pts (exact match)
+✓
+salary: typed "salary" → 2 pts (exact match)
+✓
+important: typed "important" → 2 pts (exact match)
+✓
+influence: typed "influence" → 2 pts (exact match)
+✓
+life: typed "life" → 2 pts (exact match)
+✓
+person: typed "person" → 2 pts (exact match)
+✓
+first: typed "first" → 2 pts (exact match)
+✓
+cost: typed "cost" → 2 pts (exact match)
+✓
+trust: typed "trust" → 2 pts (exact match)
+Total: 20 / 20 pts
+Consonant Spelling Results (Case Sensitive):
+✓
+city: typed "city" → 2 pts (exact match)
+✓
+town: typed "town" → 2 pts (exact match)
+✓
+salary: typed "salary" → 2 pts (exact match)
+✓
+important: typed "important" → 2 pts (exact match)
+✓
+influence: typed "influence" → 2 pts (exact match)
+✓
+life: typed "life" → 2 pts (exact match)
+✓
+person: typed "person" → 2 pts (exact match)
+✓
+first: typed "first" → 2 pts (exact match)
+✓
+cost: typed "cost" → 2 pts (exact match)
+✓
+trust: typed "trust" → 2 pts (exact match)
+Total: 20 / 20 pts
+
+--- End of Report ---
