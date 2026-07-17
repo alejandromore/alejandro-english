@@ -681,10 +681,12 @@ function setupManualReview(box,word,transcript,summaryBox){
   const pills=[...box.querySelectorAll('.letterPill.review')];
   function readStatuses(){return pills.map(p=>({ch:p.textContent.toLowerCase(),cls:p.dataset.state||'pending'}));}
   function applyState(p,state){p.dataset.state=state;p.className='letterPill review '+state;}
-  function updateSummary(){const r=resultFromStatuses(word,readStatuses(),transcript);addSpellingSummary(word,r,transcript);renderSpellingSummary(summaryBox);const scoreEl=box.querySelector('[data-review-score]');if(scoreEl)scoreEl.textContent=scoreLabel(r.score);}
+  function currentResult(){return resultFromStatuses(word,readStatuses(),transcript);}
+  function updateSummary(){const r=currentResult();addSpellingSummary(word,r,transcript);renderSpellingSummary(summaryBox);const scoreEl=box.querySelector('[data-review-score]');if(scoreEl)scoreEl.textContent=scoreLabel(r.score);return r;}
   pills.forEach(p=>p.addEventListener('click',()=>{let cur=p.dataset.state||'pending';let next=cur==='pending'?'ok':states[(states.indexOf(cur)+1)%states.length];applyState(p,next);updateSummary();}));
   const allGood=box.querySelector('[data-review-all-good]');if(allGood)allGood.addEventListener('click',()=>{pills.forEach(p=>applyState(p,'ok'));updateSummary();});
   const reset=box.querySelector('[data-review-reset]');if(reset)reset.addEventListener('click',()=>{pills.forEach(p=>applyState(p,'pending'));updateSummary();});
+  const finish=box.querySelector('[data-review-finish]');if(finish)finish.addEventListener('click',()=>{const r=updateSummary();if(!questionAnswered)markResult(r.ok,null);finish.disabled=true;finish.textContent='✅ Done';pills.forEach(p=>p.disabled=true);});
   updateSummary();
 }
 function showSpellingReview(box,word,transcript,audioUrl,summaryBox){
@@ -695,7 +697,7 @@ function showSpellingReview(box,word,transcript,audioUrl,summaryBox){
     '<div>✅ Word letters: <b>'+spellLetters(word)+'</b></div>'+renderLetterCheck(word,suggestion.heard||'')+
     '<div style="margin-top:8px;">Score: <b data-review-score>0%</b>. This is a parent/child check, not an automatic test. 😊</div>'+ 
     (hasTranscript?'<div style="font-size:13px;margin-top:6px;">Auto suggestion: '+heard+'</div>':'<div style="font-size:13px;margin-top:6px;">No auto suggestion. Listen to the audio and tap the colors.</div>')+
-    '<div class="reviewTools"><button type="button" class="miniBtn" data-review-all-good>✅ All green</button><button type="button" class="miniBtn" data-review-reset>🔄 Reset colors</button></div>';
+    '<div class="reviewTools"><button type="button" class="miniBtn" data-review-all-good>✅ All green</button><button type="button" class="miniBtn" data-review-reset>🔄 Reset colors</button><button type="button" class="miniBtn" data-review-finish>🏁 Finish review</button></div>';
   setupManualReview(box,word,transcript,summaryBox);
 }
 async function startSpellingRecording(word,box,btn,summaryBox){
