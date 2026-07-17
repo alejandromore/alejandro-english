@@ -569,7 +569,7 @@ function buildCanIHave(stage){
 /* ================= SPELLING BEE ================= */
 const SPELLING_WORDS=['apple','bag','birthday','book','breakfast','brother','cake','cat','chair','chicken','classroom','cloud','desk','dog','door','duck','egg','family','favorite','fish','flower','frog','garden','gift','goat','grass','green','hand','happy','hat','house','ice','jam','juice','kite','lion','milk','moon','mouse','owl','pencil','picture','playground','rabbit','rainbow','school','shoulder','sister','teacher','weather'];
 const SPELLING_PICTURES={apple:'🍎',bag:'🎒',birthday:'🎉🎂',book:'📘',breakfast:'🥞',brother:'👦',cake:'🍰',cat:'🐱',chair:'🪑',chicken:'🐔',classroom:'👩‍🏫📚',cloud:'☁️',desk:'🖥️📚',dog:'🐶',door:'🚪',duck:'🦆',egg:'🥚',family:'👨‍👩‍👧',favorite:'⭐',fish:'🐟',flower:'🌸',frog:'🐸',garden:'🌷',gift:'🎁',goat:'🐐',grass:'🌱',green:'🟢',hand:'✋',happy:'😊',hat:'🧢',house:'🏠',ice:'🧊',jam:'🫙🍓',juice:'🥤🍊',kite:'🪁',lion:'🦁',milk:'🥛',moon:'🌙',mouse:'🐭',owl:'🦉',pencil:'✏️',picture:'🖼️',playground:'🛝',rabbit:'🐰',rainbow:'🌈',school:'🏫',shoulder:'🤷‍♀️↖️↗️',sister:'👧',teacher:'👩‍🏫',weather:'⛅'};
-let spellingRecorder=null,spellingStream=null,spellingChunks=[],spellingRecognition=null,spellingTranscript='',spellingRecording=false;
+let spellingRecorder=null,spellingStream=null,spellingChunks=[],spellingRecognition=null,spellingTranscript='',spellingRecognitionResults=[],spellingRecording=false;
 function nextSpellingWord(){if(!spellingQueue.length)spellingQueue=shuffle(SPELLING_WORDS);return spellingQueue.shift();}
 function spellLetters(word){return word.toUpperCase().split('').join(' - ');}
 function speakWordAndLetters(word,btn){speak(word+'. '+word.toUpperCase().split('').join('. ')+'. '+word+'.','en-US',btn);}
@@ -623,44 +623,56 @@ function friendlyScore(heard,expected){
   return Math.max(edit, order*0.92, contains);
 }
 function analyzeSpellingText(text,expected){
-  // Automatic recognition is only a starting suggestion. It is not the final grade.
-  expected=cleanLetters(expected);const tokens=transcriptTokens(text), raw=cleanLetters(text), mapped=spokenLettersToText(text);
+  // Automatic, flexible spelling-pronunciation check based on browser SpeechRecognition.
+  expected=cleanLetters(expected);
+  const tokens=transcriptTokens(text), mapped=spokenLettersToText(text), raw=cleanLetters(text);
   const candidates=[];
-  if(tokens.includes(expected))candidates.push({heard:expected,score:1,method:'word heard'});
-  const rawBest=bestWindowCandidate(raw,expected); rawBest.score=friendlyScore(rawBest.heard,expected); rawBest.method='sounds'; candidates.push(rawBest);
-  const mapBest=bestWindowCandidate(mapped,expected); mapBest.score=friendlyScore(mapBest.heard,expected); mapBest.method='letters'; candidates.push(mapBest);
-  if(mapped)candidates.push({heard:mapped,score:friendlyScore(mapped,expected),method:'letters'});
-  let best=candidates.sort((a,b)=>b.score-a.score)[0]||{heard:'',score:0,method:'none'};
-  if(best.score>=0.97){best.score=1;best.heard=expected;}
-  return {heard:best.heard||'',score:Math.max(0,Math.min(1,best.score||0)),ok:(best.score||0)>=0.65,method:best.method};
+  if(mapped)candidates.push({heard:mapped,method:'letters'});
+  // Sometimes the browser collapses A-P-P-L-E into "apple". Accept it as a flexible signal.
+  if(tokens.includes(expected)||raw.includes(expected))candidates.push({heard:expected,method:'word'});
+  const rawBest=bestWindowCandidate(raw,expected);if(rawBest.heard)candidates.push({heard:rawBest.heard,method:'sounds'});
+  let best={heard:'',score:0,ok:false,method:'none',statuses:automaticLetterStatuses(expected,'')};
+  candidates.forEach(c=>{
+    const statuses=automaticLetterStatuses(expected,c.heard);
+    const score=statusScore(statuses);
+    if(score>best.score)best={heard:c.heard,score:score,ok:score>=0.65,method:c.method,statuses:statuses};
+  });
+  if(best.score>=0.97){best.heard=expected;best.score=1;best.ok=true;best.statuses=automaticLetterStatuses(expected,expected);}
+  return best;
 }
-function letterStatuses(expected,heard){
-  // Suggestion only: green exact position, yellow heard somewhere, gray if not sure.
+function automaticLetterStatuses(expected,heard){
   expected=cleanLetters(expected);heard=cleanLetters(heard);
   const used=Array(heard.length).fill(false), out=[];
+  // Green: the expected letter was pronounced in the expected position.
   for(let i=0;i<expected.length;i++){
     const ch=expected[i];
-    if(heard[i]===ch&&!used[i]){used[i]=true;out.push({ch,cls:'ok',note:'said it'});continue;}
-    let pos=-1;for(let j=0;j<heard.length;j++){if(!used[j]&&heard[j]===ch){pos=j;break;}}
-    if(pos>=0){used[pos]=true;out.push({ch,cls:'mid',note:'close'});}
-    else out.push({ch,cls:'pending',note:'tap to check'});
+    if(heard[i]===ch){used[i]=true;out.push({ch,cls:'ok',note:'heard'});}
+    else out.push(null);
+  }
+  // Yellow: the expected letter was heard close by or somewhere else.
+  for(let i=0;i<expected.length;i++){
+    if(out[i])continue;
+    const ch=expected[i];let pos=-1;
+    for(let d=1;d<=2;d++){
+      const left=i-d,right=i+d;
+      if(left>=0&&!used[left]&&heard[left]===ch){pos=left;break;}
+      if(right<heard.length&&!used[right]&&heard[right]===ch){pos=right;break;}
+    }
+    if(pos<0){for(let j=0;j<heard.length;j++){if(!used[j]&&heard[j]===ch){pos=j;break;}}}
+    if(pos>=0){used[pos]=true;out[i]={ch,cls:'mid',note:'close'};}
+    else out[i]={ch,cls:'bad',note:'practice'};
   }
   return out;
 }
 function statusScore(statuses){
   if(!statuses||!statuses.length)return 0;
-  const points=statuses.reduce((a,x)=>a+(x.cls==='ok'?1:(x.cls==='mid'?0.5:0)),0);
+  const points=statuses.reduce((a,x)=>a+(x.cls==='ok'?1:(x.cls==='mid'?0.65:0)),0);
   return points/statuses.length;
 }
-function resultFromStatuses(word,statuses,transcript){
-  const heard=statuses.map(x=>x.cls==='ok'||x.cls==='mid'?x.ch:'_').join('');
-  const score=statusScore(statuses);
-  return {word:word,heard:heard.replace(/_/g,''),score:score,ok:score>=0.65,method:'manual',transcript:(transcript||'').trim()};
-}
-function renderLetterCheck(expected,heard){
-  const st=letterStatuses(expected,heard);
-  return '<div class="letterCheck" data-review="letters">'+st.map((x,i)=>'<button type="button" class="letterPill review '+x.cls+'" data-i="'+i+'" data-state="'+x.cls+'" title="Tap to change color">'+x.ch.toUpperCase()+'</button>').join('')+'</div>'+
-    '<div class="reviewHelp">Tap each letter after listening: <span class="letterPill ok">green</span> said it · <span class="letterPill mid">yellow</span> almost · <span class="letterPill bad">red</span> practice</div>';
+function renderLetterCheck(expected,result){
+  const st=(result&&result.statuses)||automaticLetterStatuses(expected,(result&&result.heard)||'');
+  return '<div class="letterCheck" data-review="letters">'+st.map(x=>'<span class="letterPill '+x.cls+'" title="'+x.note+'">'+x.ch.toUpperCase()+'</span>').join('')+'</div>'+
+    '<div class="reviewHelp"><span class="letterPill ok">green</span> heard · <span class="letterPill mid">yellow</span> close · <span class="letterPill bad">red</span> practice</div>';
 }
 function scoreLabel(score){return Math.round((score||0)*100)+'%';}
 function matchClass(score){return score>=0.9?'good':(score>=0.6?'mid':'');}
@@ -670,46 +682,36 @@ function addSpellingSummary(word,result,transcript){
 }
 function renderSpellingSummary(target){
   if(!target)return;
-  if(!spellingSummary.length){target.innerHTML='<h3>📋 Practice summary</h3><div class="summaryList"><div class="summaryItem"><span>No words reviewed yet.</span><span class="matchBadge mid">0%</span></div></div>';return;}
+  if(!spellingSummary.length){target.innerHTML='<h3>📋 Practice summary</h3><div class="summaryList"><div class="summaryItem"><span>No words evaluated yet.</span><span class="matchBadge mid">0%</span></div></div>';return;}
   const ordered=spellingSummary.slice().sort((a,b)=>a.word.localeCompare(b.word));
-  const items=ordered.map((it)=>'<div class="summaryItem"><span>'+SPELLING_PICTURES[it.word]+' <b>'+it.word+'</b><br><small>Last check: '+(it.heard?spellLetters(it.heard):'manual review')+'</small></span><span class="matchBadge '+matchClass(it.score)+'">'+scoreLabel(it.score)+'</span></div>').join('');
+  const items=ordered.map((it)=>'<div class="summaryItem"><span>'+SPELLING_PICTURES[it.word]+' <b>'+it.word+'</b><br><small>Heard: '+(it.heard?spellLetters(it.heard):'no speech')+'</small></span><span class="matchBadge '+matchClass(it.score)+'">'+scoreLabel(it.score)+'</span></div>').join('');
   const avg=ordered.reduce((a,b)=>a+(b.score||0),0)/ordered.length;
   target.innerHTML='<h3>📋 Practice summary • '+ordered.length+' words • Average '+scoreLabel(avg)+'</h3><div class="summaryList">'+items+'</div>';
 }
-function setupManualReview(box,word,transcript,summaryBox){
-  const states=['ok','mid','bad'];
-  const pills=[...box.querySelectorAll('.letterPill.review')];
-  function readStatuses(){return pills.map(p=>({ch:p.textContent.toLowerCase(),cls:p.dataset.state||'pending'}));}
-  function applyState(p,state){p.dataset.state=state;p.className='letterPill review '+state;}
-  function currentResult(){return resultFromStatuses(word,readStatuses(),transcript);}
-  function updateSummary(){const r=currentResult();addSpellingSummary(word,r,transcript);renderSpellingSummary(summaryBox);const scoreEl=box.querySelector('[data-review-score]');if(scoreEl)scoreEl.textContent=scoreLabel(r.score);return r;}
-  pills.forEach(p=>p.addEventListener('click',()=>{let cur=p.dataset.state||'pending';let next=cur==='pending'?'ok':states[(states.indexOf(cur)+1)%states.length];applyState(p,next);updateSummary();}));
-  const allGood=box.querySelector('[data-review-all-good]');if(allGood)allGood.addEventListener('click',()=>{pills.forEach(p=>applyState(p,'ok'));updateSummary();});
-  const reset=box.querySelector('[data-review-reset]');if(reset)reset.addEventListener('click',()=>{pills.forEach(p=>applyState(p,'pending'));updateSummary();});
-  const finish=box.querySelector('[data-review-finish]');if(finish)finish.addEventListener('click',()=>{const r=updateSummary();if(!questionAnswered)markResult(r.ok,null);finish.disabled=true;finish.textContent='✅ Done';pills.forEach(p=>p.disabled=true);});
-  updateSummary();
-}
 function showSpellingReview(box,word,transcript,audioUrl,summaryBox){
-  const hasTranscript=!!(transcript||'').trim();
-  const suggestion=analyzeSpellingText(transcript,word);
-  const heard=suggestion.heard?spellLetters(suggestion.heard):'No automatic suggestion';
-  box.style.display='block';box.innerHTML='<b>Listen and check the letters:</b>'+(audioUrl?'<audio controls src="'+audioUrl+'"></audio>':'')+
-    '<div>✅ Word letters: <b>'+spellLetters(word)+'</b></div>'+renderLetterCheck(word,suggestion.heard||'')+
-    '<div style="margin-top:8px;">Score: <b data-review-score>0%</b>. This is a parent/child check, not an automatic test. 😊</div>'+ 
-    (hasTranscript?'<div style="font-size:13px;margin-top:6px;">Auto suggestion: '+heard+'</div>':'<div style="font-size:13px;margin-top:6px;">No auto suggestion. Listen to the audio and tap the colors.</div>')+
-    '<div class="reviewTools"><button type="button" class="miniBtn" data-review-all-good>✅ All green</button><button type="button" class="miniBtn" data-review-reset>🔄 Reset colors</button><button type="button" class="miniBtn" data-review-finish>🏁 Finish review</button></div>';
-  setupManualReview(box,word,transcript,summaryBox);
+  const result=analyzeSpellingText(transcript,word);
+  addSpellingSummary(word,result,transcript);
+  renderSpellingSummary(summaryBox);
+  const heard=result.heard?spellLetters(result.heard):'No letters heard';
+  const browserHeard=(transcript||'').trim()||'No automatic transcript';
+  const msg=result.ok?'Great spelling! 🌟':'Good try! Practice the red letters and record again. 💪';
+  box.style.display='block';box.innerHTML='<b>Automatic spelling check:</b>'+(audioUrl?'<audio controls src="'+audioUrl+'"></audio>':'')+
+    '<div>🎧 Browser heard: <b>'+browserHeard+'</b></div>'+ 
+    '<div>🐝 Letters heard: <b>'+heard+'</b></div>'+ 
+    '<div>✅ Word letters: <b>'+spellLetters(word)+'</b></div>'+renderLetterCheck(word,result)+
+    '<div style="margin-top:8px;">Score: <b>'+scoreLabel(result.score)+'</b>. '+msg+'</div>';
+  if(!questionAnswered)markResult(result.ok,null);
 }
 async function startSpellingRecording(word,box,btn,summaryBox){
   if(spellingRecording){stopSpellingRecording();return;}
   if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){box.style.display='block';box.innerHTML='🎙️ Microphone is not available here. Try opening the page with https/localhost.';return;}
   try{spellingStream=await navigator.mediaDevices.getUserMedia({audio:true});}
   catch(e){box.style.display='block';box.innerHTML='🎙️ I could not open the microphone. If this file is local, open it with https or localhost.';return;}
-  spellingChunks=[];spellingTranscript='';spellingRecorder=new MediaRecorder(spellingStream);
+  spellingChunks=[];spellingTranscript='';spellingRecognitionResults=[];spellingRecorder=new MediaRecorder(spellingStream);
   spellingRecorder.ondataavailable=e=>{if(e.data&&e.data.size)spellingChunks.push(e.data);};
   spellingRecorder.onstop=()=>{spellingRecording=false;btn.classList.remove('recording');btn.textContent='🎙️ Record spelling';if(spellingStream)spellingStream.getTracks().forEach(t=>t.stop());const blob=new Blob(spellingChunks,{type:spellingRecorder.mimeType||'audio/webm'});const url=URL.createObjectURL(blob);setTimeout(()=>showSpellingReview(box,word,spellingTranscript,url,summaryBox),450);};
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(SR){spellingRecognition=new SR();spellingRecognition.lang='en-US';spellingRecognition.continuous=true;spellingRecognition.interimResults=true;spellingRecognition.onresult=e=>{let t='';for(let i=0;i<e.results.length;i++)t+=e.results[i][0].transcript+' ';spellingTranscript=t.trim();box.style.display='block';box.innerHTML='🎙️ Recording... spell only the letters: <b>'+spellLetters(word)+'</b><br><small>Do not say the word first.</small><br>Heard so far: '+(spellingTranscript||'...');};spellingRecognition.onerror=()=>{};try{spellingRecognition.start();}catch(e){}}
+  if(SR){spellingRecognition=new SR();spellingRecognition.lang='en-US';spellingRecognition.continuous=true;spellingRecognition.interimResults=true;spellingRecognition.onresult=e=>{for(let i=e.resultIndex;i<e.results.length;i++){spellingRecognitionResults[i]=(e.results[i][0].transcript||'').trim();}let parts=[];spellingRecognitionResults.forEach(t=>{if(t&&parts[parts.length-1]!==t)parts.push(t);});spellingTranscript=parts.join(' ').trim();box.style.display='block';box.innerHTML='🎙️ Recording... spell only the letters: <b>'+spellLetters(word)+'</b><br><small>Do not say the word first.</small><br>Heard so far: '+(spellingTranscript||'...');};spellingRecognition.onerror=()=>{};try{spellingRecognition.start();}catch(e){}}
   spellingRecorder.start();spellingRecording=true;btn.classList.add('recording');btn.textContent='⏹️ Stop';box.style.display='block';box.innerHTML='🎙️ Recording... spell only the letters: <b>'+spellLetters(word)+'</b><br><small>Do not say the word first.</small>';
 }
 function stopSpellingRecording(){try{if(spellingRecognition)spellingRecognition.stop();}catch(e){}try{if(spellingRecorder&&spellingRecorder.state!=='inactive')spellingRecorder.stop();}catch(e){}}
