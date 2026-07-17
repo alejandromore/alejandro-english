@@ -92,6 +92,7 @@
   .letterCheck{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
   .letterPill{font-family:'Fredoka';font-size:18px;border-radius:10px;padding:6px 9px;background:#EDEAF7;}
   .letterPill.ok{background:#CFF3D8;color:#1E7D3A;}
+  .letterPill.mid{background:#FFF3C4;color:#7A5200;}
   .letterPill.bad{background:#FFD1CB;color:#A82719;}
   .spellPicture{width:100%;max-width:300px;background:#FFF8EC;border:3px solid #EADFC5;border-radius:24px;padding:14px;box-shadow:0 5px 0 rgba(43,36,64,.10);text-align:center;}
   .spellEmoji{font-size:74px;line-height:1;margin:4px 0 8px;}
@@ -600,19 +601,51 @@ function bestWindowCandidate(source,expected){
   }
   return best;
 }
+function lcsCount(a,b){
+  a=cleanLetters(a);b=cleanLetters(b);
+  const dp=Array(a.length+1).fill(0).map(()=>Array(b.length+1).fill(0));
+  for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)dp[i][j]=a[i-1]===b[j-1]?dp[i-1][j-1]+1:Math.max(dp[i-1][j],dp[i][j-1]);
+  return dp[a.length][b.length];
+}
+function friendlyScore(heard,expected){
+  heard=cleanLetters(heard);expected=cleanLetters(expected);
+  if(!heard||!expected)return 0;
+  if(heard===expected)return 1;
+  const edit=similarity(heard,expected);
+  const order=lcsCount(expected,heard)/expected.length;
+  let contains=heard.includes(expected)?1:0;
+  // For a 6-year-old, reward letters that are present and in order more than perfect ASR text.
+  return Math.max(edit, order*0.92, contains);
+}
 function analyzeSpellingText(text,expected){
   expected=cleanLetters(expected);const tokens=transcriptTokens(text), raw=cleanLetters(text), mapped=spokenLettersToText(text);
   const candidates=[];
-  if(tokens.includes(expected))candidates.push({heard:expected,score:1,method:'spoken-word'});
-  candidates.push(bestWindowCandidate(raw,expected));
-  candidates.push(bestWindowCandidate(mapped,expected));
-  if(mapped)candidates.push({heard:mapped,score:similarity(mapped,expected),method:'letters'});
+  if(tokens.includes(expected))candidates.push({heard:expected,score:1,method:'word heard'});
+  const rawBest=bestWindowCandidate(raw,expected); rawBest.score=friendlyScore(rawBest.heard,expected); rawBest.method='sounds'; candidates.push(rawBest);
+  const mapBest=bestWindowCandidate(mapped,expected); mapBest.score=friendlyScore(mapBest.heard,expected); mapBest.method='letters'; candidates.push(mapBest);
+  if(mapped)candidates.push({heard:mapped,score:friendlyScore(mapped,expected),method:'letters'});
   let best=candidates.sort((a,b)=>b.score-a.score)[0]||{heard:'',score:0,method:'none'};
-  if(best.score>=0.985){best.score=1;best.heard=expected;}
-  return {heard:best.heard||'',score:Math.max(0,Math.min(1,best.score||0)),ok:(best.score||0)>=0.85,method:best.method};
+  if(best.score>=0.97){best.score=1;best.heard=expected;}
+  return {heard:best.heard||'',score:Math.max(0,Math.min(1,best.score||0)),ok:(best.score||0)>=0.65,method:best.method};
+}
+function letterStatuses(expected,heard){
+  expected=cleanLetters(expected);heard=cleanLetters(heard);
+  const used=Array(heard.length).fill(false);
+  const out=[];
+  for(let i=0;i<expected.length;i++){
+    const ch=expected[i];
+    if(heard[i]===ch&&!used[i]){used[i]=true;out.push({ch,cls:'ok',note:'Great'});continue;}
+    let pos=-1;
+    for(let j=0;j<heard.length;j++){if(!used[j]&&heard[j]===ch){pos=j;break;}}
+    if(pos>=0){used[pos]=true;out.push({ch,cls:'mid',note:'Almost'});}
+    else out.push({ch,cls:'bad',note:'Try'});
+  }
+  return out;
 }
 function renderLetterCheck(expected,heard){
-  return '<div class="letterCheck">'+expected.split('').map((ch,i)=>'<span class="letterPill '+(heard[i]===ch?'ok':'bad')+'">'+ch.toUpperCase()+'</span>').join('')+'</div>';
+  const st=letterStatuses(expected,heard);
+  return '<div class="letterCheck">'+st.map(x=>'<span class="letterPill '+x.cls+'" title="'+x.note+'">'+x.ch.toUpperCase()+'</span>').join('')+'</div>'+
+    '<div style="font-size:13px;margin-top:6px;"><span class="letterPill ok">green</span> great · <span class="letterPill mid">yellow</span> close · <span class="letterPill bad">red</span> try again</div>';
 }
 function scoreLabel(score){return Math.round((score||0)*100)+'%';}
 function matchClass(score){return score>=0.9?'good':(score>=0.6?'mid':'');}
@@ -634,12 +667,14 @@ function showSpellingReview(box,word,transcript,audioUrl,summaryBox){
   if(!hasTranscript){r.score=0;r.ok=false;}
   addSpellingSummary(word,r,transcript);
   renderSpellingSummary(summaryBox);
-  const heard=r.heard?spellLetters(r.heard):'No transcript';
-  box.style.display='block';box.innerHTML='<b>Review:</b>'+(audioUrl?'<audio controls src="'+audioUrl+'"></audio>':'')+
-    '<div>🎧 I heard: <b>'+((transcript||'').trim()||'No automatic transcript')+'</b></div>'+ 
-    '<div>🐝 Spelling heard: <b>'+heard+'</b></div>'+ 
-    '<div>✅ Correct spelling: <b>'+spellLetters(word)+'</b></div>'+renderLetterCheck(word,r.heard||'')+
-    '<div style="margin-top:8px;">Match level: <b>'+scoreLabel(r.score)+'</b>'+((r.method&&hasTranscript)?' · '+r.method:'')+'. '+(!hasTranscript?'I could not create an automatic transcript, but your recording is saved above.':(r.ok?'Amazing! That sounds right. 🌟':'Good try! Listen to the letters and try once more. 💪'))+'</div>';
+  const heard=r.heard?spellLetters(r.heard):'No letters heard';
+  const statusMsg=!hasTranscript
+    ? 'I saved your voice, but I could not hear the letters. Try again close to the microphone. 🎙️'
+    : (r.ok?'Great spelling! 🌟':'Good try! Let’s practice the red letters again. 💪');
+  box.style.display='block';box.innerHTML='<b>My letter check:</b>'+(audioUrl?'<audio controls src="'+audioUrl+'"></audio>':'')+
+    '<div>🐝 I heard: <b>'+heard+'</b></div>'+ 
+    '<div>✅ Word letters: <b>'+spellLetters(word)+'</b></div>'+renderLetterCheck(word,r.heard||'')+
+    '<div style="margin-top:8px;">Score: <b>'+scoreLabel(r.score)+'</b>. '+statusMsg+'</div>';
   if(!questionAnswered)markResult(r.ok,null);
 }
 async function startSpellingRecording(word,box,btn,summaryBox){
