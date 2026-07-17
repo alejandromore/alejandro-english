@@ -562,31 +562,54 @@ function buildCanIHave(stage){
 
 /* ================= SPELLING BEE ================= */
 const SPELLING_WORDS=['apple','bag','birthday','book','breakfast','brother','cake','cat','chair','chicken','classroom','cloud','desk','dog','door','duck','egg','family','favorite','fish','flower','frog','garden','gift','goat','grass','green','hand','happy','hat','house','ice','jam','juice','kite','lion','milk','moon','mouse','owl','pencil','picture','playground','rabbit','rainbow','school','shoulder','sister','teacher','weather'];
-const SPELLING_PICTURES={apple:'🍎',bag:'🎒',birthday:'🎉🎂',book:'📘',breakfast:'🥞',brother:'👦',cake:'🍰',cat:'🐱',chair:'🪑',chicken:'🐔',classroom:'👩‍🏫📚',cloud:'☁️',desk:'📚✏️',dog:'🐶',door:'🚪',duck:'🦆',egg:'🥚',family:'👨‍👩‍👧',favorite:'⭐',fish:'🐟',flower:'🌸',frog:'🐸',garden:'🌷',gift:'🎁',goat:'🐐',grass:'🌱',green:'🟢',hand:'✋',happy:'😊',hat:'🧢',house:'🏠',ice:'🧊',jam:'🍓',juice:'🧃',kite:'🪁',lion:'🦁',milk:'🥛',moon:'🌙',mouse:'🐭',owl:'🦉',pencil:'✏️',picture:'🖼️',playground:'🛝',rabbit:'🐰',rainbow:'🌈',school:'🏫',shoulder:'🤷',sister:'👧',teacher:'👩‍🏫',weather:'⛅'};
+const SPELLING_PICTURES={apple:'🍎',bag:'🎒',birthday:'🎉🎂',book:'📘',breakfast:'🥞',brother:'👦',cake:'🍰',cat:'🐱',chair:'🪑',chicken:'🐔',classroom:'👩‍🏫📚',cloud:'☁️',desk:'📚✏️',dog:'🐶',door:'🚪',duck:'🦆',egg:'🥚',family:'👨‍👩‍👧',favorite:'⭐',fish:'🐟',flower:'🌸',frog:'🐸',garden:'🌷',gift:'🎁',goat:'🐐',grass:'🌱',green:'🟢',hand:'✋',happy:'😊',hat:'🧢',house:'🏠',ice:'🧊',jam:'🫙🍓',juice:'🧃',kite:'🪁',lion:'🦁',milk:'🥛',moon:'🌙',mouse:'🐭',owl:'🦉',pencil:'✏️',picture:'🖼️',playground:'🛝',rabbit:'🐰',rainbow:'🌈',school:'🏫',shoulder:'🤷',sister:'👧',teacher:'👩‍🏫',weather:'⛅'};
 let spellingRecorder=null,spellingStream=null,spellingChunks=[],spellingRecognition=null,spellingTranscript='',spellingRecording=false;
 function nextSpellingWord(){if(!spellingQueue.length)spellingQueue=shuffle(SPELLING_WORDS);return spellingQueue.shift();}
 function spellLetters(word){return word.toUpperCase().split('').join(' - ');}
 function speakWordAndLetters(word,btn){speak(word+'. '+word.toUpperCase().split('').join('. ')+'. '+word+'.','en-US',btn);}
 function cleanLetters(s){return (s||'').toLowerCase().replace(/[^a-z]/g,'');}
 function editDistance(a,b){const dp=Array(a.length+1).fill(0).map(()=>Array(b.length+1).fill(0));for(let i=0;i<=a.length;i++)dp[i][0]=i;for(let j=0;j<=b.length;j++)dp[0][j]=j;for(let i=1;i<=a.length;i++){for(let j=1;j<=b.length;j++){dp[i][j]=Math.min(dp[i-1][j]+1,dp[i][j-1]+1,dp[i-1][j-1]+(a[i-1]===b[j-1]?0:1));}}return dp[a.length][b.length];}
-function similarity(a,b){if(!a&&!b)return 1;if(!a||!b)return 0;if(a===b)return 1;if(a.includes(b)||b.includes(a))return Math.min(0.96,Math.min(a.length,b.length)/Math.max(a.length,b.length)+0.18);return Math.max(0,1-editDistance(a,b)/Math.max(a.length,b.length));}
+function similarity(a,b){if(!a&&!b)return 1;if(!a||!b)return 0;if(a===b)return 1;return Math.max(0,1-editDistance(a,b)/Math.max(a.length,b.length));}
+function transcriptTokens(text){return (text||'').toLowerCase().replace(/[^a-z\s]/g,' ').replace(/\s+/g,' ').trim().split(' ').filter(Boolean);}
+const SPELL_LETTER_ALIASES={
+  a:['a','ay','hey'],b:['b','bee','be'],c:['c','see','sea'],d:['d','dee'],e:['e','ee'],f:['f','eff','if'],g:['g','gee'],h:['h','aitch','age'],i:['i','eye','hi'],j:['j','jay'],k:['k','kay','okay'],l:['l','el','ell'],m:['m','em','am'],n:['n','en','and'],o:['o','oh','owe'],p:['p','pee','pea'],q:['q','cue','queue'],r:['r','are','ar'],s:['s','ess','es'],t:['t','tee','tea'],u:['u','you'],v:['v','vee'],w:['w'],x:['x','ex'],y:['y','why'],z:['z','zee','zed']
+};
+const SPELL_ALIAS_TO_LETTER=(()=>{const rev={};Object.keys(SPELL_LETTER_ALIASES).forEach(k=>SPELL_LETTER_ALIASES[k].forEach(v=>rev[v]=k));return rev;})();
 function spokenLettersToText(text){
-  const words=(text||'').toLowerCase().replace(/[^a-z\s]/g,' ').replace(/\s+/g,' ').trim().split(' ').filter(Boolean);
-  const map={a:['a','ay','hey'],b:['b','bee','be'],c:['c','see','sea'],d:['d','dee'],e:['e','ee'],f:['f','eff'],g:['g','gee'],h:['h','aitch','age'],i:['i','eye'],j:['j','jay'],k:['k','kay','okay'],l:['l','el','ell'],m:['m','em'],n:['n','en'],o:['o','oh'],p:['p','pee','pea'],q:['q','cue','queue'],r:['r','are','ar'],s:['s','ess','es'],t:['t','tee','tea'],u:['u','you'],v:['v','vee'],w:['w'],x:['x','ex'],y:['y','why'],z:['z','zee','zed']};
-  const rev={};Object.keys(map).forEach(k=>map[k].forEach(v=>rev[v]=k));
-  let out='';
+  const words=transcriptTokens(text);let out='';
   for(let i=0;i<words.length;i++){
-    if(words[i]==='double'&&(words[i+1]==='you'||words[i+1]==='u')){out+='w';i++;continue;}
-    if(rev[words[i]])out+=rev[words[i]];
+    const two=words[i]+' '+(words[i+1]||'');
+    if(two==='double you'||two==='double u'){out+='w';i++;continue;}
+    if(SPELL_ALIAS_TO_LETTER[words[i]])out+=SPELL_ALIAS_TO_LETTER[words[i]];
     else if(words[i].length===1&&/[a-z]/.test(words[i]))out+=words[i];
   }
   return out;
 }
+function bestWindowCandidate(source,expected){
+  source=cleanLetters(source);expected=cleanLetters(expected);
+  if(!source)return {heard:'',score:0,method:'none'};
+  if(source===expected)return {heard:source,score:1,method:'exact'};
+  if(source.includes(expected))return {heard:expected,score:1,method:'contains-word'};
+  let best={heard:source,score:similarity(source,expected),method:'whole'};
+  const minLen=Math.max(1,expected.length-1), maxLen=expected.length+1;
+  for(let len=minLen;len<=maxLen;len++){
+    for(let i=0;i<=source.length-len;i++){
+      const sub=source.slice(i,i+len), sc=similarity(sub,expected);
+      if(sc>best.score)best={heard:sub,score:sc,method:'best-part'};
+    }
+  }
+  return best;
+}
 function analyzeSpellingText(text,expected){
-  const raw=cleanLetters(text), mapped=spokenLettersToText(text);
-  const candidates=[raw,mapped].filter(Boolean);let best='',score=0;
-  candidates.forEach(c=>{let sc=(c===expected||c.includes(expected))?1:similarity(c,expected);if(sc>score){score=sc;best=c;}});
-  return {heard:best||raw,score:score,ok:score>=0.9};
+  expected=cleanLetters(expected);const tokens=transcriptTokens(text), raw=cleanLetters(text), mapped=spokenLettersToText(text);
+  const candidates=[];
+  if(tokens.includes(expected))candidates.push({heard:expected,score:1,method:'spoken-word'});
+  candidates.push(bestWindowCandidate(raw,expected));
+  candidates.push(bestWindowCandidate(mapped,expected));
+  if(mapped)candidates.push({heard:mapped,score:similarity(mapped,expected),method:'letters'});
+  let best=candidates.sort((a,b)=>b.score-a.score)[0]||{heard:'',score:0,method:'none'};
+  if(best.score>=0.985){best.score=1;best.heard=expected;}
+  return {heard:best.heard||'',score:Math.max(0,Math.min(1,best.score||0)),ok:(best.score||0)>=0.85,method:best.method};
 }
 function renderLetterCheck(expected,heard){
   return '<div class="letterCheck">'+expected.split('').map((ch,i)=>'<span class="letterPill '+(heard[i]===ch?'ok':'bad')+'">'+ch.toUpperCase()+'</span>').join('')+'</div>';
@@ -594,14 +617,16 @@ function renderLetterCheck(expected,heard){
 function scoreLabel(score){return Math.round((score||0)*100)+'%';}
 function matchClass(score){return score>=0.9?'good':(score>=0.6?'mid':'');}
 function addSpellingSummary(word,result,transcript){
-  spellingSummary.push({word:word,heard:result.heard||'',score:result.score||0,ok:!!result.ok,transcript:(transcript||'').trim()});
+  spellingSummary=spellingSummary.filter(x=>x.word!==word);
+  spellingSummary.push({word:word,heard:result.heard||'',score:result.score||0,ok:!!result.ok,method:result.method||'',transcript:(transcript||'').trim()});
 }
 function renderSpellingSummary(target){
   if(!target)return;
   if(!spellingSummary.length){target.innerHTML='<h3>📋 Practice summary</h3><div class="summaryList"><div class="summaryItem"><span>No words recorded yet.</span><span class="matchBadge mid">0%</span></div></div>';return;}
-  const items=spellingSummary.slice().reverse().map((it,idx)=>'<div class="summaryItem"><span>'+SPELLING_PICTURES[it.word]+' <b>'+it.word+'</b><br><small>Heard: '+(it.heard?spellLetters(it.heard):'no transcript')+'</small></span><span class="matchBadge '+matchClass(it.score)+'">'+scoreLabel(it.score)+'</span></div>').join('');
-  const avg=spellingSummary.reduce((a,b)=>a+(b.score||0),0)/spellingSummary.length;
-  target.innerHTML='<h3>📋 Practice summary • Average '+scoreLabel(avg)+'</h3><div class="summaryList">'+items+'</div>';
+  const ordered=spellingSummary.slice().sort((a,b)=>a.word.localeCompare(b.word));
+  const items=ordered.map((it)=>'<div class="summaryItem"><span>'+SPELLING_PICTURES[it.word]+' <b>'+it.word+'</b><br><small>Last heard: '+(it.heard?spellLetters(it.heard):'no transcript')+'</small></span><span class="matchBadge '+matchClass(it.score)+'">'+scoreLabel(it.score)+'</span></div>').join('');
+  const avg=ordered.reduce((a,b)=>a+(b.score||0),0)/ordered.length;
+  target.innerHTML='<h3>📋 Practice summary • '+ordered.length+' words • Average '+scoreLabel(avg)+'</h3><div class="summaryList">'+items+'</div>';
 }
 function showSpellingReview(box,word,transcript,audioUrl,summaryBox){
   const hasTranscript=!!(transcript||'').trim();
@@ -614,7 +639,7 @@ function showSpellingReview(box,word,transcript,audioUrl,summaryBox){
     '<div>🎧 I heard: <b>'+((transcript||'').trim()||'No automatic transcript')+'</b></div>'+ 
     '<div>🐝 Spelling heard: <b>'+heard+'</b></div>'+ 
     '<div>✅ Correct spelling: <b>'+spellLetters(word)+'</b></div>'+renderLetterCheck(word,r.heard||'')+
-    '<div style="margin-top:8px;">Match level: <b>'+scoreLabel(r.score)+'</b>. '+(!hasTranscript?'I could not create an automatic transcript, but your recording is saved above.':(r.ok?'Amazing! That sounds right. 🌟':'Good try! Listen to the letters and try once more. 💪'))+'</div>';
+    '<div style="margin-top:8px;">Match level: <b>'+scoreLabel(r.score)+'</b>'+((r.method&&hasTranscript)?' · '+r.method:'')+'. '+(!hasTranscript?'I could not create an automatic transcript, but your recording is saved above.':(r.ok?'Amazing! That sounds right. 🌟':'Good try! Listen to the letters and try once more. 💪'))+'</div>';
   if(!questionAnswered)markResult(r.ok,null);
 }
 async function startSpellingRecording(word,box,btn,summaryBox){
@@ -624,7 +649,7 @@ async function startSpellingRecording(word,box,btn,summaryBox){
   catch(e){box.style.display='block';box.innerHTML='🎙️ I could not open the microphone. If this file is local, open it with https or localhost.';return;}
   spellingChunks=[];spellingTranscript='';spellingRecorder=new MediaRecorder(spellingStream);
   spellingRecorder.ondataavailable=e=>{if(e.data&&e.data.size)spellingChunks.push(e.data);};
-  spellingRecorder.onstop=()=>{spellingRecording=false;btn.classList.remove('recording');btn.textContent='🎙️ Record spelling';if(spellingStream)spellingStream.getTracks().forEach(t=>t.stop());const blob=new Blob(spellingChunks,{type:spellingRecorder.mimeType||'audio/webm'});const url=URL.createObjectURL(blob);showSpellingReview(box,word,spellingTranscript,url,summaryBox);};
+  spellingRecorder.onstop=()=>{spellingRecording=false;btn.classList.remove('recording');btn.textContent='🎙️ Record spelling';if(spellingStream)spellingStream.getTracks().forEach(t=>t.stop());const blob=new Blob(spellingChunks,{type:spellingRecorder.mimeType||'audio/webm'});const url=URL.createObjectURL(blob);setTimeout(()=>showSpellingReview(box,word,spellingTranscript,url,summaryBox),450);};
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
   if(SR){spellingRecognition=new SR();spellingRecognition.lang='en-US';spellingRecognition.continuous=true;spellingRecognition.interimResults=true;spellingRecognition.onresult=e=>{let t='';for(let i=0;i<e.results.length;i++)t+=e.results[i][0].transcript+' ';spellingTranscript=t.trim();box.style.display='block';box.innerHTML='🎙️ Recording... say only the letters: <b>'+spellLetters(word)+'</b><br>Heard so far: '+(spellingTranscript||'...');};spellingRecognition.onerror=()=>{};try{spellingRecognition.start();}catch(e){}}
   spellingRecorder.start();spellingRecording=true;btn.classList.add('recording');btn.textContent='⏹️ Stop';box.style.display='block';box.innerHTML='🎙️ Recording... say the letters slowly: <b>'+spellLetters(word)+'</b>';
