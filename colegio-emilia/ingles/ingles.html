@@ -630,20 +630,56 @@ async function startSpellingRecording(word,box,btn,summaryBox){
   spellingRecorder.start();spellingRecording=true;btn.classList.add('recording');btn.textContent='⏹️ Stop';box.innerHTML='🎙️ Recording... say the letters slowly: <b>'+spellLetters(word)+'</b>';
 }
 function stopSpellingRecording(){try{if(spellingRecognition)spellingRecognition.stop();}catch(e){}try{if(spellingRecorder&&spellingRecorder.state!=='inactive')spellingRecorder.stop();}catch(e){}}
+
+/* Voice-coach style TTS for spelling: system speechSynthesis + English voice selection.
+   It is more reliable for short words and letter-by-letter practice than sending letters as one neural sentence. */
+let activeSpellTtsBtn=null;
+function pickSpellingVoice(){
+  if(!('speechSynthesis' in window))return null;
+  const voices=window.speechSynthesis.getVoices()||[];
+  return voices.find(v=>v.lang&&v.lang.toLowerCase()==='en-us')||voices.find(v=>v.lang&&v.lang.toLowerCase().startsWith('en'))||null;
+}
+function setTtsButton(btn,busy){
+  if(!btn)return;
+  if(busy){btn.dataset.orig=btn.textContent;btn.textContent='⏳';btn.classList.add('_ttsSpin');btn.disabled=true;activeSpellTtsBtn=btn;}
+  else{btn.classList.remove('_ttsSpin');btn.disabled=false;if(btn.dataset.orig)btn.textContent=btn.dataset.orig;if(activeSpellTtsBtn===btn)activeSpellTtsBtn=null;}
+}
+function speakSpellingSequence(parts,btn,rate){
+  if(!parts||!parts.length)return;
+  if(!('speechSynthesis' in window)){speak(parts.join(' '),'en-US',btn);return;}
+  try{window.speechSynthesis.cancel();}catch(e){}
+  if(activeSpellTtsBtn&&activeSpellTtsBtn!==btn)setTtsButton(activeSpellTtsBtn,false);
+  setTtsButton(btn,true);
+  const voice=pickSpellingVoice();
+  let i=0;
+  const next=()=>{
+    if(i>=parts.length){setTtsButton(btn,false);return;}
+    const u=new SpeechSynthesisUtterance(parts[i++]);
+    u.lang='en-US';u.rate=rate||0.72;u.pitch=1.05;if(voice)u.voice=voice;
+    u.onend=()=>setTimeout(next,170);
+    u.onerror=()=>setTimeout(next,170);
+    window.speechSynthesis.speak(u);
+  };
+  next();
+}
+function speakSpellingWord(word,btn){speakSpellingSequence([word],btn,0.72);}
+function speakSpellingLetters(word,btn){
+  const letters=word.toUpperCase().split('');
+  speakSpellingSequence([word].concat(letters).concat([word]),btn,0.62);
+}
 function buildSpellingBee(stage){
   const word=nextSpellingWord();
   const pic=SPELLING_PICTURES[word]||'🐝';
-  showSVG(stage,SVGS.bee);
   const panel=document.createElement('div');panel.className='spellPanel';
   panel.innerHTML='<div class="spellBadge">🐝 Spelling Bee practice</div><div class="spellPicture"><div class="spellEmoji">'+pic+'</div><div class="currentWord">'+word+'</div></div><div class="spellWordBox"><b>Best way to practice:</b><ol class="spellSteps"><li>Look at the picture and word.</li><li>Listen to the word and each letter.</li><li>Cover the word and spell it out loud.</li><li>Record, listen again, and review the match level.</li></ol></div><div class="spellActions"><button class="spellBtn" data-act="word">🔊 Word</button><button class="spellBtn" data-act="letters">🔤 Letters</button><button class="spellBtn" data-act="hide">🙈 Cover word</button></div><div class="spellHint"></div><div class="spellActions"><button class="recSpellBtn" data-act="record">🎙️ Record spelling</button></div><div class="spellReview">Say the letters slowly. Example: A - P - P - L - E.</div><div class="spellSummary"></div>';
   stage.appendChild(panel);
   const hint=panel.querySelector('.spellHint'),review=panel.querySelector('.spellReview'),summaryBox=panel.querySelector('.spellSummary'),wordBox=panel.querySelector('.currentWord');
   renderSpellingSummary(summaryBox);
-  panel.querySelector('[data-act="word"]').onclick=e=>speak(word,'en-US',e.currentTarget);
-  panel.querySelector('[data-act="letters"]').onclick=e=>speakWordAndLetters(word,e.currentTarget);
+  panel.querySelector('[data-act="word"]').onclick=e=>speakSpellingWord(word,e.currentTarget);
+  panel.querySelector('[data-act="letters"]').onclick=e=>speakSpellingLetters(word,e.currentTarget);
   panel.querySelector('[data-act="hide"]').onclick=e=>{const hidden=wordBox.textContent.indexOf('_')>=0;wordBox.textContent=hidden?word:Array(word.length).fill('_').join(' ');e.currentTarget.textContent=hidden?'🙈 Cover word':'👀 Show word';hint.textContent=hidden?'':'Now spell it from memory!';};
   panel.querySelector('[data-act="record"]').onclick=e=>startSpellingRecording(word,review,e.currentTarget,summaryBox);
-  setTimeout(()=>speak(word,'en-US',panel.querySelector('[data-act="word"]')),350);
+  setTimeout(()=>speakSpellingWord(word,panel.querySelector('[data-act="word"]')),350);
 }
 
 _preloadAudio();
