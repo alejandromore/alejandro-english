@@ -41,6 +41,7 @@
   .c2{background:linear-gradient(160deg,var(--purple),var(--purple-deep));}
   .c3{background:linear-gradient(160deg,var(--leaf),var(--leaf-deep));}
   .c4{background:linear-gradient(160deg,var(--sun),var(--sun-deep));color:var(--ink);}
+  .c5{background:linear-gradient(160deg,var(--sky),var(--sky-deep));}
   .exWrap{width:100%;max-width:640px;background:var(--white);border-radius:28px;padding:22px 18px 26px;box-shadow:var(--shadow);margin-top:8px;text-align:center;}
   .progressBar{width:100%;height:14px;background:#EDEAF7;border-radius:10px;overflow:hidden;margin-bottom:16px;}
   .progressFill{height:100%;background:linear-gradient(90deg,var(--leaf),var(--sun));width:0%;transition:width .4s ease;}
@@ -75,6 +76,24 @@
   .preloadBar{width:100%;height:10px;background:rgba(255,255,255,0.3);border-radius:10px;overflow:hidden;margin-bottom:4px;}
   .preloadFill{height:100%;background:linear-gradient(90deg,var(--leaf),var(--sun));width:0%;transition:width .3s ease;border-radius:10px;}
   .preloadText{color:var(--white);font-weight:700;font-size:13px;font-family:'Nunito';}
+  .spellPanel{width:100%;display:flex;flex-direction:column;gap:12px;align-items:center;}
+  .spellBadge{display:inline-flex;align-items:center;gap:8px;background:#FFF3C4;border:3px solid #F5D25B;border-radius:999px;padding:8px 14px;font-family:'Fredoka';font-weight:700;color:#7A5200;}
+  .spellWordBox{width:100%;background:var(--cream);border:3px solid #EADFC5;border-radius:20px;padding:14px;text-align:center;}
+  .spellSteps{margin:8px 0 0;padding-left:20px;text-align:left;font-weight:800;color:#5E5578;line-height:1.45;}
+  .spellActions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  .spellBtn,.recSpellBtn{font-family:'Fredoka';font-weight:700;font-size:16px;border:none;border-radius:16px;padding:12px 15px;cursor:pointer;box-shadow:0 5px 0 rgba(43,36,64,.18);}
+  .spellBtn{background:var(--sun);color:var(--ink);}
+  .recSpellBtn{background:linear-gradient(160deg,var(--coral),var(--coral-deep));color:white;}
+  .recSpellBtn.recording{animation:pulse 1s infinite;background:#E8503F;}
+  @keyframes pulse{50%{transform:scale(1.04);}}
+  .spellInput{width:100%;max-width:360px;border:3px solid #EADFC5;border-radius:16px;padding:12px 14px;font-family:'Fredoka';font-size:22px;text-align:center;text-transform:lowercase;color:var(--ink);}
+  .spellHint{font-weight:900;color:var(--purple-deep);min-height:24px;}
+  .spellReview{width:100%;background:#F6F8FF;border:3px dashed #C8D3FF;border-radius:18px;padding:12px;text-align:left;font-weight:800;color:#4A4263;line-height:1.45;}
+  .spellReview audio{width:100%;margin:8px 0;}
+  .letterCheck{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+  .letterPill{font-family:'Fredoka';font-size:18px;border-radius:10px;padding:6px 9px;background:#EDEAF7;}
+  .letterPill.ok{background:#CFF3D8;color:#1E7D3A;}
+  .letterPill.bad{background:#FFD1CB;color:#A82719;}
 </style>
 </head>
 <body>
@@ -111,6 +130,10 @@
     <button class="card c4" onclick="startTopic('canIHave')">
       <svg viewBox="0 0 64 64"><path d="M10 20 Q10 12 22 12 L42 12 Q54 12 54 20 L54 34 Q54 42 42 42 L28 42 L20 50 L20 42 Q10 42 10 34 Z" fill="#fff" opacity=".9"/><circle cx="22" cy="27" r="2" fill="#fff"/><circle cx="32" cy="27" r="2" fill="#fff"/><circle cx="42" cy="27" r="2" fill="#fff"/></svg>
       <span>Can I Have...? / Would You Like...?</span>
+    </button>
+    <button class="card c5" onclick="startTopic('spellingBee')">
+      <svg viewBox="0 0 64 64"><ellipse cx="34" cy="33" rx="18" ry="13" fill="#FFC93C"/><path d="M23 24 Q14 10 31 18" fill="#fff" opacity=".9"/><path d="M39 24 Q55 10 47 28" fill="#fff" opacity=".9"/><path d="M24 25 L24 41 M33 21 L33 45 M42 25 L42 41" stroke="#2B2440" stroke-width="3"/><circle cx="45" cy="31" r="2" fill="#2B2440"/><path d="M50 33 L58 29 L58 37 Z" fill="#2B2440"/><text x="20" y="57" font-family="Fredoka" font-size="13" font-weight="700" fill="#fff">ABC</text></svg>
+      <span>Spelling Bee</span>
     </button>
   </div>
 </div>
@@ -330,12 +353,13 @@ function toggleMusic(){musicOn=!musicOn;const b=document.getElementById('musicBt
 function confettiBurst(){const cs=['#FF6B5B','#FFC93C','#4CAF6D','#3AC7E0','#9B6BFF'];for(let i=0;i<26;i++){const e=document.createElement('div');e.className='confetti-piece';e.style.left=Math.random()*100+'vw';e.style.background=cs[Math.floor(Math.random()*cs.length)];e.style.animationDuration=(1.6+Math.random()*1.2)+'s';e.style.borderRadius=Math.random()>0.5?'50%':'2px';document.body.appendChild(e);setTimeout(()=>e.remove(),3200);}}
 
 /* STATE */
-let stars=0,currentTopic=null,qIndex=0;const TOTAL_Q=10;let questionAnswered=false;
+let stars=0,currentTopic=null,qIndex=0;const TOTAL_Q=10;let questionAnswered=false;let spellingQueue=[];
 const TOPIC_META={
   funOnTheFarm:{title:'Fun on The Farm',sub:'Learn about farm animals'},
   iLikeFood:{title:'I Like Food',sub:'Practice talking about food'},
   questionsLike:{title:'Questions with Like',sub:'Ask and answer about likes'},
-  canIHave:{title:'Can I Have...? / Would You Like...?',sub:'Polite requests and offers'}
+  canIHave:{title:'Can I Have...? / Would You Like...?',sub:'Polite requests and offers'},
+  spellingBee:{title:'Spelling Bee 🐝',sub:'Listen, spell, record, and review'}
 };
 function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
 function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
@@ -369,15 +393,16 @@ const SVGS={
   request:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><path d="M120 140 L120 80 Q120 65 135 65 Q150 65 150 80 L150 110 L180 110 Q195 110 195 125 L195 140 Z" fill="#F4C2A1" stroke="#333" stroke-width="2"/><path d="M135 65 Q135 50 145 50 Q155 50 155 65" fill="none" stroke="#333" stroke-width="2"/><circle cx="135" cy="85" r="3" fill="#333"/><path d="M160 50 Q170 40 165 30" stroke="#FFC93C" stroke-width="3" fill="none"/><text x="150" y="175" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#FFC93C" font-weight="600">Can I have...?</text></svg>`,
   offer:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><circle cx="150" cy="80" r="30" fill="#FFD700" opacity=".3"/><path d="M130 100 L170 100 L165 150 L135 150 Z" fill="#FF6B5B"/><path d="M140 100 L140 80 Q140 70 150 70 Q160 70 160 80 L160 100" fill="none" stroke="#8B4513" stroke-width="3"/><circle cx="150" cy="60" r="8" fill="#FFC93C"/><text x="150" y="175" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#FF6B5B" font-weight="600">Would you like...?</text></svg>`,
   menu:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><rect x="90" y="40" width="120" height="130" fill="#fff" stroke="#8B4513" stroke-width="3" rx="4"/><path d="M90 40 L150 30 L210 40" fill="#8B4513"/><text x="150" y="65" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#8B4513" font-weight="700">MENU</text><path d="M105 80 L195 80 M105 95 L195 95 M105 110 L195 110 M105 125 L195 125 M105 140 L195 140" stroke="#EADFC5" stroke-width="1"/><text x="150" y="185" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#8B4513" font-weight="600">Menu</text></svg>`,
-  drink:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><path d="M110 60 L190 60 L180 150 L120 150 Z" fill="#FFA500" opacity=".8" stroke="#8B4513" stroke-width="2"/><path d="M115 70 L185 70 L178 145 L122 145 Z" fill="#FFC93C" opacity=".5"/><rect x="100" y="50" width="100" height="12" fill="#8B4513" rx="2"/><path d="M190 80 Q210 80 210 100 Q210 120 190 120" fill="none" stroke="#8B4513" stroke-width="3"/><circle cx="130" cy="40" r="4" fill="#FFC93C"/><circle cx="160" cy="35" r="3" fill="#FFC93C"/><text x="150" y="180" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#FFA500" font-weight="600">Drink</text></svg>`
+  drink:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><path d="M110 60 L190 60 L180 150 L120 150 Z" fill="#FFA500" opacity=".8" stroke="#8B4513" stroke-width="2"/><path d="M115 70 L185 70 L178 145 L122 145 Z" fill="#FFC93C" opacity=".5"/><rect x="100" y="50" width="100" height="12" fill="#8B4513" rx="2"/><path d="M190 80 Q210 80 210 100 Q210 120 190 120" fill="none" stroke="#8B4513" stroke-width="3"/><circle cx="130" cy="40" r="4" fill="#FFC93C"/><circle cx="160" cy="35" r="3" fill="#FFC93C"/><text x="150" y="180" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#FFA500" font-weight="600">Drink</text></svg>`,
+  bee:`<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><circle cx="64" cy="48" r="18" fill="#FFF3C4" opacity=".9"/><circle cx="238" cy="54" r="14" fill="#FFF3C4" opacity=".9"/><ellipse cx="150" cy="102" rx="55" ry="34" fill="#FFC93C"/><path d="M105 78 Q78 34 140 58" fill="#DFF6FF" stroke="#9BD8EA" stroke-width="3"/><path d="M168 58 Q228 34 198 82" fill="#DFF6FF" stroke="#9BD8EA" stroke-width="3"/><path d="M115 72 L115 132 M145 66 L145 138 M175 72 L175 132" stroke="#2B2440" stroke-width="8" stroke-linecap="round"/><circle cx="195" cy="95" r="5" fill="#2B2440"/><path d="M203 103 L230 92 L230 114 Z" fill="#2B2440"/><text x="150" y="176" text-anchor="middle" font-family="Fredoka" font-size="18" fill="#7C4FE0" font-weight="700">Listen • Spell • Record</text></svg>`
 };
 
 /* NAVIGATION */
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
 function goHome(){showScreen('screen-home');}
-function startTopic(t){currentTopic=t;qIndex=0;document.getElementById('exTitle').textContent=TOPIC_META[t].title;document.getElementById('exSub').textContent=TOPIC_META[t].sub;showScreen('screen-exercise');loadQuestion();}
+function startTopic(t){currentTopic=t;qIndex=0;stars=0;document.getElementById('starCount').textContent=stars;if(t==='spellingBee')spellingQueue=shuffle(SPELLING_WORDS);document.getElementById('exTitle').textContent=TOPIC_META[t].title;document.getElementById('exSub').textContent=TOPIC_META[t].sub;showScreen('screen-exercise');loadQuestion();}
 function updateProgress(){document.getElementById('progressFill').style.width=(qIndex/TOTAL_Q*100)+'%';}
-function loadQuestion(){questionAnswered=false;updateProgress();document.getElementById('feedback').textContent='';document.getElementById('feedback').className='feedback';document.getElementById('continueBtn').style.display='none';const s=document.getElementById('stageBox');s.innerHTML='';if(qIndex>=TOTAL_Q){return endGame();}const builders={funOnTheFarm:buildFunOnTheFarm,iLikeFood:buildILikeFood,questionsLike:buildQuestionsLike,canIHave:buildCanIHave};builders[currentTopic](s);}
+function loadQuestion(){questionAnswered=false;updateProgress();document.getElementById('feedback').textContent='';document.getElementById('feedback').className='feedback';document.getElementById('continueBtn').style.display='none';const s=document.getElementById('stageBox');s.innerHTML='';if(qIndex>=TOTAL_Q){return endGame();}const builders={funOnTheFarm:buildFunOnTheFarm,iLikeFood:buildILikeFood,questionsLike:buildQuestionsLike,canIHave:buildCanIHave,spellingBee:buildSpellingBee};builders[currentTopic](s);}
 function nextQuestion(){qIndex++;loadQuestion();}
 function markResult(ok,el){if(questionAnswered)return;questionAnswered=true;const fb=document.getElementById('feedback');if(ok){stars++;document.getElementById('starCount').textContent=stars;fb.textContent='Great job! You got it! 🎉';fb.className='feedback ok';playCorrect();confettiBurst();if(el)el.classList.add('correct');}else{fb.textContent='Almost... try again! 💪';fb.className='feedback bad';playWrong();if(el)el.classList.add('wrong');}document.getElementById('continueBtn').style.display='inline-block';}
 function endGame(){showScreen('screen-end');playWin();confettiBurst();const t=document.getElementById('endTitle'),m=document.getElementById('endMsg');if(stars>=TOTAL_Q*4/5){t.textContent='You are an English champion! 🏆';}else if(stars>=TOTAL_Q/2){t.textContent='Good work! Keep practicing 🌟';}else{t.textContent='You tried your best! 🌟';}m.textContent=`You earned ${stars} stars in total.`;}
@@ -525,6 +550,76 @@ function buildCanIHave(stage){
   if(item.type==='mc')buildMultipleChoice(stage,item.q,item.opt,item.correct);
   else buildTrueFalse(stage,item.q,item.correct);
 }
+
+/* ================= SPELLING BEE ================= */
+const SPELLING_WORDS=['apple','bag','birthday','book','breakfast','brother','cake','cat','chair','chicken','classroom','cloud','desk','dog','door','duck','egg','family','favorite','fish','flower','frog','garden','gift','goat','grass','green','hand','happy','hat','house','ice','jam','juice','kite','lion','milk','moon','mouse','owl','pencil','picture','playground','rabbit','rainbow','school','shoulder','sister','teacher','weather'];
+let spellingRecorder=null,spellingStream=null,spellingChunks=[],spellingRecognition=null,spellingTranscript='',spellingRecording=false;
+function nextSpellingWord(){if(!spellingQueue.length)spellingQueue=shuffle(SPELLING_WORDS);return spellingQueue.shift();}
+function spellLetters(word){return word.toUpperCase().split('').join(' - ');}
+function speakWordAndLetters(word,btn){speak(word+'. '+word.toUpperCase().split('').join('. ')+'. '+word+'.','en-US',btn);}
+function cleanLetters(s){return (s||'').toLowerCase().replace(/[^a-z]/g,'');}
+function editDistance(a,b){const dp=Array(a.length+1).fill(0).map(()=>Array(b.length+1).fill(0));for(let i=0;i<=a.length;i++)dp[i][0]=i;for(let j=0;j<=b.length;j++)dp[0][j]=j;for(let i=1;i<=a.length;i++){for(let j=1;j<=b.length;j++){dp[i][j]=Math.min(dp[i-1][j]+1,dp[i][j-1]+1,dp[i-1][j-1]+(a[i-1]===b[j-1]?0:1));}}return dp[a.length][b.length];}
+function similarity(a,b){if(!a&&!b)return 1;if(!a||!b)return 0;if(a===b)return 1;if(a.includes(b)||b.includes(a))return Math.min(0.96,Math.min(a.length,b.length)/Math.max(a.length,b.length)+0.18);return Math.max(0,1-editDistance(a,b)/Math.max(a.length,b.length));}
+function spokenLettersToText(text){
+  const words=(text||'').toLowerCase().replace(/[^a-z\s]/g,' ').replace(/\s+/g,' ').trim().split(' ').filter(Boolean);
+  const map={a:['a','ay','hey'],b:['b','bee','be'],c:['c','see','sea'],d:['d','dee'],e:['e','ee'],f:['f','eff'],g:['g','gee'],h:['h','aitch','age'],i:['i','eye'],j:['j','jay'],k:['k','kay','okay'],l:['l','el','ell'],m:['m','em'],n:['n','en'],o:['o','oh'],p:['p','pee','pea'],q:['q','cue','queue'],r:['r','are','ar'],s:['s','ess','es'],t:['t','tee','tea'],u:['u','you'],v:['v','vee'],w:['w'],x:['x','ex'],y:['y','why'],z:['z','zee','zed']};
+  const rev={};Object.keys(map).forEach(k=>map[k].forEach(v=>rev[v]=k));
+  let out='';
+  for(let i=0;i<words.length;i++){
+    if(words[i]==='double'&&(words[i+1]==='you'||words[i+1]==='u')){out+='w';i++;continue;}
+    if(rev[words[i]])out+=rev[words[i]];
+    else if(words[i].length===1&&/[a-z]/.test(words[i]))out+=words[i];
+  }
+  return out;
+}
+function analyzeSpellingText(text,expected){
+  const raw=cleanLetters(text), mapped=spokenLettersToText(text);
+  const candidates=[raw,mapped].filter(Boolean);let best='',score=0;
+  candidates.forEach(c=>{let sc=(c===expected||c.includes(expected))?1:similarity(c,expected);if(sc>score){score=sc;best=c;}});
+  return {heard:best||raw,score:score,ok:score>=0.9};
+}
+function renderLetterCheck(expected,heard){
+  return '<div class="letterCheck">'+expected.split('').map((ch,i)=>'<span class="letterPill '+(heard[i]===ch?'ok':'bad')+'">'+ch.toUpperCase()+'</span>').join('')+'</div>';
+}
+function showSpellingReview(box,word,transcript,audioUrl){
+  const hasTranscript=!!(transcript||'').trim();
+  const r=analyzeSpellingText(transcript,word);
+  const heard=r.heard?spellLetters(r.heard):'No transcript';
+  box.innerHTML='<b>Review:</b>'+(audioUrl?'<audio controls src="'+audioUrl+'"></audio>':'')+
+    '<div>🎧 I heard: <b>'+((transcript||'').trim()||'No automatic transcript')+'</b></div>'+ 
+    '<div>🐝 Spelling heard: <b>'+heard+'</b></div>'+ 
+    '<div>✅ Correct spelling: <b>'+spellLetters(word)+'</b></div>'+renderLetterCheck(word,r.heard||'')+
+    '<div style="margin-top:8px;">'+(!hasTranscript?'Listen to your recording, then type the word and press Check typing. 😊':(r.ok?'Amazing! That sounds right. 🌟':'Good try! Listen to the letters and try once more. 💪'))+'</div>';
+  if(hasTranscript&&!questionAnswered)markResult(r.ok,null);
+}
+async function startSpellingRecording(word,box,btn){
+  if(spellingRecording){stopSpellingRecording();return;}
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){box.innerHTML='🎙️ Microphone is not available here. You can still type the word and press Check.';return;}
+  try{spellingStream=await navigator.mediaDevices.getUserMedia({audio:true});}
+  catch(e){box.innerHTML='🎙️ I could not open the microphone. If this file is local, open it with https or use the typing practice.';return;}
+  spellingChunks=[];spellingTranscript='';spellingRecorder=new MediaRecorder(spellingStream);
+  spellingRecorder.ondataavailable=e=>{if(e.data&&e.data.size)spellingChunks.push(e.data);};
+  spellingRecorder.onstop=()=>{spellingRecording=false;btn.classList.remove('recording');btn.textContent='🎙️ Record spelling';if(spellingStream)spellingStream.getTracks().forEach(t=>t.stop());const blob=new Blob(spellingChunks,{type:spellingRecorder.mimeType||'audio/webm'});const url=URL.createObjectURL(blob);showSpellingReview(box,word,spellingTranscript,url);};
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(SR){spellingRecognition=new SR();spellingRecognition.lang='en-US';spellingRecognition.continuous=true;spellingRecognition.interimResults=true;spellingRecognition.onresult=e=>{let t='';for(let i=0;i<e.results.length;i++)t+=e.results[i][0].transcript+' ';spellingTranscript=t.trim();box.innerHTML='🎙️ Recording... say only the letters: <b>'+spellLetters(word)+'</b><br>Heard so far: '+(spellingTranscript||'...');};spellingRecognition.onerror=()=>{};try{spellingRecognition.start();}catch(e){}}
+  spellingRecorder.start();spellingRecording=true;btn.classList.add('recording');btn.textContent='⏹️ Stop';box.innerHTML='🎙️ Recording... say the letters slowly: <b>'+spellLetters(word)+'</b>';
+}
+function stopSpellingRecording(){try{if(spellingRecognition)spellingRecognition.stop();}catch(e){}try{if(spellingRecorder&&spellingRecorder.state!=='inactive')spellingRecorder.stop();}catch(e){}}
+function buildSpellingBee(stage){
+  const word=nextSpellingWord();
+  showSVG(stage,SVGS.bee);
+  const panel=document.createElement('div');panel.className='spellPanel';
+  panel.innerHTML='<div class="spellBadge">🐝 Spelling Bee practice</div><div class="spellWordBox"><b>Best way to practice:</b><ol class="spellSteps"><li>Listen to the word.</li><li>Listen to each letter.</li><li>Cover your eyes and spell it out loud.</li><li>Record, listen again, and review.</li></ol></div><div class="spellActions"><button class="spellBtn" data-act="word">🔊 Word</button><button class="spellBtn" data-act="letters">🔤 Letters</button><button class="spellBtn" data-act="hint">👀 Hint</button></div><div class="spellHint"></div><input class="spellInput" autocomplete="off" placeholder="type the word here"><div class="spellActions"><button class="spellBtn" data-act="check">✅ Check typing</button><button class="recSpellBtn" data-act="record">🎙️ Record spelling</button></div><div class="spellReview">Say the letters slowly. Example: A - P - P - L - E.</div>';
+  stage.appendChild(panel);
+  const hint=panel.querySelector('.spellHint'),input=panel.querySelector('.spellInput'),review=panel.querySelector('.spellReview');
+  panel.querySelector('[data-act="word"]').onclick=e=>speak(word,'en-US',e.currentTarget);
+  panel.querySelector('[data-act="letters"]').onclick=e=>speakWordAndLetters(word,e.currentTarget);
+  panel.querySelector('[data-act="hint"]').onclick=()=>{hint.textContent='Starts with '+word[0].toUpperCase()+' • '+word.length+' letters • '+word[0].toUpperCase()+' '+Array(word.length).fill('_').slice(1).join(' ');};
+  panel.querySelector('[data-act="check"]').onclick=()=>{if(questionAnswered)return;const typed=cleanLetters(input.value);if(!typed){review.innerHTML='Type what you heard, or record your spelling first. 😊';return;}review.innerHTML='<b>Your answer:</b> '+spellLetters(typed)+'<br><b>Correct:</b> '+spellLetters(word)+renderLetterCheck(word,typed);markResult(typed===word,null);};
+  panel.querySelector('[data-act="record"]').onclick=e=>startSpellingRecording(word,review,e.currentTarget);
+  setTimeout(()=>speak(word,'en-US',panel.querySelector('[data-act="word"]')),350);
+}
+
 _preloadAudio();
 </script>
 </body>
