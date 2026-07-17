@@ -610,7 +610,7 @@ function showSpellingReview(box,word,transcript,audioUrl,summaryBox){
   addSpellingSummary(word,r,transcript);
   renderSpellingSummary(summaryBox);
   const heard=r.heard?spellLetters(r.heard):'No transcript';
-  box.innerHTML='<b>Review:</b>'+(audioUrl?'<audio controls src="'+audioUrl+'"></audio>':'')+
+  box.style.display='block';box.innerHTML='<b>Review:</b>'+(audioUrl?'<audio controls src="'+audioUrl+'"></audio>':'')+
     '<div>🎧 I heard: <b>'+((transcript||'').trim()||'No automatic transcript')+'</b></div>'+ 
     '<div>🐝 Spelling heard: <b>'+heard+'</b></div>'+ 
     '<div>✅ Correct spelling: <b>'+spellLetters(word)+'</b></div>'+renderLetterCheck(word,r.heard||'')+
@@ -619,15 +619,15 @@ function showSpellingReview(box,word,transcript,audioUrl,summaryBox){
 }
 async function startSpellingRecording(word,box,btn,summaryBox){
   if(spellingRecording){stopSpellingRecording();return;}
-  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){box.innerHTML='🎙️ Microphone is not available here. Try opening the page with https/localhost.';return;}
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){box.style.display='block';box.innerHTML='🎙️ Microphone is not available here. Try opening the page with https/localhost.';return;}
   try{spellingStream=await navigator.mediaDevices.getUserMedia({audio:true});}
-  catch(e){box.innerHTML='🎙️ I could not open the microphone. If this file is local, open it with https or localhost.';return;}
+  catch(e){box.style.display='block';box.innerHTML='🎙️ I could not open the microphone. If this file is local, open it with https or localhost.';return;}
   spellingChunks=[];spellingTranscript='';spellingRecorder=new MediaRecorder(spellingStream);
   spellingRecorder.ondataavailable=e=>{if(e.data&&e.data.size)spellingChunks.push(e.data);};
   spellingRecorder.onstop=()=>{spellingRecording=false;btn.classList.remove('recording');btn.textContent='🎙️ Record spelling';if(spellingStream)spellingStream.getTracks().forEach(t=>t.stop());const blob=new Blob(spellingChunks,{type:spellingRecorder.mimeType||'audio/webm'});const url=URL.createObjectURL(blob);showSpellingReview(box,word,spellingTranscript,url,summaryBox);};
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(SR){spellingRecognition=new SR();spellingRecognition.lang='en-US';spellingRecognition.continuous=true;spellingRecognition.interimResults=true;spellingRecognition.onresult=e=>{let t='';for(let i=0;i<e.results.length;i++)t+=e.results[i][0].transcript+' ';spellingTranscript=t.trim();box.innerHTML='🎙️ Recording... say only the letters: <b>'+spellLetters(word)+'</b><br>Heard so far: '+(spellingTranscript||'...');};spellingRecognition.onerror=()=>{};try{spellingRecognition.start();}catch(e){}}
-  spellingRecorder.start();spellingRecording=true;btn.classList.add('recording');btn.textContent='⏹️ Stop';box.innerHTML='🎙️ Recording... say the letters slowly: <b>'+spellLetters(word)+'</b>';
+  if(SR){spellingRecognition=new SR();spellingRecognition.lang='en-US';spellingRecognition.continuous=true;spellingRecognition.interimResults=true;spellingRecognition.onresult=e=>{let t='';for(let i=0;i<e.results.length;i++)t+=e.results[i][0].transcript+' ';spellingTranscript=t.trim();box.style.display='block';box.innerHTML='🎙️ Recording... say only the letters: <b>'+spellLetters(word)+'</b><br>Heard so far: '+(spellingTranscript||'...');};spellingRecognition.onerror=()=>{};try{spellingRecognition.start();}catch(e){}}
+  spellingRecorder.start();spellingRecording=true;btn.classList.add('recording');btn.textContent='⏹️ Stop';box.style.display='block';box.innerHTML='🎙️ Recording... say the letters slowly: <b>'+spellLetters(word)+'</b>';
 }
 function stopSpellingRecording(){try{if(spellingRecognition)spellingRecognition.stop();}catch(e){}try{if(spellingRecorder&&spellingRecorder.state!=='inactive')spellingRecorder.stop();}catch(e){}}
 
@@ -671,7 +671,7 @@ function buildSpellingBee(stage){
   const word=nextSpellingWord();
   const pic=SPELLING_PICTURES[word]||'🐝';
   const panel=document.createElement('div');panel.className='spellPanel';
-  panel.innerHTML='<div class="spellBadge">🐝 Spelling Bee practice</div><div class="spellPicture"><div class="spellEmoji">'+pic+'</div><div class="currentWord">'+word+'</div></div><div class="spellWordBox"><b>Best way to practice:</b><ol class="spellSteps"><li>Look at the picture and word.</li><li>Listen to the word and each letter.</li><li>Cover the word and spell it out loud.</li><li>Record, listen again, and review the match level.</li></ol></div><div class="spellActions"><button class="spellBtn" data-act="word">🔊 Word</button><button class="spellBtn" data-act="letters">🔤 Letters</button><button class="spellBtn" data-act="hide">🙈 Cover word</button></div><div class="spellHint"></div><div class="spellActions"><button class="recSpellBtn" data-act="record">🎙️ Record spelling</button></div><div class="spellReview">Say the letters slowly. Example: A - P - P - L - E.</div><div class="spellSummary"></div>';
+  panel.innerHTML='<div class="spellBadge">🐝 Spelling Bee practice</div><div class="spellPicture"><div class="spellEmoji">'+pic+'</div><div class="currentWord">'+word+'</div></div><div class="spellActions"><button class="spellBtn" data-act="word">🔊 Word</button><button class="spellBtn" data-act="letters">🔤 Letters</button><button class="spellBtn" data-act="hide">🙈 Cover word</button></div><div class="spellHint"></div><div class="spellActions"><button class="recSpellBtn" data-act="record">🎙️ Record spelling</button></div><div class="spellReview" style="display:none;"></div><div class="spellSummary"></div>';
   stage.appendChild(panel);
   const hint=panel.querySelector('.spellHint'),review=panel.querySelector('.spellReview'),summaryBox=panel.querySelector('.spellSummary'),wordBox=panel.querySelector('.currentWord');
   renderSpellingSummary(summaryBox);
