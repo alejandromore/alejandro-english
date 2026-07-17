@@ -562,7 +562,7 @@ function buildCanIHave(stage){
 
 /* ================= SPELLING BEE ================= */
 const SPELLING_WORDS=['apple','bag','birthday','book','breakfast','brother','cake','cat','chair','chicken','classroom','cloud','desk','dog','door','duck','egg','family','favorite','fish','flower','frog','garden','gift','goat','grass','green','hand','happy','hat','house','ice','jam','juice','kite','lion','milk','moon','mouse','owl','pencil','picture','playground','rabbit','rainbow','school','shoulder','sister','teacher','weather'];
-const SPELLING_PICTURES={apple:'🍎',bag:'🎒',birthday:'🎂',book:'📘',breakfast:'🥞',brother:'👦',cake:'🍰',cat:'🐱',chair:'🪑',chicken:'🐔',classroom:'🏫',cloud:'☁️',desk:'🪑',dog:'🐶',door:'🚪',duck:'🦆',egg:'🥚',family:'👨‍👩‍👧',favorite:'⭐',fish:'🐟',flower:'🌸',frog:'🐸',garden:'🌷',gift:'🎁',goat:'🐐',grass:'🌱',green:'🟢',hand:'✋',happy:'😊',hat:'🧢',house:'🏠',ice:'🧊',jam:'🍓',juice:'🧃',kite:'🪁',lion:'🦁',milk:'🥛',moon:'🌙',mouse:'🐭',owl:'🦉',pencil:'✏️',picture:'🖼️',playground:'🛝',rabbit:'🐰',rainbow:'🌈',school:'🏫',shoulder:'💪',sister:'👧',teacher:'👩‍🏫',weather:'⛅'};
+const SPELLING_PICTURES={apple:'🍎',bag:'🎒',birthday:'🎉🎂',book:'📘',breakfast:'🥞',brother:'👦',cake:'🍰',cat:'🐱',chair:'🪑',chicken:'🐔',classroom:'👩‍🏫📚',cloud:'☁️',desk:'📚✏️',dog:'🐶',door:'🚪',duck:'🦆',egg:'🥚',family:'👨‍👩‍👧',favorite:'⭐',fish:'🐟',flower:'🌸',frog:'🐸',garden:'🌷',gift:'🎁',goat:'🐐',grass:'🌱',green:'🟢',hand:'✋',happy:'😊',hat:'🧢',house:'🏠',ice:'🧊',jam:'🍓',juice:'🧃',kite:'🪁',lion:'🦁',milk:'🥛',moon:'🌙',mouse:'🐭',owl:'🦉',pencil:'✏️',picture:'🖼️',playground:'🛝',rabbit:'🐰',rainbow:'🌈',school:'🏫',shoulder:'🤷',sister:'👧',teacher:'👩‍🏫',weather:'⛅'};
 let spellingRecorder=null,spellingStream=null,spellingChunks=[],spellingRecognition=null,spellingTranscript='',spellingRecording=false;
 function nextSpellingWord(){if(!spellingQueue.length)spellingQueue=shuffle(SPELLING_WORDS);return spellingQueue.shift();}
 function spellLetters(word){return word.toUpperCase().split('').join(' - ');}
@@ -672,7 +672,7 @@ function buildSpellingBee(stage){
   const pic=SPELLING_PICTURES[word]||'🐝';
   const panel=document.createElement('div');panel.className='spellPanel';
   const hiddenWord=Array(word.length).fill('_').join(' ');
-  panel.innerHTML='<div class="spellBadge">🐝 Spelling Bee practice</div><div class="spellPicture"><div class="spellEmoji">'+pic+'</div><div class="currentWord">'+hiddenWord+'</div></div><div class="spellActions"><button class="spellBtn" data-act="word">🔊 Word</button><button class="spellBtn" data-act="letters">🔤 Letters</button><button class="spellBtn" data-act="hide">👀 Show word</button></div><div class="spellHint"></div><div class="spellActions"><button class="recSpellBtn" data-act="record">🎙️ Record spelling</button></div><div class="spellReview" style="display:none;"></div><div class="spellSummary"></div>';
+  panel.innerHTML='<div class="spellBadge">🐝 Spelling Bee practice</div><div class="spellPicture"><div class="spellEmoji">'+pic+'</div><div class="currentWord">'+hiddenWord+'</div></div><div class="spellActions"><button class="spellBtn" data-act="word">🔊 Word</button><button class="spellBtn" data-act="letters">🔤 Letters</button><button class="spellBtn" data-act="hide">👀 Show word</button><button class="spellBtn" data-act="next">➡️ Next word</button></div><div class="spellHint"></div><div class="spellActions"><button class="recSpellBtn" data-act="record">🎙️ Record spelling</button></div><div class="spellReview" style="display:none;"></div><div class="spellSummary"></div>';
   stage.appendChild(panel);
   const hint=panel.querySelector('.spellHint'),review=panel.querySelector('.spellReview'),summaryBox=panel.querySelector('.spellSummary'),wordBox=panel.querySelector('.currentWord');
   renderSpellingSummary(summaryBox);
@@ -680,6 +680,7 @@ function buildSpellingBee(stage){
   panel.querySelector('[data-act="letters"]').onclick=e=>speakSpellingLetters(word,e.currentTarget);
   panel.querySelector('[data-act="hide"]').onclick=e=>{const hidden=wordBox.textContent.indexOf('_')>=0;wordBox.textContent=hidden?word:hiddenWord;e.currentTarget.textContent=hidden?'🙈 Cover word':'👀 Show word';hint.textContent=hidden?'Now you can read it.':'Now spell it from memory!';};
   panel.querySelector('[data-act="record"]').onclick=e=>startSpellingRecording(word,review,e.currentTarget,summaryBox);
+  panel.querySelector('[data-act="next"]').onclick=()=>{try{if('speechSynthesis' in window)window.speechSynthesis.cancel();}catch(e){}if(activeSpellTtsBtn)setTtsButton(activeSpellTtsBtn,false);if(spellingRecording)stopSpellingRecording();nextQuestion();};
   setTimeout(()=>speakSpellingWord(word,panel.querySelector('[data-act="word"]')),350);
 }
 
