@@ -569,7 +569,6 @@ function buildCanIHave(stage){
 /* ================= SPELLING BEE ================= */
 const SPELLING_WORDS=['apple','bag','birthday','book','breakfast','brother','cake','cat','chair','chicken','classroom','cloud','desk','dog','door','duck','egg','family','favorite','fish','flower','frog','garden','gift','goat','grass','green','hand','happy','hat','house','ice','jam','juice','kite','lion','milk','moon','mouse','owl','pencil','picture','playground','rabbit','rainbow','school','shoulder','sister','teacher','weather'];
 const SPELLING_PICTURES={apple:'🍎',bag:'🎒',birthday:'🎉🎂',book:'📘',breakfast:'🥞',brother:'👦',cake:'🍰',cat:'🐱',chair:'🪑',chicken:'🐔',classroom:'👩‍🏫📚',cloud:'☁️',desk:'🖥️📚',dog:'🐶',door:'🚪',duck:'🦆',egg:'🥚',family:'👨‍👩‍👧',favorite:'⭐',fish:'🐟',flower:'🌸',frog:'🐸',garden:'🌷',gift:'🎁',goat:'🐐',grass:'🌱',green:'🟢',hand:'✋',happy:'😊',hat:'🧢',house:'🏠',ice:'🧊',jam:'🫙🍓',juice:'🥤🍊',kite:'🪁',lion:'🦁',milk:'🥛',moon:'🌙',mouse:'🐭',owl:'🦉',pencil:'✏️',picture:'🖼️',playground:'🛝',rabbit:'🐰',rainbow:'🌈',school:'🏫',shoulder:'🤷‍♀️↖️↗️',sister:'👧',teacher:'👩‍🏫',weather:'⛅'};
-let spellingRecognition=null,spellingTranscript='',spellingRecording=false;
 function nextSpellingWord(){if(!spellingQueue.length)spellingQueue=shuffle(SPELLING_WORDS);return spellingQueue.shift();}
 function spellLetters(word){return word.toUpperCase().split('').join(' - ');}
 function speakWordAndLetters(word,btn){speak(word+'. '+word.toUpperCase().split('').join('. ')+'. '+word+'.','en-US',btn);}
@@ -686,30 +685,58 @@ function showSpellingReview(box,word,transcript,audioUrl,summaryBox){
   addSpellingSummary(word,result,transcript);
   renderSpellingSummary(summaryBox);
   const heard=result.heard?spellLetters(result.heard):'No letters heard';
-  const browserHeard=(transcript||'').trim()||'No automatic transcript';
+  const heardText=(transcript||'').trim()||'No speech detected';
   const msg=result.ok?'Great spelling! 🌟':'Good try! Practice the red letters and record again. 💪';
-  const diag=(!transcript||!transcript.trim())?'<div style="font-size:12px;margin-top:6px;color:#8B4513;">Diagnostics: mic heard sound = '+(spellingHeardSound?'yes':'no')+(spellingLastError?', last error = '+spellingLastError:', no errors reported')+'</div>':'';
-  box.style.display='block';box.innerHTML='<b>Automatic spelling check:</b>'+(audioUrl?'<audio controls src="'+audioUrl+'"></audio>':'')+
-    '<div>🎧 Browser heard: <b>'+browserHeard+'</b></div>'+
+  box.style.display='block';box.innerHTML='<b>Spelling check:</b>'+(audioUrl?'<audio controls src="'+audioUrl+'"></audio>':'')+
+    '<div>🧠 I heard: <b>'+heardText+'</b></div>'+
     '<div>🐝 Letters heard: <b>'+heard+'</b></div>'+
     '<div>✅ Word letters: <b>'+spellLetters(word)+'</b></div>'+renderLetterCheck(word,result)+
-    '<div style="margin-top:8px;">Score: <b>'+scoreLabel(result.score)+'</b>. '+msg+'</div>'+diag;
+    '<div style="margin-top:8px;">Score: <b>'+scoreLabel(result.score)+'</b>. '+msg+'</div>';
   if(!questionAnswered)markResult(result.ok,null);
 }
-let spellingFinalPieces=[],spellingRestartCount=0,spellingAutoStopTimer=null,spellingActiveBox=null,spellingActiveWord='',spellingActiveSummaryBox=null,spellingActiveBtn=null,spellingStopping=false,spellingHeardSound=false,spellingLastError='',spellingNoAudioStreak=0,spellingRestartTimer=null,spellingSessionStartedAt=0;
-function spellingListenText(word){return '🎙️ Listening... spell only the letters: <b>'+spellLetters(word)+'</b><br><small>Wait a second, then say each letter with a little pause.</small>';}
-function finishSpellingRecording(){
-  if(spellingStopping)return;spellingStopping=true;
-  spellingRecording=false;
-  if(spellingAutoStopTimer){clearTimeout(spellingAutoStopTimer);spellingAutoStopTimer=null;}
-  if(spellingRestartTimer){clearTimeout(spellingRestartTimer);spellingRestartTimer=null;}
-  if(spellingActiveBtn){spellingActiveBtn.classList.remove('recording');spellingActiveBtn.textContent='🎙️ Record spelling';}
-  const box=spellingActiveBox,word=spellingActiveWord,summaryBox=spellingActiveSummaryBox;
-  setTimeout(()=>{if(box)showSpellingReview(box,word,spellingTranscript,null,summaryBox);},350);
+/* Native SpeechRecognition kept starting and stopping instantly on some Android phones,
+   even with the mic allowed. Instead we record with MediaRecorder and transcribe fully
+   offline with a small Whisper model in a Web Worker — the same approach voice-coach
+   uses for its recordings — so nothing depends on the browser's live speech service. */
+var _spellingAsrWorker=null,_spellingAsrSeq=0,_spellingAsrJobs={};
+function getSpellingAsrWorker(){
+  if(_spellingAsrWorker)return _spellingAsrWorker;
+  var src='import{pipeline}from"https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.5.2";var m=null;async function M(p){if(m)return m;m=await pipeline("automatic-speech-recognition","Xenova/whisper-tiny.en",{dtype:"q8",progress_callback:p});return m;}self.onmessage=async(e)=>{try{var a=await M(function(p){if(p&&p.status==="progress"&&p.file)self.postMessage({id:e.data.id,type:"progress",progress:p.progress||0});});var o=await a(e.data.audio);self.postMessage({id:e.data.id,type:"result",text:(o&&o.text)||""});}catch(err){self.postMessage({id:e.data.id,type:"error",error:(err&&err.message)||String(err)});}};';
+  var url=URL.createObjectURL(new Blob([src],{type:'text/javascript'}));
+  _spellingAsrWorker=new Worker(url,{type:'module'});
+  _spellingAsrWorker.onmessage=function(e){
+    var job=_spellingAsrJobs[e.data.id];if(!job)return;
+    if(e.data.type==='progress'){if(job.onProgress)job.onProgress(e.data.progress);return;}
+    delete _spellingAsrJobs[e.data.id];
+    if(e.data.type==='error')job.reject(new Error(e.data.error));
+    else job.resolve(e.data.text||'');
+  };
+  _spellingAsrWorker.onerror=function(){for(var k in _spellingAsrJobs){_spellingAsrJobs[k].reject(new Error('voice model worker error'));}_spellingAsrJobs={};_spellingAsrWorker=null;};
+  return _spellingAsrWorker;
 }
-function spellingStatusLine(word,extra){
-  return spellingListenText(word)+'<br><small>Mic: '+(spellingHeardSound?'🎤 hearing sound':'…waiting for sound')+(spellingLastError?' · last error: '+spellingLastError:'')+'</small>'+(extra?'<br>'+extra:'');
+function transcribeSpellingAudio(audioFloat32,onProgress){
+  return new Promise(function(resolve,reject){
+    var w;try{w=getSpellingAsrWorker();}catch(e){reject(e);return;}
+    var id=++_spellingAsrSeq;
+    _spellingAsrJobs[id]={resolve:resolve,reject:reject,onProgress:onProgress};
+    w.postMessage({id:id,audio:audioFloat32});
+  });
 }
+async function decodeSpellingAudioTo16k(blob){
+  const buf=await blob.arrayBuffer();
+  const tmp=new (window.AudioContext||window.webkitAudioContext)();
+  const decoded=await tmp.decodeAudioData(buf);
+  tmp.close();
+  const offline=new OfflineAudioContext(1,Math.max(1,Math.ceil(decoded.duration*16000)),16000);
+  const src=offline.createBufferSource();src.buffer=decoded;src.connect(offline.destination);src.start();
+  const rendered=await offline.startRendering();
+  const audio=rendered.getChannelData(0);
+  let peak=0;for(let i=0;i<audio.length;i++){const a=Math.abs(audio[i]);if(a>peak)peak=a;}
+  if(peak>0.0015&&peak<0.75){const g=Math.min(10,0.95/peak);for(let i=0;i<audio.length;i++)audio[i]*=g;}
+  return {audio,duration:decoded.duration};
+}
+let spellingStream=null,spellingRecorder=null,spellingChunks=[],spellingRecording=false,spellingSessionStartedAt=0,spellingAutoStopTimer=null,spellingActiveBox=null,spellingActiveWord='',spellingActiveSummaryBox=null,spellingActiveBtn=null;
+function spellingListenText(word){return '🎙️ Recording... spell the letters slowly: <b>'+spellLetters(word)+'</b><br><small>Press Stop when you are done.</small>';}
 async function startSpellingRecording(word,box,btn,summaryBox){
   if(spellingRecording){
     // On some phones a single tap fires the click handler twice; ignore the
@@ -717,65 +744,59 @@ async function startSpellingRecording(word,box,btn,summaryBox){
     if(Date.now()-spellingSessionStartedAt<700)return;
     stopSpellingRecording();return;
   }
-  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!SR){box.style.display='block';box.innerHTML='🎙️ Voice check is not supported in this browser. Try Chrome on a phone or computer.';return;}
-  if(location.protocol==='file:'){
+  const looksLocal=!window.isSecureContext||location.protocol==='content:'||location.protocol==='file:';
+  const md=navigator.mediaDevices;
+  if(looksLocal||!md||!md.getUserMedia){
     box.style.display='block';
-    box.innerHTML='⚠️ This page is open as a local file (file://). Voice check usually needs the page to be opened from a website address (https://...) or "localhost", not from a file on your device. Ask an adult to host this page (for example with GitHub Pages) and open it from that link. 🌐';
+    box.innerHTML='⚠️ The microphone needs this page to be opened from a website address (https://...), not a local file. Ask an adult to open it from the online link.';
     return;
   }
-  spellingTranscript='';spellingFinalPieces=[];spellingRestartCount=0;spellingStopping=false;spellingHeardSound=false;spellingLastError='';spellingNoAudioStreak=0;
+  let stream;
+  try{ stream=await md.getUserMedia({audio:true}); }
+  catch(err){
+    let msg='🎙️ I could not open the microphone. Please allow microphone access for this site and try again.';
+    if(err&&err.name==='NotFoundError')msg='🎙️ No microphone was found on this device.';
+    box.style.display='block';box.innerHTML=msg;
+    return;
+  }
+  spellingStream=stream;spellingChunks=[];
   spellingActiveBox=box;spellingActiveWord=word;spellingActiveSummaryBox=summaryBox;spellingActiveBtn=btn;
-  spellingRecording=true;spellingSessionStartedAt=Date.now();btn.classList.add('recording');btn.textContent='⏹️ Stop';
-  box.style.display='block';box.innerHTML=spellingStatusLine(word);
-  const startRecognizer=()=>{
-    let gotAudioThisRound=false;
-    spellingRecognition=new SR();spellingRecognition.lang='en-US';spellingRecognition.continuous=true;spellingRecognition.interimResults=true;spellingRecognition.maxAlternatives=1;
-    spellingRecognition.onaudiostart=()=>{gotAudioThisRound=true;spellingHeardSound=true;spellingNoAudioStreak=0;if(spellingActiveBox)spellingActiveBox.innerHTML=spellingStatusLine(word);};
-    spellingRecognition.onresult=e=>{
-      gotAudioThisRound=true;spellingHeardSound=true;spellingNoAudioStreak=0;
-      let interim='';
-      for(let i=e.resultIndex;i<e.results.length;i++){
-        const res=e.results[i],txt=(res[0]&&res[0].transcript||'').trim();
-        if(res.isFinal){if(txt)spellingFinalPieces.push(txt);}else interim+=' '+txt;
-      }
-      spellingTranscript=(spellingFinalPieces.join(' ')+' '+interim).trim();
-      if(spellingActiveBox)spellingActiveBox.innerHTML=spellingStatusLine(word,'Heard so far: '+(spellingTranscript||'...'));
-    };
-    spellingRecognition.onerror=e=>{
-      spellingLastError=e.error||'unknown';
-      if(e.error==='no-speech'||e.error==='aborted'){if(spellingActiveBox)spellingActiveBox.innerHTML=spellingStatusLine(word);return;}
-      if(e.error==='not-allowed'||e.error==='service-not-allowed'){
-        spellingRecording=false;if(spellingActiveBtn){spellingActiveBtn.classList.remove('recording');spellingActiveBtn.textContent='🎙️ Record spelling';}
-        if(spellingActiveBox)spellingActiveBox.innerHTML='🔒 The microphone is blocked for this site (error: '+e.error+'). Tap the 🔒 or ⓘ icon next to the address bar, open <b>Permissions</b> (or <b>Site settings</b>), set <b>Microphone</b> to <b>Allow</b>, then reload this page and try again.';
-        return;
-      }
-      if(spellingActiveBox)spellingActiveBox.innerHTML=spellingStatusLine(word,'<small>Still listening after an error: '+e.error+'</small>');
-    };
-    spellingRecognition.onend=()=>{
-      if(!gotAudioThisRound)spellingNoAudioStreak++;
-      if(!spellingRecording){finishSpellingRecording();return;}
-      if(spellingNoAudioStreak>=6){
-        spellingRecording=false;if(spellingActiveBtn){spellingActiveBtn.classList.remove('recording');spellingActiveBtn.textContent='🎙️ Record spelling';}
-        if(spellingActiveBox)spellingActiveBox.innerHTML='🎙️ The microphone never started listening on this device. Try a different browser (Chrome works best) or check the microphone permission for this site. (last error: '+(spellingLastError||'none')+')';
-        return;
-      }
-      if(spellingRestartCount<40){
-        spellingRestartCount++;
-        // Android needs a short pause before restarting recognition, otherwise it can silently fail to start.
-        spellingRestartTimer=setTimeout(()=>{if(spellingRecording){try{startRecognizer();}catch(e){}}},250);
-      }
-    };
-    try{spellingRecognition.start();}catch(e){spellingLastError=(e&&e.message)||'start failed';spellingNoAudioStreak++;}
+  spellingRecorder=new MediaRecorder(stream);
+  spellingRecorder.ondataavailable=e=>{if(e.data&&e.data.size)spellingChunks.push(e.data);};
+  spellingRecorder.onstop=()=>{
+    if(spellingStream){spellingStream.getTracks().forEach(t=>t.stop());spellingStream=null;}
+    const blob=new Blob(spellingChunks,{type:spellingRecorder.mimeType||'audio/webm'});
+    finishSpellingRecording(blob);
   };
-  startRecognizer();
-  spellingAutoStopTimer=setTimeout(()=>{if(spellingRecording)stopSpellingRecording();},15000);
+  spellingRecorder.start();
+  spellingRecording=true;spellingSessionStartedAt=Date.now();
+  btn.classList.add('recording');btn.textContent='⏹️ Stop';
+  box.style.display='block';box.innerHTML=spellingListenText(word);
+  spellingAutoStopTimer=setTimeout(()=>{if(spellingRecording)stopSpellingRecording();},12000);
 }
 function stopSpellingRecording(){
+  if(!spellingRecording)return;
   spellingRecording=false;
-  if(spellingRestartTimer){clearTimeout(spellingRestartTimer);spellingRestartTimer=null;}
-  try{if(spellingRecognition){spellingRecognition.onend=null;spellingRecognition.stop();}}catch(e){}
-  finishSpellingRecording();
+  if(spellingAutoStopTimer){clearTimeout(spellingAutoStopTimer);spellingAutoStopTimer=null;}
+  if(spellingActiveBtn){spellingActiveBtn.classList.remove('recording');spellingActiveBtn.textContent='🎙️ Record spelling';}
+  try{if(spellingRecorder&&spellingRecorder.state!=='inactive')spellingRecorder.stop();}catch(e){}
+}
+async function finishSpellingRecording(blob){
+  const box=spellingActiveBox,word=spellingActiveWord,summaryBox=spellingActiveSummaryBox;
+  if(!box)return;
+  const audioUrl=URL.createObjectURL(blob);
+  box.style.display='block';box.innerHTML='🧠 Listening to your spelling...';
+  try{
+    const {audio,duration}=await decodeSpellingAudioTo16k(blob);
+    if(duration<0.3){
+      box.innerHTML='🎙️ That was too short. Press record, spell the letters slowly, then press Stop.';
+      return;
+    }
+    const text=await transcribeSpellingAudio(audio,(pct)=>{box.innerHTML='📥 Loading voice model... '+Math.round(pct)+'%<br><small>This only happens the first time.</small>';});
+    showSpellingReview(box,word,text,audioUrl,summaryBox);
+  }catch(err){
+    box.innerHTML='🎙️ I could not check your spelling this time ('+((err&&err.message)||'error')+'). Try recording again.';
+  }
 }
 
 /* Voice-coach style TTS for spelling: system speechSynthesis + English voice selection.
