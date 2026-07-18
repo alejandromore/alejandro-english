@@ -731,6 +731,16 @@ async function startSpellingRecording(word,box,btn,summaryBox){
     box.innerHTML='⚠️ This page is open as a local file (file://). Voice check usually needs the page to be opened from a website address (https://...) or "localhost", not from a file on your device. Ask an adult to host this page (for example with GitHub Pages) and open it from that link. 🌐';
     return;
   }
+  if(navigator.permissions&&navigator.permissions.query){
+    try{
+      const status=await navigator.permissions.query({name:'microphone'});
+      if(status.state==='denied'){
+        box.style.display='block';
+        box.innerHTML='🔒 The microphone is blocked for this site. Tap the 🔒 or ⓘ icon next to the address bar, open <b>Permissions</b> (or <b>Site settings</b>), set <b>Microphone</b> to <b>Allow</b>, then reload this page and try again.';
+        return;
+      }
+    }catch(e){}
+  }
   spellingTranscript='';spellingFinalPieces=[];spellingRestartCount=0;spellingStopping=false;spellingHeardSound=false;spellingLastError='';spellingNoAudioStreak=0;
   spellingActiveBox=box;spellingActiveWord=word;spellingActiveSummaryBox=summaryBox;spellingActiveBtn=btn;
   spellingRecording=true;spellingSessionStartedAt=Date.now();btn.classList.add('recording');btn.textContent='⏹️ Stop';
@@ -754,7 +764,7 @@ async function startSpellingRecording(word,box,btn,summaryBox){
       if(e.error==='no-speech'||e.error==='aborted'){if(spellingActiveBox)spellingActiveBox.innerHTML=spellingStatusLine(word);return;}
       if(e.error==='not-allowed'||e.error==='service-not-allowed'){
         spellingRecording=false;if(spellingActiveBtn){spellingActiveBtn.classList.remove('recording');spellingActiveBtn.textContent='🎙️ Record spelling';}
-        if(spellingActiveBox)spellingActiveBox.innerHTML='🎙️ Please allow the microphone so I can check your spelling. (error: '+e.error+')';
+        if(spellingActiveBox)spellingActiveBox.innerHTML='🔒 The microphone is blocked for this site (error: '+e.error+'). Tap the 🔒 or ⓘ icon next to the address bar, open <b>Permissions</b> (or <b>Site settings</b>), set <b>Microphone</b> to <b>Allow</b>, then reload this page and try again.';
         return;
       }
       if(spellingActiveBox)spellingActiveBox.innerHTML=spellingStatusLine(word,'<small>Still listening after an error: '+e.error+'</small>');
