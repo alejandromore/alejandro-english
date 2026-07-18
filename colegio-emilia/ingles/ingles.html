@@ -695,14 +695,15 @@ function showSpellingReview(box,word,transcript,audioUrl,summaryBox){
   const heard=result.heard?spellLetters(result.heard):'No letters heard';
   const browserHeard=(transcript||'').trim()||'No automatic transcript';
   const msg=result.ok?'Great spelling! 🌟':'Good try! Practice the red letters and record again. 💪';
+  const diag=(!transcript||!transcript.trim())?'<div style="font-size:12px;margin-top:6px;color:#8B4513;">Diagnostics: mic heard sound = '+(spellingHeardSound?'yes':'no')+(spellingLastError?', last error = '+spellingLastError:', no errors reported')+'</div>':'';
   box.style.display='block';box.innerHTML='<b>Automatic spelling check:</b>'+(audioUrl?'<audio controls src="'+audioUrl+'"></audio>':'')+
-    '<div>🎧 Browser heard: <b>'+browserHeard+'</b></div>'+ 
-    '<div>🐝 Letters heard: <b>'+heard+'</b></div>'+ 
+    '<div>🎧 Browser heard: <b>'+browserHeard+'</b></div>'+
+    '<div>🐝 Letters heard: <b>'+heard+'</b></div>'+
     '<div>✅ Word letters: <b>'+spellLetters(word)+'</b></div>'+renderLetterCheck(word,result)+
-    '<div style="margin-top:8px;">Score: <b>'+scoreLabel(result.score)+'</b>. '+msg+'</div>';
+    '<div style="margin-top:8px;">Score: <b>'+scoreLabel(result.score)+'</b>. '+msg+'</div>'+diag;
   if(!questionAnswered)markResult(result.ok,null);
 }
-let spellingFinalPieces=[],spellingRestartCount=0,spellingAutoStopTimer=null,spellingActiveBox=null,spellingActiveWord='',spellingActiveSummaryBox=null,spellingActiveBtn=null,spellingStopping=false;
+let spellingFinalPieces=[],spellingRestartCount=0,spellingAutoStopTimer=null,spellingActiveBox=null,spellingActiveWord='',spellingActiveSummaryBox=null,spellingActiveBtn=null,spellingStopping=false,spellingHeardSound=false,spellingLastError='';
 function spellingListenText(word){return '🎙️ Listening... spell only the letters: <b>'+spellLetters(word)+'</b><br><small>Wait a second, then say each letter with a little pause.</small>';}
 function finishSpellingRecording(){
   if(spellingStopping)return;spellingStopping=true;
@@ -712,39 +713,50 @@ function finishSpellingRecording(){
   const box=spellingActiveBox,word=spellingActiveWord,summaryBox=spellingActiveSummaryBox;
   setTimeout(()=>{if(box)showSpellingReview(box,word,spellingTranscript,null,summaryBox);},350);
 }
+function spellingStatusLine(word,extra){
+  return spellingListenText(word)+'<br><small>Mic: '+(spellingHeardSound?'🎤 hearing sound':'…waiting for sound')+(spellingLastError?' · last error: '+spellingLastError:'')+'</small>'+(extra?'<br>'+extra:'');
+}
 async function startSpellingRecording(word,box,btn,summaryBox){
   if(spellingRecording){stopSpellingRecording();return;}
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
   if(!SR){box.style.display='block';box.innerHTML='🎙️ Voice check is not supported in this browser. Try Chrome on a phone or computer.';return;}
-  spellingTranscript='';spellingFinalPieces=[];spellingRestartCount=0;spellingStopping=false;
+  if(location.protocol==='file:'){
+    box.style.display='block';
+    box.innerHTML='⚠️ This page is open as a local file (file://). Voice check usually needs the page to be opened from a website address (https://...) or "localhost", not from a file on your device. Ask an adult to host this page (for example with GitHub Pages) and open it from that link. 🌐';
+    return;
+  }
+  spellingTranscript='';spellingFinalPieces=[];spellingRestartCount=0;spellingStopping=false;spellingHeardSound=false;spellingLastError='';
   spellingActiveBox=box;spellingActiveWord=word;spellingActiveSummaryBox=summaryBox;spellingActiveBtn=btn;
   spellingRecording=true;btn.classList.add('recording');btn.textContent='⏹️ Stop';
-  box.style.display='block';box.innerHTML=spellingListenText(word);
+  box.style.display='block';box.innerHTML=spellingStatusLine(word);
   const startRecognizer=()=>{
     spellingRecognition=new SR();spellingRecognition.lang='en-US';spellingRecognition.continuous=true;spellingRecognition.interimResults=true;spellingRecognition.maxAlternatives=1;
+    spellingRecognition.onaudiostart=()=>{spellingHeardSound=true;if(spellingActiveBox)spellingActiveBox.innerHTML=spellingStatusLine(word);};
     spellingRecognition.onresult=e=>{
+      spellingHeardSound=true;
       let interim='';
       for(let i=e.resultIndex;i<e.results.length;i++){
         const res=e.results[i],txt=(res[0]&&res[0].transcript||'').trim();
         if(res.isFinal){if(txt)spellingFinalPieces.push(txt);}else interim+=' '+txt;
       }
       spellingTranscript=(spellingFinalPieces.join(' ')+' '+interim).trim();
-      if(spellingActiveBox)spellingActiveBox.innerHTML=spellingListenText(word)+'<br>Heard so far: '+(spellingTranscript||'...');
+      if(spellingActiveBox)spellingActiveBox.innerHTML=spellingStatusLine(word,'Heard so far: '+(spellingTranscript||'...'));
     };
     spellingRecognition.onerror=e=>{
-      if(e.error==='no-speech'||e.error==='aborted')return;
+      spellingLastError=e.error||'unknown';
+      if(e.error==='no-speech'||e.error==='aborted'){if(spellingActiveBox)spellingActiveBox.innerHTML=spellingStatusLine(word);return;}
       if(e.error==='not-allowed'||e.error==='service-not-allowed'){
         spellingRecording=false;if(spellingActiveBtn){spellingActiveBtn.classList.remove('recording');spellingActiveBtn.textContent='🎙️ Record spelling';}
-        if(spellingActiveBox)spellingActiveBox.innerHTML='🎙️ Please allow the microphone so I can check your spelling.';
+        if(spellingActiveBox)spellingActiveBox.innerHTML='🎙️ Please allow the microphone so I can check your spelling. (error: '+e.error+')';
         return;
       }
-      if(e.error==='network'&&spellingActiveBox)spellingActiveBox.innerHTML=spellingListenText(word)+'<br><small>Weak connection, still listening...</small>';
+      if(spellingActiveBox)spellingActiveBox.innerHTML=spellingStatusLine(word,'<small>Still listening after an error: '+e.error+'</small>');
     };
     spellingRecognition.onend=()=>{
       if(spellingRecording&&spellingRestartCount<40){spellingRestartCount++;try{startRecognizer();}catch(e){}}
       else if(!spellingRecording){finishSpellingRecording();}
     };
-    try{spellingRecognition.start();}catch(e){}
+    try{spellingRecognition.start();}catch(e){spellingLastError=(e&&e.message)||'start failed';}
   };
   startRecognizer();
   spellingAutoStopTimer=setTimeout(()=>{if(spellingRecording)stopSpellingRecording();},15000);
