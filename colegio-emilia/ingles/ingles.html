@@ -703,7 +703,7 @@ function showSpellingReview(box,word,transcript,audioUrl,summaryBox){
     '<div style="margin-top:8px;">Score: <b>'+scoreLabel(result.score)+'</b>. '+msg+'</div>'+diag;
   if(!questionAnswered)markResult(result.ok,null);
 }
-let spellingFinalPieces=[],spellingRestartCount=0,spellingAutoStopTimer=null,spellingActiveBox=null,spellingActiveWord='',spellingActiveSummaryBox=null,spellingActiveBtn=null,spellingStopping=false,spellingHeardSound=false,spellingLastError='',spellingNoAudioStreak=0,spellingRestartTimer=null;
+let spellingFinalPieces=[],spellingRestartCount=0,spellingAutoStopTimer=null,spellingActiveBox=null,spellingActiveWord='',spellingActiveSummaryBox=null,spellingActiveBtn=null,spellingStopping=false,spellingHeardSound=false,spellingLastError='',spellingNoAudioStreak=0,spellingRestartTimer=null,spellingSessionStartedAt=0;
 function spellingListenText(word){return '🎙️ Listening... spell only the letters: <b>'+spellLetters(word)+'</b><br><small>Wait a second, then say each letter with a little pause.</small>';}
 function finishSpellingRecording(){
   if(spellingStopping)return;spellingStopping=true;
@@ -718,7 +718,12 @@ function spellingStatusLine(word,extra){
   return spellingListenText(word)+'<br><small>Mic: '+(spellingHeardSound?'🎤 hearing sound':'…waiting for sound')+(spellingLastError?' · last error: '+spellingLastError:'')+'</small>'+(extra?'<br>'+extra:'');
 }
 async function startSpellingRecording(word,box,btn,summaryBox){
-  if(spellingRecording){stopSpellingRecording();return;}
+  if(spellingRecording){
+    // On some phones a single tap fires the click handler twice; ignore the
+    // second call instead of instantly stopping what we just started.
+    if(Date.now()-spellingSessionStartedAt<700)return;
+    stopSpellingRecording();return;
+  }
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
   if(!SR){box.style.display='block';box.innerHTML='🎙️ Voice check is not supported in this browser. Try Chrome on a phone or computer.';return;}
   if(location.protocol==='file:'){
@@ -728,7 +733,7 @@ async function startSpellingRecording(word,box,btn,summaryBox){
   }
   spellingTranscript='';spellingFinalPieces=[];spellingRestartCount=0;spellingStopping=false;spellingHeardSound=false;spellingLastError='';spellingNoAudioStreak=0;
   spellingActiveBox=box;spellingActiveWord=word;spellingActiveSummaryBox=summaryBox;spellingActiveBtn=btn;
-  spellingRecording=true;btn.classList.add('recording');btn.textContent='⏹️ Stop';
+  spellingRecording=true;spellingSessionStartedAt=Date.now();btn.classList.add('recording');btn.textContent='⏹️ Stop';
   box.style.display='block';box.innerHTML=spellingStatusLine(word);
   const startRecognizer=()=>{
     let gotAudioThisRound=false;
