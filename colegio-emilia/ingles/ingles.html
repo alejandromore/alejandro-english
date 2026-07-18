@@ -606,21 +606,21 @@ function bestWindowCandidate(source,expected){
   }
   return best;
 }
-function lcsCount(a,b){
-  a=cleanLetters(a);b=cleanLetters(b);
-  const dp=Array(a.length+1).fill(0).map(()=>Array(b.length+1).fill(0));
-  for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)dp[i][j]=a[i-1]===b[j-1]?dp[i-1][j-1]+1:Math.max(dp[i-1][j],dp[i][j-1]);
-  return dp[a.length][b.length];
-}
-function friendlyScore(heard,expected){
-  heard=cleanLetters(heard);expected=cleanLetters(expected);
-  if(!heard||!expected)return 0;
-  if(heard===expected)return 1;
-  const edit=similarity(heard,expected);
-  const order=lcsCount(expected,heard)/expected.length;
-  let contains=heard.includes(expected)?1:0;
-  // For a 6-year-old, reward letters that are present and in order more than perfect ASR text.
-  return Math.max(edit, order*0.92, contains);
+function lcsAlign(expected,heard){
+  // For each letter in expected, find the matching index in heard that forms the
+  // longest ordered common subsequence, so a single missing/extra letter from
+  // shaky voice recognition doesn't misalign (and zero out) every letter after it.
+  const n=expected.length,m=heard.length;
+  const dp=Array(n+1).fill(0).map(()=>Array(m+1).fill(0));
+  for(let i=1;i<=n;i++)for(let j=1;j<=m;j++)dp[i][j]=expected[i-1]===heard[j-1]?dp[i-1][j-1]+1:Math.max(dp[i-1][j],dp[i][j-1]);
+  const matched=Array(n).fill(-1);
+  let i=n,j=m;
+  while(i>0&&j>0){
+    if(expected[i-1]===heard[j-1]){matched[i-1]=j-1;i--;j--;}
+    else if(dp[i-1][j]>=dp[i][j-1])i--;
+    else j--;
+  }
+  return matched;
 }
 function analyzeSpellingText(text,expected){
   // Automatic, flexible spelling-pronunciation check based on browser SpeechRecognition.
@@ -642,25 +642,18 @@ function analyzeSpellingText(text,expected){
 }
 function automaticLetterStatuses(expected,heard){
   expected=cleanLetters(expected);heard=cleanLetters(heard);
-  const used=Array(heard.length).fill(false), out=[];
-  // Green: the expected letter was pronounced in the expected position.
+  const matched=lcsAlign(expected,heard);
+  const used=Array(heard.length).fill(false);
+  matched.forEach(idx=>{if(idx>=0)used[idx]=true;});
+  const out=[];
+  // Green: the letter is part of the longest matching sequence, in order (small gaps allowed).
   for(let i=0;i<expected.length;i++){
-    const ch=expected[i];
-    if(heard[i]===ch){used[i]=true;out.push({ch,cls:'ok',note:'heard'});}
-    else out.push(null);
-  }
-  // Yellow: the expected letter was heard close by or somewhere else.
-  for(let i=0;i<expected.length;i++){
-    if(out[i])continue;
+    if(matched[i]>=0){out.push({ch:expected[i],cls:'ok',note:'heard'});continue;}
+    // Yellow: the letter was heard somewhere, just not in the main matched order.
     const ch=expected[i];let pos=-1;
-    for(let d=1;d<=2;d++){
-      const left=i-d,right=i+d;
-      if(left>=0&&!used[left]&&heard[left]===ch){pos=left;break;}
-      if(right<heard.length&&!used[right]&&heard[right]===ch){pos=right;break;}
-    }
-    if(pos<0){for(let j=0;j<heard.length;j++){if(!used[j]&&heard[j]===ch){pos=j;break;}}}
-    if(pos>=0){used[pos]=true;out[i]={ch,cls:'mid',note:'close'};}
-    else out[i]={ch,cls:'bad',note:'practice'};
+    for(let j=0;j<heard.length;j++){if(!used[j]&&heard[j]===ch){pos=j;break;}}
+    if(pos>=0){used[pos]=true;out.push({ch,cls:'mid',note:'close'});}
+    else out.push({ch,cls:'bad',note:'practice'});
   }
   return out;
 }
