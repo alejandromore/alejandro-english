@@ -722,6 +722,14 @@ function transcribeSpellingAudio(audioFloat32,onProgress){
     w.postMessage({id:id,audio:audioFloat32});
   });
 }
+var _spellingAsrWarmed=false;
+function warmSpellingAsr(){
+  // Loads the Whisper model in the background as soon as the page opens, so the
+  // "Loading voice model" wait doesn't happen right after the child records.
+  if(_spellingAsrWarmed)return;
+  _spellingAsrWarmed=true;
+  try{transcribeSpellingAudio(new Float32Array(1600)).catch(()=>{});}catch(e){}
+}
 async function decodeSpellingAudioTo16k(blob){
   const buf=await blob.arrayBuffer();
   const tmp=new (window.AudioContext||window.webkitAudioContext)();
@@ -853,6 +861,7 @@ function buildSpellingBee(stage){
 }
 
 _preloadAudio();
+setTimeout(warmSpellingAsr,1200);
 </script>
 </body>
 </html>
