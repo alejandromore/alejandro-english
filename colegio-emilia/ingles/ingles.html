@@ -415,7 +415,9 @@ const SVGS={
 /* NAVIGATION */
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
 function goHome(){showScreen('screen-home');}
-function startTopic(t){currentTopic=t;qIndex=0;stars=0;document.getElementById('starCount').textContent=stars;if(t==='spellingBee'){spellingQueue=shuffle(SPELLING_WORDS);spellingSummary=[];}document.getElementById('exTitle').textContent=TOPIC_META[t].title;document.getElementById('exSub').textContent=TOPIC_META[t].sub;showScreen('screen-exercise');loadQuestion();}
+function startTopic(t){currentTopic=t;qIndex=0;stars=0;document.getElementById('starCount').textContent=stars;if(t==='spellingBee'){spellingSummary=[];spellingLevel=null;document.getElementById('exTitle').textContent=TOPIC_META[t].title;document.getElementById('exSub').textContent=TOPIC_META[t].sub;showScreen('screen-exercise');showSpellingLevelSelection();return;}document.getElementById('exTitle').textContent=TOPIC_META[t].title;document.getElementById('exSub').textContent=TOPIC_META[t].sub;showScreen('screen-exercise');loadQuestion();}
+function showSpellingLevelSelection(){document.getElementById('progressFill').style.width='0%';document.getElementById('feedback').textContent='';document.getElementById('feedback').className='feedback';document.getElementById('continueBtn').style.display='none';var s=document.getElementById('stageBox');s.innerHTML='';var panel=document.createElement('div');panel.className='spellPanel';panel.innerHTML='<div class="spellBadge">Choose your level</div><div style="text-align:center;font-weight:800;color:#5E5578;margin:8px 0 4px;">Select a difficulty to start spelling practice</div><div style="display:flex;flex-direction:column;gap:14px;width:100%;max-width:340px;margin:6px auto 0;">'+'<button class="spellBtn" style="width:100%;font-size:20px;padding:16px;background:linear-gradient(160deg,var(--leaf),var(--leaf-deep));color:white;" onclick="selectSpellingLevel(\'basic\')"><div>Basic</div><small style="font-size:13px;font-weight:600;display:block;margin-top:4px;">Short words (3-4 letters): cat, dog, book...</small></button>'+'<button class="spellBtn" style="width:100%;font-size:20px;padding:16px;background:linear-gradient(160deg,var(--sun),var(--sun-deep));" onclick="selectSpellingLevel(\'intermediate\')"><div>Intermediate</div><small style="font-size:13px;font-weight:600;display:block;margin-top:4px;">Medium words (5-6 letters): apple, house, flower...</small></button>'+'<button class="spellBtn" style="width:100%;font-size:20px;padding:16px;background:linear-gradient(160deg,var(--coral),var(--coral-deep));color:white;" onclick="selectSpellingLevel(\'advanced\')"><div>Advanced</div><small style="font-size:13px;font-weight:600;display:block;margin-top:4px;">Long words (7+ letters): birthday, teacher, weather...</small></button>'+'</div>';s.appendChild(panel);}
+function selectSpellingLevel(level){spellingLevel=level;spellingQueue=shuffle(SPELLING_LEVELS[level].slice());spellingSummary=[];loadQuestion();}
 function updateProgress(){document.getElementById('progressFill').style.width=(qIndex/TOTAL_Q*100)+'%';}
 function loadQuestion(){questionAnswered=false;updateProgress();document.getElementById('feedback').textContent='';document.getElementById('feedback').className='feedback';document.getElementById('continueBtn').style.display='none';const s=document.getElementById('stageBox');s.innerHTML='';if(qIndex>=TOTAL_Q){return endGame();}const builders={funOnTheFarm:buildFunOnTheFarm,iLikeFood:buildILikeFood,questionsLike:buildQuestionsLike,canIHave:buildCanIHave,spellingBee:buildSpellingBee};builders[currentTopic](s);}
 function nextQuestion(){qIndex++;loadQuestion();}
@@ -569,7 +571,16 @@ function buildCanIHave(stage){
 /* ================= SPELLING BEE ================= */
 const SPELLING_WORDS=['apple','bag','birthday','book','breakfast','brother','cake','cat','chair','chicken','classroom','cloud','desk','dog','door','duck','egg','family','favorite','fish','flower','frog','garden','gift','goat','grass','green','hand','happy','hat','house','ice','jam','juice','kite','lion','milk','moon','mouse','owl','pencil','picture','playground','rabbit','rainbow','school','shoulder','sister','teacher','weather'];
 const SPELLING_PICTURES={apple:'🍎',bag:'🎒',birthday:'🎉🎂',book:'📘',breakfast:'🥞',brother:'👦',cake:'🍰',cat:'🐱',chair:'🪑',chicken:'🐔',classroom:'👩‍🏫📚',cloud:'☁️',desk:'🖥️📚',dog:'🐶',door:'🚪',duck:'🦆',egg:'🥚',family:'👨‍👩‍👧',favorite:'⭐',fish:'🐟',flower:'🌸',frog:'🐸',garden:'🌷',gift:'🎁',goat:'🐐',grass:'🌱',green:'🟢',hand:'✋',happy:'😊',hat:'🧢',house:'🏠',ice:'🧊',jam:'🫙🍓',juice:'🥤🍊',kite:'🪁',lion:'🦁',milk:'🥛',moon:'🌙',mouse:'🐭',owl:'🦉',pencil:'✏️',picture:'🖼️',playground:'🛝',rabbit:'🐰',rainbow:'🌈',school:'🏫',shoulder:'🤷‍♀️↖️↗️',sister:'👧',teacher:'👩‍🏫',weather:'⛅'};
-function nextSpellingWord(){if(!spellingQueue.length)spellingQueue=shuffle(SPELLING_WORDS);return spellingQueue.shift();}
+const SPELLING_LEVELS={
+  basic:['bag','cat','dog','egg','hat','ice','jam','owl','book','cake','desk','door','duck','fish','frog','gift','goat','hand','kite','lion','milk','moon'],
+  intermediate:['apple','chair','cloud','grass','green','happy','house','juice','mouse','family','flower','garden','pencil','rabbit','school','sister'],
+  advanced:['birthday','brother','chicken','picture','rainbow','teacher','weather','breakfast','classroom','favorite','playground','shoulder']
+};
+const SPELLING_SVGS={
+  desk:'<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><rect x="55" y="95" width="190" height="14" fill="#8B4513" rx="3"/><rect x="65" y="109" width="12" height="58" fill="#8B4513"/><rect x="223" y="109" width="12" height="58" fill="#8B4513"/><rect x="85" y="109" width="130" height="32" fill="#D4A574" rx="2" stroke="#8B4513" stroke-width="2"/><circle cx="150" cy="125" r="4" fill="#8B4513"/><rect x="75" y="72" width="42" height="23" fill="#FF6B5B" rx="2"/><rect x="78" y="64" width="36" height="8" fill="#4CAF6D" rx="2"/><rect x="200" y="62" width="6" height="33" fill="#333"/><path d="M193 62 L213 62 L206 48 Z" fill="#FFC93C"/><text x="150" y="185" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#8B4513" font-weight="600">Desk</text></svg>'
+};
+let spellingLevel=null;
+function nextSpellingWord(){if(!spellingQueue.length){var list=spellingLevel?SPELLING_LEVELS[spellingLevel]:SPELLING_WORDS;spellingQueue=shuffle(list);}return spellingQueue.shift();}
 function spellLetters(word){return word.toUpperCase().split('').join(' - ');}
 function speakWordAndLetters(word,btn){speak(word+'. '+word.toUpperCase().split('').join('. ')+'. '+word+'.','en-US',btn);}
 function cleanLetters(s){return (s||'').toLowerCase().replace(/[^a-z]/g,'');}
@@ -827,15 +838,20 @@ function speakSpellingSequence(parts,btn,rate){
   if(activeSpellTtsBtn&&activeSpellTtsBtn!==btn)setTtsButton(activeSpellTtsBtn,false);
   setTtsButton(btn,true);
   const voice=pickSpellingVoice();
-  let i=0;
+  let i=0,seqDone=false,seqTimer=null;
   const next=()=>{
-    if(i>=parts.length){setTtsButton(btn,false);return;}
+    if(seqDone)return;
+    if(i>=parts.length){seqDone=true;setTtsButton(btn,false);return;}
     const u=new SpeechSynthesisUtterance(parts[i++]);
     u.lang='en-US';u.rate=rate||0.72;u.pitch=1.05;if(voice)u.voice=voice;
-    u.onend=()=>setTimeout(next,170);
-    u.onerror=()=>setTimeout(next,170);
+    let advanced=false;
+    const advance=()=>{if(advanced||seqDone)return;advanced=true;seqTimer=setTimeout(next,170);};
+    u.onend=advance;
+    u.onerror=advance;
     window.speechSynthesis.speak(u);
   };
+  /* Safety: force-stop after 30s to prevent infinite loop on buggy browsers */
+  setTimeout(function(){if(!seqDone){seqDone=true;if(seqTimer)clearTimeout(seqTimer);try{window.speechSynthesis.cancel();}catch(e){}setTtsButton(btn,false);}},30000);
   next();
 }
 function speakSpellingWord(word,btn){speakSpellingSequence([word],btn,0.72);}
@@ -848,7 +864,7 @@ function buildSpellingBee(stage){
   const pic=SPELLING_PICTURES[word]||'🐝';
   const panel=document.createElement('div');panel.className='spellPanel';
   const hiddenWord=Array(word.length).fill('_').join(' ');
-  panel.innerHTML='<div class="spellBadge">🐝 Spelling Bee practice</div><div class="spellPicture"><div class="spellEmoji">'+pic+'</div><div class="currentWord">'+hiddenWord+'</div></div><div class="spellActions"><button class="spellBtn" data-act="word">🔊 Word</button><button class="spellBtn" data-act="letters">🔤 Letters</button><button class="spellBtn" data-act="hide">👀 Show word</button><button class="spellBtn" data-act="next">➡️ Next word</button></div><div class="spellHint"></div><div class="spellActions"><button class="recSpellBtn" data-act="record">🎙️ Record spelling</button></div><div class="spellReview" style="display:none;"></div><div class="spellSummary"></div>';
+  panel.innerHTML='<div class="spellBadge">🐝 Spelling Bee practice</div><div class="spellPicture">'+(SPELLING_SVGS[word]?'<div class="exSvg" style="max-width:200px;margin:0 auto;">'+SPELLING_SVGS[word]+'</div>':'<div class="spellEmoji">'+pic+'</div>')+'<div class="currentWord">'+hiddenWord+'</div></div><div class="spellActions"><button class="spellBtn" data-act="word">🔊 Word</button><button class="spellBtn" data-act="letters">🔤 Letters</button><button class="spellBtn" data-act="hide">👀 Show word</button><button class="spellBtn" data-act="next">➡️ Next word</button></div><div class="spellHint"></div><div class="spellActions"><button class="recSpellBtn" data-act="record">🎙️ Record spelling</button></div><div class="spellReview" style="display:none;"></div><div class="spellSummary"></div>';
   stage.appendChild(panel);
   const hint=panel.querySelector('.spellHint'),review=panel.querySelector('.spellReview'),summaryBox=panel.querySelector('.spellSummary'),wordBox=panel.querySelector('.currentWord');
   renderSpellingSummary(summaryBox);
