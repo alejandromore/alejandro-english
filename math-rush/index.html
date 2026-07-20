@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>Math Rush — Piensa rápido. Resuelve mejor.</title>
+<meta name="description" content="Math Rush: entrena tu velocidad y precisión mental con retos matemáticos." />
+<meta name="theme-color" content="#101828" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ============ ONBOARDING ============ -->
+  <div id="onboarding" class="onboarding hidden" role="dialog" aria-modal="true" aria-label="Bienvenida a Math Rush">
+    <div class="onboarding-card">
+      <div class="onboarding-slides" id="onboardingSlides">
+        <div class="ob-slide active" data-slide="0">
+          <div class="ob-icon">⚡</div>
+          <h1>Math Rush</h1>
+          <p>Haz que tu mente sea más rápida</p>
+        </div>
+        <div class="ob-slide" data-slide="1">
+          <div class="ob-icon">🎯</div>
+          <h2>Primero precisión</h2>
+          <p>Aprende a resolver correctamente.</p>
+        </div>
+        <div class="ob-slide" data-slide="2">
+          <div class="ob-icon">⚡</div>
+          <h2>Después velocidad</h2>
+          <p>Reduce poco a poco tu tiempo.</p>
+        </div>
+        <div class="ob-slide" data-slide="3">
+          <div class="ob-icon">🏆</div>
+          <h2>Compite contigo mismo</h2>
+          <p>Cada día intenta superar tu récord.</p>
+        </div>
+        <div class="ob-slide" data-slide="4">
+          <div class="ob-icon">👋</div>
+          <h2>¿Cómo te llamas?</h2>
+          <input id="onboardingName" class="ob-input" type="text" maxlength="20" placeholder="Tu nombre" aria-label="Tu nombre" autocomplete="off" />
+        </div>
+      </div>
+      <div class="ob-dots" id="onboardingDots" aria-hidden="true"></div>
+      <div class="ob-actions">
+        <button id="obBack" class="btn btn-ghost" type="button">Atrás</button>
+        <button id="obNext" class="btn btn-primary" type="button">Siguiente</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TOP HEADER (desktop) ============ -->
+  <header class="app-header" id="appHeader">
+    <div class="header-inner">
+      <div class="brand">⚡ Math Rush</div>
+      <nav class="desktop-nav" id="desktopNav" aria-label="Navegación principal">
+        <button class="nav-item active" data-view="dashboard" aria-label="Inicio">🏠 <span>Inicio</span></button>
+        <button class="nav-item" data-view="setup" aria-label="Jugar">⚡ <span>Jugar</span></button>
+        <button class="nav-item" data-view="progress" aria-label="Progreso">📈 <span>Progreso</span></button>
+        <button class="nav-item" data-view="records" aria-label="Récords">🏆 <span>Récords</span></button>
+        <button class="nav-item" data-view="settings" aria-label="Ajustes">⚙️ <span>Ajustes</span></button>
+      </nav>
+      <div class="header-actions">
+        <span class="header-xp" id="headerXP">⚡ 0 XP</span>
+        <button id="themeToggleBtn" class="icon-btn" type="button" aria-label="Cambiar modo oscuro">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ MAIN VIEWS ============ -->
+  <main id="main">
+
+    <!-- DASHBOARD -->
+    <section id="view-dashboard" class="view">
+      <div class="view-inner">
+        <div class="dash-greeting">
+          <h1 id="greetingName">¡Hola, campeón! 👋</h1>
+          <p>¿Listo para superar tu récord de hoy?</p>
+        </div>
+
+        <div class="stat-chips">
+          <div class="chip">🔥 <span id="chipStreak">0</span> días</div>
+          <div class="chip">⭐ Nivel <span id="chipLevel">1</span></div>
+          <div class="chip">🎯 <span id="chipAccuracy">--%</span> precisión</div>
+        </div>
+
+        <div class="card card-hero" id="dailyTrainingCard">
+          <div class="hero-badge">⚡ ENTRENAMIENTO DIARIO</div>
+          <p class="hero-text">10 minutos para hacer tu mente más rápida</p>
+          <div class="hero-meta">
+            <span>🔥 Racha: <b id="heroStreak">0 días</b></span>
+            <span>⭐ Nivel: <b id="heroLevel">1</b></span>
+            <span>⚡ XP: <b id="heroXP">0</b></span>
+            <span>🎯 Precisión semanal: <b id="heroAccuracy">--%</b></span>
+          </div>
+          <button id="startDailyBtn" class="btn btn-cta" type="button">COMENZAR ENTRENAMIENTO</button>
+        </div>
+
+        <div class="card card-record" id="recordCard">
+          <h3>Tu récord</h3>
+          <p id="recordText" class="record-text">Aún no tienes récord</p>
+          <p class="record-sub" id="recordSubText">¡Crea tu primer récord!</p>
+          <button id="challengeRecordBtn" class="btn btn-secondary" type="button">DESAFIAR MI RÉCORD</button>
+        </div>
+
+        <h3 class="section-title">Modos</h3>
+        <div class="mode-grid" id="modeGrid"></div>
+      </div>
+    </section>
+
+    <!-- SETUP (elegir categoría/dificultad) -->
+    <section id="view-setup" class="view">
+      <div class="view-inner">
+        <button class="link-back" data-view="dashboard" type="button">← Volver</button>
+        <h2 id="setupModeTitle">Elige tu reto</h2>
+        <p id="setupModeDesc" class="muted"></p>
+
+        <h4 class="field-label">Categoría</h4>
+        <div class="pill-group" id="categoryGroup" role="radiogroup" aria-label="Categoría matemática"></div>
+
+        <h4 class="field-label">Dificultad</h4>
+        <div class="pill-group" id="difficultyGroup" role="radiogroup" aria-label="Nivel de dificultad"></div>
+
+        <button id="setupStartBtn" class="btn btn-cta btn-block" type="button">COMENZAR</button>
+      </div>
+    </section>
+
+    <!-- GAME -->
+    <section id="view-game" class="view view-game">
+      <div class="game-topbar">
+        <button id="gameExitBtn" class="btn btn-ghost btn-sm" type="button" aria-label="Salir del entrenamiento">← Salir</button>
+        <div class="game-mode-label" id="gameModeLabel">⚡ Sprint 60s</div>
+        <button id="gamePauseBtn" class="icon-btn" type="button" aria-label="Pausar">⏸️</button>
+      </div>
+
+      <div class="game-hud">
+        <div class="hud-item">⏱️ <span id="hudTime">60s</span></div>
+        <div class="hud-item">✅ <span id="hudCorrect">0</span></div>
+        <div class="hud-item">⭐ <span id="hudScore">0</span></div>
+      </div>
+
+      <div class="time-bar-track"><div class="time-bar-fill" id="timeBarFill"></div></div>
+
+      <div class="combo-badge hidden" id="comboBadge">🔥 Combo ×0</div>
+      <div class="daily-stage hidden" id="dailyStageLabel">Paso 1 de 5</div>
+      <div class="record-compare hidden" id="recordCompare">
+        <span>Tu récord: <b id="compareRecord">0</b></span>
+        <span>Hoy: <b id="compareToday">0</b></span>
+      </div>
+
+      <div class="question-zone">
+        <div class="question-text" id="questionText" aria-live="polite">— </div>
+        <div class="feedback-toast hidden" id="feedbackToast"></div>
+        <form id="answerForm" autocomplete="off">
+          <input id="answerInput" class="answer-input" type="text" inputmode="numeric" pattern="[0-9]*"
+                 aria-label="Tu respuesta" autocomplete="off" />
+        </form>
+      </div>
+
+      <div class="numpad" id="numpad" aria-label="Teclado numérico">
+        <button type="button" data-key="1">1</button>
+        <button type="button" data-key="2">2</button>
+        <button type="button" data-key="3">3</button>
+        <button type="button" data-key="4">4</button>
+        <button type="button" data-key="5">5</button>
+        <button type="button" data-key="6">6</button>
+        <button type="button" data-key="7">7</button>
+        <button type="button" data-key="8">8</button>
+        <button type="button" data-key="9">9</button>
+        <button type="button" data-key="back" aria-label="Borrar">⌫</button>
+        <button type="button" data-key="0">0</button>
+        <button type="button" data-key="ok" class="numpad-ok" aria-label="Confirmar">✓</button>
+      </div>
+
+      <!-- Pause overlay -->
+      <div class="overlay hidden" id="pauseOverlay">
+        <div class="overlay-card">
+          <h2>⏸️ Pausa</h2>
+          <button id="resumeBtn" class="btn btn-primary btn-block" type="button">Continuar</button>
+          <button id="pauseExitBtn" class="btn btn-ghost btn-block" type="button">Salir</button>
+        </div>
+      </div>
+
+      <!-- Exit confirm overlay -->
+      <div class="overlay hidden" id="exitOverlay">
+        <div class="overlay-card">
+          <h2 id="exitTitle">¿Quieres abandonar el entrenamiento?</h2>
+          <p id="exitSubtitle">El progreso de esta sesión no se guardará.</p>
+          <button id="exitCancelBtn" class="btn btn-primary btn-block" type="button">Continuar entrenando</button>
+          <button id="exitConfirmBtn" class="btn btn-ghost btn-block" type="button">Salir</button>
+        </div>
+      </div>
+
+      <!-- Stage transition overlay (daily training) -->
+      <div class="overlay hidden" id="stageOverlay">
+        <div class="overlay-card">
+          <h2 id="stageOverlayTitle">🔥 Calentamiento</h2>
+          <p id="stageOverlaySub">Etapa 1 de 5</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section id="view-results" class="view">
+      <div class="view-inner results-inner">
+        <h1 class="results-title" id="resultsTitle">🏆 ¡Buen trabajo!</h1>
+        <div class="score-ring" id="scoreRing">
+          <div class="score-ring-inner">
+            <span class="score-label">Score</span>
+            <span class="score-value" id="resultsScore">0</span>
+          </div>
+        </div>
+
+        <div class="results-grid">
+          <div class="result-stat">✅ Correctas: <b id="resCorrect">0</b></div>
+          <div class="result-stat">❌ Incorrectas: <b id="resIncorrect">0</b></div>
+          <div class="result-stat">🎯 Precisión: <b id="resAccuracy">0%</b></div>
+          <div class="result-stat">⚡ Velocidad promedio: <b id="resAvgTime">0s</b></div>
+          <div class="result-stat">🔥 Mejor combo: <b id="resBestCombo">×0</b></div>
+          <div class="result-stat">⭐ XP ganado: <b id="resXP">+0</b></div>
+        </div>
+
+        <div class="results-compare" id="resultsCompare">
+          <div><span class="compare-label">Hoy</span><span class="compare-value" id="resToday">0</span></div>
+          <div><span class="compare-label">Récord anterior</span><span class="compare-value" id="resPrevRecord">0</span></div>
+        </div>
+
+        <p class="record-banner hidden" id="newRecordBanner">🎉 ¡Nuevo récord personal!</p>
+        <p class="pedagogy-tip hidden" id="pedagogyTip"></p>
+
+        <div class="results-actions">
+          <button id="resultsRetryBtn" class="btn btn-cta btn-block" type="button">Intentar de nuevo</button>
+          <button id="resultsHomeBtn" class="btn btn-ghost btn-block" type="button">Ir al inicio</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRESS -->
+    <section id="view-progress" class="view">
+      <div class="view-inner">
+        <h2>📈 Mi Progreso</h2>
+        <div class="progress-cards" id="progressCards"></div>
+
+        <h3 class="section-title">Velocidad últimos 7 días</h3>
+        <div class="chart-card">
+          <svg id="speedChart" viewBox="0 0 320 140" class="line-chart" role="img" aria-label="Gráfico de velocidad de los últimos 7 días"></svg>
+        </div>
+
+        <h3 class="section-title">Tus habilidades</h3>
+        <div class="skills-list" id="skillsList"></div>
+        <div class="card recommend-card hidden" id="recommendCard">
+          <p id="recommendText">💡 Te recomendamos practicar</p>
+          <button id="recommendBtn" class="btn btn-secondary" type="button">Practicar ahora</button>
+        </div>
+
+        <h3 class="section-title">⚠️ Necesitas practicar</h3>
+        <div class="card weak-ops-card" id="weakOpsCard">
+          <p class="muted" id="weakOpsEmpty">Todavía no hay suficientes datos. ¡Juega una partida!</p>
+          <ul class="weak-ops-list" id="weakOpsList"></ul>
+          <button id="trainWeakBtn" class="btn btn-secondary hidden" type="button">Entrenar estas operaciones</button>
+        </div>
+
+        <button id="openParentsBtn" class="link-parents" type="button">👨‍👩‍👦 Panel para padres</button>
+      </div>
+    </section>
+
+    <!-- RECORDS -->
+    <section id="view-records" class="view">
+      <div class="view-inner">
+        <h2>🏆 Mis Récords</h2>
+        <div class="records-grid" id="recordsGrid"></div>
+      </div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section id="view-settings" class="view">
+      <div class="view-inner">
+        <h2>⚙️ Configuración</h2>
+
+        <label class="field">
+          <span>Nombre del jugador</span>
+          <input id="settingName" type="text" maxlength="20" />
+        </label>
+
+        <label class="field">
+          <span>Edad</span>
+          <input id="settingAge" type="number" min="5" max="18" />
+        </label>
+
+        <div class="field">
+          <span>Duración del entrenamiento</span>
+          <div class="pill-group" id="durationGroup"></div>
+        </div>
+
+        <div class="field">
+          <span>Nivel inicial</span>
+          <div class="pill-group" id="initialDifficultyGroup"></div>
+        </div>
+
+        <div class="toggle-row">
+          <span>🔊 Sonido</span>
+          <button id="soundToggle" class="switch" type="button" role="switch" aria-checked="true"><span class="switch-knob"></span></button>
+        </div>
+        <div class="toggle-row">
+          <span>🎬 Animaciones</span>
+          <button id="animToggle" class="switch" type="button" role="switch" aria-checked="true"><span class="switch-knob"></span></button>
+        </div>
+        <div class="toggle-row">
+          <span>🌙 Modo oscuro</span>
+          <button id="darkToggle" class="switch" type="button" role="switch" aria-checked="false"><span class="switch-knob"></span></button>
+        </div>
+
+        <button id="replayOnboardingBtn" class="btn btn-secondary btn-block" type="button">Ver introducción nuevamente</button>
+        <button id="openParentsBtn2" class="btn btn-secondary btn-block" type="button">👨‍👩‍👦 Panel para padres</button>
+        <button id="clearDataBtn" class="btn btn-danger btn-block" type="button">Borrar todos los datos</button>
+      </div>
+    </section>
+
+    <!-- PARENTS -->
+    <section id="view-parents" class="view">
+      <div class="view-inner">
+        <button class="link-back" data-view="settings" type="button">← Volver</button>
+        <h2>👨‍👩‍👦 Para padres</h2>
+        <p class="muted">Resumen de esta semana</p>
+        <div class="parents-grid" id="parentsGrid"></div>
+        <p class="parents-message" id="parentsMessage"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ MOBILE BOTTOM NAV ============ -->
+  <nav class="bottom-nav" id="bottomNav" aria-label="Navegación">
+    <button class="bn-item active" data-view="dashboard" aria-label="Inicio">🏠<span>Inicio</span></button>
+    <button class="bn-item" data-view="setup" aria-label="Jugar">⚡<span>Jugar</span></button>
+    <button class="bn-item" data-view="progress" aria-label="Progreso">📈<span>Progreso</span></button>
+    <button class="bn-item" data-view="records" aria-label="Récords">🏆<span>Récords</span></button>
+    <button class="bn-item" data-view="settings" aria-label="Ajustes">⚙️<span>Ajustes</span></button>
+  </nav>
+
+  <div id="confettiLayer" class="confetti-layer" aria-hidden="true"></div>
+  <div id="toastLayer" class="toast-layer" aria-live="polite"></div>
+
+</div>
+
+<script src="app.js" defer></script>
+</body>
+</html>
