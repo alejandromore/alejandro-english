@@ -1,7 +1,7 @@
 /* ---------------- app: orquestador principal ---------------- */
 import { state, $, wireSeg, setStatus, hideBar } from './state.js';
 import { UI_STRINGS, t } from './i18n.js';
-import { stopSpeaking, ttsActive, naturalSource, hfAudioEl, synth, ttsPaused, preloadMMSWorker, applyDocView, renderDocView, renderDocInto, warmVoice, setDocFormat } from './tts.js';
+import { stopSpeaking, ttsActive, naturalSource, hfAudioEl, synth, ttsPaused, preloadMMSWorker, applyDocView, renderDocView, renderDocInto, warmVoice, setDocFormat, resetOratorVoices } from './tts.js';
 import { renderPhonetics, buildWpChips, ensureDictThen, cmudict, wordPanel } from './phonetics.js';
 import { warmupModels, initRecording, initModelsPanel, analyze } from './analysis.js';
 
@@ -108,6 +108,7 @@ if(clearBtn){
     renderPhonetics(); state.wpImproveWords = [];
     if(wordPanel.classList.contains("on") && cmudict) buildWpChips();
   });
+  promptTextEl.addEventListener("input", ()=>{ if(promptTextEl.value !== state.podcastRawText){ state.podcastSegments = null; state.podcastRawText = null; } });
   promptTextEl.addEventListener("input", updateClearBtn); updateClearBtn();
 }
 
@@ -131,6 +132,7 @@ function parseDocxBlocks(xmlString){
 function isDocxHeader(t){ return /^(\(\d+\)|open\b|close\b|wave\s*\d|move\s*\d|tier\s*(one|two|three|\d))/i.test(t) && t.length<70; }
 function loadBlockIntoBox(text, metaLines){
   $("promptText").value = text;
+  state.podcastSegments = null; state.podcastRawText = null;
   const listLines = new Set(), boldRanges = new Map();
   if(metaLines && metaLines.length){ metaLines.forEach((mb,i)=>{ if(mb.isList) listLines.add(i); if(mb.bold && mb.bold.length) boldRanges.set(i, mb.bold); }); }
   setDocFormat(listLines, boldRanges);
@@ -166,6 +168,43 @@ if($("docxBtn")){
   $("docxClose").addEventListener("click", ()=>{ $("docxPanel").style.display="none"; });
   $("docxSel").addEventListener("click", loadDocxSelected);
   $("docxAll").addEventListener("click", ()=>{ const blocks=window.__docxBlocks||[]; if(blocks.length) loadBlockIntoBox(blocks.map(b=>b.text).join("\n"), blocks); });
+}
+
+/* ---------------- subir .json (guion tipo podcast) ---------------- */
+function validatePodcastJSON(data){
+  if(!data || !Array.isArray(data.segments) || !data.segments.length) return null;
+  const segs = data.segments
+    .filter(s=>s && typeof s.text==="string" && s.text.trim() && typeof s.speaker==="string" && s.speaker.trim())
+    .map(s=>({ speaker: s.speaker.trim(), text: s.text.trim() }));
+  return segs.length ? segs : null;
+}
+function buildPodcastText(segments){
+  const multi = new Set(segments.map(s=>s.speaker.toLowerCase())).size > 1;
+  let text = ""; const segMeta = [];
+  segments.forEach((seg,i)=>{
+    const prefix = multi ? `${seg.speaker}: ` : "";
+    const start = text.length;
+    text += prefix + seg.text;
+    segMeta.push({ speaker: seg.speaker, start, end: text.length });
+    if(i < segments.length-1) text += "\n\n";
+  });
+  return { text, segMeta };
+}
+if($("jsonBtn")){
+  $("jsonBtn").addEventListener("click", ()=>$("jsonInput").click());
+  $("jsonInput").addEventListener("change", async (e)=>{
+    const f=e.target.files[0]; e.target.value=""; if(!f) return;
+    try{
+      const data = JSON.parse(await f.text());
+      const segments = validatePodcastJSON(data);
+      if(!segments){ setStatus("El JSON no tiene el formato esperado: { \"segments\": [{ \"speaker\": \"...\", \"text\": \"...\" }] }.", true); return; }
+      const { text, segMeta } = buildPodcastText(segments);
+      resetOratorVoices();
+      loadBlockIntoBox(text, null);
+      state.podcastSegments = segMeta; state.podcastRawText = text;
+      setStatus(segMeta.length ? `Guion cargado (${new Set(segments.map(s=>s.speaker.toLowerCase())).size} orador(es)).` : "");
+    }catch(err){ console.error(err); setStatus("No se pudo leer el JSON: " + ((err&&err.message)||err), true); }
+  });
 }
 
 /* ---------------- copy transcript ---------------- */

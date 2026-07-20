@@ -25,6 +25,8 @@ export const state = {
   docxUrl: null,
   wpImproveWords: [],
   analyzeCanceled: false,
+  podcastSegments: null,
+  podcastRawText: null,
 };
 
 export const $ = (id) => document.getElementById(id);

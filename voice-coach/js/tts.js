@@ -19,6 +19,22 @@ let naturalBroken = false;
 
 let EL_API_KEY = localStorage.getItem("el_api_key") || "";
 const EL_VOICE_ID = "JBFqnCBsd6RMkjVDRZzb";
+// Voces "premade" públicas de ElevenLabs (funcionan con cualquier API key, es+en vía eleven_multilingual_v2).
+const ORATOR_VOICES = [
+  "JBFqnCBsd6RMkjVDRZzb", // George (voz por defecto, hombre)
+  "21m00Tcm4TlvDq8ikWAM", // Rachel (mujer)
+  "pNInz6obpgDQGcFmaJgB", // Adam (hombre)
+  "EXAVITQu4vr4xnSDxMaL", // Bella (mujer)
+  "ErXwobaYiN019PkySvjV", // Antoni (hombre)
+  "MF3mGyEYCl7XYWbV9V6O", // Elli (mujer)
+];
+let orVoiceMap = new Map();
+export function resetOratorVoices(){ orVoiceMap = new Map(); }
+function voiceForSpeaker(speaker){
+  const key = (speaker||"").toLowerCase();
+  if(!orVoiceMap.has(key)) orVoiceMap.set(key, ORATOR_VOICES[orVoiceMap.size % ORATOR_VOICES.length]);
+  return orVoiceMap.get(key);
+}
 
 let voiceStage="", voiceHB=null, voiceT0=0;
 
@@ -417,8 +433,8 @@ export function pickVoice(langCode){
 
 /* ---- ElevenLabs / orator ---- */
 function stopHfOrator(){ if(hfAudioEl){ try{ hfAudioEl.pause(); }catch(e){} hfAudioEl=null; } stopVoiceStatus(""); }
-async function elTtsChunk(text){
-  const res = await fetch("https://api.elevenlabs.io/v1/text-to-speech/"+EL_VOICE_ID, { method: "POST", headers: { "xi-api-key": EL_API_KEY, "Content-Type": "application/json", "Accept": "audio/mpeg" }, body: JSON.stringify({ text: text, model_id: "eleven_multilingual_v2", voice_settings: { stability: 0.15, similarity_boost: 0.70, style: 0.90, use_speaker_boost: true } }) });
+async function elTtsChunk(text, voiceId){
+  const res = await fetch("https://api.elevenlabs.io/v1/text-to-speech/"+(voiceId||EL_VOICE_ID), { method: "POST", headers: { "xi-api-key": EL_API_KEY, "Content-Type": "application/json", "Accept": "audio/mpeg" }, body: JSON.stringify({ text: text, model_id: "eleven_multilingual_v2", voice_settings: { stability: 0.15, similarity_boost: 0.70, style: 0.90, use_speaker_boost: true } }) });
   if(!res.ok){ const errText = await res.text(); throw new Error("ElevenLabs API "+res.status+": "+errText.slice(0,200)); }
   return await res.blob();
 }
@@ -430,16 +446,28 @@ function playHfAudio(blob, chunkStart, chunkText){
     hfAudioEl.play().catch(()=>{ URL.revokeObjectURL(url); hfAudioEl=null; resolve(); });
   });
 }
+function buildOratorChunks(raw){
+  const segs = state.podcastSegments;
+  const usePodcast = segs && segs.length && state.podcastRawText === raw && new Set(segs.map(s=>(s.speaker||"").toLowerCase())).size > 1;
+  if(!usePodcast) return buildSpeechChunks(raw).map(c=>({ text:c.text, start:c.start, voiceId:EL_VOICE_ID }));
+  const chunks = [];
+  for(const seg of segs){
+    const segText = raw.slice(seg.start, seg.end);
+    const voiceId = voiceForSpeaker(seg.speaker);
+    for(const c of buildSpeechChunks(segText)) chunks.push({ text:c.text, start: seg.start + c.start, voiceId });
+  }
+  return chunks;
+}
 async function speakHfOrator(raw){
   if(!EL_API_KEY){ const tok = prompt(state.lang==="spanish" ? "Pega tu API key de ElevenLabs (gratis en elevenlabs.io):" : state.lang==="portuguese" ? "Cole sua API key do ElevenLabs (gratis em elevenlabs.io):" : "Paste your ElevenLabs API key (free at elevenlabs.io):"); if(!tok) return; EL_API_KEY = tok.trim(); localStorage.setItem("el_api_key", EL_API_KEY); }
-  const chunks = buildSpeechChunks(raw); ttsActive = true; lastBoundaryAt = 0;
+  const chunks = buildOratorChunks(raw); ttsActive = true; lastBoundaryAt = 0;
   speakLabel.textContent = speakStopLabel(); showPause();
   const stageMsg = state.lang==="spanish" ? "Generando voz" : state.lang==="portuguese" ? "Gerando voz" : "Generating voice";
   startVoiceStatus(stageMsg);
   const prefetch = new Map();
-  function getChunk(i){ if(i >= chunks.length) return Promise.resolve(null); if(prefetch.has(i)) return prefetch.get(i); const key = chunks[i].text.trim(); if(hfCache.has(key)){ const p = Promise.resolve(hfCache.get(key)); prefetch.set(i, p); return p; } const p = elTtsChunk(chunks[i].text).then(blob => { if(!ttsActive) return null; hfCache.set(key, blob); return blob; }); prefetch.set(i, p); return p; }
+  function getChunk(i){ if(i >= chunks.length) return Promise.resolve(null); if(prefetch.has(i)) return prefetch.get(i); const key = chunks[i].voiceId+"|"+chunks[i].text.trim(); if(hfCache.has(key)){ const p = Promise.resolve(hfCache.get(key)); prefetch.set(i, p); return p; } const p = elTtsChunk(chunks[i].text, chunks[i].voiceId).then(blob => { if(!ttsActive) return null; hfCache.set(key, blob); return blob; }); prefetch.set(i, p); return p; }
   let retried = false;
-  for(let i=0; i<chunks.length; i++){ if(!ttsActive) break; setVoiceStage(stageMsg+" "+(i+1)+"/"+chunks.length); getChunk(i+1); getChunk(i+2); try{ const blob = await getChunk(i); if(!ttsActive || !blob) break; if(i === 0){ speakBtn.classList.add("speaking"); const sic=speakBtn.querySelector(".ic"); if(sic) sic.textContent="\u25A0"; } stopVoiceStatus(""); await playHfAudio(blob, chunks[i].start, chunks[i].text); }catch(err){ console.error("ElevenLabs TTS error:", err); if(!ttsActive) break; if(!retried){ retried = true; stopVoiceStatus(state.lang==="spanish" ? "Reintentando..." : state.lang==="portuguese" ? "Tentando novamente..." : "Retrying...", false); const key = chunks[i].text.trim(); hfCache.delete(key); prefetch.delete(i); i--; continue; } stopVoiceStatus(state.lang==="spanish" ? "Error de voz IA; cancelando." : state.lang==="portuguese" ? "Erro de voz IA; cancelando." : "AI voice error; cancelling.", true); stopSpeaking(); return; } }
+  for(let i=0; i<chunks.length; i++){ if(!ttsActive) break; setVoiceStage(stageMsg+" "+(i+1)+"/"+chunks.length); getChunk(i+1); getChunk(i+2); try{ const blob = await getChunk(i); if(!ttsActive || !blob) break; if(i === 0){ speakBtn.classList.add("speaking"); const sic=speakBtn.querySelector(".ic"); if(sic) sic.textContent="\u25A0"; } stopVoiceStatus(""); await playHfAudio(blob, chunks[i].start, chunks[i].text); }catch(err){ console.error("ElevenLabs TTS error:", err); if(!ttsActive) break; if(!retried){ retried = true; stopVoiceStatus(state.lang==="spanish" ? "Reintentando..." : state.lang==="portuguese" ? "Tentando novamente..." : "Retrying...", false); const key = chunks[i].voiceId+"|"+chunks[i].text.trim(); hfCache.delete(key); prefetch.delete(i); i--; continue; } stopVoiceStatus(state.lang==="spanish" ? "Error de voz IA; cancelando." : state.lang==="portuguese" ? "Erro de voz IA; cancelando." : "AI voice error; cancelling.", true); stopSpeaking(); return; } }
   if(ttsActive) stopSpeaking();
 }
 
