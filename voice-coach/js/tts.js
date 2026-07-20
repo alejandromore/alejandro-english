@@ -458,16 +458,35 @@ function buildOratorChunks(raw){
   }
   return chunks;
 }
+function fallbackToNatural(raw){
+  stopHfOrator();
+  stopVoiceStatus(state.lang==="spanish" ? "ElevenLabs no disponible; uso la voz natural." : state.lang==="portuguese" ? "ElevenLabs indispon\u00EDvel; uso a voz natural." : "ElevenLabs unavailable; using natural voice.");
+  ttsActive = true; speakNatural(raw);
+}
 async function speakHfOrator(raw){
-  if(!EL_API_KEY){ const tok = prompt(state.lang==="spanish" ? "Pega tu API key de ElevenLabs (gratis en elevenlabs.io):" : state.lang==="portuguese" ? "Cole sua API key do ElevenLabs (gratis em elevenlabs.io):" : "Paste your ElevenLabs API key (free at elevenlabs.io):"); if(!tok) return; EL_API_KEY = tok.trim(); localStorage.setItem("el_api_key", EL_API_KEY); }
+  if(!EL_API_KEY){
+    const tok = prompt(state.lang==="spanish" ? "Pega tu API key de ElevenLabs (gratis en elevenlabs.io):" : state.lang==="portuguese" ? "Cole sua API key do ElevenLabs (gratis em elevenlabs.io):" : "Paste your ElevenLabs API key (free at elevenlabs.io):");
+    if(!tok){ ttsActive = true; fallbackToNatural(raw); return; }
+    EL_API_KEY = tok.trim(); localStorage.setItem("el_api_key", EL_API_KEY);
+  }
   const chunks = buildOratorChunks(raw); ttsActive = true; lastBoundaryAt = 0;
   speakLabel.textContent = speakStopLabel(); showPause();
   const stageMsg = state.lang==="spanish" ? "Generando voz" : state.lang==="portuguese" ? "Gerando voz" : "Generating voice";
   startVoiceStatus(stageMsg);
   const prefetch = new Map();
-  function getChunk(i){ if(i >= chunks.length) return Promise.resolve(null); if(prefetch.has(i)) return prefetch.get(i); const key = chunks[i].voiceId+"|"+chunks[i].text.trim(); if(hfCache.has(key)){ const p = Promise.resolve(hfCache.get(key)); prefetch.set(i, p); return p; } const p = elTtsChunk(chunks[i].text, chunks[i].voiceId).then(blob => { if(!ttsActive) return null; hfCache.set(key, blob); return blob; }); prefetch.set(i, p); return p; }
-  let retried = false;
-  for(let i=0; i<chunks.length; i++){ if(!ttsActive) break; setVoiceStage(stageMsg+" "+(i+1)+"/"+chunks.length); getChunk(i+1); getChunk(i+2); try{ const blob = await getChunk(i); if(!ttsActive || !blob) break; if(i === 0){ speakBtn.classList.add("speaking"); const sic=speakBtn.querySelector(".ic"); if(sic) sic.textContent="\u25A0"; } stopVoiceStatus(""); await playHfAudio(blob, chunks[i].start, chunks[i].text); }catch(err){ console.error("ElevenLabs TTS error:", err); if(!ttsActive) break; if(!retried){ retried = true; stopVoiceStatus(state.lang==="spanish" ? "Reintentando..." : state.lang==="portuguese" ? "Tentando novamente..." : "Retrying...", false); const key = chunks[i].voiceId+"|"+chunks[i].text.trim(); hfCache.delete(key); prefetch.delete(i); i--; continue; } stopVoiceStatus(state.lang==="spanish" ? "Error de voz IA; cancelando." : state.lang==="portuguese" ? "Erro de voz IA; cancelando." : "AI voice error; cancelling.", true); stopSpeaking(); return; } }
+  function getChunk(i){ if(i >= chunks.length) return Promise.resolve(null); if(prefetch.has(i)) return prefetch.get(i); const key = chunks[i].voiceId+"|"+chunks[i].text.trim(); if(hfCache.has(key)){ const p = Promise.resolve(hfCache.get(key)); prefetch.set(i, p); return p; } const p = elTtsChunk(chunks[i].text, chunks[i].voiceId).then(blob => { if(!ttsActive) return null; hfCache.set(key, blob); return blob; }); p.catch(()=>{}); prefetch.set(i, p); return p; }
+  for(let i=0; i<chunks.length; i++){
+    if(!ttsActive) break;
+    setVoiceStage(stageMsg+" "+(i+1)+"/"+chunks.length); getChunk(i+1); getChunk(i+2);
+    try{
+      const blob = await getChunk(i); if(!ttsActive || !blob) break;
+      if(i === 0){ speakBtn.classList.add("speaking"); const sic=speakBtn.querySelector(".ic"); if(sic) sic.textContent="\u25A0"; }
+      stopVoiceStatus(""); await playHfAudio(blob, chunks[i].start, chunks[i].text);
+    }catch(err){
+      console.error("ElevenLabs TTS error:", err); if(!ttsActive) break;
+      fallbackToNatural(raw); return;
+    }
+  }
   if(ttsActive) stopSpeaking();
 }
 

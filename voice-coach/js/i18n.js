@@ -10,6 +10,9 @@ export const UI_STRINGS = {
     record:"Record", upload:"\u2191\u00A0Upload audio", or:"or", pause:"Pause", resume:"Resume",
     docView:"Text view", docSimple:"Simple", docDoc:"Document", warmVoice:"\u2699\u00A0Prepare voice",
     voiceSystem:"System", voiceOrator:"Orator",
+    uploadDoc:"\u2191\u00A0Upload", newDoc:"\u21BB\u00A0New",
+    chooseWord:"Word document (.docx)", chooseJson:"Podcast script (JSON)",
+    choosePhrase:"Phrase", chooseParagraph:"Paragraph",
     uploadHint:"Uploading a phone recording? In the picker, choose <b>More \u2192 Files</b>, then open <b>Recordings</b>." },
   spanish: { play:"Reproducir", stop:"Detener", generating:"Generando voz.", dlmp3:"Descargar MP3",
     phon:"\u{1F524}\u00A0Fon\u00E9tica", words:"\u{1F3AF}\u00A0Palabras", newq:"\u21BB\u00A0Nueva frase", paragraph:"\u00B6\u00A0P\u00E1rrafo", loading:"Buscando.",
@@ -19,6 +22,9 @@ export const UI_STRINGS = {
     record:"Grabar", upload:"\u2191\u00A0Subir audio", or:"o", pause:"Pausa", resume:"Reanudar",
     docView:"Vista del texto", docSimple:"Simple", docDoc:"Documento", warmVoice:"\u2699\u00A0Preparar voz",
     voiceSystem:"Sistema", voiceOrator:"Orador",
+    uploadDoc:"\u2191\u00A0Subir", newDoc:"\u21BB\u00A0Nuevo",
+    chooseWord:"Documento Word (.docx)", chooseJson:"Guion de podcast (JSON)",
+    choosePhrase:"Frase", chooseParagraph:"P\u00E1rrafo",
     uploadHint:"\u00BFSubir una grabaci\u00F3n del tel\u00E9fono? En el selector elige <b>More \u2192 Files</b> y abre <b>Recordings</b>." }
   ,
   portuguese: { play:"Reproduzir", stop:"Parar", generating:"Gerando voz...", dlmp3:"Baixar MP3",
@@ -29,6 +35,9 @@ export const UI_STRINGS = {
     record:"Gravar", upload:"Subir audio", or:"ou", pause:"Pausar", resume:"Retomar",
     docView:"Vista do texto", docSimple:"Simples", docDoc:"Documento",
     voiceSystem:"Sistema", voiceOrator:"Orador",
+    uploadDoc:"\u2191\u00A0Enviar", newDoc:"\u21BB\u00A0Novo",
+    chooseWord:"Documento Word (.docx)", chooseJson:"Roteiro de podcast (JSON)",
+    choosePhrase:"Frase", chooseParagraph:"Par\u00E1grafo",
     uploadHint:"Subindo uma gravacao do telefone? No seletor escolha <b>More > Files</b> e abra <b>Recordings</b>." }
 };
 

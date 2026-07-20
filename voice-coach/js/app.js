@@ -54,24 +54,21 @@ async function fetchFamousQuote(lang){
   return randFrom(FALLBACK_QUOTES[lang] || FALLBACK_QUOTES.english);
 }
 async function loadNewQuote(){
-  const btn = $("shuffleBtn"); const orig = btn ? btn.textContent : "";
+  const btn = $("newBtn");
   if(btn){ btn.disabled = true; btn.textContent = t("loading"); }
   const q = await fetchFamousQuote(state.lang); $("promptText").value = q;
   updateClearBtn(); renderPhonetics(); state.wpImproveWords = [];
   if(wordPanel.classList.contains("on")){ ensureDictThen(buildWpChips); }
-  if(btn){ btn.disabled = false; btn.textContent = t("newq"); }
+  if(btn){ btn.disabled = false; btn.textContent = t("newDoc"); }
 }
-$("shuffleBtn").addEventListener("click", loadNewQuote);
 async function loadNewParagraph(){
-  const btn = $("paragraphBtn"); const orig = btn ? btn.textContent : "";
+  const btn = $("newBtn");
   if(btn){ btn.disabled = true; btn.textContent = t("loading"); }
   const p = randFrom(FALLBACK_PARAGRAPHS[state.lang] || FALLBACK_PARAGRAPHS.english); $("promptText").value = p;
   updateClearBtn(); renderPhonetics(); state.wpImproveWords = [];
   if(wordPanel.classList.contains("on")){ ensureDictThen(buildWpChips); }
-  if(btn){ btn.disabled = false; btn.textContent = t("paragraph"); }
+  if(btn){ btn.disabled = false; btn.textContent = t("newDoc"); }
 }
-const paragraphBtn = $("paragraphBtn");
-if(paragraphBtn) paragraphBtn.addEventListener("click", loadNewParagraph);
 
 /* ---------------- localización ---------------- */
 function applyLang(){
@@ -83,19 +80,14 @@ function applyLang(){
   const dl=$("dlAudioLabel"); if(dl && dl.textContent!=="Descargado ✓") dl.textContent=S.dlmp3;
   const phon=$("phonBtn"); if(phon) phon.textContent = S.phon;
   const wb=$("wordBtn"); if(wb) wb.textContent = S.words;
-  const nb=$("shuffleBtn"); if(nb && !nb.disabled) nb.textContent = S.newq;
-  const pgb=$("paragraphBtn"); if(pgb) pgb.textContent = S.paragraph;
+  const nb=$("newBtn"); if(nb && !nb.disabled) nb.textContent = S.newDoc;
+  const ub=$("uploadBtn"); if(ub) ub.textContent = S.uploadDoc;
   const rl=$("recLabel"); if(rl && !state.recording) rl.textContent = S.record;
   const pb=$("pauseBtn"); if(pb && pb.style.display!=="none"){ const pl=$("pauseLabel"); if(pl) pl.textContent = ttsPaused ? S.resume : S.pause; }
   const dvSeg=$("docViewSeg"); if(dvSeg){ const bs=dvSeg.querySelectorAll("button"); if(bs[0]) bs[0].textContent=S.docSimple; if(bs[1]) bs[1].textContent=S.docDoc; }
   const uh=$("uploadHint"); if(uh) uh.innerHTML = S.uploadHint;
   const phBtn=$("phonBtn"); if(phBtn){ phBtn.disabled = state.lang==="portuguese"; phBtn.title = state.lang==="portuguese" ? "Fonética no disponible para portugués" : ""; }
-  updateVoiceAvailability(); preloadMMSWorker(state.lang);
-}
-function updateVoiceAvailability(){
-  const seg=$("voiceSeg"); if(!seg) return;
-  const natBtn=seg.querySelector('[data-voice="natural"]'); if(!natBtn) return;
-  natBtn.disabled=false; natBtn.style.opacity=""; natBtn.style.cursor=""; natBtn.title="";
+  preloadMMSWorker(state.lang);
 }
 
 /* ---------------- botón X: borrar texto ---------------- */
@@ -157,18 +149,15 @@ function loadDocxSelected(){
   const sel=[...$("docxList").querySelectorAll(".docx-item.sel")]; const blocks=window.__docxBlocks||[]; if(!sel.length) return;
   const chosen = sel.map(el=>blocks[+el.dataset.i]); loadBlockIntoBox(chosen.map(b=>b.text).join("\n"), chosen);
 }
-if($("docxBtn")){
-  $("docxBtn").addEventListener("click", ()=>$("docxInput").click());
-  $("docxInput").addEventListener("change", async (e)=>{
-    const f=e.target.files[0]; e.target.value=""; if(!f) return;
-    const list=$("docxList"); $("docxName").textContent=""; list.innerHTML='<div class="docx-empty">Leyendo documento…</div>'; $("docxPanel").style.display="block";
-    try{ const zip = await (await ensureJSZip()).loadAsync(await f.arrayBuffer()); const entry = zip.file("word/document.xml"); if(!entry){ list.innerHTML='<div class="docx-empty">No parece un .docx válido.</div>'; return; } const xml = await entry.async("string"); renderDocxBlocks(parseDocxBlocks(xml), f.name.replace(/\.docx$/i,"")); }
-    catch(err){ console.error(err); list.innerHTML='<div class="docx-empty" style="color:var(--neg)">No se pudo leer el documento: '+((err&&err.message)||err)+'</div>'; }
-  });
-  $("docxClose").addEventListener("click", ()=>{ $("docxPanel").style.display="none"; });
-  $("docxSel").addEventListener("click", loadDocxSelected);
-  $("docxAll").addEventListener("click", ()=>{ const blocks=window.__docxBlocks||[]; if(blocks.length) loadBlockIntoBox(blocks.map(b=>b.text).join("\n"), blocks); });
-}
+$("docxInput").addEventListener("change", async (e)=>{
+  const f=e.target.files[0]; e.target.value=""; if(!f) return;
+  const list=$("docxList"); $("docxName").textContent=""; list.innerHTML='<div class="docx-empty">Leyendo documento…</div>'; $("docxPanel").style.display="block";
+  try{ const zip = await (await ensureJSZip()).loadAsync(await f.arrayBuffer()); const entry = zip.file("word/document.xml"); if(!entry){ list.innerHTML='<div class="docx-empty">No parece un .docx válido.</div>'; return; } const xml = await entry.async("string"); renderDocxBlocks(parseDocxBlocks(xml), f.name.replace(/\.docx$/i,"")); }
+  catch(err){ console.error(err); list.innerHTML='<div class="docx-empty" style="color:var(--neg)">No se pudo leer el documento: '+((err&&err.message)||err)+'</div>'; }
+});
+$("docxClose").addEventListener("click", ()=>{ $("docxPanel").style.display="none"; });
+$("docxSel").addEventListener("click", loadDocxSelected);
+$("docxAll").addEventListener("click", ()=>{ const blocks=window.__docxBlocks||[]; if(blocks.length) loadBlockIntoBox(blocks.map(b=>b.text).join("\n"), blocks); });
 
 /* ---------------- subir .json (guion tipo podcast) ---------------- */
 function validatePodcastJSON(data){
@@ -190,22 +179,63 @@ function buildPodcastText(segments){
   });
   return { text, segMeta };
 }
-if($("jsonBtn")){
-  $("jsonBtn").addEventListener("click", ()=>$("jsonInput").click());
-  $("jsonInput").addEventListener("change", async (e)=>{
-    const f=e.target.files[0]; e.target.value=""; if(!f) return;
-    try{
-      const data = JSON.parse(await f.text());
-      const segments = validatePodcastJSON(data);
-      if(!segments){ setStatus("El JSON no tiene el formato esperado: { \"segments\": [{ \"speaker\": \"...\", \"text\": \"...\" }] }.", true); return; }
-      const { text, segMeta } = buildPodcastText(segments);
-      resetOratorVoices();
-      loadBlockIntoBox(text, null);
-      state.podcastSegments = segMeta; state.podcastRawText = text;
-      setStatus(segMeta.length ? `Guion cargado (${new Set(segments.map(s=>s.speaker.toLowerCase())).size} orador(es)).` : "");
-    }catch(err){ console.error(err); setStatus("No se pudo leer el JSON: " + ((err&&err.message)||err), true); }
-  });
+$("jsonInput").addEventListener("change", async (e)=>{
+  const f=e.target.files[0]; e.target.value=""; if(!f) return;
+  try{
+    const data = JSON.parse(await f.text());
+    const segments = validatePodcastJSON(data);
+    if(!segments){ setStatus("El JSON no tiene el formato esperado: { \"segments\": [{ \"speaker\": \"...\", \"text\": \"...\" }] }.", true); return; }
+    const { text, segMeta } = buildPodcastText(segments);
+    resetOratorVoices();
+    loadBlockIntoBox(text, null);
+    state.podcastSegments = segMeta; state.podcastRawText = text;
+    setStatus(segMeta.length ? `Guion cargado (${new Set(segments.map(s=>s.speaker.toLowerCase())).size} orador(es)).` : "");
+  }catch(err){ console.error(err); setStatus("No se pudo leer el JSON: " + ((err&&err.message)||err), true); }
+});
+
+/* ---------------- menú de elección genérico (Upload / New) ---------------- */
+const choiceMenuEl = $("choiceMenu");
+function closeChoiceMenu(){
+  if(!choiceMenuEl) return;
+  choiceMenuEl.classList.remove("open"); choiceMenuEl.innerHTML="";
+  document.removeEventListener("click", onChoiceMenuDocClick, true);
+  document.removeEventListener("keydown", onChoiceMenuDocKey, true);
 }
+function onChoiceMenuDocClick(e){ if(choiceMenuEl && !choiceMenuEl.contains(e.target)) closeChoiceMenu(); }
+function onChoiceMenuDocKey(e){ if(e.key==="Escape") closeChoiceMenu(); }
+function openChoiceMenu(anchor, options){
+  if(!choiceMenuEl || !anchor) return;
+  const wasOpen = choiceMenuEl.classList.contains("open");
+  closeChoiceMenu();
+  if(wasOpen) return;
+  options.forEach(opt=>{
+    const b = document.createElement("button"); b.type="button"; b.textContent = opt.label;
+    b.addEventListener("click", ()=>{ closeChoiceMenu(); opt.onClick(); });
+    choiceMenuEl.appendChild(b);
+  });
+  const r = anchor.getBoundingClientRect();
+  choiceMenuEl.style.left = Math.round(r.left)+"px"; choiceMenuEl.style.top = Math.round(r.bottom+6)+"px";
+  choiceMenuEl.classList.add("open");
+  requestAnimationFrame(()=>{
+    const mw = choiceMenuEl.offsetWidth, vw = window.innerWidth;
+    let left = r.left; if(left + mw > vw-8) left = vw-8-mw; if(left<8) left=8;
+    choiceMenuEl.style.left = Math.round(left)+"px";
+  });
+  setTimeout(()=>{
+    document.addEventListener("click", onChoiceMenuDocClick, true);
+    document.addEventListener("keydown", onChoiceMenuDocKey, true);
+  }, 0);
+}
+const uploadBtn = $("uploadBtn");
+if(uploadBtn) uploadBtn.addEventListener("click", ()=> openChoiceMenu(uploadBtn, [
+  { label: t("chooseWord"), onClick: ()=>$("docxInput").click() },
+  { label: t("chooseJson"), onClick: ()=>$("jsonInput").click() },
+]));
+const newBtn = $("newBtn");
+if(newBtn) newBtn.addEventListener("click", ()=> openChoiceMenu(newBtn, [
+  { label: t("choosePhrase"), onClick: loadNewQuote },
+  { label: t("chooseParagraph"), onClick: loadNewParagraph },
+]));
 
 /* ---------------- copy transcript ---------------- */
 $("copyBtn").addEventListener("click", ()=>{

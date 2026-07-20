@@ -49,10 +49,8 @@
 
       <button class="shuffle" id="phonBtn" aria-pressed="false">🔤 Fonética</button>
       <button class="shuffle" id="wordBtn" aria-pressed="false">🎯 Palabras</button>
-      <button class="shuffle" id="docxBtn">📄 Word</button>
-      <button class="shuffle" id="jsonBtn" title="Cargar guion tipo podcast (JSON)">🎙️ JSON</button>
-      <button class="shuffle" id="shuffleBtn">↻ New</button>
-      <button class="shuffle" id="paragraphBtn">¶ Paragraph</button>
+      <button class="shuffle" id="uploadBtn">⬆ Upload</button>
+      <button class="shuffle" id="newBtn">↻ New</button>
       <input type="file" id="docxInput" accept=".docx" hidden>
       <input type="file" id="jsonInput" accept=".json,application/json" hidden>
     </div>
@@ -232,6 +230,8 @@
     <a href="https://github.com/huggingface/transformers.js" target="_blank" rel="noopener">Transformers.js</a>.
     Inspired by Hugging Face <a href="https://huggingface.co/spaces/Xenova/whisper-web" target="_blank" rel="noopener">Whisper Web</a>.
   </footer>
+
+  <div class="choice-menu" id="choiceMenu"></div>
 </div>
 
 <script type="module" src="js/app.js"></script>
