@@ -41,8 +41,9 @@ function showReadingList(data) {
   readingListContainer.innerHTML = data.readings.map((r, i) => {
     const done = completedReadings.includes(r.id) ? '<span class="ri-done">✓</span>' : '';
     const wordCount = r.words ? r.words.length : (r.paragraphs ? r.paragraphs.join(' ').split(/\s+/).length : 0);
+    const thumb = (r.images && r.images[0]) ? r.images[0] : (data.coverSVG || '');
     return `<a class="reading-item" href="reader.html?id=${r.id}&cat=${data.category}">
-      <div class="ri-num">${i+1}</div>
+      <div class="ri-thumb">${thumb}</div>
       <div class="ri-info">
         <h4>${r.title}</h4>
         <p>${wordCount} words · ${r.paragraphs.length} paragraphs</p>
@@ -231,40 +232,62 @@ function initReader() {
       const voice = pickVoice();
       if (voice) utterance.voice = voice;
 
-      let charCount = 0;
       let lastHighlightedIdx = -1;
+      let boundaryFired = false;
+      let timerInterval = null;
 
-      utterance.onboundary = (event) => {
-        if (event.name === 'word') {
-          // Calculate word index from char offset
-          const charIndex = event.charIndex;
-          // Find the word at this position
-          const text = fullText.substring(0, charIndex);
-          const wordNum = text.split(/\s+/).filter(w => w.length > 0).length;
-
-          // Clear previous highlight
-          if (lastHighlightedIdx >= 0 && wordSpans[lastHighlightedIdx]) {
-            wordSpans[lastHighlightedIdx].classList.remove('highlighted');
-          }
-
-          // Highlight current word
-          if (wordNum < wordSpans.length) {
-            wordSpans[wordNum].classList.add('highlighted');
-            // Auto-scroll
-            wordSpans[wordNum].scrollIntoView({ behavior: 'smooth', block: 'center' });
-            // Update image if paragraph changed
-            const pIdx = parseInt(wordSpans[wordNum].dataset.paragraph);
-            if (pIdx !== currentParagraphIndex) {
-              currentParagraphIndex = pIdx;
-              renderImage(pIdx);
-              updateProgress();
-            }
-            lastHighlightedIdx = wordNum;
-          }
+      function highlightWord(idx) {
+        // Clear previous
+        if (lastHighlightedIdx >= 0 && wordSpans[lastHighlightedIdx]) {
+          wordSpans[lastHighlightedIdx].classList.remove('highlighted');
         }
+        if (idx < wordSpans.length) {
+          wordSpans[idx].classList.add('highlighted');
+          wordSpans[idx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+          // Update image if paragraph changed
+          const pIdx = parseInt(wordSpans[idx].dataset.paragraph);
+          if (pIdx !== currentParagraphIndex) {
+            currentParagraphIndex = pIdx;
+            renderImage(pIdx);
+            updateProgress();
+          }
+          lastHighlightedIdx = idx;
+        }
+      }
+
+      // Primary: onboundary event (Chrome/Edge/Safari)
+      utterance.onboundary = (event) => {
+        if (event.charIndex === undefined) return;
+        boundaryFired = true;
+        if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+        // Calculate word index from char offset
+        const text = fullText.substring(0, event.charIndex);
+        const wordNum = text.split(/\s+/).filter(w => w.length > 0).length;
+        highlightWord(wordNum);
+      };
+
+      // Fallback: timer-based highlighting if onboundary doesn't fire
+      utterance.onstart = () => {
+        setTimeout(() => {
+          if (!boundaryFired && wordSpans.length > 0) {
+            let wi = 0;
+            const msPerWord = 350 / currentRate;
+            highlightWord(0);
+            timerInterval = setInterval(() => {
+              wi++;
+              if (wi < wordSpans.length) {
+                highlightWord(wi);
+              } else {
+                clearInterval(timerInterval);
+                timerInterval = null;
+              }
+            }, msPerWord);
+          }
+        }, 800);
       };
 
       utterance.onend = () => {
+        if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
         isPlaying = false;
         isPaused = false;
         playBtn.textContent = '▶️';
@@ -281,6 +304,7 @@ function initReader() {
       };
 
       utterance.onerror = () => {
+        if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
         isPlaying = false;
         isPaused = false;
         playBtn.textContent = '▶️';
