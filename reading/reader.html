@@ -30,12 +30,7 @@
   <!-- Controls bar -->
   <div class="reader-controls">
     <button class="ctrl-btn" id="btnPlay" title="Play / Pause">▶️</button>
-    <div class="ctrl-speed">
-      <button class="speed-btn" data-rate="0.7" title="Slow">🐢 0.7x</button>
-      <button class="speed-btn active" data-rate="1.0" title="Normal">1.0x</button>
-      <button class="speed-btn" data-rate="1.3" title="Fast">1.3x</button>
-    </div>
-    <select class="ctrl-voice" id="voiceSelect" title="Voice"></select>
+    <span class="ctrl-info">🐢 0.7x · 🇺🇸 US English</span>
     <span class="ctrl-progress" id="ctrlProgress">Paragraph 1 of 1</span>
   </div>
 
@@ -46,6 +41,17 @@
 
   <!-- Complete indicator -->
   <div class="reading-complete" id="readingComplete">✅ Reading complete!</div>
+
+  <!-- Quiz section -->
+  <div class="quiz-section" id="quizSection">
+    <div class="quiz-header">
+      <h3>📝 Comprehension Quiz</h3>
+      <p>Answer 5 questions about what you read</p>
+    </div>
+    <div id="quizQuestions"></div>
+    <button class="quiz-submit" id="quizSubmit">Check Answers</button>
+    <div class="quiz-result" id="quizResult"></div>
+  </div>
 
 </div>
 

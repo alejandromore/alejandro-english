@@ -1,6 +1,6 @@
 {
   "category": "tecnologia",
-  "categoryName": "Tecnología",
+  "categoryName": "Technology",
   "categoryIcon": "💻",
   "level": "A2-B1",
   "coverSVG": "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e3f2fd' rx='8'/><circle cx='100' cy='75' r='40' fill='#1a2744' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#00b4a6' rx='6'/><circle cx='85' cy='70' r='6' fill='#e3f2fd'/><circle cx='115' cy='70' r='6' fill='#e3f2fd'/><rect x='80' y='85' width='40' height='6' fill='#e3f2fd' rx='2'/></svg>",
@@ -11,12 +11,16 @@
       "paragraphs": [
         "The internet is a big network that connects computers all over the world. When you send a message, it breaks into small pieces called packets. Each packet travels through wires and cables to reach its destination.",
         "At the other end, the packets come together again. This happens very fast. You can send a message to a friend in another country and they get it in seconds.",
-        "The internet lets us do many things. We can watch videos, read news, play games, and talk to friends. It has changed how we learn and work. Today, billions of people use it every day."
+        "The internet lets us do many things. We can watch videos, read news, play games, and talk to friends. It has changed how we learn and work. Today, billions of people use it every day.",
+        "To stay safe on the internet, you should use strong passwords. A strong password has letters, numbers, and symbols. Never share your password with anyone. Some websites use special codes to protect your information.",
+        "The internet is always getting faster. New technology called 5G sends data much more quickly than before. In the future, the internet will connect not just computers but also cars, watches, and even refrigerators. This is called the Internet of Things."
       ],
       "images": [
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e3f2fd' rx='8'/><circle cx='100' cy='75' r='40' fill='#00b4a6' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#fff3e0' rx='6'/><circle cx='85' cy='70' r='6' fill='#e3f2fd'/><circle cx='115' cy='70' r='6' fill='#e3f2fd'/><rect x='80' y='85' width='40' height='6' fill='#e3f2fd' rx='2'/></svg>",
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e3f2fd' rx='8'/><circle cx='100' cy='75' r='40' fill='#00b4a6' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#fff3e0' rx='6'/><circle cx='85' cy='70' r='6' fill='#e3f2fd'/><circle cx='115' cy='70' r='6' fill='#e3f2fd'/><rect x='80' y='85' width='40' height='6' fill='#e3f2fd' rx='2'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e3f2fd' rx='8'/><circle cx='100' cy='75' r='40' fill='#00b4a6' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#fff3e0' rx='6'/><circle cx='85' cy='70' r='6' fill='#e3f2fd'/><circle cx='115' cy='70' r='6' fill='#e3f2fd'/><rect x='80' y='85' width='40' height='6' fill='#e3f2fd' rx='2'/></svg>"
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e3f2fd' rx='8'/><circle cx='100' cy='75' r='40' fill='#00b4a6' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#fff3e0' rx='6'/><circle cx='85' cy='70' r='6' fill='#e3f2fd'/><circle cx='115' cy='70' r='6' fill='#e3f2fd'/><rect x='80' y='85' width='40' height='6' fill='#e3f2fd' rx='2'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e3f2fd' rx='8'/><rect x='60' y='50' width='80' height='50' fill='#00b4a6' rx='6'/><text x='100' y='80' font-size='20' text-anchor='middle' fill='#fff'>***</text><circle cx='100' cy='115' r='8' fill='#f39c12'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e3f2fd' rx='8'/><circle cx='50' cy='75' r='15' fill='#00b4a6'/><circle cx='100' cy='75' r='15' fill='#00b4a6'/><circle cx='150' cy='75' r='15' fill='#00b4a6'/><line x1='65' y1='75' x2='85' y2='75' stroke='#00b4a6' stroke-width='3'/><line x1='115' y1='75' x2='135' y2='75' stroke='#00b4a6' stroke-width='3'/></svg>"
       ],
       "words": [
         {
@@ -486,6 +490,154 @@
           "translation": "dia",
           "phonetics": "day",
           "paragraphIndex": 2
+        },
+        {
+          "word": "safe",
+          "translation": "seguro",
+          "phonetics": "seif",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "strong",
+          "translation": "fuerte",
+          "phonetics": "strong",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "passwords",
+          "translation": "contraseñas",
+          "phonetics": "pas-worts",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "letters",
+          "translation": "letras",
+          "phonetics": "le-ters",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "numbers",
+          "translation": "números",
+          "phonetics": "nom-bers",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "symbols",
+          "translation": "símbolos",
+          "phonetics": "sim-bols",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "share",
+          "translation": "compartir",
+          "phonetics": "shair",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "codes",
+          "translation": "códigos",
+          "phonetics": "co-des",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "protect",
+          "translation": "proteger",
+          "phonetics": "pro-tect",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "faster",
+          "translation": "más rápido",
+          "phonetics": "fas-ter",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "technology",
+          "translation": "tecnología",
+          "phonetics": "tek-nolochi",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "quickly",
+          "translation": "rápidamente",
+          "phonetics": "kwick-ly",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "future",
+          "translation": "futuro",
+          "phonetics": "fiu-tcher",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "connect",
+          "translation": "conectar",
+          "phonetics": "conn-ect",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "watches",
+          "translation": "relojes",
+          "phonetics": "woch-es",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "refrigerators",
+          "translation": "refrigeradores",
+          "phonetics": "rifri-geraitors",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What happens when you send a message on the internet?",
+          "options": [
+            "It travels as one big piece",
+            "It breaks into small packets",
+            "It goes through the air only",
+            "It is printed on paper"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What should you do to stay safe on the internet?",
+          "options": [
+            "Share your password with friends",
+            "Use a simple password",
+            "Use strong passwords with letters and numbers",
+            "Never use the internet"
+          ],
+          "correct": 2
+        },
+        {
+          "question": "What is the Internet of Things?",
+          "options": [
+            "A type of computer",
+            "Connecting everyday objects to the internet",
+            "A new social network",
+            "A type of cable"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What does 5G do?",
+          "options": [
+            "Makes phones heavier",
+            "Sends data more quickly",
+            "Uses more batteries",
+            "Replaces the internet"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "How does the passage describe the internet?",
+          "options": [
+            "A small network for one city",
+            "A big network connecting computers worldwide",
+            "A type of telephone",
+            "A new type of computer"
+          ],
+          "correct": 1
         }
       ]
     },
@@ -495,12 +647,16 @@
       "paragraphs": [
         "Robots are machines that can do tasks by themselves. Some robots build cars in factories. Others explore space or help doctors in hospitals. They have sensors that help them see and feel the world around them.",
         "Artificial intelligence, or AI, is the brain of a robot. AI helps robots learn from their mistakes. The more a robot works, the better it gets at its job.",
-        "In the future, robots will help us more at home. They may cook food, clean houses, and even help with homework. But robots still need humans to build and program them."
+        "In the future, robots will help us more at home. They may cook food, clean houses, and even help with homework. But robots still need humans to build and program them.",
+        "Today, many people already have robots at home. Robot vacuum cleaners move around the room and clean the floor by themselves. Some robots can cut the grass in the garden. These robots use sensors to avoid hitting walls and furniture.",
+        "Scientists are working to make robots smarter and safer. A big question is whether robots should make important decisions. For example, should a robot decide what medicine a patient needs? Most people think humans should always make the final choice."
       ],
       "images": [
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#1a2744' rx='8'/><circle cx='100' cy='75' r='40' fill='#f39c12' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#e8f5e9' rx='6'/><circle cx='85' cy='70' r='6' fill='#1a2744'/><circle cx='115' cy='70' r='6' fill='#1a2744'/><rect x='80' y='85' width='40' height='6' fill='#1a2744' rx='2'/></svg>",
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#1a2744' rx='8'/><circle cx='100' cy='75' r='40' fill='#f39c12' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#e8f5e9' rx='6'/><circle cx='85' cy='70' r='6' fill='#1a2744'/><circle cx='115' cy='70' r='6' fill='#1a2744'/><rect x='80' y='85' width='40' height='6' fill='#1a2744' rx='2'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#1a2744' rx='8'/><circle cx='100' cy='75' r='40' fill='#f39c12' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#e8f5e9' rx='6'/><circle cx='85' cy='70' r='6' fill='#1a2744'/><circle cx='115' cy='70' r='6' fill='#1a2744'/><rect x='80' y='85' width='40' height='6' fill='#1a2744' rx='2'/></svg>"
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#1a2744' rx='8'/><circle cx='100' cy='75' r='40' fill='#f39c12' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#e8f5e9' rx='6'/><circle cx='85' cy='70' r='6' fill='#1a2744'/><circle cx='115' cy='70' r='6' fill='#1a2744'/><rect x='80' y='85' width='40' height='6' fill='#1a2744' rx='2'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#1a2744' rx='8'/><rect x='75' y='40' width='50' height='40' fill='#f39c12' rx='6'/><circle cx='90' cy='55' r='5' fill='#1a2744'/><circle cx='110' cy='55' r='5' fill='#1a2744'/><rect x='80' y='85' width='40' height='25' fill='#e8f5e9' rx='4'/><circle cx='100' cy='120' r='12' fill='#f39c12'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#1a2744' rx='8'/><circle cx='100' cy='60' r='25' fill='#f39c12'/><rect x='85' y='85' width='30' height='40' fill='#e8f5e9' rx='4'/><text x='100' y='65' font-size='14' text-anchor='middle' fill='#1a2744'>?</text></svg>"
       ],
       "words": [
         {
@@ -922,6 +1078,148 @@
           "translation": "programa",
           "phonetics": "prog-ram",
           "paragraphIndex": 2
+        },
+        {
+          "word": "vacuum",
+          "translation": "aspiradora",
+          "phonetics": "va-kium",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "clean",
+          "translation": "limpiar",
+          "phonetics": "cli-n",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "floor",
+          "translation": "suelo",
+          "phonetics": "flor",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "grass",
+          "translation": "césped",
+          "phonetics": "gras",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "garden",
+          "translation": "jardín",
+          "phonetics": "gar-den",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "sensors",
+          "translation": "sensores",
+          "phonetics": "sen-sors",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "avoid",
+          "translation": "evitar",
+          "phonetics": "a-void",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "furniture",
+          "translation": "muebles",
+          "phonetics": "fur-nichur",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "scientists",
+          "translation": "científicos",
+          "phonetics": "sai-en-tists",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "smarter",
+          "translation": "más inteligente",
+          "phonetics": "smar-ter",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "safer",
+          "translation": "más seguro",
+          "phonetics": "sei-fer",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "decisions",
+          "translation": "decisiones",
+          "phonetics": "di-si-zhons",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "medicine",
+          "translation": "medicina",
+          "phonetics": "me-di-cin",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "patient",
+          "translation": "paciente",
+          "phonetics": "pei-shent",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "choice",
+          "translation": "elección",
+          "phonetics": "chois",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What do robot vacuum cleaners do?",
+          "options": [
+            "Cook food",
+            "Clean the floor by themselves",
+            "Wash clothes",
+            "Build cars"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What helps robots avoid hitting walls?",
+          "options": [
+            "Their color",
+            "Sensors",
+            "Their size",
+            "Their speed"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What is a big question about robots?",
+          "options": [
+            "How fast they can go",
+            "Whether robots should make important decisions",
+            "What color they should be",
+            "How much they cost"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What do most people think about robots making decisions?",
+          "options": [
+            "Robots should decide everything",
+            "Humans should make the final choice",
+            "Robots are always right",
+            "It does not matter"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What is AI compared to in the passage?",
+          "options": [
+            "The hands of a robot",
+            "The brain of a robot",
+            "The eyes of a robot",
+            "The legs of a robot"
+          ],
+          "correct": 1
         }
       ]
     },
@@ -931,12 +1229,16 @@
       "paragraphs": [
         "A smartphone is like a small computer that fits in your hand. It has a screen that responds to your touch. When you tap the screen, the phone sends a signal to its brain, called the processor.",
         "Inside the phone, there is a battery that gives it power. There is also a camera, a speaker, and a microphone. The antenna lets the phone connect to the internet and make calls.",
-        "You can use a smartphone to take photos, play games, send messages, and find information. Apps are small programs that give your phone new features. Millions of apps are available today."
+        "You can use a smartphone to take photos, play games, send messages, and find information. Apps are small programs that give your phone new features. Millions of apps are available today.",
+        "The touch screen works because your finger carries a tiny bit of electricity. When you touch the glass, the phone detects where your finger is. The screen has a special layer that senses this electrical signal and tells the phone what to do.",
+        "In the future, smartphones may look very different. Some phones can already fold in half like a book. New phones use artificial intelligence to understand your voice and answer questions. Scientists are also working on phones that can project images into the air."
       ],
       "images": [
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#00b4a6' rx='8'/><circle cx='100' cy='75' r='40' fill='#fff3e0' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#f0f4f8' rx='6'/><circle cx='85' cy='70' r='6' fill='#00b4a6'/><circle cx='115' cy='70' r='6' fill='#00b4a6'/><rect x='80' y='85' width='40' height='6' fill='#00b4a6' rx='2'/></svg>",
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#00b4a6' rx='8'/><circle cx='100' cy='75' r='40' fill='#fff3e0' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#f0f4f8' rx='6'/><circle cx='85' cy='70' r='6' fill='#00b4a6'/><circle cx='115' cy='70' r='6' fill='#00b4a6'/><rect x='80' y='85' width='40' height='6' fill='#00b4a6' rx='2'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#00b4a6' rx='8'/><circle cx='100' cy='75' r='40' fill='#fff3e0' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#f0f4f8' rx='6'/><circle cx='85' cy='70' r='6' fill='#00b4a6'/><circle cx='115' cy='70' r='6' fill='#00b4a6'/><rect x='80' y='85' width='40' height='6' fill='#00b4a6' rx='2'/></svg>"
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#00b4a6' rx='8'/><circle cx='100' cy='75' r='40' fill='#fff3e0' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#f0f4f8' rx='6'/><circle cx='85' cy='70' r='6' fill='#00b4a6'/><circle cx='115' cy='70' r='6' fill='#00b4a6'/><rect x='80' y='85' width='40' height='6' fill='#00b4a6' rx='2'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#00b4a6' rx='8'/><rect x='80' y='30' width='40' height='90' fill='#fff3e0' rx='8'/><circle cx='100' cy='110' r='5' fill='#00b4a6'/><rect x='85' y='40' width='30' height='50' fill='#f0f4f8' rx='2'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#00b4a6' rx='8'/><rect x='60' y='50' width='80' height='50' fill='#fff3e0' rx='6' opacity='0.9'/><rect x='70' y='45' width='60' height='55' fill='#f0f4f8' rx='6' opacity='0.7'/><circle cx='100' cy='75' r='8' fill='#00b4a6'/></svg>"
       ],
       "words": [
         {
@@ -1322,6 +1624,142 @@
           "translation": "hoy",
           "phonetics": "tod-ay",
           "paragraphIndex": 2
+        },
+        {
+          "word": "touch",
+          "translation": "tacto",
+          "phonetics": "toch",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "screen",
+          "translation": "pantalla",
+          "phonetics": "skri-n",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "finger",
+          "translation": "dedo",
+          "phonetics": "fin-ger",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "electricity",
+          "translation": "electricidad",
+          "phonetics": "elek-trisi-ti",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "glass",
+          "translation": "vidrio",
+          "phonetics": "glas",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "detects",
+          "translation": "detecta",
+          "phonetics": "di-tects",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "layer",
+          "translation": "capa",
+          "phonetics": "lei-er",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "senses",
+          "translation": "siente",
+          "phonetics": "sen-ses",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "fold",
+          "translation": "doblar",
+          "phonetics": "fold",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "voice",
+          "translation": "voz",
+          "phonetics": "vois",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "answer",
+          "translation": "responder",
+          "phonetics": "an-ser",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "project",
+          "translation": "proyectar",
+          "phonetics": "pro-yect",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "images",
+          "translation": "imágenes",
+          "phonetics": "i-mi-yes",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "scientists",
+          "translation": "científicos",
+          "phonetics": "sai-en-tists",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "How does a touch screen detect your finger?",
+          "options": [
+            "By temperature",
+            "By the electricity in your finger",
+            "By the weight of your finger",
+            "By the color of your finger"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What does the processor do in a smartphone?",
+          "options": [
+            "It gives power to the phone",
+            "It is the brain of the phone",
+            "It takes photos",
+            "It connects to the internet"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can some new phones do?",
+          "options": [
+            "Cook food",
+            "Fold in half like a book",
+            "Fly in the air",
+            "Print paper"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What do new phones use to understand your voice?",
+          "options": [
+            "A special cable",
+            "Artificial intelligence",
+            "A bigger battery",
+            "A new antenna"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What are scientists working on for future phones?",
+          "options": [
+            "Phones that project images into the air",
+            "Phones that cook food",
+            "Phones that drive cars",
+            "Phones that clean houses"
+          ],
+          "correct": 0
         }
       ]
     },
@@ -1331,12 +1769,16 @@
       "paragraphs": [
         "GPS stands for Global Positioning System. It helps you find where you are on Earth. GPS uses satellites that fly high above the planet. There are about thirty GPS satellites in space.",
         "Your phone receives signals from these satellites. By measuring how long the signal takes to arrive, your phone calculates your position. It can tell you exactly where you are on a map.",
-        "GPS is very useful for driving. It shows you the best route to your destination. It can also help rescue teams find people who are lost. Ships and airplanes use GPS to navigate safely."
+        "GPS is very useful for driving. It shows you the best route to your destination. It can also help rescue teams find people who are lost. Ships and airplanes use GPS to navigate safely.",
+        "GPS was first created by the United States military in the 1970s. At first, only soldiers could use it. Later, the government allowed everyone to use GPS. Now, people all over the world depend on it every single day.",
+        "GPS is not always perfect. Tall buildings and bad weather can block the signal. Sometimes your phone shows the wrong position. Scientists are building new satellites to make GPS more accurate. The new system will be better than ever before."
       ],
       "images": [
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#f39c12' rx='8'/><circle cx='100' cy='75' r='40' fill='#e8f5e9' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#2d3d5e' rx='6'/><circle cx='85' cy='70' r='6' fill='#f39c12'/><circle cx='115' cy='70' r='6' fill='#f39c12'/><rect x='80' y='85' width='40' height='6' fill='#f39c12' rx='2'/></svg>",
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#f39c12' rx='8'/><circle cx='100' cy='75' r='40' fill='#e8f5e9' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#2d3d5e' rx='6'/><circle cx='85' cy='70' r='6' fill='#f39c12'/><circle cx='115' cy='70' r='6' fill='#f39c12'/><rect x='80' y='85' width='40' height='6' fill='#f39c12' rx='2'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#f39c12' rx='8'/><circle cx='100' cy='75' r='40' fill='#e8f5e9' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#2d3d5e' rx='6'/><circle cx='85' cy='70' r='6' fill='#f39c12'/><circle cx='115' cy='70' r='6' fill='#f39c12'/><rect x='80' y='85' width='40' height='6' fill='#f39c12' rx='2'/></svg>"
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#f39c12' rx='8'/><circle cx='100' cy='75' r='40' fill='#e8f5e9' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#2d3d5e' rx='6'/><circle cx='85' cy='70' r='6' fill='#f39c12'/><circle cx='115' cy='70' r='6' fill='#f39c12'/><rect x='80' y='85' width='40' height='6' fill='#f39c12' rx='2'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#f39c12' rx='8'/><circle cx='100' cy='75' r='35' fill='#e8f5e9'/><rect x='85' y='60' width='30' height='30' fill='#2d3d5e' rx='4'/><circle cx='100' cy='50' r='8' fill='#f39c12'/><line x1='100' y1='58' x2='100' y2='60' stroke='#f39c12' stroke-width='2'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#f39c12' rx='8'/><rect x='60' y='40' width='15' height='70' fill='#2d3d5e'/><rect x='125' y='40' width='15' height='70' fill='#2d3d5e'/><circle cx='100' cy='75' r='20' fill='#e8f5e9' opacity='0.8'/><text x='100' y='80' font-size='16' text-anchor='middle' fill='#2d3d5e'>!</text></svg>"
       ],
       "words": [
         {
@@ -1752,6 +2194,142 @@
           "translation": "safely",
           "phonetics": "saf-ely",
           "paragraphIndex": 2
+        },
+        {
+          "word": "created",
+          "translation": "creado",
+          "phonetics": "kri-ei-ted",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "military",
+          "translation": "militar",
+          "phonetics": "mi-li-ta-ry",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "soldiers",
+          "translation": "soldados",
+          "phonetics": "sol-diers",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "government",
+          "translation": "gobierno",
+          "phonetics": "gover-nment",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "allowed",
+          "translation": "permitió",
+          "phonetics": "a-loud",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "depend",
+          "translation": "depender",
+          "phonetics": "di-pend",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "perfect",
+          "translation": "perfecto",
+          "phonetics": "per-fect",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "buildings",
+          "translation": "edificios",
+          "phonetics": "bil-dings",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "weather",
+          "translation": "clima",
+          "phonetics": "we-zer",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "block",
+          "translation": "bloquear",
+          "phonetics": "blok",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "signal",
+          "translation": "señal",
+          "phonetics": "sig-nal",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "wrong",
+          "translation": "equivocado",
+          "phonetics": "rong",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "accurate",
+          "translation": "preciso",
+          "phonetics": "a-ciu-rat",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "system",
+          "translation": "sistema",
+          "phonetics": "sis-tem",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "Who first created GPS?",
+          "options": [
+            "Scientists in Japan",
+            "The United States military",
+            "A phone company",
+            "The European Union"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "When was GPS first created?",
+          "options": [
+            "In the 1990s",
+            "In the 1970s",
+            "In the 2000s",
+            "In the 1950s"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can block the GPS signal?",
+          "options": [
+            "Small animals",
+            "Tall buildings and bad weather",
+            "The moon",
+            "Other phones"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Why are scientists building new satellites?",
+          "options": [
+            "To replace the moon",
+            "To make GPS more accurate",
+            "To block phone signals",
+            "To send more TV channels"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "How does your phone calculate your position?",
+          "options": [
+            "By taking a photo",
+            "By measuring how long the signal takes to arrive",
+            "By reading a map",
+            "By asking other phones"
+          ],
+          "correct": 1
         }
       ]
     },
@@ -1761,12 +2339,16 @@
       "paragraphs": [
         "Electric cars are different from normal cars. They do not use gasoline. Instead, they use a big battery to power an electric motor. The motor turns the wheels and makes the car move.",
         "You charge an electric car by plugging it into a charging station. It takes a few hours to fill the battery. Once charged, the car can travel many kilometers before needing more power.",
-        "Electric cars are better for the environment. They do not produce smoke or pollution. They are also very quiet. More people are buying electric cars because they help keep the air clean."
+        "Electric cars are better for the environment. They do not produce smoke or pollution. They are also very quiet. More people are buying electric cars because they help keep the air clean.",
+        "Charging stations are being built in more places every year. You can find them at shopping centers, hotels, and along highways. Some stations can charge a car in just thirty minutes. This makes long trips much easier for electric car drivers.",
+        "In the future, electric cars will be even better. Scientists are making batteries that last longer and charge faster. Some electric cars can already drive themselves. Soon, most cars on the road may be electric, which will help reduce pollution around the world."
       ],
       "images": [
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fff3e0' rx='8'/><circle cx='100' cy='75' r='40' fill='#f0f4f8' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#e8eaf6' rx='6'/><circle cx='85' cy='70' r='6' fill='#fff3e0'/><circle cx='115' cy='70' r='6' fill='#fff3e0'/><rect x='80' y='85' width='40' height='6' fill='#fff3e0' rx='2'/></svg>",
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fff3e0' rx='8'/><circle cx='100' cy='75' r='40' fill='#f0f4f8' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#e8eaf6' rx='6'/><circle cx='85' cy='70' r='6' fill='#fff3e0'/><circle cx='115' cy='70' r='6' fill='#fff3e0'/><rect x='80' y='85' width='40' height='6' fill='#fff3e0' rx='2'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fff3e0' rx='8'/><circle cx='100' cy='75' r='40' fill='#f0f4f8' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#e8eaf6' rx='6'/><circle cx='85' cy='70' r='6' fill='#fff3e0'/><circle cx='115' cy='70' r='6' fill='#fff3e0'/><rect x='80' y='85' width='40' height='6' fill='#fff3e0' rx='2'/></svg>"
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fff3e0' rx='8'/><circle cx='100' cy='75' r='40' fill='#f0f4f8' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#e8eaf6' rx='6'/><circle cx='85' cy='70' r='6' fill='#fff3e0'/><circle cx='115' cy='70' r='6' fill='#fff3e0'/><rect x='80' y='85' width='40' height='6' fill='#fff3e0' rx='2'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fff3e0' rx='8'/><rect x='70' y='50' width='60' height='40' fill='#f0f4f8' rx='6'/><rect x='85' y='55' width='30' height='20' fill='#e8eaf6' rx='3'/><text x='100' y='70' font-size='14' text-anchor='middle' fill='#00b4a6'>⚡</text><rect x='75' y='95' width='50' height='8' fill='#f0f4f8' rx='2'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fff3e0' rx='8'/><rect x='60' y='55' width='80' height='35' fill='#e8eaf6' rx='8'/><circle cx='80' cy='95' r='10' fill='#f0f4f8'/><circle cx='120' cy='95' r='10' fill='#f0f4f8'/><rect x='90' y='40' width='20' height='15' fill='#00b4a6' rx='2'/></svg>"
       ],
       "words": [
         {
@@ -2152,6 +2734,142 @@
           "translation": "limpio",
           "phonetics": "cl-in",
           "paragraphIndex": 2
+        },
+        {
+          "word": "charging",
+          "translation": "carga",
+          "phonetics": "char-ging",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "stations",
+          "translation": "estaciones",
+          "phonetics": "stei-shons",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "shopping",
+          "translation": "compras",
+          "phonetics": "shop-ing",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "centers",
+          "translation": "centros",
+          "phonetics": "sen-ters",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "hotels",
+          "translation": "hoteles",
+          "phonetics": "ho-tels",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "highways",
+          "translation": "autopistas",
+          "phonetics": "hai-weis",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "trips",
+          "translation": "viajes",
+          "phonetics": "trips",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "drivers",
+          "translation": "conductores",
+          "phonetics": "dri-vers",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "batteries",
+          "translation": "baterías",
+          "phonetics": "ba-te-ris",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "last",
+          "translation": "durar",
+          "phonetics": "last",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "longer",
+          "translation": "más tiempo",
+          "phonetics": "lon-ger",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "themselves",
+          "translation": "si mismos",
+          "phonetics": "zem-selvs",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "pollution",
+          "translation": "contaminación",
+          "phonetics": "po-lu-shon",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "world",
+          "translation": "mundo",
+          "phonetics": "wor-ld",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "Where can you find charging stations?",
+          "options": [
+            "Only at home",
+            "At shopping centers, hotels, and along highways",
+            "Only in factories",
+            "Only in big cities"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "How long does a fast charging station take?",
+          "options": [
+            "A few days",
+            "Several hours",
+            "About thirty minutes",
+            "One week"
+          ],
+          "correct": 2
+        },
+        {
+          "question": "What are scientists doing with batteries?",
+          "options": [
+            "Making them heavier",
+            "Making them last longer and charge faster",
+            "Making them smaller only",
+            "Removing them"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can some electric cars already do?",
+          "options": [
+            "Fly in the air",
+            "Drive themselves",
+            "Cook food",
+            "Print documents"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Why are electric cars better for the environment?",
+          "options": [
+            "They are faster",
+            "They do not produce smoke or pollution",
+            "They are cheaper",
+            "They are bigger"
+          ],
+          "correct": 1
         }
       ]
     },
@@ -2161,12 +2879,16 @@
       "paragraphs": [
         "A 3D printer is a machine that makes objects layer by layer. It starts from the bottom and adds material one thin layer at a time. This is different from cutting material away.",
         "You first create a design on a computer. Then you send the design to the 3D printer. The printer reads the design and builds the object. It can use plastic, metal, or other materials.",
-        "3D printing is useful in many ways. Doctors can print parts for the human body. Engineers can test new designs quickly. Children can even print their own toys at home or at school."
+        "3D printing is useful in many ways. Doctors can print parts for the human body. Engineers can test new designs quickly. Children can even print their own toys at home or at school.",
+        "3D printing is also used in space. Astronauts on the space station have a 3D printer. If a tool breaks, they can print a new one. This saves time because they do not have to wait for a supply ship from Earth.",
+        "In the future, 3D printers might print food and even human organs. Scientists are already testing 3D-printed skin for burn victims. Some people believe that one day, every home will have a 3D printer, just like most homes have a regular printer today."
       ],
       "images": [
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8f5e9' rx='8'/><circle cx='100' cy='75' r='40' fill='#2d3d5e' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#fce4ec' rx='6'/><circle cx='85' cy='70' r='6' fill='#e8f5e9'/><circle cx='115' cy='70' r='6' fill='#e8f5e9'/><rect x='80' y='85' width='40' height='6' fill='#e8f5e9' rx='2'/></svg>",
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8f5e9' rx='8'/><circle cx='100' cy='75' r='40' fill='#2d3d5e' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#fce4ec' rx='6'/><circle cx='85' cy='70' r='6' fill='#e8f5e9'/><circle cx='115' cy='70' r='6' fill='#e8f5e9'/><rect x='80' y='85' width='40' height='6' fill='#e8f5e9' rx='2'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8f5e9' rx='8'/><circle cx='100' cy='75' r='40' fill='#2d3d5e' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#fce4ec' rx='6'/><circle cx='85' cy='70' r='6' fill='#e8f5e9'/><circle cx='115' cy='70' r='6' fill='#e8f5e9'/><rect x='80' y='85' width='40' height='6' fill='#e8f5e9' rx='2'/></svg>"
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8f5e9' rx='8'/><circle cx='100' cy='75' r='40' fill='#2d3d5e' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#fce4ec' rx='6'/><circle cx='85' cy='70' r='6' fill='#e8f5e9'/><circle cx='115' cy='70' r='6' fill='#e8f5e9'/><rect x='80' y='85' width='40' height='6' fill='#e8f5e9' rx='2'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8f5e9' rx='8'/><rect x='60' y='40' width='80' height='60' fill='#2d3d5e' rx='4'/><rect x='75' y='55' width='50' height='30' fill='#fce4ec' rx='2'/><circle cx='100' cy='70' r='6' fill='#e8f5e9'/><rect x='90' y='85' width='20' height='10' fill='#fce4ec'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8f5e9' rx='8'/><circle cx='100' cy='75' r='30' fill='#2d3d5e' opacity='0.7'/><rect x='85' y='60' width='30' height='30' fill='#fce4ec' rx='4'/><text x='100' y='80' font-size='12' text-anchor='middle' fill='#2d3d5e'>3D</text></svg>"
       ],
       "words": [
         {
@@ -2576,6 +3298,142 @@
           "translation": "escuela",
           "phonetics": "sch-ul",
           "paragraphIndex": 2
+        },
+        {
+          "word": "space",
+          "translation": "espacio",
+          "phonetics": "speis",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "astronauts",
+          "translation": "astronautas",
+          "phonetics": "as-tro-nauts",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "station",
+          "translation": "estación",
+          "phonetics": "stei-shon",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "tool",
+          "translation": "herramienta",
+          "phonetics": "tu-l",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "breaks",
+          "translation": "rompe",
+          "phonetics": "breiks",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "supply",
+          "translation": "suministro",
+          "phonetics": "sup-pli",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "ship",
+          "translation": "nave",
+          "phonetics": "ship",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "food",
+          "translation": "comida",
+          "phonetics": "fu-d",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "organs",
+          "translation": "órganos",
+          "phonetics": "or-gans",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "testing",
+          "translation": "probando",
+          "phonetics": "tes-ting",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "skin",
+          "translation": "piel",
+          "phonetics": "skin",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "burn",
+          "translation": "quemadura",
+          "phonetics": "ber-n",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "victims",
+          "translation": "víctimas",
+          "phonetics": "vic-tims",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "believe",
+          "translation": "creer",
+          "phonetics": "bi-li-v",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "How do astronauts use 3D printing in space?",
+          "options": [
+            "To print food",
+            "To print new tools when one breaks",
+            "To print clothes",
+            "To print books"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Why is 3D printing useful for astronauts?",
+          "options": [
+            "It is fun",
+            "They do not have to wait for a supply ship from Earth",
+            "It uses less electricity",
+            "It is cheaper"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What might 3D printers print in the future?",
+          "options": [
+            "Food and human organs",
+            "Cars and airplanes",
+            "Buildings and bridges",
+            "Rivers and lakes"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "What are scientists already testing?",
+          "options": [
+            "3D-printed cars",
+            "3D-printed skin for burn victims",
+            "3D-printed houses",
+            "3D-printed phones"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "How does a 3D printer make objects?",
+          "options": [
+            "By cutting material away",
+            "Layer by layer from the bottom",
+            "By painting on paper",
+            "By melting metal only"
+          ],
+          "correct": 1
         }
       ]
     },
@@ -2585,12 +3443,16 @@
       "paragraphs": [
         "Making a video game takes a team of many people. Artists draw the characters and the worlds. Programmers write the code that makes everything move and respond to the player.",
         "Musicians create the music and sound effects. Writers make the story and the dialogue. Designers plan the levels and the rules. All these parts come together to make the game fun.",
-        "Game makers test their games many times before selling them. They want to make sure everything works well. Today, people play games on phones, computers, and special game consoles."
+        "Game makers test their games many times before selling them. They want to make sure everything works well. Today, people play games on phones, computers, and special game consoles.",
+        "Game makers use special software called game engines. A game engine has tools for drawing, sound, and physics. It helps programmers save time because they do not have to build everything from zero. Popular game engines are used by millions of developers around the world.",
+        "Video games have become a huge business. Some games make more money than famous movies. Players compete in big tournaments called esports. Millions of people watch these competitions online. Gaming brings people together from all over the world to play and have fun."
       ],
       "images": [
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#f0f4f8' rx='8'/><circle cx='100' cy='75' r='40' fill='#e8eaf6' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#e3f2fd' rx='6'/><circle cx='85' cy='70' r='6' fill='#f0f4f8'/><circle cx='115' cy='70' r='6' fill='#f0f4f8'/><rect x='80' y='85' width='40' height='6' fill='#f0f4f8' rx='2'/></svg>",
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#f0f4f8' rx='8'/><circle cx='100' cy='75' r='40' fill='#e8eaf6' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#e3f2fd' rx='6'/><circle cx='85' cy='70' r='6' fill='#f0f4f8'/><circle cx='115' cy='70' r='6' fill='#f0f4f8'/><rect x='80' y='85' width='40' height='6' fill='#f0f4f8' rx='2'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#f0f4f8' rx='8'/><circle cx='100' cy='75' r='40' fill='#e8eaf6' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#e3f2fd' rx='6'/><circle cx='85' cy='70' r='6' fill='#f0f4f8'/><circle cx='115' cy='70' r='6' fill='#f0f4f8'/><rect x='80' y='85' width='40' height='6' fill='#f0f4f8' rx='2'/></svg>"
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#f0f4f8' rx='8'/><circle cx='100' cy='75' r='40' fill='#e8eaf6' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#e3f2fd' rx='6'/><circle cx='85' cy='70' r='6' fill='#f0f4f8'/><circle cx='115' cy='70' r='6' fill='#f0f4f8'/><rect x='80' y='85' width='40' height='6' fill='#f0f4f8' rx='2'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#f0f4f8' rx='8'/><rect x='60' y='45' width='80' height='50' fill='#e8eaf6' rx='6'/><rect x='70' y='55' width='60' height='30' fill='#e3f2fd' rx='3'/><circle cx='85' cy='70' r='4' fill='#f0f4f8'/><circle cx='115' cy='70' r='4' fill='#f0f4f8'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#f0f4f8' rx='8'/><circle cx='100' cy='70' r='30' fill='#e8eaf6'/><text x='100' y='75' font-size='16' text-anchor='middle' fill='#f0f4f8'>★</text><rect x='70' y='105' width='60' height='8' fill='#e3f2fd' rx='2'/></svg>"
       ],
       "words": [
         {
@@ -2976,6 +3838,148 @@
           "translation": "consoles",
           "phonetics": "cons-oles",
           "paragraphIndex": 2
+        },
+        {
+          "word": "software",
+          "translation": "software",
+          "phonetics": "soft-wair",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "engines",
+          "translation": "motores",
+          "phonetics": "en-gins",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "tools",
+          "translation": "herramientas",
+          "phonetics": "tu-ls",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "drawing",
+          "translation": "dibujo",
+          "phonetics": "dro-ing",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "sound",
+          "translation": "sonido",
+          "phonetics": "saund",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "physics",
+          "translation": "física",
+          "phonetics": "fi-zics",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "save",
+          "translation": "ahorrar",
+          "phonetics": "seiv",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "developers",
+          "translation": "desarrolladores",
+          "phonetics": "de-ve-lo-pers",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "business",
+          "translation": "negocio",
+          "phonetics": "bi-zi-nes",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "money",
+          "translation": "dinero",
+          "phonetics": "mo-ney",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "movies",
+          "translation": "películas",
+          "phonetics": "mu-vies",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "compete",
+          "translation": "competir",
+          "phonetics": "com-peet",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "tournaments",
+          "translation": "torneos",
+          "phonetics": "tur-na-ments",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "esports",
+          "translation": "esports",
+          "phonetics": "es-ports",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "competitions",
+          "translation": "competiciones",
+          "phonetics": "com-pe-ti-shons",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What is a game engine?",
+          "options": [
+            "A type of car engine",
+            "Special software with tools for making games",
+            "A person who plays games",
+            "A type of game console"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "How does a game engine help programmers?",
+          "options": [
+            "It makes the game more expensive",
+            "It saves time because they do not build from zero",
+            "It makes games slower",
+            "It replaces the programmers"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What are esports?",
+          "options": [
+            "A type of sport with balls",
+            "Big gaming tournaments where players compete",
+            "A type of computer",
+            "A game engine"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What do millions of people do with esports?",
+          "options": [
+            "Play in them only",
+            "Watch them online",
+            "Ignore them",
+            "Buy tickets for stadiums"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Who makes the story and dialogue in a game?",
+          "options": [
+            "The programmers",
+            "The writers",
+            "The musicians",
+            "The designers"
+          ],
+          "correct": 1
         }
       ]
     },
@@ -2985,12 +3989,16 @@
       "paragraphs": [
         "Solar panels turn sunlight into electricity. They are made of small units called cells. When light hits the cells, it creates an electric current. This current can power lights, TVs, and other devices.",
         "Solar panels are usually placed on roofs where they can get the most sun. They work best on sunny days. At night, the energy is stored in batteries so you can still use electricity.",
-        "Solar energy is clean and free. The sun gives us more energy than we could ever use. Many homes and schools now have solar panels. This helps reduce pollution and save money."
+        "Solar energy is clean and free. The sun gives us more energy than we could ever use. Many homes and schools now have solar panels. This helps reduce pollution and save money.",
+        "Solar panels work best when they face the sun directly. Some panels can move to follow the sun during the day. These are called tracking panels. They produce more energy than panels that stay in one position.",
+        "Solar farms are large areas covered with thousands of solar panels. They can produce enough electricity for entire towns. Some countries are building huge solar farms in deserts where the sun shines almost every day. This clean energy helps fight climate change."
       ],
       "images": [
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#2d3d5e' rx='8'/><circle cx='100' cy='75' r='40' fill='#fce4ec' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#1a2744' rx='6'/><circle cx='85' cy='70' r='6' fill='#2d3d5e'/><circle cx='115' cy='70' r='6' fill='#2d3d5e'/><rect x='80' y='85' width='40' height='6' fill='#2d3d5e' rx='2'/></svg>",
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#2d3d5e' rx='8'/><circle cx='100' cy='75' r='40' fill='#fce4ec' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#1a2744' rx='6'/><circle cx='85' cy='70' r='6' fill='#2d3d5e'/><circle cx='115' cy='70' r='6' fill='#2d3d5e'/><rect x='80' y='85' width='40' height='6' fill='#2d3d5e' rx='2'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#2d3d5e' rx='8'/><circle cx='100' cy='75' r='40' fill='#fce4ec' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#1a2744' rx='6'/><circle cx='85' cy='70' r='6' fill='#2d3d5e'/><circle cx='115' cy='70' r='6' fill='#2d3d5e'/><rect x='80' y='85' width='40' height='6' fill='#2d3d5e' rx='2'/></svg>"
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#2d3d5e' rx='8'/><circle cx='100' cy='75' r='40' fill='#fce4ec' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#1a2744' rx='6'/><circle cx='85' cy='70' r='6' fill='#2d3d5e'/><circle cx='115' cy='70' r='6' fill='#2d3d5e'/><rect x='80' y='85' width='40' height='6' fill='#2d3d5e' rx='2'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#2d3d5e' rx='8'/><circle cx='100' cy='40' r='15' fill='#fce4ec'/><rect x='60' y='70' width='80' height='40' fill='#1a2744' rx='4'/><line x1='75' y1='70' x2='75' y2='110' stroke='#fce4ec' stroke-width='1'/><line x1='100' y1='70' x2='100' y2='110' stroke='#fce4ec' stroke-width='1'/><line x1='125' y1='70' x2='125' y2='110' stroke='#fce4ec' stroke-width='1'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#2d3d5e' rx='8'/><rect x='30' y='60' width='25' height='30' fill='#fce4ec' rx='2'/><rect x='65' y='60' width='25' height='30' fill='#fce4ec' rx='2'/><rect x='100' y='60' width='25' height='30' fill='#fce4ec' rx='2'/><rect x='135' y='60' width='25' height='30' fill='#fce4ec' rx='2'/><circle cx='170' cy='40' r='10' fill='#f39c12'/></svg>"
       ],
       "words": [
         {
@@ -3430,6 +4438,142 @@
           "translation": "dinero",
           "phonetics": "mon-ey",
           "paragraphIndex": 2
+        },
+        {
+          "word": "face",
+          "translation": "enfrentar",
+          "phonetics": "feis",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "directly",
+          "translation": "directamente",
+          "phonetics": "di-rect-ly",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "move",
+          "translation": "mover",
+          "phonetics": "mu-v",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "follow",
+          "translation": "seguir",
+          "phonetics": "fol-low",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "tracking",
+          "translation": "seguimiento",
+          "phonetics": "tra-king",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "produce",
+          "translation": "producir",
+          "phonetics": "pro-du-ce",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "position",
+          "translation": "posición",
+          "phonetics": "po-zi-shon",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "farms",
+          "translation": "granjas",
+          "phonetics": "farms",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "areas",
+          "translation": "áreas",
+          "phonetics": "ai-rias",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "covered",
+          "translation": "cubierto",
+          "phonetics": "co-vered",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "thousands",
+          "translation": "miles",
+          "phonetics": "thau-sands",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "towns",
+          "translation": "pueblos",
+          "phonetics": "tauns",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "deserts",
+          "translation": "desiertos",
+          "phonetics": "de-serts",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "climate",
+          "translation": "clima",
+          "phonetics": "klai-mat",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What do tracking panels do?",
+          "options": [
+            "They stay in one position",
+            "They move to follow the sun during the day",
+            "They change color",
+            "They make noise"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What is a solar farm?",
+          "options": [
+            "A farm that grows vegetables",
+            "A large area covered with thousands of solar panels",
+            "A type of battery",
+            "A place where solar panels are made"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Where do some countries build huge solar farms?",
+          "options": [
+            "In forests",
+            "In deserts where the sun shines almost every day",
+            "Underground",
+            "On the ocean"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What does clean energy from solar panels help with?",
+          "options": [
+            "Making more money",
+            "Fighting climate change",
+            "Building more houses",
+            "Growing more food"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What happens when light hits the solar cells?",
+          "options": [
+            "It creates an electric current",
+            "It makes the panel cold",
+            "It changes the color",
+            "It produces water"
+          ],
+          "correct": 0
         }
       ]
     },
@@ -3439,12 +4583,16 @@
       "paragraphs": [
         "A drone is a small flying machine that has no pilot inside. A person on the ground controls it with a remote control. Drones have four small motors that spin propellers to push air down.",
         "The propellers make the drone go up, down, forward, and sideways. A camera on the drone can take photos and videos from high in the sky. Some drones can even fly by themselves using GPS.",
-        "Drones are used in many ways. They can deliver packages, help farmers check their crops, and take beautiful photos. Rescue teams use drones to find people in dangerous places."
+        "Drones are used in many ways. They can deliver packages, help farmers check their crops, and take beautiful photos. Rescue teams use drones to find people in dangerous places.",
+        "Flying a drone safely requires following rules. In most countries, you cannot fly a drone near airports or big crowds of people. Drones must stay below a certain height. Some places require you to register your drone before you can fly it.",
+        "In the future, drones will do even more amazing things. Companies are testing drones that can deliver packages to your door. Farmers use drones to check their crops from above. Firefighters use drones with heat cameras to find hot spots in burning buildings."
       ],
       "images": [
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8eaf6' rx='8'/><circle cx='100' cy='75' r='40' fill='#e3f2fd' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#00b4a6' rx='6'/><circle cx='85' cy='70' r='6' fill='#e8eaf6'/><circle cx='115' cy='70' r='6' fill='#e8eaf6'/><rect x='80' y='85' width='40' height='6' fill='#e8eaf6' rx='2'/></svg>",
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8eaf6' rx='8'/><circle cx='100' cy='75' r='40' fill='#e3f2fd' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#00b4a6' rx='6'/><circle cx='85' cy='70' r='6' fill='#e8eaf6'/><circle cx='115' cy='70' r='6' fill='#e8eaf6'/><rect x='80' y='85' width='40' height='6' fill='#e8eaf6' rx='2'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8eaf6' rx='8'/><circle cx='100' cy='75' r='40' fill='#e3f2fd' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#00b4a6' rx='6'/><circle cx='85' cy='70' r='6' fill='#e8eaf6'/><circle cx='115' cy='70' r='6' fill='#e8eaf6'/><rect x='80' y='85' width='40' height='6' fill='#e8eaf6' rx='2'/></svg>"
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8eaf6' rx='8'/><circle cx='100' cy='75' r='40' fill='#e3f2fd' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#00b4a6' rx='6'/><circle cx='85' cy='70' r='6' fill='#e8eaf6'/><circle cx='115' cy='70' r='6' fill='#e8eaf6'/><rect x='80' y='85' width='40' height='6' fill='#e8eaf6' rx='2'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8eaf6' rx='8'/><rect x='70' y='60' width='60' height='15' fill='#00b4a6' rx='4'/><circle cx='75' cy='55' r='12' fill='#e3f2fd'/><circle cx='125' cy='55' r='12' fill='#e3f2fd'/><circle cx='75' cy='80' r='12' fill='#e3f2fd'/><circle cx='125' cy='80' r='12' fill='#e3f2fd'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8eaf6' rx='8'/><rect x='80' y='40' width='40' height='30' fill='#00b4a6' rx='4'/><rect x='70' y='75' width='60' height='20' fill='#e3f2fd' rx='3'/><text x='100' y='90' font-size='12' text-anchor='middle' fill='#00b4a6'>PKG</text></svg>"
       ],
       "words": [
         {
@@ -3878,6 +5026,148 @@
           "translation": "places",
           "phonetics": "pla-ces",
           "paragraphIndex": 2
+        },
+        {
+          "word": "safely",
+          "translation": "seguramente",
+          "phonetics": "seif-ly",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "rules",
+          "translation": "reglas",
+          "phonetics": "ru-ls",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "countries",
+          "translation": "países",
+          "phonetics": "con-tris",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "airports",
+          "translation": "aeropuertos",
+          "phonetics": "air-ports",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "crowds",
+          "translation": "multitudes",
+          "phonetics": "crauds",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "height",
+          "translation": "altura",
+          "phonetics": "hait",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "register",
+          "translation": "registrar",
+          "phonetics": "re-gis-ter",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "amazing",
+          "translation": "asombroso",
+          "phonetics": "a-mei-zing",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "deliver",
+          "translation": "entregar",
+          "phonetics": "di-li-ver",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "packages",
+          "translation": "paquetes",
+          "phonetics": "pa-ka-yes",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "farmers",
+          "translation": "granjeros",
+          "phonetics": "far-mers",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "crops",
+          "translation": "cultivos",
+          "phonetics": "crops",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "firefighters",
+          "translation": "bomberos",
+          "phonetics": "fai-ter-fai-ters",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "heat",
+          "translation": "calor",
+          "phonetics": "hi-t",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "burning",
+          "translation": "ardiendo",
+          "phonetics": "ber-ning",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "Where can you NOT fly a drone?",
+          "options": [
+            "In a park",
+            "Near airports or big crowds",
+            "Over water",
+            "In your backyard"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What must drones do in some places?",
+          "options": [
+            "Fly very high",
+            "Be registered before flying",
+            "Make noise",
+            "Carry passengers"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What are companies testing with drones?",
+          "options": [
+            "Flying passengers",
+            "Delivering packages to your door",
+            "Building houses",
+            "Cleaning streets"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "How do firefighters use drones?",
+          "options": [
+            "To put out fires",
+            "With heat cameras to find hot spots",
+            "To carry water",
+            "To make noise"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What makes a drone go up and down?",
+          "options": [
+            "Its camera",
+            "Propellers that spin and push air down",
+            "Its battery",
+            "Its remote control"
+          ],
+          "correct": 1
         }
       ]
     },
@@ -3887,12 +5177,16 @@
       "paragraphs": [
         "Virtual reality, or VR, makes you feel like you are inside a different world. You wear a special headset that covers your eyes. The headset shows you a 3D world that moves when you turn your head.",
         "Some VR headsets also have headphones for sound. You can hold controllers to touch and grab things in the virtual world. It feels very real, even though nothing is really there.",
-        "People use VR for games and movies. But it is also useful for learning. Doctors can practice operations in VR. Students can visit faraway places without leaving the classroom."
+        "People use VR for games and movies. But it is also useful for learning. Doctors can practice operations in VR. Students can visit faraway places without leaving the classroom.",
+        "VR headsets use two small screens, one for each eye. Each screen shows a slightly different picture. This creates the feeling of depth, making objects look three-dimensional. The headset also has sensors that track how you move your head.",
+        "Augmented reality, or AR, is different from VR. AR adds digital objects to the real world instead of replacing it. A famous example is a game where you catch virtual creatures in real streets. Both VR and AR are growing fast and will change how we play and learn."
       ],
       "images": [
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fce4ec' rx='8'/><circle cx='100' cy='75' r='40' fill='#1a2744' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#f39c12' rx='6'/><circle cx='85' cy='70' r='6' fill='#fce4ec'/><circle cx='115' cy='70' r='6' fill='#fce4ec'/><rect x='80' y='85' width='40' height='6' fill='#fce4ec' rx='2'/></svg>",
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fce4ec' rx='8'/><circle cx='100' cy='75' r='40' fill='#1a2744' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#f39c12' rx='6'/><circle cx='85' cy='70' r='6' fill='#fce4ec'/><circle cx='115' cy='70' r='6' fill='#fce4ec'/><rect x='80' y='85' width='40' height='6' fill='#fce4ec' rx='2'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fce4ec' rx='8'/><circle cx='100' cy='75' r='40' fill='#1a2744' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#f39c12' rx='6'/><circle cx='85' cy='70' r='6' fill='#fce4ec'/><circle cx='115' cy='70' r='6' fill='#fce4ec'/><rect x='80' y='85' width='40' height='6' fill='#fce4ec' rx='2'/></svg>"
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fce4ec' rx='8'/><circle cx='100' cy='75' r='40' fill='#1a2744' opacity='0.8'/><rect x='70' y='55' width='60' height='40' fill='#f39c12' rx='6'/><circle cx='85' cy='70' r='6' fill='#fce4ec'/><circle cx='115' cy='70' r='6' fill='#fce4ec'/><rect x='80' y='85' width='40' height='6' fill='#fce4ec' rx='2'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fce4ec' rx='8'/><rect x='60' y='50' width='80' height='45' fill='#1a2744' rx='10'/><circle cx='85' cy='72' r='10' fill='#f39c12'/><circle cx='115' cy='72' r='10' fill='#f39c12'/><rect x='90' y='95' width='20' height='15' fill='#1a2744' rx='3'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fce4ec' rx='8'/><circle cx='100' cy='75' r='35' fill='#1a2744' opacity='0.6'/><rect x='75' y='60' width='50' height='30' fill='#f39c12' rx='4'/><text x='100' y='80' font-size='14' text-anchor='middle' fill='#fce4ec'>AR</text></svg>"
       ],
       "words": [
         {
@@ -4314,6 +5608,154 @@
           "translation": "classroom",
           "phonetics": "clas-srum",
           "paragraphIndex": 2
+        },
+        {
+          "word": "headsets",
+          "translation": "auriculares",
+          "phonetics": "hed-sets",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "screens",
+          "translation": "pantallas",
+          "phonetics": "skri-ns",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "eye",
+          "translation": "ojo",
+          "phonetics": "ai",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "slightly",
+          "translation": "ligeramente",
+          "phonetics": "slai-tly",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "different",
+          "translation": "diferente",
+          "phonetics": "di-fe-rent",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "depth",
+          "translation": "profundidad",
+          "phonetics": "dep-th",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "three-dimensional",
+          "translation": "tridimensional",
+          "phonetics": "thri-di-men-sho-nal",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "track",
+          "translation": "rastrear",
+          "phonetics": "trak",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "augmented",
+          "translation": "aumentada",
+          "phonetics": "og-men-ted",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "digital",
+          "translation": "digital",
+          "phonetics": "di-gi-tal",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "real",
+          "translation": "real",
+          "phonetics": "ri-al",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "replace",
+          "translation": "reemplazar",
+          "phonetics": "re-pleis",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "famous",
+          "translation": "famoso",
+          "phonetics": "fei-mos",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "catch",
+          "translation": "atrapar",
+          "phonetics": "kach",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "creatures",
+          "translation": "criaturas",
+          "phonetics": "kri-cherz",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "growing",
+          "translation": "creciendo",
+          "phonetics": "gro-ing",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "How many screens does a VR headset use?",
+          "options": [
+            "One screen",
+            "Two screens, one for each eye",
+            "Three screens",
+            "No screens"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Why does each screen show a different picture?",
+          "options": [
+            "To save battery",
+            "To create the feeling of depth",
+            "To make it brighter",
+            "To show more colors"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What is the difference between VR and AR?",
+          "options": [
+            "VR is bigger than AR",
+            "AR adds digital objects to the real world instead of replacing it",
+            "AR is more expensive",
+            "There is no difference"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What do the sensors in a VR headset do?",
+          "options": [
+            "They make sound",
+            "They track how you move your head",
+            "They charge the battery",
+            "They connect to WiFi"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can doctors do with VR?",
+          "options": [
+            "Perform real surgery",
+            "Practice operations in VR",
+            "Build hospitals",
+            "Prescribe medicine"
+          ],
+          "correct": 1
         }
       ]
     }

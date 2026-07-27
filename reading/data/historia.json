@@ -1,6 +1,6 @@
 {
   "category": "historia",
-  "categoryName": "Historia",
+  "categoryName": "History",
   "categoryIcon": "📜",
   "level": "A2-B1",
   "coverSVG": "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#F4E4BC'/><polygon points='100,25 55,120 145,120' fill='#C9A96E'/><polygon points='65,120 40,140 90,140' fill='#B8975A'/><polygon points='135,120 110,140 160,140' fill='#B8975A'/><circle cx='165' cy='25' r='14' fill='#FDB813'/><rect x='0' y='140' width='200' height='10' fill='#D4A76A'/></svg>",
@@ -11,12 +11,16 @@
       "paragraphs": [
         "The ancient Egyptians lived in Egypt over five thousand years ago. They built their civilization along the Nile River. The river gave them water and food.",
         "The Egyptians were famous for building pyramids. These giant structures were tombs for their kings, called pharaohs. The biggest pyramid is the Great Pyramid of Giza.",
-        "They also invented a writing system called hieroglyphics. It used pictures instead of letters. Scientists worked for many years to understand this ancient language. Today we can still see their amazing pyramids in Egypt."
+        "They also invented a writing system called hieroglyphics. It used pictures instead of letters. Scientists worked for many years to understand this ancient language. Today we can still see their amazing pyramids in Egypt.",
+        "The Egyptians also had a strong belief in the afterlife. They preserved dead bodies using a process called mummification. Rich people were buried with gold and jewelry.",
+        "Ordinary Egyptians had different jobs. Some were farmers, some were craftsmen, and others were soldiers. Children went to school to learn reading and writing. Egyptian society was well organized."
       ],
       "images": [
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><path d='M0,100 Q50,80 100,100 T200,100 L200,150 L0,150 Z' fill='#4A90D9'/><rect x='0' y='95' width='200' height='8' fill='#6B8E3D'/><circle cx='170' cy='25' r='12' fill='#FDB813'/><text x='100' y='40' font-size='10' text-anchor='middle' fill='#8B7355'>Nile</text></svg>",
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#F4E4BC'/><polygon points='100,20 50,120 150,120' fill='#C9A96E'/><polygon points='100,20 100,120 150,120' fill='#B8975A'/><polygon points='60,120 35,140 85,140' fill='#C9A96E'/><polygon points='140,120 115,140 165,140' fill='#C9A96E'/><circle cx='170' cy='25' r='12' fill='#FDB813'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#D4C5A9'/><rect x='30' y='30' width='140' height='90' fill='#C9A96E' rx='5'/><circle cx='55' cy='55' r='8' fill='#8B7355'/><rect x='75' y='48' width='15' height='15' fill='#8B7355'/><circle cx='110' cy='55' r='8' fill='#8B7355'/><polygon points='130,48 145,48 137,63' fill='#8B7355'/><circle cx='55' cy='85' r='6' fill='#8B7355'/><rect x='75' y='80' width='12' height='12' fill='#8B7355'/><circle cx='105' cy='85' r='6' fill='#8B7355'/><path d='M120,80 L140,80 M130,75 L130,90' stroke='#8B7355' stroke-width='2'/></svg>"
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#D4C5A9'/><rect x='30' y='30' width='140' height='90' fill='#C9A96E' rx='5'/><circle cx='55' cy='55' r='8' fill='#8B7355'/><rect x='75' y='48' width='15' height='15' fill='#8B7355'/><circle cx='110' cy='55' r='8' fill='#8B7355'/><polygon points='130,48 145,48 137,63' fill='#8B7355'/><circle cx='55' cy='85' r='6' fill='#8B7355'/><rect x='75' y='80' width='12' height='12' fill='#8B7355'/><circle cx='105' cy='85' r='6' fill='#8B7355'/><path d='M120,80 L140,80 M130,75 L130,90' stroke='#8B7355' stroke-width='2'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><rect x='80' y='30' width='40' height='90' fill='#C9A96E' rx='3'/><rect x='85' y='35' width='30' height='80' fill='#B8975A' rx='2'/><circle cx='100' cy='45' r='8' fill='#8B7355'/><rect x='90' y='55' width='20' height='50' fill='#A08050' rx='2'/><line x1='95' y1='65' x2='105' y2='65' stroke='#8B7355' stroke-width='1'/><line x1='95' y1='75' x2='105' y2='75' stroke='#8B7355' stroke-width='1'/><line x1='95' y1='85' x2='105' y2='85' stroke='#8B7355' stroke-width='1'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#F4E4BC'/><rect x='0' y='100' width='200' height='50' fill='#6B8E3D'/><path d='M0,100 Q50,90 100,100 T200,100' fill='#4A90D9'/><rect x='30' y='70' width='25' height='30' fill='#C9A96E'/><polygon points='30,70 42,55 55,70' fill='#B8975A'/><rect x='130' y='65' width='30' height='35' fill='#C9A96E'/><polygon points='130,65 145,50 160,65' fill='#B8975A'/><circle cx='170' cy='25' r='12' fill='#FDB813'/></svg>"
       ],
       "words": [
         {
@@ -408,6 +412,130 @@
           "translation": "asombrosas",
           "phonetics": "a-mei-zing",
           "paragraphIndex": 2
+        },
+        {
+          "word": "belief",
+          "translation": "creencia",
+          "phonetics": "bi-lif",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "afterlife",
+          "translation": "la otra vida",
+          "phonetics": "af-ter-laif",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "preserved",
+          "translation": "preservaron",
+          "phonetics": "pri-zervd",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "process",
+          "translation": "proceso",
+          "phonetics": "pro-ses",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "mummification",
+          "translation": "momificacion",
+          "phonetics": "ma-mi-fi-kei-chon",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "buried",
+          "translation": "enterrados",
+          "phonetics": "be-rid",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "jewelry",
+          "translation": "joyas",
+          "phonetics": "chu-el-ri",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "ordinary",
+          "translation": "ordinario",
+          "phonetics": "or-di-ne-ri",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "craftsmen",
+          "translation": "artesanos",
+          "phonetics": "krafts-men",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "soldiers",
+          "translation": "soldados",
+          "phonetics": "sol-yers",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "society",
+          "translation": "sociedad",
+          "phonetics": "so-sie-ti",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "organized",
+          "translation": "organizada",
+          "phonetics": "or-ga-naisd",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What is the main topic of this reading?",
+          "options": [
+            "Modern Egyptian cities",
+            "The ancient Egyptian civilization",
+            "The Nile River today",
+            "How to build pyramids"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What did the Egyptians use to write?",
+          "options": [
+            "The alphabet",
+            "Numbers only",
+            "Pictures called hieroglyphics",
+            "Computers"
+          ],
+          "correct": 2
+        },
+        {
+          "question": "What does 'mummification' mean?",
+          "options": [
+            "Building pyramids",
+            "Preserving dead bodies",
+            "A type of farming",
+            "A writing system"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Why did the Egyptians build their civilization along the Nile River?",
+          "options": [
+            "For protection from enemies",
+            "The river gave them water and food",
+            "To be close to the ocean",
+            "Because it was cool"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can you infer about Egyptian society?",
+          "options": [
+            "Everyone had the same job",
+            "Only rich people existed",
+            "It was well organized with different jobs",
+            "Children did not go to school"
+          ],
+          "correct": 2
         }
       ]
     },
@@ -417,12 +545,16 @@
       "paragraphs": [
         "The Roman Empire was one of the most powerful empires in history. It started in Italy and grew to cover much of Europe, Africa, and Asia.",
         "Romans built many things that we still use today. They made roads, bridges, and aqueducts to carry water. Their buildings were very strong and beautiful.",
-        "The Roman army was very organized and powerful. Soldiers trained hard and worked together as a team. This helped Rome win many battles. The Roman Empire fell in the year 476, but its legacy lives on."
+        "The Roman army was very organized and powerful. Soldiers trained hard and worked together as a team. This helped Rome win many battles. The Roman Empire fell in the year 476, but its legacy lives on.",
+        "Roman people enjoyed entertainment at the Colosseum. Thousands of spectators watched gladiators fight. They also loved chariot races at the Circus Maximus.",
+        "The Romans spoke Latin, which is the root of many modern languages. Spanish, French, and Italian all come from Latin. Many English words also have Latin origins."
       ],
       "images": [
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><rect x='40' y='50' width='12' height='70' fill='#D4A76A'/><rect x='60' y='50' width='12' height='70' fill='#D4A76A'/><rect x='80' y='50' width='12' height='70' fill='#D4A76A'/><rect x='100' y='50' width='12' height='70' fill='#D4A76A'/><rect x='120' y='50' width='12' height='70' fill='#D4A76A'/><rect x='140' y='50' width='12' height='70' fill='#D4A76A'/><rect x='35' y='45' width='120' height='10' fill='#C9A96E'/><polygon points='35,45 95,15 155,45' fill='#B8975A'/></svg>",
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#F4E4BC'/><path d='M10,100 L10,80 Q25,70 40,80 L40,100 Z' fill='#C9A96E'/><path d='M40,100 L40,80 Q55,70 70,80 L70,100 Z' fill='#C9A96E'/><path d='M70,100 L70,80 Q85,70 100,80 L100,100 Z' fill='#C9A96E'/><path d='M100,100 L100,80 Q115,70 130,80 L130,100 Z' fill='#C9A96E'/><path d='M130,100 L130,80 Q145,70 160,80 L160,100 Z' fill='#C9A96E'/><rect x='0' y='95' width='200' height='8' fill='#8B7355'/><rect x='0' y='110' width='200' height='6' fill='#4A90D9'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><rect x='60' y='60' width='25' height='50' fill='#A0522D'/><rect x='115' y='60' width='25' height='50' fill='#A0522D'/><polygon points='55,60 90,60 72,35' fill='#D4A76A'/><polygon points='110,60 145,60 127,35' fill='#D4A76A'/><rect x='68' y='75' width='10' height='8' fill='#F4E4BC'/><rect x='123' y='75' width='10' height='8' fill='#F4E4BC'/><line x1='72' y1='110' x2='72' y2='130' stroke='#5C3317' stroke-width='3'/><line x1='127' y1='110' x2='127' y2='130' stroke='#5C3317' stroke-width='3'/></svg>"
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><rect x='60' y='60' width='25' height='50' fill='#A0522D'/><rect x='115' y='60' width='25' height='50' fill='#A0522D'/><polygon points='55,60 90,60 72,35' fill='#D4A76A'/><polygon points='110,60 145,60 127,35' fill='#D4A76A'/><rect x='68' y='75' width='10' height='8' fill='#F4E4BC'/><rect x='123' y='75' width='10' height='8' fill='#F4E4BC'/><line x1='72' y1='110' x2='72' y2='130' stroke='#5C3317' stroke-width='3'/><line x1='127' y1='110' x2='127' y2='130' stroke='#5C3317' stroke-width='3'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#D4C5A9'/><ellipse cx='100' cy='80' rx='70' ry='50' fill='#C9A96E'/><ellipse cx='100' cy='80' rx='50' ry='35' fill='#B8975A'/><ellipse cx='100' cy='80' rx='30' ry='20' fill='#A08050'/><rect x='30' y='75' width='8' height='40' fill='#8B7355'/><rect x='162' y='75' width='8' height='40' fill='#8B7355'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#F4E4BC'/><rect x='40' y='40' width='120' height='70' fill='#E8D5B7' rx='3'/><rect x='50' y='50' width='100' height='50' fill='#C9A96E'/><line x1='60' y1='50' x2='60' y2='100' stroke='#8B7355' stroke-width='1'/><line x1='80' y1='50' x2='80' y2='100' stroke='#8B7355' stroke-width='1'/><line x1='100' y1='50' x2='100' y2='100' stroke='#8B7355' stroke-width='1'/><line x1='120' y1='50' x2='120' y2='100' stroke='#8B7355' stroke-width='1'/><line x1='140' y1='50' x2='140' y2='100' stroke='#8B7355' stroke-width='1'/><text x='100' y='130' font-size='8' text-anchor='middle' fill='#8B7355'>LATIN</text></svg>"
       ],
       "words": [
         {
@@ -832,6 +964,106 @@
           "translation": "en",
           "phonetics": "on",
           "paragraphIndex": 2
+        },
+        {
+          "word": "entertainment",
+          "translation": "entretenimiento",
+          "phonetics": "en-ter-tein-ment",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "Colosseum",
+          "translation": "el Coliseo",
+          "phonetics": "ko-lo-se-um",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "spectators",
+          "translation": "espectadores",
+          "phonetics": "spek-tei-tors",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "gladiators",
+          "translation": "gladiadores",
+          "phonetics": "gla-di-e-tors",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "chariot",
+          "translation": "carro de guerra",
+          "phonetics": "cha-ri-ot",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "Latin",
+          "translation": "latin",
+          "phonetics": "la-tin",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "root",
+          "translation": "raiz",
+          "phonetics": "rut",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "origins",
+          "translation": "origenes",
+          "phonetics": "or-i-yins",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What is this reading mainly about?",
+          "options": [
+            "The Roman army",
+            "The Roman Empire and its legacy",
+            "How to build roads",
+            "Latin language only"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Where did Romans watch gladiators fight?",
+          "options": [
+            "The Circus Maximus",
+            "The Colosseum",
+            "The Senate",
+            "The forum"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What does 'spectators' mean?",
+          "options": [
+            "People who fight",
+            "People who watch",
+            "People who build",
+            "People who race"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Which modern language comes from Latin?",
+          "options": [
+            "English",
+            "German",
+            "Spanish",
+            "Russian"
+          ],
+          "correct": 2
+        },
+        {
+          "question": "What can you infer about the Roman Empire?",
+          "options": [
+            "It had no entertainment",
+            "Its influence still exists today",
+            "It never fell",
+            "It had only one language"
+          ],
+          "correct": 1
         }
       ]
     },
@@ -841,12 +1073,16 @@
       "paragraphs": [
         "Christopher Columbus was an explorer from Italy. In 1492, he sailed across the Atlantic Ocean with three ships. He wanted to find a new route to Asia.",
         "Columbus never reached Asia. Instead, he arrived on an island in the Caribbean. He called the people there Indians because he thought he was in India.",
-        "His journey changed the world. It connected Europe and America for the first time. After Columbus, many more explorers sailed to the new continent. His voyage was brave and changed history forever."
+        "His journey changed the world. It connected Europe and America for the first time. After Columbus, many more explorers sailed to the new continent. His voyage was brave and changed history forever.",
+        "Columbus made three more trips to the Americas. He explored more islands and the coast of South America. He brought back gold, plants, and new animals to Europe.",
+        "Not everyone thinks Columbus was a hero. His arrival brought disease and suffering to the native people. Many indigenous people lost their land and freedom. Today people discuss his legacy carefully."
       ],
       "images": [
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#4A90D9'/><polygon points='80,60 80,100 130,100 130,60' fill='#8B4513'/><polygon points='80,60 105,35 130,60' fill='#C9A96E'/><line x1='105' y1='35' x2='105' y2='15' stroke='#5C3317' stroke-width='2'/><polygon points='105,15 105,40 125,30' fill='#F4E4BC'/><rect x='0' y='100' width='200' height='50' fill='#2E6BAA'/></svg>",
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#4A90D9'/><ellipse cx='100' cy='120' rx='60' ry='25' fill='#D4C5A9'/><line x1='85' y1='100' x2='75' y2='70' stroke='#5C3317' stroke-width='3'/><polygon points='75,70 65,80 85,80' fill='#6B8E3D'/><line x1='115' y1='100' x2='125' y2='65' stroke='#5C3317' stroke-width='3'/><polygon points='125,65 115,75 135,75' fill='#6B8E3D'/><circle cx='170' cy='25' r='12' fill='#FDB813'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><circle cx='100' cy='75' r='55' fill='#4A90D9'/><ellipse cx='80' cy='70' rx='20' ry='15' fill='#6B8E3D'/><ellipse cx='120' cy='80' rx='15' ry='20' fill='#6B8E3D'/><line x1='80' y1='70' x2='120' y2='80' stroke='#C9A96E' stroke-width='2' stroke-dasharray='5,3'/></svg>"
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><circle cx='100' cy='75' r='55' fill='#4A90D9'/><ellipse cx='80' cy='70' rx='20' ry='15' fill='#6B8E3D'/><ellipse cx='120' cy='80' rx='15' ry='20' fill='#6B8E3D'/><line x1='80' y1='70' x2='120' y2='80' stroke='#C9A96E' stroke-width='2' stroke-dasharray='5,3'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#4A90D9'/><rect x='0' y='100' width='200' height='50' fill='#6B8E3D'/><polygon points='60,80 60,95 90,95 90,80' fill='#8B7355'/><line x1='75' y1='60' x2='75' y2='80' stroke='#8B7355' stroke-width='2'/><polygon points='75,60 90,70 75,70' fill='#F5F5F5'/><polygon points='120,75 120,90 145,90 145,75' fill='#8B7355'/><line x1='132' y1='55' x2='132' y2='75' stroke='#8B7355' stroke-width='2'/><polygon points='132,55 145,65 132,65' fill='#F5F5F5'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><circle cx='100' cy='60' r='25' fill='#C9A96E'/><circle cx='92' cy='55' r='3' fill='#8B7355'/><circle cx='108' cy='55' r='3' fill='#8B7355'/><path d='M90,70 Q100,75 110,70' stroke='#8B7355' stroke-width='1' fill='none'/><rect x='50' y='100' width='100' height='30' fill='#B8975A'/><text x='100' y='120' font-size='8' text-anchor='middle' fill='#F5F5F5'>1492</text></svg>"
       ],
       "words": [
         {
@@ -1214,6 +1450,112 @@
           "translation": "para siempre",
           "phonetics": "for-e-ver",
           "paragraphIndex": 2
+        },
+        {
+          "word": "trips",
+          "translation": "viajes",
+          "phonetics": "trips",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "explored",
+          "translation": "exploro",
+          "phonetics": "eks-plo-rd",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "coast",
+          "translation": "costa",
+          "phonetics": "kost",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "hero",
+          "translation": "heroe",
+          "phonetics": "ji-ro",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "disease",
+          "translation": "enfermedad",
+          "phonetics": "di-ziz",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "suffering",
+          "translation": "sufrimiento",
+          "phonetics": "su-fe-ring",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "indigenous",
+          "translation": "indigenas",
+          "phonetics": "in-di-ye-nus",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "freedom",
+          "translation": "libertad",
+          "phonetics": "fri-dom",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "legacy",
+          "translation": "legado",
+          "phonetics": "le-ga-si",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What is the main idea of this reading?",
+          "options": [
+            "Columbus discovered Italy",
+            "Columbus's voyages and their impact",
+            "How to sail across the ocean",
+            "The history of Asia"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "How many ships did Columbus take on his first voyage?",
+          "options": [
+            "Two",
+            "Three",
+            "Four",
+            "Five"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What does 'indigenous' mean?",
+          "options": [
+            "People from Europe",
+            "Native people of a place",
+            "Sailors",
+            "Explorers"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What did Columbus bring back to Europe?",
+          "options": [
+            "Only gold",
+            "Gold, plants, and new animals",
+            "Nothing",
+            "Weapons"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can you infer about Columbus's legacy?",
+          "options": [
+            "Everyone agrees he was a hero",
+            "It is debated because of suffering he caused",
+            "It was only positive",
+            "People do not remember him"
+          ],
+          "correct": 1
         }
       ]
     },
@@ -1223,12 +1565,16 @@
       "paragraphs": [
         "The Vikings were people from Scandinavia, in northern Europe. They lived over a thousand years ago. They were famous for being great sailors and warriors.",
         "Viking ships were fast and strong. They could sail across the open sea and also travel up rivers. The front of their ships often had a dragon head.",
-        "The Vikings explored many lands. They reached Iceland, Greenland, and even North America. They also traded goods like furs, swords, and jewelry. Today we still find Viking treasures in the ground."
+        "The Vikings explored many lands. They reached Iceland, Greenland, and even North America. They also traded goods like furs, swords, and jewelry. Today we still find Viking treasures in the ground.",
+        "Vikings had their own religion with many gods. Thor was the god of thunder, and Odin was the king of the gods. They believed in a place called Valhalla for brave warriors.",
+        "The Viking age lasted about three hundred years. Then many Vikings became Christians and settled down. Their culture slowly mixed with other European cultures. Some Viking words are still used in English today."
       ],
       "images": [
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#C9D6DB'/><path d='M70,50 L70,100 L130,100 L130,50 Z' fill='#8B4513'/><polygon points='70,50 100,30 130,50' fill='#A0522D'/><polygon points='85,50 90,30 95,50' fill='#C9A96E'/><polygon points='105,50 110,30 115,50' fill='#C9A96E'/><rect x='75' y='60' width='10' height='8' fill='#5C3317'/><rect x='115' y='60' width='10' height='8' fill='#5C3317'/><rect x='0' y='100' width='200' height='50' fill='#8B7355'/></svg>",
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#4A90D9'/><path d='M40,80 L160,80 L150,110 L50,110 Z' fill='#8B4513'/><polygon points='40,80 20,60 50,75' fill='#A0522D'/><polygon points='20,60 15,40 30,55' fill='#A0522D'/><line x1='100' y1='80' x2='100' y2='30' stroke='#5C3317' stroke-width='2'/><polygon points='100,30 100,55 130,45' fill='#F4E4BC'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><path d='M20,120 Q60,100 100,120 T180,120' fill='none' stroke='#4A90D9' stroke-width='3' stroke-dasharray='5,3'/><polygon points='50,110 55,100 60,110' fill='#A0522D'/><polygon points='150,110 155,100 160,110' fill='#A0522D'/><text x='50' y='130' font-size='8' fill='#5C3317'>Island</text><text x='145' y='130' font-size='8' fill='#5C3317'>America</text></svg>"
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><path d='M20,120 Q60,100 100,120 T180,120' fill='none' stroke='#4A90D9' stroke-width='3' stroke-dasharray='5,3'/><polygon points='50,110 55,100 60,110' fill='#A0522D'/><polygon points='150,110 155,100 160,110' fill='#A0522D'/><text x='50' y='130' font-size='8' fill='#5C3317'>Island</text><text x='145' y='130' font-size='8' fill='#5C3317'>America</text></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#D4C5A9'/><rect x='85' y='40' width='30' height='60' fill='#8B7355'/><rect x='95' y='30' width='10' height='15' fill='#8B7355'/><polygon points='100,100 80,130 120,130' fill='#8B7355'/><line x1='100' y1='100' x2='100' y2='130' stroke='#A08050' stroke-width='2'/><line x1='80' y1='130' x2='120' y2='130' stroke='#A08050' stroke-width='2'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#F4E4BC'/><rect x='0' y='110' width='200' height='40' fill='#6B8E3D'/><rect x='30' y='80' width='35' height='30' fill='#C9A96E'/><polygon points='30,80 47,65 65,80' fill='#B8975A'/><rect x='90' y='75' width='40' height='35' fill='#C9A96E'/><polygon points='90,75 110,60 130,75' fill='#B8975A'/><rect x='140' y='82' width='30' height='28' fill='#C9A96E'/><polygon points='140,82 155,68 170,82' fill='#B8975A'/></svg>"
       ],
       "words": [
         {
@@ -1608,6 +1954,106 @@
           "translation": "suelo",
           "phonetics": "graund",
           "paragraphIndex": 2
+        },
+        {
+          "word": "religion",
+          "translation": "religion",
+          "phonetics": "re-li-yon",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "gods",
+          "translation": "dioses",
+          "phonetics": "godz",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "thunder",
+          "translation": "trueno",
+          "phonetics": "zan-der",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "warriors",
+          "translation": "guerreros",
+          "phonetics": "wor-ri-ors",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "Christians",
+          "translation": "cristianos",
+          "phonetics": "kris-chans",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "settled",
+          "translation": "se establecieron",
+          "phonetics": "se-tld",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "culture",
+          "translation": "cultura",
+          "phonetics": "kul-chur",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "mixed",
+          "translation": "se mezclo",
+          "phonetics": "mikst",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What is the main topic of this reading?",
+          "options": [
+            "Viking ships only",
+            "The Vikings and their culture",
+            "Modern Scandinavia",
+            "Christian religion"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Who was the king of the Viking gods?",
+          "options": [
+            "Thor",
+            "Odin",
+            "Valhalla",
+            "Loki"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What does 'thunder' mean?",
+          "options": [
+            "Lightning",
+            "Loud sound from storms",
+            "Rain",
+            "Wind"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "How long did the Viking age last?",
+          "options": [
+            "About 100 years",
+            "About 300 years",
+            "About 500 years",
+            "About 1000 years"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can you infer about the Vikings?",
+          "options": [
+            "They only fought and never settled",
+            "Their culture influenced modern languages",
+            "They never left Scandinavia",
+            "They had no religion"
+          ],
+          "correct": 1
         }
       ]
     },
@@ -1617,12 +2063,16 @@
       "paragraphs": [
         "Ancient Greece was home to many great thinkers and artists. The Greeks gave the world important ideas about science, math, and democracy.",
         "The Olympic Games began in Greece over two thousand years ago. Athletes competed in sports like running, wrestling, and jumping. The games were held every four years.",
-        "Only men could compete in the ancient Olympics. Women had their own separate festival. Today, the Olympics include athletes from all over the world. The Olympic flame is still lit today in Greece."
+        "Only men could compete in the ancient Olympics. Women had their own separate festival. Today, the Olympics include athletes from all over the world. The Olympic flame is still lit today in Greece.",
+        "Greek philosophers like Socrates and Plato asked big questions about life. They taught people to think carefully and ask questions. Their ideas still influence how we learn today.",
+        "The Greeks also built beautiful temples with tall columns. The Parthenon in Athens is the most famous one. It was built to honor the goddess Athena. Greek architecture inspires builders even now."
       ],
       "images": [
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#F4E4BC'/><rect x='50' y='60' width='12' height='60' fill='#D4A76A'/><rect x='70' y='60' width='12' height='60' fill='#D4A76A'/><rect x='90' y='60' width='12' height='60' fill='#D4A76A'/><rect x='110' y='60' width='12' height='60' fill='#D4A76A'/><rect x='130' y='60' width='12' height='60' fill='#D4A76A'/><rect x='45' y='55' width='100' height='10' fill='#C9A96E'/><polygon points='45,55 95,25 145,55' fill='#B8975A'/></svg>",
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><circle cx='60' cy='50' r='8' fill='#A0522D'/><rect x='56' y='55' width='8' height='30' fill='#A0522D'/><line x1='56' y1='85' x2='50' y2='100' stroke='#5C3317' stroke-width='3'/><line x1='64' y1='85' x2='70' y2='100' stroke='#5C3317' stroke-width='3'/><circle cx='140' cy='50' r='8' fill='#A0522D'/><rect x='136' y='55' width='8' height='30' fill='#A0522D'/><line x1='136' y1='85' x2='130' y2='100' stroke='#5C3317' stroke-width='3'/><line x1='144' y1='85' x2='150' y2='100' stroke='#5C3317' stroke-width='3'/><circle cx='170' cy='25' r='12' fill='#FDB813'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#F4E4BC'/><rect x='90' y='40' width='8' height='60' fill='#A0522D'/><polygon points='85,40 103,40 94,25' fill='#FDB813'/><circle cx='94' cy='20' r='5' fill='#FDB813'/><path d='M80,100 Q100,90 120,100' fill='none' stroke='#C9A96E' stroke-width='3'/><text x='100' y='125' font-size='9' text-anchor='middle' fill='#8B7355'>Olympics</text></svg>"
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#F4E4BC'/><rect x='90' y='40' width='8' height='60' fill='#A0522D'/><polygon points='85,40 103,40 94,25' fill='#FDB813'/><circle cx='94' cy='20' r='5' fill='#FDB813'/><path d='M80,100 Q100,90 120,100' fill='none' stroke='#C9A96E' stroke-width='3'/><text x='100' y='125' font-size='9' text-anchor='middle' fill='#8B7355'>Olympics</text></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#F4E4BC'/><circle cx='100' cy='50' r='20' fill='#C9A96E'/><circle cx='93' cy='47' r='2' fill='#8B7355'/><circle cx='107' cy='47' r='2' fill='#8B7355'/><path d='M90,58 Q100,63 110,58' stroke='#8B7355' stroke-width='1' fill='none'/><rect x='85' y='70' width='30' height='50' fill='#B8975A'/><text x='100' y='135' font-size='8' text-anchor='middle' fill='#8B7355'>?</text></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><rect x='30' y='50' width='140' height='60' fill='#C9A96E'/><polygon points='30,50 100,25 170,50' fill='#B8975A'/><rect x='40' y='60' width='10' height='50' fill='#A08050'/><rect x='65' y='60' width='10' height='50' fill='#A08050'/><rect x='90' y='60' width='10' height='50' fill='#A08050'/><rect x='115' y='60' width='10' height='50' fill='#A08050'/><rect x='140' y='60' width='10' height='50' fill='#A08050'/></svg>"
       ],
       "words": [
         {
@@ -1996,6 +2446,100 @@
           "translation": "hoy",
           "phonetics": "tu-dei",
           "paragraphIndex": 2
+        },
+        {
+          "word": "philosophers",
+          "translation": "filosofos",
+          "phonetics": "fi-lo-so-fers",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "influence",
+          "translation": "influencia",
+          "phonetics": "in-flu-ens",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "temples",
+          "translation": "templos",
+          "phonetics": "tem-pols",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "columns",
+          "translation": "columnas",
+          "phonetics": "ko-lums",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "architecture",
+          "translation": "arquitectura",
+          "phonetics": "ar-ki-tek-chur",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "inspires",
+          "translation": "inspira",
+          "phonetics": "in-spi-ars",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "goddess",
+          "translation": "diosa",
+          "phonetics": "go-des",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What is this reading mainly about?",
+          "options": [
+            "Only the Olympics",
+            "Ancient Greece, its thinkers, and buildings",
+            "How to play sports",
+            "Modern Athens"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Who were the famous Greek philosophers mentioned?",
+          "options": [
+            "Columbus and Galileo",
+            "Socrates and Plato",
+            "Thor and Odin",
+            "Caesar and Augustus"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What is the Parthenon?",
+          "options": [
+            "A sports stadium",
+            "A famous temple in Athens",
+            "A Greek ship",
+            "A type of column"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Who could compete in the ancient Olympics?",
+          "options": [
+            "Everyone",
+            "Only men",
+            "Only women",
+            "Only children"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can you infer about Greek ideas?",
+          "options": [
+            "They are no longer relevant",
+            "They still influence learning today",
+            "They were only about sports",
+            "They were forgotten"
+          ],
+          "correct": 1
         }
       ]
     },
@@ -2005,12 +2549,16 @@
       "paragraphs": [
         "The Great Wall of China is one of the most famous buildings in the world. It is over twenty-one thousand kilometers long. It was built to protect China from enemies.",
         "Many different emperors built parts of the wall over hundreds of years. Workers used stone, brick, and earth to make it strong. Millions of people helped build it.",
-        "Today, the Great Wall is a popular place for tourists. People come from all over the world to walk along it. Some parts are very old, but others have been repaired."
+        "Today, the Great Wall is a popular place for tourists. People come from all over the world to walk along it. Some parts are very old, but others have been repaired.",
+        "The wall was not built all at once. Different sections were connected over many centuries. Some parts were made of packed earth, while others used stone and brick.",
+        "Guards lived in towers along the wall. They used smoke signals during the day and fire at night to warn of danger. The wall had watchtowers every few hundred meters."
       ],
       "images": [
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><path d='M0,100 L40,70 L80,90 L120,60 L160,80 L200,65 L200,150 L0,150 Z' fill='#8B7355'/><rect x='0' y='85' width='200' height='15' fill='#A0522D'/><rect x='20' y='75' width='8' height='12' fill='#A0522D'/><rect x='60' y='80' width='8' height='12' fill='#A0522D'/><rect x='100' y='70' width='8' height='12' fill='#A0522D'/><rect x='140' y='75' width='8' height='12' fill='#A0522D'/><rect x='180' y='72' width='8' height='12' fill='#A0522D'/></svg>",
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#F4E4BC'/><rect x='40' y='60' width='120' height='60' fill='#A0522D'/><rect x='50' y='70' width='15' height='15' fill='#5C3317'/><rect x='75' y='70' width='15' height='15' fill='#5C3317'/><rect x='100' y='70' width='15' height='15' fill='#5C3317'/><rect x='125' y='70' width='15' height='15' fill='#5C3317'/><circle cx='60' cy='40' r='6' fill='#8B4513'/><circle cx='100' cy='35' r='6' fill='#8B4513'/><circle cx='140' cy='40' r='6' fill='#8B4513'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><path d='M0,90 L40,65 L80,80 L120,55 L160,70 L200,60 L200,150 L0,150 Z' fill='#8B7355'/><rect x='0' y='78' width='200' height='12' fill='#A0522D'/><circle cx='50' cy='50' r='5' fill='#4A90D9'/><circle cx='100' cy='45' r='5' fill='#4A90D9'/><circle cx='150' cy='48' r='5' fill='#4A90D9'/></svg>"
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><path d='M0,90 L40,65 L80,80 L120,55 L160,70 L200,60 L200,150 L0,150 Z' fill='#8B7355'/><rect x='0' y='78' width='200' height='12' fill='#A0522D'/><circle cx='50' cy='50' r='5' fill='#4A90D9'/><circle cx='100' cy='45' r='5' fill='#4A90D9'/><circle cx='150' cy='48' r='5' fill='#4A90D9'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><rect x='0' y='80' width='200' height='20' fill='#8B7355'/><rect x='0' y='85' width='200' height='10' fill='#A08050'/><rect x='40' y='65' width='15' height='20' fill='#8B7355'/><rect x='100' y='60' width='15' height='25' fill='#8B7355'/><rect x='160' y='68' width='15' height='17' fill='#8B7355'/><rect x='0' y='100' width='200' height='50' fill='#6B8E3D'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#F4E4BC'/><rect x='0' y='90' width='200' height='15' fill='#8B7355'/><rect x='80' y='60' width='40' height='35' fill='#A08050'/><polygon points='80,60 100,45 120,60' fill='#8B7355'/><rect x='92' y='75' width='16' height='20' fill='#6B5040'/><circle cx='150' cy='30' r='8' fill='#888'/><path d='M150,38 Q145,50 150,60 Q155,50 150,38' fill='#AAA'/></svg>"
       ],
       "words": [
         {
@@ -2396,6 +2944,106 @@
           "translation": "reparadas",
           "phonetics": "ri-pérd",
           "paragraphIndex": 2
+        },
+        {
+          "word": "sections",
+          "translation": "secciones",
+          "phonetics": "sek-chons",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "centuries",
+          "translation": "siglos",
+          "phonetics": "sen-chu-ris",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "packed",
+          "translation": "compactada",
+          "phonetics": "pakd",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "guards",
+          "translation": "guardias",
+          "phonetics": "gardz",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "towers",
+          "translation": "torres",
+          "phonetics": "tau-ers",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "signals",
+          "translation": "senales",
+          "phonetics": "sig-nols",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "warn",
+          "translation": "advertir",
+          "phonetics": "worn",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "watchtowers",
+          "translation": "torres de vigilancia",
+          "phonetics": "woch-tau-ers",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What is the main topic of this reading?",
+          "options": [
+            "Chinese food",
+            "The Great Wall of China",
+            "How to build towers",
+            "Ancient Chinese emperors"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "How long is the Great Wall?",
+          "options": [
+            "Over 1,000 km",
+            "Over 10,000 km",
+            "Over 21,000 km",
+            "Over 100,000 km"
+          ],
+          "correct": 2
+        },
+        {
+          "question": "What does 'watchtowers' mean?",
+          "options": [
+            "Towers for watching for danger",
+            "Towers for living",
+            "Towers for storage",
+            "Towers for worship"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "What did guards use to warn of danger during the day?",
+          "options": [
+            "Fire signals",
+            "Smoke signals",
+            "Loud bells",
+            "Flags"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can you infer about building the wall?",
+          "options": [
+            "It was built in one year",
+            "It was a long process over centuries",
+            "One person built it",
+            "It was never finished"
+          ],
+          "correct": 1
         }
       ]
     },
@@ -2405,12 +3053,16 @@
       "paragraphs": [
         "The Aztecs were a powerful people who lived in Mexico. Their empire began in the 1300s. They built their capital city on an island in a lake.",
         "The Aztecs were great farmers and builders. They grew corn, beans, and tomatoes. They also built beautiful temples and pyramids in their cities.",
-        "The Aztec empire ended when Spanish explorers arrived in 1519. The leader of the Aztecs was named Moctezuma. The Spanish brought new weapons and diseases. Today you can still see Aztec ruins in Mexico City."
+        "The Aztec empire ended when Spanish explorers arrived in 1519. The leader of the Aztecs was named Moctezuma. The Spanish brought new weapons and diseases. Today you can still see Aztec ruins in Mexico City.",
+        "The Aztecs had their own calendar with 365 days. They also had a special religious calendar with 260 days. Their calendars helped them know when to plant crops and hold ceremonies.",
+        "Aztec society had different social classes. Nobles were at the top, and common people were farmers and workers. Education was important, and children went to special schools. The Aztecs had a rich culture with music and poetry."
       ],
       "images": [
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#4A90D9'/><ellipse cx='100' cy='100' rx='70' ry='30' fill='#D4C5A9'/><rect x='70' y='50' width='60' height='50' fill='#A0522D'/><polygon points='70,50 100,25 130,50' fill='#C9A96E'/><rect x='85' y='60' width='30' height='15' fill='#8B4513'/><rect x='90' y='75' width='20' height='10' fill='#8B4513'/></svg>",
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><polygon points='100,20 60,120 140,120' fill='#A0522D'/><rect x='75' y='80' width='50' height='15' fill='#8B4513'/><rect x='82' y='95' width='36' height='12' fill='#8B4513'/><rect x='88' y='107' width='24' height='10' fill='#8B4513'/><circle cx='50' cy='60' r='6' fill='#FDB813'/><circle cx='150' cy='60' r='6' fill='#6B8E3D'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#F4E4BC'/><path d='M30,80 L30,60 L50,60 L50,80 Z' fill='#8B7355'/><polygon points='25,60 55,60 40,45' fill='#A0522D'/><rect x='120' y='50' width='40' height='40' fill='#A0522D'/><polygon points='115,50 165,50 140,30' fill='#C9A96E'/><line x1='140' y1='90' x2='140' y2='110' stroke='#5C3317' stroke-width='2'/></svg>"
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#F4E4BC'/><path d='M30,80 L30,60 L50,60 L50,80 Z' fill='#8B7355'/><polygon points='25,60 55,60 40,45' fill='#A0522D'/><rect x='120' y='50' width='40' height='40' fill='#A0522D'/><polygon points='115,50 165,50 140,30' fill='#C9A96E'/><line x1='140' y1='90' x2='140' y2='110' stroke='#5C3317' stroke-width='2'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><circle cx='100' cy='75' r='50' fill='#C9A96E'/><circle cx='100' cy='75' r='35' fill='#B8975A'/><circle cx='100' cy='75' r='20' fill='#A08050'/><line x1='100' y1='25' x2='100' y2='125' stroke='#8B7355' stroke-width='1'/><line x1='50' y1='75' x2='150' y2='75' stroke='#8B7355' stroke-width='1'/><line x1='65' y1='40' x2='135' y2='110' stroke='#8B7355' stroke-width='1'/><line x1='135' y1='40' x2='65' y2='110' stroke='#8B7355' stroke-width='1'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#F4E4BC'/><polygon points='100,20 60,120 140,120' fill='#C9A96E'/><polygon points='100,40 70,120 130,120' fill='#B8975A'/><rect x='90' y='60' width='20' height='20' fill='#6B5040'/><rect x='85' y='100' width='30' height='20' fill='#8B7355'/><rect x='30' y='120' width='140' height='20' fill='#6B8E3D'/></svg>"
       ],
       "words": [
         {
@@ -2772,6 +3424,112 @@
           "translation": "Ciudad",
           "phonetics": "si-ti",
           "paragraphIndex": 2
+        },
+        {
+          "word": "calendar",
+          "translation": "calendario",
+          "phonetics": "ka-len-dar",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "religious",
+          "translation": "religioso",
+          "phonetics": "ri-li-yos",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "crops",
+          "translation": "cultivos",
+          "phonetics": "krops",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "ceremonies",
+          "translation": "ceremonias",
+          "phonetics": "se-re-mo-nis",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "social",
+          "translation": "social",
+          "phonetics": "so-chal",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "classes",
+          "translation": "clases",
+          "phonetics": "kla-ses",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "nobles",
+          "translation": "nobles",
+          "phonetics": "no-bols",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "education",
+          "translation": "educacion",
+          "phonetics": "e-yu-kei-chon",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "poetry",
+          "translation": "poesia",
+          "phonetics": "po-e-tri",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What is the main topic of this reading?",
+          "options": [
+            "Spanish explorers",
+            "The Aztec civilization",
+            "Mexican food",
+            "How to make calendars"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "How many days were in the Aztec main calendar?",
+          "options": [
+            "260 days",
+            "365 days",
+            "300 days",
+            "400 days"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What does 'ceremonies' mean?",
+          "options": [
+            "Parties",
+            "Special formal events",
+            "Farming activities",
+            "School lessons"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Who was at the top of Aztec society?",
+          "options": [
+            "Farmers",
+            "Nobles",
+            "Soldiers",
+            "Workers"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can you infer about Aztec education?",
+          "options": [
+            "Children did not go to school",
+            "Education was important to them",
+            "Only nobles could learn",
+            "They had no schools"
+          ],
+          "correct": 1
         }
       ]
     },
@@ -2781,12 +3539,16 @@
       "paragraphs": [
         "The Industrial Revolution began in England in the 1700s. It was a time when machines started to do work that people had done by hand.",
         "Factories were built to make products like clothes and tools. Steam engines powered trains and ships. This made travel and trade much faster.",
-        "Life changed a lot for ordinary people. Many moved from farms to cities to work in factories. Children also worked in factories, which was very hard. Today machines do even more work in our modern world."
+        "Life changed a lot for ordinary people. Many moved from farms to cities to work in factories. Children also worked in factories, which was very hard. Today machines do even more work in our modern world.",
+        "New inventions changed daily life. The light bulb let people work after dark. The telegraph allowed messages to travel quickly across long distances. The telephone let people talk to each other from far away.",
+        "The Industrial Revolution brought pollution to cities. Smoke from factories filled the air. Rivers became dirty from factory waste. Over time, people began to protect the environment more."
       ],
       "images": [
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#C9D6DB'/><rect x='50' y='60' width='100' height='60' fill='#8B7355'/><rect x='60' y='40' width='12' height='25' fill='#5C3317'/><rect x='90' y='35' width='12' height='30' fill='#5C3317'/><rect x='120' y='40' width='12' height='25' fill='#5C3317'/><circle cx='66' cy='35' r='5' fill='#999'/><circle cx='96' cy='30' r='5' fill='#999'/><circle cx='126' cy='35' r='5' fill='#999'/></svg>",
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><rect x='20' y='90' width='160' height='15' fill='#5C3317'/><circle cx='50' cy='105' r='12' fill='#333'/><circle cx='100' cy='105' r='12' fill='#333'/><circle cx='150' cy='105' r='12' fill='#333'/><rect x='80' y='60' width='40' height='35' fill='#A0522D'/><rect x='95' y='45' width='10' height='20' fill='#333'/><circle cx='100' cy='40' r='6' fill='#999'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#C9D6DB'/><rect x='30' y='50' width='40' height='70' fill='#8B7355'/><rect x='35' y='35' width='8' height='20' fill='#5C3317'/><rect x='80' y='45' width='50' height='75' fill='#8B7355'/><rect x='90' y='30' width='8' height='20' fill='#5C3317'/><rect x='110' y='30' width='8' height='20' fill='#5C3317'/><rect x='140' y='55' width='35' height='65' fill='#8B7355'/><rect x='150' y='40' width='8' height='20' fill='#5C3317'/></svg>"
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#C9D6DB'/><rect x='30' y='50' width='40' height='70' fill='#8B7355'/><rect x='35' y='35' width='8' height='20' fill='#5C3317'/><rect x='80' y='45' width='50' height='75' fill='#8B7355'/><rect x='90' y='30' width='8' height='20' fill='#5C3317'/><rect x='110' y='30' width='8' height='20' fill='#5C3317'/><rect x='140' y='55' width='35' height='65' fill='#8B7355'/><rect x='150' y='40' width='8' height='20' fill='#5C3317'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#F4E4BC'/><circle cx='100' cy='50' r='25' fill='#FDB813'/><rect x='95' y='75' width='10' height='40' fill='#8B7355'/><rect x='85' y='115' width='30' height='10' fill='#8B7355'/><line x1='85' y1='85' x2='75' y2='75' stroke='#8B7355' stroke-width='1'/><line x1='115' y1='85' x2='125' y2='75' stroke='#8B7355' stroke-width='1'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#D4C5A9'/><rect x='50' y='70' width='60' height='60' fill='#8B7355'/><rect x='60' y='50' width='15' height='25' fill='#A08050'/><rect x='85' y='45' width='15' height='30' fill='#A08050'/><circle cx='67' cy='40' r='8' fill='#888'/><circle cx='92' cy='35' r='10' fill='#888'/><circle cx='67' cy='25' r='6' fill='#AAA'/><circle cx='92' cy='18' r='8' fill='#AAA'/><rect x='0' y='130' width='200' height='20' fill='#4A90D9'/></svg>"
       ],
       "words": [
         {
@@ -3178,6 +3940,112 @@
           "translation": "moderno",
           "phonetics": "mo-dern",
           "paragraphIndex": 2
+        },
+        {
+          "word": "inventions",
+          "translation": "invenciones",
+          "phonetics": "in-ven-chons",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "bulb",
+          "translation": "bombilla",
+          "phonetics": "bolb",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "telegraph",
+          "translation": "telegrafo",
+          "phonetics": "te-le-graf",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "distances",
+          "translation": "distancias",
+          "phonetics": "dis-tan-ses",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "telephone",
+          "translation": "telefono",
+          "phonetics": "te-le-fon",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "pollution",
+          "translation": "contaminacion",
+          "phonetics": "po-lu-chon",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "smoke",
+          "translation": "humo",
+          "phonetics": "smok",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "waste",
+          "translation": "desechos",
+          "phonetics": "weist",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "environment",
+          "translation": "medio ambiente",
+          "phonetics": "in-vai-ron-ment",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What is the main idea of this reading?",
+          "options": [
+            "How machines changed the world",
+            "Only about trains",
+            "How to build factories",
+            "Modern technology"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "What did the light bulb allow people to do?",
+          "options": [
+            "Sleep better",
+            "Work after dark",
+            "Travel faster",
+            "Cook food"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What does 'pollution' mean?",
+          "options": [
+            "Clean air",
+            "Harmful waste in the environment",
+            "Factory products",
+            "New inventions"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What did the telegraph do?",
+          "options": [
+            "Carried people",
+            "Sent messages quickly",
+            "Made light",
+            "Powered trains"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can you infer about the Industrial Revolution?",
+          "options": [
+            "It only had positive effects",
+            "It brought both progress and problems",
+            "It had no effect on daily life",
+            "People preferred it to farming"
+          ],
+          "correct": 1
         }
       ]
     },
@@ -3187,12 +4055,16 @@
       "paragraphs": [
         "World War II was a big war that lasted from 1939 to 1945. Many countries around the world were involved. It was the largest war in history.",
         "The war was fought between two groups of countries. One group was called the Allies. The other group was called the Axis powers.",
-        "The war ended when the Allies won. After the war, countries worked together to build peace. They created the United Nations to help prevent future wars. It was a terrible time, but also a time of great courage."
+        "The war ended when the Allies won. After the war, countries worked together to build peace. They created the United Nations to help prevent future wars. It was a terrible time, but also a time of great courage.",
+        "During the war, many people had to leave their homes. Some countries were occupied by enemy soldiers. Families were separated and life was very difficult for millions of people.",
+        "After the war, the world changed in many ways. New countries were formed and old empires ended. Women had more opportunities to work. The world learned the importance of freedom and human rights."
       ],
       "images": [
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><circle cx='100' cy='75' r='55' fill='#4A90D9'/><ellipse cx='75' cy='65' rx='25' ry='18' fill='#6B8E3D'/><ellipse cx='125' cy='85' rx='20' ry='25' fill='#6B8E3D'/><text x='100' y='130' font-size='9' text-anchor='middle' fill='#8B7355'>1939-1945</text></svg>",
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#F4E4BC'/><rect x='20' y='50' width='70' height='60' fill='#4A90D9' rx='5'/><text x='55' y='85' font-size='9' text-anchor='middle' fill='white'>Allies</text><rect x='110' y='50' width='70' height='60' fill='#A0522D' rx='5'/><text x='145' y='85' font-size='9' text-anchor='middle' fill='white'>Axis</text><line x1='90' y1='80' x2='110' y2='80' stroke='#333' stroke-width='2'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><circle cx='100' cy='70' r='40' fill='#4A90D9'/><ellipse cx='85' cy='65' rx='15' ry='12' fill='#6B8E3D'/><ellipse cx='115' cy='75' rx='12' ry='15' fill='#6B8E3D'/><path d='M80,110 Q100,100 120,110' fill='none' stroke='#FDB813' stroke-width='3'/><text x='100' y='130' font-size='8' text-anchor='middle' fill='#8B7355'>Peace</text></svg>"
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><circle cx='100' cy='70' r='40' fill='#4A90D9'/><ellipse cx='85' cy='65' rx='15' ry='12' fill='#6B8E3D'/><ellipse cx='115' cy='75' rx='12' ry='15' fill='#6B8E3D'/><path d='M80,110 Q100,100 120,110' fill='none' stroke='#FDB813' stroke-width='3'/><text x='100' y='130' font-size='8' text-anchor='middle' fill='#8B7355'>Peace</text></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#E8D5B7'/><circle cx='50' cy='60' r='12' fill='#C9A96E'/><circle cx='80' cy='55' r='10' fill='#C9A96E'/><circle cx='110' cy='58' r='12' fill='#C9A96E'/><circle cx='140' cy='55' r='10' fill='#C9A96E'/><rect x='30' y='70' width='15' height='30' fill='#8B7355'/><rect x='65' y='65' width='15' height='35' fill='#8B7355'/><rect x='100' y='70' width='15' height='30' fill='#8B7355'/><rect x='130' y='65' width='15' height='35' fill='#8B7355'/><rect x='0' y='100' width='200' height='50' fill='#6B8E3D'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#F4E4BC'/><circle cx='100' cy='75' r='40' fill='#4A90D9'/><path d='M70,75 L130,75 M100,45 L100,105' stroke='#F5F5F5' stroke-width='2'/><circle cx='100' cy='75' r='15' fill='#FDB813'/><text x='100' y='130' font-size='8' text-anchor='middle' fill='#8B7355'>PEACE</text></svg>"
       ],
       "words": [
         {
@@ -3536,6 +4408,94 @@
           "translation": "valentia",
           "phonetics": "ku-rij",
           "paragraphIndex": 2
+        },
+        {
+          "word": "occupied",
+          "translation": "ocupados",
+          "phonetics": "o-ku-paid",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "enemy",
+          "translation": "enemigo",
+          "phonetics": "e-ne-mi",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "separated",
+          "translation": "separadas",
+          "phonetics": "se-pa-rei-tid",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "opportunities",
+          "translation": "oportunidades",
+          "phonetics": "op-or-tu-ni-tis",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "freedom",
+          "translation": "libertad",
+          "phonetics": "fri-dom",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "rights",
+          "translation": "derechos",
+          "phonetics": "raits",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What is the main topic of this reading?",
+          "options": [
+            "The United Nations",
+            "World War II and its effects",
+            "How to fight wars",
+            "Life in 1945"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "When did World War II end?",
+          "options": [
+            "1939",
+            "1942",
+            "1945",
+            "1950"
+          ],
+          "correct": 2
+        },
+        {
+          "question": "What does 'occupied' mean?",
+          "options": [
+            "Free and independent",
+            "Taken control of by enemy soldiers",
+            "Empty",
+            "Destroyed completely"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What was created after the war to prevent future wars?",
+          "options": [
+            "The Roman Empire",
+            "The United Nations",
+            "The Olympics",
+            "The European Union"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can you infer about the post-war period?",
+          "options": [
+            "Nothing changed",
+            "The world learned about freedom and rights",
+            "Life stayed the same",
+            "Countries stopped working together"
+          ],
+          "correct": 1
         }
       ]
     },
@@ -3545,12 +4505,16 @@
       "paragraphs": [
         "The Space Race was a competition between the United States and the Soviet Union. Both countries wanted to explore space first.",
         "In 1961, a Soviet astronaut named Yuri Gagarin became the first person in space. He orbited the Earth once and returned safely.",
-        "In 1969, the United States sent astronauts to the Moon. Neil Armstrong was the first person to walk on the Moon. He said it was a giant leap for mankind. Today space exploration continues with new rockets and missions."
+        "In 1969, the United States sent astronauts to the Moon. Neil Armstrong was the first person to walk on the Moon. He said it was a giant leap for mankind. Today space exploration continues with new rockets and missions.",
+        "After the Moon landing, both countries continued to explore space. They built space stations where astronauts lived for months. Robots were sent to study Mars and other planets.",
+        "Today, many countries work together in space. The International Space Station is a shared project. Private companies are also building rockets. Space exploration helps us learn about our universe and our own planet."
       ],
       "images": [
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#1a1a2e'/><polygon points='100,30 90,70 110,70' fill='#C9A96E'/><rect x='95' y='70' width='10' height='20' fill='#A0522D'/><polygon points='90,90 110,90 100,100' fill='#FDB813'/><circle cx='170' cy='25' r='3' fill='white'/><circle cx='30' cy='40' r='2' fill='white'/><circle cx='150' cy='60' r='2' fill='white'/></svg>",
         "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#1a1a2e'/><circle cx='100' cy='80' r='35' fill='#4A90D9'/><ellipse cx='85' cy='75' rx='12' ry='8' fill='#6B8E3D'/><ellipse cx='110' cy='85' rx='8' ry='10' fill='#6B8E3D'/><ellipse cx='100' cy='50' rx='50' ry='15' fill='none' stroke='#FDB813' stroke-width='1.5' transform='rotate(-20 100 80)'/><circle cx='50' cy='60' r='3' fill='white'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#1a1a2e'/><circle cx='100' cy='90' r='45' fill='#D4C5A9'/><circle cx='80' cy='80' r='8' fill='#8B7355'/><circle cx='120' cy='95' r='6' fill='#8B7355'/><circle cx='110' cy='75' r='5' fill='#8B7355'/><line x1='100' y1='55' x2='100' y2='35' stroke='#A0522D' stroke-width='2'/><rect x='96' y='35' width='8' height='6' fill='#FDB813'/></svg>"
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#1a1a2e'/><circle cx='100' cy='90' r='45' fill='#D4C5A9'/><circle cx='80' cy='80' r='8' fill='#8B7355'/><circle cx='120' cy='95' r='6' fill='#8B7355'/><circle cx='110' cy='75' r='5' fill='#8B7355'/><line x1='100' y1='55' x2='100' y2='35' stroke='#A0522D' stroke-width='2'/><rect x='96' y='35' width='8' height='6' fill='#FDB813'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#1a1a2e'/><circle cx='100' cy='75' r='25' fill='#C9A96E'/><rect x='85' y='55' width='30' height='40' fill='#B8975A' rx='3'/><circle cx='100' cy='45' r='6' fill='#4A90D9'/><line x1='75' y1='75' x2='60' y2='60' stroke='#888' stroke-width='2'/><line x1='125' y1='75' x2='140' y2='60' stroke='#888' stroke-width='2'/><circle cx='30' cy='20' r='1' fill='#FFF'/><circle cx='170' cy='30' r='1' fill='#FFF'/><circle cx='150' cy='100' r='1' fill='#FFF'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#1a1a2e'/><circle cx='100' cy='80' r='35' fill='#4A90D9'/><path d='M80,65 Q100,55 120,65' stroke='#6B8E3D' stroke-width='2' fill='none'/><path d='M75,85 Q100,95 125,85' stroke='#6B8E3D' stroke-width='2' fill='none'/><rect x='85' y='50' width='30' height='15' fill='#C9A96E' rx='2'/><circle cx='30' cy='20' r='1' fill='#FFF'/><circle cx='170' cy='25' r='1' fill='#FFF'/><circle cx='50' cy='110' r='1' fill='#FFF'/></svg>"
       ],
       "words": [
         {
@@ -3876,6 +4840,106 @@
           "translation": "misiones",
           "phonetics": "mi-chons",
           "paragraphIndex": 2
+        },
+        {
+          "word": "stations",
+          "translation": "estaciones",
+          "phonetics": "stei-chons",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "astronauts",
+          "translation": "astronautas",
+          "phonetics": "as-tro-nots",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "robots",
+          "translation": "robots",
+          "phonetics": "ro-bots",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "planets",
+          "translation": "planetas",
+          "phonetics": "pla-nets",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "shared",
+          "translation": "compartido",
+          "phonetics": "cherd",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "private",
+          "translation": "privado",
+          "phonetics": "prai-vet",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "companies",
+          "translation": "empresas",
+          "phonetics": "kom-pa-nis",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "universe",
+          "translation": "universo",
+          "phonetics": "u-ni-vers",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What is the main topic of this reading?",
+          "options": [
+            "Only the Moon landing",
+            "The Space Race and space exploration",
+            "How to build rockets",
+            "Life on Mars"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Who was the first person in space?",
+          "options": [
+            "Neil Armstrong",
+            "Yuri Gagarin",
+            "Christopher Columbus",
+            "Moctezuma"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What does 'astronauts' mean?",
+          "options": [
+            "People who fly planes",
+            "People who travel to space",
+            "People who build ships",
+            "People who study stars"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What is the International Space Station?",
+          "options": [
+            "A private rocket",
+            "A shared project by many countries",
+            "A Mars rover",
+            "A Moon base"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can you infer about space exploration today?",
+          "options": [
+            "Only two countries explore space",
+            "Countries work together and private companies help",
+            "Space exploration has stopped",
+            "Robots replaced all astronauts"
+          ],
+          "correct": 1
         }
       ]
     }

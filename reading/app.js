@@ -84,7 +84,7 @@ function initReader() {
   let utterance = null;
   let isPlaying = false;
   let isPaused = false;
-  let currentRate = 1.0;
+  let currentRate = 0.7;
   let currentParagraphIndex = 0;
   let wordSpans = [];
   let voices = [];
@@ -99,29 +99,17 @@ function initReader() {
   }
 
   function pickVoice() {
-    const voiceSelect = document.getElementById('voiceSelect');
-    if (voiceSelect && voiceSelect.value) {
-      const selected = voices.find(v => v.name === voiceSelect.value);
-      if (selected) return selected;
-    }
-    // Prefer female voices for kids' content
+    // Force en-US voice
+    const enUS = voices.find(v => v.lang === 'en-US');
+    if (enUS) return enUS;
     const preferred = voices.find(v => /female|samantha|zira|google us english/i.test(v.name));
     return preferred || voices[0] || null;
   }
 
-  // Populate voice selector
-  function populateVoices() {
-    const voiceSelect = document.getElementById('voiceSelect');
-    if (!voiceSelect) return;
-    const enVoices = window.speechSynthesis.getVoices().filter(v => v.lang.startsWith('en'));
-    voiceSelect.innerHTML = enVoices.map(v => `<option value="${v.name}">${v.name} (${v.lang})</option>`).join('');
-    // Default to a female voice
-    const preferred = enVoices.find(v => /female|samantha|zira|google us english/i.test(v.name));
-    if (preferred) voiceSelect.value = preferred.name;
-  }
+  // Load voices
   if (hasSpeech) {
-    populateVoices();
-    window.speechSynthesis.onvoiceschanged = populateVoices;
+    loadVoices();
+    window.speechSynthesis.onvoiceschanged = loadVoices;
   }
 
   // Fetch data
@@ -211,17 +199,8 @@ function initReader() {
 
     // Controls
     const playBtn = document.getElementById('btnPlay');
-    const speedBtns = document.querySelectorAll('.speed-btn');
 
     playBtn.addEventListener('click', togglePlay);
-
-    speedBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        speedBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentRate = parseFloat(btn.dataset.rate);
-      });
-    });
 
     function togglePlay() {
       if (!hasSpeech) return;
@@ -318,7 +297,7 @@ function initReader() {
           playBtn.textContent = '▶️'; playBtn.classList.remove('active');
           wordSpans.forEach(s => s.classList.remove('highlighted'));
           if (!completedReadings.includes(reading.id)) { completedReadings.push(reading.id); localStorage.setItem('readingCompleted', JSON.stringify(completedReadings)); }
-          const complete = document.getElementById('readingComplete'); if (complete) complete.classList.add('show');
+          const complete = document.getElementById('readingComplete'); if (complete) { complete.classList.add('show'); if (reading.questions && reading.questions.length) { complete.textContent = '✅ Reading complete! Click for quiz →'; complete.style.cursor = 'pointer'; } }
           return;
         }
         const ch = chunks[chunkIdx];
@@ -352,7 +331,67 @@ function initReader() {
     }
     updateProgress();
 
-    // Expose for paragraph replay if needed
+    // Quiz logic
+    const quizSection = document.getElementById('quizSection');
+    const quizQuestions = document.getElementById('quizQuestions');
+    const quizSubmit = document.getElementById('quizSubmit');
+    const quizResult = document.getElementById('quizResult');
+
+    function showQuiz() {
+      if (!reading.questions || !reading.questions.length) return;
+      quizQuestions.innerHTML = reading.questions.map((q, qi) => `
+        <div class="quiz-question" data-q="${qi}">
+          <div class="q-num">Question ${qi + 1}</div>
+          <div class="q-text">${q.question}</div>
+          ${q.options.map((opt, oi) => `
+            <div class="quiz-option" data-q="${qi}" data-o="${oi}">
+              <input type="radio" name="q${qi}" value="${oi}">
+              <span>${opt}</span>
+            </div>
+          `).join('')}
+        </div>
+      `).join('');
+      quizResult.classList.remove('show');
+      quizSection.classList.add('active');
+
+      // Option selection
+      quizQuestions.querySelectorAll('.quiz-option').forEach(opt => {
+        opt.addEventListener('click', () => {
+          const qi = opt.dataset.q;
+          quizQuestions.querySelectorAll(`.quiz-option[data-q="${qi}"]`).forEach(o => o.classList.remove('selected'));
+          opt.classList.add('selected');
+          opt.querySelector('input').checked = true;
+        });
+      });
+
+      // Submit
+      quizSubmit.onclick = () => {
+        let score = 0;
+        reading.questions.forEach((q, qi) => {
+          const selected = quizQuestions.querySelector(`.quiz-option[data-q="${qi}"].selected`);
+          quizQuestions.querySelectorAll(`.quiz-option[data-q="${qi}"]`).forEach((opt, oi) => {
+            opt.classList.remove('correct', 'incorrect');
+            if (oi === q.correct) opt.classList.add('correct');
+            if (selected && parseInt(selected.dataset.o) === oi && oi !== q.correct) opt.classList.add('incorrect');
+          });
+          if (selected && parseInt(selected.dataset.o) === q.correct) score++;
+        });
+        quizResult.innerHTML = `<div class="score">${score}/${reading.questions.length}</div>${score === reading.questions.length ? '🎉 Perfect!' : score >= 3 ? '👍 Good job!' : '📖 Keep practicing!'}`;
+        quizResult.classList.add('show');
+        quizSubmit.textContent = 'Try Again';
+        quizSubmit.onclick = () => { showQuiz(); quizSubmit.textContent = 'Check Answers'; };
+      };
+    }
+
+    // Show quiz button after reading completes
+    const completeEl = document.getElementById('readingComplete');
+    if (completeEl) {
+      completeEl.addEventListener('click', () => {
+        if (reading.questions && reading.questions.length) showQuiz();
+      });
+    }
+
+// Expose for paragraph replay if needed
     window.__readingApp = { startSpeaking, togglePlay, renderImage, updateProgress };
   }
 
