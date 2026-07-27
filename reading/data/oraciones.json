@@ -14,9 +14,9 @@
         "And lead us not into temptation, but deliver us from evil. For thine is the kingdom, and the power, and the glory, forever and ever. Amen."
       ],
       "images": [
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8f0fe'/><rect x='95' y='30' width='10' height='90' fill='#4a6fa5' rx='2'/><rect x='75' y='50' width='50' height='10' fill='#4a6fa5' rx='2'/><circle cx='100' cy='35' r='8' fill='#f0c75e'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fef5e7'/><ellipse cx='100' cy='100' rx='35' ry='15' fill='#d4a574'/><path d='M85 100 Q85 60 100 55 Q115 60 115 100' fill='#d4a574'/><line x1='100' y1='55' x2='100' y2='100' stroke='#b8895a' stroke-width='1'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fff8e7'/><circle cx='100' cy='75' r='20' fill='#f0c75e'/><g stroke='#f0c75e' stroke-width='3' stroke-linecap='round'><line x1='100' y1='40' x2='100' y2='25'/><line x1='100' y1='110' x2='100' y2='125'/><line x1='65' y1='75' x2='50' y2='75'/><line x1='135' y1='75' x2='150' y2='75'/><line x1='75' y1='50' x2='65' y2='40'/><line x1='125' y1='50' x2='135' y2='40'/><line x1='75' y1='100' x2='65' y2='110'/><line x1='125' y1='100' x2='135' y2='110'/></g></svg>"
+        "<img src=\"images/oraciones/oraciones-01-0.jpg\" alt=\"Jesus teaching the Sermon on the Mount\" loading=\"lazy\">",
+        "<img src=\"images/oraciones/oraciones-01-1.jpg\" alt=\"Jesus blessing bread at the Last Supper\" loading=\"lazy\">",
+        "<img src=\"images/oraciones/oraciones-01-2.jpg\" alt=\"Christ praying alone in Gethsemane\" loading=\"lazy\">"
       ],
       "words": [
         {
@@ -317,8 +317,8 @@
         "Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen."
       ],
       "images": [
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#f0f4ff'/><ellipse cx='100' cy='75' rx='30' ry='18' fill='#e0e8f5'/><circle cx='125' cy='70' r='10' fill='#e0e8f5'/><path d='M125 70 L135 67 L135 73' fill='#c0c8d5'/><path d='M70 75 Q50 65 30 75' stroke='#d0d8e5' stroke-width='2' fill='none'/><path d='M70 80 Q55 85 40 80' stroke='#d0d8e5' stroke-width='2' fill='none'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fff0f0'/><path d='M100 100 C80 80 60 70 60 55 C60 45 70 40 80 45 C85 48 100 55 100 55 C100 55 115 48 120 45 C130 40 140 45 140 55 C140 70 120 80 100 100' fill='#e88080'/></svg>"
+        "<img src=\"images/oraciones/oraciones-02-0.jpg\" alt=\"Angel Gabriel announcing to Virgin Mary\" loading=\"lazy\">",
+        "<img src=\"images/oraciones/oraciones-02-1.jpg\" alt=\"Virgin Mary holding the infant Jesus\" loading=\"lazy\">"
       ],
       "words": [
         {
@@ -529,8 +529,8 @@
         "As it was in the beginning, is now, and ever shall be, world without end. Amen. May the glory of God shine upon us forever."
       ],
       "images": [
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fff8e7'/><circle cx='100' cy='75' r='20' fill='#f0c75e'/><g stroke='#f0c75e' stroke-width='3' stroke-linecap='round'><line x1='100' y1='40' x2='100' y2='25'/><line x1='100' y1='110' x2='100' y2='125'/><line x1='65' y1='75' x2='50' y2='75'/><line x1='135' y1='75' x2='150' y2='75'/><line x1='75' y1='50' x2='65' y2='40'/><line x1='125' y1='50' x2='135' y2='40'/><line x1='75' y1='100' x2='65' y2='110'/><line x1='125' y1='100' x2='135' y2='110'/></g></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#1a1a3e'/><polygon points='100,30 105,55 130,55 110,70 118,95 100,80 82,95 90,70 70,55 95,55' fill='#f0c75e'/></svg>"
+        "<img src=\"images/oraciones/oraciones-03-0.jpg\" alt=\"Holy Trinity adored by saints in heaven\" loading=\"lazy\">",
+        "<img src=\"images/oraciones/oraciones-03-1.jpg\" alt=\"Angels and Mary rising into glory\" loading=\"lazy\">"
       ],
       "words": [
         {
@@ -753,8 +753,8 @@
         "Bless my family and friends. Keep us safe and guide us in Your love. May Your light shine in our hearts today. Amen."
       ],
       "images": [
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fff8e7'/><circle cx='100' cy='75' r='20' fill='#f0c75e'/><g stroke='#f0c75e' stroke-width='3' stroke-linecap='round'><line x1='100' y1='40' x2='100' y2='25'/><line x1='100' y1='110' x2='100' y2='125'/><line x1='65' y1='75' x2='50' y2='75'/><line x1='135' y1='75' x2='150' y2='75'/><line x1='75' y1='50' x2='65' y2='40'/><line x1='125' y1='50' x2='135' y2='40'/><line x1='75' y1='100' x2='65' y2='110'/><line x1='125' y1='100' x2='135' y2='110'/></g></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8f0fe'/><rect x='95' y='30' width='10' height='90' fill='#4a6fa5' rx='2'/><rect x='75' y='50' width='50' height='10' fill='#4a6fa5' rx='2'/><circle cx='100' cy='35' r='8' fill='#f0c75e'/></svg>"
+        "<img src=\"images/oraciones/oraciones-04-0.jpg\" alt=\"Sunrise over a peaceful landscape\" loading=\"lazy\">",
+        "<img src=\"images/oraciones/oraciones-04-1.jpg\" alt=\"Girl kneeling in prayer, church\" loading=\"lazy\">"
       ],
       "words": [
         {
@@ -989,8 +989,8 @@
         "Watch over us as we sleep. Keep us safe through the night. Help us to rest and wake ready to serve You. Amen."
       ],
       "images": [
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#1a1a3e'/><circle cx='100' cy='75' r='35' fill='#f0c75e'/><circle cx='115' cy='68' r='30' fill='#1a1a3e'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fef5e7'/><rect x='90' y='60' width='20' height='60' fill='#f5e6c8' rx='2'/><path d='M100 45 Q95 55 100 60 Q105 55 100 45' fill='#f0c75e'/><circle cx='100' cy='50' r='3' fill='#fff8e0'/></svg>"
+        "<img src=\"images/oraciones/oraciones-05-0.jpg\" alt=\"Colorful sunset sky at dusk\" loading=\"lazy\">",
+        "<img src=\"images/oraciones/oraciones-05-1.jpg\" alt=\"Starry night sky over a village\" loading=\"lazy\">"
       ],
       "words": [
         {
@@ -1219,8 +1219,8 @@
         "Through Christ our Lord, we ask You to bless this meal and make us grateful for all You provide. May this food give us strength to serve You. Amen."
       ],
       "images": [
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fef5e7'/><ellipse cx='100' cy='80' rx='50' ry='25' fill='#d4a574'/><ellipse cx='100' cy='75' rx='45' ry='20' fill='#e6c899'/><line x1='80' y1='70' x2='85' y2='85' stroke='#b8895a' stroke-width='1'/><line x1='100' y1='68' x2='105' y2='83' stroke='#b8895a' stroke-width='1'/><line x1='120' y1='70' x2='125' y2='85' stroke='#b8895a' stroke-width='1'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fef5e7'/><rect x='50' y='80' width='100' height='10' fill='#8a7050'/><rect x='55' y='90' width='8' height='30' fill='#6a5030'/><rect x='137' y='90' width='8' height='30' fill='#6a5030'/><circle cx='75' cy='70' r='8' fill='#e88080'/><circle cx='100' cy='68' r='8' fill='#f0c75e'/><circle cx='125' cy='70' r='8' fill='#80c080'/></svg>"
+        "<img src=\"images/oraciones/oraciones-06-0.jpg\" alt=\"Family saying grace at table\" loading=\"lazy\">",
+        "<img src=\"images/oraciones/oraciones-06-1.jpg\" alt=\"Still life of bread and wine\" loading=\"lazy\">"
       ],
       "words": [
         {
@@ -1479,8 +1479,8 @@
         "May we always remember those who are in need. Help us to share what we have with others, and to live with grateful hearts. Amen."
       ],
       "images": [
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fef5e7'/><rect x='50' y='80' width='100' height='10' fill='#8a7050'/><rect x='55' y='90' width='8' height='30' fill='#6a5030'/><rect x='137' y='90' width='8' height='30' fill='#6a5030'/><circle cx='75' cy='70' r='8' fill='#e88080'/><circle cx='100' cy='68' r='8' fill='#f0c75e'/><circle cx='125' cy='70' r='8' fill='#80c080'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fff0f0'/><path d='M100 100 C80 80 60 70 60 55 C60 45 70 40 80 45 C85 48 100 55 100 55 C100 55 115 48 120 45 C130 40 140 45 140 55 C140 70 120 80 100 100' fill='#e88080'/></svg>"
+        "<img src=\"images/oraciones/oraciones-07-0.jpg\" alt=\"Wheat field harvest scene\" loading=\"lazy\">",
+        "<img src=\"images/oraciones/oraciones-07-1.jpg\" alt=\"Woman sharing bread with the poor\" loading=\"lazy\">"
       ],
       "words": [
         {
@@ -1721,8 +1721,8 @@
         "Protect me from all harm and danger. Help me to be good and to follow God's path. Stay close to me, my dear angel. Amen."
       ],
       "images": [
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#f0f4ff'/><circle cx='100' cy='50' r='15' fill='#f5e6c8'/><path d='M70 60 Q60 80 65 100 L135 100 Q140 80 130 60' fill='#e0e8f5'/><path d='M65 70 Q40 65 35 80 Q40 85 60 80' fill='#d0d8e5'/><path d='M135 70 Q160 65 165 80 Q160 85 140 80' fill='#d0d8e5'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8f0fe'/><path d='M100 30 L140 45 L140 80 Q140 105 100 120 Q60 105 60 80 L60 45 Z' fill='#4a6fa5'/><rect x='95' y='50' width='10' height='50' fill='#f0c75e'/><rect x='80' y='65' width='40' height='8' fill='#f0c75e'/></svg>"
+        "<img src=\"images/oraciones/oraciones-08-0.jpg\" alt=\"Guardian angel watching over child\" loading=\"lazy\">",
+        "<img src=\"images/oraciones/oraciones-08-1.jpg\" alt=\"Angel protecting children on bridge\" loading=\"lazy\">"
       ],
       "words": [
         {
@@ -1951,8 +1951,8 @@
         "I firmly intend, with Your help, to do better and to avoid what leads me away from Your love. Have mercy on me and help me to grow. Amen."
       ],
       "images": [
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fff0f0'/><path d='M100 100 C80 80 60 70 60 55 C60 45 70 40 80 45 C85 48 100 55 100 55 C100 55 115 48 120 45 C130 40 140 45 140 55 C140 70 120 80 100 100' fill='#e88080'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fef5e7'/><ellipse cx='100' cy='100' rx='35' ry='15' fill='#d4a574'/><path d='M85 100 Q85 60 100 55 Q115 60 115 100' fill='#d4a574'/><line x1='100' y1='55' x2='100' y2='100' stroke='#b8895a' stroke-width='1'/></svg>"
+        "<img src=\"images/oraciones/oraciones-09-0.jpg\" alt=\"Father embracing repentant kneeling son\" loading=\"lazy\">",
+        "<img src=\"images/oraciones/oraciones-09-1.jpg\" alt=\"Hands folded together in prayer\" loading=\"lazy\">"
       ],
       "words": [
         {
@@ -2193,8 +2193,8 @@
         "Help us to stand strong in faith and to trust in God's power. May God command His angels to guard us on every side. Amen."
       ],
       "images": [
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8f0fe'/><rect x='96' y='30' width='8' height='70' fill='#c0c8d5'/><rect x='85' y='95' width='30' height='8' fill='#8a7050'/><rect x='96' y='103' width='8' height='20' fill='#6a5030'/><polygon points='96,30 104,30 100,22' fill='#a0a8b5'/></svg>",
-        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8f0fe'/><path d='M100 30 L140 45 L140 80 Q140 105 100 120 Q60 105 60 80 L60 45 Z' fill='#4a6fa5'/><rect x='95' y='50' width='10' height='50' fill='#f0c75e'/><rect x='80' y='65' width='40' height='8' fill='#f0c75e'/></svg>"
+        "<img src=\"images/oraciones/oraciones-10-0.jpg\" alt=\"Archangel Michael defeating Satan\" loading=\"lazy\">",
+        "<img src=\"images/oraciones/oraciones-10-1.jpg\" alt=\"Archangel Michael with sword and shield\" loading=\"lazy\">"
       ],
       "words": [
         {

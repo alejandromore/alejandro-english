@@ -22,6 +22,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--light);color:v
 .cat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .cat-card .cat-cover{width:100%;max-width:180px;height:130px;margin-bottom:12px;display:flex;align-items:center;justify-content:center}
 .cat-card .cat-cover svg{width:100%;height:100%;object-fit:contain}
+.cat-card .cat-cover img{width:100%;height:100%;object-fit:cover;border-radius:8px}
 .cat-card h2{font-size:1.1rem;margin-bottom:4px}
 .cat-card .cat-level{font-size:.72rem;color:var(--teal);font-weight:600;margin-bottom:6px}
 .cat-card .cat-count{font-size:.78rem;color:var(--muted)}
@@ -37,6 +38,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--light);color:v
 .reading-item:hover{transform:translateX(4px);box-shadow:var(--shadow)}
 .reading-item .ri-thumb{width:56px;height:56px;border-radius:8px;overflow:hidden;flex-shrink:0;background:var(--light2);display:flex;align-items:center;justify-content:center}
 .reading-item .ri-thumb svg{width:100%;height:100%;object-fit:contain}
+.reading-item .ri-thumb img{width:100%;height:100%;object-fit:cover}
 .reading-item .ri-info h4{font-size:.92rem;color:var(--text)}
 .reading-item .ri-info p{font-size:.75rem;color:var(--muted);margin-top:2px}
 .reading-item .ri-done{margin-left:auto;color:var(--teal);font-size:1.1rem}
@@ -52,6 +54,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--light);color:v
 /* Image carousel area */
 .reader-image-area{flex:0 0 35vh;min-height:180px;max-height:300px;background:var(--light2);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;transition:background .3s}
 .reader-image-area svg{width:90%;height:90%;object-fit:contain;animation:fadeIn .4s ease}
+.reader-image-area img{width:100%;height:100%;object-fit:cover;animation:fadeIn .4s ease}
 @keyframes fadeIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
 .reader-image-area .img-progress{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:6px}
 .reader-image-area .img-dot{width:8px;height:8px;border-radius:50%;background:rgba(0,0,0,.15);transition:background .3s}
