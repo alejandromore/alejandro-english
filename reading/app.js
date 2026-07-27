@@ -99,9 +99,29 @@ function initReader() {
   }
 
   function pickVoice() {
+    const voiceSelect = document.getElementById('voiceSelect');
+    if (voiceSelect && voiceSelect.value) {
+      const selected = voices.find(v => v.name === voiceSelect.value);
+      if (selected) return selected;
+    }
     // Prefer female voices for kids' content
     const preferred = voices.find(v => /female|samantha|zira|google us english/i.test(v.name));
     return preferred || voices[0] || null;
+  }
+
+  // Populate voice selector
+  function populateVoices() {
+    const voiceSelect = document.getElementById('voiceSelect');
+    if (!voiceSelect) return;
+    const enVoices = window.speechSynthesis.getVoices().filter(v => v.lang.startsWith('en'));
+    voiceSelect.innerHTML = enVoices.map(v => `<option value="${v.name}">${v.name} (${v.lang})</option>`).join('');
+    // Default to a female voice
+    const preferred = enVoices.find(v => /female|samantha|zira|google us english/i.test(v.name));
+    if (preferred) voiceSelect.value = preferred.name;
+  }
+  if (hasSpeech) {
+    populateVoices();
+    window.speechSynthesis.onvoiceschanged = populateVoices;
   }
 
   // Fetch data
@@ -223,99 +243,106 @@ function initReader() {
       }
     }
 
+    function buildSpeechChunks(text) {
+      const MAX = 180, chunks = [];
+      function pushSeg(start, end) {
+        let s = start;
+        while (end - s > MAX) { let cut = s + MAX; const sp = text.lastIndexOf(' ', cut); if (sp > s) cut = sp; if (text.slice(s, cut).trim()) chunks.push({ text: text.slice(s, cut), start: s }); s = cut; }
+        if (text.slice(s, end).trim()) chunks.push({ text: text.slice(s, end), start: s });
+      }
+      let segStart = 0;
+      for (let i = 0; i < text.length; i++) { const c = text[i]; if (c === '\n' || c === '.' || c === '!' || c === '?' || c === '\u2026') { pushSeg(segStart, i + 1); segStart = i + 1; } }
+      if (segStart < text.length) pushSeg(segStart, text.length);
+      return chunks.length ? chunks : [{ text, start: 0 }];
+    }
+
     function startSpeaking() {
       window.speechSynthesis.cancel();
       const fullText = reading.paragraphs.join(' ');
-      utterance = new SpeechSynthesisUtterance(fullText);
-      utterance.lang = 'en-US';
-      utterance.rate = currentRate;
-      const voice = pickVoice();
-      if (voice) utterance.voice = voice;
 
+      // Build word positions for chunk mapping
+      const wordPositions = [];
+      const re = /\S+/g; let m;
+      while ((m = re.exec(fullText))) wordPositions.push({ start: m.index, end: m.index + m[0].length, text: m[0] });
+
+      const chunks = buildSpeechChunks(fullText);
+      let chunkIdx = 0;
       let lastHighlightedIdx = -1;
-      let boundaryFired = false;
-      let timerInterval = null;
+      let monitorTimer = null;
+      let lastBoundaryAt = 0;
 
       function highlightWord(idx) {
-        // Clear previous
-        if (lastHighlightedIdx >= 0 && wordSpans[lastHighlightedIdx]) {
-          wordSpans[lastHighlightedIdx].classList.remove('highlighted');
-        }
-        if (idx < wordSpans.length) {
+        if (lastHighlightedIdx >= 0 && wordSpans[lastHighlightedIdx]) wordSpans[lastHighlightedIdx].classList.remove('highlighted');
+        if (idx >= 0 && idx < wordSpans.length) {
           wordSpans[idx].classList.add('highlighted');
           wordSpans[idx].scrollIntoView({ behavior: 'smooth', block: 'center' });
-          // Update image if paragraph changed
           const pIdx = parseInt(wordSpans[idx].dataset.paragraph);
-          if (pIdx !== currentParagraphIndex) {
-            currentParagraphIndex = pIdx;
-            renderImage(pIdx);
-            updateProgress();
-          }
+          if (pIdx !== currentParagraphIndex) { currentParagraphIndex = pIdx; renderImage(pIdx); updateProgress(); }
           lastHighlightedIdx = idx;
         }
       }
 
-      // Primary: onboundary event (Chrome/Edge/Safari)
-      utterance.onboundary = (event) => {
-        if (event.charIndex === undefined) return;
-        boundaryFired = true;
-        if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-        // Calculate word index from char offset
-        const text = fullText.substring(0, event.charIndex);
-        const wordNum = text.split(/\s+/).filter(w => w.length > 0).length;
-        highlightWord(wordNum);
-      };
+      function findWordAtChar(charPos) {
+        for (let i = 0; i < wordPositions.length; i++) { if (wordPositions[i].start <= charPos && charPos < wordPositions[i].end) return i; }
+        for (let i = 0; i < wordPositions.length; i++) { if (wordPositions[i].start >= charPos) return i; }
+        return -1;
+      }
 
-      // Fallback: timer-based highlighting if onboundary doesn't fire
-      utterance.onstart = () => {
-        setTimeout(() => {
-          if (!boundaryFired && wordSpans.length > 0) {
-            let wi = 0;
-            const msPerWord = 350 / currentRate;
-            highlightWord(0);
-            timerInterval = setInterval(() => {
-              wi++;
-              if (wi < wordSpans.length) {
-                highlightWord(wi);
-              } else {
-                clearInterval(timerInterval);
-                timerInterval = null;
-              }
-            }, msPerWord);
-          }
-        }, 800);
-      };
+      function chunkWordRange(ch) {
+        let first = -1, last = -1;
+        for (let i = 0; i < wordPositions.length; i++) { if (wordPositions[i].start >= ch.start && wordPositions[i].start < ch.start + ch.text.length) { if (first < 0) first = i; last = i; } }
+        return [first, last];
+      }
 
-      utterance.onend = () => {
-        if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-        isPlaying = false;
-        isPaused = false;
-        playBtn.textContent = '▶️';
-        playBtn.classList.remove('active');
-        // Clear all highlights
-        wordSpans.forEach(s => s.classList.remove('highlighted'));
-        // Mark as complete
-        if (!completedReadings.includes(reading.id)) {
-          completedReadings.push(reading.id);
-          localStorage.setItem('readingCompleted', JSON.stringify(completedReadings));
+      function startChunkMonitor(ch) {
+        if (monitorTimer) clearInterval(monitorTimer);
+        const [first, last] = chunkWordRange(ch); if (first < 0) return;
+        const cps = 14 * currentRate; const times = []; let tm = 0;
+        for (let i = first; i <= last; i++) { times.push(tm); const w = wordPositions[i]; tm += (w.text.length + 1) / cps; const c = w.text.slice(-1); if (/[,;:]/.test(c)) tm += 0.15; else if (/[.?!\u2026]/.test(c)) tm += 0.30; }
+        const startMs = Date.now();
+        monitorTimer = setInterval(() => {
+          if (isPaused) return;
+          if (lastBoundaryAt && Date.now() - lastBoundaryAt < 1000) return;
+          const elapsed = (Date.now() - startMs) / 1000 + 0.10;
+          let idx = first; for (let k = 0; k < times.length; k++) { if (times[k] <= elapsed) idx = first + k; else break; }
+          highlightWord(idx);
+        }, 60);
+      }
+
+      function stopMonitor() { if (monitorTimer) { clearInterval(monitorTimer); monitorTimer = null; } }
+
+      function speakChunk() {
+        if (!isPlaying) return;
+        if (chunkIdx >= chunks.length) {
+          stopMonitor(); isPlaying = false; isPaused = false;
+          playBtn.textContent = '▶️'; playBtn.classList.remove('active');
+          wordSpans.forEach(s => s.classList.remove('highlighted'));
+          if (!completedReadings.includes(reading.id)) { completedReadings.push(reading.id); localStorage.setItem('readingCompleted', JSON.stringify(completedReadings)); }
+          const complete = document.getElementById('readingComplete'); if (complete) complete.classList.add('show');
+          return;
         }
-        const complete = document.getElementById('readingComplete');
-        if (complete) complete.classList.add('show');
-      };
+        const ch = chunks[chunkIdx];
+        const u = new SpeechSynthesisUtterance(ch.text);
+        u.lang = 'en-US'; u.rate = currentRate; u.pitch = 1.0;
+        const voice = pickVoice(); if (voice) u.voice = voice;
 
-      utterance.onerror = () => {
-        if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-        isPlaying = false;
-        isPaused = false;
-        playBtn.textContent = '▶️';
-        playBtn.classList.remove('active');
-      };
+        u.onboundary = (e) => {
+          if (e.name && e.name !== 'word') return;
+          const globalChar = ch.start + (e.charIndex || 0);
+          const wIdx = findWordAtChar(globalChar);
+          if (wIdx >= 0) { lastBoundaryAt = Date.now(); highlightWord(wIdx); }
+        };
+        u.onstart = () => { startChunkMonitor(ch); };
+        u.onend = () => { if (!isPlaying) return; stopMonitor(); chunkIdx++; speakChunk(); };
+        u.onerror = () => { if (!isPlaying) return; stopMonitor(); chunkIdx++; speakChunk(); };
 
-      window.speechSynthesis.speak(utterance);
-      isPlaying = true;
-      isPaused = false;
-      playBtn.textContent = '⏸️';
-      playBtn.classList.add('active');
+        window.speechSynthesis.speak(u);
+        utterance = u;
+      }
+
+      isPlaying = true; isPaused = false;
+      playBtn.textContent = '⏸️'; playBtn.classList.add('active');
+      speakChunk();
     }
 
     function updateProgress() {

@@ -66,6 +66,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--light);color:v
 .reader-controls .speed-btn{background:#fff;border:1px solid #ddd;border-radius:6px;padding:6px 12px;font-size:.78rem;cursor:pointer;transition:all .2s;font-family:inherit}
 .reader-controls .speed-btn.active{background:var(--dark);color:#fff;border-color:var(--dark)}
 .reader-controls .ctrl-progress{margin-left:auto;font-size:.78rem;color:var(--muted);font-weight:600}
+.reader-controls .ctrl-voice{background:#fff;border:1px solid #ddd;border-radius:6px;padding:6px 8px;font-size:.78rem;cursor:pointer;font-family:inherit;max-width:160px}
 
 /* Text area */
 .reader-text-area{flex:1;overflow-y:auto;padding:20px 24px;line-height:2;font-size:1.05rem;color:var(--text)}
