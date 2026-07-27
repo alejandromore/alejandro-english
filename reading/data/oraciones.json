@@ -1,0 +1,2431 @@
+{
+  "category": "oraciones",
+  "categoryName": "Oraciones Católicas",
+  "categoryIcon": "✝️",
+  "level": "A1-A2",
+  "coverSVG": "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8f0fe'/><rect x='95' y='30' width='10' height='90' fill='#4a6fa5' rx='2'/><rect x='75' y='50' width='50' height='10' fill='#4a6fa5' rx='2'/><circle cx='100' cy='35' r='8' fill='#f0c75e'/><circle cx='100' cy='75' r='30' fill='none' stroke='#f0c75e' stroke-width='2' opacity='0.4'/></svg>",
+  "readings": [
+    {
+      "id": "oraciones-01",
+      "title": "The Lord's Prayer",
+      "paragraphs": [
+        "Our Father, who art in heaven, hallowed be thy name. Thy kingdom come, thy will be done, on earth as it is in heaven.",
+        "Give us this day our daily bread, and forgive us our trespasses, as we forgive those who trespass against us.",
+        "And lead us not into temptation, but deliver us from evil. For thine is the kingdom, and the power, and the glory, forever and ever. Amen."
+      ],
+      "images": [
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8f0fe'/><rect x='95' y='30' width='10' height='90' fill='#4a6fa5' rx='2'/><rect x='75' y='50' width='50' height='10' fill='#4a6fa5' rx='2'/><circle cx='100' cy='35' r='8' fill='#f0c75e'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fef5e7'/><ellipse cx='100' cy='100' rx='35' ry='15' fill='#d4a574'/><path d='M85 100 Q85 60 100 55 Q115 60 115 100' fill='#d4a574'/><line x1='100' y1='55' x2='100' y2='100' stroke='#b8895a' stroke-width='1'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fff8e7'/><circle cx='100' cy='75' r='20' fill='#f0c75e'/><g stroke='#f0c75e' stroke-width='3' stroke-linecap='round'><line x1='100' y1='40' x2='100' y2='25'/><line x1='100' y1='110' x2='100' y2='125'/><line x1='65' y1='75' x2='50' y2='75'/><line x1='135' y1='75' x2='150' y2='75'/><line x1='75' y1='50' x2='65' y2='40'/><line x1='125' y1='50' x2='135' y2='40'/><line x1='75' y1='100' x2='65' y2='110'/><line x1='125' y1='100' x2='135' y2='110'/></g></svg>"
+      ],
+      "words": [
+        {
+          "word": "Our",
+          "translation": "Nuestro",
+          "phonetics": "áuar",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Father",
+          "translation": "Padre",
+          "phonetics": "fá-der",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "who",
+          "translation": "que",
+          "phonetics": "ju",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "art",
+          "translation": "eres",
+          "phonetics": "art",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "in",
+          "translation": "en",
+          "phonetics": "in",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "heaven",
+          "translation": "cielo",
+          "phonetics": "hé-ven",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "hallowed",
+          "translation": "santificado",
+          "phonetics": "já-loud",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "be",
+          "translation": "sea",
+          "phonetics": "bi",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "thy",
+          "translation": "tu",
+          "phonetics": "dai",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "name",
+          "translation": "nombre",
+          "phonetics": "neim",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "kingdom",
+          "translation": "reino",
+          "phonetics": "king-dom",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "come",
+          "translation": "venga",
+          "phonetics": "com",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "will",
+          "translation": "voluntad",
+          "phonetics": "wil",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "done",
+          "translation": "hecha",
+          "phonetics": "dan",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "on",
+          "translation": "en",
+          "phonetics": "on",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "earth",
+          "translation": "tierra",
+          "phonetics": "ers",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "as",
+          "translation": "como",
+          "phonetics": "as",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "it",
+          "translation": "ello",
+          "phonetics": "it",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "is",
+          "translation": "es",
+          "phonetics": "is",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Give",
+          "translation": "danos",
+          "phonetics": "giv",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "us",
+          "translation": "nos",
+          "phonetics": "as",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "this",
+          "translation": "este",
+          "phonetics": "dis",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "day",
+          "translation": "día",
+          "phonetics": "dei",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "daily",
+          "translation": "diario",
+          "phonetics": "dei-li",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "bread",
+          "translation": "pan",
+          "phonetics": "bred",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "forgive",
+          "translation": "perdona",
+          "phonetics": "for-giv",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "trespasses",
+          "translation": "ofensas",
+          "phonetics": "tres-pa-ses",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "we",
+          "translation": "nosotros",
+          "phonetics": "wi",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "those",
+          "translation": "aquellos",
+          "phonetics": "dous",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "trespass",
+          "translation": "ofenden",
+          "phonetics": "tres-pas",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "against",
+          "translation": "contra",
+          "phonetics": "a-genst",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "lead",
+          "translation": "conduce",
+          "phonetics": "lid",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "not",
+          "translation": "no",
+          "phonetics": "not",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "into",
+          "translation": "a",
+          "phonetics": "in-tu",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "temptation",
+          "translation": "tentación",
+          "phonetics": "tem-ta-shon",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "but",
+          "translation": "sino",
+          "phonetics": "bat",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "deliver",
+          "translation": "líbranos",
+          "phonetics": "di-li-ver",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "from",
+          "translation": "de",
+          "phonetics": "from",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "evil",
+          "translation": "mal",
+          "phonetics": "i-vil",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "For",
+          "translation": "porque",
+          "phonetics": "for",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "thine",
+          "translation": "tuyo",
+          "phonetics": "dain",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "the",
+          "translation": "el",
+          "phonetics": "de",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "power",
+          "translation": "poder",
+          "phonetics": "páu-er",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "glory",
+          "translation": "gloria",
+          "phonetics": "glo-ri",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "forever",
+          "translation": "siempre",
+          "phonetics": "for-e-ver",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "ever",
+          "translation": "jamás",
+          "phonetics": "e-ver",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Amen",
+          "translation": "amén",
+          "phonetics": "a-men",
+          "paragraphIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "oraciones-02",
+      "title": "Hail Mary",
+      "paragraphs": [
+        "Hail Mary, full of grace, the Lord is with thee. Blessed art thou among women, and blessed is the fruit of thy womb, Jesus.",
+        "Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen."
+      ],
+      "images": [
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#f0f4ff'/><ellipse cx='100' cy='75' rx='30' ry='18' fill='#e0e8f5'/><circle cx='125' cy='70' r='10' fill='#e0e8f5'/><path d='M125 70 L135 67 L135 73' fill='#c0c8d5'/><path d='M70 75 Q50 65 30 75' stroke='#d0d8e5' stroke-width='2' fill='none'/><path d='M70 80 Q55 85 40 80' stroke='#d0d8e5' stroke-width='2' fill='none'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fff0f0'/><path d='M100 100 C80 80 60 70 60 55 C60 45 70 40 80 45 C85 48 100 55 100 55 C100 55 115 48 120 45 C130 40 140 45 140 55 C140 70 120 80 100 100' fill='#e88080'/></svg>"
+      ],
+      "words": [
+        {
+          "word": "Hail",
+          "translation": "Dios te salve",
+          "phonetics": "jeil",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Mary",
+          "translation": "María",
+          "phonetics": "me-ri",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "full",
+          "translation": "llena",
+          "phonetics": "ful",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "of",
+          "translation": "de",
+          "phonetics": "ov",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "grace",
+          "translation": "gracia",
+          "phonetics": "greis",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "the",
+          "translation": "el",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Lord",
+          "translation": "Señor",
+          "phonetics": "lord",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "is",
+          "translation": "es",
+          "phonetics": "is",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "with",
+          "translation": "contigo",
+          "phonetics": "wiz",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "thee",
+          "translation": "ti",
+          "phonetics": "di",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Blessed",
+          "translation": "bendita",
+          "phonetics": "bles-ed",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "art",
+          "translation": "eres",
+          "phonetics": "art",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "thou",
+          "translation": "tú",
+          "phonetics": "dau",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "among",
+          "translation": "entre",
+          "phonetics": "a-mong",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "women",
+          "translation": "mujeres",
+          "phonetics": "wi-men",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "fruit",
+          "translation": "fruto",
+          "phonetics": "frut",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "thy",
+          "translation": "tu",
+          "phonetics": "dai",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "womb",
+          "translation": "vientre",
+          "phonetics": "wum",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Jesus",
+          "translation": "Jesús",
+          "phonetics": "Yi-sus",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Holy",
+          "translation": "santa",
+          "phonetics": "jo-li",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Mother",
+          "translation": "Madre",
+          "phonetics": "mo-der",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "God",
+          "translation": "Dios",
+          "phonetics": "god",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "pray",
+          "translation": "ruega",
+          "phonetics": "prei",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "for",
+          "translation": "por",
+          "phonetics": "for",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "us",
+          "translation": "nosotros",
+          "phonetics": "as",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "sinners",
+          "translation": "pecadores",
+          "phonetics": "si-ners",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "now",
+          "translation": "ahora",
+          "phonetics": "nau",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "at",
+          "translation": "en",
+          "phonetics": "at",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "hour",
+          "translation": "hora",
+          "phonetics": "áu-er",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "our",
+          "translation": "nuestra",
+          "phonetics": "áuar",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "death",
+          "translation": "muerte",
+          "phonetics": "dez",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Amen",
+          "translation": "amén",
+          "phonetics": "a-men",
+          "paragraphIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "oraciones-03",
+      "title": "Glory Be",
+      "paragraphs": [
+        "Glory be to the Father, and to the Son, and to the Holy Spirit. We praise You and bless Your holy name.",
+        "As it was in the beginning, is now, and ever shall be, world without end. Amen. May the glory of God shine upon us forever."
+      ],
+      "images": [
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fff8e7'/><circle cx='100' cy='75' r='20' fill='#f0c75e'/><g stroke='#f0c75e' stroke-width='3' stroke-linecap='round'><line x1='100' y1='40' x2='100' y2='25'/><line x1='100' y1='110' x2='100' y2='125'/><line x1='65' y1='75' x2='50' y2='75'/><line x1='135' y1='75' x2='150' y2='75'/><line x1='75' y1='50' x2='65' y2='40'/><line x1='125' y1='50' x2='135' y2='40'/><line x1='75' y1='100' x2='65' y2='110'/><line x1='125' y1='100' x2='135' y2='110'/></g></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#1a1a3e'/><polygon points='100,30 105,55 130,55 110,70 118,95 100,80 82,95 90,70 70,55 95,55' fill='#f0c75e'/></svg>"
+      ],
+      "words": [
+        {
+          "word": "Glory",
+          "translation": "gloria",
+          "phonetics": "glo-ri",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "be",
+          "translation": "sea",
+          "phonetics": "bi",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "to",
+          "translation": "al",
+          "phonetics": "tu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "the",
+          "translation": "el",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Father",
+          "translation": "Padre",
+          "phonetics": "fá-der",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Son",
+          "translation": "Hijo",
+          "phonetics": "son",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Holy",
+          "translation": "Santo",
+          "phonetics": "jo-li",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Spirit",
+          "translation": "Espíritu",
+          "phonetics": "spi-rit",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "We",
+          "translation": "nosotros",
+          "phonetics": "wi",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "praise",
+          "translation": "alabamos",
+          "phonetics": "preis",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "You",
+          "translation": "te",
+          "phonetics": "yu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "bless",
+          "translation": "bendecimos",
+          "phonetics": "bles",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Your",
+          "translation": "tu",
+          "phonetics": "yor",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "name",
+          "translation": "nombre",
+          "phonetics": "neim",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "As",
+          "translation": "como",
+          "phonetics": "as",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "it",
+          "translation": "ello",
+          "phonetics": "it",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "was",
+          "translation": "era",
+          "phonetics": "wos",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "in",
+          "translation": "en",
+          "phonetics": "in",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "beginning",
+          "translation": "principio",
+          "phonetics": "bi-gi-ning",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "is",
+          "translation": "es",
+          "phonetics": "is",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "now",
+          "translation": "ahora",
+          "phonetics": "nau",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "ever",
+          "translation": "siempre",
+          "phonetics": "e-ver",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "shall",
+          "translation": "será",
+          "phonetics": "chal",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "world",
+          "translation": "mundo",
+          "phonetics": "world",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "without",
+          "translation": "sin",
+          "phonetics": "wiz-aut",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "end",
+          "translation": "fin",
+          "phonetics": "end",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Amen",
+          "translation": "amén",
+          "phonetics": "a-men",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "May",
+          "translation": "que",
+          "phonetics": "mei",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "of",
+          "translation": "de",
+          "phonetics": "ov",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "God",
+          "translation": "Dios",
+          "phonetics": "god",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "shine",
+          "translation": "brille",
+          "phonetics": "chain",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "upon",
+          "translation": "sobre",
+          "phonetics": "a-pon",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "us",
+          "translation": "nos",
+          "phonetics": "as",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "forever",
+          "translation": "siempre",
+          "phonetics": "for-e-ver",
+          "paragraphIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "oraciones-04",
+      "title": "Morning Prayer",
+      "paragraphs": [
+        "Dear Lord, thank You for this new day. Help me to be kind, to be honest, and to do Your will in all things.",
+        "Bless my family and friends. Keep us safe and guide us in Your love. May Your light shine in our hearts today. Amen."
+      ],
+      "images": [
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fff8e7'/><circle cx='100' cy='75' r='20' fill='#f0c75e'/><g stroke='#f0c75e' stroke-width='3' stroke-linecap='round'><line x1='100' y1='40' x2='100' y2='25'/><line x1='100' y1='110' x2='100' y2='125'/><line x1='65' y1='75' x2='50' y2='75'/><line x1='135' y1='75' x2='150' y2='75'/><line x1='75' y1='50' x2='65' y2='40'/><line x1='125' y1='50' x2='135' y2='40'/><line x1='75' y1='100' x2='65' y2='110'/><line x1='125' y1='100' x2='135' y2='110'/></g></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8f0fe'/><rect x='95' y='30' width='10' height='90' fill='#4a6fa5' rx='2'/><rect x='75' y='50' width='50' height='10' fill='#4a6fa5' rx='2'/><circle cx='100' cy='35' r='8' fill='#f0c75e'/></svg>"
+      ],
+      "words": [
+        {
+          "word": "Dear",
+          "translation": "Querido",
+          "phonetics": "dir",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Lord",
+          "translation": "Señor",
+          "phonetics": "lord",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "thank",
+          "translation": "gracias",
+          "phonetics": "zank",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "You",
+          "translation": "te",
+          "phonetics": "yu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "for",
+          "translation": "por",
+          "phonetics": "for",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "this",
+          "translation": "este",
+          "phonetics": "dis",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "new",
+          "translation": "nuevo",
+          "phonetics": "niu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "day",
+          "translation": "día",
+          "phonetics": "dei",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Help",
+          "translation": "ayúdame",
+          "phonetics": "jelp",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "me",
+          "translation": "me",
+          "phonetics": "mi",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "to",
+          "translation": "a",
+          "phonetics": "tu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "be",
+          "translation": "ser",
+          "phonetics": "bi",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "kind",
+          "translation": "amable",
+          "phonetics": "kaind",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "honest",
+          "translation": "honesto",
+          "phonetics": "o-nest",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "do",
+          "translation": "hacer",
+          "phonetics": "du",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Your",
+          "translation": "tu",
+          "phonetics": "yor",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "will",
+          "translation": "voluntad",
+          "phonetics": "wil",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "in",
+          "translation": "en",
+          "phonetics": "in",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "all",
+          "translation": "todo",
+          "phonetics": "ol",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "things",
+          "translation": "cosas",
+          "phonetics": "zings",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Bless",
+          "translation": "bendice",
+          "phonetics": "bles",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "my",
+          "translation": "mi",
+          "phonetics": "mai",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "family",
+          "translation": "familia",
+          "phonetics": "fá-mi-li",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "friends",
+          "translation": "amigos",
+          "phonetics": "frends",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Keep",
+          "translation": "mantén",
+          "phonetics": "kip",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "us",
+          "translation": "nos",
+          "phonetics": "as",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "safe",
+          "translation": "seguros",
+          "phonetics": "seif",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "guide",
+          "translation": "guía",
+          "phonetics": "gaid",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "love",
+          "translation": "amor",
+          "phonetics": "lov",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "May",
+          "translation": "que",
+          "phonetics": "mei",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "light",
+          "translation": "luz",
+          "phonetics": "lait",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "shine",
+          "translation": "brille",
+          "phonetics": "chain",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "our",
+          "translation": "nuestro",
+          "phonetics": "áuar",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "hearts",
+          "translation": "corazones",
+          "phonetics": "jarts",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "today",
+          "translation": "hoy",
+          "phonetics": "tu-dei",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Amen",
+          "translation": "amén",
+          "phonetics": "a-men",
+          "paragraphIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "oraciones-05",
+      "title": "Evening Prayer",
+      "paragraphs": [
+        "Dear God, thank You for this day. Thank You for the love of my family and for all the good things You have given me.",
+        "Watch over us as we sleep. Keep us safe through the night. Help us to rest and wake ready to serve You. Amen."
+      ],
+      "images": [
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#1a1a3e'/><circle cx='100' cy='75' r='35' fill='#f0c75e'/><circle cx='115' cy='68' r='30' fill='#1a1a3e'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fef5e7'/><rect x='90' y='60' width='20' height='60' fill='#f5e6c8' rx='2'/><path d='M100 45 Q95 55 100 60 Q105 55 100 45' fill='#f0c75e'/><circle cx='100' cy='50' r='3' fill='#fff8e0'/></svg>"
+      ],
+      "words": [
+        {
+          "word": "Dear",
+          "translation": "Querido",
+          "phonetics": "dir",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "God",
+          "translation": "Dios",
+          "phonetics": "god",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "thank",
+          "translation": "gracias",
+          "phonetics": "zank",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "You",
+          "translation": "te",
+          "phonetics": "yu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "for",
+          "translation": "por",
+          "phonetics": "for",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "this",
+          "translation": "este",
+          "phonetics": "dis",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "day",
+          "translation": "día",
+          "phonetics": "dei",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "the",
+          "translation": "el",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "love",
+          "translation": "amor",
+          "phonetics": "lov",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "of",
+          "translation": "de",
+          "phonetics": "ov",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "my",
+          "translation": "mi",
+          "phonetics": "mai",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "family",
+          "translation": "familia",
+          "phonetics": "fá-mi-li",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "all",
+          "translation": "todo",
+          "phonetics": "ol",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "good",
+          "translation": "bueno",
+          "phonetics": "gud",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "things",
+          "translation": "cosas",
+          "phonetics": "zings",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "have",
+          "translation": "has",
+          "phonetics": "jav",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "given",
+          "translation": "dado",
+          "phonetics": "gi-ven",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "me",
+          "translation": "me",
+          "phonetics": "mi",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Watch",
+          "translation": "vela",
+          "phonetics": "woch",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "over",
+          "translation": "sobre",
+          "phonetics": "o-ver",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "us",
+          "translation": "nos",
+          "phonetics": "as",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "as",
+          "translation": "mientras",
+          "phonetics": "as",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "we",
+          "translation": "nosotros",
+          "phonetics": "wi",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "sleep",
+          "translation": "dormimos",
+          "phonetics": "slip",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Keep",
+          "translation": "mantén",
+          "phonetics": "kip",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "safe",
+          "translation": "seguros",
+          "phonetics": "seif",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "through",
+          "translation": "durante",
+          "phonetics": "zru",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "night",
+          "translation": "noche",
+          "phonetics": "nait",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Help",
+          "translation": "ayúdanos",
+          "phonetics": "jelp",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "to",
+          "translation": "a",
+          "phonetics": "tu",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "rest",
+          "translation": "descansar",
+          "phonetics": "rest",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "wake",
+          "translation": "despertar",
+          "phonetics": "weik",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "ready",
+          "translation": "listos",
+          "phonetics": "re-di",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "serve",
+          "translation": "servir",
+          "phonetics": "serv",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Amen",
+          "translation": "amén",
+          "phonetics": "a-men",
+          "paragraphIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "oraciones-06",
+      "title": "Prayer Before Meals",
+      "paragraphs": [
+        "Bless us, O Lord, and bless these Your gifts, which we are about to receive from Your loving bounty. We thank You for this food and for the hands that prepared it.",
+        "Through Christ our Lord, we ask You to bless this meal and make us grateful for all You provide. May this food give us strength to serve You. Amen."
+      ],
+      "images": [
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fef5e7'/><ellipse cx='100' cy='80' rx='50' ry='25' fill='#d4a574'/><ellipse cx='100' cy='75' rx='45' ry='20' fill='#e6c899'/><line x1='80' y1='70' x2='85' y2='85' stroke='#b8895a' stroke-width='1'/><line x1='100' y1='68' x2='105' y2='83' stroke='#b8895a' stroke-width='1'/><line x1='120' y1='70' x2='125' y2='85' stroke='#b8895a' stroke-width='1'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fef5e7'/><rect x='50' y='80' width='100' height='10' fill='#8a7050'/><rect x='55' y='90' width='8' height='30' fill='#6a5030'/><rect x='137' y='90' width='8' height='30' fill='#6a5030'/><circle cx='75' cy='70' r='8' fill='#e88080'/><circle cx='100' cy='68' r='8' fill='#f0c75e'/><circle cx='125' cy='70' r='8' fill='#80c080'/></svg>"
+      ],
+      "words": [
+        {
+          "word": "Bless",
+          "translation": "bendice",
+          "phonetics": "bles",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "us",
+          "translation": "nos",
+          "phonetics": "as",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "O",
+          "translation": "oh",
+          "phonetics": "o",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Lord",
+          "translation": "Señor",
+          "phonetics": "lord",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "these",
+          "translation": "estos",
+          "phonetics": "dis",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Your",
+          "translation": "tus",
+          "phonetics": "yor",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "gifts",
+          "translation": "dones",
+          "phonetics": "gifs",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "which",
+          "translation": "que",
+          "phonetics": "wich",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "we",
+          "translation": "nosotros",
+          "phonetics": "wi",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "are",
+          "translation": "estamos",
+          "phonetics": "ar",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "about",
+          "translation": "a punto",
+          "phonetics": "a-baut",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "to",
+          "translation": "de",
+          "phonetics": "tu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "receive",
+          "translation": "recibir",
+          "phonetics": "ri-siv",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "from",
+          "translation": "de",
+          "phonetics": "from",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "loving",
+          "translation": "amoroso",
+          "phonetics": "lo-ving",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "bounty",
+          "translation": "bondad",
+          "phonetics": "báun-ti",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "thank",
+          "translation": "damos gracias",
+          "phonetics": "zank",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "You",
+          "translation": "te",
+          "phonetics": "yu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "for",
+          "translation": "por",
+          "phonetics": "for",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "this",
+          "translation": "esta",
+          "phonetics": "dis",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "food",
+          "translation": "comida",
+          "phonetics": "fud",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "the",
+          "translation": "las",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "hands",
+          "translation": "manos",
+          "phonetics": "jands",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "that",
+          "translation": "que",
+          "phonetics": "dat",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "prepared",
+          "translation": "prepararon",
+          "phonetics": "pre-peird",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "it",
+          "translation": "lo",
+          "phonetics": "it",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Through",
+          "translation": "por",
+          "phonetics": "zru",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Christ",
+          "translation": "Cristo",
+          "phonetics": "kraist",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "our",
+          "translation": "nuestro",
+          "phonetics": "áuar",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "ask",
+          "translation": "pedimos",
+          "phonetics": "ask",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "meal",
+          "translation": "comida",
+          "phonetics": "mil",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "make",
+          "translation": "haz",
+          "phonetics": "meik",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "grateful",
+          "translation": "agradecidos",
+          "phonetics": "greit-ful",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "all",
+          "translation": "todo",
+          "phonetics": "ol",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "provide",
+          "translation": "provees",
+          "phonetics": "pro-vaid",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "May",
+          "translation": "que",
+          "phonetics": "mei",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "give",
+          "translation": "dé",
+          "phonetics": "giv",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "strength",
+          "translation": "fuerza",
+          "phonetics": "strengz",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "serve",
+          "translation": "servir",
+          "phonetics": "serv",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Amen",
+          "translation": "amén",
+          "phonetics": "a-men",
+          "paragraphIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "oraciones-07",
+      "title": "Prayer After Meals",
+      "paragraphs": [
+        "We give You thanks, almighty God, for all the blessings You have given us today. We are grateful for this food and for Your loving care.",
+        "May we always remember those who are in need. Help us to share what we have with others, and to live with grateful hearts. Amen."
+      ],
+      "images": [
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fef5e7'/><rect x='50' y='80' width='100' height='10' fill='#8a7050'/><rect x='55' y='90' width='8' height='30' fill='#6a5030'/><rect x='137' y='90' width='8' height='30' fill='#6a5030'/><circle cx='75' cy='70' r='8' fill='#e88080'/><circle cx='100' cy='68' r='8' fill='#f0c75e'/><circle cx='125' cy='70' r='8' fill='#80c080'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fff0f0'/><path d='M100 100 C80 80 60 70 60 55 C60 45 70 40 80 45 C85 48 100 55 100 55 C100 55 115 48 120 45 C130 40 140 45 140 55 C140 70 120 80 100 100' fill='#e88080'/></svg>"
+      ],
+      "words": [
+        {
+          "word": "We",
+          "translation": "te damos",
+          "phonetics": "wi",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "give",
+          "translation": "damos",
+          "phonetics": "giv",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "You",
+          "translation": "te",
+          "phonetics": "yu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "thanks",
+          "translation": "gracias",
+          "phonetics": "zanks",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "almighty",
+          "translation": "todopoderoso",
+          "phonetics": "ol-mái-ti",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "God",
+          "translation": "Dios",
+          "phonetics": "god",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "for",
+          "translation": "por",
+          "phonetics": "for",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "all",
+          "translation": "todas",
+          "phonetics": "ol",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "the",
+          "translation": "las",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "blessings",
+          "translation": "bendiciones",
+          "phonetics": "bles-ings",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "have",
+          "translation": "has",
+          "phonetics": "jav",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "given",
+          "translation": "dado",
+          "phonetics": "gi-ven",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "us",
+          "translation": "nos",
+          "phonetics": "as",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "today",
+          "translation": "hoy",
+          "phonetics": "tu-dei",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "are",
+          "translation": "somos",
+          "phonetics": "ar",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "grateful",
+          "translation": "agradecidos",
+          "phonetics": "greit-ful",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "this",
+          "translation": "esta",
+          "phonetics": "dis",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "food",
+          "translation": "comida",
+          "phonetics": "fud",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Your",
+          "translation": "tu",
+          "phonetics": "yor",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "loving",
+          "translation": "amoroso",
+          "phonetics": "lo-ving",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "care",
+          "translation": "cuidado",
+          "phonetics": "ker",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "May",
+          "translation": "que",
+          "phonetics": "mei",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "always",
+          "translation": "siempre",
+          "phonetics": "ol-weis",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "remember",
+          "translation": "recordemos",
+          "phonetics": "ri-mem-ber",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "those",
+          "translation": "aquellos",
+          "phonetics": "dous",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "who",
+          "translation": "que",
+          "phonetics": "ju",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "in",
+          "translation": "en",
+          "phonetics": "in",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "need",
+          "translation": "necesidad",
+          "phonetics": "nid",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Help",
+          "translation": "ayúdanos",
+          "phonetics": "jelp",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "to",
+          "translation": "a",
+          "phonetics": "tu",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "share",
+          "translation": "compartir",
+          "phonetics": "cher",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "what",
+          "translation": "lo que",
+          "phonetics": "wot",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "with",
+          "translation": "con",
+          "phonetics": "wiz",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "others",
+          "translation": "otros",
+          "phonetics": "o-ders",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "live",
+          "translation": "vivamos",
+          "phonetics": "liv",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "hearts",
+          "translation": "corazones",
+          "phonetics": "jarts",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Amen",
+          "translation": "amén",
+          "phonetics": "a-men",
+          "paragraphIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "oraciones-08",
+      "title": "Guardian Angel Prayer",
+      "paragraphs": [
+        "Angel of God, my guardian dear, to whom God's love commits me here. Ever this day be at my side, to light and guard, to rule and guide.",
+        "Protect me from all harm and danger. Help me to be good and to follow God's path. Stay close to me, my dear angel. Amen."
+      ],
+      "images": [
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#f0f4ff'/><circle cx='100' cy='50' r='15' fill='#f5e6c8'/><path d='M70 60 Q60 80 65 100 L135 100 Q140 80 130 60' fill='#e0e8f5'/><path d='M65 70 Q40 65 35 80 Q40 85 60 80' fill='#d0d8e5'/><path d='M135 70 Q160 65 165 80 Q160 85 140 80' fill='#d0d8e5'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8f0fe'/><path d='M100 30 L140 45 L140 80 Q140 105 100 120 Q60 105 60 80 L60 45 Z' fill='#4a6fa5'/><rect x='95' y='50' width='10' height='50' fill='#f0c75e'/><rect x='80' y='65' width='40' height='8' fill='#f0c75e'/></svg>"
+      ],
+      "words": [
+        {
+          "word": "Angel",
+          "translation": "Ángel",
+          "phonetics": "ein-yel",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "of",
+          "translation": "de",
+          "phonetics": "ov",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "God",
+          "translation": "Dios",
+          "phonetics": "god",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "my",
+          "translation": "mi",
+          "phonetics": "mai",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "guardian",
+          "translation": "guardián",
+          "phonetics": "gar-dian",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "dear",
+          "translation": "querido",
+          "phonetics": "dir",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "to",
+          "translation": "a",
+          "phonetics": "tu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "whom",
+          "translation": "quien",
+          "phonetics": "wum",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "God's",
+          "translation": "de Dios",
+          "phonetics": "godz",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "love",
+          "translation": "amor",
+          "phonetics": "lov",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "commits",
+          "translation": "confía",
+          "phonetics": "com-mits",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "me",
+          "translation": "me",
+          "phonetics": "mi",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "here",
+          "translation": "aquí",
+          "phonetics": "jir",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Ever",
+          "translation": "siempre",
+          "phonetics": "e-ver",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "this",
+          "translation": "este",
+          "phonetics": "dis",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "day",
+          "translation": "día",
+          "phonetics": "dei",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "be",
+          "translation": "esté",
+          "phonetics": "bi",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "at",
+          "translation": "a",
+          "phonetics": "at",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "side",
+          "translation": "lado",
+          "phonetics": "said",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "light",
+          "translation": "ilumina",
+          "phonetics": "lait",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "guard",
+          "translation": "guarda",
+          "phonetics": "gard",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "rule",
+          "translation": "guía",
+          "phonetics": "rul",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "guide",
+          "translation": "dirige",
+          "phonetics": "gaid",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Protect",
+          "translation": "protege",
+          "phonetics": "pro-tekt",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "from",
+          "translation": "de",
+          "phonetics": "from",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "all",
+          "translation": "todo",
+          "phonetics": "ol",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "harm",
+          "translation": "daño",
+          "phonetics": "jarm",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "danger",
+          "translation": "peligro",
+          "phonetics": "dein-yer",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Help",
+          "translation": "ayúdame",
+          "phonetics": "jelp",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "good",
+          "translation": "bueno",
+          "phonetics": "gud",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "follow",
+          "translation": "seguir",
+          "phonetics": "fo-lou",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "path",
+          "translation": "camino",
+          "phonetics": "paz",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Stay",
+          "translation": "quédate",
+          "phonetics": "stei",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "close",
+          "translation": "cerca",
+          "phonetics": "klous",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Amen",
+          "translation": "amén",
+          "phonetics": "a-men",
+          "paragraphIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "oraciones-09",
+      "title": "Act of Contrition",
+      "paragraphs": [
+        "My God, I am sorry for my sins with all my heart. In choosing to do wrong and failing to do good, I have sinned against You.",
+        "I firmly intend, with Your help, to do better and to avoid what leads me away from Your love. Have mercy on me and help me to grow. Amen."
+      ],
+      "images": [
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fff0f0'/><path d='M100 100 C80 80 60 70 60 55 C60 45 70 40 80 45 C85 48 100 55 100 55 C100 55 115 48 120 45 C130 40 140 45 140 55 C140 70 120 80 100 100' fill='#e88080'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#fef5e7'/><ellipse cx='100' cy='100' rx='35' ry='15' fill='#d4a574'/><path d='M85 100 Q85 60 100 55 Q115 60 115 100' fill='#d4a574'/><line x1='100' y1='55' x2='100' y2='100' stroke='#b8895a' stroke-width='1'/></svg>"
+      ],
+      "words": [
+        {
+          "word": "My",
+          "translation": "mi",
+          "phonetics": "mai",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "God",
+          "translation": "Dios",
+          "phonetics": "god",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "I",
+          "translation": "yo",
+          "phonetics": "ai",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "am",
+          "translation": "estoy",
+          "phonetics": "am",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "sorry",
+          "translation": "arrepentido",
+          "phonetics": "so-ri",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "for",
+          "translation": "por",
+          "phonetics": "for",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "sins",
+          "translation": "pecados",
+          "phonetics": "sins",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "with",
+          "translation": "con",
+          "phonetics": "wiz",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "all",
+          "translation": "todo",
+          "phonetics": "ol",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "heart",
+          "translation": "corazón",
+          "phonetics": "jart",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "In",
+          "translation": "al",
+          "phonetics": "in",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "choosing",
+          "translation": "elegir",
+          "phonetics": "chu-zing",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "to",
+          "translation": "de",
+          "phonetics": "tu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "do",
+          "translation": "hacer",
+          "phonetics": "du",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "wrong",
+          "translation": "mal",
+          "phonetics": "rong",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "failing",
+          "translation": "dejar de",
+          "phonetics": "fei-ling",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "good",
+          "translation": "bien",
+          "phonetics": "gud",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "have",
+          "translation": "he",
+          "phonetics": "jav",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "sinned",
+          "translation": "pecado",
+          "phonetics": "sind",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "against",
+          "translation": "contra",
+          "phonetics": "a-genst",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "You",
+          "translation": "ti",
+          "phonetics": "yu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "firmly",
+          "translation": "firmemente",
+          "phonetics": "firm-li",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "intend",
+          "translation": "propongo",
+          "phonetics": "in-tend",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Your",
+          "translation": "tu",
+          "phonetics": "yor",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "help",
+          "translation": "ayuda",
+          "phonetics": "jelp",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "better",
+          "translation": "mejor",
+          "phonetics": "be-ter",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "avoid",
+          "translation": "evitar",
+          "phonetics": "a-void",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "what",
+          "translation": "lo que",
+          "phonetics": "wot",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "leads",
+          "translation": "lleva",
+          "phonetics": "lidz",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "me",
+          "translation": "me",
+          "phonetics": "mi",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "away",
+          "translation": "lejos",
+          "phonetics": "a-wei",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "from",
+          "translation": "de",
+          "phonetics": "from",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "love",
+          "translation": "amor",
+          "phonetics": "lov",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "mercy",
+          "translation": "piedad",
+          "phonetics": "mer-si",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "on",
+          "translation": "de",
+          "phonetics": "on",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "grow",
+          "translation": "crecer",
+          "phonetics": "grou",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Amen",
+          "translation": "amén",
+          "phonetics": "a-men",
+          "paragraphIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "oraciones-10",
+      "title": "Prayer to St. Michael",
+      "paragraphs": [
+        "Saint Michael the Archangel, defend us in battle. Be our protection against all that is wicked and harmful in this world.",
+        "Help us to stand strong in faith and to trust in God's power. May God command His angels to guard us on every side. Amen."
+      ],
+      "images": [
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8f0fe'/><rect x='96' y='30' width='8' height='70' fill='#c0c8d5'/><rect x='85' y='95' width='30' height='8' fill='#8a7050'/><rect x='96' y='103' width='8' height='20' fill='#6a5030'/><polygon points='96,30 104,30 100,22' fill='#a0a8b5'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#e8f0fe'/><path d='M100 30 L140 45 L140 80 Q140 105 100 120 Q60 105 60 80 L60 45 Z' fill='#4a6fa5'/><rect x='95' y='50' width='10' height='50' fill='#f0c75e'/><rect x='80' y='65' width='40' height='8' fill='#f0c75e'/></svg>"
+      ],
+      "words": [
+        {
+          "word": "Saint",
+          "translation": "San",
+          "phonetics": "seint",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Michael",
+          "translation": "Miguel",
+          "phonetics": "mai-kel",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "the",
+          "translation": "el",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Archangel",
+          "translation": "Arcángel",
+          "phonetics": "ar-kein-yel",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "defend",
+          "translation": "defiende",
+          "phonetics": "di-fend",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "us",
+          "translation": "nos",
+          "phonetics": "as",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "in",
+          "translation": "en",
+          "phonetics": "in",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "battle",
+          "translation": "batalla",
+          "phonetics": "ba-tel",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Be",
+          "translation": "sé",
+          "phonetics": "bi",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "our",
+          "translation": "nuestra",
+          "phonetics": "áuar",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "protection",
+          "translation": "protección",
+          "phonetics": "pro-tek-shon",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "against",
+          "translation": "contra",
+          "phonetics": "a-genst",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "all",
+          "translation": "todo",
+          "phonetics": "ol",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "that",
+          "translation": "lo que",
+          "phonetics": "dat",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "is",
+          "translation": "es",
+          "phonetics": "is",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "wicked",
+          "translation": "malo",
+          "phonetics": "wi-ked",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "harmful",
+          "translation": "dañino",
+          "phonetics": "jarm-ful",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "this",
+          "translation": "este",
+          "phonetics": "dis",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "world",
+          "translation": "mundo",
+          "phonetics": "world",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Help",
+          "translation": "ayúdanos",
+          "phonetics": "jelp",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "to",
+          "translation": "a",
+          "phonetics": "tu",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "stand",
+          "translation": "estar",
+          "phonetics": "stand",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "strong",
+          "translation": "fuertes",
+          "phonetics": "strong",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "faith",
+          "translation": "fe",
+          "phonetics": "feiz",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "trust",
+          "translation": "confiar",
+          "phonetics": "trast",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "God's",
+          "translation": "de Dios",
+          "phonetics": "godz",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "power",
+          "translation": "poder",
+          "phonetics": "páu-er",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "May",
+          "translation": "que",
+          "phonetics": "mei",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "God",
+          "translation": "Dios",
+          "phonetics": "god",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "command",
+          "translation": "mande",
+          "phonetics": "com-mand",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "His",
+          "translation": "sus",
+          "phonetics": "jis",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "angels",
+          "translation": "ángeles",
+          "phonetics": "ein-yels",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "guard",
+          "translation": "guarden",
+          "phonetics": "gard",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "on",
+          "translation": "en",
+          "phonetics": "on",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "every",
+          "translation": "todo",
+          "phonetics": "e-vri",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "side",
+          "translation": "lado",
+          "phonetics": "said",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Amen",
+          "translation": "amén",
+          "phonetics": "a-men",
+          "paragraphIndex": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reading — Interactive Practice</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Category Menu View -->
+<div id="catView">
+  <div class="menu-hero">
+    <h1>📖 Reading — Interactive Practice</h1>
+    <p>Listen, read, and learn with phonetic support</p>
+  </div>
+
+  <a href="../index.html" class="back-link">← Back to Hub</a>
+
+  <div class="cat-grid" id="catGrid">
+    <!-- Cuentos para niños -->
+    <div class="cat-card" data-category="cuentos">
+      <div class="cat-cover">
+        <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="200" height="150" fill="#fef6e4" rx="8"/>
+          <circle cx="60" cy="60" r="25" fill="#f582ae"/>
+          <polygon points="60,35 50,55 70,55" fill="#f582ae"/>
+          <circle cx="52" cy="58" r="3" fill="#fff"/>
+          <circle cx="68" cy="58" r="3" fill="#fff"/>
+          <path d="M55 65 Q60 70 65 65" stroke="#fff" stroke-width="2" fill="none"/>
+          <polygon points="35,75 85,75 60,100" fill="#8bd8bd"/>
+          <rect x="100" y="40" width="80" height="60" fill="#fef6e4" stroke="#001858" stroke-width="2" rx="4"/>
+          <line x1="110" y1="55" x2="170" y2="55" stroke="#f582ae" stroke-width="3"/>
+          <line x1="110" y1="65" x2="160" y2="65" stroke="#8bd8bd" stroke-width="3"/>
+          <line x1="110" y1="75" x2="170" y2="75" stroke="#f582ae" stroke-width="3"/>
+          <line x1="110" y1="85" x2="150" y2="85" stroke="#8bd8bd" stroke-width="3"/>
+        </svg>
+      </div>
+      <h2>🧸 Cuentos para niños</h2>
+      <div class="cat-level">Pre-A1 · Age 6</div>
+      <div class="cat-count">10 readings</div>
+      <p class="cat-desc">Simple stories with animals, colors, and daily routines</p>
+    </div>
+
+    <!-- Oraciones Católicas -->
+    <div class="cat-card" data-category="oraciones">
+      <div class="cat-cover">
+        <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="200" height="150" fill="#e8f0fe" rx="8"/>
+          <rect x="90" y="20" width="20" height="100" fill="#4a6fa5" rx="2"/>
+          <rect x="65" y="45" width="70" height="20" fill="#4a6fa5" rx="2"/>
+          <circle cx="100" cy="75" r="35" fill="none" stroke="#f0c419" stroke-width="3" opacity="0.5"/>
+          <path d="M70 120 Q100 100 130 120" stroke="#8bd8bd" stroke-width="3" fill="none"/>
+          <circle cx="100" cy="135" r="8" fill="#f0c419"/>
+        </svg>
+      </div>
+      <h2>✝️ Oraciones Católicas</h2>
+      <div class="cat-level">A1-A2 · Family</div>
+      <div class="cat-count">10 readings</div>
+      <p class="cat-desc">Traditional prayers adapted to clear English</p>
+    </div>
+
+    <!-- Historia -->
+    <div class="cat-card" data-category="historia">
+      <div class="cat-cover">
+        <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="200" height="150" fill="#f4ecd8" rx="8"/>
+          <polygon points="40,110 60,50 80,110" fill="#c4956c"/>
+          <polygon points="70,110 90,40 110,110" fill="#b8860b"/>
+          <polygon points="100,110 120,55 140,110" fill="#c4956c"/>
+          <rect x="30" y="110" width="120" height="15" fill="#8b7355" rx="2"/>
+          <circle cx="170" cy="35" r="15" fill="#f0c419" opacity="0.7"/>
+          <rect x="150" y="80" width="8" height="45" fill="#8b7355"/>
+          <path d="M158 80 L168 70 L158 60 L148 70 Z" fill="#c4956c"/>
+        </svg>
+      </div>
+      <h2>📜 Historia</h2>
+      <div class="cat-level">A2-B1 · Age 11</div>
+      <div class="cat-count">10 readings</div>
+      <p class="cat-desc">Narrative and informative texts about the past</p>
+    </div>
+
+    <!-- Ciencia -->
+    <div class="cat-card" data-category="ciencia">
+      <div class="cat-cover">
+        <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="200" height="150" fill="#e8f5e9" rx="8"/>
+          <circle cx="100" cy="75" r="30" fill="#f0c419"/>
+          <circle cx="50" cy="75" r="10" fill="#4a90d9"/>
+          <circle cx="150" cy="60" r="8" fill="#e74c3c"/>
+          <circle cx="160" cy="100" r="6" fill="#8bd8bd"/>
+          <ellipse cx="50" cy="75" rx="18" ry="5" fill="none" stroke="#aaa" stroke-width="1.5"/>
+          <ellipse cx="150" cy="60" rx="14" ry="4" fill="none" stroke="#aaa" stroke-width="1.5"/>
+          <circle cx="40" cy="40" r="2" fill="#fff"/>
+          <circle cx="170" cy="30" r="1.5" fill="#fff"/>
+          <circle cx="30" cy="110" r="2" fill="#fff"/>
+        </svg>
+      </div>
+      <h2>🔬 Ciencia</h2>
+      <div class="cat-level">A2-B1 · Age 11</div>
+      <div class="cat-count">10 readings</div>
+      <p class="cat-desc">Exploring nature and the universe</p>
+    </div>
+
+    <!-- Tecnología -->
+    <div class="cat-card" data-category="tecnologia">
+      <div class="cat-cover">
+        <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="200" height="150" fill="#e3f2fd" rx="8"/>
+          <rect x="65" y="20" width="70" height="110" fill="#1a2744" rx="10"/>
+          <rect x="72" y="28" width="56" height="85" fill="#00b4a6" rx="4"/>
+          <circle cx="100" cy="122" r="5" fill="#fff"/>
+          <rect x="85" y="10" width="30" height="6" fill="#1a2744" rx="2"/>
+          <text x="100" y="75" text-anchor="middle" fill="#fff" font-size="20" font-family="sans-serif">📱</text>
+          <circle cx="40" cy="40" r="15" fill="none" stroke="#00b4a6" stroke-width="2"/>
+          <circle cx="40" cy="40" r="8" fill="none" stroke="#00b4a6" stroke-width="2"/>
+          <circle cx="40" cy="40" r="2" fill="#00b4a6"/>
+        </svg>
+      </div>
+      <h2>💻 Tecnología</h2>
+      <div class="cat-level">A2-B1 · Age 11</div>
+      <div class="cat-count">10 readings</div>
+      <p class="cat-desc">Modern innovations and how things work</p>
+    </div>
+  </div>
+</div>
+
+<!-- Reading List View -->
+<div id="readingListView" class="reading-list-view">
+  <a href="#" class="back-link" id="backToCats">← Back to Categories</a>
+  <div class="reading-list-header">
+    <span class="cat-badge" id="listBadge">📖</span>
+    <h2 id="listTitle"></h2>
+    <span class="cat-level" id="listLevel" style="font-size:.78rem;color:var(--teal);font-weight:600"></span>
+  </div>
+  <div id="readingListContainer"></div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

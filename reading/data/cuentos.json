@@ -1,0 +1,1567 @@
+{
+  "category": "cuentos",
+  "categoryName": "Cuentos para niños",
+  "categoryIcon": "🧸",
+  "level": "Pre-A1",
+  "coverSVG": "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#FFF3E0'/><rect x='40' y='45' width='120' height='85' rx='8' fill='#42A5F5'/><rect x='40' y='45' width='120' height='18' fill='#1E88E5'/><circle cx='100' cy='35' r='22' fill='#FFD54F'/><circle cx='93' cy='32' r='2.5' fill='#333333'/><circle cx='107' cy='32' r='2.5' fill='#333333'/><path d='M92 40 Q100 46 108 40' stroke='#333' stroke-width='2' fill='none'/><text x='100' y='100' font-size='16' text-anchor='middle' fill='#FAFAFA' font-family='Arial'>Cuentos</text><circle cx='25' cy='25' r='5' fill='#FFD54F'/><circle cx='175' cy='20' r='4' fill='#FFD54F'/><circle cx='170' cy='130' r='6' fill='#FFD54F'/><circle cx='30' cy='120' r='4' fill='#FFD54F'/></svg>",
+  "readings": [
+    {
+      "id": "cuentos-01",
+      "title": "The Red Cat",
+      "paragraphs": [
+        "The red cat sits on the mat. The cat is big and fat. The mat is soft and warm.",
+        "The cat likes to play with a ball. The ball is blue and small.",
+        "The cat runs and jumps. The cat is very happy today."
+      ],
+      "images": [
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#E8F5E9'/><rect x='30' y='105' width='140' height='25' rx='5' fill='#8D6E63'/><ellipse cx='100' cy='88' rx='35' ry='28' fill='#E53935'/><circle cx='100' cy='62' r='22' fill='#E53935'/><polygon points='85,47 80,32 95,50' fill='#E53935'/><polygon points='115,47 120,32 105,50' fill='#E53935'/><circle cx='92' cy='60' r='3' fill='#333333'/><circle cx='108' cy='60' r='3' fill='#333333'/><path d='M95 70 L100 74 L105 70' stroke='#333' stroke-width='2' fill='none'/><path d='M70 93 Q60 83 65 73' stroke='#E53935' stroke-width='8' fill='none'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#FFF9C4'/><ellipse cx='100' cy='88' rx='35' ry='28' fill='#E53935'/><circle cx='100' cy='62' r='22' fill='#E53935'/><polygon points='85,47 80,32 95,50' fill='#E53935'/><polygon points='115,47 120,32 105,50' fill='#E53935'/><circle cx='92' cy='60' r='3' fill='#333333'/><circle cx='108' cy='60' r='3' fill='#333333'/><path d='M93 70 Q100 77 107 70' stroke='#333' stroke-width='2' fill='none'/><path d='M70 93 Q60 83 65 73' stroke='#E53935' stroke-width='8' fill='none'/><circle cx='150' cy='55' r='12' fill='#66BB6A'/><circle cx='145' cy='50' r='2.5' fill='#333333'/><circle cx='155' cy='50' r='2.5' fill='#333333'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#FCE4EC'/><ellipse cx='100' cy='88' rx='35' ry='28' fill='#E53935'/><circle cx='100' cy='62' r='22' fill='#E53935'/><polygon points='85,47 80,32 95,50' fill='#E53935'/><polygon points='115,47 120,32 105,50' fill='#E53935'/><circle cx='92' cy='60' r='3' fill='#333333'/><circle cx='108' cy='60' r='3' fill='#333333'/><path d='M93 70 Q100 77 107 70' stroke='#333' stroke-width='2' fill='none'/><path d='M70 93 Q60 83 65 73' stroke='#E53935' stroke-width='8' fill='none'/><circle cx='150' cy='55' r='12' fill='#66BB6A'/><circle cx='145' cy='50' r='2.5' fill='#333333'/><circle cx='155' cy='50' r='2.5' fill='#333333'/></svg>"
+      ],
+      "words": [
+        {
+          "word": "The",
+          "translation": "El/La",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "red",
+          "translation": "rojo",
+          "phonetics": "red",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "cat",
+          "translation": "gato",
+          "phonetics": "cat",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "sits",
+          "translation": "se sienta",
+          "phonetics": "sits",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "on",
+          "translation": "en",
+          "phonetics": "on",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "mat",
+          "translation": "alfombra",
+          "phonetics": "mat",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "is",
+          "translation": "es",
+          "phonetics": "is",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "big",
+          "translation": "grande",
+          "phonetics": "big",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "fat",
+          "translation": "gordo",
+          "phonetics": "fat",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "soft",
+          "translation": "suave",
+          "phonetics": "soft",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "warm",
+          "translation": "caliente",
+          "phonetics": "warm",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "likes",
+          "translation": "le gusta",
+          "phonetics": "laiks",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "to",
+          "translation": "a",
+          "phonetics": "tu",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "play",
+          "translation": "jugar",
+          "phonetics": "plei",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "with",
+          "translation": "con",
+          "phonetics": "wiz",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "a",
+          "translation": "un/una",
+          "phonetics": "a",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "ball",
+          "translation": "pelota",
+          "phonetics": "bol",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "blue",
+          "translation": "azul",
+          "phonetics": "blu",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "small",
+          "translation": "pequeño",
+          "phonetics": "smol",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "runs",
+          "translation": "corre",
+          "phonetics": "rans",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "jumps",
+          "translation": "salta",
+          "phonetics": "yamps",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "very",
+          "translation": "muy",
+          "phonetics": "vé-ri",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "happy",
+          "translation": "feliz",
+          "phonetics": "ja-pi",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "today",
+          "translation": "hoy",
+          "phonetics": "tu-dei",
+          "paragraphIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "cuentos-02",
+      "title": "The Big Dog",
+      "paragraphs": [
+        "The big dog runs in the park. The dog is brown and fast. The park is big.",
+        "The dog likes to jump and play. The dog has a red ball.",
+        "The dog is a good boy. The dog is happy and strong."
+      ],
+      "images": [
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#E8F5E9'/><ellipse cx='100' cy='90' rx='38' ry='30' fill='#8D6E63'/><circle cx='100' cy='65' r='24' fill='#8D6E63'/><polygon points='88,48 85,35 98,50' fill='#8D6E63'/><polygon points='112,48 115,35 102,50' fill='#8D6E63'/><circle cx='92' cy='63' r='3' fill='#333333'/><circle cx='108' cy='63' r='3' fill='#333333'/><path d='M93 73 Q100 78 107 73' stroke='#333' stroke-width='2' fill='none'/><ellipse cx='115' cy='67' rx='8' ry='5' fill='#333333'/><circle cx='140' cy='70' r='10' fill='#E53935'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#FFF9C4'/><ellipse cx='100' cy='90' rx='38' ry='30' fill='#8D6E63'/><circle cx='100' cy='65' r='24' fill='#8D6E63'/><polygon points='88,48 85,35 98,50' fill='#8D6E63'/><polygon points='112,48 115,35 102,50' fill='#8D6E63'/><circle cx='92' cy='63' r='3' fill='#333333'/><circle cx='108' cy='63' r='3' fill='#333333'/><path d='M93 73 Q100 78 107 73' stroke='#333' stroke-width='2' fill='none'/><ellipse cx='115' cy='67' rx='8' ry='5' fill='#333333'/><path d='M60 100 Q50 90 55 80' stroke='#8D6E63' stroke-width='8' fill='none'/><circle cx='140' cy='70' r='10' fill='#E53935'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#E3F2FD'/><ellipse cx='100' cy='90' rx='38' ry='30' fill='#8D6E63'/><circle cx='100' cy='65' r='24' fill='#8D6E63'/><polygon points='88,48 85,35 98,50' fill='#8D6E63'/><polygon points='112,48 115,35 102,50' fill='#8D6E63'/><circle cx='92' cy='63' r='3' fill='#333333'/><circle cx='108' cy='63' r='3' fill='#333333'/><path d='M93 73 Q100 78 107 73' stroke='#333' stroke-width='2' fill='none'/><ellipse cx='115' cy='67' rx='8' ry='5' fill='#333333'/><circle cx='140' cy='70' r='10' fill='#E53935'/></svg>"
+      ],
+      "words": [
+        {
+          "word": "The",
+          "translation": "El/La",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "big",
+          "translation": "grande",
+          "phonetics": "big",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "dog",
+          "translation": "perro",
+          "phonetics": "dog",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "runs",
+          "translation": "corre",
+          "phonetics": "rans",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "in",
+          "translation": "en",
+          "phonetics": "in",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "park",
+          "translation": "parque",
+          "phonetics": "park",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "is",
+          "translation": "es",
+          "phonetics": "is",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "brown",
+          "translation": "marrón",
+          "phonetics": "braun",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "fast",
+          "translation": "rápido",
+          "phonetics": "fast",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "likes",
+          "translation": "le gusta",
+          "phonetics": "laiks",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "to",
+          "translation": "a",
+          "phonetics": "tu",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "jump",
+          "translation": "saltar",
+          "phonetics": "yamp",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "play",
+          "translation": "jugar",
+          "phonetics": "plei",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "has",
+          "translation": "tiene",
+          "phonetics": "jas",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "a",
+          "translation": "un/una",
+          "phonetics": "a",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "red",
+          "translation": "rojo",
+          "phonetics": "red",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "ball",
+          "translation": "pelota",
+          "phonetics": "bol",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "good",
+          "translation": "bueno",
+          "phonetics": "gud",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "boy",
+          "translation": "niño",
+          "phonetics": "boi",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "happy",
+          "translation": "feliz",
+          "phonetics": "ja-pi",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "strong",
+          "translation": "fuerte",
+          "phonetics": "strong",
+          "paragraphIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "cuentos-03",
+      "title": "The Yellow Sun",
+      "paragraphs": [
+        "The yellow sun is in the sky. The sun is hot and big. The sky is blue today.",
+        "I like the sun. The sun makes me happy and warm.",
+        "The sun is good. The sun helps the plants grow."
+      ],
+      "images": [
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#E3F2FD'/><circle cx='100' cy='55' r='30' fill='#FFD54F'/><line x1='135' y1='55' x2='145' y2='55' stroke='#FFD54F' stroke-width='4'/><line x1='125' y1='80' x2='132' y2='87' stroke='#FFD54F' stroke-width='4'/><line x1='100' y1='90' x2='100' y2='100' stroke='#FFD54F' stroke-width='4'/><line x1='75' y1='80' x2='68' y2='87' stroke='#FFD54F' stroke-width='4'/><line x1='65' y1='55' x2='55' y2='55' stroke='#FFD54F' stroke-width='4'/><line x1='75' y1='30' x2='68' y2='23' stroke='#FFD54F' stroke-width='4'/><line x1='100' y1='20' x2='100' y2='10' stroke='#FFD54F' stroke-width='4'/><line x1='125' y1='30' x2='132' y2='23' stroke='#FFD54F' stroke-width='4'/><circle cx='92' cy='50' r='3' fill='#333333'/><circle cx='108' cy='50' r='3' fill='#333333'/><path d='M93 60 Q100 66 107 60' stroke='#333' stroke-width='2' fill='none'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#FFF3E0'/><circle cx='100' cy='55' r='30' fill='#FFD54F'/><line x1='135' y1='55' x2='145' y2='55' stroke='#FFD54F' stroke-width='4'/><line x1='125' y1='80' x2='132' y2='87' stroke='#FFD54F' stroke-width='4'/><line x1='100' y1='90' x2='100' y2='100' stroke='#FFD54F' stroke-width='4'/><line x1='75' y1='80' x2='68' y2='87' stroke='#FFD54F' stroke-width='4'/><line x1='65' y1='55' x2='55' y2='55' stroke='#FFD54F' stroke-width='4'/><line x1='75' y1='30' x2='68' y2='23' stroke='#FFD54F' stroke-width='4'/><line x1='100' y1='20' x2='100' y2='10' stroke='#FFD54F' stroke-width='4'/><line x1='125' y1='30' x2='132' y2='23' stroke='#FFD54F' stroke-width='4'/><circle cx='92' cy='50' r='3' fill='#333333'/><circle cx='108' cy='50' r='3' fill='#333333'/><path d='M93 60 Q100 66 107 60' stroke='#333' stroke-width='2' fill='none'/><circle cx='50' cy='110' r='15' fill='#FFCC80'/><circle cx='50' cy='105' r='2' fill='#333333'/><circle cx='55' cy='105' r='2' fill='#333333'/><path d='M47 112 Q50 116 53 112' stroke='#333' stroke-width='2' fill='none'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#FFF9C4'/><circle cx='100' cy='55' r='30' fill='#FFD54F'/><line x1='135' y1='55' x2='145' y2='55' stroke='#FFD54F' stroke-width='4'/><line x1='125' y1='80' x2='132' y2='87' stroke='#FFD54F' stroke-width='4'/><line x1='100' y1='90' x2='100' y2='100' stroke='#FFD54F' stroke-width='4'/><line x1='75' y1='80' x2='68' y2='87' stroke='#FFD54F' stroke-width='4'/><line x1='65' y1='55' x2='55' y2='55' stroke='#FFD54F' stroke-width='4'/><line x1='75' y1='30' x2='68' y2='23' stroke='#FFD54F' stroke-width='4'/><line x1='100' y1='20' x2='100' y2='10' stroke='#FFD54F' stroke-width='4'/><line x1='125' y1='30' x2='132' y2='23' stroke='#FFD54F' stroke-width='4'/><circle cx='92' cy='50' r='3' fill='#333333'/><circle cx='108' cy='50' r='3' fill='#333333'/><path d='M93 60 Q100 66 107 60' stroke='#333' stroke-width='2' fill='none'/></svg>"
+      ],
+      "words": [
+        {
+          "word": "The",
+          "translation": "El/La",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "yellow",
+          "translation": "amarillo",
+          "phonetics": "yé-low",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "sun",
+          "translation": "sol",
+          "phonetics": "san",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "is",
+          "translation": "es",
+          "phonetics": "is",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "in",
+          "translation": "en",
+          "phonetics": "in",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "sky",
+          "translation": "cielo",
+          "phonetics": "skai",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "hot",
+          "translation": "caliente",
+          "phonetics": "hot",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "big",
+          "translation": "grande",
+          "phonetics": "big",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "blue",
+          "translation": "azul",
+          "phonetics": "blu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "today",
+          "translation": "hoy",
+          "phonetics": "tu-dei",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "I",
+          "translation": "yo",
+          "phonetics": "ai",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "like",
+          "translation": "me gusta",
+          "phonetics": "laik",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "makes",
+          "translation": "hace",
+          "phonetics": "meiks",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "me",
+          "translation": "me",
+          "phonetics": "mi",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "happy",
+          "translation": "feliz",
+          "phonetics": "ja-pi",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "warm",
+          "translation": "caliente",
+          "phonetics": "warm",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "good",
+          "translation": "bueno",
+          "phonetics": "gud",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "helps",
+          "translation": "ayuda",
+          "phonetics": "jelps",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "plants",
+          "translation": "plantas",
+          "phonetics": "plants",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "grow",
+          "translation": "crecer",
+          "phonetics": "grou",
+          "paragraphIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "cuentos-04",
+      "title": "The Little Fish",
+      "paragraphs": [
+        "The little fish swims in the water. The fish is blue and small. The water is clean and cool.",
+        "The fish likes to play with friends. The friends are little fish too.",
+        "The fish is very happy. The fish swims all day."
+      ],
+      "images": [
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#E0F7FA'/><ellipse cx='100' cy='75' rx='35' ry='20' fill='#42A5F5'/><polygon points='135,75 150,65 150,85' fill='#42A5F5'/><circle cx='85' cy='72' r='4' fill='#FAFAFA'/><circle cx='85' cy='72' r='2' fill='#333333'/><path d='M90 65 Q100 60 110 65' stroke='#FAFAFA' stroke-width='2' fill='none'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#E0F7FA'/><ellipse cx='100' cy='75' rx='35' ry='20' fill='#42A5F5'/><polygon points='135,75 150,65 150,85' fill='#42A5F5'/><circle cx='85' cy='72' r='4' fill='#FAFAFA'/><circle cx='85' cy='72' r='2' fill='#333333'/><path d='M90 65 Q100 60 110 65' stroke='#FAFAFA' stroke-width='2' fill='none'/><ellipse cx='50' cy='100' rx='20' ry='12' fill='#26A69A'/><polygon points='68,100 78,93 78,107' fill='#26A69A'/><circle cx='43' cy='98' r='2' fill='#333333'/><ellipse cx='155' cy='110' rx='18' ry='10' fill='#AB47BC'/><polygon points='171,110 180,104 180,116' fill='#AB47BC'/><circle cx='150' cy='108' r='2' fill='#333333'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#E0F2F1'/><ellipse cx='100' cy='75' rx='35' ry='20' fill='#42A5F5'/><polygon points='135,75 150,65 150,85' fill='#42A5F5'/><circle cx='85' cy='72' r='4' fill='#FAFAFA'/><circle cx='85' cy='72' r='2' fill='#333333'/><path d='M90 65 Q100 60 110 65' stroke='#FAFAFA' stroke-width='2' fill='none'/></svg>"
+      ],
+      "words": [
+        {
+          "word": "The",
+          "translation": "El/La",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "little",
+          "translation": "pequeño",
+          "phonetics": "li-tol",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "fish",
+          "translation": "pez",
+          "phonetics": "fish",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "swims",
+          "translation": "nada",
+          "phonetics": "swims",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "in",
+          "translation": "en",
+          "phonetics": "in",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "water",
+          "translation": "agua",
+          "phonetics": "wa-tér",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "is",
+          "translation": "es",
+          "phonetics": "is",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "blue",
+          "translation": "azul",
+          "phonetics": "blu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "small",
+          "translation": "pequeño",
+          "phonetics": "smol",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "clean",
+          "translation": "limpio",
+          "phonetics": "clin",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "cool",
+          "translation": "frío",
+          "phonetics": "kul",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "likes",
+          "translation": "le gusta",
+          "phonetics": "laiks",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "to",
+          "translation": "a",
+          "phonetics": "tu",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "play",
+          "translation": "jugar",
+          "phonetics": "plei",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "with",
+          "translation": "con",
+          "phonetics": "wiz",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "friends",
+          "translation": "amigos",
+          "phonetics": "frends",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "are",
+          "translation": "son",
+          "phonetics": "ar",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "too",
+          "translation": "también",
+          "phonetics": "tu",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "very",
+          "translation": "muy",
+          "phonetics": "vé-ri",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "happy",
+          "translation": "feliz",
+          "phonetics": "ja-pi",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "all",
+          "translation": "todo",
+          "phonetics": "ol",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "day",
+          "translation": "día",
+          "phonetics": "dei",
+          "paragraphIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "cuentos-05",
+      "title": "My Family",
+      "paragraphs": [
+        "My family is big. I have a mom and a dad. My mom is nice and kind.",
+        "I have a brother and a sister. My brother is tall. My sister is small.",
+        "We are a happy family. We play and we laugh. I love my family."
+      ],
+      "images": [
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#FCE4EC'/><circle cx='60' cy='55' r='18' fill='#FFCC80'/><rect x='45' y='72' width='30' height='40' fill='#EC407A'/><circle cx='60' cy='50' r='2' fill='#333333'/><circle cx='65' cy='50' r='2' fill='#333333'/><path d='M57 56 Q60 59 63 56' stroke='#333' stroke-width='2' fill='none'/><circle cx='100' cy='50' r='20' fill='#FFCC80'/><rect x='82' y='68' width='36' height='44' fill='#42A5F5'/><circle cx='100' cy='45' r='2' fill='#333333'/><circle cx='105' cy='45' r='2' fill='#333333'/><path d='M97 52 Q100 55 103 52' stroke='#333' stroke-width='2' fill='none'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#FFF3E0'/><circle cx='60' cy='55' r='18' fill='#FFCC80'/><rect x='45' y='72' width='30' height='40' fill='#EC407A'/><circle cx='60' cy='50' r='2' fill='#333333'/><circle cx='65' cy='50' r='2' fill='#333333'/><path d='M57 56 Q60 59 63 56' stroke='#333' stroke-width='2' fill='none'/><circle cx='100' cy='50' r='20' fill='#FFCC80'/><rect x='82' y='68' width='36' height='44' fill='#42A5F5'/><circle cx='100' cy='45' r='2' fill='#333333'/><circle cx='105' cy='45' r='2' fill='#333333'/><path d='M97 52 Q100 55 103 52' stroke='#333' stroke-width='2' fill='none'/><circle cx='140' cy='65' r='14' fill='#FFCC80'/><rect x='128' y='78' width='24' height='32' fill='#66BB6A'/><circle cx='140' cy='62' r='2' fill='#333333'/><circle cx='145' cy='62' r='2' fill='#333333'/><path d='M137 68 Q140 71 143 68' stroke='#333' stroke-width='2' fill='none'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#F3E5F5'/><circle cx='60' cy='55' r='18' fill='#FFCC80'/><rect x='45' y='72' width='30' height='40' fill='#EC407A'/><circle cx='60' cy='50' r='2' fill='#333333'/><circle cx='65' cy='50' r='2' fill='#333333'/><path d='M57 56 Q60 59 63 56' stroke='#333' stroke-width='2' fill='none'/><circle cx='100' cy='50' r='20' fill='#FFCC80'/><rect x='82' y='68' width='36' height='44' fill='#42A5F5'/><circle cx='100' cy='45' r='2' fill='#333333'/><circle cx='105' cy='45' r='2' fill='#333333'/><path d='M97 52 Q100 55 103 52' stroke='#333' stroke-width='2' fill='none'/><circle cx='140' cy='65' r='14' fill='#FFCC80'/><rect x='128' y='78' width='24' height='32' fill='#66BB6A'/><circle cx='140' cy='62' r='2' fill='#333333'/><circle cx='145' cy='62' r='2' fill='#333333'/><path d='M137 68 Q140 71 143 68' stroke='#333' stroke-width='2' fill='none'/></svg>"
+      ],
+      "words": [
+        {
+          "word": "My",
+          "translation": "mi",
+          "phonetics": "mai",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "family",
+          "translation": "familia",
+          "phonetics": "fa-mi-li",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "is",
+          "translation": "es",
+          "phonetics": "is",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "big",
+          "translation": "grande",
+          "phonetics": "big",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "I",
+          "translation": "yo",
+          "phonetics": "ai",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "have",
+          "translation": "tengo",
+          "phonetics": "jav",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "a",
+          "translation": "un/una",
+          "phonetics": "a",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "mom",
+          "translation": "mamá",
+          "phonetics": "mom",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "dad",
+          "translation": "papá",
+          "phonetics": "dad",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "nice",
+          "translation": "bonito",
+          "phonetics": "nais",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "kind",
+          "translation": "amable",
+          "phonetics": "kaind",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "brother",
+          "translation": "hermano",
+          "phonetics": "bro-der",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "sister",
+          "translation": "hermana",
+          "phonetics": "sis-ter",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "tall",
+          "translation": "alto",
+          "phonetics": "tol",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "small",
+          "translation": "pequeño",
+          "phonetics": "smol",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "We",
+          "translation": "nosotros",
+          "phonetics": "wi",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "are",
+          "translation": "somos",
+          "phonetics": "ar",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "happy",
+          "translation": "feliz",
+          "phonetics": "ja-pi",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "play",
+          "translation": "jugar",
+          "phonetics": "plei",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "laugh",
+          "translation": "reír",
+          "phonetics": "laf",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "love",
+          "translation": "amor",
+          "phonetics": "lov",
+          "paragraphIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "cuentos-06",
+      "title": "The Blue Bird",
+      "paragraphs": [
+        "The blue bird flies in the sky. The bird is small and fast. The bird has blue wings.",
+        "The bird likes to sing. The bird sings all day. The song is nice.",
+        "The bird is happy. The bird flies home. Home is a big tree."
+      ],
+      "images": [
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#E3F2FD'/><ellipse cx='100' cy='80' rx='30' ry='22' fill='#42A5F5'/><circle cx='100' cy='60' r='18' fill='#42A5F5'/><polygon points='115,58 128,55 115,65' fill='#FF9800'/><circle cx='93' cy='58' r='3' fill='#333333'/><polygon points='85,75 70,70 85,80' fill='#42A5F5'/><path d='M80 95 Q70 100 75 90' stroke='#42A5F5' stroke-width='6' fill='none'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#FFF9C4'/><ellipse cx='100' cy='80' rx='30' ry='22' fill='#42A5F5'/><circle cx='100' cy='60' r='18' fill='#42A5F5'/><polygon points='115,58 128,55 115,65' fill='#FF9800'/><circle cx='93' cy='58' r='3' fill='#333333'/><polygon points='85,75 70,70 85,80' fill='#42A5F5'/><text x='140' y='45' font-size='20' text-anchor='middle' fill='#333333' font-family='Arial'>♪</text><text x='155' y='35' font-size='16' text-anchor='middle' fill='#333333' font-family='Arial'>♫</text><path d='M80 95 Q70 100 75 90' stroke='#42A5F5' stroke-width='6' fill='none'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#E8F5E9'/><ellipse cx='100' cy='80' rx='30' ry='22' fill='#42A5F5'/><circle cx='100' cy='60' r='18' fill='#42A5F5'/><polygon points='115,58 128,55 115,65' fill='#FF9800'/><circle cx='93' cy='58' r='3' fill='#333333'/><polygon points='85,75 70,70 85,80' fill='#42A5F5'/><path d='M80 95 Q70 100 75 90' stroke='#42A5F5' stroke-width='6' fill='none'/></svg>"
+      ],
+      "words": [
+        {
+          "word": "The",
+          "translation": "El/La",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "blue",
+          "translation": "azul",
+          "phonetics": "blu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "bird",
+          "translation": "pájaro",
+          "phonetics": "berd",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "flies",
+          "translation": "vuela",
+          "phonetics": "flais",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "in",
+          "translation": "en",
+          "phonetics": "in",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "sky",
+          "translation": "cielo",
+          "phonetics": "skai",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "is",
+          "translation": "es",
+          "phonetics": "is",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "small",
+          "translation": "pequeño",
+          "phonetics": "smol",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "fast",
+          "translation": "rápido",
+          "phonetics": "fast",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "has",
+          "translation": "tiene",
+          "phonetics": "jas",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "wings",
+          "translation": "alas",
+          "phonetics": "wings",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "likes",
+          "translation": "le gusta",
+          "phonetics": "laiks",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "to",
+          "translation": "a",
+          "phonetics": "tu",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "sing",
+          "translation": "cantar",
+          "phonetics": "sing",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "sings",
+          "translation": "canta",
+          "phonetics": "sings",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "all",
+          "translation": "todo",
+          "phonetics": "ol",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "day",
+          "translation": "día",
+          "phonetics": "dei",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "song",
+          "translation": "canción",
+          "phonetics": "song",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "nice",
+          "translation": "bonito",
+          "phonetics": "nais",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "a",
+          "translation": "un/una",
+          "phonetics": "a",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "happy",
+          "translation": "feliz",
+          "phonetics": "ja-pi",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "home",
+          "translation": "casa",
+          "phonetics": "jom",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "big",
+          "translation": "grande",
+          "phonetics": "big",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "tree",
+          "translation": "árbol",
+          "phonetics": "tri",
+          "paragraphIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "cuentos-07",
+      "title": "The Happy Frog",
+      "paragraphs": [
+        "The happy frog jumps on the grass. The frog is green and small. The grass is soft and green.",
+        "The frog likes the water. The frog can swim and jump.",
+        "The frog is a good swimmer. The frog is happy and fast."
+      ],
+      "images": [
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#F1F8E9'/><ellipse cx='100' cy='85' rx='35' ry='25' fill='#66BB6A'/><circle cx='88' cy='68' r='12' fill='#66BB6A'/><circle cx='112' cy='68' r='12' fill='#66BB6A'/><circle cx='88' cy='68' r='5' fill='#FAFAFA'/><circle cx='112' cy='68' r='5' fill='#FAFAFA'/><circle cx='88' cy='68' r='2.5' fill='#333333'/><circle cx='112' cy='68' r='2.5' fill='#333333'/><path d='M88 88 Q100 96 112 88' stroke='#333' stroke-width='2' fill='none'/><polygon points='100,85 95,90 105,90' fill='#FAFAFA'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#E0F7FA'/><ellipse cx='100' cy='85' rx='35' ry='25' fill='#66BB6A'/><circle cx='88' cy='68' r='12' fill='#66BB6A'/><circle cx='112' cy='68' r='12' fill='#66BB6A'/><circle cx='88' cy='68' r='5' fill='#FAFAFA'/><circle cx='112' cy='68' r='5' fill='#FAFAFA'/><circle cx='88' cy='68' r='2.5' fill='#333333'/><circle cx='112' cy='68' r='2.5' fill='#333333'/><path d='M88 88 Q100 96 112 88' stroke='#333' stroke-width='2' fill='none'/><polygon points='100,85 95,90 105,90' fill='#FAFAFA'/><path d='M60 100 Q80 95 100 100' stroke='#26A69A' stroke-width='3' fill='none'/><path d='M100 110 Q120 105 140 110' stroke='#26A69A' stroke-width='3' fill='none'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#E8F5E9'/><ellipse cx='100' cy='85' rx='35' ry='25' fill='#66BB6A'/><circle cx='88' cy='68' r='12' fill='#66BB6A'/><circle cx='112' cy='68' r='12' fill='#66BB6A'/><circle cx='88' cy='68' r='5' fill='#FAFAFA'/><circle cx='112' cy='68' r='5' fill='#FAFAFA'/><circle cx='88' cy='68' r='2.5' fill='#333333'/><circle cx='112' cy='68' r='2.5' fill='#333333'/><path d='M88 88 Q100 96 112 88' stroke='#333' stroke-width='2' fill='none'/><polygon points='100,85 95,90 105,90' fill='#FAFAFA'/></svg>"
+      ],
+      "words": [
+        {
+          "word": "The",
+          "translation": "El/La",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "happy",
+          "translation": "feliz",
+          "phonetics": "ja-pi",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "frog",
+          "translation": "rana",
+          "phonetics": "frog",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "jumps",
+          "translation": "salta",
+          "phonetics": "yamps",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "on",
+          "translation": "en",
+          "phonetics": "on",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "grass",
+          "translation": "césped",
+          "phonetics": "gras",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "is",
+          "translation": "es",
+          "phonetics": "is",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "green",
+          "translation": "verde",
+          "phonetics": "grin",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "small",
+          "translation": "pequeño",
+          "phonetics": "smol",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "soft",
+          "translation": "suave",
+          "phonetics": "soft",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "likes",
+          "translation": "le gusta",
+          "phonetics": "laiks",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "water",
+          "translation": "agua",
+          "phonetics": "wa-tér",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "can",
+          "translation": "puede",
+          "phonetics": "can",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "swim",
+          "translation": "nadar",
+          "phonetics": "swim",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "jump",
+          "translation": "saltar",
+          "phonetics": "yamp",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "a",
+          "translation": "un/una",
+          "phonetics": "a",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "good",
+          "translation": "bueno",
+          "phonetics": "gud",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "swimmer",
+          "translation": "nadador",
+          "phonetics": "swi-mer",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "fast",
+          "translation": "rápido",
+          "phonetics": "fast",
+          "paragraphIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "cuentos-08",
+      "title": "The Brown Bear",
+      "paragraphs": [
+        "The brown bear walks in the woods. The bear is big and strong. The woods are dark and cool.",
+        "The bear likes honey. The bear eats a lot of honey. The honey is sweet and good.",
+        "The bear is happy. The bear goes to sleep. The bear is a big friend."
+      ],
+      "images": [
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#E8F5E9'/><ellipse cx='100' cy='85' rx='38' ry='30' fill='#8D6E63'/><circle cx='100' cy='60' r='24' fill='#8D6E63'/><circle cx='85' cy='45' r='10' fill='#8D6E63'/><circle cx='115' cy='45' r='10' fill='#8D6E63'/><circle cx='92' cy='58' r='3' fill='#333333'/><circle cx='108' cy='58' r='3' fill='#333333'/><ellipse cx='100' cy='68' rx='6' ry='4' fill='#333333'/><path d='M93 75 Q100 80 107 75' stroke='#333' stroke-width='2' fill='none'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#FFF8E1'/><ellipse cx='100' cy='85' rx='38' ry='30' fill='#8D6E63'/><circle cx='100' cy='60' r='24' fill='#8D6E63'/><circle cx='85' cy='45' r='10' fill='#8D6E63'/><circle cx='115' cy='45' r='10' fill='#8D6E63'/><circle cx='92' cy='58' r='3' fill='#333333'/><circle cx='108' cy='58' r='3' fill='#333333'/><ellipse cx='100' cy='68' rx='6' ry='4' fill='#333333'/><path d='M93 75 Q100 80 107 75' stroke='#333' stroke-width='2' fill='none'/><rect x='140' y='80' width='25' height='30' fill='#FFD54F'/><circle cx='152' cy='78' r='10' fill='#FF9800'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#FFF3E0'/><ellipse cx='100' cy='85' rx='38' ry='30' fill='#8D6E63'/><circle cx='100' cy='60' r='24' fill='#8D6E63'/><circle cx='85' cy='45' r='10' fill='#8D6E63'/><circle cx='115' cy='45' r='10' fill='#8D6E63'/><circle cx='92' cy='58' r='3' fill='#333333'/><circle cx='108' cy='58' r='3' fill='#333333'/><ellipse cx='100' cy='68' rx='6' ry='4' fill='#333333'/><path d='M93 75 Q100 80 107 75' stroke='#333' stroke-width='2' fill='none'/></svg>"
+      ],
+      "words": [
+        {
+          "word": "The",
+          "translation": "El/La",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "brown",
+          "translation": "marrón",
+          "phonetics": "braun",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "bear",
+          "translation": "oso",
+          "phonetics": "ber",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "walks",
+          "translation": "camina",
+          "phonetics": "woks",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "in",
+          "translation": "en",
+          "phonetics": "in",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "woods",
+          "translation": "bosque",
+          "phonetics": "wuds",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "is",
+          "translation": "es",
+          "phonetics": "is",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "big",
+          "translation": "grande",
+          "phonetics": "big",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "strong",
+          "translation": "fuerte",
+          "phonetics": "strong",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "are",
+          "translation": "son",
+          "phonetics": "ar",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "dark",
+          "translation": "oscuro",
+          "phonetics": "dark",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "cool",
+          "translation": "frío",
+          "phonetics": "kul",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "likes",
+          "translation": "le gusta",
+          "phonetics": "laiks",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "honey",
+          "translation": "miel",
+          "phonetics": "ja-ni",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "eats",
+          "translation": "come",
+          "phonetics": "its",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "a",
+          "translation": "un/una",
+          "phonetics": "a",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "lot",
+          "translation": "mucho",
+          "phonetics": "lot",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "of",
+          "translation": "de",
+          "phonetics": "ov",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "sweet",
+          "translation": "dulce",
+          "phonetics": "swit",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "good",
+          "translation": "bueno",
+          "phonetics": "gud",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "happy",
+          "translation": "feliz",
+          "phonetics": "ja-pi",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "goes",
+          "translation": "va",
+          "phonetics": "gous",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "to",
+          "translation": "a",
+          "phonetics": "tu",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "sleep",
+          "translation": "dormir",
+          "phonetics": "slip",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "friend",
+          "translation": "amigo",
+          "phonetics": "frend",
+          "paragraphIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "cuentos-09",
+      "title": "The Green Tree",
+      "paragraphs": [
+        "The green tree is in the park. The tree is tall and big. The park is nice and clean.",
+        "The tree has many leaves. The leaves are green and small.",
+        "The birds like the tree. The birds sing in the tree. The tree is a happy home."
+      ],
+      "images": [
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#E8F5E9'/><rect x='90' y='80' width='20' height='50' fill='#8D6E63'/><circle cx='100' cy='60' r='40' fill='#66BB6A'/><circle cx='75' cy='55' r='25' fill='#66BB6A'/><circle cx='125' cy='55' r='25' fill='#66BB6A'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#F1F8E9'/><rect x='90' y='80' width='20' height='50' fill='#8D6E63'/><circle cx='100' cy='60' r='40' fill='#66BB6A'/><circle cx='75' cy='55' r='25' fill='#66BB6A'/><circle cx='125' cy='55' r='25' fill='#66BB6A'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#E3F2FD'/><rect x='90' y='80' width='20' height='50' fill='#8D6E63'/><circle cx='100' cy='60' r='40' fill='#66BB6A'/><circle cx='75' cy='55' r='25' fill='#66BB6A'/><circle cx='125' cy='55' r='25' fill='#66BB6A'/><circle cx='80' cy='50' r='6' fill='#FFD54F'/><circle cx='120' cy='45' r='6' fill='#FFD54F'/></svg>"
+      ],
+      "words": [
+        {
+          "word": "The",
+          "translation": "El/La",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "green",
+          "translation": "verde",
+          "phonetics": "grin",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "tree",
+          "translation": "árbol",
+          "phonetics": "tri",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "is",
+          "translation": "es",
+          "phonetics": "is",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "in",
+          "translation": "en",
+          "phonetics": "in",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "park",
+          "translation": "parque",
+          "phonetics": "park",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "tall",
+          "translation": "alto",
+          "phonetics": "tol",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "big",
+          "translation": "grande",
+          "phonetics": "big",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "nice",
+          "translation": "bonito",
+          "phonetics": "nais",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "clean",
+          "translation": "limpio",
+          "phonetics": "clin",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "has",
+          "translation": "tiene",
+          "phonetics": "jas",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "many",
+          "translation": "muchos",
+          "phonetics": "mé-ni",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "leaves",
+          "translation": "hojas",
+          "phonetics": "livs",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "are",
+          "translation": "son",
+          "phonetics": "ar",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "small",
+          "translation": "pequeño",
+          "phonetics": "smol",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "birds",
+          "translation": "pájaros",
+          "phonetics": "berds",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "like",
+          "translation": "gustan",
+          "phonetics": "laik",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "sing",
+          "translation": "cantan",
+          "phonetics": "sing",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "a",
+          "translation": "un/una",
+          "phonetics": "a",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "happy",
+          "translation": "feliz",
+          "phonetics": "ja-pi",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "home",
+          "translation": "casa",
+          "phonetics": "jom",
+          "paragraphIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "cuentos-10",
+      "title": "My Toys",
+      "paragraphs": [
+        "I have many toys. I have a red car and a blue ball. The car is fast and fun.",
+        "I like to play with my toys. My toys are fun and new.",
+        "I play every day. I share my toys with my friends. We are happy."
+      ],
+      "images": [
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#FFF9C4'/><rect x='40' y='85' width='50' height='25' fill='#E53935'/><circle cx='50' cy='112' r='8' fill='#333333'/><circle cx='80' cy='112' r='8' fill='#333333'/><rect x='50' y='75' width='30' height='15' fill='#42A5F5'/><circle cx='140' cy='90' r='20' fill='#42A5F5'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#FCE4EC'/><rect x='40' y='85' width='50' height='25' fill='#E53935'/><circle cx='50' cy='112' r='8' fill='#333333'/><circle cx='80' cy='112' r='8' fill='#333333'/><rect x='50' y='75' width='30' height='15' fill='#42A5F5'/><circle cx='140' cy='90' r='20' fill='#42A5F5'/><circle cx='100' cy='50' r='15' fill='#FFCC80'/><circle cx='100' cy='47' r='2' fill='#333333'/><circle cx='105' cy='47' r='2' fill='#333333'/><path d='M97 53 Q100 56 103 53' stroke='#333' stroke-width='2' fill='none'/></svg>",
+        "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='200' height='150' fill='#E0F7FA'/><rect x='40' y='85' width='50' height='25' fill='#E53935'/><circle cx='50' cy='112' r='8' fill='#333333'/><circle cx='80' cy='112' r='8' fill='#333333'/><rect x='50' y='75' width='30' height='15' fill='#42A5F5'/><circle cx='140' cy='90' r='20' fill='#42A5F5'/><circle cx='100' cy='50' r='15' fill='#FFCC80'/><circle cx='100' cy='47' r='2' fill='#333333'/><circle cx='105' cy='47' r='2' fill='#333333'/><path d='M97 53 Q100 56 103 53' stroke='#333' stroke-width='2' fill='none'/></svg>"
+      ],
+      "words": [
+        {
+          "word": "I",
+          "translation": "yo",
+          "phonetics": "ai",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "have",
+          "translation": "tengo",
+          "phonetics": "jav",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "many",
+          "translation": "muchos",
+          "phonetics": "mé-ni",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "toys",
+          "translation": "juguetes",
+          "phonetics": "tois",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "a",
+          "translation": "un/una",
+          "phonetics": "a",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "red",
+          "translation": "rojo",
+          "phonetics": "red",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "car",
+          "translation": "coche",
+          "phonetics": "car",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "blue",
+          "translation": "azul",
+          "phonetics": "blu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "ball",
+          "translation": "pelota",
+          "phonetics": "bol",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "The",
+          "translation": "El/La",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "is",
+          "translation": "es",
+          "phonetics": "is",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "fast",
+          "translation": "rápido",
+          "phonetics": "fast",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "fun",
+          "translation": "divertido",
+          "phonetics": "fan",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "like",
+          "translation": "me gusta",
+          "phonetics": "laik",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "to",
+          "translation": "a",
+          "phonetics": "tu",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "play",
+          "translation": "jugar",
+          "phonetics": "plei",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "with",
+          "translation": "con",
+          "phonetics": "wiz",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "my",
+          "translation": "mi",
+          "phonetics": "mai",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "are",
+          "translation": "son",
+          "phonetics": "ar",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "new",
+          "translation": "nuevo",
+          "phonetics": "niu",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "every",
+          "translation": "cada",
+          "phonetics": "é-vri",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "day",
+          "translation": "día",
+          "phonetics": "dei",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "share",
+          "translation": "compartir",
+          "phonetics": "cher",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "friends",
+          "translation": "amigos",
+          "phonetics": "frends",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "We",
+          "translation": "nosotros",
+          "phonetics": "wi",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "happy",
+          "translation": "feliz",
+          "phonetics": "ja-pi",
+          "paragraphIndex": 2
+        }
+      ]
+    }
+  ]
+}
