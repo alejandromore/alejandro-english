@@ -14,7 +14,7 @@
         "The cat runs and jumps. The cat is very happy today."
       ],
       "images": [
-        "<img src=\"images/cuentos/cuentos-01-0.jpg\" alt=\"The red cat sitting on a soft, warm mat\" loading=\"lazy\">",
+        "<img src=\"images/cuentos/cuentos-01-0.jpg\" alt=\"The red cat sitting on a soft, warm mat\" loading=\"lazy\" style=\"object-position:center 85%\">",
         "<img src=\"images/cuentos/cuentos-01-1.jpg\" alt=\"The red cat playing with a small blue ball\" loading=\"lazy\">",
         "<img src=\"images/cuentos/cuentos-01-2.jpg\" alt=\"The red cat running and jumping happily\" loading=\"lazy\">"
       ],
