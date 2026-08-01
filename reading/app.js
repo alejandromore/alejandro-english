@@ -42,11 +42,16 @@ function showReadingList(data) {
     const done = completedReadings.includes(r.id) ? '<span class="ri-done">✓</span>' : '';
     const wordCount = r.words ? r.words.length : (r.paragraphs ? r.paragraphs.join(' ').split(/\s+/).length : 0);
     const thumb = (r.images && r.images[0]) ? r.images[0] : (data.coverSVG || '');
+    const quizOnlyCats = ['historia', 'ciencia', 'tecnologia'];
+    const isQuizOnly = quizOnlyCats.includes(data.category);
+    const subInfo = isQuizOnly
+      ? `${(r.questions || []).length} questions`
+      : `${wordCount} words · ${r.paragraphs.length} paragraphs`;
     return `<a class="reading-item" href="reader.html?id=${r.id}&cat=${data.category}">
       <div class="ri-thumb">${thumb}</div>
       <div class="ri-info">
         <h4>${r.title}</h4>
-        <p>${wordCount} words · ${r.paragraphs.length} paragraphs</p>
+        <p>${subInfo}</p>
       </div>
       ${done}
     </a>`;
@@ -131,6 +136,30 @@ function initReader() {
     document.getElementById('rtbCat').textContent = data.categoryName;
     document.getElementById('rtbCat').style.background = 'rgba(0,180,166,.2)';
     document.getElementById('rtbCat').style.color = 'var(--teal)';
+
+    // Quiz-only categories: skip reading text, show questions directly
+    const quizOnlyCats = ['historia', 'ciencia', 'tecnologia'];
+    if (quizOnlyCats.includes(cat) && reading.questions && reading.questions.length) {
+      const imgArea = document.getElementById('readerImageArea');
+      const controls = document.querySelector('.reader-controls');
+      const textArea = document.getElementById('readerTextArea');
+      const completeEl = document.getElementById('readingComplete');
+      const noSpeech = document.getElementById('noSpeech');
+      if (imgArea) imgArea.style.display = 'none';
+      if (controls) controls.style.display = 'none';
+      if (textArea) textArea.style.display = 'none';
+      if (completeEl) completeEl.style.display = 'none';
+      if (noSpeech) noSpeech.style.display = 'none';
+
+      // Update quiz header for direct question mode
+      const quizHeader = document.querySelector('.quiz-header');
+      if (quizHeader) {
+        quizHeader.innerHTML = '<h3>📝 Questions</h3><p>Answer the questions and check your answers</p>';
+      }
+
+      showQuiz();
+      return;
+    }
 
     // No speech fallback
     if (!hasSpeech) {

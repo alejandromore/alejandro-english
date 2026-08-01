@@ -1,0 +1,4947 @@
+{
+  "category": "historia",
+  "categoryName": "History",
+  "categoryIcon": "📜",
+  "level": "A2-B1",
+  "coverSVG": "<svg viewBox='0 0 200 150' xmlns='http://www.w3.org/2000/svg'><rect width='200' height='150' fill='#F4E4BC'/><polygon points='100,25 55,120 145,120' fill='#C9A96E'/><polygon points='65,120 40,140 90,140' fill='#B8975A'/><polygon points='135,120 110,140 160,140' fill='#B8975A'/><circle cx='165' cy='25' r='14' fill='#FDB813'/><rect x='0' y='140' width='200' height='10' fill='#D4A76A'/></svg>",
+  "readings": [
+    {
+      "id": "historia-01",
+      "title": "The Ancient Egyptians",
+      "paragraphs": [
+        "The ancient Egyptians lived in Egypt over five thousand years ago. They built their civilization along the Nile River. The river gave them water and food.",
+        "The Egyptians were famous for building pyramids. These giant structures were tombs for their kings, called pharaohs. The biggest pyramid is the Great Pyramid of Giza.",
+        "They also invented a writing system called hieroglyphics. It used pictures instead of letters. Scientists worked for many years to understand this ancient language. Today we can still see their amazing pyramids in Egypt.",
+        "The Egyptians also had a strong belief in the afterlife. They preserved dead bodies using a process called mummification. Rich people were buried with gold and jewelry.",
+        "Ordinary Egyptians had different jobs. Some were farmers, some were craftsmen, and others were soldiers. Children went to school to learn reading and writing. Egyptian society was well organized."
+      ],
+      "images": [
+        "<img src=\"images/historia/historia-01-0.jpg\" alt=\"The ancient Egyptians living along the Nile River\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-01-1.jpg\" alt=\"The Great Pyramid of Giza and other giant pyramids\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-01-2.jpg\" alt=\"Hieroglyphics writing system on ancient walls\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-01-3.jpg\" alt=\"Mummification process and burial traditions\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-01-4.jpg\" alt=\"Ordinary Egyptians with different jobs and society\" loading=\"lazy\">"
+      ],
+      "words": [
+        {
+          "word": "The",
+          "translation": "El/La",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "ancient",
+          "translation": "antiguo",
+          "phonetics": "éin-chent",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Egyptians",
+          "translation": "egipcios",
+          "phonetics": "e-gip-chans",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "lived",
+          "translation": "vivieron",
+          "phonetics": "livd",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "in",
+          "translation": "en",
+          "phonetics": "in",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Egypt",
+          "translation": "Egipto",
+          "phonetics": "e-gipt",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "over",
+          "translation": "hace más de",
+          "phonetics": "o-ver",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "five",
+          "translation": "cinco",
+          "phonetics": "faiv",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "thousand",
+          "translation": "mil",
+          "phonetics": "thau-sand",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "years",
+          "translation": "años",
+          "phonetics": "yirs",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "ago",
+          "translation": "atrás",
+          "phonetics": "a-gó",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "They",
+          "translation": "Ellos",
+          "phonetics": "dei",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "built",
+          "translation": "construyeron",
+          "phonetics": "bilt",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "their",
+          "translation": "su",
+          "phonetics": "deir",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "civilization",
+          "translation": "civilización",
+          "phonetics": "si-vi-li-zéi-chon",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "along",
+          "translation": "a lo largo de",
+          "phonetics": "a-lóng",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Nile",
+          "translation": "Nilo",
+          "phonetics": "nail",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "River",
+          "translation": "Río",
+          "phonetics": "ri-ver",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "gave",
+          "translation": "dio",
+          "phonetics": "geiv",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "them",
+          "translation": "les",
+          "phonetics": "dem",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "water",
+          "translation": "agua",
+          "phonetics": "wó-ter",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "food",
+          "translation": "comida",
+          "phonetics": "fud",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "were",
+          "translation": "eran",
+          "phonetics": "wer",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "famous",
+          "translation": "famosos",
+          "phonetics": "féi-mos",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "for",
+          "translation": "por",
+          "phonetics": "for",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "building",
+          "translation": "construir",
+          "phonetics": "bíl-ding",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "pyramids",
+          "translation": "pirámides",
+          "phonetics": "pi-rá-mids",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "These",
+          "translation": "estos",
+          "phonetics": "dis",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "giant",
+          "translation": "gigantes",
+          "phonetics": "yá-iant",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "structures",
+          "translation": "estructuras",
+          "phonetics": "strák-chers",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "tombs",
+          "translation": "tumbas",
+          "phonetics": "tums",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "kings",
+          "translation": "reyes",
+          "phonetics": "kins",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "called",
+          "translation": "llamados",
+          "phonetics": "cold",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "pharaohs",
+          "translation": "faraones",
+          "phonetics": "fé-roz",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "biggest",
+          "translation": "la más grande",
+          "phonetics": "bí-gest",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "pyramid",
+          "translation": "pirámide",
+          "phonetics": "pi-rá-mid",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "is",
+          "translation": "es",
+          "phonetics": "is",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Great",
+          "translation": "Gran",
+          "phonetics": "greit",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "of",
+          "translation": "de",
+          "phonetics": "ov",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Giza",
+          "translation": "Giza",
+          "phonetics": "gi-za",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "also",
+          "translation": "también",
+          "phonetics": "ól-so",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "invented",
+          "translation": "inventaron",
+          "phonetics": "in-vén-ted",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "a",
+          "translation": "un/una",
+          "phonetics": "a",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "writing",
+          "translation": "escritura",
+          "phonetics": "rái-ting",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "system",
+          "translation": "sistema",
+          "phonetics": "sis-tem",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "hieroglyphics",
+          "translation": "jeroglíficos",
+          "phonetics": "hai-e-ro-glí-fiks",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "It",
+          "translation": "él",
+          "phonetics": "it",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "used",
+          "translation": "usaba",
+          "phonetics": "iusd",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "pictures",
+          "translation": "dibujos",
+          "phonetics": "pik-chers",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "instead",
+          "translation": "en lugar de",
+          "phonetics": "in-stéd",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "letters",
+          "translation": "letras",
+          "phonetics": "le-ters",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Scientists",
+          "translation": "científicos",
+          "phonetics": "sai-en-tists",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "worked",
+          "translation": "trabajaron",
+          "phonetics": "werk",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "many",
+          "translation": "muchos",
+          "phonetics": "mé-ni",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "to",
+          "translation": "a",
+          "phonetics": "tu",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "understand",
+          "translation": "entender",
+          "phonetics": "an-der-stánd",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "this",
+          "translation": "este",
+          "phonetics": "dis",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "language",
+          "translation": "lenguaje",
+          "phonetics": "lán-guich",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Today",
+          "translation": "Hoy",
+          "phonetics": "tu-dei",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "we",
+          "translation": "nosotros",
+          "phonetics": "wi",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "can",
+          "translation": "podemos",
+          "phonetics": "kan",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "still",
+          "translation": "aun",
+          "phonetics": "stil",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "see",
+          "translation": "ver",
+          "phonetics": "si",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "amazing",
+          "translation": "asombrosas",
+          "phonetics": "a-mei-zing",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "belief",
+          "translation": "creencia",
+          "phonetics": "bi-lif",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "afterlife",
+          "translation": "la otra vida",
+          "phonetics": "af-ter-laif",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "preserved",
+          "translation": "preservaron",
+          "phonetics": "pri-zervd",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "process",
+          "translation": "proceso",
+          "phonetics": "pro-ses",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "mummification",
+          "translation": "momificacion",
+          "phonetics": "ma-mi-fi-kei-chon",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "buried",
+          "translation": "enterrados",
+          "phonetics": "be-rid",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "jewelry",
+          "translation": "joyas",
+          "phonetics": "chu-el-ri",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "ordinary",
+          "translation": "ordinario",
+          "phonetics": "or-di-ne-ri",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "craftsmen",
+          "translation": "artesanos",
+          "phonetics": "krafts-men",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "soldiers",
+          "translation": "soldados",
+          "phonetics": "sol-yers",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "society",
+          "translation": "sociedad",
+          "phonetics": "so-sie-ti",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "organized",
+          "translation": "organizada",
+          "phonetics": "or-ga-naisd",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What is the main topic of this reading?",
+          "options": [
+            "Modern Egyptian cities",
+            "The ancient Egyptian civilization",
+            "The Nile River today",
+            "How to build pyramids"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What did the Egyptians use to write?",
+          "options": [
+            "The alphabet",
+            "Numbers only",
+            "Pictures called hieroglyphics",
+            "Computers"
+          ],
+          "correct": 2
+        },
+        {
+          "question": "What does 'mummification' mean?",
+          "options": [
+            "Building pyramids",
+            "Preserving dead bodies",
+            "A type of farming",
+            "A writing system"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Why did the Egyptians build their civilization along the Nile River?",
+          "options": [
+            "For protection from enemies",
+            "The river gave them water and food",
+            "To be close to the ocean",
+            "Because it was cool"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can you infer about Egyptian society?",
+          "options": [
+            "Everyone had the same job",
+            "Only rich people existed",
+            "It was well organized with different jobs",
+            "Children did not go to school"
+          ],
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "id": "historia-02",
+      "title": "The Roman Empire",
+      "paragraphs": [
+        "The Roman Empire was one of the most powerful empires in history. It started in Italy and grew to cover much of Europe, Africa, and Asia.",
+        "Romans built many things that we still use today. They made roads, bridges, and aqueducts to carry water. Their buildings were very strong and beautiful.",
+        "The Roman army was very organized and powerful. Soldiers trained hard and worked together as a team. This helped Rome win many battles. The Roman Empire fell in the year 476, but its legacy lives on.",
+        "Roman people enjoyed entertainment at the Colosseum. Thousands of spectators watched gladiators fight. They also loved chariot races at the Circus Maximus.",
+        "The Romans spoke Latin, which is the root of many modern languages. Spanish, French, and Italian all come from Latin. Many English words also have Latin origins."
+      ],
+      "images": [
+        "<img src=\"images/historia/historia-02-0.jpg\" alt=\"The powerful Roman Empire map and buildings\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-02-1.jpg\" alt=\"Roman roads, bridges, and aqueducts carrying water\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-02-2.jpg\" alt=\"The organized Roman army and soldiers in battle\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-02-3.jpg\" alt=\"Spectators enjoying entertainment at the Colosseum\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-02-4.jpg\" alt=\"Latin roots of modern languages and alphabets\" loading=\"lazy\">"
+      ],
+      "words": [
+        {
+          "word": "The",
+          "translation": "El/La",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Roman",
+          "translation": "Romano",
+          "phonetics": "ro-man",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Empire",
+          "translation": "Imperio",
+          "phonetics": "em-pá-iar",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "was",
+          "translation": "fue",
+          "phonetics": "was",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "one",
+          "translation": "uno",
+          "phonetics": "wan",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "of",
+          "translation": "de",
+          "phonetics": "ov",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "the",
+          "translation": "el/la",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "most",
+          "translation": "más",
+          "phonetics": "most",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "powerful",
+          "translation": "poderoso",
+          "phonetics": "pó-wer-ful",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "empires",
+          "translation": "imperios",
+          "phonetics": "em-pá-iers",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "in",
+          "translation": "en",
+          "phonetics": "in",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "history",
+          "translation": "historia",
+          "phonetics": "is-to-ri",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "It",
+          "translation": "él",
+          "phonetics": "it",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "started",
+          "translation": "comenzó",
+          "phonetics": "stár-ted",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Italy",
+          "translation": "Italia",
+          "phonetics": "i-ta-li",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "grew",
+          "translation": "creció",
+          "phonetics": "gru",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "to",
+          "translation": "a",
+          "phonetics": "tu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "cover",
+          "translation": "cubrir",
+          "phonetics": "ko-ver",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "much",
+          "translation": "mucho",
+          "phonetics": "mach",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Europe",
+          "translation": "Europa",
+          "phonetics": "iu-rop",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Africa",
+          "translation": "África",
+          "phonetics": "á-fri-ca",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Asia",
+          "translation": "Asia",
+          "phonetics": "éi-sia",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Romans",
+          "translation": "Romanos",
+          "phonetics": "ro-mans",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "built",
+          "translation": "construyeron",
+          "phonetics": "bilt",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "many",
+          "translation": "muchas",
+          "phonetics": "mé-ni",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "things",
+          "translation": "cosas",
+          "phonetics": "things",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "that",
+          "translation": "que",
+          "phonetics": "dat",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "we",
+          "translation": "nosotros",
+          "phonetics": "wi",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "still",
+          "translation": "aún",
+          "phonetics": "stil",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "use",
+          "translation": "usamos",
+          "phonetics": "ius",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "today",
+          "translation": "hoy",
+          "phonetics": "tu-dei",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "They",
+          "translation": "Ellos",
+          "phonetics": "dei",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "made",
+          "translation": "hicieron",
+          "phonetics": "meid",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "roads",
+          "translation": "caminos",
+          "phonetics": "rods",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "bridges",
+          "translation": "puentes",
+          "phonetics": "bri-jes",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "aqueducts",
+          "translation": "acueductos",
+          "phonetics": "a-kue-dákts",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "carry",
+          "translation": "llevar",
+          "phonetics": "ká-ri",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "water",
+          "translation": "agua",
+          "phonetics": "wó-ter",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Their",
+          "translation": "Sus",
+          "phonetics": "deir",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "buildings",
+          "translation": "edificios",
+          "phonetics": "bíl-dings",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "were",
+          "translation": "eran",
+          "phonetics": "wer",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "very",
+          "translation": "muy",
+          "phonetics": "vé-ri",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "strong",
+          "translation": "fuertes",
+          "phonetics": "stróng",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "beautiful",
+          "translation": "hermosos",
+          "phonetics": "biu-ti-ful",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "army",
+          "translation": "ejército",
+          "phonetics": "ar-mi",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "organized",
+          "translation": "organizado",
+          "phonetics": "or-ga-náizd",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Soldiers",
+          "translation": "Soldados",
+          "phonetics": "sol-diers",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "trained",
+          "translation": "entrenaron",
+          "phonetics": "treind",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "hard",
+          "translation": "duro",
+          "phonetics": "jard",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "worked",
+          "translation": "trabajaron",
+          "phonetics": "werk",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "together",
+          "translation": "juntos",
+          "phonetics": "tu-gé-der",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "as",
+          "translation": "como",
+          "phonetics": "as",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "a",
+          "translation": "un",
+          "phonetics": "a",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "team",
+          "translation": "equipo",
+          "phonetics": "tim",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "This",
+          "translation": "Esto",
+          "phonetics": "dis",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "helped",
+          "translation": "ayudó",
+          "phonetics": "jélpt",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Rome",
+          "translation": "Roma",
+          "phonetics": "rom",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "win",
+          "translation": "ganar",
+          "phonetics": "win",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "battles",
+          "translation": "batallas",
+          "phonetics": "ba-tels",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "fell",
+          "translation": "cayo",
+          "phonetics": "fel",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "year",
+          "translation": "ano",
+          "phonetics": "yir",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "476",
+          "translation": "476",
+          "phonetics": "four-han-dred se-ven-ti-six",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "but",
+          "translation": "pero",
+          "phonetics": "bat",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "its",
+          "translation": "su",
+          "phonetics": "its",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "legacy",
+          "translation": "legado",
+          "phonetics": "le-ga-si",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "lives",
+          "translation": "vive",
+          "phonetics": "livs",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "on",
+          "translation": "en",
+          "phonetics": "on",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "entertainment",
+          "translation": "entretenimiento",
+          "phonetics": "en-ter-tein-ment",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "Colosseum",
+          "translation": "el Coliseo",
+          "phonetics": "ko-lo-se-um",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "spectators",
+          "translation": "espectadores",
+          "phonetics": "spek-tei-tors",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "gladiators",
+          "translation": "gladiadores",
+          "phonetics": "gla-di-e-tors",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "chariot",
+          "translation": "carro de guerra",
+          "phonetics": "cha-ri-ot",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "Latin",
+          "translation": "latin",
+          "phonetics": "la-tin",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "root",
+          "translation": "raiz",
+          "phonetics": "rut",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "origins",
+          "translation": "origenes",
+          "phonetics": "or-i-yins",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What is this reading mainly about?",
+          "options": [
+            "The Roman army",
+            "The Roman Empire and its legacy",
+            "How to build roads",
+            "Latin language only"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Where did Romans watch gladiators fight?",
+          "options": [
+            "The Circus Maximus",
+            "The Colosseum",
+            "The Senate",
+            "The forum"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What does 'spectators' mean?",
+          "options": [
+            "People who fight",
+            "People who watch",
+            "People who build",
+            "People who race"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Which modern language comes from Latin?",
+          "options": [
+            "English",
+            "German",
+            "Spanish",
+            "Russian"
+          ],
+          "correct": 2
+        },
+        {
+          "question": "What can you infer about the Roman Empire?",
+          "options": [
+            "It had no entertainment",
+            "Its influence still exists today",
+            "It never fell",
+            "It had only one language"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "historia-03",
+      "title": "Christopher Columbus",
+      "paragraphs": [
+        "Christopher Columbus was an explorer from Italy. In 1492, he sailed across the Atlantic Ocean with three ships. He wanted to find a new route to Asia.",
+        "Columbus never reached Asia. Instead, he arrived on an island in the Caribbean. He called the people there Indians because he thought he was in India.",
+        "His journey changed the world. It connected Europe and America for the first time. After Columbus, many more explorers sailed to the new continent. His voyage was brave and changed history forever.",
+        "Columbus made three more trips to the Americas. He explored more islands and the coast of South America. He brought back gold, plants, and new animals to Europe.",
+        "Not everyone thinks Columbus was a hero. His arrival brought disease and suffering to the native people. Many indigenous people lost their land and freedom. Today people discuss his legacy carefully."
+      ],
+      "images": [
+        "<img src=\"images/historia/historia-03-0.jpg\" alt=\"Christopher Columbus sailing across the Atlantic Ocean with three ships\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-03-1.jpg\" alt=\"Columbus arriving on an island in the Caribbean\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-03-2.jpg\" alt=\"His journey connecting Europe and America for the first time\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-03-3.jpg\" alt=\"Columbus exploring islands and bringing back gold and plants\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-03-4.jpg\" alt=\"The legacy of Columbus and its impact on native people\" loading=\"lazy\">"
+      ],
+      "words": [
+        {
+          "word": "Christopher",
+          "translation": "Cristóbal",
+          "phonetics": "kris-to-fer",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Columbus",
+          "translation": "Colón",
+          "phonetics": "ko-lum-bus",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "was",
+          "translation": "fue",
+          "phonetics": "was",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "an",
+          "translation": "un",
+          "phonetics": "an",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "explorer",
+          "translation": "explorador",
+          "phonetics": "eks-pló-rer",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "from",
+          "translation": "de",
+          "phonetics": "from",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Italy",
+          "translation": "Italia",
+          "phonetics": "i-ta-li",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "In",
+          "translation": "En",
+          "phonetics": "in",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "1492",
+          "translation": "1492",
+          "phonetics": "wan-thau-sand four-jan-dred nin-ti-tu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "he",
+          "translation": "él",
+          "phonetics": "ji",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "sailed",
+          "translation": "navegó",
+          "phonetics": "seild",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "across",
+          "translation": "a través de",
+          "phonetics": "a-krós",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "the",
+          "translation": "el",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Atlantic",
+          "translation": "Atlántico",
+          "phonetics": "a-lán-tic",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Ocean",
+          "translation": "Océano",
+          "phonetics": "o-shan",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "with",
+          "translation": "con",
+          "phonetics": "with",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "three",
+          "translation": "tres",
+          "phonetics": "zri",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "ships",
+          "translation": "barcos",
+          "phonetics": "chips",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "He",
+          "translation": "Él",
+          "phonetics": "ji",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "wanted",
+          "translation": "quería",
+          "phonetics": "wán-ted",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "to",
+          "translation": "a",
+          "phonetics": "tu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "find",
+          "translation": "encontrar",
+          "phonetics": "faind",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "a",
+          "translation": "una",
+          "phonetics": "a",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "new",
+          "translation": "nueva",
+          "phonetics": "niu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "route",
+          "translation": "ruta",
+          "phonetics": "rut",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Asia",
+          "translation": "Asia",
+          "phonetics": "éi-sia",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "never",
+          "translation": "nunca",
+          "phonetics": "né-ver",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "reached",
+          "translation": "llegó",
+          "phonetics": "richd",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Instead",
+          "translation": "En cambio",
+          "phonetics": "in-stéd",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "arrived",
+          "translation": "llegó",
+          "phonetics": "a-raivd",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "on",
+          "translation": "a",
+          "phonetics": "on",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "island",
+          "translation": "isla",
+          "phonetics": "ái-land",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "in",
+          "translation": "en",
+          "phonetics": "in",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Caribbean",
+          "translation": "Caribe",
+          "phonetics": "ka-ri-bi-an",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "called",
+          "translation": "llamó",
+          "phonetics": "cold",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "people",
+          "translation": "gente",
+          "phonetics": "pi-pol",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "there",
+          "translation": "allí",
+          "phonetics": "der",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Indians",
+          "translation": "Indios",
+          "phonetics": "in-dians",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "because",
+          "translation": "porque",
+          "phonetics": "bi-kós",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "thought",
+          "translation": "pensó",
+          "phonetics": "dot",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "India",
+          "translation": "India",
+          "phonetics": "in-dia",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "His",
+          "translation": "Su",
+          "phonetics": "jis",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "journey",
+          "translation": "viaje",
+          "phonetics": "yér-nei",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "changed",
+          "translation": "cambió",
+          "phonetics": "chéin-jd",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "world",
+          "translation": "mundo",
+          "phonetics": "werld",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "It",
+          "translation": "Conectó",
+          "phonetics": "it",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "connected",
+          "translation": "conectó",
+          "phonetics": "ko-nék-ted",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Europe",
+          "translation": "Europa",
+          "phonetics": "iu-rop",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "America",
+          "translation": "América",
+          "phonetics": "a-mé-ri-ca",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "for",
+          "translation": "por",
+          "phonetics": "for",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "first",
+          "translation": "primera",
+          "phonetics": "ferst",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "time",
+          "translation": "vez",
+          "phonetics": "taim",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "After",
+          "translation": "Después de",
+          "phonetics": "af-ter",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "many",
+          "translation": "muchos",
+          "phonetics": "mé-ni",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "more",
+          "translation": "más",
+          "phonetics": "mor",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "explorers",
+          "translation": "exploradores",
+          "phonetics": "eks-pló-rers",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "continent",
+          "translation": "continente",
+          "phonetics": "kon-ti-nent",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "voyage",
+          "translation": "viaje",
+          "phonetics": "vo-iaj",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "brave",
+          "translation": "valiente",
+          "phonetics": "breiv",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "forever",
+          "translation": "para siempre",
+          "phonetics": "for-e-ver",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "trips",
+          "translation": "viajes",
+          "phonetics": "trips",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "explored",
+          "translation": "exploro",
+          "phonetics": "eks-plo-rd",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "coast",
+          "translation": "costa",
+          "phonetics": "kost",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "hero",
+          "translation": "heroe",
+          "phonetics": "ji-ro",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "disease",
+          "translation": "enfermedad",
+          "phonetics": "di-ziz",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "suffering",
+          "translation": "sufrimiento",
+          "phonetics": "su-fe-ring",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "indigenous",
+          "translation": "indigenas",
+          "phonetics": "in-di-ye-nus",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "freedom",
+          "translation": "libertad",
+          "phonetics": "fri-dom",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "legacy",
+          "translation": "legado",
+          "phonetics": "le-ga-si",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What is the main idea of this reading?",
+          "options": [
+            "Columbus discovered Italy",
+            "Columbus's voyages and their impact",
+            "How to sail across the ocean",
+            "The history of Asia"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "How many ships did Columbus take on his first voyage?",
+          "options": [
+            "Two",
+            "Three",
+            "Four",
+            "Five"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What does 'indigenous' mean?",
+          "options": [
+            "People from Europe",
+            "Native people of a place",
+            "Sailors",
+            "Explorers"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What did Columbus bring back to Europe?",
+          "options": [
+            "Only gold",
+            "Gold, plants, and new animals",
+            "Nothing",
+            "Weapons"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can you infer about Columbus's legacy?",
+          "options": [
+            "Everyone agrees he was a hero",
+            "It is debated because of suffering he caused",
+            "It was only positive",
+            "People do not remember him"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "historia-04",
+      "title": "The Vikings",
+      "paragraphs": [
+        "The Vikings were people from Scandinavia, in northern Europe. They lived over a thousand years ago. They were famous for being great sailors and warriors.",
+        "Viking ships were fast and strong. They could sail across the open sea and also travel up rivers. The front of their ships often had a dragon head.",
+        "The Vikings explored many lands. They reached Iceland, Greenland, and even North America. They also traded goods like furs, swords, and jewelry. Today we still find Viking treasures in the ground.",
+        "Vikings had their own religion with many gods. Thor was the god of thunder, and Odin was the king of the gods. They believed in a place called Valhalla for brave warriors.",
+        "The Viking age lasted about three hundred years. Then many Vikings became Christians and settled down. Their culture slowly mixed with other European cultures. Some Viking words are still used in English today."
+      ],
+      "images": [
+        "<img src=\"images/historia/historia-04-0.jpg\" alt=\"Vikings from Scandinavia, famous as great sailors and warriors\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-04-1.jpg\" alt=\"Fast and strong Viking ships with dragon heads\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-04-2.jpg\" alt=\"Vikings exploring lands like Iceland, Greenland, and North America\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-04-3.jpg\" alt=\"Viking religion and gods like Thor and Odin\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-04-4.jpg\" alt=\"The end of the Viking age and their lasting culture\" loading=\"lazy\">"
+      ],
+      "words": [
+        {
+          "word": "The",
+          "translation": "Los",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Vikings",
+          "translation": "Vikingos",
+          "phonetics": "vai-kins",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "were",
+          "translation": "eran",
+          "phonetics": "wer",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "people",
+          "translation": "personas",
+          "phonetics": "pi-pol",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "from",
+          "translation": "de",
+          "phonetics": "from",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Scandinavia",
+          "translation": "Escandinavia",
+          "phonetics": "scan-di-néi-via",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "in",
+          "translation": "en",
+          "phonetics": "in",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "northern",
+          "translation": "norte",
+          "phonetics": "nor-dern",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Europe",
+          "translation": "Europa",
+          "phonetics": "iu-rop",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "They",
+          "translation": "Ellos",
+          "phonetics": "dei",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "lived",
+          "translation": "vivieron",
+          "phonetics": "livd",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "over",
+          "translation": "hace",
+          "phonetics": "o-ver",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "a",
+          "translation": "más de",
+          "phonetics": "a",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "thousand",
+          "translation": "mil",
+          "phonetics": "thau-sand",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "years",
+          "translation": "años",
+          "phonetics": "yirs",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "ago",
+          "translation": "atrás",
+          "phonetics": "a-gó",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "famous",
+          "translation": "famosos",
+          "phonetics": "féi-mos",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "for",
+          "translation": "por",
+          "phonetics": "for",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "being",
+          "translation": "ser",
+          "phonetics": "bi-ing",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "great",
+          "translation": "grandes",
+          "phonetics": "greit",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "sailors",
+          "translation": "marineros",
+          "phonetics": "sei-lors",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "warriors",
+          "translation": "guerreros",
+          "phonetics": "wó-ri-ors",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "ships",
+          "translation": "barcos",
+          "phonetics": "chips",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "fast",
+          "translation": "rápidos",
+          "phonetics": "fast",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "strong",
+          "translation": "fuertes",
+          "phonetics": "stróng",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "could",
+          "translation": "podían",
+          "phonetics": "kud",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "sail",
+          "translation": "navegar",
+          "phonetics": "seil",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "across",
+          "translation": "a través",
+          "phonetics": "a-krós",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "the",
+          "translation": "el",
+          "phonetics": "de",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "open",
+          "translation": "abierto",
+          "phonetics": "o-pen",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "sea",
+          "translation": "mar",
+          "phonetics": "si",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "also",
+          "translation": "también",
+          "phonetics": "ól-so",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "travel",
+          "translation": "viajar",
+          "phonetics": "trá-vel",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "up",
+          "translation": "río arriba",
+          "phonetics": "ap",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "rivers",
+          "translation": "ríos",
+          "phonetics": "ri-vers",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "front",
+          "translation": "parte delantera",
+          "phonetics": "front",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "of",
+          "translation": "de",
+          "phonetics": "ov",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "their",
+          "translation": "sus",
+          "phonetics": "deir",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "often",
+          "translation": "a menudo",
+          "phonetics": "ó-fen",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "had",
+          "translation": "tenía",
+          "phonetics": "jad",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "dragon",
+          "translation": "dragón",
+          "phonetics": "drá-gon",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "head",
+          "translation": "cabeza",
+          "phonetics": "jed",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "explored",
+          "translation": "exploraron",
+          "phonetics": "eks-plórd",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "many",
+          "translation": "muchas",
+          "phonetics": "mé-ni",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "lands",
+          "translation": "tierras",
+          "phonetics": "lands",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "reached",
+          "translation": "llegaron",
+          "phonetics": "richd",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Iceland",
+          "translation": "Islandia",
+          "phonetics": "ís-land",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Greenland",
+          "translation": "Groenlandia",
+          "phonetics": "grin-land",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "even",
+          "translation": "incluso",
+          "phonetics": "i-ven",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "North",
+          "translation": "Norte",
+          "phonetics": "north",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "America",
+          "translation": "América",
+          "phonetics": "a-mé-ri-ca",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "traded",
+          "translation": "intercambiaron",
+          "phonetics": "tréi-ded",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "goods",
+          "translation": "bienes",
+          "phonetics": "guds",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "like",
+          "translation": "como",
+          "phonetics": "laik",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "furs",
+          "translation": "pieles",
+          "phonetics": "fers",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "swords",
+          "translation": "espadas",
+          "phonetics": "swords",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "jewelry",
+          "translation": "joyas",
+          "phonetics": "yu-el-ri",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Today",
+          "translation": "Hoy",
+          "phonetics": "tu-dei",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "still",
+          "translation": "aun",
+          "phonetics": "stil",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "find",
+          "translation": "encontramos",
+          "phonetics": "faind",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "treasures",
+          "translation": "tesoros",
+          "phonetics": "tre-zhers",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "ground",
+          "translation": "suelo",
+          "phonetics": "graund",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "religion",
+          "translation": "religion",
+          "phonetics": "re-li-yon",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "gods",
+          "translation": "dioses",
+          "phonetics": "godz",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "thunder",
+          "translation": "trueno",
+          "phonetics": "zan-der",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "warriors",
+          "translation": "guerreros",
+          "phonetics": "wor-ri-ors",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "Christians",
+          "translation": "cristianos",
+          "phonetics": "kris-chans",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "settled",
+          "translation": "se establecieron",
+          "phonetics": "se-tld",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "culture",
+          "translation": "cultura",
+          "phonetics": "kul-chur",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "mixed",
+          "translation": "se mezclo",
+          "phonetics": "mikst",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What is the main topic of this reading?",
+          "options": [
+            "Viking ships only",
+            "The Vikings and their culture",
+            "Modern Scandinavia",
+            "Christian religion"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Who was the king of the Viking gods?",
+          "options": [
+            "Thor",
+            "Odin",
+            "Valhalla",
+            "Loki"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What does 'thunder' mean?",
+          "options": [
+            "Lightning",
+            "Loud sound from storms",
+            "Rain",
+            "Wind"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "How long did the Viking age last?",
+          "options": [
+            "About 100 years",
+            "About 300 years",
+            "About 500 years",
+            "About 1000 years"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can you infer about the Vikings?",
+          "options": [
+            "They only fought and never settled",
+            "Their culture influenced modern languages",
+            "They never left Scandinavia",
+            "They had no religion"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "historia-05",
+      "title": "Ancient Greece and the Olympics",
+      "paragraphs": [
+        "Ancient Greece was home to many great thinkers and artists. The Greeks gave the world important ideas about science, math, and democracy.",
+        "The Olympic Games began in Greece over two thousand years ago. Athletes competed in sports like running, wrestling, and jumping. The games were held every four years.",
+        "Only men could compete in the ancient Olympics. Women had their own separate festival. Today, the Olympics include athletes from all over the world. The Olympic flame is still lit today in Greece.",
+        "Greek philosophers like Socrates and Plato asked big questions about life. They taught people to think carefully and ask questions. Their ideas still influence how we learn today.",
+        "The Greeks also built beautiful temples with tall columns. The Parthenon in Athens is the most famous one. It was built to honor the goddess Athena. Greek architecture inspires builders even now."
+      ],
+      "images": [
+        "<img src=\"images/historia/historia-05-0.jpg\" alt=\"Ancient Greece home to great thinkers and democracy\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-05-1.jpg\" alt=\"The first Olympic Games athletes competing in sports\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-05-2.jpg\" alt=\"The Olympic flame lit in Greece\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-05-3.jpg\" alt=\"Greek philosophers like Socrates and Plato\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-05-4.jpg\" alt=\"The Parthenon temple in Athens with tall columns\" loading=\"lazy\">"
+      ],
+      "words": [
+        {
+          "word": "Ancient",
+          "translation": "Antigua",
+          "phonetics": "éin-chent",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Greece",
+          "translation": "Grecia",
+          "phonetics": "gris",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "was",
+          "translation": "fue",
+          "phonetics": "was",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "home",
+          "translation": "hogar",
+          "phonetics": "jom",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "to",
+          "translation": "de",
+          "phonetics": "tu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "many",
+          "translation": "muchos",
+          "phonetics": "mé-ni",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "great",
+          "translation": "grandes",
+          "phonetics": "greit",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "thinkers",
+          "translation": "pensadores",
+          "phonetics": "thin-kers",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "artists",
+          "translation": "artistas",
+          "phonetics": "ar-tists",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "The",
+          "translation": "Los",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Greeks",
+          "translation": "Griegos",
+          "phonetics": "griks",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "gave",
+          "translation": "dieron",
+          "phonetics": "geiv",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "the",
+          "translation": "al",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "world",
+          "translation": "mundo",
+          "phonetics": "werld",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "important",
+          "translation": "importantes",
+          "phonetics": "im-pór-tant",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "ideas",
+          "translation": "ideas",
+          "phonetics": "i-déi-as",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "about",
+          "translation": "sobre",
+          "phonetics": "a-baut",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "science",
+          "translation": "ciencia",
+          "phonetics": "sai-ens",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "math",
+          "translation": "matemáticas",
+          "phonetics": "maz",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "democracy",
+          "translation": "democracia",
+          "phonetics": "de-mo-cra-si",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Olympic",
+          "translation": "Olímpicos",
+          "phonetics": "olím-pic",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Games",
+          "translation": "Juegos",
+          "phonetics": "geims",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "began",
+          "translation": "comenzaron",
+          "phonetics": "bi-gan",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "in",
+          "translation": "en",
+          "phonetics": "in",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "over",
+          "translation": "hace más de",
+          "phonetics": "o-ver",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "two",
+          "translation": "dos",
+          "phonetics": "tu",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "thousand",
+          "translation": "mil",
+          "phonetics": "thau-sand",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "years",
+          "translation": "años",
+          "phonetics": "yirs",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "ago",
+          "translation": "atrás",
+          "phonetics": "a-gó",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Athletes",
+          "translation": "Atletas",
+          "phonetics": "az-lets",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "competed",
+          "translation": "compitieron",
+          "phonetics": "kom-pí-ted",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "sports",
+          "translation": "deportes",
+          "phonetics": "sports",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "like",
+          "translation": "como",
+          "phonetics": "laik",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "running",
+          "translation": "carrera",
+          "phonetics": "ra-ning",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "wrestling",
+          "translation": "lucha",
+          "phonetics": "res-ling",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "jumping",
+          "translation": "salto",
+          "phonetics": "yam-ping",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "games",
+          "translation": "juegos",
+          "phonetics": "geims",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "were",
+          "translation": "se",
+          "phonetics": "wer",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "held",
+          "translation": "celebraban",
+          "phonetics": "jeld",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "every",
+          "translation": "cada",
+          "phonetics": "é-vri",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "four",
+          "translation": "cuatro",
+          "phonetics": "for",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Only",
+          "translation": "Solo",
+          "phonetics": "ón-li",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "men",
+          "translation": "hombres",
+          "phonetics": "men",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "could",
+          "translation": "podían",
+          "phonetics": "kud",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "compete",
+          "translation": "competir",
+          "phonetics": "kom-pít",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "ancient",
+          "translation": "antiguos",
+          "phonetics": "éin-chent",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Olympics",
+          "translation": "Olímpicos",
+          "phonetics": "olím-pics",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Women",
+          "translation": "Mujeres",
+          "phonetics": "wu-men",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "had",
+          "translation": "tenían",
+          "phonetics": "jad",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "their",
+          "translation": "su",
+          "phonetics": "deir",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "own",
+          "translation": "propio",
+          "phonetics": "on",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "separate",
+          "translation": "separado",
+          "phonetics": "se-pa-rat",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "festival",
+          "translation": "festival",
+          "phonetics": "fes-ti-val",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Today",
+          "translation": "Hoy",
+          "phonetics": "tu-dei",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "include",
+          "translation": "incluyen",
+          "phonetics": "in-klud",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "athletes",
+          "translation": "atletas",
+          "phonetics": "az-lets",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "from",
+          "translation": "de",
+          "phonetics": "from",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "all",
+          "translation": "todo",
+          "phonetics": "ol",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "flame",
+          "translation": "flama",
+          "phonetics": "fleim",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "lit",
+          "translation": "encendida",
+          "phonetics": "lit",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "today",
+          "translation": "hoy",
+          "phonetics": "tu-dei",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "philosophers",
+          "translation": "filosofos",
+          "phonetics": "fi-lo-so-fers",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "influence",
+          "translation": "influencia",
+          "phonetics": "in-flu-ens",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "temples",
+          "translation": "templos",
+          "phonetics": "tem-pols",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "columns",
+          "translation": "columnas",
+          "phonetics": "ko-lums",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "architecture",
+          "translation": "arquitectura",
+          "phonetics": "ar-ki-tek-chur",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "inspires",
+          "translation": "inspira",
+          "phonetics": "in-spi-ars",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "goddess",
+          "translation": "diosa",
+          "phonetics": "go-des",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What is this reading mainly about?",
+          "options": [
+            "Only the Olympics",
+            "Ancient Greece, its thinkers, and buildings",
+            "How to play sports",
+            "Modern Athens"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Who were the famous Greek philosophers mentioned?",
+          "options": [
+            "Columbus and Galileo",
+            "Socrates and Plato",
+            "Thor and Odin",
+            "Caesar and Augustus"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What is the Parthenon?",
+          "options": [
+            "A sports stadium",
+            "A famous temple in Athens",
+            "A Greek ship",
+            "A type of column"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Who could compete in the ancient Olympics?",
+          "options": [
+            "Everyone",
+            "Only men",
+            "Only women",
+            "Only children"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can you infer about Greek ideas?",
+          "options": [
+            "They are no longer relevant",
+            "They still influence learning today",
+            "They were only about sports",
+            "They were forgotten"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "historia-06",
+      "title": "The Great Wall of China",
+      "paragraphs": [
+        "The Great Wall of China is one of the most famous buildings in the world. It is over twenty-one thousand kilometers long. It was built to protect China from enemies.",
+        "Many different emperors built parts of the wall over hundreds of years. Workers used stone, brick, and earth to make it strong. Millions of people helped build it.",
+        "Today, the Great Wall is a popular place for tourists. People come from all over the world to walk along it. Some parts are very old, but others have been repaired.",
+        "The wall was not built all at once. Different sections were connected over many centuries. Some parts were made of packed earth, while others used stone and brick.",
+        "Guards lived in towers along the wall. They used smoke signals during the day and fire at night to warn of danger. The wall had watchtowers every few hundred meters."
+      ],
+      "images": [
+        "<img src=\"images/historia/historia-06-0.jpg\" alt=\"The Great Wall of China protecting the country from enemies\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-06-1.jpg\" alt=\"Emperors and workers building the wall with stone and brick\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-06-2.jpg\" alt=\"Tourists visiting and walking along the Great Wall\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-06-3.jpg\" alt=\"Different sections of the wall connected over centuries\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-06-4.jpg\" alt=\"Guards using watchtowers and signal fires along the wall\" loading=\"lazy\">"
+      ],
+      "words": [
+        {
+          "word": "The",
+          "translation": "La",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Great",
+          "translation": "Gran",
+          "phonetics": "greit",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Wall",
+          "translation": "Muralla",
+          "phonetics": "wol",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "of",
+          "translation": "de",
+          "phonetics": "ov",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "China",
+          "translation": "China",
+          "phonetics": "chai-na",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "is",
+          "translation": "es",
+          "phonetics": "is",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "one",
+          "translation": "una",
+          "phonetics": "wan",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "the",
+          "translation": "la",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "most",
+          "translation": "más",
+          "phonetics": "most",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "famous",
+          "translation": "famosa",
+          "phonetics": "féi-mos",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "buildings",
+          "translation": "construcciones",
+          "phonetics": "bíl-dings",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "in",
+          "translation": "en",
+          "phonetics": "in",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "world",
+          "translation": "mundo",
+          "phonetics": "werld",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "It",
+          "translation": "Tiene",
+          "phonetics": "it",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "over",
+          "translation": "más de",
+          "phonetics": "o-ver",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "twenty-one",
+          "translation": "veintiún",
+          "phonetics": "twen-ti-wan",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "thousand",
+          "translation": "mil",
+          "phonetics": "thau-sand",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "kilometers",
+          "translation": "kilómetros",
+          "phonetics": "ki-ló-me-ters",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "long",
+          "translation": "largo",
+          "phonetics": "long",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "was",
+          "translation": "fue",
+          "phonetics": "was",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "built",
+          "translation": "construida",
+          "phonetics": "bilt",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "to",
+          "translation": "para",
+          "phonetics": "tu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "protect",
+          "translation": "proteger",
+          "phonetics": "pro-tekt",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "from",
+          "translation": "de",
+          "phonetics": "from",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "enemies",
+          "translation": "enemigos",
+          "phonetics": "e-ne-mis",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Many",
+          "translation": "Muchos",
+          "phonetics": "mé-ni",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "different",
+          "translation": "diferentes",
+          "phonetics": "di-fe-rent",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "emperors",
+          "translation": "emperadores",
+          "phonetics": "em-pe-rors",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "parts",
+          "translation": "partes",
+          "phonetics": "parts",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "wall",
+          "translation": "muralla",
+          "phonetics": "wol",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "hundreds",
+          "translation": "cientos",
+          "phonetics": "han-dreds",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "years",
+          "translation": "años",
+          "phonetics": "yirs",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Workers",
+          "translation": "Trabajadores",
+          "phonetics": "wér-kers",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "used",
+          "translation": "usaron",
+          "phonetics": "iusd",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "stone",
+          "translation": "piedra",
+          "phonetics": "ston",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "brick",
+          "translation": "ladrillo",
+          "phonetics": "brik",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "earth",
+          "translation": "tierra",
+          "phonetics": "erz",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "make",
+          "translation": "hacerla",
+          "phonetics": "meik",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "strong",
+          "translation": "fuerte",
+          "phonetics": "stróng",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Millions",
+          "translation": "Millones",
+          "phonetics": "mi-lions",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "people",
+          "translation": "personas",
+          "phonetics": "pi-pol",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "helped",
+          "translation": "ayudaron",
+          "phonetics": "jélpt",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "build",
+          "translation": "construir",
+          "phonetics": "bíd",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Today",
+          "translation": "Hoy",
+          "phonetics": "tu-dei",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "a",
+          "translation": "un",
+          "phonetics": "a",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "popular",
+          "translation": "popular",
+          "phonetics": "po-pu-lar",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "place",
+          "translation": "lugar",
+          "phonetics": "pleis",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "for",
+          "translation": "para",
+          "phonetics": "for",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "tourists",
+          "translation": "turistas",
+          "phonetics": "tu-rists",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "People",
+          "translation": "Personas",
+          "phonetics": "pi-pol",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "come",
+          "translation": "vienen",
+          "phonetics": "kom",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "all",
+          "translation": "todo",
+          "phonetics": "ol",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "walk",
+          "translation": "caminar",
+          "phonetics": "wok",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "along",
+          "translation": "por",
+          "phonetics": "a-lóng",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Some",
+          "translation": "Algunas",
+          "phonetics": "som",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "are",
+          "translation": "son",
+          "phonetics": "ar",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "very",
+          "translation": "muy",
+          "phonetics": "vé-ri",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "old",
+          "translation": "antiguas",
+          "phonetics": "old",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "but",
+          "translation": "pero",
+          "phonetics": "bat",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "others",
+          "translation": "otras",
+          "phonetics": "o-ders",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "have",
+          "translation": "han",
+          "phonetics": "jav",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "been",
+          "translation": "sido",
+          "phonetics": "bin",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "repaired",
+          "translation": "reparadas",
+          "phonetics": "ri-pérd",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "sections",
+          "translation": "secciones",
+          "phonetics": "sek-chons",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "centuries",
+          "translation": "siglos",
+          "phonetics": "sen-chu-ris",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "packed",
+          "translation": "compactada",
+          "phonetics": "pakd",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "guards",
+          "translation": "guardias",
+          "phonetics": "gardz",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "towers",
+          "translation": "torres",
+          "phonetics": "tau-ers",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "signals",
+          "translation": "senales",
+          "phonetics": "sig-nols",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "warn",
+          "translation": "advertir",
+          "phonetics": "worn",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "watchtowers",
+          "translation": "torres de vigilancia",
+          "phonetics": "woch-tau-ers",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What is the main topic of this reading?",
+          "options": [
+            "Chinese food",
+            "The Great Wall of China",
+            "How to build towers",
+            "Ancient Chinese emperors"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "How long is the Great Wall?",
+          "options": [
+            "Over 1,000 km",
+            "Over 10,000 km",
+            "Over 21,000 km",
+            "Over 100,000 km"
+          ],
+          "correct": 2
+        },
+        {
+          "question": "What does 'watchtowers' mean?",
+          "options": [
+            "Towers for watching for danger",
+            "Towers for living",
+            "Towers for storage",
+            "Towers for worship"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "What did guards use to warn of danger during the day?",
+          "options": [
+            "Fire signals",
+            "Smoke signals",
+            "Loud bells",
+            "Flags"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can you infer about building the wall?",
+          "options": [
+            "It was built in one year",
+            "It was a long process over centuries",
+            "One person built it",
+            "It was never finished"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "historia-07",
+      "title": "The Aztecs",
+      "paragraphs": [
+        "The Aztecs were a powerful people who lived in Mexico. Their empire began in the 1300s. They built their capital city on an island in a lake.",
+        "The Aztecs were great farmers and builders. They grew corn, beans, and tomatoes. They also built beautiful temples and pyramids in their cities.",
+        "The Aztec empire ended when Spanish explorers arrived in 1519. The leader of the Aztecs was named Moctezuma. The Spanish brought new weapons and diseases. Today you can still see Aztec ruins in Mexico City.",
+        "The Aztecs had their own calendar with 365 days. They also had a special religious calendar with 260 days. Their calendars helped them know when to plant crops and hold ceremonies.",
+        "Aztec society had different social classes. Nobles were at the top, and common people were farmers and workers. Education was important, and children went to special schools. The Aztecs had a rich culture with music and poetry."
+      ],
+      "images": [
+        "<img src=\"images/historia/historia-07-0.jpg\" alt=\"The powerful Aztecs building their capital city on an island in a lake\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-07-1.jpg\" alt=\"Aztec farmers and builders growing corn and making pyramids\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-07-2.jpg\" alt=\"Spanish explorers arriving and the end of the Aztec empire\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-07-3.jpg\" alt=\"The Aztec calendar with 365 days and religious festivals\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-07-4.jpg\" alt=\"Aztec social classes, education, and rich culture\" loading=\"lazy\">"
+      ],
+      "words": [
+        {
+          "word": "The",
+          "translation": "Los",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Aztecs",
+          "translation": "Aztecas",
+          "phonetics": "az-teks",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "were",
+          "translation": "eran",
+          "phonetics": "wer",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "a",
+          "translation": "un",
+          "phonetics": "a",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "powerful",
+          "translation": "poderoso",
+          "phonetics": "pó-wer-ful",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "people",
+          "translation": "pueblo",
+          "phonetics": "pi-pol",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "who",
+          "translation": "que",
+          "phonetics": "ju",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "lived",
+          "translation": "vivían",
+          "phonetics": "livd",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "in",
+          "translation": "en",
+          "phonetics": "in",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Mexico",
+          "translation": "México",
+          "phonetics": "mé-ksi-co",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Their",
+          "translation": "Su",
+          "phonetics": "deir",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "empire",
+          "translation": "imperio",
+          "phonetics": "em-pá-iar",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "began",
+          "translation": "comenzó",
+          "phonetics": "bi-gan",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "the",
+          "translation": "los",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "1300s",
+          "translation": "1300s",
+          "phonetics": "thir-teen-jan-dreds",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "They",
+          "translation": "Ellos",
+          "phonetics": "dei",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "built",
+          "translation": "construyeron",
+          "phonetics": "bilt",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "their",
+          "translation": "su",
+          "phonetics": "deir",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "capital",
+          "translation": "capital",
+          "phonetics": "ká-pi-tal",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "city",
+          "translation": "ciudad",
+          "phonetics": "si-ti",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "on",
+          "translation": "en",
+          "phonetics": "on",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "an",
+          "translation": "una",
+          "phonetics": "an",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "island",
+          "translation": "isla",
+          "phonetics": "ái-land",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "lake",
+          "translation": "lago",
+          "phonetics": "leik",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "great",
+          "translation": "grandes",
+          "phonetics": "greit",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "farmers",
+          "translation": "agricultores",
+          "phonetics": "far-mers",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "builders",
+          "translation": "constructores",
+          "phonetics": "bíl-ders",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "grew",
+          "translation": "cultivaron",
+          "phonetics": "gru",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "corn",
+          "translation": "maíz",
+          "phonetics": "korn",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "beans",
+          "translation": "frijoles",
+          "phonetics": "bins",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "tomatoes",
+          "translation": "tomates",
+          "phonetics": "to-mei-tos",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "also",
+          "translation": "también",
+          "phonetics": "ól-so",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "beautiful",
+          "translation": "hermosos",
+          "phonetics": "biu-ti-ful",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "temples",
+          "translation": "templos",
+          "phonetics": "tem-pels",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "pyramids",
+          "translation": "pirámides",
+          "phonetics": "pi-rá-mids",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "cities",
+          "translation": "ciudades",
+          "phonetics": "si-tis",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "empire",
+          "translation": "imperio",
+          "phonetics": "em-pá-iar",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "ended",
+          "translation": "terminó",
+          "phonetics": "en-ded",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "when",
+          "translation": "cuando",
+          "phonetics": "wen",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Spanish",
+          "translation": "españoles",
+          "phonetics": "spa-nish",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "explorers",
+          "translation": "exploradores",
+          "phonetics": "eks-pló-rers",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "arrived",
+          "translation": "llegaron",
+          "phonetics": "a-raivd",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "1519",
+          "translation": "1519",
+          "phonetics": "fif-teen-jan-dred nine-tin",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "leader",
+          "translation": "líder",
+          "phonetics": "li-der",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "of",
+          "translation": "de",
+          "phonetics": "ov",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Aztecs",
+          "translation": "aztecas",
+          "phonetics": "az-teks",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "was",
+          "translation": "era",
+          "phonetics": "was",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "named",
+          "translation": "llamado",
+          "phonetics": "neimd",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Moctezuma",
+          "translation": "Moctezuma",
+          "phonetics": "mok-te-zu-ma",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "brought",
+          "translation": "trajeron",
+          "phonetics": "brot",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "new",
+          "translation": "nuevas",
+          "phonetics": "niu",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "weapons",
+          "translation": "armas",
+          "phonetics": "wé-pons",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "diseases",
+          "translation": "enfermedades",
+          "phonetics": "di-zí-zis",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Today",
+          "translation": "Hoy",
+          "phonetics": "tu-dei",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "you",
+          "translation": "tu",
+          "phonetics": "yu",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "still",
+          "translation": "aun",
+          "phonetics": "stil",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "see",
+          "translation": "ver",
+          "phonetics": "si",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "ruins",
+          "translation": "ruinas",
+          "phonetics": "ru-ins",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "City",
+          "translation": "Ciudad",
+          "phonetics": "si-ti",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "calendar",
+          "translation": "calendario",
+          "phonetics": "ka-len-dar",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "religious",
+          "translation": "religioso",
+          "phonetics": "ri-li-yos",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "crops",
+          "translation": "cultivos",
+          "phonetics": "krops",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "ceremonies",
+          "translation": "ceremonias",
+          "phonetics": "se-re-mo-nis",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "social",
+          "translation": "social",
+          "phonetics": "so-chal",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "classes",
+          "translation": "clases",
+          "phonetics": "kla-ses",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "nobles",
+          "translation": "nobles",
+          "phonetics": "no-bols",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "education",
+          "translation": "educacion",
+          "phonetics": "e-yu-kei-chon",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "poetry",
+          "translation": "poesia",
+          "phonetics": "po-e-tri",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What is the main topic of this reading?",
+          "options": [
+            "Spanish explorers",
+            "The Aztec civilization",
+            "Mexican food",
+            "How to make calendars"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "How many days were in the Aztec main calendar?",
+          "options": [
+            "260 days",
+            "365 days",
+            "300 days",
+            "400 days"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What does 'ceremonies' mean?",
+          "options": [
+            "Parties",
+            "Special formal events",
+            "Farming activities",
+            "School lessons"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Who was at the top of Aztec society?",
+          "options": [
+            "Farmers",
+            "Nobles",
+            "Soldiers",
+            "Workers"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can you infer about Aztec education?",
+          "options": [
+            "Children did not go to school",
+            "Education was important to them",
+            "Only nobles could learn",
+            "They had no schools"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "historia-08",
+      "title": "The Industrial Revolution",
+      "paragraphs": [
+        "The Industrial Revolution began in England in the 1700s. It was a time when machines started to do work that people had done by hand.",
+        "Factories were built to make products like clothes and tools. Steam engines powered trains and ships. This made travel and trade much faster.",
+        "Life changed a lot for ordinary people. Many moved from farms to cities to work in factories. Children also worked in factories, which was very hard. Today machines do even more work in our modern world.",
+        "New inventions changed daily life. The light bulb let people work after dark. The telegraph allowed messages to travel quickly across long distances. The telephone let people talk to each other from far away.",
+        "The Industrial Revolution brought pollution to cities. Smoke from factories filled the air. Rivers became dirty from factory waste. Over time, people began to protect the environment more."
+      ],
+      "images": [
+        "<img src=\"images/historia/historia-08-0.jpg\" alt=\"The Industrial Revolution in England with machines starting work\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-08-1.jpg\" alt=\"Factories, steam engines, trains, and ships\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-08-2.jpg\" alt=\"People moving from farms to cities to work in factories\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-08-3.jpg\" alt=\"New daily life inventions like the light bulb and telephone\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-08-4.jpg\" alt=\"City pollution and smoke from factories\" loading=\"lazy\">"
+      ],
+      "words": [
+        {
+          "word": "The",
+          "translation": "La",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Industrial",
+          "translation": "Industrial",
+          "phonetics": "in-das-tri-al",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Revolution",
+          "translation": "Revolución",
+          "phonetics": "re-vo-lu-chon",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "began",
+          "translation": "comenzó",
+          "phonetics": "bi-gan",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "in",
+          "translation": "en",
+          "phonetics": "in",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "England",
+          "translation": "Inglaterra",
+          "phonetics": "ing-land",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "the",
+          "translation": "los",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "1700s",
+          "translation": "1700s",
+          "phonetics": "se-ven-teen-jan-dreds",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "It",
+          "translation": "Fue",
+          "phonetics": "it",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "was",
+          "translation": "era",
+          "phonetics": "was",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "a",
+          "translation": "una",
+          "phonetics": "a",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "time",
+          "translation": "época",
+          "phonetics": "taim",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "when",
+          "translation": "cuando",
+          "phonetics": "wen",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "machines",
+          "translation": "máquinas",
+          "phonetics": "ma-chins",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "started",
+          "translation": "empezaron",
+          "phonetics": "stár-ted",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "to",
+          "translation": "a",
+          "phonetics": "tu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "do",
+          "translation": "hacer",
+          "phonetics": "du",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "work",
+          "translation": "trabajo",
+          "phonetics": "werk",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "that",
+          "translation": "que",
+          "phonetics": "dat",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "people",
+          "translation": "personas",
+          "phonetics": "pi-pol",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "had",
+          "translation": "habían",
+          "phonetics": "jad",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "done",
+          "translation": "hecho",
+          "phonetics": "dan",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "by",
+          "translation": "a",
+          "phonetics": "bai",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "hand",
+          "translation": "mano",
+          "phonetics": "jand",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Factories",
+          "translation": "Fábricas",
+          "phonetics": "fac-to-ris",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "were",
+          "translation": "fueron",
+          "phonetics": "wer",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "built",
+          "translation": "construidas",
+          "phonetics": "bilt",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "make",
+          "translation": "hacer",
+          "phonetics": "meik",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "products",
+          "translation": "productos",
+          "phonetics": "pró-dukts",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "like",
+          "translation": "como",
+          "phonetics": "laik",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "clothes",
+          "translation": "ropa",
+          "phonetics": "klouz",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "tools",
+          "translation": "herramientas",
+          "phonetics": "tuls",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Steam",
+          "translation": "Vapor",
+          "phonetics": "stim",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "engines",
+          "translation": "motores",
+          "phonetics": "en-jins",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "powered",
+          "translation": "impulsaron",
+          "phonetics": "pó-werd",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "trains",
+          "translation": "trenes",
+          "phonetics": "treins",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "ships",
+          "translation": "barcos",
+          "phonetics": "chips",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "This",
+          "translation": "Esto",
+          "phonetics": "dis",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "made",
+          "translation": "hizo",
+          "phonetics": "meid",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "travel",
+          "translation": "viajar",
+          "phonetics": "trá-vel",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "trade",
+          "translation": "comercio",
+          "phonetics": "treid",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "much",
+          "translation": "mucho",
+          "phonetics": "mach",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "faster",
+          "translation": "más rápido",
+          "phonetics": "fas-ter",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Life",
+          "translation": "La vida",
+          "phonetics": "laif",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "changed",
+          "translation": "cambió",
+          "phonetics": "chéin-jd",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "lot",
+          "translation": "mucho",
+          "phonetics": "lot",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "for",
+          "translation": "para",
+          "phonetics": "for",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "ordinary",
+          "translation": "comunes",
+          "phonetics": "or-di-ne-ri",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Many",
+          "translation": "Muchos",
+          "phonetics": "mé-ni",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "moved",
+          "translation": "se mudaron",
+          "phonetics": "muvd",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "from",
+          "translation": "de",
+          "phonetics": "from",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "farms",
+          "translation": "granjas",
+          "phonetics": "farms",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "cities",
+          "translation": "ciudades",
+          "phonetics": "si-tis",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "work",
+          "translation": "trabajar",
+          "phonetics": "werk",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "factories",
+          "translation": "fábricas",
+          "phonetics": "fac-to-ris",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Children",
+          "translation": "Niños",
+          "phonetics": "chil-dren",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "also",
+          "translation": "también",
+          "phonetics": "ól-so",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "worked",
+          "translation": "trabajaron",
+          "phonetics": "werk",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "which",
+          "translation": "lo cual",
+          "phonetics": "wich",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "very",
+          "translation": "muy",
+          "phonetics": "vé-ri",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "hard",
+          "translation": "duro",
+          "phonetics": "jard",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "even",
+          "translation": "incluso",
+          "phonetics": "i-ven",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "our",
+          "translation": "nuestro",
+          "phonetics": "aur",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "modern",
+          "translation": "moderno",
+          "phonetics": "mo-dern",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "inventions",
+          "translation": "invenciones",
+          "phonetics": "in-ven-chons",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "bulb",
+          "translation": "bombilla",
+          "phonetics": "bolb",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "telegraph",
+          "translation": "telegrafo",
+          "phonetics": "te-le-graf",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "distances",
+          "translation": "distancias",
+          "phonetics": "dis-tan-ses",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "telephone",
+          "translation": "telefono",
+          "phonetics": "te-le-fon",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "pollution",
+          "translation": "contaminacion",
+          "phonetics": "po-lu-chon",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "smoke",
+          "translation": "humo",
+          "phonetics": "smok",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "waste",
+          "translation": "desechos",
+          "phonetics": "weist",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "environment",
+          "translation": "medio ambiente",
+          "phonetics": "in-vai-ron-ment",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What is the main idea of this reading?",
+          "options": [
+            "How machines changed the world",
+            "Only about trains",
+            "How to build factories",
+            "Modern technology"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "What did the light bulb allow people to do?",
+          "options": [
+            "Sleep better",
+            "Work after dark",
+            "Travel faster",
+            "Cook food"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What does 'pollution' mean?",
+          "options": [
+            "Clean air",
+            "Harmful waste in the environment",
+            "Factory products",
+            "New inventions"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What did the telegraph do?",
+          "options": [
+            "Carried people",
+            "Sent messages quickly",
+            "Made light",
+            "Powered trains"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can you infer about the Industrial Revolution?",
+          "options": [
+            "It only had positive effects",
+            "It brought both progress and problems",
+            "It had no effect on daily life",
+            "People preferred it to farming"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "historia-09",
+      "title": "World War II",
+      "paragraphs": [
+        "World War II was a big war that lasted from 1939 to 1945. Many countries around the world were involved. It was the largest war in history.",
+        "The war was fought between two groups of countries. One group was called the Allies. The other group was called the Axis powers.",
+        "The war ended when the Allies won. After the war, countries worked together to build peace. They created the United Nations to help prevent future wars. It was a terrible time, but also a time of great courage.",
+        "During the war, many people had to leave their homes. Some countries were occupied by enemy soldiers. Families were separated and life was very difficult for millions of people.",
+        "After the war, the world changed in many ways. New countries were formed and old empires ended. Women had more opportunities to work. The world learned the importance of freedom and human rights."
+      ],
+      "images": [
+        "<img src=\"images/historia/historia-09-0.jpg\" alt=\"World War II, the largest war in history from 1939 to 1945\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-09-1.jpg\" alt=\"The Allies and the Axis powers fighting in the war\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-09-2.jpg\" alt=\"The end of the war and the creation of the United Nations for peace\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-09-3.jpg\" alt=\"People leaving homes and families separated during the war\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-09-4.jpg\" alt=\"The post-war world with new countries and human rights\" loading=\"lazy\">"
+      ],
+      "words": [
+        {
+          "word": "World",
+          "translation": "Mundial",
+          "phonetics": "werld",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "War",
+          "translation": "Guerra",
+          "phonetics": "war",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "II",
+          "translation": "II",
+          "phonetics": "tu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "was",
+          "translation": "fue",
+          "phonetics": "was",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "a",
+          "translation": "una",
+          "phonetics": "a",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "big",
+          "translation": "gran",
+          "phonetics": "big",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "war",
+          "translation": "guerra",
+          "phonetics": "war",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "that",
+          "translation": "que",
+          "phonetics": "dat",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "lasted",
+          "translation": "duró",
+          "phonetics": "las-ted",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "from",
+          "translation": "desde",
+          "phonetics": "from",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "1939",
+          "translation": "1939",
+          "phonetics": "nine-teen-thir-ti-nain",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "to",
+          "translation": "hasta",
+          "phonetics": "tu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "1945",
+          "translation": "1945",
+          "phonetics": "nine-teen-for-ti-faiv",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Many",
+          "translation": "Muchos",
+          "phonetics": "mé-ni",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "countries",
+          "translation": "países",
+          "phonetics": "kan-tris",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "around",
+          "translation": "alrededor",
+          "phonetics": "a-raund",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "the",
+          "translation": "del",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "world",
+          "translation": "mundo",
+          "phonetics": "werld",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "were",
+          "translation": "estuvieron",
+          "phonetics": "wer",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "involved",
+          "translation": "involucrados",
+          "phonetics": "in-volvd",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "It",
+          "translation": "Fue",
+          "phonetics": "it",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "largest",
+          "translation": "la más grande",
+          "phonetics": "lar-jest",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "in",
+          "translation": "en",
+          "phonetics": "in",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "history",
+          "translation": "historia",
+          "phonetics": "is-to-ri",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "fought",
+          "translation": "luchó",
+          "phonetics": "fot",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "between",
+          "translation": "entre",
+          "phonetics": "bi-twin",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "two",
+          "translation": "dos",
+          "phonetics": "tu",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "groups",
+          "translation": "grupos",
+          "phonetics": "grups",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "of",
+          "translation": "de",
+          "phonetics": "ov",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "One",
+          "translation": "Un",
+          "phonetics": "wan",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "group",
+          "translation": "grupo",
+          "phonetics": "grup",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "called",
+          "translation": "llamado",
+          "phonetics": "cold",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Allies",
+          "translation": "Aliados",
+          "phonetics": "a-láis",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "The",
+          "translation": "El",
+          "phonetics": "de",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "other",
+          "translation": "otro",
+          "phonetics": "o-der",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Axis",
+          "translation": "Eje",
+          "phonetics": "ák-sis",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "powers",
+          "translation": "potencias",
+          "phonetics": "pó-wers",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "ended",
+          "translation": "terminó",
+          "phonetics": "en-ded",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "when",
+          "translation": "cuando",
+          "phonetics": "wen",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "won",
+          "translation": "ganaron",
+          "phonetics": "won",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "After",
+          "translation": "Después",
+          "phonetics": "af-ter",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "worked",
+          "translation": "trabajaron",
+          "phonetics": "werk",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "together",
+          "translation": "juntos",
+          "phonetics": "tu-gé-der",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "build",
+          "translation": "construir",
+          "phonetics": "bíd",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "peace",
+          "translation": "paz",
+          "phonetics": "pis",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "They",
+          "translation": "Ellos",
+          "phonetics": "dei",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "created",
+          "translation": "crearon",
+          "phonetics": "kri-ei-ted",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "United",
+          "translation": "Unidas",
+          "phonetics": "iu-nai-ted",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Nations",
+          "translation": "Naciones",
+          "phonetics": "nei-chons",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "help",
+          "translation": "ayudar",
+          "phonetics": "jelp",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "prevent",
+          "translation": "prevenir",
+          "phonetics": "pre-vent",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "future",
+          "translation": "futuras",
+          "phonetics": "fiu-chur",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "wars",
+          "translation": "guerras",
+          "phonetics": "wars",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "terrible",
+          "translation": "terrible",
+          "phonetics": "te-ri-ble",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "also",
+          "translation": "tambien",
+          "phonetics": "ol-so",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "great",
+          "translation": "gran",
+          "phonetics": "greit",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "courage",
+          "translation": "valentia",
+          "phonetics": "ku-rij",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "occupied",
+          "translation": "ocupados",
+          "phonetics": "o-ku-paid",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "enemy",
+          "translation": "enemigo",
+          "phonetics": "e-ne-mi",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "separated",
+          "translation": "separadas",
+          "phonetics": "se-pa-rei-tid",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "opportunities",
+          "translation": "oportunidades",
+          "phonetics": "op-or-tu-ni-tis",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "freedom",
+          "translation": "libertad",
+          "phonetics": "fri-dom",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "rights",
+          "translation": "derechos",
+          "phonetics": "raits",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What is the main topic of this reading?",
+          "options": [
+            "The United Nations",
+            "World War II and its effects",
+            "How to fight wars",
+            "Life in 1945"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "When did World War II end?",
+          "options": [
+            "1939",
+            "1942",
+            "1945",
+            "1950"
+          ],
+          "correct": 2
+        },
+        {
+          "question": "What does 'occupied' mean?",
+          "options": [
+            "Free and independent",
+            "Taken control of by enemy soldiers",
+            "Empty",
+            "Destroyed completely"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What was created after the war to prevent future wars?",
+          "options": [
+            "The Roman Empire",
+            "The United Nations",
+            "The Olympics",
+            "The European Union"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can you infer about the post-war period?",
+          "options": [
+            "Nothing changed",
+            "The world learned about freedom and rights",
+            "Life stayed the same",
+            "Countries stopped working together"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "historia-10",
+      "title": "The Space Race",
+      "paragraphs": [
+        "The Space Race was a competition between the United States and the Soviet Union. Both countries wanted to explore space first.",
+        "In 1961, a Soviet astronaut named Yuri Gagarin became the first person in space. He orbited the Earth once and returned safely.",
+        "In 1969, the United States sent astronauts to the Moon. Neil Armstrong was the first person to walk on the Moon. He said it was a giant leap for mankind. Today space exploration continues with new rockets and missions.",
+        "After the Moon landing, both countries continued to explore space. They built space stations where astronauts lived for months. Robots were sent to study Mars and other planets.",
+        "Today, many countries work together in space. The International Space Station is a shared project. Private companies are also building rockets. Space exploration helps us learn about our universe and our own planet."
+      ],
+      "images": [
+        "<img src=\"images/historia/historia-10-0.jpg\" alt=\"The Space Race competition between the United States and the Soviet Union\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-10-1.jpg\" alt=\"Soviet astronaut Yuri Gagarin becoming the first person in space\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-10-2.jpg\" alt=\"Neil Armstrong and astronauts walking on the Moon\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-10-3.jpg\" alt=\"Space stations and robots studying Mars and planets\" loading=\"lazy\">",
+        "<img src=\"images/historia/historia-10-4.jpg\" alt=\"International Space Station and countries working together in space\" loading=\"lazy\">"
+      ],
+      "words": [
+        {
+          "word": "The",
+          "translation": "La",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Space",
+          "translation": "Espacial",
+          "phonetics": "speis",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Race",
+          "translation": "Carrera",
+          "phonetics": "reis",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "was",
+          "translation": "fue",
+          "phonetics": "was",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "a",
+          "translation": "una",
+          "phonetics": "a",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "competition",
+          "translation": "competición",
+          "phonetics": "kom-pe-ti-chon",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "between",
+          "translation": "entre",
+          "phonetics": "bi-twin",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "the",
+          "translation": "los",
+          "phonetics": "de",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "United",
+          "translation": "Estados",
+          "phonetics": "iu-nai-ted",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "States",
+          "translation": "Unidos",
+          "phonetics": "steits",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "and",
+          "translation": "y",
+          "phonetics": "and",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Soviet",
+          "translation": "soviética",
+          "phonetics": "so-viet",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Union",
+          "translation": "Unión",
+          "phonetics": "iu-nion",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "Both",
+          "translation": "Ambos",
+          "phonetics": "boz",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "countries",
+          "translation": "países",
+          "phonetics": "kan-tris",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "wanted",
+          "translation": "querían",
+          "phonetics": "wán-ted",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "to",
+          "translation": "ser",
+          "phonetics": "tu",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "explore",
+          "translation": "explorar",
+          "phonetics": "eks-plór",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "space",
+          "translation": "espacio",
+          "phonetics": "speis",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "first",
+          "translation": "primeros",
+          "phonetics": "ferst",
+          "paragraphIndex": 0
+        },
+        {
+          "word": "In",
+          "translation": "En",
+          "phonetics": "in",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "1961",
+          "translation": "1961",
+          "phonetics": "nine-teen-sik-si-wan",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Soviet",
+          "translation": "soviético",
+          "phonetics": "so-viet",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "astronaut",
+          "translation": "astronauta",
+          "phonetics": "as-tro-not",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "named",
+          "translation": "llamado",
+          "phonetics": "neimd",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Yuri",
+          "translation": "Yuri",
+          "phonetics": "yu-ri",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Gagarin",
+          "translation": "Gagarin",
+          "phonetics": "ga-ga-rin",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "became",
+          "translation": "se convirtió",
+          "phonetics": "bi-keim",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "person",
+          "translation": "persona",
+          "phonetics": "per-son",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "in",
+          "translation": "en",
+          "phonetics": "in",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "He",
+          "translation": "Él",
+          "phonetics": "ji",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "orbited",
+          "translation": "orbitó",
+          "phonetics": "or-bi-ted",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "Earth",
+          "translation": "Tierra",
+          "phonetics": "erz",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "once",
+          "translation": "una vez",
+          "phonetics": "wans",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "returned",
+          "translation": "regresó",
+          "phonetics": "ri-ternd",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "safely",
+          "translation": "seguramente",
+          "phonetics": "seif-li",
+          "paragraphIndex": 1
+        },
+        {
+          "word": "1969",
+          "translation": "1969",
+          "phonetics": "nine-teen-sik-si-nain",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "sent",
+          "translation": "envió",
+          "phonetics": "sent",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "astronauts",
+          "translation": "astronautas",
+          "phonetics": "as-tro-nots",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Moon",
+          "translation": "Luna",
+          "phonetics": "mun",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Neil",
+          "translation": "Neil",
+          "phonetics": "nil",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "Armstrong",
+          "translation": "Armstrong",
+          "phonetics": "arm-stróng",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "walk",
+          "translation": "caminar",
+          "phonetics": "wok",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "on",
+          "translation": "en",
+          "phonetics": "on",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "said",
+          "translation": "dijo",
+          "phonetics": "sed",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "it",
+          "translation": "eso",
+          "phonetics": "it",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "giant",
+          "translation": "gran",
+          "phonetics": "yá-iant",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "leap",
+          "translation": "salto",
+          "phonetics": "lip",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "for",
+          "translation": "para",
+          "phonetics": "for",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "mankind",
+          "translation": "la humanidad",
+          "phonetics": "man-kaind",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "exploration",
+          "translation": "exploracion",
+          "phonetics": "eks-plo-rei-chon",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "continues",
+          "translation": "continua",
+          "phonetics": "kon-ti-nius",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "rockets",
+          "translation": "cohetes",
+          "phonetics": "ro-kets",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "missions",
+          "translation": "misiones",
+          "phonetics": "mi-chons",
+          "paragraphIndex": 2
+        },
+        {
+          "word": "stations",
+          "translation": "estaciones",
+          "phonetics": "stei-chons",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "astronauts",
+          "translation": "astronautas",
+          "phonetics": "as-tro-nots",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "robots",
+          "translation": "robots",
+          "phonetics": "ro-bots",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "planets",
+          "translation": "planetas",
+          "phonetics": "pla-nets",
+          "paragraphIndex": 3
+        },
+        {
+          "word": "shared",
+          "translation": "compartido",
+          "phonetics": "cherd",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "private",
+          "translation": "privado",
+          "phonetics": "prai-vet",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "companies",
+          "translation": "empresas",
+          "phonetics": "kom-pa-nis",
+          "paragraphIndex": 4
+        },
+        {
+          "word": "universe",
+          "translation": "universo",
+          "phonetics": "u-ni-vers",
+          "paragraphIndex": 4
+        }
+      ],
+      "questions": [
+        {
+          "question": "What is the main topic of this reading?",
+          "options": [
+            "Only the Moon landing",
+            "The Space Race and space exploration",
+            "How to build rockets",
+            "Life on Mars"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "Who was the first person in space?",
+          "options": [
+            "Neil Armstrong",
+            "Yuri Gagarin",
+            "Christopher Columbus",
+            "Moctezuma"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What does 'astronauts' mean?",
+          "options": [
+            "People who fly planes",
+            "People who travel to space",
+            "People who build ships",
+            "People who study stars"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What is the International Space Station?",
+          "options": [
+            "A private rocket",
+            "A shared project by many countries",
+            "A Mars rover",
+            "A Moon base"
+          ],
+          "correct": 1
+        },
+        {
+          "question": "What can you infer about space exploration today?",
+          "options": [
+            "Only two countries explore space",
+            "Countries work together and private companies help",
+            "Space exploration has stopped",
+            "Robots replaced all astronauts"
+          ],
+          "correct": 1
+        }
+      ]
+    }
+  ]
+}
