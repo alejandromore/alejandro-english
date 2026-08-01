@@ -171,32 +171,6 @@ function initReader() {
     document.getElementById('rtbTitle').textContent = reading.title;
     document.getElementById('rtbCat').textContent = data.categoryName;
     document.getElementById('rtbCat').style.background = 'rgba(0,180,166,.2)';
-    document.getElementById('rtbCat').style.color = 'var(--teal)';
-
-    // Quiz-only categories: skip reading text, show questions directly
-    const quizOnlyCats = ['historia', 'ciencia', 'tecnologia'];
-    if (quizOnlyCats.includes(cat) && reading.questions && reading.questions.length) {
-      const imgArea = document.getElementById('readerImageArea');
-      const controls = document.querySelector('.reader-controls');
-      const textArea = document.getElementById('readerTextArea');
-      const completeEl = document.getElementById('readingComplete');
-      const noSpeech = document.getElementById('noSpeech');
-      if (imgArea) imgArea.style.display = 'none';
-      if (controls) controls.style.display = 'none';
-      if (textArea) textArea.style.display = 'none';
-      if (completeEl) completeEl.style.display = 'none';
-      if (noSpeech) noSpeech.style.display = 'none';
-
-      // Update quiz header for direct question mode
-      const quizHeader = document.querySelector('.quiz-header');
-      if (quizHeader) {
-        quizHeader.innerHTML = '<h3>ðŸ“ Questions</h3><p>Answer the questions and check your answers</p>';
-      }
-
-      // Defer to after renderReader finishes (avoids TDZ with function hoisting)
-      setTimeout(() => showQuiz(), 0);
-      return;
-    }
 
     // No speech fallback
     if (!hasSpeech) {
@@ -447,13 +421,57 @@ function initReader() {
         quizSubmit.onclick = () => { showQuiz(); quizSubmit.textContent = 'Check Answers'; };
       };
     }
+    // Tab switching (Content / Questions)
+    const readerTabs = document.getElementById('readerTabs');
+    const hasQuestions = reading.questions && reading.questions.length > 0;
 
-    // Show quiz button after reading completes
-    const completeEl = document.getElementById('readingComplete');
-    if (completeEl) {
-      completeEl.addEventListener('click', () => {
-        if (reading.questions && reading.questions.length) showQuiz();
+    if (hasQuestions && readerTabs) {
+      readerTabs.style.display = 'flex';
+      showQuiz();
+
+      const imgArea = document.getElementById('readerImageArea');
+      const controls = document.querySelector('.reader-controls');
+      const textArea = document.getElementById('readerTextArea');
+      const completeEl = document.getElementById('readingComplete');
+      const quizSection = document.getElementById('quizSection');
+      const noSpeech = document.getElementById('noSpeech');
+
+      function showContentMode() {
+        if (imgArea) imgArea.style.display = '';
+        if (controls) controls.style.display = '';
+        if (textArea) textArea.style.display = '';
+        if (noSpeech) noSpeech.style.display = hasSpeech ? 'none' : 'block';
+        if (quizSection) quizSection.classList.remove('active');
+      }
+
+      function showQuestionsMode() {
+        if (imgArea) imgArea.style.display = 'none';
+        if (controls) controls.style.display = 'none';
+        if (textArea) textArea.style.display = 'none';
+        if (completeEl) completeEl.style.display = 'none';
+        if (noSpeech) noSpeech.style.display = 'none';
+        if (quizSection) quizSection.classList.add('active');
+      }
+
+      readerTabs.addEventListener('click', (e) => {
+        const tab = e.target.closest('.reader-tab');
+        if (!tab) return;
+        readerTabs.querySelectorAll('.reader-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        if (tab.dataset.mode === 'content') showContentMode();
+        else showQuestionsMode();
       });
+
+      // Quiz-only categories default to Questions tab
+      const quizOnlyCats = ['historia', 'ciencia', 'tecnologia'];
+      if (quizOnlyCats.includes(cat)) {
+        const qTab = readerTabs.querySelector('[data-mode="questions"]');
+        if (qTab) {
+          readerTabs.querySelectorAll('.reader-tab').forEach(t => t.classList.remove('active'));
+          qTab.classList.add('active');
+          showQuestionsMode();
+        }
+      }
     }
 
 // Expose for paragraph replay if needed

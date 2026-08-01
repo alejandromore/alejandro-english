@@ -51,6 +51,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--light);color:v
 .reader-top-bar .rtb-title{font-size:.95rem;font-weight:600;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .reader-top-bar .rtb-cat{font-size:.72rem;background:rgba(0,180,166,.2);color:var(--teal);padding:3px 10px;border-radius:12px;font-weight:600;flex-shrink:0}
 
+/* Reader mode tabs */
+.reader-tabs{display:flex;gap:0;padding:0;background:var(--light2);border-bottom:2px solid #e0e0e0;flex-shrink:0}
+.reader-tab{flex:1;padding:12px 16px;border:none;background:transparent;font-size:.9rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;font-family:inherit;border-bottom:3px solid transparent}
+.reader-tab:hover{color:var(--dark)}
+.reader-tab.active{color:var(--teal);border-bottom-color:var(--teal);background:#fff}
+
 /* Image carousel area */
 .reader-image-area{flex:0 0 35vh;min-height:180px;max-height:300px;background:var(--light2);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;transition:background .3s}
 .reader-image-area svg{width:90%;height:90%;object-fit:contain;animation:fadeIn .4s ease}
