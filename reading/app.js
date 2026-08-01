@@ -137,12 +137,6 @@ function initReader() {
     document.getElementById('rtbCat').style.background = 'rgba(0,180,166,.2)';
     document.getElementById('rtbCat').style.color = 'var(--teal)';
 
-    // Quiz DOM references (needed early for quiz-only mode)
-    const quizSection = document.getElementById('quizSection');
-    const quizQuestions = document.getElementById('quizQuestions');
-    const quizSubmit = document.getElementById('quizSubmit');
-    const quizResult = document.getElementById('quizResult');
-
     // Quiz-only categories: skip reading text, show questions directly
     const quizOnlyCats = ['historia', 'ciencia', 'tecnologia'];
     if (quizOnlyCats.includes(cat) && reading.questions && reading.questions.length) {
@@ -369,6 +363,10 @@ function initReader() {
     // Quiz logic
     function showQuiz() {
       if (!reading.questions || !reading.questions.length) return;
+      const quizSection = document.getElementById('quizSection');
+      const quizQuestions = document.getElementById('quizQuestions');
+      const quizSubmit = document.getElementById('quizSubmit');
+      const quizResult = document.getElementById('quizResult');
       quizQuestions.innerHTML = reading.questions.map((q, qi) => `
         <div class="quiz-question" data-q="${qi}">
           <div class="q-num">Question ${qi + 1}</div>
