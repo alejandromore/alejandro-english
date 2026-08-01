@@ -1,0 +1,555 @@
+﻿{
+    "category":  "ciencia",
+    "readings":  [
+                     {
+                         "id":  "ciencia-01",
+                         "questions":  [
+                                           {
+                                               "question":  "What is the main idea of this text?",
+                                               "options":  [
+                                                               "How people use water at home",
+                                                               "How water moves around the Earth in a cycle",
+                                                               "How to make clouds",
+                                                               "Why the ocean is salty"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What is condensation?",
+                                               "options":  [
+                                                               "Water falling as rain",
+                                                               "Water going up into the sky",
+                                                               "Tiny drops coming together to make clouds",
+                                                               "Water collecting underground"
+                                                           ],
+                                               "correct":  2
+                                           },
+                                           {
+                                               "question":  "What does the word \u0027precipitation\u0027 mean?",
+                                               "options":  [
+                                                               "Water going up",
+                                                               "Water falling down as rain or snow",
+                                                               "Water in the ground",
+                                                               "Water in the ocean"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "Why is the water cycle important?",
+                                               "options":  [
+                                                               "Because it makes the ocean salty",
+                                                               "Because without it there would be no rain or fresh water",
+                                                               "Because it helps cars run",
+                                                               "Because it makes the Earth spin"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can you learn from the last paragraph?",
+                                               "options":  [
+                                                               "The water cycle is new",
+                                                               "The same water has been moving for millions of years",
+                                                               "Water only moves in the ocean",
+                                                               "Groundwater is not useful"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "ciencia-02",
+                         "questions":  [
+                                           {
+                                               "question":  "What is the main topic of this text?",
+                                               "options":  [
+                                                               "The Moon and stars",
+                                                               "The Sun and eight planets",
+                                                               "How to travel to space",
+                                                               "Why the Earth is round"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "How many planets are in the solar system?",
+                                               "options":  [
+                                                               "Seven",
+                                                               "Eight",
+                                                               "Nine",
+                                                               "Ten"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What does the word \u0027orbits\u0027 mean?",
+                                               "options":  [
+                                                               "Paths planets go around the Sun",
+                                                               "The center of the Sun",
+                                                               "Big rocks in space",
+                                                               "The light from the Sun"
+                                                           ],
+                                               "correct":  0
+                                           },
+                                           {
+                                               "question":  "Why is Earth special among the planets?",
+                                               "options":  [
+                                                               "It is the biggest planet",
+                                                               "It is the only planet where we know there is life",
+                                                               "It is the closest to the Sun",
+                                                               "It has no moon"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can you infer about Mars?",
+                                               "options":  [
+                                                               "Mars is hotter than Earth",
+                                                               "Scientists think life might have existed there long ago",
+                                                               "Mars has no atmosphere",
+                                                               "Mars is bigger than Jupiter"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "ciencia-03",
+                         "questions":  [
+                                           {
+                                               "question":  "What is the main idea of this text?",
+                                               "options":  [
+                                                               "How plants make flowers",
+                                                               "How plants grow from seeds",
+                                                               "How to water plants",
+                                                               "Why plants are green"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What do roots do for the plant?",
+                                               "options":  [
+                                                               "They make food from sunlight",
+                                                               "They take in water and hold the plant in the ground",
+                                                               "They make seeds",
+                                                               "They catch rain"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What does the word \u0027shoot\u0027 mean in this text?",
+                                               "options":  [
+                                                               "A kind of tree",
+                                                               "A green part that pushes up through the soil",
+                                                               "A type of seed",
+                                                               "A type of root"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "Why do plants need sunlight?",
+                                               "options":  [
+                                                               "To stay warm",
+                                                               "To make food for the plant",
+                                                               "To grow roots",
+                                                               "To make seeds"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can you infer from the last paragraph?",
+                                               "options":  [
+                                                               "Plants can only grow once",
+                                                               "The plant life cycle continues through seeds",
+                                                               "Flowers are not important",
+                                                               "Seeds cannot grow without people"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "ciencia-04",
+                         "questions":  [
+                                           {
+                                               "question":  "What is the main idea of this text?",
+                                               "options":  [
+                                                               "How to cook with lava",
+                                                               "What volcanoes are and how they work",
+                                                               "How mountains form",
+                                                               "Why the Earth is hot"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What is magma called when it reaches the surface?",
+                                               "options":  [
+                                                               "Ash",
+                                                               "Lava",
+                                                               "Rock",
+                                                               "Smoke"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What does the word \u0027erupt\u0027 mean?",
+                                               "options":  [
+                                                               "To sleep quietly",
+                                                               "To push out lava and ash",
+                                                               "To cool down",
+                                                               "To make soil"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "How can volcanoes help the Earth?",
+                                               "options":  [
+                                                               "They cool the air",
+                                                               "The ash makes soil good for growing plants",
+                                                               "They make clouds",
+                                                               "They stop earthquakes"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can you infer from the last paragraph?",
+                                               "options":  [
+                                                               "All volcanoes are on land",
+                                                               "Underwater volcanoes can create new islands",
+                                                               "Islands cannot be made by volcanoes",
+                                                               "Volcanoes only erupt once"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "ciencia-05",
+                         "questions":  [
+                                           {
+                                               "question":  "What is the main idea of this text?",
+                                               "options":  [
+                                                               "How animals run fast",
+                                                               "How energy moves through living things",
+                                                               "How plants make food",
+                                                               "Why animals need water"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What are animals that eat only plants called?",
+                                               "options":  [
+                                                               "Carnivores",
+                                                               "Omnivores",
+                                                               "Herbivores",
+                                                               "Producers"
+                                                           ],
+                                               "correct":  2
+                                           },
+                                           {
+                                               "question":  "What does the word \u0027omnivores\u0027 mean?",
+                                               "options":  [
+                                                               "Animals that eat only meat",
+                                                               "Animals that eat only plants",
+                                                               "Animals that eat both plants and animals",
+                                                               "Animals that do not eat"
+                                                           ],
+                                               "correct":  2
+                                           },
+                                           {
+                                               "question":  "What happens if one animal in the food chain disappears?",
+                                               "options":  [
+                                                               "Nothing changes",
+                                                               "The whole chain can break",
+                                                               "More animals are born",
+                                                               "The plants grow faster"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can you infer from the last paragraph?",
+                                               "options":  [
+                                                               "People are not part of food chains",
+                                                               "Protecting all parts of the food chain is important",
+                                                               "Food chains do not need balance",
+                                                               "People only eat animals"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "ciencia-06",
+                         "questions":  [
+                                           {
+                                               "question":  "What is the main idea of this text?",
+                                               "options":  [
+                                                               "How the heart breaks",
+                                                               "How the heart works and how to keep it healthy",
+                                                               "How to cook food",
+                                                               "Why we breathe"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "How many rooms does the heart have?",
+                                               "options":  [
+                                                               "Two",
+                                                               "Three",
+                                                               "Four",
+                                                               "Five"
+                                                           ],
+                                               "correct":  2
+                                           },
+                                           {
+                                               "question":  "What does the word \u0027stethoscope\u0027 mean?",
+                                               "options":  [
+                                                               "A tool to measure temperature",
+                                                               "A tool to listen to the heartbeat",
+                                                               "A medicine for the heart",
+                                                               "A type of exercise"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "Why does your heart beat faster when you run?",
+                                               "options":  [
+                                                               "Because you are scared",
+                                                               "Because your muscles need more oxygen",
+                                                               "Because the heart is tired",
+                                                               "Because you are hungry"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can you infer about keeping your heart healthy?",
+                                               "options":  [
+                                                               "Only exercise matters",
+                                                               "Eating good food and exercising both help",
+                                                               "Junk food is good for the heart",
+                                                               "Smoking does not affect the heart"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "ciencia-07",
+                         "questions":  [
+                                           {
+                                               "question":  "What is the main idea of this text?",
+                                               "options":  [
+                                                               "How to fly a kite",
+                                                               "Different types of clouds and weather",
+                                                               "Why the sky is blue",
+                                                               "How rain makes rivers"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "Which clouds look like cotton balls and mean fair weather?",
+                                               "options":  [
+                                                               "Stratus",
+                                                               "Cirrus",
+                                                               "Cumulus",
+                                                               "Cumulonimbus"
+                                                           ],
+                                               "correct":  2
+                                           },
+                                           {
+                                               "question":  "What does the word \u0027cirrus\u0027 refer to?",
+                                               "options":  [
+                                                               "Flat gray clouds",
+                                                               "Thin clouds that look like feathers",
+                                                               "Big storm clouds",
+                                                               "Clouds that bring heavy rain"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "Why does weather change?",
+                                               "options":  [
+                                                               "Because the Moon moves",
+                                                               "Because the Sun heats the Earth in different ways",
+                                                               "Because clouds fight each other",
+                                                               "Because the ocean freezes"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can you infer about meteorologists?",
+                                               "options":  [
+                                                               "They only guess the weather",
+                                                               "They use tools to measure and predict weather",
+                                                               "They do not need any tools",
+                                                               "They can control the weather"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "ciencia-08",
+                         "questions":  [
+                                           {
+                                               "question":  "What is the main idea of this text?",
+                                               "options":  [
+                                                               "How to swim in the ocean",
+                                                               "The ocean and why it is important",
+                                                               "How fish breathe underwater",
+                                                               "Why waves are big"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "How deep can the ocean be?",
+                                               "options":  [
+                                                               "As deep as a swimming pool",
+                                                               "Deeper than the tallest mountains on land",
+                                                               "Only a few meters deep",
+                                                               "As deep as a tree is tall"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What does the word \u0027plankton\u0027 mean?",
+                                               "options":  [
+                                                               "Big fish in the ocean",
+                                                               "Tiny plants in the ocean",
+                                                               "A type of whale",
+                                                               "Salt in the water"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What makes waves in the ocean?",
+                                               "options":  [
+                                                               "The Moon pulling the water",
+                                                               "The wind blowing across the water",
+                                                               "Fish swimming fast",
+                                                               "Boats moving"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can you infer from the last paragraph?",
+                                               "options":  [
+                                                               "The ocean is not important",
+                                                               "We must protect the ocean from pollution",
+                                                               "The ocean gives us nothing",
+                                                               "Pollution does not affect the ocean"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "ciencia-09",
+                         "questions":  [
+                                           {
+                                               "question":  "What is the main idea of this text?",
+                                               "options":  [
+                                                               "How plants grow roots",
+                                                               "How plants make food using sunlight",
+                                                               "Why leaves are green",
+                                                               "How animals find food"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "Where does photosynthesis happen in the plant?",
+                                               "options":  [
+                                                               "In the roots",
+                                                               "In the leaves",
+                                                               "In the stem",
+                                                               "In the seeds"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What does \u0027chlorophyll\u0027 do?",
+                                               "options":  [
+                                                               "It makes the plant grow tall",
+                                                               "It catches sunlight the plant needs",
+                                                               "It helps the plant drink water",
+                                                               "It makes the seeds"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What do plants make during photosynthesis?",
+                                               "options":  [
+                                                               "Only sugar",
+                                                               "Sugar and oxygen",
+                                                               "Only oxygen",
+                                                               "Water and carbon dioxide"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can you infer from the last paragraph?",
+                                               "options":  [
+                                                               "Photosynthesis is not important",
+                                                               "Without plants, there would be no food for any living thing",
+                                                               "Forests do not need protection",
+                                                               "Animals can make their own food"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "ciencia-10",
+                         "questions":  [
+                                           {
+                                               "question":  "What is the main idea of this text?",
+                                               "options":  [
+                                                               "How animals and plants adapt to survive",
+                                                               "How to find animals in the wild",
+                                                               "Why polar bears are white",
+                                                               "How to feed animals"
+                                                           ],
+                                               "correct":  0
+                                           },
+                                           {
+                                               "question":  "What is camouflage used for?",
+                                               "options":  [
+                                                               "To find food faster",
+                                                               "To hide from other animals",
+                                                               "To stay warm",
+                                                               "To swim faster"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What does the word \u0027adaptations\u0027 mean?",
+                                               "options":  [
+                                                               "Special features that help livingà¦¤à§à¦¤à¦® things survive",
+                                                               "Places where animals live",
+                                                               "Colors of animals",
+                                                               "Sounds animals make"
+                                                           ],
+                                               "correct":  0
+                                           },
+                                           {
+                                               "question":  "Why does a giraffe have a long neck?",
+                                               "options":  [
+                                                               "To see danger far away",
+                                                               "To eat leaves from tall trees",
+                                                               "To swim better",
+                                                               "To stay warm"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can you infer from the last paragraph?",
+                                               "options":  [
+                                                               "Only animals have adaptations",
+                                                               "Plants also have adaptations to survive",
+                                                               "Cactus plants need lots of water",
+                                                               "Plants in cold places grow very tall"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     }
+                 ]
+}

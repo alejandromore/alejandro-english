@@ -1,0 +1,555 @@
+﻿{
+    "category":  "tecnologia",
+    "readings":  [
+                     {
+                         "id":  "tecnologia-01",
+                         "questions":  [
+                                           {
+                                               "question":  "What happens when you send a message on the internet?",
+                                               "options":  [
+                                                               "It travels as one big piece",
+                                                               "It breaks into small packets",
+                                                               "It goes through the air only",
+                                                               "It is printed on paper"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What should you do to stay safe on the internet?",
+                                               "options":  [
+                                                               "Share your password with friends",
+                                                               "Use a simple password",
+                                                               "Use strong passwords with letters and numbers",
+                                                               "Never use the internet"
+                                                           ],
+                                               "correct":  2
+                                           },
+                                           {
+                                               "question":  "What is the Internet of Things?",
+                                               "options":  [
+                                                               "A type of computer",
+                                                               "Connecting everyday objects to the internet",
+                                                               "A new social network",
+                                                               "A type of cable"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What does 5G do?",
+                                               "options":  [
+                                                               "Makes phones heavier",
+                                                               "Sends data more quickly",
+                                                               "Uses more batteries",
+                                                               "Replaces the internet"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "How does the passage describe the internet?",
+                                               "options":  [
+                                                               "A small network for one city",
+                                                               "A big network connecting computers worldwide",
+                                                               "A type of telephone",
+                                                               "A new type of computer"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "tecnologia-02",
+                         "questions":  [
+                                           {
+                                               "question":  "What do robot vacuum cleaners do?",
+                                               "options":  [
+                                                               "Cook food",
+                                                               "Clean the floor by themselves",
+                                                               "Wash clothes",
+                                                               "Build cars"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What helps robots avoid hitting walls?",
+                                               "options":  [
+                                                               "Their color",
+                                                               "Sensors",
+                                                               "Their size",
+                                                               "Their speed"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What is a big question about robots?",
+                                               "options":  [
+                                                               "How fast they can go",
+                                                               "Whether robots should make important decisions",
+                                                               "What color they should be",
+                                                               "How much they cost"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What do most people think about robots making decisions?",
+                                               "options":  [
+                                                               "Robots should decide everything",
+                                                               "Humans should make the final choice",
+                                                               "Robots are always right",
+                                                               "It does not matter"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What is AI compared to in the passage?",
+                                               "options":  [
+                                                               "The hands of a robot",
+                                                               "The brain of a robot",
+                                                               "The eyes of a robot",
+                                                               "The legs of a robot"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "tecnologia-03",
+                         "questions":  [
+                                           {
+                                               "question":  "How does a touch screen detect your finger?",
+                                               "options":  [
+                                                               "By temperature",
+                                                               "By the electricity in your finger",
+                                                               "By the weight of your finger",
+                                                               "By the color of your finger"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What does the processor do in a smartphone?",
+                                               "options":  [
+                                                               "It gives power to the phone",
+                                                               "It is the brain of the phone",
+                                                               "It takes photos",
+                                                               "It connects to the internet"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can some new phones do?",
+                                               "options":  [
+                                                               "Cook food",
+                                                               "Fold in half like a book",
+                                                               "Fly in the air",
+                                                               "Print paper"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What do new phones use to understand your voice?",
+                                               "options":  [
+                                                               "A special cable",
+                                                               "Artificial intelligence",
+                                                               "A bigger battery",
+                                                               "A new antenna"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What are scientists working on for future phones?",
+                                               "options":  [
+                                                               "Phones that project images into the air",
+                                                               "Phones that cook food",
+                                                               "Phones that drive cars",
+                                                               "Phones that clean houses"
+                                                           ],
+                                               "correct":  0
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "tecnologia-04",
+                         "questions":  [
+                                           {
+                                               "question":  "Who first created GPS?",
+                                               "options":  [
+                                                               "Scientists in Japan",
+                                                               "The United States military",
+                                                               "A phone company",
+                                                               "The European Union"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "When was GPS first created?",
+                                               "options":  [
+                                                               "In the 1990s",
+                                                               "In the 1970s",
+                                                               "In the 2000s",
+                                                               "In the 1950s"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can block the GPS signal?",
+                                               "options":  [
+                                                               "Small animals",
+                                                               "Tall buildings and bad weather",
+                                                               "The moon",
+                                                               "Other phones"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "Why are scientists building new satellites?",
+                                               "options":  [
+                                                               "To replace the moon",
+                                                               "To make GPS more accurate",
+                                                               "To block phone signals",
+                                                               "To send more TV channels"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "How does your phone calculate your position?",
+                                               "options":  [
+                                                               "By taking a photo",
+                                                               "By measuring how long the signal takes to arrive",
+                                                               "By reading a map",
+                                                               "By asking other phones"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "tecnologia-05",
+                         "questions":  [
+                                           {
+                                               "question":  "Where can you find charging stations?",
+                                               "options":  [
+                                                               "Only at home",
+                                                               "At shopping centers, hotels, and along highways",
+                                                               "Only in factories",
+                                                               "Only in big cities"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "How long does a fast charging station take?",
+                                               "options":  [
+                                                               "A few days",
+                                                               "Several hours",
+                                                               "About thirty minutes",
+                                                               "One week"
+                                                           ],
+                                               "correct":  2
+                                           },
+                                           {
+                                               "question":  "What are scientists doing with batteries?",
+                                               "options":  [
+                                                               "Making them heavier",
+                                                               "Making them last longer and charge faster",
+                                                               "Making them smaller only",
+                                                               "Removing them"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can some electric cars already do?",
+                                               "options":  [
+                                                               "Fly in the air",
+                                                               "Drive themselves",
+                                                               "Cook food",
+                                                               "Print documents"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "Why are electric cars better for the environment?",
+                                               "options":  [
+                                                               "They are faster",
+                                                               "They do not produce smoke or pollution",
+                                                               "They are cheaper",
+                                                               "They are bigger"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "tecnologia-06",
+                         "questions":  [
+                                           {
+                                               "question":  "How do astronauts use 3D printing in space?",
+                                               "options":  [
+                                                               "To print food",
+                                                               "To print new tools when one breaks",
+                                                               "To print clothes",
+                                                               "To print books"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "Why is 3D printing useful for astronauts?",
+                                               "options":  [
+                                                               "It is fun",
+                                                               "They do not have to wait for a supply ship from Earth",
+                                                               "It uses less electricity",
+                                                               "It is cheaper"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What might 3D printers print in the future?",
+                                               "options":  [
+                                                               "Food and human organs",
+                                                               "Cars and airplanes",
+                                                               "Buildings and bridges",
+                                                               "Rivers and lakes"
+                                                           ],
+                                               "correct":  0
+                                           },
+                                           {
+                                               "question":  "What are scientists already testing?",
+                                               "options":  [
+                                                               "3D-printed cars",
+                                                               "3D-printed skin for burn victims",
+                                                               "3D-printed houses",
+                                                               "3D-printed phones"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "How does a 3D printer make objects?",
+                                               "options":  [
+                                                               "By cutting material away",
+                                                               "Layer by layer from the bottom",
+                                                               "By painting on paper",
+                                                               "By melting metal only"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "tecnologia-07",
+                         "questions":  [
+                                           {
+                                               "question":  "What is a game engine?",
+                                               "options":  [
+                                                               "A type of car engine",
+                                                               "Special software with tools for making games",
+                                                               "A person who plays games",
+                                                               "A type of game console"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "How does a game engine help programmers?",
+                                               "options":  [
+                                                               "It makes the game more expensive",
+                                                               "It saves time because they do not build from zero",
+                                                               "It makes games slower",
+                                                               "It replaces the programmers"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What are esports?",
+                                               "options":  [
+                                                               "A type of sport with balls",
+                                                               "Big gaming tournaments where players compete",
+                                                               "A type of computer",
+                                                               "A game engine"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What do millions of people do with esports?",
+                                               "options":  [
+                                                               "Play in them only",
+                                                               "Watch them online",
+                                                               "Ignore them",
+                                                               "Buy tickets for stadiums"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "Who makes the story and dialogue in a game?",
+                                               "options":  [
+                                                               "The programmers",
+                                                               "The writers",
+                                                               "The musicians",
+                                                               "The designers"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "tecnologia-08",
+                         "questions":  [
+                                           {
+                                               "question":  "What do tracking panels do?",
+                                               "options":  [
+                                                               "They stay in one position",
+                                                               "They move to follow the sun during the day",
+                                                               "They change color",
+                                                               "They make noise"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What is a solar farm?",
+                                               "options":  [
+                                                               "A farm that grows vegetables",
+                                                               "A large area covered with thousands of solar panels",
+                                                               "A type of battery",
+                                                               "A place where solar panels are made"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "Where do some countries build huge solar farms?",
+                                               "options":  [
+                                                               "In forests",
+                                                               "In deserts where the sun shines almost every day",
+                                                               "Underground",
+                                                               "On the ocean"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What does clean energy from solar panels help with?",
+                                               "options":  [
+                                                               "Making more money",
+                                                               "Fighting climate change",
+                                                               "Building more houses",
+                                                               "Growing more food"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What happens when light hits the solar cells?",
+                                               "options":  [
+                                                               "It creates an electric current",
+                                                               "It makes the panel cold",
+                                                               "It changes the color",
+                                                               "It produces water"
+                                                           ],
+                                               "correct":  0
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "tecnologia-09",
+                         "questions":  [
+                                           {
+                                               "question":  "Where can you NOT fly a drone?",
+                                               "options":  [
+                                                               "In a park",
+                                                               "Near airports or big crowds",
+                                                               "Over water",
+                                                               "In your backyard"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What must drones do in some places?",
+                                               "options":  [
+                                                               "Fly very high",
+                                                               "Be registered before flying",
+                                                               "Make noise",
+                                                               "Carry passengers"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What are companies testing with drones?",
+                                               "options":  [
+                                                               "Flying passengers",
+                                                               "Delivering packages to your door",
+                                                               "Building houses",
+                                                               "Cleaning streets"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "How do firefighters use drones?",
+                                               "options":  [
+                                                               "To put out fires",
+                                                               "With heat cameras to find hot spots",
+                                                               "To carry water",
+                                                               "To make noise"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What makes a drone go up and down?",
+                                               "options":  [
+                                                               "Its camera",
+                                                               "Propellers that spin and push air down",
+                                                               "Its battery",
+                                                               "Its remote control"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "tecnologia-10",
+                         "questions":  [
+                                           {
+                                               "question":  "How many screens does a VR headset use?",
+                                               "options":  [
+                                                               "One screen",
+                                                               "Two screens, one for each eye",
+                                                               "Three screens",
+                                                               "No screens"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "Why does each screen show a different picture?",
+                                               "options":  [
+                                                               "To save battery",
+                                                               "To create the feeling of depth",
+                                                               "To make it brighter",
+                                                               "To show more colors"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What is the difference between VR and AR?",
+                                               "options":  [
+                                                               "VR is bigger than AR",
+                                                               "AR adds digital objects to the real world instead of replacing it",
+                                                               "AR is more expensive",
+                                                               "There is no difference"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What do the sensors in a VR headset do?",
+                                               "options":  [
+                                                               "They make sound",
+                                                               "They track how you move your head",
+                                                               "They charge the battery",
+                                                               "They connect to WiFi"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can doctors do with VR?",
+                                               "options":  [
+                                                               "Perform real surgery",
+                                                               "Practice operations in VR",
+                                                               "Build hospitals",
+                                                               "Prescribe medicine"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     }
+                 ]
+}

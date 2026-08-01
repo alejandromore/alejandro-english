@@ -1,4 +1,4 @@
-/* ===== Reading Section — app.js ===== */
+﻿/* ===== Reading Section â€” app.js ===== */
 /* Logic: TTS, word highlighting, image carousel, tooltips, navigation */
 
 (function(){
@@ -21,10 +21,23 @@ if (catGrid) {
     const card = e.target.closest('.cat-card');
     if (!card) return;
     const cat = card.dataset.category;
-    const jsonFile = `data/${cat}.json`;
+    const quizOnlyCats = ['historia', 'ciencia', 'tecnologia'];
     try {
-      const res = await fetch(jsonFile);
-      currentCategoryData = await res.json();
+      if (quizOnlyCats.includes(cat)) {
+        const [cRes, qRes] = await Promise.all([
+          fetch(`data/${cat}-content.json`),
+          fetch(`data/${cat}-questions.json`)
+        ]);
+        const content = await cRes.json();
+        const questions = await qRes.json();
+        const qMap = {};
+        questions.readings.forEach(r => { qMap[r.id] = r.questions; });
+        content.readings.forEach(r => { r.questions = qMap[r.id] || []; });
+        currentCategoryData = content;
+      } else {
+        const res = await fetch(`data/${cat}.json`);
+        currentCategoryData = await res.json();
+      }
       showReadingList(currentCategoryData);
     } catch(err) {
       alert('Error loading category: ' + err.message);
@@ -35,18 +48,18 @@ if (catGrid) {
 function showReadingList(data) {
   catView.style.display = 'none';
   readingListView.classList.add('active');
-  listBadge.textContent = data.categoryIcon || '📖';
+  listBadge.textContent = data.categoryIcon || 'ðŸ“–';
   listTitle.textContent = data.categoryName;
   listLevel.textContent = `Level: ${data.level || 'A1'}`;
   readingListContainer.innerHTML = data.readings.map((r, i) => {
-    const done = completedReadings.includes(r.id) ? '<span class="ri-done">✓</span>' : '';
+    const done = completedReadings.includes(r.id) ? '<span class="ri-done">âœ“</span>' : '';
     const wordCount = r.words ? r.words.length : (r.paragraphs ? r.paragraphs.join(' ').split(/\s+/).length : 0);
     const thumb = (r.images && r.images[0]) ? r.images[0] : (data.coverSVG || '');
     const quizOnlyCats = ['historia', 'ciencia', 'tecnologia'];
     const isQuizOnly = quizOnlyCats.includes(data.category);
     const subInfo = isQuizOnly
       ? `${(r.questions || []).length} questions`
-      : `${wordCount} words · ${r.paragraphs.length} paragraphs`;
+      : `${wordCount} words Â· ${r.paragraphs.length} paragraphs`;
     return `<a class="reading-item" href="reader.html?id=${r.id}&cat=${data.category}">
       <div class="ri-thumb">${thumb}</div>
       <div class="ri-info">
@@ -79,7 +92,7 @@ function initReader() {
   const cat = params.get('cat');
 
   if (!readingId || !cat) {
-    readerContainer.innerHTML = '<div class="reader-loading"><p>⚠️ No reading specified. <a href="index.html">Go back</a></p></div>';
+    readerContainer.innerHTML = '<div class="reader-loading"><p>âš ï¸ No reading specified. <a href="index.html">Go back</a></p></div>';
     return;
   }
 
@@ -118,17 +131,40 @@ function initReader() {
   }
 
   // Fetch data
-  fetch(`data/${cat}.json`)
-    .then(res => res.json())
-    .then(json => {
-      data = json;
-      reading = json.readings.find(r => r.id === readingId);
+  const quizOnlyCats = ['historia', 'ciencia', 'tecnologia'];
+  const isQuizOnly = quizOnlyCats.includes(cat);
+
+  if (isQuizOnly) {
+    Promise.all([
+      fetch(`data/${cat}-content.json`),
+      fetch(`data/${cat}-questions.json`)
+    ])
+    .then(([cRes, qRes]) => Promise.all([cRes.json(), qRes.json()]))
+    .then(([content, questions]) => {
+      const qMap = {};
+      questions.readings.forEach(r => { qMap[r.id] = r.questions; });
+      content.readings.forEach(r => { r.questions = qMap[r.id] || []; });
+      data = content;
+      reading = content.readings.find(r => r.id === readingId);
       if (!reading) throw new Error('Reading not found: ' + readingId);
       renderReader();
     })
     .catch(err => {
-      readerContainer.innerHTML = `<div class="reader-loading"><p>⚠️ ${err.message}</p><p><a href="index.html">Go back</a></p></div>`;
+      readerContainer.innerHTML = `<div class="reader-loading"><p>Error: ${err.message}</p><p><a href="index.html">Go back</a></p></div>`;
     });
+  } else {
+    fetch(`data/${cat}.json`)
+      .then(res => res.json())
+      .then(json => {
+        data = json;
+        reading = json.readings.find(r => r.id === readingId);
+        if (!reading) throw new Error('Reading not found: ' + readingId);
+        renderReader();
+      })
+      .catch(err => {
+        readerContainer.innerHTML = `<div class="reader-loading"><p>Error: ${err.message}</p><p><a href="index.html">Go back</a></p></div>`;
+      });
+  }
 
   function renderReader() {
     // Top bar
@@ -154,7 +190,7 @@ function initReader() {
       // Update quiz header for direct question mode
       const quizHeader = document.querySelector('.quiz-header');
       if (quizHeader) {
-        quizHeader.innerHTML = '<h3>📝 Questions</h3><p>Answer the questions and check your answers</p>';
+        quizHeader.innerHTML = '<h3>ðŸ“ Questions</h3><p>Answer the questions and check your answers</p>';
       }
 
       // Defer to after renderReader finishes (avoids TDZ with function hoisting)
@@ -168,7 +204,7 @@ function initReader() {
       if (ns) ns.style.display = 'block';
     }
 
-    // Image area — render first image + dots
+    // Image area â€” render first image + dots
     const imgArea = document.getElementById('readerImageArea');
     const imgDots = document.getElementById('imgDots');
     renderImage(0);
@@ -185,7 +221,7 @@ function initReader() {
       ).join('');
     }
 
-    // Text area — render paragraphs with word spans
+    // Text area â€” render paragraphs with word spans
     const textArea = document.getElementById('readerTextArea');
     textArea.innerHTML = '';
     wordSpans = [];
@@ -238,13 +274,13 @@ function initReader() {
         // Pause
         window.speechSynthesis.pause();
         isPaused = true;
-        playBtn.textContent = '▶️';
+        playBtn.textContent = 'â–¶ï¸';
         playBtn.classList.remove('active');
       } else if (isPlaying && isPaused) {
         // Resume
         window.speechSynthesis.resume();
         isPaused = false;
-        playBtn.textContent = '⏸️';
+        playBtn.textContent = 'â¸ï¸';
         playBtn.classList.add('active');
       } else {
         // Start
@@ -324,10 +360,10 @@ function initReader() {
         if (!isPlaying) return;
         if (chunkIdx >= chunks.length) {
           stopMonitor(); isPlaying = false; isPaused = false;
-          playBtn.textContent = '▶️'; playBtn.classList.remove('active');
+          playBtn.textContent = 'â–¶ï¸'; playBtn.classList.remove('active');
           wordSpans.forEach(s => s.classList.remove('highlighted'));
           if (!completedReadings.includes(reading.id)) { completedReadings.push(reading.id); localStorage.setItem('readingCompleted', JSON.stringify(completedReadings)); }
-          const complete = document.getElementById('readingComplete'); if (complete) { complete.classList.add('show'); if (reading.questions && reading.questions.length) { complete.textContent = '✅ Reading complete! Click for quiz →'; complete.style.cursor = 'pointer'; } }
+          const complete = document.getElementById('readingComplete'); if (complete) { complete.classList.add('show'); if (reading.questions && reading.questions.length) { complete.textContent = 'âœ… Reading complete! Click for quiz â†’'; complete.style.cursor = 'pointer'; } }
           return;
         }
         const ch = chunks[chunkIdx];
@@ -350,7 +386,7 @@ function initReader() {
       }
 
       isPlaying = true; isPaused = false;
-      playBtn.textContent = '⏸️'; playBtn.classList.add('active');
+      playBtn.textContent = 'â¸ï¸'; playBtn.classList.add('active');
       speakChunk();
     }
 
@@ -405,7 +441,7 @@ function initReader() {
           });
           if (selected && parseInt(selected.dataset.o) === q.correct) score++;
         });
-        quizResult.innerHTML = `<div class="score">${score}/${reading.questions.length}</div>${score === reading.questions.length ? '🎉 Perfect!' : score >= 3 ? '👍 Good job!' : '📖 Keep practicing!'}`;
+        quizResult.innerHTML = `<div class="score">${score}/${reading.questions.length}</div>${score === reading.questions.length ? 'ðŸŽ‰ Perfect!' : score >= 3 ? 'ðŸ‘ Good job!' : 'ðŸ“– Keep practicing!'}`;
         quizResult.classList.add('show');
         quizSubmit.textContent = 'Try Again';
         quizSubmit.onclick = () => { showQuiz(); quizSubmit.textContent = 'Check Answers'; };
@@ -424,7 +460,7 @@ function initReader() {
     window.__readingApp = { startSpeaking, togglePlay, renderImage, updateProgress };
   }
 
-  // Word click — pronounce + tooltip
+  // Word click â€” pronounce + tooltip
   function onWordClick(e, span, word, wordData) {
     e.stopPropagation();
     if (!hasSpeech) return;
@@ -449,15 +485,15 @@ function initReader() {
   let activeTooltip = null;
   function showTooltip(e, word, wordData) {
     removeTooltip();
-    const translation = wordData ? (wordData.translation || '—') : '—';
-    const phonetics = wordData ? (wordData.phonetics || '—') : '—';
+    const translation = wordData ? (wordData.translation || 'â€”') : 'â€”';
+    const phonetics = wordData ? (wordData.phonetics || 'â€”') : 'â€”';
 
     const tip = document.createElement('div');
     tip.className = 'word-tooltip';
     tip.innerHTML = `
       <div class="tt-en">${word}</div>
-      <div class="tt-row"><span class="tt-label">ES</span><span class="tt-flag">🇪🇸</span><span class="tt-es">${translation}</span></div>
-      <div class="tt-row"><span class="tt-label">Say</span><span class="tt-flag">🔤</span><span class="tt-phon">/${phonetics}/</span></div>
+      <div class="tt-row"><span class="tt-label">ES</span><span class="tt-flag">ðŸ‡ªðŸ‡¸</span><span class="tt-es">${translation}</span></div>
+      <div class="tt-row"><span class="tt-label">Say</span><span class="tt-flag">ðŸ”¤</span><span class="tt-phon">/${phonetics}/</span></div>
     `;
     document.body.appendChild(tip);
 

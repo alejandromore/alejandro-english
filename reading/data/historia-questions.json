@@ -1,0 +1,555 @@
+﻿{
+    "category":  "historia",
+    "readings":  [
+                     {
+                         "id":  "historia-01",
+                         "questions":  [
+                                           {
+                                               "question":  "What is the main topic of this reading?",
+                                               "options":  [
+                                                               "Modern Egyptian cities",
+                                                               "The ancient Egyptian civilization",
+                                                               "The Nile River today",
+                                                               "How to build pyramids"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What did the Egyptians use to write?",
+                                               "options":  [
+                                                               "The alphabet",
+                                                               "Numbers only",
+                                                               "Pictures called hieroglyphics",
+                                                               "Computers"
+                                                           ],
+                                               "correct":  2
+                                           },
+                                           {
+                                               "question":  "What does \u0027mummification\u0027 mean?",
+                                               "options":  [
+                                                               "Building pyramids",
+                                                               "Preserving dead bodies",
+                                                               "A type of farming",
+                                                               "A writing system"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "Why did the Egyptians build their civilization along the Nile River?",
+                                               "options":  [
+                                                               "For protection from enemies",
+                                                               "The river gave them water and food",
+                                                               "To be close to the ocean",
+                                                               "Because it was cool"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can you infer about Egyptian society?",
+                                               "options":  [
+                                                               "Everyone had the same job",
+                                                               "Only rich people existed",
+                                                               "It was well organized with different jobs",
+                                                               "Children did not go to school"
+                                                           ],
+                                               "correct":  2
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "historia-02",
+                         "questions":  [
+                                           {
+                                               "question":  "What is this reading mainly about?",
+                                               "options":  [
+                                                               "The Roman army",
+                                                               "The Roman Empire and its legacy",
+                                                               "How to build roads",
+                                                               "Latin language only"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "Where did Romans watch gladiators fight?",
+                                               "options":  [
+                                                               "The Circus Maximus",
+                                                               "The Colosseum",
+                                                               "The Senate",
+                                                               "The forum"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What does \u0027spectators\u0027 mean?",
+                                               "options":  [
+                                                               "People who fight",
+                                                               "People who watch",
+                                                               "People who build",
+                                                               "People who race"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "Which modern language comes from Latin?",
+                                               "options":  [
+                                                               "English",
+                                                               "German",
+                                                               "Spanish",
+                                                               "Russian"
+                                                           ],
+                                               "correct":  2
+                                           },
+                                           {
+                                               "question":  "What can you infer about the Roman Empire?",
+                                               "options":  [
+                                                               "It had no entertainment",
+                                                               "Its influence still exists today",
+                                                               "It never fell",
+                                                               "It had only one language"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "historia-03",
+                         "questions":  [
+                                           {
+                                               "question":  "What is the main idea of this reading?",
+                                               "options":  [
+                                                               "Columbus discovered Italy",
+                                                               "Columbus\u0027s voyages and their impact",
+                                                               "How to sail across the ocean",
+                                                               "The history of Asia"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "How many ships did Columbus take on his first voyage?",
+                                               "options":  [
+                                                               "Two",
+                                                               "Three",
+                                                               "Four",
+                                                               "Five"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What does \u0027indigenous\u0027 mean?",
+                                               "options":  [
+                                                               "People from Europe",
+                                                               "Native people of a place",
+                                                               "Sailors",
+                                                               "Explorers"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What did Columbus bring back to Europe?",
+                                               "options":  [
+                                                               "Only gold",
+                                                               "Gold, plants, and new animals",
+                                                               "Nothing",
+                                                               "Weapons"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can you infer about Columbus\u0027s legacy?",
+                                               "options":  [
+                                                               "Everyone agrees he was a hero",
+                                                               "It is debated because of suffering he caused",
+                                                               "It was only positive",
+                                                               "People do not remember him"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "historia-04",
+                         "questions":  [
+                                           {
+                                               "question":  "What is the main topic of this reading?",
+                                               "options":  [
+                                                               "Viking ships only",
+                                                               "The Vikings and their culture",
+                                                               "Modern Scandinavia",
+                                                               "Christian religion"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "Who was the king of the Viking gods?",
+                                               "options":  [
+                                                               "Thor",
+                                                               "Odin",
+                                                               "Valhalla",
+                                                               "Loki"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What does \u0027thunder\u0027 mean?",
+                                               "options":  [
+                                                               "Lightning",
+                                                               "Loud sound from storms",
+                                                               "Rain",
+                                                               "Wind"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "How long did the Viking age last?",
+                                               "options":  [
+                                                               "About 100 years",
+                                                               "About 300 years",
+                                                               "About 500 years",
+                                                               "About 1000 years"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can you infer about the Vikings?",
+                                               "options":  [
+                                                               "They only fought and never settled",
+                                                               "Their culture influenced modern languages",
+                                                               "They never left Scandinavia",
+                                                               "They had no religion"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "historia-05",
+                         "questions":  [
+                                           {
+                                               "question":  "What is this reading mainly about?",
+                                               "options":  [
+                                                               "Only the Olympics",
+                                                               "Ancient Greece, its thinkers, and buildings",
+                                                               "How to play sports",
+                                                               "Modern Athens"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "Who were the famous Greek philosophers mentioned?",
+                                               "options":  [
+                                                               "Columbus and Galileo",
+                                                               "Socrates and Plato",
+                                                               "Thor and Odin",
+                                                               "Caesar and Augustus"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What is the Parthenon?",
+                                               "options":  [
+                                                               "A sports stadium",
+                                                               "A famous temple in Athens",
+                                                               "A Greek ship",
+                                                               "A type of column"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "Who could compete in the ancient Olympics?",
+                                               "options":  [
+                                                               "Everyone",
+                                                               "Only men",
+                                                               "Only women",
+                                                               "Only children"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can you infer about Greek ideas?",
+                                               "options":  [
+                                                               "They are no longer relevant",
+                                                               "They still influence learning today",
+                                                               "They were only about sports",
+                                                               "They were forgotten"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "historia-06",
+                         "questions":  [
+                                           {
+                                               "question":  "What is the main topic of this reading?",
+                                               "options":  [
+                                                               "Chinese food",
+                                                               "The Great Wall of China",
+                                                               "How to build towers",
+                                                               "Ancient Chinese emperors"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "How long is the Great Wall?",
+                                               "options":  [
+                                                               "Over 1,000 km",
+                                                               "Over 10,000 km",
+                                                               "Over 21,000 km",
+                                                               "Over 100,000 km"
+                                                           ],
+                                               "correct":  2
+                                           },
+                                           {
+                                               "question":  "What does \u0027watchtowers\u0027 mean?",
+                                               "options":  [
+                                                               "Towers for watching for danger",
+                                                               "Towers for living",
+                                                               "Towers for storage",
+                                                               "Towers for worship"
+                                                           ],
+                                               "correct":  0
+                                           },
+                                           {
+                                               "question":  "What did guards use to warn of danger during the day?",
+                                               "options":  [
+                                                               "Fire signals",
+                                                               "Smoke signals",
+                                                               "Loud bells",
+                                                               "Flags"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can you infer about building the wall?",
+                                               "options":  [
+                                                               "It was built in one year",
+                                                               "It was a long process over centuries",
+                                                               "One person built it",
+                                                               "It was never finished"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "historia-07",
+                         "questions":  [
+                                           {
+                                               "question":  "What is the main topic of this reading?",
+                                               "options":  [
+                                                               "Spanish explorers",
+                                                               "The Aztec civilization",
+                                                               "Mexican food",
+                                                               "How to make calendars"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "How many days were in the Aztec main calendar?",
+                                               "options":  [
+                                                               "260 days",
+                                                               "365 days",
+                                                               "300 days",
+                                                               "400 days"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What does \u0027ceremonies\u0027 mean?",
+                                               "options":  [
+                                                               "Parties",
+                                                               "Special formal events",
+                                                               "Farming activities",
+                                                               "School lessons"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "Who was at the top of Aztec society?",
+                                               "options":  [
+                                                               "Farmers",
+                                                               "Nobles",
+                                                               "Soldiers",
+                                                               "Workers"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can you infer about Aztec education?",
+                                               "options":  [
+                                                               "Children did not go to school",
+                                                               "Education was important to them",
+                                                               "Only nobles could learn",
+                                                               "They had no schools"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "historia-08",
+                         "questions":  [
+                                           {
+                                               "question":  "What is the main idea of this reading?",
+                                               "options":  [
+                                                               "How machines changed the world",
+                                                               "Only about trains",
+                                                               "How to build factories",
+                                                               "Modern technology"
+                                                           ],
+                                               "correct":  0
+                                           },
+                                           {
+                                               "question":  "What did the light bulb allow people to do?",
+                                               "options":  [
+                                                               "Sleep better",
+                                                               "Work after dark",
+                                                               "Travel faster",
+                                                               "Cook food"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What does \u0027pollution\u0027 mean?",
+                                               "options":  [
+                                                               "Clean air",
+                                                               "Harmful waste in the environment",
+                                                               "Factory products",
+                                                               "New inventions"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What did the telegraph do?",
+                                               "options":  [
+                                                               "Carried people",
+                                                               "Sent messages quickly",
+                                                               "Made light",
+                                                               "Powered trains"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can you infer about the Industrial Revolution?",
+                                               "options":  [
+                                                               "It only had positive effects",
+                                                               "It brought both progress and problems",
+                                                               "It had no effect on daily life",
+                                                               "People preferred it to farming"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "historia-09",
+                         "questions":  [
+                                           {
+                                               "question":  "What is the main topic of this reading?",
+                                               "options":  [
+                                                               "The United Nations",
+                                                               "World War II and its effects",
+                                                               "How to fight wars",
+                                                               "Life in 1945"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "When did World War II end?",
+                                               "options":  [
+                                                               "1939",
+                                                               "1942",
+                                                               "1945",
+                                                               "1950"
+                                                           ],
+                                               "correct":  2
+                                           },
+                                           {
+                                               "question":  "What does \u0027occupied\u0027 mean?",
+                                               "options":  [
+                                                               "Free and independent",
+                                                               "Taken control of by enemy soldiers",
+                                                               "Empty",
+                                                               "Destroyed completely"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What was created after the war to prevent future wars?",
+                                               "options":  [
+                                                               "The Roman Empire",
+                                                               "The United Nations",
+                                                               "The Olympics",
+                                                               "The European Union"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can you infer about the post-war period?",
+                                               "options":  [
+                                                               "Nothing changed",
+                                                               "The world learned about freedom and rights",
+                                                               "Life stayed the same",
+                                                               "Countries stopped working together"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     },
+                     {
+                         "id":  "historia-10",
+                         "questions":  [
+                                           {
+                                               "question":  "What is the main topic of this reading?",
+                                               "options":  [
+                                                               "Only the Moon landing",
+                                                               "The Space Race and space exploration",
+                                                               "How to build rockets",
+                                                               "Life on Mars"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "Who was the first person in space?",
+                                               "options":  [
+                                                               "Neil Armstrong",
+                                                               "Yuri Gagarin",
+                                                               "Christopher Columbus",
+                                                               "Moctezuma"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What does \u0027astronauts\u0027 mean?",
+                                               "options":  [
+                                                               "People who fly planes",
+                                                               "People who travel to space",
+                                                               "People who build ships",
+                                                               "People who study stars"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What is the International Space Station?",
+                                               "options":  [
+                                                               "A private rocket",
+                                                               "A shared project by many countries",
+                                                               "A Mars rover",
+                                                               "A Moon base"
+                                                           ],
+                                               "correct":  1
+                                           },
+                                           {
+                                               "question":  "What can you infer about space exploration today?",
+                                               "options":  [
+                                                               "Only two countries explore space",
+                                                               "Countries work together and private companies help",
+                                                               "Space exploration has stopped",
+                                                               "Robots replaced all astronauts"
+                                                           ],
+                                               "correct":  1
+                                           }
+                                       ]
+                     }
+                 ]
+}
