@@ -157,7 +157,8 @@ function initReader() {
         quizHeader.innerHTML = '<h3>📝 Questions</h3><p>Answer the questions and check your answers</p>';
       }
 
-      showQuiz();
+      // Defer to after renderReader finishes (avoids TDZ with function hoisting)
+      setTimeout(() => showQuiz(), 0);
       return;
     }
 
