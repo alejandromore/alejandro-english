@@ -586,11 +586,59 @@ function speakWordAndLetters(word,btn){speak(word+'. '+word.toUpperCase().split(
 function cleanLetters(s){return (s||'').toLowerCase().replace(/[^a-z]/g,'');}
 function editDistance(a,b){const dp=Array(a.length+1).fill(0).map(()=>Array(b.length+1).fill(0));for(let i=0;i<=a.length;i++)dp[i][0]=i;for(let j=0;j<=b.length;j++)dp[0][j]=j;for(let i=1;i<=a.length;i++){for(let j=1;j<=b.length;j++){dp[i][j]=Math.min(dp[i-1][j]+1,dp[i][j-1]+1,dp[i-1][j-1]+(a[i-1]===b[j-1]?0:1));}}return dp[a.length][b.length];}
 function similarity(a,b){if(!a&&!b)return 1;if(!a||!b)return 0;if(a===b)return 1;return Math.max(0,1-editDistance(a,b)/Math.max(a.length,b.length));}
-function transcriptTokens(text){return (text||'').toLowerCase().replace(/[^a-z\s]/g,' ').replace(/\s+/g,' ').trim().split(' ').filter(Boolean);}
+
+/* Cleans raw ASR text, collapsing 3+ consecutive repeated words/letters to prevent ASR "getting stuck/glitching" */
+function collapseRepetitions(tokens){
+  if(!tokens||!tokens.length)return [];
+  const res=[];let count=0;
+  for(let i=0;i<tokens.length;i++){
+    if(i>0&&tokens[i]===tokens[i-1]){
+      count++;
+      if(count<=2)res.push(tokens[i]);
+    }else{
+      count=1;
+      res.push(tokens[i]);
+    }
+  }
+  return res;
+}
+
+function transcriptTokens(text){
+  const raw=(text||'').toLowerCase().replace(/[^a-z\s]/g,' ').replace(/\s+/g,' ').trim().split(' ').filter(Boolean);
+  return collapseRepetitions(raw);
+}
+
 const SPELL_LETTER_ALIASES={
-  a:['a','ay','hey'],b:['b','bee','be'],c:['c','see','sea'],d:['d','dee'],e:['e','ee'],f:['f','eff','if'],g:['g','gee'],h:['h','aitch','age'],i:['i','eye','hi'],j:['j','jay'],k:['k','kay','okay'],l:['l','el','ell'],m:['m','em','am'],n:['n','en','and'],o:['o','oh','owe'],p:['p','pee','pea'],q:['q','cue','queue'],r:['r','are','ar'],s:['s','ess','es'],t:['t','tee','tea'],u:['u','you'],v:['v','vee'],w:['w'],x:['x','ex'],y:['y','why'],z:['z','zee','zed']
+  a:['a','ay','ei','ey','hey','eight','ate','ae','eh'],
+  b:['b','bee','be','bi','vee','ve'],
+  c:['c','see','sea','si','se','ci','ce'],
+  d:['d','dee','di','de'],
+  e:['e','ee','ea','i','eh','ehs'],
+  f:['f','eff','if','ef'],
+  g:['g','gee','ji','dji','ge'],
+  h:['h','aitch','eitch','ach','h8','age','hache'],
+  i:['i','eye','ai','aye','hi','y'],
+  j:['j','jay','jei','gei'],
+  k:['k','kay','ke','kei','ca','ok','okay'],
+  l:['l','el','ell','ele'],
+  m:['m','em','am','eme'],
+  n:['n','en','an','ene','and'],
+  o:['o','oh','owe','ow','au'],
+  p:['p','pee','pea','pe','pi'],
+  q:['q','cue','queue','kew','cu'],
+  r:['r','are','ar','er','ere'],
+  s:['s','ess','es','ese','is'],
+  t:['t','tee','tea','te','ti'],
+  u:['u','you','yu','uu'],
+  v:['v','vee','ve','b','bee','be'],
+  w:['w','double you','double u','doubleyou','double-u','doblve'],
+  x:['x','ex','equis'],
+  y:['y','why','wai','i griega'],
+  z:['z','zee','zed','zeta']
 };
+
 const SPELL_ALIAS_TO_LETTER=(()=>{const rev={};Object.keys(SPELL_LETTER_ALIASES).forEach(k=>SPELL_LETTER_ALIASES[k].forEach(v=>rev[v]=k));return rev;})();
+
 function spokenLettersToText(text){
   const words=transcriptTokens(text);let out='';
   for(let i=0;i<words.length;i++){
@@ -599,8 +647,9 @@ function spokenLettersToText(text){
     if(SPELL_ALIAS_TO_LETTER[words[i]])out+=SPELL_ALIAS_TO_LETTER[words[i]];
     else if(words[i].length===1&&/[a-z]/.test(words[i]))out+=words[i];
   }
-  return out;
+  return out.replace(/(.)\1{2,}/g,'$1$1');
 }
+
 function bestWindowCandidate(source,expected){
   source=cleanLetters(source);expected=cleanLetters(expected);
   if(!source)return {heard:'',score:0,method:'none'};
@@ -616,69 +665,105 @@ function bestWindowCandidate(source,expected){
   }
   return best;
 }
+
+function operateSimilarLetters(a,b){
+  if(a===b)return true;
+  const groups=[
+    ['c','k','s'],
+    ['b','v','p'],
+    ['g','j'],
+    ['s','z'],
+    ['e','i','a'],
+    ['u','o','w'],
+    ['m','n']
+  ];
+  return groups.some(g=>g.includes(a)&&g.includes(b));
+}
+
 function lcsAlign(expected,heard){
-  // For each letter in expected, find the matching index in heard that forms the
-  // longest ordered common subsequence, so a single missing/extra letter from
-  // shaky voice recognition doesn't misalign (and zero out) every letter after it.
   const n=expected.length,m=heard.length;
   const dp=Array(n+1).fill(0).map(()=>Array(m+1).fill(0));
-  for(let i=1;i<=n;i++)for(let j=1;j<=m;j++)dp[i][j]=expected[i-1]===heard[j-1]?dp[i-1][j-1]+1:Math.max(dp[i-1][j],dp[i][j-1]);
+  for(let i=1;i<=n;i++){
+    for(let j=1;j<=m;j++){
+      const match = expected[i-1]===heard[j-1] || operateSimilarLetters(expected[i-1],heard[j-1]);
+      dp[i][j]=match?dp[i-1][j-1]+1:Math.max(dp[i-1][j],dp[i][j-1]);
+    }
+  }
   const matched=Array(n).fill(-1);
   let i=n,j=m;
   while(i>0&&j>0){
-    if(expected[i-1]===heard[j-1]){matched[i-1]=j-1;i--;j--;}
+    const match = expected[i-1]===heard[j-1] || operateSimilarLetters(expected[i-1],heard[j-1]);
+    if(match){matched[i-1]=j-1;i--;j--;}
     else if(dp[i-1][j]>=dp[i][j-1])i--;
     else j--;
   }
   return matched;
 }
-function analyzeSpellingText(text,expected){
-  // Automatic, flexible spelling-pronunciation check based on browser SpeechRecognition.
-  expected=cleanLetters(expected);
-  const tokens=transcriptTokens(text), mapped=spokenLettersToText(text), raw=cleanLetters(text);
-  const candidates=[];
-  if(mapped)candidates.push({heard:mapped,method:'letters'});
-  // Sometimes the browser collapses A-P-P-L-E into "apple". Accept it as a flexible signal.
-  if(tokens.includes(expected)||raw.includes(expected))candidates.push({heard:expected,method:'word'});
-  const rawBest=bestWindowCandidate(raw,expected);if(rawBest.heard)candidates.push({heard:rawBest.heard,method:'sounds'});
-  let best={heard:'',score:0,ok:false,method:'none',statuses:automaticLetterStatuses(expected,'')};
-  candidates.forEach(c=>{
-    const statuses=automaticLetterStatuses(expected,c.heard);
-    const score=statusScore(statuses);
-    if(score>best.score)best={heard:c.heard,score:score,ok:score>=0.65,method:c.method,statuses:statuses};
-  });
-  if(best.score>=0.97){best.heard=expected;best.score=1;best.ok=true;best.statuses=automaticLetterStatuses(expected,expected);}
-  return best;
-}
+
 function automaticLetterStatuses(expected,heard){
   expected=cleanLetters(expected);heard=cleanLetters(heard);
   const matched=lcsAlign(expected,heard);
   const used=Array(heard.length).fill(false);
   matched.forEach(idx=>{if(idx>=0)used[idx]=true;});
   const out=[];
-  // Green: the letter is part of the longest matching sequence, in order (small gaps allowed).
   for(let i=0;i<expected.length;i++){
-    if(matched[i]>=0){out.push({ch:expected[i],cls:'ok',note:'heard'});continue;}
-    // Yellow: the letter was heard somewhere, just not in the main matched order.
-    const ch=expected[i];let pos=-1;
-    for(let j=0;j<heard.length;j++){if(!used[j]&&heard[j]===ch){pos=j;break;}}
+    const ch=expected[i];
+    if(matched[i]>=0){
+      const heardCh=heard[matched[i]];
+      if(heardCh===ch){
+        out.push({ch:ch,cls:'ok',note:'heard'});
+      }else{
+        out.push({ch:ch,cls:'mid',note:'sounds close'});
+      }
+      continue;
+    }
+    let pos=-1;
+    for(let j=0;j<heard.length;j++){if(!used[j]&&(heard[j]===ch||operateSimilarLetters(heard[j],ch))){pos=j;break;}}
     if(pos>=0){used[pos]=true;out.push({ch,cls:'mid',note:'close'});}
     else out.push({ch,cls:'bad',note:'practice'});
   }
   return out;
 }
+
 function statusScore(statuses){
   if(!statuses||!statuses.length)return 0;
-  const points=statuses.reduce((a,x)=>a+(x.cls==='ok'?1:(x.cls==='mid'?0.65:0)),0);
+  const points=statuses.reduce((a,x)=>a+(x.cls==='ok'?1:(x.cls==='mid'?0.85:0)),0);
   return points/statuses.length;
 }
+
+function analyzeSpellingText(text,expected){
+  expected=cleanLetters(expected);
+  const tokens=transcriptTokens(text), mapped=spokenLettersToText(text), raw=cleanLetters(text);
+  const candidates=[];
+  if(mapped)candidates.push({heard:mapped,method:'letters'});
+  
+  tokens.forEach(tok=>{
+    if(tok===expected||similarity(tok,expected)>=0.65){
+      candidates.push({heard:expected,method:'word'});
+    }
+  });
+  if(raw.includes(expected)||similarity(raw,expected)>=0.65)candidates.push({heard:expected,method:'word'});
+
+  const rawBest=bestWindowCandidate(raw,expected);if(rawBest.heard)candidates.push({heard:rawBest.heard,method:'sounds'});
+
+  let best={heard:'',score:0,ok:false,method:'none',statuses:automaticLetterStatuses(expected,'')};
+  candidates.forEach(c=>{
+    const statuses=automaticLetterStatuses(expected,c.heard);
+    const score=statusScore(statuses);
+    if(score>best.score)best={heard:c.heard,score:score,ok:score>=0.50,method:c.method,statuses:statuses};
+  });
+
+  if(best.score>=0.88){best.heard=expected;best.score=1;best.ok=true;best.statuses=automaticLetterStatuses(expected,expected);}
+  return best;
+}
+
 function renderLetterCheck(expected,result){
   const st=(result&&result.statuses)||automaticLetterStatuses(expected,(result&&result.heard)||'');
   return '<div class="letterCheck" data-review="letters">'+st.map(x=>'<span class="letterPill '+x.cls+'" title="'+x.note+'">'+x.ch.toUpperCase()+'</span>').join('')+'</div>'+
     '<div class="reviewHelp"><span class="letterPill ok">green</span> heard · <span class="letterPill mid">yellow</span> close · <span class="letterPill bad">red</span> practice</div>';
 }
 function scoreLabel(score){return Math.round((score||0)*100)+'%';}
-function matchClass(score){return score>=0.9?'good':(score>=0.6?'mid':'');}
+function matchClass(score){return score>=0.75?'good':(score>=0.5?'mid':'');}
 function addSpellingSummary(word,result,transcript){
   spellingSummary=spellingSummary.filter(x=>x.word!==word);
   spellingSummary.push({word:word,heard:result.heard||'',score:result.score||0,ok:!!result.ok,method:result.method||'',transcript:(transcript||result.transcript||'').trim()});
@@ -696,8 +781,12 @@ function showSpellingReview(box,word,transcript,audioUrl,summaryBox){
   addSpellingSummary(word,result,transcript);
   renderSpellingSummary(summaryBox);
   const heard=result.heard?spellLetters(result.heard):'No letters heard';
-  const heardText=(transcript||'').trim()||'No speech detected';
-  const msg=result.ok?'Great spelling! 🌟':'Good try! Practice the red letters and record again. 💪';
+  let heardText=(transcript||'').trim()||'No speech detected';
+  const tokens=transcriptTokens(heardText);
+  if(tokens.length>0){
+    heardText=tokens.slice(0,15).join(' ').toUpperCase() + (tokens.length>15 ? '...' : '');
+  }
+  const msg=result.ok?'Great spelling! 🌟 Great job!':'Good try! Let\'s practice together. 💪';
   box.style.display='block';box.innerHTML='<b>Spelling check:</b>'+(audioUrl?'<audio controls src="'+audioUrl+'"></audio>':'')+
     '<div>🧠 I heard: <b>'+heardText+'</b></div>'+
     '<div>🐝 Letters heard: <b>'+heard+'</b></div>'+
@@ -705,13 +794,13 @@ function showSpellingReview(box,word,transcript,audioUrl,summaryBox){
     '<div style="margin-top:8px;">Score: <b>'+scoreLabel(result.score)+'</b>. '+msg+'</div>';
   if(!questionAnswered)markResult(result.ok,null);
 }
+
 /* Native SpeechRecognition kept starting and stopping instantly on some Android phones,
    even with the mic allowed. Instead we record with MediaRecorder and transcribe fully
    offline with a small Whisper model in a Web Worker — the same approach voice-coach
    uses for its recordings — so nothing depends on the browser's live speech service. */
 var _spellingAsrWorker=null,_spellingAsrSeq=0,_spellingAsrJobs={};
 function getSpellingAsrWorker(){
-  if(_spellingAsrWorker)return _spellingAsrWorker;
   var src='import{pipeline}from"https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.5.2";var m=null;async function M(p){if(m)return m;m=await pipeline("automatic-speech-recognition","Xenova/whisper-tiny.en",{dtype:"q8",progress_callback:p});return m;}self.onmessage=async(e)=>{try{var a=await M(function(p){if(p&&p.status==="progress"&&p.file)self.postMessage({id:e.data.id,type:"progress",progress:p.progress||0});});var o=await a(e.data.audio);self.postMessage({id:e.data.id,type:"result",text:(o&&o.text)||""});}catch(err){self.postMessage({id:e.data.id,type:"error",error:(err&&err.message)||String(err)});}};';
   var url=URL.createObjectURL(new Blob([src],{type:'text/javascript'}));
   _spellingAsrWorker=new Worker(url,{type:'module'});
