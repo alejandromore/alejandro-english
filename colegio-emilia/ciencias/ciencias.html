@@ -169,8 +169,9 @@
 
   /* Fill-in-the-blanks */
   .fillSelect {
-    font-family: 'Fredoka'; font-weight: 700; font-size: 16px; padding: 4px 8px;
-    border-radius: 10px; border: 2px solid var(--purple); background: var(--white); color: var(--purple-d);
+    font-family: 'Fredoka'; font-weight: 700; font-size: 15px; padding: 6px 10px;
+    border-radius: 12px; border: 2px solid var(--purple); background: var(--white); color: var(--purple-d);
+    max-width: 100%; margin: 4px 0;
   }
 
   /* Drawing Canvas */
@@ -459,12 +460,12 @@ function startTopic(topicKey) {
       {
         type: 'partmatch',
         title: 'Match Body Part Function 🧠',
-        sub: 'Match each body part to its main function:',
-        pairs: [
-          { part: '1. Horns', func: 'Helps in fighting, defense, and breaking branches.' },
-          { part: '2. Tail', func: 'Used to keep annoying insects and flies away.' },
-          { part: '3. Beak', func: 'Used to pick up food without hands.' },
-          { part: '4. Legs', func: 'Allows animals to walk, run, and support body weight.' }
+        sub: 'Select the main function for each body part:',
+        items: [
+          { part: '1. Horns', select: ['Helps in fighting, defense, and breaking branches.', 'Used to keep annoying insects and flies away.', 'Used to pick up food without hands.', 'Allows animals to walk, run, and support body weight.'], ans: 'Helps in fighting, defense, and breaking branches.' },
+          { part: '2. Tail', select: ['Used to keep annoying insects and flies away.', 'Helps in fighting, defense, and breaking branches.', 'Used to pick up food without hands.', 'Allows animals to walk, run, and support body weight.'], ans: 'Used to keep annoying insects and flies away.' },
+          { part: '3. Beak', select: ['Used to pick up food without hands.', 'Helps in fighting, defense, and breaking branches.', 'Used to keep annoying insects and flies away.', 'Allows animals to walk, run, and support body weight.'], ans: 'Used to pick up food without hands.' },
+          { part: '4. Legs', select: ['Allows animals to walk, run, and support body weight.', 'Helps in fighting, defense, and breaking branches.', 'Used to keep annoying insects and flies away.', 'Used to pick up food without hands.'], ans: 'Allows animals to walk, run, and support body weight.' }
         ]
       }
     ];
@@ -538,6 +539,7 @@ function showQuestion() {
     box.innerHTML = q.html;
     document.getElementById('continueBtn').style.display = 'block';
   } else if (q.type === 'fill') {
+    let bankHtml = '<div class="wordBankList">' + q.bank.map(b => `<div class="wbItem">${b}</div>`).join('') + '</div>';
     let fillHtml = q.items.map((it, idx) => `
       <div class="questionCard">
         ${it.prefix}
@@ -554,6 +556,7 @@ function showQuestion() {
       </div>
     `).join('');
     box.innerHTML = `
+      ${bankHtml}
       <div style="width:100%;">${fillHtml}</div>
       <button class="optBtn correct" style="margin-top:10px;" onclick="checkFillAnswers()">Comprobar Respuestas ✔️</button>
     `;
@@ -569,14 +572,18 @@ function showQuestion() {
     `).join('');
     box.innerHTML = `<div style="width:100%;">${ynHtml}</div>`;
   } else if (q.type === 'partmatch') {
-    let pmHtml = q.pairs.map((p, idx) => `
-      <div class="questionCard">
-        <strong>${p.part}:</strong> ${p.func}
+    let pmHtml = q.items.map((it, idx) => `
+      <div class="questionCard" style="display:flex; flex-direction:column; gap:6px;">
+        <span><strong>${it.part}:</strong></span>
+        <select class="fillSelect" id="pmSel_${idx}">
+          <option value="">--Seleccionar función--</option>
+          ${it.select.map(s => `<option value="${s}">${s}</option>`).join('')}
+        </select>
       </div>
     `).join('');
     box.innerHTML = `
       <div style="width:100%;">${pmHtml}</div>
-      <button class="optBtn correct" onclick="markAllCorrect('¡Comprendido!')">¡Comprendido! ⭐</button>
+      <button class="optBtn correct" style="margin-top:10px;" onclick="checkPartMatchAnswers()">Comprobar Emparejamiento ✔️</button>
     `;
   }
 }
@@ -650,6 +657,29 @@ function checkFillAnswers() {
   }
 }
 
+function checkPartMatchAnswers() {
+  const q = questions[currentQIndex];
+  let allGood = true;
+  q.items.forEach((it, idx) => {
+    const val = document.getElementById(`pmSel_${idx}`).value;
+    if (val !== it.ans) {
+      allGood = false;
+    }
+  });
+  if (allGood) {
+    playCorrect();
+    totalStars += 20;
+    updateStars();
+    document.getElementById('feedback').className = 'feedback ok';
+    document.getElementById('feedback').innerText = '¡Excelente! Emparejaste todas las funciones del cuerpo +20 ⭐';
+    document.getElementById('continueBtn').style.display = 'block';
+  } else {
+    playWrong();
+    document.getElementById('feedback').className = 'feedback bad';
+    document.getElementById('feedback').innerText = 'Revisa algunas de las funciones seleccionadas.';
+  }
+}
+
 let ynScore = 0;
 function checkYN(idx, chosen, correct, btn) {
   if (chosen === correct) {
@@ -667,15 +697,6 @@ function checkYN(idx, chosen, correct, btn) {
     btn.classList.add('wrong');
     playWrong();
   }
-}
-
-function markAllCorrect(msg) {
-  playCorrect();
-  totalStars += 10;
-  updateStars();
-  document.getElementById('feedback').className = 'feedback ok';
-  document.getElementById('feedback').innerText = msg + ' +10 ⭐';
-  document.getElementById('continueBtn').style.display = 'block';
 }
 
 function nextQuestion() {
