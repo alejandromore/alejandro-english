@@ -21,7 +21,7 @@
   html, body { min-height: 100vh; margin: 0; }
   body {
     font-family: 'Nunito', sans-serif;
-    background: linear-gradient(180deg, #3AC7E0 0%, #68D5E8 40%, #CFF3E4 100%);
+    background: linear-gradient(180deg, #3AC7E0 0%, #68D5E8 45%, #CFF3E4 100%);
     color: var(--ink);
     position: relative;
     overflow-x: hidden;
@@ -44,7 +44,7 @@
     background: var(--white); border: none; border-radius: 16px; padding: 10px 18px;
     font-family: 'Fredoka'; font-weight: 600; font-size: 16px; color: var(--ink);
     box-shadow: var(--shadow); cursor: pointer; display: flex; align-items: center; gap: 6px;
-    text-decoration: none;
+    text-decoration: none; transition: transform .08s ease;
   }
   .backBtn:active { transform: translateY(4px); box-shadow: 0 4px 0 rgba(43,36,64,0.18); }
   .starCounter {
@@ -60,12 +60,12 @@
   
   .menuGrid {
     display: grid; grid-template-columns: repeat(2, minmax(150px, 1fr)); gap: 16px;
-    width: 100%; max-width: 800px; margin-top: 14px;
+    width: 100%; max-width: 840px; margin-top: 14px;
   }
-  @media(min-width: 600px) { .menuGrid { grid-template-columns: repeat(3, minmax(150px, 1fr)); } }
+  @media(min-width: 640px) { .menuGrid { grid-template-columns: repeat(3, minmax(150px, 1fr)); } }
   
   .card {
-    border: none; cursor: pointer; border-radius: 26px; padding: 20px 14px 18px;
+    border: none; cursor: pointer; border-radius: 26px; padding: 22px 14px 18px;
     display: flex; flex-direction: column; align-items: center; gap: 10px;
     color: var(--white); font-family: 'Fredoka'; font-weight: 600; box-shadow: var(--shadow);
     transition: transform .08s ease; text-align: center;
@@ -81,7 +81,7 @@
   .c5 { background: linear-gradient(160deg, var(--sky), var(--sky-d)); }
   
   .exWrap {
-    width: 100%; max-width: 720px; background: var(--white); border-radius: 28px;
+    width: 100%; max-width: 740px; background: var(--white); border-radius: 28px;
     padding: 22px 18px 26px; box-shadow: var(--shadow); margin-top: 8px; text-align: center;
   }
   .progressBar { width: 100%; height: 14px; background: #EDEAF7; border-radius: 10px; overflow: hidden; margin-bottom: 16px; }
@@ -123,21 +123,23 @@
     align-items: center; justify-content: center; font-size: 16px; margin-left: 8px; vertical-align: middle;
   }
   .speakBtn:active { transform: scale(0.92); }
-  
-  /* Word Search Grid */
+
+  /* 11x12 Word Search Grid */
   .wsGrid {
-    display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px;
-    max-width: 360px; margin: 0 auto 14px; user-select: none;
+    display: grid; grid-template-columns: repeat(11, 1fr); gap: 3px;
+    max-width: 440px; margin: 0 auto 14px; user-select: none; touch-action: none;
   }
   .wsCell {
-    aspect-ratio: 1; background: var(--cream); border: 2px solid #EADFC5; border-radius: 8px;
+    aspect-ratio: 1; background: var(--cream); border: 2px solid #EADFC5; border-radius: 6px;
     display: flex; align-items: center; justify-content: center; font-family: 'Fredoka';
-    font-weight: 700; font-size: clamp(13px, 3.5vw, 17px); cursor: pointer; color: var(--ink);
+    font-weight: 700; font-size: clamp(12px, 3vw, 16px); cursor: pointer; color: var(--ink);
+    transition: background .15s ease;
   }
   .wsCell.selected { background: var(--sun); border-color: var(--sun-d); color: var(--ink); }
+  .wsCell.found { background: var(--leaf); border-color: var(--leaf-d); color: var(--white); }
   
   .wordBankList {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 12px;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 14px;
   }
   .wbItem {
     background: #F0EBFF; border: 2px solid #D6C7FF; border-radius: 12px;
@@ -145,10 +147,15 @@
   }
   .wbItem.done { background: var(--leaf); border-color: var(--leaf-d); color: var(--white); text-decoration: line-through; }
 
+  .wsActionRow { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+  .btnSolution { background: #3AC7E0; border: none; border-radius: 14px; padding: 10px 18px; font-family: 'Fredoka'; font-weight: 700; color: #fff; cursor: pointer; box-shadow: 0 4px 0 #1E9FBF; }
+  .btnReset { background: #4CAF6D; border: none; border-radius: 14px; padding: 10px 18px; font-family: 'Fredoka'; font-weight: 700; color: #fff; cursor: pointer; box-shadow: 0 4px 0 #2E9450; }
+  .btnSolution:active, .btnReset:active { transform: translateY(3px); }
+
   /* Memory Game Cards */
   .memGrid {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
-    max-width: 420px; margin: 0 auto 14px;
+    max-width: 440px; margin: 0 auto 14px;
   }
   @media(min-width: 480px){ .memGrid { grid-template-columns: repeat(4, 1fr); } }
   .memCard {
@@ -175,6 +182,11 @@
 
   /* Illustration Svg Container */
   .svgContainer { width: 160px; height: 140px; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; }
+
+  /* Animal Parts Tab Cards */
+  .animalTabContainer { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
+  .animalTabBtn { background: var(--cream); border: 2px solid #EADFC5; border-radius: 12px; padding: 6px 14px; font-family: 'Fredoka'; font-weight: 600; cursor: pointer; }
+  .animalTabBtn.active { background: var(--purple); color: #fff; border-color: var(--purple-d); }
 
   .confetti-piece { position: fixed; top: -20px; width: 10px; height: 14px; z-index: 50; pointer-events: none; animation: fall linear forwards; }
   @keyframes fall { to { transform: translateY(105vh) rotate(400deg); opacity: 0.9; } }
@@ -296,17 +308,19 @@ function getSpeakBtnHtml(text) {
   return `<button class="speakBtn" onclick="speakText('${safeText}')" title="Escuchar en inglés">🔊</button>`;
 }
 
-/* APP STATE */
-let totalStars = 0;
+/* APP STATE & LOCALSTORAGE PROGRESS */
+let totalStars = parseInt(localStorage.getItem('emilia_science_stars') || '0', 10);
 let currentTopic = '';
 let currentQIndex = 0;
 let questions = [];
 
 function updateStars() {
+  localStorage.setItem('emilia_science_stars', totalStars);
   document.getElementById('starCountHome').innerText = totalStars;
   document.getElementById('starCount').innerText = totalStars;
   document.getElementById('starCountEnd').innerText = totalStars;
 }
+updateStars();
 
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -404,21 +418,25 @@ function startTopic(topicKey) {
       {
         type: 'study',
         title: 'What parts do animals have? 🐾',
-        sub: 'Read and learn the body parts of different animals:',
+        sub: 'Select an animal to see its body parts and functions:',
         html: `
-          <div class="questionCard">
-            <p><strong>• Bird 🦅:</strong> head, eye, beak, body, wings, tail, feather, leg</p>
-            <p><strong>• Fish 🐟:</strong> head, eye, mouth, scales, dorsal fin, body</p>
-            <p><strong>• Lion 🦁:</strong> ear, whisker, fur, tail, leg, paw, mouth, nose, eye</p>
-            <p><strong>• Elephant 🐘:</strong> head, ear, tusks, leg, trunk, body, tail, eye</p>
-            <p><strong>• Pig & Cow 🐖🐄:</strong> horns, hooves, tails to fight flies and break branches</p>
+          <div class="animalTabContainer">
+            <button class="animalTabBtn active" onclick="switchAnimalTab('bird', this)">Bird 🦅</button>
+            <button class="animalTabBtn" onclick="switchAnimalTab('fish', this)">Fish 🐟</button>
+            <button class="animalTabBtn" onclick="switchAnimalTab('lion', this)">Lion 🦁</button>
+            <button class="animalTabBtn" onclick="switchAnimalTab('elephant', this)">Elephant 🐘</button>
+            <button class="animalTabBtn" onclick="switchAnimalTab('cow', this)">Pig & Cow 🐖🐄</button>
+          </div>
+          <div class="questionCard" id="animalTabContent">
+            <p><strong>🦅 Bird Body Parts:</strong> head, eye, beak, body, wings, tail, feather, leg.</p>
+            <p><em>Function:</em> Birds use their <strong>wings</strong> to fly, and their <strong>beak</strong> to gather and eat food.</p>
           </div>
         `
       },
       {
         type: 'fill',
         title: 'Fill in the Blanks ✏️',
-        sub: 'Select the word from the Word Bank strictly:',
+        sub: 'Select the word strictly from the Word Bank:',
         bank: ['horns', 'defense', 'beak', 'food', 'tail', 'flies', 'ears', 'trunk'],
         items: [
           { prefix: '1. Rhinos have sharp ', select: ['horns', 'tail', 'ears'], suffix: ' on their head used for ', select2: ['defense', 'food', 'flies'], suffix2: '.' , ans1: 'horns', ans2: 'defense' },
@@ -456,12 +474,28 @@ function startTopic(topicKey) {
   }
 }
 
+function switchAnimalTab(type, btn) {
+  document.querySelectorAll('.animalTabBtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const content = document.getElementById('animalTabContent');
+  if (type === 'bird') {
+    content.innerHTML = `<p><strong>🦅 Bird Body Parts:</strong> head, eye, beak, body, wings, tail, feather, leg.</p><p><em>Function:</em> Birds use their <strong>wings</strong> to fly, and their <strong>beak</strong> to gather and eat food.</p>`;
+  } else if (type === 'fish') {
+    content.innerHTML = `<p><strong>🐟 Fish Body Parts:</strong> head, eye, mouth, scales, dorsal fin, body.</p><p><em>Function:</em> Fish use their <strong>dorsal fin</strong> and body to swim in water.</p>`;
+  } else if (type === 'lion') {
+    content.innerHTML = `<p><strong>🦁 Lion Body Parts:</strong> ear, whisker, fur, tail, leg, paw, mouth, nose, eye.</p><p><em>Function:</em> Lions use 4 strong <strong>legs & paws</strong> to run and hunt.</p>`;
+  } else if (type === 'elephant') {
+    content.innerHTML = `<p><strong>🐘 Elephant Body Parts:</strong> head, ear, tusks, leg, trunk, body, tail, eye.</p><p><em>Function:</em> Elephants have big <strong>ears</strong> to listen and cool down, and a long <strong>trunk</strong> to grab objects.</p>`;
+  } else if (type === 'cow') {
+    content.innerHTML = `<p><strong>🐖🐄 Pig & Cow Body Parts:</strong> horn, ear, body, tail, hoof, leg, mouth, nose, eye.</p><p><em>Function:</em> Animals use <strong>horns</strong> for defense & breaking branches, and <strong>tails</strong> to keep away flies.</p>`;
+  }
+}
+
 /* QUESTION RENDERERS */
 function showQuestion() {
   showScreen('screen-exercise');
   const q = questions[currentQIndex];
   
-  // Progress bar
   const pct = Math.round(((currentQIndex) / questions.length) * 100);
   document.getElementById('progressFill').style.width = pct + '%';
   
@@ -720,7 +754,7 @@ function setupMemoryGame() {
   };
 }
 
-/* TOPIC: WORD SEARCH (SOPA DE LETRAS) */
+/* TOPIC: 12x11 WORD SEARCH (EXACT MATCH TO WORKSHEET PHOTO 4) */
 function setupWordSearch() {
   showScreen('screen-exercise');
   document.getElementById('progressFill').style.width = '100%';
@@ -729,56 +763,122 @@ function setupWordSearch() {
   document.getElementById('feedback').innerText = '';
   document.getElementById('continueBtn').style.display = 'none';
 
+  // Exact 12x11 matrix from Photo 4:
   const matrix = [
-    ['Q','U','Z','Z','B','A','T','F','W','L'],
-    ['E','S','H','M','H','R','Y','G','M','I'],
-    ['A','S','W','X','R','G','K','R','O','N'],
-    ['G','S','E','X','O','H','W','A','S','K'],
-    ['L','D','Y','Y','L','W','L','S','Q','G'],
-    ['E','B','J','K','F','K','C','S','U','G'],
-    ['S','K','L','U','I','S','R','H','I','J'],
-    ['T','T','Q','Z','K','F','V','O','T','P'],
-    ['E','M','W','A','T','Y','D','P','O','F'],
-    ['F','Y','S','N','A','K','E','Q','E','Q']
+    ['Q','U','Z','Z','B','A','T','F','W','L','F'],
+    ['E','S','H','M','H','R','Y','G','M','I','E'],
+    ['A','S','W','X','R','G','K','R','O','N','N'],
+    ['G','S','E','X','O','H','W','A','S','K','N'],
+    ['L','D','Y','Y','L','W','L','S','Q','G','E'],
+    ['E','B','J','K','F','K','C','S','U','G','C'],
+    ['S','K','L','U','I','S','R','H','I','J','F'],
+    ['T','T','Q','Z','K','F','V','O','T','P','O'],
+    ['E','M','W','A','T','Y','D','P','O','F','X'],
+    ['J','K','R','F','N','A','K','P','I','K','Y'],
+    ['J','F','Y','S','N','A','K','E','Q','E','Z'],
+    ['P','H','I','E','Z','C','W','R','B','O','A']
   ];
 
-  const targetWords = ['EAGLE', 'BAT', 'SNAKE', 'FENNEC FOX', 'GRASSHOPPER', 'MOSQUITO'];
+  const solutionCoords = {
+    'BAT': [[0,4],[0,5],[0,6]],
+    'EAGLE': [[1,0],[2,0],[3,0],[4,0],[5,0]],
+    'SNAKE': [[10,3],[10,4],[10,5],[10,6],[10,7]],
+    'FENNEC FOX': [[0,10],[1,10],[2,10],[3,10],[4,10],[5,10],[6,10],[7,10],[8,10]],
+    'MOSQUITO': [[1,8],[2,8],[3,8],[4,8],[5,8],[6,8],[7,8],[8,8]],
+    'GRASSHOPPER': [[1,7],[2,7],[3,7],[4,7],[5,7],[6,7],[7,7],[8,7],[9,7],[10,7],[11,7]]
+  };
+
+  const targetWords = ['FENNEC FOX', 'GRASSHOPPER', 'EAGLE', 'BAT', 'MOSQUITO', 'SNAKE'];
+  let foundWords = new Set();
 
   const box = document.getElementById('stageBox');
   
   let wbHtml = '<div class="wordBankList">';
-  targetWords.forEach(w => {
-    wbHtml += `<div class="wbItem" id="wbi_${w.replace(/\s+/g,'')}">${w}</div>`;
+  targetWords.forEach((w, i) => {
+    wbHtml += `<div class="wbItem" id="wbi_${i}">${i+1}. ${w.toLowerCase()}</div>`;
   });
   wbHtml += '</div>';
 
   let gridHtml = '<div class="wsGrid">';
-  for (let r = 0; r < 10; r++) {
-    for (let c = 0; c < 10; c++) {
-      gridHtml += `<div class="wsCell" id="ws_${r}_${c}" onclick="clickWsCell(${r},${c},'${matrix[r][c]}')">${matrix[r][c]}</div>`;
+  for (let r = 0; r < 12; r++) {
+    for (let c = 0; c < 11; c++) {
+      gridHtml += `<div class="wsCell" id="ws_${r}_${c}" onclick="clickWsCell(${r},${c})">${matrix[r][c]}</div>`;
     }
   }
   gridHtml += '</div>';
 
-  box.innerHTML = wbHtml + gridHtml + `<button class="optBtn correct" style="margin-top:10px;" onclick="checkWordSelection()">Verificar Selección 🔎</button>`;
+  let actionHtml = `
+    <div class="wsActionRow">
+      <button class="btnSolution" onclick="showWordSearchSolution()">Solución 💡</button>
+      <button class="btnReset" onclick="resetWordSearch()">Reiniciar Ejercicio 🔄</button>
+    </div>
+  `;
 
-  window.clickWsCell = function(r, c, letter) {
+  box.innerHTML = wbHtml + gridHtml + actionHtml;
+
+  window.clickWsCell = function(r, c) {
     const cellEl = document.getElementById(`ws_${r}_${c}`);
     cellEl.classList.toggle('selected');
     playTap();
+    checkAutomaticWordMatch();
   };
 
-  window.checkWordSelection = function() {
-    playCorrect();
-    targetWords.forEach(w => {
-      const item = document.getElementById(`wbi_${w.replace(/\s+/g,'')}`);
-      if (item) item.classList.add('done');
+  function checkAutomaticWordMatch() {
+    targetWords.forEach((w, i) => {
+      if (foundWords.has(w)) return;
+      const coords = solutionCoords[w];
+      let allSelected = coords.every(([r,c]) => document.getElementById(`ws_${r}_${c}`).classList.contains('selected') || document.getElementById(`ws_${r}_${c}`).classList.contains('found'));
+      if (allSelected) {
+        foundWords.add(w);
+        coords.forEach(([r,c]) => {
+          const el = document.getElementById(`ws_${r}_${c}`);
+          el.classList.remove('selected');
+          el.classList.add('found');
+        });
+        document.getElementById(`wbi_${i}`).classList.add('done');
+        playCorrect();
+        totalStars += 5;
+        updateStars();
+      }
     });
-    totalStars += 25;
-    updateStars();
+
+    if (foundWords.size === targetWords.length) {
+      document.getElementById('feedback').className = 'feedback ok';
+      document.getElementById('feedback').innerText = '¡Felicidades! Encontraste todas las palabras 🏆 +30 ⭐';
+      document.getElementById('continueBtn').style.display = 'block';
+    }
+  }
+
+  window.showWordSearchSolution = function() {
+    targetWords.forEach((w, i) => {
+      foundWords.add(w);
+      const coords = solutionCoords[w];
+      coords.forEach(([r,c]) => {
+        const el = document.getElementById(`ws_${r}_${c}`);
+        el.classList.remove('selected');
+        el.classList.add('found');
+      });
+      document.getElementById(`wbi_${i}`).classList.add('done');
+    });
+    playCorrect();
     document.getElementById('feedback').className = 'feedback ok';
-    document.getElementById('feedback').innerText = '¡Encontraste las palabras secretas! +25 ⭐';
+    document.getElementById('feedback').innerText = '¡Solución mostrada correctamente!';
     document.getElementById('continueBtn').style.display = 'block';
+  };
+
+  window.resetWordSearch = function() {
+    foundWords.clear();
+    for (let r = 0; r < 12; r++) {
+      for (let c = 0; c < 11; c++) {
+        const el = document.getElementById(`ws_${r}_${c}`);
+        el.classList.remove('selected', 'found');
+      }
+    }
+    targetWords.forEach((w, i) => {
+      document.getElementById(`wbi_${i}`).classList.remove('done');
+    });
+    document.getElementById('feedback').innerText = '';
+    document.getElementById('continueBtn').style.display = 'none';
   };
 }
 
@@ -882,7 +982,9 @@ function setupMysteryAnimal() {
 
   window.revealOriginalDrawing = function() {
     const box = document.getElementById('stageBox');
-    box.innerHTML += `<div class="svgContainer" style="width:200px; height:160px; margin-top:14px;">${elephantSVG}</div>`;
+    if (!document.getElementById('elephantSvgReveal')) {
+      box.innerHTML += `<div id="elephantSvgReveal" class="svgContainer" style="width:200px; height:160px; margin-top:14px;">${elephantSVG}</div>`;
+    }
   };
 }
 </script>
