@@ -181,6 +181,7 @@
 </div>
 
 <script>
+
 /* MASCOT SVG */
 const mascotSVG=`<svg viewBox="0 0 160 160" width="100%"><ellipse cx="80" cy="145" rx="34" ry="8" fill="rgba(43,36,64,0.15)"/><path d="M50 90 Q40 60 62 45 Q80 34 98 45 Q120 60 110 90 Q112 120 80 128 Q48 120 50 90 Z" fill="#2B2440"/><path d="M56 85 Q50 62 66 50 Q80 42 94 50 Q110 62 104 85 Q106 110 80 116 Q54 110 56 85 Z" fill="#4CAF6D"/><circle cx="68" cy="66" r="7" fill="#fff"/><circle cx="70" cy="66" r="3.4" fill="#2B2440"/><path d="M78 74 Q100 70 118 78 Q100 86 78 82 Z" fill="#FFC93C"/><path d="M60 108 Q80 118 100 108 Q100 122 80 126 Q60 122 60 108 Z" fill="#FF6B5B"/><path d="M40 92 Q22 88 20 70 Q34 76 44 88 Z" fill="#3AC7E0"/><path d="M120 92 Q138 88 140 70 Q126 76 116 88 Z" fill="#3AC7E0"/></svg>`;
 document.getElementById('mascotHome').innerHTML=mascotSVG;
@@ -416,7 +417,7 @@ const SVGS={
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
 function goHome(){showScreen('screen-home');}
 function startTopic(t){currentTopic=t;qIndex=0;stars=0;document.getElementById('starCount').textContent=stars;if(t==='spellingBee'){spellingSummary=[];spellingLevel=null;document.getElementById('exTitle').textContent=TOPIC_META[t].title;document.getElementById('exSub').textContent=TOPIC_META[t].sub;showScreen('screen-exercise');showSpellingLevelSelection();return;}document.getElementById('exTitle').textContent=TOPIC_META[t].title;document.getElementById('exSub').textContent=TOPIC_META[t].sub;showScreen('screen-exercise');loadQuestion();}
-function showSpellingLevelSelection(){document.getElementById('progressFill').style.width='0%';document.getElementById('feedback').textContent='';document.getElementById('feedback').className='feedback';document.getElementById('continueBtn').style.display='none';var s=document.getElementById('stageBox');s.innerHTML='';var panel=document.createElement('div');panel.className='spellPanel';panel.innerHTML='<div class="spellBadge">🐝 Spelling Bee (6th Grade)</div><div style="text-align:center;font-weight:800;color:#5E5578;margin:8px 0 4px;">Select a level to practice spelling:</div><div style="display:flex;flex-direction:column;gap:14px;width:100%;max-width:380px;margin:6px auto 0;">'+'<button class="spellBtn" style="width:100%;font-size:20px;padding:16px;background:linear-gradient(160deg,var(--leaf),var(--leaf-deep));color:white;" onclick="selectSpellingLevel(\'basic\')"><div>Level 1: Basic</div><small style="font-size:13px;font-weight:600;display:block;margin-top:4px;">Essential words (5-8 letters): computer, hospital, adventure...</small></button>'+'<button class="spellBtn" style="width:100%;font-size:20px;padding:16px;background:linear-gradient(160deg,var(--sun),var(--sun-deep));" onclick="selectSpellingLevel(\'intermediate\')"><div>Level 2: Intermediate</div><small style="font-size:13px;font-weight:600;display:block;margin-top:4px;">Medium words (8-10 letters): dictionary, technology, photograph...</small></button>'+'<button class="spellBtn" style="width:100%;font-size:20px;padding:16px;background:linear-gradient(160deg,var(--coral),var(--coral-deep));color:white;" onclick="selectSpellingLevel(\'advanced\')"><div>Level 3: Advanced</div><small style="font-size:13px;font-weight:600;display:block;margin-top:4px;">Long words (10-14 letters): encyclopedia, responsibility, architecture...</small></button>'+'</div>';s.appendChild(panel);}
+function showSpellingLevelSelection(){document.getElementById('progressFill').style.width='0%';document.getElementById('feedback').textContent='';document.getElementById('feedback').className='feedback';document.getElementById('continueBtn').style.display='none';var s=document.getElementById('stageBox');s.innerHTML='';var panel=document.createElement('div');panel.className='spellPanel';panel.innerHTML='<div class="spellBadge">Choose your level</div><div style="text-align:center;font-weight:800;color:#5E5578;margin:8px 0 4px;">Select a difficulty to start spelling practice</div><div style="display:flex;flex-direction:column;gap:14px;width:100%;max-width:340px;margin:6px auto 0;">'+'<button class="spellBtn" style="width:100%;font-size:20px;padding:16px;background:linear-gradient(160deg,var(--leaf),var(--leaf-deep));color:white;" onclick="selectSpellingLevel(\'basic\')"><div>Basic</div><small style="font-size:13px;font-weight:600;display:block;margin-top:4px;">Short words (3-4 letters): cat, dog, book...</small></button>'+'<button class="spellBtn" style="width:100%;font-size:20px;padding:16px;background:linear-gradient(160deg,var(--sun),var(--sun-deep));" onclick="selectSpellingLevel(\'intermediate\')"><div>Intermediate</div><small style="font-size:13px;font-weight:600;display:block;margin-top:4px;">Medium words (5-6 letters): apple, house, flower...</small></button>'+'<button class="spellBtn" style="width:100%;font-size:20px;padding:16px;background:linear-gradient(160deg,var(--coral),var(--coral-deep));color:white;" onclick="selectSpellingLevel(\'advanced\')"><div>Advanced</div><small style="font-size:13px;font-weight:600;display:block;margin-top:4px;">Long words (7+ letters): birthday, teacher, weather...</small></button>'+'</div>';s.appendChild(panel);}
 function selectSpellingLevel(level){spellingLevel=level;spellingQueue=shuffle(SPELLING_LEVELS[level].slice());spellingSummary=[];loadQuestion();}
 function updateProgress(){document.getElementById('progressFill').style.width=(qIndex/TOTAL_Q*100)+'%';}
 function loadQuestion(){questionAnswered=false;updateProgress();document.getElementById('feedback').textContent='';document.getElementById('feedback').className='feedback';document.getElementById('continueBtn').style.display='none';const s=document.getElementById('stageBox');s.innerHTML='';if(qIndex>=TOTAL_Q){return endGame();}const builders={funOnTheFarm:buildFunOnTheFarm,iLikeFood:buildILikeFood,questionsLike:buildQuestionsLike,canIHave:buildCanIHave,spellingBee:buildSpellingBee};builders[currentTopic](s);}
@@ -549,8 +550,18 @@ function buildCanIHave(stage){
     {type:'mc',q:'Would you like a cookie?',opt:['Yes, please!','No, thank you','Maybe','I don\'t know'],correct:0,img:'dialogue-burger.png',svg:'offer'},
     {type:'tf',q:"We say 'Can I have' to ask for something.",correct:true,img:'dialogue-burger.png',svg:'request'},
     {type:'tf',q:"We say 'Would you like' to offer something.",correct:true,img:'dialogue-juice.png',svg:'offer'},
-    {type:'mc',q:'Can I have some water, please?',opt:['please','thanks','yes','no'],correct:0,img:'dialogue-juice.png',svg:'request'},
-    {type:'mc',q:'___ I have some cake, please?',opt:['Can','Do','Are','Is'],correct:0,img:'dialogue-burger.png',svg:'request'}
+    {type:'mc',q:'Can I have some water, ___?',opt:['please','thanks','yes','no'],correct:0,img:'dialogue-juice.png',svg:'request'},
+    {type:'mc',q:'___ you like some cake?',opt:['Would','Do','Are','Can'],correct:0,img:'dialogue-burger.png',svg:'offer'},
+    {type:'mc',q:'Can I have ___ orange juice?',opt:['some','a','an','the'],correct:0,img:'dialogue-juice.png',svg:'drink'},
+    {type:'tf',q:"We say 'please' to be polite.",correct:true,img:'dialogue-burger.png',svg:'menu'},
+    {type:'mc',q:'Can I have ___ egg, please?',opt:['an','a','the','is'],correct:0,img:'dialogue-burger.png',svg:'request'},
+    {type:'mc',q:'Would you like ___ bread?',opt:['some','a','an','the'],correct:0,img:'dialogue-burger.png',svg:'offer'},
+    {type:'tf',q:"We use 'an' before vowel sounds.",correct:true,img:'dialogue-burger.png',svg:'menu'},
+    {type:'mc',q:'Can I have a ___, please?',opt:['burger','an burger','some burger','the burger'],correct:0,img:'dialogue-burger.png',svg:'request'},
+    {type:'mc',q:'Would you like some ___?',opt:['water','waters','a water','an water'],correct:0,img:'dialogue-juice.png',svg:'drink'},
+    {type:'tf',q:"We use 'some' with uncountable nouns.",correct:true,img:'dialogue-juice.png',svg:'menu'},
+    {type:'mc',q:'___ I have some cake, please?',opt:['Can','Do','Are','Is'],correct:0,img:'dialogue-burger.png',svg:'request'},
+    {type:'mc',q:'Would you like an ___?',opt:['apple','apples','some apple','a apple'],correct:0,img:'dialogue-juice.png',svg:'offer'}
   ];
   const item=qs[rand(0,qs.length-1)];
   showImg(stage,'images/'+item.img);showSVG(stage,SVGS[item.svg]);
@@ -590,6 +601,205 @@ const SPELLING_SVGS={
   hospital:'<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><rect x="70" y="40" width="160" height="130" fill="#FFFFFF" stroke="#3AC7E0" stroke-width="4" rx="10"/><rect x="135" y="60" width="30" height="80" fill="#FF6B5B" rx="3"/><rect x="110" y="85" width="80" height="30" fill="#FF6B5B" rx="3"/><rect x="125" y="140" width="50" height="30" fill="#5B8DEF" rx="2"/><text x="150" y="188" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#2B2440" font-weight="700">Hospital</text></svg>'
 };
 let spellingLevel=null;
+function nextSpellingWord(){if(!spellingQueue.length){var list=spellingLevel?SPELLING_LEVELS[spellingLevel]:SPELLING_WORDS;spellingQueue=shuffle(list);}return spellingQueue.shift();}
+function spellLetters(word){return word.toUpperCase().split('').join(' - ');}
+function speakWordAndLetters(word,btn){speak(word+'. '+word.toUpperCase().split('').join('. ')+'. '+word+'.','en-US',btn);}
+function cleanLetters(s){return (s||'').toLowerCase().replace(/[^a-z]/g,'');}
+function editDistance(a,b){const dp=Array(a.length+1).fill(0).map(()=>Array(b.length+1).fill(0));for(let i=0;i<=a.length;i++)dp[i][0]=i;for(let j=0;j<=b.length;j++)dp[0][j]=j;for(let i=1;i<=a.length;i++){for(let j=1;j<=b.length;j++){dp[i][j]=Math.min(dp[i-1][j]+1,dp[i][j-1]+1,dp[i-1][j-1]+(a[i-1]===b[j-1]?0:1));}}return dp[a.length][b.length];}
+function similarity(a,b){if(!a&&!b)return 1;if(!a||!b)return 0;if(a===b)return 1;return Math.max(0,1-editDistance(a,b)/Math.max(a.length,b.length));}
+
+/* Cleans raw ASR text, collapsing repeated 1-3 token cycles (e.g. "s s s s" or the
+   alternating "s a s a s a s a" loop whisper-tiny.en sometimes hallucinates on silence)
+   down to at most 2 repeats, to prevent the transcript from "getting stuck/glitching" */
+function collapseRepetitions(tokens){
+  if(!tokens||!tokens.length)return [];
+  const res=[];
+  let i=0;
+  while(i<tokens.length){
+    let collapsed=false;
+    for(let cycle=1;cycle<=3;cycle++){
+      if(i+cycle*2>tokens.length)continue;
+      let matches=true;
+      for(let k=0;k<cycle;k++){if(tokens[i+k]!==tokens[i+cycle+k]){matches=false;break;}}
+      if(!matches)continue;
+      let reps=1,j=i+cycle;
+      while(j+cycle<=tokens.length){
+        let ok=true;
+        for(let k=0;k<cycle;k++){if(tokens[j+k]!==tokens[i+k]){ok=false;break;}}
+        if(!ok)break;
+        reps++;j+=cycle;
+      }
+      if(reps>=3){
+        for(let r=0;r<2;r++){for(let k=0;k<cycle;k++)res.push(tokens[i+r*cycle+k]);}
+        i=j;collapsed=true;break;
+      }
+    }
+    if(!collapsed){res.push(tokens[i]);i++;}
+  }
+  return res;
+}
+
+function transcriptTokens(text){
+  const raw=(text||'').toLowerCase().replace(/[^a-z\s]/g,' ').replace(/\s+/g,' ').trim().split(' ').filter(Boolean);
+  return collapseRepetitions(raw);
+}
+
+const SPELL_LETTER_ALIASES={
+  a:['a','ay','ei','ey','hey','eight','ate','ae','eh'],
+  b:['b','bee','be','bi','vee','ve'],
+  c:['c','see','sea','si','se','ci','ce'],
+  d:['d','dee','di','de'],
+  e:['e','ee','ea','i','eh','ehs'],
+  f:['f','eff','if','ef'],
+  g:['g','gee','ji','dji','ge'],
+  h:['h','aitch','eitch','ach','h8','age','hache'],
+  i:['i','eye','ai','aye','hi','y'],
+  j:['j','jay','jei','gei'],
+  k:['k','kay','ke','kei','ca','ok','okay'],
+  l:['l','el','ell','ele'],
+  m:['m','em','am','eme'],
+  n:['n','en','an','ene','and'],
+  o:['o','oh','owe','ow','au'],
+  p:['p','pee','pea','pe','pi'],
+  q:['q','cue','queue','kew','cu'],
+  r:['r','are','ar','er','ere'],
+  s:['s','ess','es','ese','is'],
+  t:['t','tee','tea','te','ti'],
+  u:['u','you','yu','uu'],
+  v:['v','vee','ve','b','bee','be'],
+  w:['w','double you','double u','doubleyou','double-u','doblve'],
+  x:['x','ex','equis'],
+  y:['y','why','wai','i griega'],
+  z:['z','zee','zed','zeta']
+};
+
+const SPELL_ALIAS_TO_LETTER=(()=>{const rev={};Object.keys(SPELL_LETTER_ALIASES).forEach(k=>SPELL_LETTER_ALIASES[k].forEach(v=>rev[v]=k));return rev;})();
+
+function spokenLettersToText(text){
+  const words=transcriptTokens(text);let out='';
+  for(let i=0;i<words.length;i++){
+    const two=words[i]+' '+(words[i+1]||'');
+    if(two==='double you'||two==='double u'){out+='w';i++;continue;}
+    if(SPELL_ALIAS_TO_LETTER[words[i]])out+=SPELL_ALIAS_TO_LETTER[words[i]];
+    else if(words[i].length===1&&/[a-z]/.test(words[i]))out+=words[i];
+  }
+  return out.replace(/(.)\1{2,}/g,'$1$1');
+}
+
+function bestWindowCandidate(source,expected){
+  source=cleanLetters(source);expected=cleanLetters(expected);
+  if(!source)return {heard:'',score:0,method:'none'};
+  if(source===expected)return {heard:source,score:1,method:'exact'};
+  if(source.includes(expected))return {heard:expected,score:1,method:'contains-word'};
+  let best={heard:source,score:similarity(source,expected),method:'whole'};
+  const minLen=Math.max(1,expected.length-1), maxLen=expected.length+1;
+  for(let len=minLen;len<=maxLen;len++){
+    for(let i=0;i<=source.length-len;i++){
+      const sub=source.slice(i,i+len), sc=similarity(sub,expected);
+      if(sc>best.score)best={heard:sub,score:sc,method:'best-part'};
+    }
+  }
+  return best;
+}
+
+function operateSimilarLetters(a,b){
+  if(a===b)return true;
+  const groups=[
+    ['c','k','s'],
+    ['b','v','p'],
+    ['g','j'],
+    ['s','z'],
+    ['e','i','a'],
+    ['u','o','w'],
+    ['m','n']
+  ];
+  return groups.some(g=>g.includes(a)&&g.includes(b));
+}
+
+function lcsAlign(expected,heard){
+  const n=expected.length,m=heard.length;
+  const dp=Array(n+1).fill(0).map(()=>Array(m+1).fill(0));
+  for(let i=1;i<=n;i++){
+    for(let j=1;j<=m;j++){
+      const match = expected[i-1]===heard[j-1] || operateSimilarLetters(expected[i-1],heard[j-1]);
+      dp[i][j]=match?dp[i-1][j-1]+1:Math.max(dp[i-1][j],dp[i][j-1]);
+    }
+  }
+  const matched=Array(n).fill(-1);
+  let i=n,j=m;
+  while(i>0&&j>0){
+    const match = expected[i-1]===heard[j-1] || operateSimilarLetters(expected[i-1],heard[j-1]);
+    if(match){matched[i-1]=j-1;i--;j--;}
+    else if(dp[i-1][j]>=dp[i][j-1])i--;
+    else j--;
+  }
+  return matched;
+}
+
+function automaticLetterStatuses(expected,heard){
+  expected=cleanLetters(expected);heard=cleanLetters(heard);
+  const matched=lcsAlign(expected,heard);
+  const used=Array(heard.length).fill(false);
+  matched.forEach(idx=>{if(idx>=0)used[idx]=true;});
+  const out=[];
+  for(let i=0;i<expected.length;i++){
+    const ch=expected[i];
+    if(matched[i]>=0){
+      const heardCh=heard[matched[i]];
+      if(heardCh===ch){
+        out.push({ch:ch,cls:'ok',note:'heard'});
+      }else{
+        out.push({ch:ch,cls:'mid',note:'sounds close'});
+      }
+      continue;
+    }
+    let pos=-1;
+    for(let j=0;j<heard.length;j++){if(!used[j]&&(heard[j]===ch||operateSimilarLetters(heard[j],ch))){pos=j;break;}}
+    if(pos>=0){used[pos]=true;out.push({ch,cls:'mid',note:'close'});}
+    else out.push({ch,cls:'bad',note:'practice'});
+  }
+  return out;
+}
+
+function statusScore(statuses){
+  if(!statuses||!statuses.length)return 0;
+  const points=statuses.reduce((a,x)=>a+(x.cls==='ok'?1:(x.cls==='mid'?0.5:0)),0);
+  return points/statuses.length;
+}
+
+function analyzeSpellingText(text,expected){
+  expected=cleanLetters(expected);
+  const tokens=transcriptTokens(text), mapped=spokenLettersToText(text), raw=cleanLetters(text);
+  const candidates=[];
+  if(mapped)candidates.push({heard:mapped,method:'letters'});
+  
+  tokens.forEach(tok=>{
+    if(tok===expected||similarity(tok,expected)>=0.85){
+      candidates.push({heard:expected,method:'word'});
+    }
+  });
+  if(raw.includes(expected)||similarity(raw,expected)>=0.85)candidates.push({heard:expected,method:'word'});
+
+  const rawBest=bestWindowCandidate(raw,expected);if(rawBest.heard)candidates.push({heard:rawBest.heard,method:'sounds'});
+
+  let best={heard:'',score:0,ok:false,method:'none',statuses:automaticLetterStatuses(expected,'')};
+  candidates.forEach(c=>{
+    const statuses=automaticLetterStatuses(expected,c.heard);
+    const score=statusScore(statuses);
+    if(score>best.score)best={heard:c.heard,score:score,ok:score>=0.85,method:c.method,statuses:statuses};
+  });
+
+  if(best.score>=0.92){best.heard=expected;best.score=1;best.ok=true;best.statuses=automaticLetterStatuses(expected,expected);}
+  return best;
+}
+
+function renderLetterCheck(expected,result){
+  const st=(result&&result.statuses)||automaticLetterStatuses(expected,(result&&result.heard)||'');
+  return '<div class="letterCheck" data-review="letters">'+st.map(x=>'<span class="letterPill '+x.cls+'" title="'+x.note+'">'+x.ch.toUpperCase()+'</span>').join('')+'</div>'+
+    '<div class="reviewHelp"><span class="letterPill ok">green</span> heard · <span class="letterPill mid">yellow</span> close · <span class="letterPill bad">red</span> practice</div>';
+}
+function scoreLabel(score){return Math.round((score||0)*100)+'%';}
+function matchClass(score){return score>=0.95?'good':(score>=0.85?'mid':'');}
 function addSpellingSummary(word,result,transcript){
   spellingSummary=spellingSummary.filter(x=>x.word!==word);
   spellingSummary.push({word:word,heard:result.heard||'',score:result.score||0,ok:!!result.ok,method:result.method||'',transcript:(transcript||result.transcript||'').trim()});
@@ -598,16 +808,21 @@ function renderSpellingSummary(target){
   if(!target)return;
   if(!spellingSummary.length){target.innerHTML='<h3>📋 Practice summary</h3><div class="summaryList"><div class="summaryItem"><span>No words evaluated yet.</span><span class="matchBadge mid">0%</span></div></div>';return;}
   const ordered=spellingSummary.slice().sort((a,b)=>a.word.localeCompare(b.word));
-  const items=ordered.map((it)=>'<div class="summaryItem"><span>'+(SPELLING_PICTURES[it.word]||'🐝')+' <b>'+it.word+'</b><br><small>Heard: '+(it.heard?spellLetters(it.heard):'no speech')+'</small></span><span class="matchBadge '+matchClass(it.score)+'">'+scoreLabel(it.score)+'</span></div>').join('');
+  const items=ordered.map((it)=>'<div class="summaryItem"><span>'+SPELLING_PICTURES[it.word]+' <b>'+it.word+'</b><br><small>Heard: '+(it.heard?spellLetters(it.heard):'no speech')+'</small></span><span class="matchBadge '+matchClass(it.score)+'">'+scoreLabel(it.score)+'</span></div>').join('');
   const avg=ordered.reduce((a,b)=>a+(b.score||0),0)/ordered.length;
   target.innerHTML='<h3>📋 Practice summary • '+ordered.length+' words • Average '+scoreLabel(avg)+'</h3><div class="summaryList">'+items+'</div>';
 }
 function showSpellingReview(box,word,transcript,audioUrl,summaryBox){
+  const result=analyzeSpellingText(transcript,word);
   addSpellingSummary(word,result,transcript);
   renderSpellingSummary(summaryBox);
   const heard=result.heard?spellLetters(result.heard):'No letters heard';
-  const heardText=(transcript||'').trim()||'No speech detected';
-  const msg=result.ok?'Great spelling! 🌟':'Good try! Practice the red letters and record again. 💪';
+  let heardText=(transcript||'').trim()||'No speech detected';
+  const tokens=transcriptTokens(heardText);
+  if(tokens.length>0){
+    heardText=tokens.slice(0,15).join(' ').toUpperCase() + (tokens.length>15 ? '...' : '');
+  }
+  const msg=result.ok?'Great spelling! 🌟 Great job!':'Good try! Let\'s practice together. 💪';
   box.style.display='block';box.innerHTML='<b>Spelling check:</b>'+(audioUrl?'<audio controls src="'+audioUrl+'"></audio>':'')+
     '<div>🧠 I heard: <b>'+heardText+'</b></div>'+
     '<div>🐝 Letters heard: <b>'+heard+'</b></div>'+
@@ -615,14 +830,14 @@ function showSpellingReview(box,word,transcript,audioUrl,summaryBox){
     '<div style="margin-top:8px;">Score: <b>'+scoreLabel(result.score)+'</b>. '+msg+'</div>';
   if(!questionAnswered)markResult(result.ok,null);
 }
+
 /* Native SpeechRecognition kept starting and stopping instantly on some Android phones,
    even with the mic allowed. Instead we record with MediaRecorder and transcribe fully
    offline with a small Whisper model in a Web Worker — the same approach voice-coach
    uses for its recordings — so nothing depends on the browser's live speech service. */
 var _spellingAsrWorker=null,_spellingAsrSeq=0,_spellingAsrJobs={};
 function getSpellingAsrWorker(){
-  if(_spellingAsrWorker)return _spellingAsrWorker;
-  var src='import{pipeline}from"https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.5.2";var m=null;async function M(p){if(m)return m;m=await pipeline("automatic-speech-recognition","Xenova/whisper-tiny.en",{dtype:"q8",progress_callback:p});return m;}self.onmessage=async(e)=>{try{var a=await M(function(p){if(p&&p.status==="progress"&&p.file)self.postMessage({id:e.data.id,type:"progress",progress:p.progress||0});});var o=await a(e.data.audio);self.postMessage({id:e.data.id,type:"result",text:(o&&o.text)||""});}catch(err){self.postMessage({id:e.data.id,type:"error",error:(err&&err.message)||String(err)});}};';
+  var src='import{pipeline}from"https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.5.2";var m=null;async function M(p){if(m)return m;m=await pipeline("automatic-speech-recognition","Xenova/whisper-tiny.en",{dtype:"q8",progress_callback:p});return m;}self.onmessage=async(e)=>{try{var a=await M(function(p){if(p&&p.status==="progress"&&p.file)self.postMessage({id:e.data.id,type:"progress",progress:p.progress||0});});var o=await a(e.data.audio,{no_repeat_ngram_size:3,repetition_penalty:1.3});self.postMessage({id:e.data.id,type:"result",text:(o&&o.text)||""});}catch(err){self.postMessage({id:e.data.id,type:"error",error:(err&&err.message)||String(err)});}};';
   var url=URL.createObjectURL(new Blob([src],{type:'text/javascript'}));
   _spellingAsrWorker=new Worker(url,{type:'module'});
   _spellingAsrWorker.onmessage=function(e){
@@ -651,6 +866,33 @@ function warmSpellingAsr(){
   _spellingAsrWarmed=true;
   try{transcribeSpellingAudio(new Float32Array(1600)).catch(()=>{});}catch(e){}
 }
+/* Trims long silence from the start/end of the clip (keeping a small pad around the
+   speech). Whisper-tiny.en tends to hallucinate repeating-loop text when it has to
+   process long stretches of near-silent audio, so cutting that dead air down before
+   transcribing reduces the glitch. */
+function trimSpellingSilence(audio,sr){
+  const frame=Math.round(sr*0.03);
+  if(audio.length<=frame*2)return audio;
+  let peak=0;for(let i=0;i<audio.length;i++){const a=Math.abs(audio[i]);if(a>peak)peak=a;}
+  if(peak<=0)return audio;
+  const threshold=peak*0.08;
+  let start=0,end=audio.length,foundStart=false,foundEnd=false;
+  for(let i=0;i<audio.length;i+=frame){
+    let sum=0,n=0;
+    for(let j=i;j<Math.min(audio.length,i+frame);j++){sum+=Math.abs(audio[j]);n++;}
+    if(n&&sum/n>threshold){start=i;foundStart=true;break;}
+  }
+  for(let i=audio.length-frame;i>=0;i-=frame){
+    let sum=0,n=0;
+    for(let j=i;j<Math.min(audio.length,i+frame);j++){sum+=Math.abs(audio[j]);n++;}
+    if(n&&sum/n>threshold){end=Math.min(audio.length,i+frame);foundEnd=true;break;}
+  }
+  if(!foundStart||!foundEnd)return audio;
+  const pad=Math.round(sr*0.25);
+  start=Math.max(0,start-pad);end=Math.min(audio.length,end+pad);
+  if(end<=start)return audio;
+  return audio.slice(start,end);
+}
 async function decodeSpellingAudioTo16k(blob){
   const buf=await blob.arrayBuffer();
   const tmp=new (window.AudioContext||window.webkitAudioContext)();
@@ -659,13 +901,46 @@ async function decodeSpellingAudioTo16k(blob){
   const offline=new OfflineAudioContext(1,Math.max(1,Math.ceil(decoded.duration*16000)),16000);
   const src=offline.createBufferSource();src.buffer=decoded;src.connect(offline.destination);src.start();
   const rendered=await offline.startRendering();
-  const audio=rendered.getChannelData(0);
+  let audio=rendered.getChannelData(0);
   let peak=0;for(let i=0;i<audio.length;i++){const a=Math.abs(audio[i]);if(a>peak)peak=a;}
   if(peak>0.0015&&peak<0.75){const g=Math.min(10,0.95/peak);for(let i=0;i<audio.length;i++)audio[i]*=g;}
-  return {audio,duration:decoded.duration};
+  audio=trimSpellingSilence(audio,16000);
+  return {audio,duration:audio.length/16000};
 }
 let spellingStream=null,spellingRecorder=null,spellingChunks=[],spellingRecording=false,spellingSessionStartedAt=0,spellingAutoStopTimer=null,spellingActiveBox=null,spellingActiveWord='',spellingActiveSummaryBox=null,spellingActiveBtn=null;
-function spellingListenText(word){return '🎙️ Recording... spell the letters slowly: <b>'+spellLetters(word)+'</b><br><small>Press Stop when you are done.</small>';}
+let spellingMonitorCtx=null,spellingMonitorAnalyser=null,spellingMonitorData=null,spellingMonitorTimer=null;
+function spellingListenText(word){return '🎙️ Recording... spell the letters slowly: <b>'+spellLetters(word)+'</b><br><small>It stops by itself after you pause, or press Stop.</small>';}
+/* Watches mic volume while recording and auto-stops ~2.5s after the child goes quiet
+   (once some speech was heard), instead of a blind fixed timer that used to cut kids
+   off mid-word. The 30s setTimeout below stays only as a safety cap. */
+function startSpellingSilenceWatch(stream){
+  try{
+    spellingMonitorCtx=new (window.AudioContext||window.webkitAudioContext)();
+    const source=spellingMonitorCtx.createMediaStreamSource(stream);
+    spellingMonitorAnalyser=spellingMonitorCtx.createAnalyser();
+    spellingMonitorAnalyser.fftSize=512;
+    source.connect(spellingMonitorAnalyser);
+    spellingMonitorData=new Uint8Array(spellingMonitorAnalyser.fftSize);
+    const SPEECH_THRESHOLD=0.02,SILENCE_MS=2500,MIN_RECORD_MS=1500;
+    let heardSpeech=false,lastSpeechAt=Date.now();
+    (function tick(){
+      if(!spellingRecording||!spellingMonitorAnalyser)return;
+      spellingMonitorAnalyser.getByteTimeDomainData(spellingMonitorData);
+      let sum=0;
+      for(let i=0;i<spellingMonitorData.length;i++){const v=(spellingMonitorData[i]-128)/128;sum+=v*v;}
+      const rms=Math.sqrt(sum/spellingMonitorData.length);
+      const now=Date.now();
+      if(rms>SPEECH_THRESHOLD){heardSpeech=true;lastSpeechAt=now;}
+      if(heardSpeech&&(now-lastSpeechAt)>SILENCE_MS&&(now-spellingSessionStartedAt)>MIN_RECORD_MS){stopSpellingRecording();return;}
+      spellingMonitorTimer=setTimeout(tick,200);
+    })();
+  }catch(e){}
+}
+function stopSpellingSilenceWatch(){
+  if(spellingMonitorTimer){clearTimeout(spellingMonitorTimer);spellingMonitorTimer=null;}
+  if(spellingMonitorCtx){try{spellingMonitorCtx.close();}catch(e){}spellingMonitorCtx=null;}
+  spellingMonitorAnalyser=null;spellingMonitorData=null;
+}
 async function startSpellingRecording(word,box,btn,summaryBox){
   if(spellingRecording){
     // On some phones a single tap fires the click handler twice; ignore the
@@ -701,11 +976,13 @@ async function startSpellingRecording(word,box,btn,summaryBox){
   spellingRecording=true;spellingSessionStartedAt=Date.now();
   btn.classList.add('recording');btn.textContent='⏹️ Stop';
   box.style.display='block';box.innerHTML=spellingListenText(word);
-  spellingAutoStopTimer=setTimeout(()=>{if(spellingRecording)stopSpellingRecording();},12000);
+  spellingAutoStopTimer=setTimeout(()=>{if(spellingRecording)stopSpellingRecording();},30000);
+  startSpellingSilenceWatch(stream);
 }
 function stopSpellingRecording(){
   if(!spellingRecording)return;
   spellingRecording=false;
+  stopSpellingSilenceWatch();
   if(spellingAutoStopTimer){clearTimeout(spellingAutoStopTimer);spellingAutoStopTimer=null;}
   if(spellingActiveBtn){spellingActiveBtn.classList.remove('recording');spellingActiveBtn.textContent='🎙️ Record spelling';}
   try{if(spellingRecorder&&spellingRecorder.state!=='inactive')spellingRecorder.stop();}catch(e){}
@@ -788,6 +1065,11 @@ function buildSpellingBee(stage){
 
 _preloadAudio();
 setTimeout(warmSpellingAsr,1200);
+
+if(location.hash==="#spellingBee"||location.search.includes("spellingBee")){
+  setTimeout(()=>startTopic("spellingBee"),300);
+}
+
 </script>
 </body>
 </html>
