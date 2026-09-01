@@ -79,7 +79,9 @@
   .c3 { background: linear-gradient(160deg, var(--leaf), var(--leaf-d)); }
   .c4 { background: linear-gradient(160deg, var(--sun), var(--sun-d)); color: var(--ink); }
   .c5 { background: linear-gradient(160deg, var(--sky), var(--sky-d)); }
-  
+  .c6 { background: linear-gradient(160deg, #FF8FB1, #E8557F); }
+  .c7 { background: linear-gradient(160deg, #FFAA5B, #E87A2E); }
+
   .exWrap {
     width: 100%; max-width: 740px; background: var(--white); border-radius: 28px;
     padding: 22px 18px 26px; box-shadow: var(--shadow); margin-top: 8px; text-align: center;
@@ -184,6 +186,27 @@
   /* Illustration Svg Container */
   .svgContainer { width: 160px; height: 140px; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; }
 
+  /* Row of reference illustrations shown above a matching exercise */
+  .svgRow { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 12px; width: 100%; }
+  .svgRowItem { display: flex; flex-direction: column; align-items: center; width: 104px; }
+  .svgRowItem > div { width: 92px; height: 84px; }
+  .svgRowItem span { font-family: 'Fredoka'; font-weight: 600; font-size: 13px; color: var(--ink); }
+
+  /* Write-the-name exercises */
+  .writeGrid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; width: 100%; }
+  .writeItem {
+    background: var(--cream); border: 3px solid #EADFC5; border-radius: 18px; padding: 10px;
+    display: flex; flex-direction: column; align-items: center; gap: 6px; width: min(152px, 46%);
+  }
+  .writeItem .svgContainer { width: 108px; height: 96px; margin: 0; }
+  .writeLabel { font-weight: 800; font-size: 14px; text-align: center; line-height: 1.3; }
+  .writeInput {
+    font-family: 'Fredoka'; font-weight: 600; font-size: 16px; text-align: center; padding: 7px 8px;
+    border: 3px solid var(--purple); border-radius: 12px; width: 100%; background: var(--white); color: var(--ink);
+  }
+  .writeInput.okIn { border-color: var(--leaf-d); background: #E2F7EB; }
+  .writeInput.badIn { border-color: var(--coral-d); background: #FFE9E6; }
+
   /* Animal Parts Tab Cards */
   .animalTabContainer { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
   .animalTabBtn { background: var(--cream); border: 2px solid #EADFC5; border-radius: 12px; padding: 6px 14px; font-family: 'Fredoka'; font-weight: 600; cursor: pointer; }
@@ -236,6 +259,16 @@
       <svg viewBox="0 0 64 64"><path d="M20 44 Q32 16 44 44 Z" fill="#fff"/><circle cx="32" cy="28" r="4" fill="#1E9FBF"/><path d="M26 48 L38 48" stroke="#fff" stroke-width="3"/></svg>
       <span>Mystery Animal Detective</span>
     </button>
+
+    <button class="card c6" onclick="startTopic('alike')">
+      <svg viewBox="0 0 64 64"><circle cx="22" cy="24" r="11" fill="#fff"/><circle cx="42" cy="24" r="11" fill="#fff" opacity=".75"/><path d="M14 46 L50 46" stroke="#fff" stroke-width="4" stroke-linecap="round"/><path d="M18 53 L46 53" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".6"/><path d="M22 24 L30 24 M38 20 L48 28" stroke="#E8557F" stroke-width="3" stroke-linecap="round"/></svg>
+      <span>Topic 3: Animals are Alike &amp; Different</span>
+    </button>
+
+    <button class="card c7" onclick="startTopic('care')">
+      <svg viewBox="0 0 64 64"><path d="M32 52 C14 40 10 28 18 22 C24 17 30 20 32 25 C34 20 40 17 46 22 C54 28 50 40 32 52 Z" fill="#fff"/><circle cx="24" cy="14" r="6" fill="#fff" opacity=".8"/><circle cx="42" cy="14" r="4" fill="#fff" opacity=".6"/></svg>
+      <span>Topic 4: Adult Animals Care for their Young</span>
+    </button>
   </div>
 </div>
 
@@ -278,6 +311,43 @@ const octopusSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><circl
 const eagleSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M20 50 Q50 15 80 50 Q60 45 50 65 Q40 45 20 50 Z" fill="#7C4FE0"/><circle cx="50" cy="30" r="16" fill="#fff"/><circle cx="54" cy="28" r="3" fill="#2B2440"/><path d="M58 30 L74 34 L60 40 Z" fill="#FFC93C"/></svg>`;
 
 const elephantSVG = `<svg viewBox="0 0 120 100" width="100%" height="100%"><ellipse cx="60" cy="55" rx="35" ry="25" fill="#9B6BFF"/><circle cx="40" cy="45" r="20" fill="#9B6BFF"/><circle cx="24" cy="42" r="14" fill="#7C4FE0"/><circle cx="36" cy="40" r="3" fill="#fff"/><circle cx="36" cy="40" r="1.5" fill="#2B2440"/><path d="M30 52 Q20 60 15 75 Q20 78 24 70 Q28 62 34 56 Z" fill="#FFC93C"/><path d="M38 55 Q25 65 30 85 Q36 85 36 72 Q34 65 42 58 Z" fill="#9B6BFF"/><rect x="45" y="70" width="8" height="20" fill="#7C4FE0" rx="3"/><rect x="68" y="70" width="8" height="20" fill="#7C4FE0" rx="3"/><rect x="80" y="70" width="8" height="20" fill="#7C4FE0" rx="3"/></svg>`;
+
+/* TOPIC 3 & 4 ILLUSTRATIONS */
+const ostrichSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><ellipse cx="42" cy="54" rx="25" ry="20" fill="#3B3346"/><path d="M20 52 Q8 44 13 60 Q19 66 27 61 Z" fill="#4B4256"/><path d="M58 44 Q68 26 65 15" stroke="#E8C9A0" stroke-width="7" fill="none" stroke-linecap="round"/><circle cx="65" cy="13" r="8" fill="#E8C9A0"/><circle cx="68" cy="11" r="2.2" fill="#2B2440"/><path d="M72 14 L83 16 L72 20 Z" fill="#FFC93C"/><path d="M36 72 L33 93 M50 72 L55 93" stroke="#E8C9A0" stroke-width="5" stroke-linecap="round"/></svg>`;
+
+const canarySVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M20 82 L78 22" stroke="#9C7A54" stroke-width="6" stroke-linecap="round"/><ellipse cx="47" cy="48" rx="23" ry="18" fill="#FFD84D"/><path d="M30 54 Q17 62 11 57 Q21 52 28 47 Z" fill="#F5C21B"/><circle cx="66" cy="39" r="12" fill="#FFE47A"/><circle cx="70" cy="36" r="2.4" fill="#2B2440"/><path d="M77 40 L87 43 L77 46 Z" fill="#F5A623"/><path d="M45 65 L43 74 M55 64 L56 73" stroke="#F5A623" stroke-width="3.4" stroke-linecap="round"/></svg>`;
+
+const owlSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><ellipse cx="50" cy="56" rx="27" ry="31" fill="#A5764B"/><ellipse cx="50" cy="63" rx="17" ry="21" fill="#E0C39B"/><path d="M27 35 L34 19 L45 33 Z" fill="#A5764B"/><path d="M73 35 L66 19 L55 33 Z" fill="#A5764B"/><circle cx="39" cy="43" r="11" fill="#fff"/><circle cx="61" cy="43" r="11" fill="#fff"/><circle cx="39" cy="43" r="5" fill="#2B2440"/><circle cx="61" cy="43" r="5" fill="#2B2440"/><path d="M50 49 L45 57 L55 57 Z" fill="#FFC93C"/><path d="M43 88 L39 95 M57 88 L61 95" stroke="#FFC93C" stroke-width="4" stroke-linecap="round"/></svg>`;
+
+const duckSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><ellipse cx="45" cy="60" rx="29" ry="18" fill="#C9BFA8"/><path d="M22 57 Q10 49 19 45 Q34 48 41 56 Z" fill="#8A7D63"/><circle cx="70" cy="41" r="14" fill="#2E9450"/><circle cx="74" cy="37" r="2.4" fill="#2B2440"/><path d="M63 53 L67 58" stroke="#fff" stroke-width="3"/><path d="M83 44 Q96 44 93 51 Q84 53 80 49 Z" fill="#FFC93C"/><path d="M42 77 L40 88 M56 77 L58 88" stroke="#F5A623" stroke-width="4" stroke-linecap="round"/></svg>`;
+
+const hawkSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M14 44 Q45 16 80 42 Q57 40 49 64 Q39 40 14 44 Z" fill="#8A5A34"/><ellipse cx="52" cy="57" rx="14" ry="19" fill="#B98A5E"/><circle cx="56" cy="33" r="12" fill="#6E4525"/><circle cx="60" cy="31" r="2.4" fill="#FFC93C"/><path d="M66 33 Q75 33 71 42 Q66 40 65 36 Z" fill="#FFC93C"/><path d="M47 74 L45 87 M58 74 L61 87" stroke="#FFC93C" stroke-width="4" stroke-linecap="round"/></svg>`;
+
+const rabbitSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><ellipse cx="45" cy="66" rx="27" ry="20" fill="#B99A78"/><circle cx="20" cy="61" r="9" fill="#E6DCCB"/><circle cx="67" cy="49" r="18" fill="#C9AA88"/><ellipse cx="60" cy="20" rx="6" ry="17" fill="#C9AA88"/><ellipse cx="60" cy="21" rx="2.6" ry="12" fill="#EBC9C9"/><ellipse cx="78" cy="23" rx="6" ry="16" fill="#C9AA88" transform="rotate(16 78 23)"/><circle cx="73" cy="45" r="2.8" fill="#2B2440"/><circle cx="82" cy="53" r="3" fill="#E8908F"/><path d="M39 84 L37 91 M55 84 L57 91" stroke="#9C7A54" stroke-width="4" stroke-linecap="round"/></svg>`;
+
+const tigerSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><circle cx="27" cy="29" r="10" fill="#F59B32"/><circle cx="73" cy="29" r="10" fill="#F59B32"/><circle cx="27" cy="29" r="4.5" fill="#E8908F"/><circle cx="73" cy="29" r="4.5" fill="#E8908F"/><ellipse cx="50" cy="57" rx="30" ry="27" fill="#F59B32"/><path d="M28 40 L33 53 M43 32 L43 47 M57 32 L57 47 M72 40 L67 53" stroke="#2B2440" stroke-width="4" stroke-linecap="round"/><ellipse cx="50" cy="69" rx="19" ry="14" fill="#FFF1DC"/><circle cx="40" cy="55" r="4" fill="#2B2440"/><circle cx="60" cy="55" r="4" fill="#2B2440"/><path d="M45 66 L50 71 L55 66 Z" fill="#2B2440"/><path d="M50 71 L50 77 M50 76 Q42 80 37 75 M50 76 Q58 80 63 75" stroke="#2B2440" stroke-width="2.4" fill="none"/></svg>`;
+
+const giraffeSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><rect x="41" y="33" width="17" height="55" rx="8" fill="#E8B95E"/><circle cx="45" cy="47" r="5" fill="#B5793A"/><circle cx="54" cy="61" r="5" fill="#B5793A"/><circle cx="45" cy="75" r="5" fill="#B5793A"/><ellipse cx="57" cy="25" rx="18" ry="13" fill="#EFC873"/><path d="M47 14 L45 6 M65 13 L69 5" stroke="#8A5A34" stroke-width="4" stroke-linecap="round"/><circle cx="45" cy="6" r="3.5" fill="#8A5A34"/><circle cx="69" cy="5" r="3.5" fill="#8A5A34"/><circle cx="61" cy="21" r="2.6" fill="#2B2440"/><ellipse cx="72" cy="29" rx="4" ry="3" fill="#C99A55"/></svg>`;
+
+const hummingbirdSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M43 49 Q27 26 11 30 Q24 45 37 53 Z" fill="#3AC7E0" opacity=".9"/><path d="M40 60 Q25 77 12 74 Q26 62 36 58 Z" fill="#3AC7E0" opacity=".65"/><ellipse cx="49" cy="55" rx="20" ry="13" fill="#2E9450" transform="rotate(-18 49 55)"/><path d="M33 61 L17 79" stroke="#2E9450" stroke-width="5" stroke-linecap="round"/><circle cx="65" cy="44" r="10" fill="#7C4FE0"/><circle cx="68" cy="41" r="2.2" fill="#fff"/><path d="M74 47 L97 56" stroke="#2B2440" stroke-width="3" stroke-linecap="round"/></svg>`;
+
+const pandaSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><ellipse cx="50" cy="68" rx="26" ry="22" fill="#fff"/><path d="M27 62 Q18 79 27 89 Q35 84 35 70 Z" fill="#2B2440"/><path d="M73 62 Q82 79 73 89 Q65 84 65 70 Z" fill="#2B2440"/><circle cx="30" cy="20" r="9" fill="#2B2440"/><circle cx="70" cy="20" r="9" fill="#2B2440"/><circle cx="50" cy="39" r="24" fill="#fff"/><ellipse cx="40" cy="37" rx="8" ry="10" fill="#2B2440" transform="rotate(-16 40 37)"/><ellipse cx="60" cy="37" rx="8" ry="10" fill="#2B2440" transform="rotate(16 60 37)"/><circle cx="40" cy="37" r="3" fill="#fff"/><circle cx="60" cy="37" r="3" fill="#fff"/><ellipse cx="50" cy="49" rx="5" ry="3.4" fill="#2B2440"/><path d="M50 53 Q45 58 41 55 M50 53 Q55 58 59 55" stroke="#2B2440" stroke-width="2" fill="none"/></svg>`;
+
+const penguinSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><ellipse cx="50" cy="57" rx="26" ry="35" fill="#2B2440"/><ellipse cx="50" cy="63" rx="17" ry="26" fill="#fff"/><path d="M34 24 Q50 8 66 24 Q66 41 50 43 Q34 41 34 24 Z" fill="#2B2440"/><path d="M36 28 Q34 45 45 45 Q40 35 40 26 Z" fill="#FFC93C"/><path d="M64 28 Q66 45 55 45 Q60 35 60 26 Z" fill="#FFC93C"/><circle cx="42" cy="26" r="2.6" fill="#fff"/><circle cx="58" cy="26" r="2.6" fill="#fff"/><path d="M45 34 Q50 45 55 34 Z" fill="#F5A623"/><path d="M40 89 Q30 96 43 95 M60 89 Q70 96 57 95" fill="#F5A623"/></svg>`;
+
+const foxSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M13 76 Q0 61 10 52 Q23 61 27 71 Z" fill="#F0A35E"/><ellipse cx="49" cy="64" rx="28" ry="18" fill="#E8763A"/><path d="M60 33 L58 15 L73 30 Z" fill="#E8763A"/><path d="M85 33 L89 15 L75 29 Z" fill="#E8763A"/><circle cx="73" cy="47" r="16" fill="#F0813F"/><path d="M65 51 Q73 67 86 55 Q81 48 74 47 Z" fill="#FFF1DC"/><circle cx="68" cy="44" r="2.6" fill="#2B2440"/><circle cx="81" cy="46" r="2.6" fill="#2B2440"/><circle cx="87" cy="53" r="3" fill="#2B2440"/><path d="M39 81 L37 91 M56 81 L58 91" stroke="#C25A28" stroke-width="5" stroke-linecap="round"/></svg>`;
+
+const monkeySVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><ellipse cx="50" cy="72" rx="22" ry="19" fill="#9C7A54"/><circle cx="25" cy="43" r="9" fill="#9C7A54"/><circle cx="75" cy="43" r="9" fill="#9C7A54"/><circle cx="25" cy="43" r="4.5" fill="#D9B08C"/><circle cx="75" cy="43" r="4.5" fill="#D9B08C"/><circle cx="50" cy="42" r="24" fill="#B08D63"/><ellipse cx="50" cy="50" rx="17" ry="16" fill="#E8CBA6"/><circle cx="42" cy="40" r="3.4" fill="#2B2440"/><circle cx="58" cy="40" r="3.4" fill="#2B2440"/><ellipse cx="46" cy="52" rx="1.9" ry="2.6" fill="#8A6A48"/><ellipse cx="54" cy="52" rx="1.9" ry="2.6" fill="#8A6A48"/><path d="M42 58 Q50 66 58 58" stroke="#8A6A48" stroke-width="2.6" fill="none"/></svg>`;
+
+const cheetahSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><circle cx="29" cy="25" r="8" fill="#E8C97A"/><circle cx="67" cy="25" r="8" fill="#E8C97A"/><circle cx="29" cy="25" r="3.5" fill="#4A3B22"/><circle cx="67" cy="25" r="3.5" fill="#4A3B22"/><ellipse cx="48" cy="58" rx="30" ry="25" fill="#E8C97A"/><ellipse cx="48" cy="67" rx="19" ry="15" fill="#FFF3DC"/><circle cx="26" cy="46" r="3" fill="#4A3B22"/><circle cx="38" cy="37" r="3" fill="#4A3B22"/><circle cx="58" cy="37" r="3" fill="#4A3B22"/><circle cx="70" cy="46" r="3" fill="#4A3B22"/><circle cx="25" cy="66" r="3" fill="#4A3B22"/><circle cx="71" cy="66" r="3" fill="#4A3B22"/><circle cx="40" cy="51" r="3.6" fill="#2B2440"/><circle cx="56" cy="51" r="3.6" fill="#2B2440"/><path d="M40 55 L37 65 M56 55 L59 65" stroke="#4A3B22" stroke-width="2.6" stroke-linecap="round"/><path d="M43 63 L48 68 L53 63 Z" fill="#2B2440"/></svg>`;
+
+const crocodileSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M88 58 Q98 51 95 68" stroke="#4C8A4A" stroke-width="7" fill="none" stroke-linecap="round"/><ellipse cx="52" cy="60" rx="38" ry="14" fill="#4C8A4A"/><path d="M56 47 L60 39 L64 47 L68 39 L72 47 L76 39 L80 47 Z" fill="#3A6E38"/><path d="M12 58 Q3 54 12 49 L45 49 L45 58 Z" fill="#5CA05A"/><path d="M14 49 L18 43 L22 49 L26 43 L30 49 L34 43 L38 49" fill="none" stroke="#3A6E38" stroke-width="2.4"/><path d="M14 56 L18 60 L22 56 L26 60 L30 56 L34 60 L38 56" fill="none" stroke="#FFF3DC" stroke-width="2"/><circle cx="42" cy="46" r="6" fill="#6FB56C"/><circle cx="42" cy="45" r="2.4" fill="#2B2440"/><path d="M36 73 L32 83 M64 73 L68 83" stroke="#3A6E38" stroke-width="5" stroke-linecap="round"/></svg>`;
+
+const kangarooSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M22 83 Q5 79 3 66 Q18 71 31 77 Z" fill="#B08761"/><ellipse cx="47" cy="58" rx="22" ry="26" fill="#C1966E"/><ellipse cx="51" cy="66" rx="12" ry="12" fill="#E0BE97"/><circle cx="39" cy="70" r="6" fill="#A5764B"/><ellipse cx="60" cy="11" rx="4" ry="10" fill="#C1966E"/><ellipse cx="74" cy="11" rx="4" ry="10" fill="#C1966E"/><circle cx="67" cy="26" r="13" fill="#C1966E"/><circle cx="71" cy="23" r="2.6" fill="#2B2440"/><circle cx="79" cy="29" r="2.8" fill="#2B2440"/><path d="M33 85 Q26 93 46 93 L59 93" stroke="#A5764B" stroke-width="7" fill="none" stroke-linecap="round"/></svg>`;
+
+const nestGroundSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><rect x="0" y="72" width="100" height="28" fill="#8A6A48"/><ellipse cx="50" cy="68" rx="37" ry="19" fill="#9C7A54"/><ellipse cx="50" cy="66" rx="26" ry="12" fill="#6E5233"/><ellipse cx="39" cy="64" rx="7" ry="5" fill="#FFF8EC"/><ellipse cx="52" cy="61" rx="7" ry="5" fill="#FFF8EC"/><ellipse cx="63" cy="65" rx="7" ry="5" fill="#FFF8EC"/><ellipse cx="47" cy="70" rx="7" ry="5" fill="#FFF8EC"/><path d="M15 62 L36 68 M85 62 L64 68 M19 75 L44 72" stroke="#7A5C3A" stroke-width="2"/></svg>`;
+
+const nestTreeSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><rect x="33" y="8" width="34" height="90" rx="6" fill="#8A6A48"/><path d="M14 25 Q28 16 33 30 M86 31 Q72 19 67 34" stroke="#6E5233" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="16" cy="21" r="11" fill="#4CAF6D"/><circle cx="86" cy="28" r="11" fill="#4CAF6D"/><ellipse cx="50" cy="57" rx="14" ry="18" fill="#3A2C1B"/><ellipse cx="50" cy="57" rx="9" ry="13" fill="#1B140C"/><circle cx="46" cy="53" r="2.4" fill="#FFC93C"/><circle cx="54" cy="53" r="2.4" fill="#FFC93C"/></svg>`;
 
 /* SOUND SYNTHESIS */
 let audioCtx=null;
@@ -461,6 +531,7 @@ function startTopic(topicKey) {
         type: 'partmatch',
         title: 'Match Body Part Function 🧠',
         sub: 'Select the main function for each body part:',
+        placeholder: '--Seleccionar función--',
         items: [
           { part: '1. Horns', select: ['Helps in fighting, defense, and breaking branches.', 'Used to keep annoying insects and flies away.', 'Used to pick up food without hands.', 'Allows animals to walk, run, and support body weight.'], ans: 'Helps in fighting, defense, and breaking branches.' },
           { part: '2. Tail', select: ['Used to keep annoying insects and flies away.', 'Helps in fighting, defense, and breaking branches.', 'Used to pick up food without hands.', 'Allows animals to walk, run, and support body weight.'], ans: 'Used to keep annoying insects and flies away.' },
@@ -470,9 +541,267 @@ function startTopic(topicKey) {
       }
     ];
     showQuestion();
+  } else if (topicKey === 'alike') {
+    questions = [
+      {
+        type: 'study',
+        title: 'Animals are Alike and Different 🐦',
+        sub: 'Lee cada tarjeta de la guía antes de practicar:',
+        html: `
+          <div class="animalTabContainer">
+            <button class="animalTabBtn active" onclick="switchAlikeTab('same', this)">Alike 🟰</button>
+            <button class="animalTabBtn" onclick="switchAlikeTab('diff', this)">Different 📏</button>
+            <button class="animalTabBtn" onclick="switchAlikeTab('food', this)">Food 🍖</button>
+            <button class="animalTabBtn" onclick="switchAlikeTab('nests', this)">Nests 🪹</button>
+            <button class="animalTabBtn" onclick="switchAlikeTab('parents', this)">Parents 👪</button>
+          </div>
+          <div class="questionCard" id="alikeTabContent">${ALIKE_TABS.same}</div>
+        `
+      },
+      {
+        type: 'mc',
+        title: 'What is the name of this bird? 🐦',
+        sub: 'Choose the correct option:',
+        svg: ostrichSVG,
+        q: 'This bird is very large. It can be 2 meters tall.',
+        opts: ['A. ostrich', 'B. canary'],
+        ans: 'A. ostrich'
+      },
+      {
+        type: 'mc',
+        title: 'What is the name of this bird? 🐤',
+        sub: 'Choose the correct option:',
+        svg: canarySVG,
+        q: 'This bird is very small. It is 10 centimeters tall.',
+        opts: ['A. ostrich', 'B. canary'],
+        ans: 'B. canary'
+      },
+      {
+        type: 'write',
+        title: 'Write the name of the animals ✏️',
+        sub: 'Use the words of the Word Bank:',
+        bank: ['tiger', 'hawk', 'rabbit', 'eagle'],
+        items: [
+          { svg: tigerSVG,  ans: 'tiger' },
+          { svg: hawkSVG,   ans: 'hawk' },
+          { svg: rabbitSVG, ans: 'rabbit' },
+          { svg: eagleSVG,  ans: 'eagle' }
+        ]
+      },
+      {
+        type: 'write',
+        title: 'Write the name of the animals ✏️',
+        sub: 'Use the words of the Word Bank:',
+        bank: ['owl', 'giraffe', 'hummingbird', 'panda'],
+        items: [
+          { svg: owlSVG,         ans: 'owl' },
+          { svg: giraffeSVG,     ans: 'giraffe' },
+          { svg: hummingbirdSVG, ans: 'hummingbird' },
+          { svg: pandaSVG,       ans: 'panda' }
+        ]
+      },
+      {
+        type: 'yesno',
+        title: 'True or False 📝',
+        sub: 'Read and choose true or false:',
+        labels: ['True', 'False'],
+        items: [
+          { q: '1. Some birds eat fruits.', ans: 'True' },
+          { q: '2. Some birds eat meat.', ans: 'True' },
+          { q: '3. Birds do not eat seeds.', ans: 'False' },
+          { q: '4. All baby animals look like their parents when they are born.', ans: 'False' }
+        ]
+      },
+      {
+        type: 'yesno',
+        title: 'True or False 📝',
+        sub: 'Read and choose true or false:',
+        labels: ['True', 'False'],
+        items: [
+          { q: '1. The ostrich is a bird.', ans: 'True' },
+          { q: '2. Birds cannot be different.', ans: 'False' },
+          { q: '3. Owls are birds.', ans: 'True' },
+          { q: '4. All birds have feathers, wings, and beaks.', ans: 'True' }
+        ]
+      },
+      {
+        type: 'partmatch',
+        title: 'Birds and their nests 🪹',
+        sub: 'Match the birds with their correct type of nest:',
+        svgRow: [
+          { svg: nestGroundSVG, label: 'Nest on the ground' },
+          { svg: nestTreeSVG,   label: 'Nest on the trees' }
+        ],
+        items: [
+          { part: '1. Duck 🦆', select: ['Nest on the ground.', 'Nest on the trees.'], ans: 'Nest on the ground.' },
+          { part: '2. Owl 🦉', select: ['Nest on the trees.', 'Nest on the ground.'], ans: 'Nest on the trees.' }
+        ]
+      },
+      {
+        type: 'wordsearch',
+        title: 'Word search 🔍',
+        sub: 'Find the animals names:',
+        puzzle: 'birds'
+      }
+    ];
+    showQuestion();
+  } else if (topicKey === 'care') {
+    questions = [
+      {
+        type: 'study',
+        title: 'How do adult animals care for their young? 💚',
+        sub: 'Lee cada tarjeta de la guía antes de practicar:',
+        html: `
+          <div class="animalTabContainer">
+            <button class="animalTabBtn active" onclick="switchCareTab('feed', this)">Feeding 🍼</button>
+            <button class="animalTabBtn" onclick="switchCareTab('clean', this)">Cleaning 🧼</button>
+            <button class="animalTabBtn" onclick="switchCareTab('protect', this)">Protecting 🛡️</button>
+            <button class="animalTabBtn" onclick="switchCareTab('babies', this)">Babies 🐣</button>
+          </div>
+          <div class="questionCard" id="careTabContent">${CARE_TABS.feed}</div>
+        `
+      },
+      {
+        type: 'partmatch',
+        title: 'Match the information 🔗',
+        sub: 'Match each sentence with the correct animal:',
+        svgRow: [
+          { svg: foxSVG,         label: 'red fox' },
+          { svg: penguinSVG,     label: 'penguin' },
+          { svg: hummingbirdSVG, label: 'hummingbird' },
+          { svg: monkeySVG,      label: 'monkey' },
+          { svg: cheetahSVG,     label: 'cheetah' }
+        ],
+        items: [
+          { part: "1. A red fox mother's body makes milk for her young.", select: ['red fox', 'penguin', 'hummingbird', 'monkey', 'cheetah'], ans: 'red fox' },
+          { part: '2. An adult penguin catches fish for its chick.', select: ['penguin', 'red fox', 'hummingbird', 'monkey', 'cheetah'], ans: 'penguin' },
+          { part: '3. It gets nectar from plants. It returns to the nest to feed its offspring.', select: ['hummingbird', 'red fox', 'penguin', 'monkey', 'cheetah'], ans: 'hummingbird' },
+          { part: "4. An adult picks bugs and dirt from its baby's fur.", select: ['monkey', 'red fox', 'penguin', 'hummingbird', 'cheetah'], ans: 'monkey' },
+          { part: '5. A mother licks its cub to help it stay clean.', select: ['cheetah', 'red fox', 'penguin', 'hummingbird', 'monkey'], ans: 'cheetah' }
+        ]
+      },
+      {
+        type: 'write',
+        title: 'Write the name of the animals ✏️',
+        sub: 'Use the words: cheetah, red fox, penguin, hummingbird, monkey',
+        bank: ['cheetah', 'red fox', 'penguin', 'hummingbird', 'monkey'],
+        items: [
+          { svg: hummingbirdSVG, ans: 'hummingbird' },
+          { svg: cheetahSVG,     ans: 'cheetah' },
+          { svg: penguinSVG,     ans: 'penguin' },
+          { svg: monkeySVG,      ans: 'monkey' },
+          { svg: foxSVG,         ans: 'red fox', alt: ['redfox', 'fox'] }
+        ]
+      },
+      {
+        type: 'partmatch',
+        title: 'Match the information with the pictures 🛡️',
+        sub: 'How does each adult animal keep its baby safe?',
+        svgRow: [
+          { svg: crocodileSVG, label: 'crocodile' },
+          { svg: kangarooSVG,  label: 'kangaroo' },
+          { svg: elephantSVG,  label: 'elephant' }
+        ],
+        items: [
+          { part: '1. Adult animals carry their babies in their mouths to keep them safe.', select: ['crocodile', 'kangaroo', 'elephant'], ans: 'crocodile' },
+          { part: '2. A mother keeps her baby safe in a pouch on her belly.', select: ['kangaroo', 'crocodile', 'elephant'], ans: 'kangaroo' },
+          { part: '3. A group of adults will surround a calf to keep it safe.', select: ['elephant', 'crocodile', 'kangaroo'], ans: 'elephant' }
+        ]
+      },
+      {
+        type: 'write',
+        title: 'Write the name of the animals ✏️',
+        sub: 'Use the words: crocodile, kangaroo, elephant',
+        bank: ['crocodile', 'kangaroo', 'elephant'],
+        items: [
+          { svg: kangarooSVG,  ans: 'kangaroo' },
+          { svg: elephantSVG,  ans: 'elephant' },
+          { svg: crocodileSVG, ans: 'crocodile' }
+        ]
+      },
+      {
+        type: 'partmatch',
+        title: 'Animals and their young 🐣',
+        sub: 'Select the name of the baby animal (part 1):',
+        items: [
+          { part: '1. Cow 🐄',     select: ['calf', 'lamb', 'piglet', 'kid', 'duckling'], ans: 'calf' },
+          { part: '2. Sheep 🐑',   select: ['lamb', 'calf', 'piglet', 'kid', 'duckling'], ans: 'lamb' },
+          { part: '3. Pig 🐖',     select: ['piglet', 'calf', 'lamb', 'kid', 'duckling'], ans: 'piglet' },
+          { part: '4. Goat 🐐',    select: ['kid', 'calf', 'lamb', 'piglet', 'duckling'], ans: 'kid' },
+          { part: '5. Duck 🦆',    select: ['duckling', 'calf', 'lamb', 'piglet', 'kid'], ans: 'duckling' }
+        ]
+      },
+      {
+        type: 'partmatch',
+        title: 'Animals and their young 🐣',
+        sub: 'Select the name of the baby animal (part 2):',
+        items: [
+          { part: '1. Horse 🐎',   select: ['foal', 'chick', 'gosling', 'puppy', 'kitten'], ans: 'foal' },
+          { part: '2. Hen 🐔',     select: ['chick', 'foal', 'gosling', 'puppy', 'kitten'], ans: 'chick' },
+          { part: '3. Goose 🦢',   select: ['gosling', 'foal', 'chick', 'puppy', 'kitten'], ans: 'gosling' },
+          { part: '4. Dog 🐕',     select: ['puppy', 'foal', 'chick', 'gosling', 'kitten'], ans: 'puppy' },
+          { part: '5. Cat 🐈',     select: ['kitten', 'foal', 'chick', 'gosling', 'puppy'], ans: 'kitten' }
+        ]
+      },
+      {
+        type: 'write',
+        title: 'Complete the names 📝',
+        sub: 'Write the name of the young of each adult animal:',
+        bank: ['duckling', 'lamb', 'calf', 'puppy', 'kitten'],
+        items: [
+          { label: 'Duck 🦆 ➜ its young is a…',  ans: 'duckling' },
+          { label: 'Sheep 🐑 ➜ its young is a…', ans: 'lamb' },
+          { label: 'Cow 🐄 ➜ its young is a…',   ans: 'calf' },
+          { label: 'Dog 🐕 ➜ its young is a…',   ans: 'puppy' },
+          { label: 'Cat 🐈 ➜ its young is a…',   ans: 'kitten' }
+        ]
+      },
+      {
+        type: 'yesno',
+        title: 'True or False 📝',
+        sub: 'Read and choose true or false:',
+        labels: ['True', 'False'],
+        items: [
+          { q: '1. Many baby animals need help from their parents to survive.', ans: 'True' },
+          { q: '2. Baby animals can catch all their own food when they are born.', ans: 'False' },
+          { q: '3. A mother kangaroo keeps her baby safe in a pouch on her belly.', ans: 'True' },
+          { q: '4. Adult animals never clean their babies.', ans: 'False' }
+        ]
+      }
+    ];
+    showQuestion();
   } else if (topicKey === 'mystery') {
     setupMysteryAnimal();
   }
+}
+
+/* TOPIC 3 THEORY TABS */
+const ALIKE_TABS = {
+  same: `<p><strong>🟰 Alike:</strong> Animals of the same type can have many of the same characteristics.</p><p><em>Example:</em> most birds fly. All birds have <strong>feathers, wings and beaks</strong>. All birds lay <strong>eggs</strong>.</p>`,
+  diff: `<p><strong>📏 Different:</strong> Birds can be different too. Some birds are very small. Others are large.</p><p>The <strong>ostrich</strong> is very large. They can be <strong>2 meters</strong> tall.</p><p>The <strong>canary</strong> is very small. They are <strong>10 centimeters</strong> tall.</p>`,
+  food: `<p><strong>🍖 Food:</strong> Some birds eat meat. Others eat seeds and berries, or drink nectar from flowers.</p><p>The <strong>hummingbird</strong> eats nectar. The <strong>hawk</strong> eats meat.</p>`,
+  nests: `<p><strong>🪹 Nests:</strong> Some birds make nests in trees. Other birds make nests in the ground.</p><p><strong>Ducks</strong> make their nest on the ground. <strong>Owls</strong> make their nest on the trees.</p>`,
+  parents: `<p><strong>👪 Parents:</strong> Animals get characteristics from their parents.</p><p>Some types of baby animals look like their parents as soon as they are born. A baby <strong>panda</strong> bear looks like her mother.</p><p>Other types of baby animals look different at first. They change as they grow. A baby <strong>eagle</strong> looks different from their mother.</p>`
+};
+
+function switchAlikeTab(key, btn) {
+  document.querySelectorAll('.animalTabBtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('alikeTabContent').innerHTML = ALIKE_TABS[key];
+}
+
+/* TOPIC 4 THEORY TABS */
+const CARE_TABS = {
+  feed: `<p><strong>🍼 Feeding:</strong> Living things can produce young. Many baby animals need help from their parents to survive. They are too young to find and catch their own food. Their parents help feed them.</p><p>• A <strong>red fox</strong> mother's body makes milk for its young.<br>• An adult <strong>penguin</strong> catches fish for its chick.<br>• A <strong>hummingbird</strong> gets nectar from plants. It returns to the nest to feed the nectar to its offspring.</p>`,
+  clean: `<p><strong>🧼 Cleaning:</strong> Adult animals also clean their babies to stay clean.</p><p>• An adult <strong>monkey</strong> picks bugs and dirt from its baby's fur.<br>• A mother <strong>cheetah</strong> licks its cub to help it stay clean.</p>`,
+  protect: `<p><strong>🛡️ Protecting:</strong> Many baby animals are too young and small to stay safe on their own. Their mothers and fathers protect them until they get bigger and stronger.</p><p>• Adult <strong>crocodiles</strong> carry their babies in their mouths to keep them safe.<br>• A mother <strong>kangaroo</strong> keeps her baby safe in a pouch on her belly.<br>• A group of adult <strong>elephants</strong> will surround a <strong>calf</strong> to keep it safe.</p>`,
+  babies: `<p><strong>🐣 Adults and their young:</strong></p><p>cow ➜ <strong>calf</strong><br>sheep ➜ <strong>lamb</strong><br>pig ➜ <strong>piglet</strong><br>goat ➜ <strong>kid</strong><br>duck ➜ <strong>duckling</strong><br>horse ➜ <strong>foal</strong><br>hen ➜ <strong>chick</strong><br>goose ➜ <strong>gosling</strong><br>dog ➜ <strong>puppy</strong><br>cat ➜ <strong>kitten</strong></p>`
+};
+
+function switchCareTab(key, btn) {
+  document.querySelectorAll('.animalTabBtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('careTabContent').innerHTML = CARE_TABS[key];
 }
 
 function switchAnimalTab(type, btn) {
@@ -504,10 +833,11 @@ function showQuestion() {
   document.getElementById('exSub').innerText = q.sub;
   document.getElementById('feedback').innerText = '';
   document.getElementById('continueBtn').style.display = 'none';
-  
+  ynScore = 0;
+
   const box = document.getElementById('stageBox');
   box.innerHTML = '';
-  
+
   if (q.type === 'tf') {
     box.innerHTML = `
       <div class="questionCard">
@@ -561,27 +891,48 @@ function showQuestion() {
       <button class="optBtn correct" style="margin-top:10px;" onclick="checkFillAnswers()">Comprobar Respuestas ✔️</button>
     `;
   } else if (q.type === 'yesno') {
+    const labels = q.labels || ['YES', 'NO'];
     let ynHtml = q.items.map((it, idx) => `
-      <div class="questionCard" style="display:flex; justify-content:space-between; align-items:center;">
+      <div class="questionCard" style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
         <span>${it.q}</span>
         <div style="display:flex; gap:8px;">
-          <button class="optBtn" style="min-width:60px; padding:6px 12px;" onclick="checkYN(${idx}, 'YES', '${it.ans}', this)">YES</button>
-          <button class="optBtn" style="min-width:60px; padding:6px 12px;" onclick="checkYN(${idx}, 'NO', '${it.ans}', this)">NO</button>
+          <button class="optBtn" style="min-width:60px; padding:6px 12px;" onclick="checkYN(${idx}, '${labels[0]}', '${it.ans}', this)">${labels[0]}</button>
+          <button class="optBtn" style="min-width:60px; padding:6px 12px;" onclick="checkYN(${idx}, '${labels[1]}', '${it.ans}', this)">${labels[1]}</button>
         </div>
       </div>
     `).join('');
     box.innerHTML = `<div style="width:100%;">${ynHtml}</div>`;
+  } else if (q.type === 'write') {
+    let bankHtml = q.bank ? '<div class="wordBankList">' + q.bank.map(b => `<div class="wbItem">${b}</div>`).join('') + '</div>' : '';
+    let itemsHtml = q.items.map((it, idx) => `
+      <div class="writeItem">
+        ${it.svg ? `<div class="svgContainer">${it.svg}</div>` : ''}
+        <div class="writeLabel">${idx + 1}. ${it.label || ''}</div>
+        <input type="text" class="writeInput" id="wr_${idx}" placeholder="..." autocomplete="off" autocapitalize="none" spellcheck="false">
+      </div>
+    `).join('');
+    box.innerHTML = `
+      ${bankHtml}
+      <div class="writeGrid">${itemsHtml}</div>
+      <button class="optBtn correct" style="margin-top:10px;" onclick="checkWriteAnswers()">Comprobar Respuestas ✔️</button>
+    `;
+  } else if (q.type === 'wordsearch') {
+    renderWordSearch(WS_PUZZLES[q.puzzle], box);
   } else if (q.type === 'partmatch') {
+    let rowHtml = q.svgRow ? '<div class="svgRow">' + q.svgRow.map(s => `
+      <div class="svgRowItem"><div>${s.svg}</div><span>${s.label}</span></div>
+    `).join('') + '</div>' : '';
     let pmHtml = q.items.map((it, idx) => `
       <div class="questionCard" style="display:flex; flex-direction:column; gap:6px;">
-        <span><strong>${it.part}:</strong></span>
+        <span><strong>${it.part}${/[.?!:]$/.test(it.part) ? '' : ':'}</strong></span>
         <select class="fillSelect" id="pmSel_${idx}">
-          <option value="">--Seleccionar función--</option>
+          <option value="">${q.placeholder || '--Seleccionar--'}</option>
           ${it.select.map(s => `<option value="${s}">${s}</option>`).join('')}
         </select>
       </div>
     `).join('');
     box.innerHTML = `
+      ${rowHtml}
       <div style="width:100%;">${pmHtml}</div>
       <button class="optBtn correct" style="margin-top:10px;" onclick="checkPartMatchAnswers()">Comprobar Emparejamiento ✔️</button>
     `;
@@ -671,12 +1022,41 @@ function checkPartMatchAnswers() {
     totalStars += 20;
     updateStars();
     document.getElementById('feedback').className = 'feedback ok';
-    document.getElementById('feedback').innerText = '¡Excelente! Emparejaste todas las funciones del cuerpo +20 ⭐';
+    document.getElementById('feedback').innerText = '¡Excelente! Emparejaste todo correctamente +20 ⭐';
     document.getElementById('continueBtn').style.display = 'block';
   } else {
     playWrong();
     document.getElementById('feedback').className = 'feedback bad';
-    document.getElementById('feedback').innerText = 'Revisa algunas de las funciones seleccionadas.';
+    document.getElementById('feedback').innerText = 'Revisa algunas de las opciones seleccionadas.';
+  }
+}
+
+function normWrite(s) {
+  return (s || '').trim().toLowerCase().replace(/\s+/g, ' ');
+}
+
+function checkWriteAnswers() {
+  const q = questions[currentQIndex];
+  let allGood = true;
+  q.items.forEach((it, idx) => {
+    const el = document.getElementById(`wr_${idx}`);
+    const val = normWrite(el.value);
+    const ok = val !== '' && (val === normWrite(it.ans) || (it.alt || []).some(a => normWrite(a) === val));
+    el.classList.remove('okIn', 'badIn');
+    el.classList.add(ok ? 'okIn' : 'badIn');
+    if (!ok) allGood = false;
+  });
+  if (allGood) {
+    playCorrect();
+    totalStars += 20;
+    updateStars();
+    document.getElementById('feedback').className = 'feedback ok';
+    document.getElementById('feedback').innerText = '¡Excelente! Escribiste todos los nombres +20 ⭐';
+    document.getElementById('continueBtn').style.display = 'block';
+  } else {
+    playWrong();
+    document.getElementById('feedback').className = 'feedback bad';
+    document.getElementById('feedback').innerText = 'Revisa las casillas en rojo e inténtalo de nuevo.';
   }
 }
 
@@ -688,9 +1068,10 @@ function checkYN(idx, chosen, correct, btn) {
     totalStars += 5;
     updateStars();
     ynScore++;
-    if (ynScore >= 4) {
+    const total = questions[currentQIndex].items.length;
+    if (ynScore >= total) {
       document.getElementById('feedback').className = 'feedback ok';
-      document.getElementById('feedback').innerText = '¡Completaste las 4 preguntas! +20 ⭐';
+      document.getElementById('feedback').innerText = `¡Completaste las ${total} preguntas! +${total * 5} ⭐`;
       document.getElementById('continueBtn').style.display = 'block';
     }
   } else {
@@ -775,7 +1156,64 @@ function setupMemoryGame() {
   };
 }
 
-/* TOPIC: 12x11 WORD SEARCH (EXACT MATCH TO WORKSHEET PHOTO 4) */
+/* WORD SEARCH PUZZLES (exact matrices from the worksheets) */
+const WS_PUZZLES = {
+  // 12x11 matrix from the "Animal Word Search" worksheet
+  animals: {
+    matrix: [
+      ['Q','U','Z','Z','B','A','T','F','W','L','F'],
+      ['E','S','H','M','H','R','Y','G','M','I','E'],
+      ['A','S','W','X','R','G','K','R','O','N','N'],
+      ['G','S','E','X','O','H','W','A','S','K','N'],
+      ['L','D','Y','Y','L','W','L','S','Q','G','E'],
+      ['E','B','J','K','F','K','C','S','U','G','C'],
+      ['S','K','L','U','I','S','R','H','I','J','F'],
+      ['T','T','Q','Z','K','F','V','O','T','P','O'],
+      ['E','M','W','A','T','Y','D','P','O','F','X'],
+      ['J','K','R','F','N','A','K','P','I','K','Y'],
+      ['J','F','Y','S','N','A','K','E','Q','E','Z'],
+      ['P','H','I','E','Z','C','W','R','B','O','A']
+    ],
+    solutionCoords: {
+      'BAT': [[0,4],[0,5],[0,6]],
+      'EAGLE': [[1,0],[2,0],[3,0],[4,0],[5,0]],
+      'SNAKE': [[10,3],[10,4],[10,5],[10,6],[10,7]],
+      'FENNEC FOX': [[0,10],[1,10],[2,10],[3,10],[4,10],[5,10],[6,10],[7,10],[8,10]],
+      'MOSQUITO': [[1,8],[2,8],[3,8],[4,8],[5,8],[6,8],[7,8],[8,8]],
+      'GRASSHOPPER': [[1,7],[2,7],[3,7],[4,7],[5,7],[6,7],[7,7],[8,7],[9,7],[10,7],[11,7]]
+    },
+    words: ['FENNEC FOX', 'GRASSHOPPER', 'EAGLE', 'BAT', 'MOSQUITO', 'SNAKE']
+  },
+  // 11x11 matrix from the Topic 3 "Word search" worksheet
+  birds: {
+    matrix: [
+      ['M','B','Q','O','K','I','H','X','I','X','W'],
+      ['B','D','C','L','R','H','U','G','Z','Z','Z'],
+      ['F','E','A','U','I','P','M','F','I','W','O'],
+      ['P','A','N','V','G','O','M','H','R','G','S'],
+      ['R','G','A','L','H','T','I','J','R','K','T'],
+      ['K','L','R','P','A','P','N','B','Q','A','R'],
+      ['N','E','Y','I','W','A','G','A','D','V','I'],
+      ['Y','B','G','U','K','N','B','U','N','F','C'],
+      ['O','C','H','I','S','D','I','G','X','P','H'],
+      ['I','O','W','L','U','A','R','D','T','J','G'],
+      ['B','P','I','A','Q','I','D','U','C','K','F']
+    ],
+    solutionCoords: {
+      'OWL': [[9,1],[9,2],[9,3]],
+      'HAWK': [[4,4],[5,4],[6,4],[7,4]],
+      'EAGLE': [[2,1],[3,1],[4,1],[5,1],[6,1]],
+      'OSTRICH': [[2,10],[3,10],[4,10],[5,10],[6,10],[7,10],[8,10]],
+      'HUMMINGBIRD': [[0,6],[1,6],[2,6],[3,6],[4,6],[5,6],[6,6],[7,6],[8,6],[9,6],[10,6]],
+      'PANDA': [[5,5],[6,5],[7,5],[8,5],[9,5]],
+      'DUCK': [[10,6],[10,7],[10,8],[10,9]],
+      'CANARY': [[1,2],[2,2],[3,2],[4,2],[5,2],[6,2]]
+    },
+    words: ['OWL', 'HAWK', 'EAGLE', 'OSTRICH', 'HUMMINGBIRD', 'PANDA', 'DUCK', 'CANARY']
+  }
+};
+
+/* TOPIC: ANIMAL WORD SEARCH (standalone menu card) */
 function setupWordSearch() {
   showScreen('screen-exercise');
   document.getElementById('progressFill').style.width = '100%';
@@ -783,46 +1221,27 @@ function setupWordSearch() {
   document.getElementById('exSub').innerText = 'Find the names of the different animals learned in class:';
   document.getElementById('feedback').innerText = '';
   document.getElementById('continueBtn').style.display = 'none';
+  renderWordSearch(WS_PUZZLES.animals, document.getElementById('stageBox'));
+}
 
-  // Exact 12x11 matrix from Photo 4:
-  const matrix = [
-    ['Q','U','Z','Z','B','A','T','F','W','L','F'],
-    ['E','S','H','M','H','R','Y','G','M','I','E'],
-    ['A','S','W','X','R','G','K','R','O','N','N'],
-    ['G','S','E','X','O','H','W','A','S','K','N'],
-    ['L','D','Y','Y','L','W','L','S','Q','G','E'],
-    ['E','B','J','K','F','K','C','S','U','G','C'],
-    ['S','K','L','U','I','S','R','H','I','J','F'],
-    ['T','T','Q','Z','K','F','V','O','T','P','O'],
-    ['E','M','W','A','T','Y','D','P','O','F','X'],
-    ['J','K','R','F','N','A','K','P','I','K','Y'],
-    ['J','F','Y','S','N','A','K','E','Q','E','Z'],
-    ['P','H','I','E','Z','C','W','R','B','O','A']
-  ];
-
-  const solutionCoords = {
-    'BAT': [[0,4],[0,5],[0,6]],
-    'EAGLE': [[1,0],[2,0],[3,0],[4,0],[5,0]],
-    'SNAKE': [[10,3],[10,4],[10,5],[10,6],[10,7]],
-    'FENNEC FOX': [[0,10],[1,10],[2,10],[3,10],[4,10],[5,10],[6,10],[7,10],[8,10]],
-    'MOSQUITO': [[1,8],[2,8],[3,8],[4,8],[5,8],[6,8],[7,8],[8,8]],
-    'GRASSHOPPER': [[1,7],[2,7],[3,7],[4,7],[5,7],[6,7],[7,7],[8,7],[9,7],[10,7],[11,7]]
-  };
-
-  const targetWords = ['FENNEC FOX', 'GRASSHOPPER', 'EAGLE', 'BAT', 'MOSQUITO', 'SNAKE'];
+/* Renders any word-search puzzle into the given container */
+function renderWordSearch(cfg, box) {
+  const matrix = cfg.matrix;
+  const solutionCoords = cfg.solutionCoords;
+  const targetWords = cfg.words;
+  const rows = matrix.length;
+  const cols = matrix[0].length;
   let foundWords = new Set();
 
-  const box = document.getElementById('stageBox');
-  
   let wbHtml = '<div class="wordBankList">';
   targetWords.forEach((w, i) => {
     wbHtml += `<div class="wbItem" id="wbi_${i}">${i+1}. ${w.toLowerCase()}</div>`;
   });
   wbHtml += '</div>';
 
-  let gridHtml = '<div class="wsGrid">';
-  for (let r = 0; r < 12; r++) {
-    for (let c = 0; c < 11; c++) {
+  let gridHtml = `<div class="wsGrid" style="grid-template-columns: repeat(${cols}, 1fr);">`;
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
       gridHtml += `<div class="wsCell" id="ws_${r}_${c}" onclick="clickWsCell(${r},${c})">${matrix[r][c]}</div>`;
     }
   }
@@ -865,7 +1284,7 @@ function setupWordSearch() {
 
     if (foundWords.size === targetWords.length) {
       document.getElementById('feedback').className = 'feedback ok';
-      document.getElementById('feedback').innerText = '¡Felicidades! Encontraste todas las palabras 🏆 +30 ⭐';
+      document.getElementById('feedback').innerText = `¡Felicidades! Encontraste todas las palabras 🏆 +${targetWords.length * 5} ⭐`;
       document.getElementById('continueBtn').style.display = 'block';
     }
   }
@@ -889,8 +1308,8 @@ function setupWordSearch() {
 
   window.resetWordSearch = function() {
     foundWords.clear();
-    for (let r = 0; r < 12; r++) {
-      for (let c = 0; c < 11; c++) {
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
         const el = document.getElementById(`ws_${r}_${c}`);
         el.classList.remove('selected', 'found');
       }
