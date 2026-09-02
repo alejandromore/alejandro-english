@@ -109,6 +109,64 @@
   .matchBadge{border-radius:999px;padding:5px 9px;font-family:'Fredoka';font-weight:700;background:#FFD1CB;color:#A82719;white-space:nowrap;}
   .matchBadge.good{background:#CFF3D8;color:#1E7D3A;}
   .matchBadge.mid{background:#FFF3C4;color:#7A5200;}
+  /* ================= TEEN MODE (Spelling Bee) ================= */
+  body.teenMode{background:linear-gradient(180deg,#0E1120 0%,#151B2E 55%,#1B2340 100%);}
+  body.teenMode .hill,body.teenMode .mascotWrap{display:none;}
+  body.teenMode .exWrap{background:#171C2E;border:1px solid #2A3150;border-radius:16px;box-shadow:0 20px 45px rgba(5,8,18,.45);max-width:660px;color:#E6E9F5;padding:20px 16px 24px;}
+  body.teenMode .exTitle{font-family:'Nunito',sans-serif;font-weight:900;letter-spacing:-.01em;color:#F2F4FF;font-size:clamp(19px,4.4vw,24px);}
+  body.teenMode .exSub{color:#8D96BF;font-weight:600;font-size:13px;letter-spacing:.02em;}
+  body.teenMode .progressBar{background:#232A45;height:5px;border-radius:5px;margin-bottom:18px;}
+  body.teenMode .progressFill{background:linear-gradient(90deg,#5B7CFA,#3AD1B4);}
+  body.teenMode .backBtn,body.teenMode .starCounter{background:#171C2E;color:#D8DDF5;border:1px solid #2A3150;box-shadow:none;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;letter-spacing:.02em;border-radius:10px;padding:9px 14px;}
+  body.teenMode .backBtn:active{transform:none;box-shadow:none;background:#212843;}
+  body.teenMode .musicBtn{display:none;}
+  body.teenMode .feedback{font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;}
+  body.teenMode .feedback.ok{color:#3AD1B4;}
+  body.teenMode .feedback.bad{color:#FF8A7A;}
+  body.teenMode .continueBtn,body.teenMode .primaryBtn{background:#5B7CFA;color:#FFFFFF;box-shadow:none;border-radius:10px;font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;padding:12px 24px;}
+  body.teenMode .endWrap h2{font-family:'Nunito',sans-serif;font-weight:900;color:#F2F4FF;}
+  body.teenMode .endWrap p{color:#8D96BF;}
+  body.teenMode .spellBadge{background:rgba(91,124,250,.12);border:1px solid #2F3A66;color:#9FB2FF;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;}
+  body.teenMode .spellPicture{background:#11162A;border:1px solid #2A3150;box-shadow:none;border-radius:14px;max-width:100%;padding:20px 16px 16px;}
+  body.teenMode .spellEmoji{font-size:26px;opacity:.5;margin:0 0 12px;}
+  body.teenMode .currentWord{font-family:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;font-size:clamp(22px,6.2vw,30px);font-weight:700;color:#7FE9D5;letter-spacing:.18em;text-transform:none;overflow-wrap:anywhere;line-height:1.35;}
+  body.teenMode .spellBtn{background:#212843;color:#C5CDF2;border:1px solid #303864;box-shadow:none;border-radius:10px;font-family:'Nunito',sans-serif;font-weight:700;font-size:13px;padding:10px 14px;letter-spacing:.02em;}
+  body.teenMode .spellBtn:active{background:#2A3258;}
+  body.teenMode .spellBtn:disabled{opacity:.4;cursor:default;}
+  body.teenMode .recSpellBtn{background:#5B7CFA;color:#FFFFFF;box-shadow:none;border-radius:10px;font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;padding:13px 26px;letter-spacing:.02em;}
+  body.teenMode .recSpellBtn.recording{background:#E8503F;}
+  body.teenMode .spellHint{color:#8D96BF;font-weight:700;font-size:13px;}
+  body.teenMode .spellReview{background:#11162A;border:1px solid #2A3150;color:#C5CDF2;border-radius:12px;font-weight:600;font-size:13px;padding:14px;}
+  body.teenMode .spellReview b{color:#F2F4FF;}
+  body.teenMode .spellReview audio{filter:invert(.9) hue-rotate(180deg);}
+  body.teenMode .letterPill{background:#212843;color:#9AA3CC;font-family:ui-monospace,Consolas,monospace;font-size:14px;font-weight:700;border-radius:6px;padding:6px 8px;}
+  body.teenMode .letterPill.ok{background:rgba(58,209,180,.16);color:#5FE3C6;}
+  body.teenMode .letterPill.mid{background:rgba(245,196,81,.15);color:#F5C451;}
+  body.teenMode .letterPill.bad{background:rgba(255,138,122,.15);color:#FF8A7A;}
+  body.teenMode .reviewHelp{color:#6E779E;font-size:11px;font-weight:700;letter-spacing:.03em;}
+  body.teenMode .spellSummary{background:#11162A;border:1px solid #2A3150;border-radius:12px;padding:14px;}
+  body.teenMode .spellSummary h3{color:#8D96BF;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.09em;text-transform:uppercase;}
+  body.teenMode .summaryItem{background:#171C2E;color:#C5CDF2;font-weight:700;font-size:13px;border-radius:8px;}
+  body.teenMode .summaryItem small{color:#6E779E;font-weight:600;font-family:ui-monospace,Consolas,monospace;}
+  body.teenMode .matchBadge{background:rgba(255,138,122,.15);color:#FF8A7A;font-family:ui-monospace,Consolas,monospace;font-size:12px;font-weight:700;border-radius:6px;}
+  body.teenMode .matchBadge.good{background:rgba(58,209,180,.16);color:#5FE3C6;}
+  body.teenMode .matchBadge.mid{background:rgba(245,196,81,.15);color:#F5C451;}
+  .wordMeta{margin-top:12px;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#6E779E;}
+  .levelIntro{color:#8D96BF;font-size:13px;font-weight:600;text-align:center;line-height:1.5;margin:2px 0 4px;}
+  .levelList{display:flex;flex-direction:column;gap:10px;width:100%;max-width:420px;margin:0 auto;}
+  .levelCard{width:100%;text-align:left;background:#171C2E;border:1px solid #2A3150;border-radius:12px;padding:14px 16px;cursor:pointer;color:#E6E9F5;font-family:'Nunito',sans-serif;display:flex;flex-direction:column;gap:5px;transition:border-color .15s ease,transform .08s ease;}
+  .levelCard:active{transform:translateY(1px);border-color:#5B7CFA;}
+  .levelCard .lvTop{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .levelCard .lvName{font-weight:900;font-size:15px;letter-spacing:.01em;}
+  .levelCard .lvTag{font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;padding:4px 8px;border-radius:999px;background:rgba(91,124,250,.14);color:#9FB2FF;white-space:nowrap;}
+  .levelCard.lv2 .lvTag{background:rgba(245,196,81,.14);color:#F5C451;}
+  .levelCard.lv3 .lvTag{background:rgba(255,138,122,.14);color:#FF8A7A;}
+  .levelCard .lvDesc{font-size:12px;font-weight:600;color:#8D96BF;line-height:1.45;font-family:ui-monospace,Consolas,monospace;}
+  .revTitle{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#6E779E;margin-bottom:8px;}
+  .revRow{display:flex;justify-content:space-between;gap:14px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06);}
+  .revRow>span{color:#8D96BF;font-weight:700;white-space:nowrap;}
+  .revRow>b{text-align:right;word-break:break-word;font-family:ui-monospace,Consolas,monospace;}
+  .revScore{margin-top:12px;font-size:13px;color:#8D96BF;font-weight:700;}
 </style>
 </head>
 <body>
@@ -156,8 +214,8 @@
 <!-- EXERCISE SCREEN -->
 <div class="screen" id="screen-exercise">
   <div class="topbar">
-    <button class="backBtn" onclick="goHome()">🏠 Menu</button>
-    <div class="starCounter">? <span id="starCount">0</span></div>
+    <button class="backBtn" id="backBtn" onclick="goHome()">🏠 Menu</button>
+    <div class="starCounter"><span id="starLabel">Stars</span> <span id="starCount">0</span></div>
   </div>
   <div class="exWrap">
     <div class="progressBar"><div class="progressFill" id="progressFill"></div></div>
@@ -375,7 +433,7 @@ const TOPIC_META={
   iLikeFood:{title:'I Like Food',sub:'Practice talking about food'},
   questionsLike:{title:'Questions with Like',sub:'Ask and answer about likes'},
   canIHave:{title:'Can I Have...? / Would You Like...?',sub:'Polite requests and offers'},
-  spellingBee:{title:'Spelling Bee 🐝',sub:'Listen, spell, record, and review'}
+  spellingBee:{title:'Spelling Bee',sub:'Listen, spell it out loud, get scored'}
 };
 function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
 function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
@@ -415,15 +473,68 @@ const SVGS={
 
 /* NAVIGATION */
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
-function goHome(){showScreen('screen-home');}
-function startTopic(t){currentTopic=t;qIndex=0;stars=0;document.getElementById('starCount').textContent=stars;if(t==='spellingBee'){spellingSummary=[];spellingLevel=null;document.getElementById('exTitle').textContent=TOPIC_META[t].title;document.getElementById('exSub').textContent=TOPIC_META[t].sub;showScreen('screen-exercise');showSpellingLevelSelection();return;}document.getElementById('exTitle').textContent=TOPIC_META[t].title;document.getElementById('exSub').textContent=TOPIC_META[t].sub;showScreen('screen-exercise');loadQuestion();}
-function showSpellingLevelSelection(){document.getElementById('progressFill').style.width='0%';document.getElementById('feedback').textContent='';document.getElementById('feedback').className='feedback';document.getElementById('continueBtn').style.display='none';var s=document.getElementById('stageBox');s.innerHTML='';var panel=document.createElement('div');panel.className='spellPanel';panel.innerHTML='<div class="spellBadge">Choose your level</div><div style="text-align:center;font-weight:800;color:#5E5578;margin:8px 0 4px;">Select a difficulty to start spelling practice (6th Grade · 88 Words)</div><div style="display:flex;flex-direction:column;gap:14px;width:100%;max-width:380px;margin:6px auto 0;">'+'<button class="spellBtn" style="width:100%;font-size:20px;padding:16px;background:linear-gradient(160deg,var(--leaf),var(--leaf-deep));color:white;" onclick="selectSpellingLevel(\'basic\')"><div>Basic (Level 1)</div><small style="font-size:13px;font-weight:600;display:block;margin-top:4px;">5–8 letter words: adventure, astronaut, computer, hospital...</small></button>'+'<button class="spellBtn" style="width:100%;font-size:20px;padding:16px;background:linear-gradient(160deg,var(--sun),var(--sun-deep));" onclick="selectSpellingLevel(\'intermediate\')"><div>Intermediate (Level 2)</div><small style="font-size:13px;font-weight:600;display:block;margin-top:4px;">8–10 letter words: ambulance, chemistry, dictionary, technology...</small></button>'+'<button class="spellBtn" style="width:100%;font-size:20px;padding:16px;background:linear-gradient(160deg,var(--coral),var(--coral-deep));color:white;" onclick="selectSpellingLevel(\'advanced\')"><div>Advanced (Level 3)</div><small style="font-size:13px;font-weight:600;display:block;margin-top:4px;">10–14 letter words: architecture, biodiversity, encyclopedia, transportation...</small></button>'+'</div>';s.appendChild(panel);}
-function selectSpellingLevel(level){spellingLevel=level;spellingQueue=shuffle(SPELLING_LEVELS[level].slice());spellingSummary=[];loadQuestion();}
+function goHome(){document.body.classList.remove('teenMode');showScreen('screen-home');}
+function startTopic(t){currentTopic=t;qIndex=0;stars=0;document.getElementById('starCount').textContent=stars;
+  var teen=(t==='spellingBee');
+  document.body.classList.toggle('teenMode',teen);
+  document.getElementById('starLabel').textContent=teen?'Correct':'Stars';
+  document.getElementById('backBtn').textContent=teen?'← Menu':'🏠 Menu';
+  document.getElementById('continueBtn').textContent=teen?'Next word':'Next';
+  document.getElementById('exTitle').textContent=TOPIC_META[t].title;document.getElementById('exSub').textContent=TOPIC_META[t].sub;
+  showScreen('screen-exercise');
+  if(teen){spellingSummary=[];spellingLevel=null;showSpellingLevelSelection();return;}
+  loadQuestion();
+}
+function showSpellingLevelSelection(){
+  document.getElementById('progressFill').style.width='0%';
+  document.getElementById('feedback').textContent='';document.getElementById('feedback').className='feedback';
+  document.getElementById('continueBtn').style.display='none';
+  var s=document.getElementById('stageBox');s.innerHTML='';
+  var panel=document.createElement('div');panel.className='spellPanel';
+  var order=['basic','intermediate','advanced'];
+  var cards=order.map(function(k,idx){
+    var m=SPELLING_LEVEL_META[k];
+    return '<button class="levelCard lv'+(idx+1)+'" onclick="selectSpellingLevel(\''+k+'\')">'+
+      '<div class="lvTop"><span class="lvName">'+m.name+'</span><span class="lvTag">'+m.range+'</span></div>'+
+      '<div class="lvDesc">'+m.sample+'</div>'+
+      '<div class="lvDesc" style="font-family:inherit;">'+SPELLING_LEVELS[k].length+' words in this bank</div>'+
+    '</button>';
+  }).join('');
+  panel.innerHTML='<div class="spellBadge">Select difficulty</div>'+
+    '<div class="levelIntro">6th grade word bank &middot; 88 words &middot; 10 words per session</div>'+
+    '<div class="levelList">'+cards+'</div>';
+  s.appendChild(panel);
+}
+function selectSpellingLevel(level){spellingLevel=level;spellingQueue=shuffle(SPELLING_LEVELS[level].slice());spellingSummary=[];qIndex=0;stars=0;document.getElementById('starCount').textContent=stars;loadQuestion();}
 function updateProgress(){document.getElementById('progressFill').style.width=(qIndex/TOTAL_Q*100)+'%';}
 function loadQuestion(){questionAnswered=false;updateProgress();document.getElementById('feedback').textContent='';document.getElementById('feedback').className='feedback';document.getElementById('continueBtn').style.display='none';const s=document.getElementById('stageBox');s.innerHTML='';if(qIndex>=TOTAL_Q){return endGame();}const builders={funOnTheFarm:buildFunOnTheFarm,iLikeFood:buildILikeFood,questionsLike:buildQuestionsLike,canIHave:buildCanIHave,spellingBee:buildSpellingBee};builders[currentTopic](s);}
 function nextQuestion(){qIndex++;loadQuestion();}
-function markResult(ok,el){if(questionAnswered)return;questionAnswered=true;const fb=document.getElementById('feedback');if(ok){stars++;document.getElementById('starCount').textContent=stars;fb.textContent='Great job! You got it! 🎉';fb.className='feedback ok';playCorrect();confettiBurst();if(el)el.classList.add('correct');}else{fb.textContent='Almost... try again! 💪';fb.className='feedback bad';playWrong();if(el)el.classList.add('wrong');}document.getElementById('continueBtn').style.display='inline-block';}
-function endGame(){showScreen('screen-end');playWin();confettiBurst();const t=document.getElementById('endTitle'),m=document.getElementById('endMsg');if(stars>=TOTAL_Q*4/5){t.textContent='You are an English champion! 🏆';}else if(stars>=TOTAL_Q/2){t.textContent='Good work! Keep practicing 🌟';}else{t.textContent='You tried your best! 🌟';}m.textContent=`You earned ${stars} stars in total.`;}
+function markResult(ok,el){
+  if(questionAnswered)return;questionAnswered=true;
+  var teen=(currentTopic==='spellingBee');
+  const fb=document.getElementById('feedback');
+  if(ok){
+    stars++;document.getElementById('starCount').textContent=stars;
+    fb.textContent=teen?'Correct spelling.':'Great job! You got it! 🎉';fb.className='feedback ok';
+    playCorrect();if(!teen)confettiBurst();if(el)el.classList.add('correct');
+  }else{
+    fb.textContent=teen?'Not quite — check the letters below.':'Almost... try again! 💪';fb.className='feedback bad';
+    playWrong();if(el)el.classList.add('wrong');
+  }
+  document.getElementById('continueBtn').style.display='inline-block';
+}
+function endGame(){
+  var teen=(currentTopic==='spellingBee');
+  showScreen('screen-end');playWin();if(!teen)confettiBurst();
+  const t=document.getElementById('endTitle'),m=document.getElementById('endMsg');
+  if(teen){
+    t.textContent=stars>=8?'Strong session':(stars>=5?'Solid work':'Keep practicing');
+    m.textContent=stars+' of '+TOTAL_Q+' words spelled correctly.';
+    return;
+  }
+  if(stars>=TOTAL_Q*4/5){t.textContent='You are an English champion! 🏆';}else if(stars>=TOTAL_Q/2){t.textContent='Good work! Keep practicing 🌟';}else{t.textContent='You tried your best! 🌟';}
+  m.textContent=`You earned ${stars} stars in total.`;
+}
 
 /* MULTIPLE CHOICE */
 function buildMultipleChoice(stage,q,opt,correct){
@@ -599,6 +710,11 @@ const SPELLING_LEVELS={
 const SPELLING_SVGS={
   computer:'<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><rect x="60" y="30" width="180" height="110" fill="#2B2440" rx="8"/><rect x="68" y="38" width="164" height="94" fill="#1E9FBF" rx="4"/><path d="M120 140 L180 140 L195 165 L105 165 Z" fill="#8B4513"/><rect x="90" y="165" width="120" height="10" fill="#5E5578" rx="3"/><text x="150" y="90" text-anchor="middle" font-family="Fredoka" font-size="28" fill="#FFF8EC">💻</text><text x="150" y="188" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#2B2440" font-weight="700">Computer</text></svg>',
   hospital:'<svg viewBox="0 0 300 200" width="100%"><rect width="300" height="200" fill="#FFF8EC" rx="12"/><rect x="70" y="40" width="160" height="130" fill="#FFFFFF" stroke="#3AC7E0" stroke-width="4" rx="10"/><rect x="135" y="60" width="30" height="80" fill="#FF6B5B" rx="3"/><rect x="110" y="85" width="80" height="30" fill="#FF6B5B" rx="3"/><rect x="125" y="140" width="50" height="30" fill="#5B8DEF" rx="2"/><text x="150" y="188" text-anchor="middle" font-family="Fredoka" font-size="14" fill="#2B2440" font-weight="700">Hospital</text></svg>'
+};
+const SPELLING_LEVEL_META={
+  basic:{name:'Level 1 · Foundation',range:'5–8 letters',sample:'adventure · astronaut · computer · hospital'},
+  intermediate:{name:'Level 2 · Intermediate',range:'8–10 letters',sample:'ambulance · chemistry · dictionary · technology'},
+  advanced:{name:'Level 3 · Advanced',range:'10–14 letters',sample:'architecture · biodiversity · encyclopedia · transportation'}
 };
 let spellingLevel=null;
 function nextSpellingWord(){if(!spellingQueue.length){var list=spellingLevel?SPELLING_LEVELS[spellingLevel]:SPELLING_WORDS;spellingQueue=shuffle(list);}return spellingQueue.shift();}
@@ -796,7 +912,7 @@ function analyzeSpellingText(text,expected){
 function renderLetterCheck(expected,result){
   const st=(result&&result.statuses)||automaticLetterStatuses(expected,(result&&result.heard)||'');
   return '<div class="letterCheck" data-review="letters">'+st.map(x=>'<span class="letterPill '+x.cls+'" title="'+x.note+'">'+x.ch.toUpperCase()+'</span>').join('')+'</div>'+
-    '<div class="reviewHelp"><span class="letterPill ok">green</span> heard · <span class="letterPill mid">yellow</span> close · <span class="letterPill bad">red</span> practice</div>';
+    '<div class="reviewHelp"><span class="letterPill ok">matched</span> <span class="letterPill mid">close</span> <span class="letterPill bad">missed</span></div>';
 }
 function scoreLabel(score){return Math.round((score||0)*100)+'%';}
 function matchClass(score){return score>=0.95?'good':(score>=0.85?'mid':'');}
@@ -806,28 +922,29 @@ function addSpellingSummary(word,result,transcript){
 }
 function renderSpellingSummary(target){
   if(!target)return;
-  if(!spellingSummary.length){target.innerHTML='<h3>📋 Practice summary</h3><div class="summaryList"><div class="summaryItem"><span>No words evaluated yet.</span><span class="matchBadge mid">0%</span></div></div>';return;}
+  if(!spellingSummary.length){target.style.display='none';target.innerHTML='';return;}
+  target.style.display='';
   const ordered=spellingSummary.slice().sort((a,b)=>a.word.localeCompare(b.word));
-  const items=ordered.map((it)=>'<div class="summaryItem"><span>'+SPELLING_PICTURES[it.word]+' <b>'+it.word+'</b><br><small>Heard: '+(it.heard?spellLetters(it.heard):'no speech')+'</small></span><span class="matchBadge '+matchClass(it.score)+'">'+scoreLabel(it.score)+'</span></div>').join('');
+  const items=ordered.map((it)=>'<div class="summaryItem"><span><b>'+it.word+'</b><br><small>heard: '+(it.heard?spellLetters(it.heard):'—')+'</small></span><span class="matchBadge '+matchClass(it.score)+'">'+scoreLabel(it.score)+'</span></div>').join('');
   const avg=ordered.reduce((a,b)=>a+(b.score||0),0)/ordered.length;
-  target.innerHTML='<h3>📋 Practice summary • '+ordered.length+' words • Average '+scoreLabel(avg)+'</h3><div class="summaryList">'+items+'</div>';
+  target.innerHTML='<h3>Session results · '+ordered.length+(ordered.length===1?' word':' words')+' · average '+scoreLabel(avg)+'</h3><div class="summaryList">'+items+'</div>';
 }
 function showSpellingReview(box,word,transcript,audioUrl,summaryBox){
   const result=analyzeSpellingText(transcript,word);
   addSpellingSummary(word,result,transcript);
   renderSpellingSummary(summaryBox);
-  const heard=result.heard?spellLetters(result.heard):'No letters heard';
-  let heardText=(transcript||'').trim()||'No speech detected';
+  const heard=result.heard?spellLetters(result.heard):'nothing detected';
+  let heardText=(transcript||'').trim()||'no speech detected';
   const tokens=transcriptTokens(heardText);
   if(tokens.length>0){
     heardText=tokens.slice(0,15).join(' ').toUpperCase() + (tokens.length>15 ? '...' : '');
   }
-  const msg=result.ok?'Great spelling! 🌟 Great job!':'Good try! Let\'s practice together. 💪';
-  box.style.display='block';box.innerHTML='<b>Spelling check:</b>'+(audioUrl?'<audio controls src="'+audioUrl+'"></audio>':'')+
-    '<div>🧠 I heard: <b>'+heardText+'</b></div>'+
-    '<div>🐝 Letters heard: <b>'+heard+'</b></div>'+
-    '<div>✅ Word letters: <b>'+spellLetters(word)+'</b></div>'+renderLetterCheck(word,result)+
-    '<div style="margin-top:8px;">Score: <b>'+scoreLabel(result.score)+'</b>. '+msg+'</div>';
+  const msg=result.ok?'Correct — move on to the next word.':'Review the letters marked in red and record again.';
+  box.style.display='block';box.innerHTML='<div class="revTitle">Spelling check</div>'+(audioUrl?'<audio controls src="'+audioUrl+'"></audio>':'')+
+    '<div class="revRow"><span>Transcript</span><b>'+heardText+'</b></div>'+
+    '<div class="revRow"><span>Letters detected</span><b>'+heard+'</b></div>'+
+    '<div class="revRow"><span>Target word</span><b>'+spellLetters(word)+'</b></div>'+renderLetterCheck(word,result)+
+    '<div class="revScore">Accuracy <b>'+scoreLabel(result.score)+'</b> — '+msg+'</div>';
   if(!questionAnswered)markResult(result.ok,null);
 }
 
@@ -909,7 +1026,8 @@ async function decodeSpellingAudioTo16k(blob){
 }
 let spellingStream=null,spellingRecorder=null,spellingChunks=[],spellingRecording=false,spellingSessionStartedAt=0,spellingAutoStopTimer=null,spellingActiveBox=null,spellingActiveWord='',spellingActiveSummaryBox=null,spellingActiveBtn=null;
 let spellingMonitorCtx=null,spellingMonitorAnalyser=null,spellingMonitorData=null,spellingMonitorTimer=null;
-function spellingListenText(word){return '🎙️ Recording... spell the letters slowly: <b>'+spellLetters(word)+'</b><br><small>It stops by itself after you pause, or press Stop.</small>';}
+var spellingLockedBtns=[];
+function spellingListenText(word){return 'Recording — spell the word out loud, one letter at a time.<br><small>The word stays hidden. Recording stops on its own after you pause, or press Stop.</small>';}
 /* Watches mic volume while recording and auto-stops ~2.5s after the child goes quiet
    (once some speech was heard), instead of a blind fixed timer that used to cut kids
    off mid-word. The 30s setTimeout below stays only as a safety cap. */
@@ -952,14 +1070,14 @@ async function startSpellingRecording(word,box,btn,summaryBox){
   const md=navigator.mediaDevices;
   if(looksLocal||!md||!md.getUserMedia){
     box.style.display='block';
-    box.innerHTML='⚠️ The microphone needs this page to be opened from a website address (https://...), not a local file. Ask an adult to open it from the online link.';
+    box.innerHTML='The microphone needs this page to be served from a web address (https://...), not opened as a local file.';
     return;
   }
   let stream;
   try{ stream=await md.getUserMedia({audio:true}); }
   catch(err){
-    let msg='🎙️ I could not open the microphone. Please allow microphone access for this site and try again.';
-    if(err&&err.name==='NotFoundError')msg='🎙️ No microphone was found on this device.';
+    let msg='Could not open the microphone. Allow microphone access for this site and try again.';
+    if(err&&err.name==='NotFoundError')msg='No microphone was found on this device.';
     box.style.display='block';box.innerHTML=msg;
     return;
   }
@@ -974,7 +1092,7 @@ async function startSpellingRecording(word,box,btn,summaryBox){
   };
   spellingRecorder.start();
   spellingRecording=true;spellingSessionStartedAt=Date.now();
-  btn.classList.add('recording');btn.textContent='⏹️ Stop';
+  btn.classList.add('recording');btn.textContent='⏹ Stop recording';
   box.style.display='block';box.innerHTML=spellingListenText(word);
   spellingAutoStopTimer=setTimeout(()=>{if(spellingRecording)stopSpellingRecording();},30000);
   startSpellingSilenceWatch(stream);
@@ -984,24 +1102,25 @@ function stopSpellingRecording(){
   spellingRecording=false;
   stopSpellingSilenceWatch();
   if(spellingAutoStopTimer){clearTimeout(spellingAutoStopTimer);spellingAutoStopTimer=null;}
-  if(spellingActiveBtn){spellingActiveBtn.classList.remove('recording');spellingActiveBtn.textContent='🎙️ Record spelling';}
+  if(spellingActiveBtn){spellingActiveBtn.classList.remove('recording');spellingActiveBtn.textContent='⏺ Record spelling';}
+  spellingLockedBtns.forEach(function(b){if(b)b.disabled=false;});spellingLockedBtns=[];
   try{if(spellingRecorder&&spellingRecorder.state!=='inactive')spellingRecorder.stop();}catch(e){}
 }
 async function finishSpellingRecording(blob){
   const box=spellingActiveBox,word=spellingActiveWord,summaryBox=spellingActiveSummaryBox;
   if(!box)return;
   const audioUrl=URL.createObjectURL(blob);
-  box.style.display='block';box.innerHTML='🧠 Listening to your spelling...';
+  box.style.display='block';box.innerHTML='<div class="revTitle">Analyzing your recording…</div>';
   try{
     const {audio,duration}=await decodeSpellingAudioTo16k(blob);
     if(duration<0.3){
-      box.innerHTML='🎙️ That was too short. Press record, spell the letters slowly, then press Stop.';
+      box.innerHTML='That recording was too short. Press record, spell the word out loud, then press Stop.';
       return;
     }
-    const text=await transcribeSpellingAudio(audio,(pct)=>{box.innerHTML='📥 Loading voice model... '+Math.round(pct)+'%<br><small>This only happens the first time.</small>';});
+    const text=await transcribeSpellingAudio(audio,(pct)=>{box.innerHTML='<div class="revTitle">Loading the voice model… '+Math.round(pct)+'%</div><small>This only happens the first time.</small>';});
     showSpellingReview(box,word,text,audioUrl,summaryBox);
   }catch(err){
-    box.innerHTML='🎙️ I could not check your spelling this time ('+((err&&err.message)||'error')+'). Try recording again.';
+    box.innerHTML='Could not analyze this recording ('+((err&&err.message)||'error')+'). Try recording again.';
   }
 }
 
@@ -1048,19 +1167,50 @@ function speakSpellingLetters(word,btn){
 }
 function buildSpellingBee(stage){
   const word=nextSpellingWord();
-  const pic=SPELLING_PICTURES[word]||'🐝';
+  const pic=SPELLING_PICTURES[word]||'';
+  const meta=SPELLING_LEVEL_META[spellingLevel]||SPELLING_LEVEL_META.basic;
+  document.getElementById('exSub').textContent=meta.name+'  ·  '+meta.range;
+  const masked=Array(word.length).fill('•').join('');
   const panel=document.createElement('div');panel.className='spellPanel';
-  const hiddenWord=Array(word.length).fill('_').join(' ');
-  panel.innerHTML='<div class="spellBadge">🐝 Spelling Bee practice</div><div class="spellPicture">'+(SPELLING_SVGS[word]?'<div class="exSvg" style="max-width:200px;margin:0 auto;">'+SPELLING_SVGS[word]+'</div>':'<div class="spellEmoji">'+pic+'</div>')+'<div class="currentWord">'+hiddenWord+'</div></div><div class="spellActions"><button class="spellBtn" data-act="word">🔊 Word</button><button class="spellBtn" data-act="letters">🔤 Letters</button><button class="spellBtn" data-act="hide">👀 Show word</button><button class="spellBtn" data-act="next">➡️ Next word</button></div><div class="spellHint"></div><div class="spellActions"><button class="recSpellBtn" data-act="record">🎙️ Record spelling</button></div><div class="spellReview" style="display:none;"></div><div class="spellSummary"></div>';
+  panel.innerHTML='<div class="spellBadge">Word '+(qIndex+1)+' of '+TOTAL_Q+'</div>'+
+    '<div class="spellPicture">'+(pic?'<div class="spellEmoji">'+pic+'</div>':'')+'<div class="currentWord"></div><div class="wordMeta">'+word.length+' letters</div></div>'+
+    '<div class="spellActions">'+
+      '<button class="spellBtn" data-act="word">🔊 Word</button>'+
+      '<button class="spellBtn" data-act="letters">🔤 Letters</button>'+
+      '<button class="spellBtn" data-act="reveal">👁 Reveal</button>'+
+      '<button class="spellBtn" data-act="next">⏭ Skip</button>'+
+    '</div>'+
+    '<div class="spellHint">Word hidden — spell it from memory.</div>'+
+    '<div class="spellActions"><button class="recSpellBtn" data-act="record">⏺ Record spelling</button></div>'+
+    '<div class="spellReview" style="display:none;"></div><div class="spellSummary"></div>';
   stage.appendChild(panel);
   const hint=panel.querySelector('.spellHint'),review=panel.querySelector('.spellReview'),summaryBox=panel.querySelector('.spellSummary'),wordBox=panel.querySelector('.currentWord');
+  const wordBtn=panel.querySelector('[data-act="word"]'),lettersBtn=panel.querySelector('[data-act="letters"]'),revealBtn=panel.querySelector('[data-act="reveal"]');
+  let revealed=false;
+  function paintWord(){
+    wordBox.textContent=revealed?word:masked;
+    revealBtn.textContent=revealed?'🙈 Hide':'👁 Reveal';
+  }
+  paintWord();
   renderSpellingSummary(summaryBox);
-  panel.querySelector('[data-act="word"]').onclick=e=>speakSpellingWord(word,e.currentTarget);
-  panel.querySelector('[data-act="letters"]').onclick=e=>speakSpellingLetters(word,e.currentTarget);
-  panel.querySelector('[data-act="hide"]').onclick=e=>{const hidden=wordBox.textContent.indexOf('_')>=0;wordBox.textContent=hidden?word:hiddenWord;e.currentTarget.textContent=hidden?'🙈 Cover word':'👀 Show word';hint.textContent=hidden?'Now you can read it.':'Now spell it from memory!';};
-  panel.querySelector('[data-act="record"]').onclick=e=>startSpellingRecording(word,review,e.currentTarget,summaryBox);
+  wordBtn.onclick=e=>speakSpellingWord(word,e.currentTarget);
+  lettersBtn.onclick=e=>speakSpellingLetters(word,e.currentTarget);
+  revealBtn.onclick=()=>{revealed=!revealed;paintWord();hint.textContent=revealed?'Word visible — hide it again before recording.':'Word hidden — spell it from memory.';};
+  panel.querySelector('[data-act="record"]').onclick=function(e){
+    const btn=e.currentTarget;
+    if(spellingRecording){startSpellingRecording(word,review,btn,summaryBox);return;}
+    try{if('speechSynthesis' in window)window.speechSynthesis.cancel();}catch(_){}
+    if(activeSpellTtsBtn)setTtsButton(activeSpellTtsBtn,false);
+    revealed=false;paintWord();
+    hint.textContent='Word hidden while you record.';
+    spellingLockedBtns=[wordBtn,lettersBtn,revealBtn];
+    spellingLockedBtns.forEach(function(b){b.disabled=true;});
+    Promise.resolve(startSpellingRecording(word,review,btn,summaryBox)).then(function(){
+      if(!spellingRecording){spellingLockedBtns.forEach(function(b){if(b)b.disabled=false;});spellingLockedBtns=[];}
+    });
+  };
   panel.querySelector('[data-act="next"]').onclick=()=>{try{if('speechSynthesis' in window)window.speechSynthesis.cancel();}catch(e){}if(activeSpellTtsBtn)setTtsButton(activeSpellTtsBtn,false);if(spellingRecording)stopSpellingRecording();nextQuestion();};
-  setTimeout(()=>speakSpellingWord(word,panel.querySelector('[data-act="word"]')),350);
+  setTimeout(()=>speakSpellingWord(word,wordBtn),350);
 }
 
 _preloadAudio();
