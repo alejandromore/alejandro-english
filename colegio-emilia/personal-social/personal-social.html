@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Personal Social 🇵🇪 | Colegio Emilia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky: #3AC7E0; --sky-d: #1E9FBF;
+    --sun: #FFC93C; --sun-d: #F5A623;
+    --leaf: #4CAF6D; --leaf-d: #2E9450;
+    --coral: #FF6B5B; --coral-d: #E8503F;
+    --purple: #9B6BFF; --purple-d: #7C4FE0;
+    --peru: #D91023; --peru-d: #A50C1B;
+    --earth: #A5764B; --earth-d: #7C5632;
+    --cream: #FFF8EC; --ink: #2B2440;
+    --white: #FFFFFF;
+    --shadow: 0 8px 0 rgba(43,36,64,0.18);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { min-height: 100vh; margin: 0; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(180deg, #E8503F 0%, #FF8A6B 40%, #FFD9A8 75%, #CFF3E4 100%);
+    color: var(--ink);
+    position: relative;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, .display { font-family: 'Fredoka', sans-serif; }
+
+  .hill {
+    position: fixed; bottom: 0; left: 0; width: 100%; z-index: 0; pointer-events: none; height: 110px;
+  }
+  .screen {
+    position: relative; z-index: 2; min-height: 100vh; display: none;
+    flex-direction: column; align-items: center; padding: 18px 14px 40px;
+  }
+  .screen.active { display: flex; }
+
+  .topbar {
+    width: 100%; max-width: 900px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;
+  }
+  .backBtn {
+    background: var(--white); border: none; border-radius: 16px; padding: 10px 18px;
+    font-family: 'Fredoka'; font-weight: 600; font-size: 16px; color: var(--ink);
+    box-shadow: var(--shadow); cursor: pointer; display: flex; align-items: center; gap: 6px;
+    text-decoration: none; transition: transform .08s ease;
+  }
+  .backBtn:active { transform: translateY(4px); box-shadow: 0 4px 0 rgba(43,36,64,0.18); }
+  .starCounter {
+    background: var(--white); border-radius: 16px; padding: 8px 16px;
+    font-family: 'Fredoka'; font-weight: 600; font-size: 18px; box-shadow: var(--shadow);
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  .homeHeader { text-align: center; margin: 6px 0 10px; }
+  .homeHeader h1 { font-size: clamp(26px, 5.6vw, 42px); color: var(--white); text-shadow: 0 4px 0 rgba(43,36,64,0.25); margin: 6px 0 2px; }
+  .homeHeader p { color: var(--white); font-weight: 800; font-size: clamp(14px, 3vw, 18px); margin: 0; opacity: .95; }
+  .unitTag {
+    display: inline-block; background: var(--white); color: var(--peru-d); font-family: 'Fredoka'; font-weight: 700;
+    border-radius: 14px; padding: 5px 14px; font-size: 14px; margin-top: 8px; box-shadow: 0 4px 0 rgba(43,36,64,0.15);
+  }
+  .mascotWrap { width: 140px; margin: 0 auto; }
+
+  .menuGrid {
+    display: grid; grid-template-columns: repeat(2, minmax(150px, 1fr)); gap: 16px;
+    width: 100%; max-width: 840px; margin-top: 14px;
+  }
+  @media(min-width: 640px) { .menuGrid { grid-template-columns: repeat(3, minmax(150px, 1fr)); } }
+
+  .card {
+    border: none; cursor: pointer; border-radius: 26px; padding: 22px 14px 18px;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    color: var(--white); font-family: 'Fredoka'; font-weight: 600; box-shadow: var(--shadow);
+    transition: transform .08s ease; text-align: center;
+  }
+  .card:active { transform: translateY(4px); box-shadow: 0 4px 0 rgba(43,36,64,0.18); }
+  .card svg { width: 56px; height: 56px; }
+  .card span { font-size: clamp(14px, 3.2vw, 17px); line-height: 1.2; }
+
+  .c1 { background: linear-gradient(160deg, var(--peru), var(--peru-d)); }
+  .c2 { background: linear-gradient(160deg, var(--leaf), var(--leaf-d)); }
+  .c3 { background: linear-gradient(160deg, var(--sun), var(--sun-d)); color: var(--ink); }
+  .c4 { background: linear-gradient(160deg, var(--earth), var(--earth-d)); }
+  .c5 { background: linear-gradient(160deg, #3FA96B, #1F7A48); }
+  .c6 { background: linear-gradient(160deg, var(--sky), var(--sky-d)); }
+  .c7 { background: linear-gradient(160deg, var(--purple), var(--purple-d)); }
+  .c8 { background: linear-gradient(160deg, #FF8FB1, #E8557F); }
+  .c9 { background: linear-gradient(160deg, #FFAA5B, #E87A2E); }
+
+  .exWrap {
+    width: 100%; max-width: 740px; background: var(--white); border-radius: 28px;
+    padding: 22px 18px 26px; box-shadow: var(--shadow); margin-top: 8px; text-align: center;
+  }
+  .progressBar { width: 100%; height: 14px; background: #EDEAF7; border-radius: 10px; overflow: hidden; margin-bottom: 16px; }
+  .progressFill { height: 100%; background: linear-gradient(90deg, var(--leaf), var(--sun)); width: 0%; transition: width .4s ease; }
+  .exTitle { font-size: clamp(18px, 4.5vw, 24px); margin: 0 0 4px; color: var(--ink); }
+  .exSub { color: #6B6285; font-weight: 700; margin: 0 0 14px; font-size: clamp(13px, 3vw, 15px); }
+  .stageBox { min-height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; margin-bottom: 14px; }
+
+  .optBtn {
+    font-family: 'Fredoka'; font-weight: 600; font-size: clamp(15px, 3.8vw, 19px);
+    background: var(--cream); border: 3px solid #EADFC5; border-radius: 18px;
+    min-width: 140px; padding: 12px 18px; cursor: pointer; color: var(--ink);
+    max-width: 90%; text-align: center; transition: all .1s ease;
+  }
+  .optBtn:active { transform: translateY(3px); }
+  .optBtn.correct { background: var(--leaf); border-color: var(--leaf-d); color: var(--white); }
+  .optBtn.wrong { background: var(--coral); border-color: var(--coral-d); color: var(--white); }
+
+  .questionCard {
+    background: var(--cream); border: 3px solid #EADFC5; border-radius: 18px;
+    padding: 14px 16px; margin-bottom: 12px; text-align: left; font-weight: 700;
+    font-size: clamp(14px, 3.5vw, 17px); line-height: 1.5; color: var(--ink); width: 100%;
+  }
+  .questionCard p { margin: 0 0 8px; }
+  .questionCard p:last-child { margin-bottom: 0; }
+  .feedback { min-height: 34px; font-family: 'Fredoka'; font-weight: 700; font-size: 18px; margin-top: 8px; }
+  .feedback.ok { color: var(--leaf-d); }
+  .feedback.bad { color: var(--coral-d); }
+
+  .continueBtn {
+    display: none; margin: 12px auto 0; font-family: 'Fredoka'; font-weight: 700; font-size: 18px;
+    background: var(--sun); border: none; border-radius: 16px; padding: 12px 28px;
+    box-shadow: 0 5px 0 var(--sun-d); cursor: pointer; color: var(--ink);
+  }
+  .continueBtn:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--sun-d); }
+
+  .speakBtn {
+    background: #F0EBFF; border: 2px solid var(--purple); color: var(--purple-d);
+    border-radius: 50%; width: 36px; height: 36px; cursor: pointer; display: inline-flex;
+    align-items: center; justify-content: center; font-size: 16px; margin-left: 8px; vertical-align: middle;
+  }
+  .speakBtn:active { transform: scale(0.92); }
+
+  /* Word search */
+  .wsGrid {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px;
+    max-width: 460px; margin: 0 auto 14px; user-select: none; touch-action: none;
+  }
+  .wsCell {
+    aspect-ratio: 1; background: var(--cream); border: 2px solid #EADFC5; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center; font-family: 'Fredoka';
+    font-weight: 700; font-size: clamp(11px, 2.7vw, 15px); cursor: pointer; color: var(--ink);
+    transition: background .15s ease;
+  }
+  .wsCell.selected { background: var(--sun); border-color: var(--sun-d); color: var(--ink); }
+  .wsCell.found { background: var(--leaf); border-color: var(--leaf-d); color: var(--white); }
+
+  .wordBankList { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 14px; }
+  .wbItem {
+    background: #F0EBFF; border: 2px solid #D6C7FF; border-radius: 12px;
+    padding: 6px 12px; font-weight: 700; font-size: 14px; color: var(--purple-d);
+  }
+  .wbItem.done { background: var(--leaf); border-color: var(--leaf-d); color: var(--white); text-decoration: line-through; }
+
+  .wsActionRow { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+  .btnSolution { background: #3AC7E0; border: none; border-radius: 14px; padding: 10px 18px; font-family: 'Fredoka'; font-weight: 700; color: #fff; cursor: pointer; box-shadow: 0 4px 0 #1E9FBF; }
+  .btnReset { background: #4CAF6D; border: none; border-radius: 14px; padding: 10px 18px; font-family: 'Fredoka'; font-weight: 700; color: #fff; cursor: pointer; box-shadow: 0 4px 0 #2E9450; }
+  .btnSolution:active, .btnReset:active { transform: translateY(3px); }
+
+  /* Memory game */
+  .memGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; max-width: 440px; margin: 0 auto 14px; }
+  @media(min-width: 480px){ .memGrid { grid-template-columns: repeat(4, 1fr); } }
+  .memCard {
+    aspect-ratio: 1; background: linear-gradient(135deg, var(--peru), var(--peru-d));
+    border-radius: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    font-family: 'Fredoka'; font-weight: 700; font-size: 13px; color: var(--white);
+    box-shadow: 0 4px 0 rgba(43,36,64,0.15); transition: transform .2s ease; text-align: center; padding: 6px;
+  }
+  .memCard.flipped, .memCard.matched { background: var(--cream); color: var(--ink); border: 3px solid #EADFC5; }
+  .memCard.matched { background: #E2F7EB; border-color: var(--leaf); color: var(--leaf-d); }
+
+  .fillSelect {
+    font-family: 'Fredoka'; font-weight: 700; font-size: 15px; padding: 6px 10px;
+    border-radius: 12px; border: 2px solid var(--purple); background: var(--white); color: var(--purple-d);
+    max-width: 100%; margin: 4px 0;
+  }
+
+  .svgContainer { width: 160px; height: 140px; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; }
+  .mapContainer { width: min(280px, 86%); margin: 0 auto 10px; }
+
+  .svgRow { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 12px; width: 100%; }
+  .svgRowItem { display: flex; flex-direction: column; align-items: center; width: 104px; }
+  .svgRowItem > div { width: 92px; height: 84px; }
+  .svgRowItem span { font-family: 'Fredoka'; font-weight: 600; font-size: 13px; color: var(--ink); text-align: center; line-height: 1.2; }
+
+  .writeGrid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; width: 100%; }
+  .writeItem {
+    background: var(--cream); border: 3px solid #EADFC5; border-radius: 18px; padding: 10px;
+    display: flex; flex-direction: column; align-items: center; gap: 6px; width: min(152px, 46%);
+  }
+  .writeItem .svgContainer { width: 108px; height: 96px; margin: 0; }
+  .writeLabel { font-weight: 800; font-size: 14px; text-align: center; line-height: 1.3; }
+  .writeInput {
+    font-family: 'Fredoka'; font-weight: 600; font-size: 16px; text-align: center; padding: 7px 8px;
+    border: 3px solid var(--purple); border-radius: 12px; width: 100%; background: var(--white); color: var(--ink);
+  }
+  .writeInput.okIn { border-color: var(--leaf-d); background: #E2F7EB; }
+  .writeInput.badIn { border-color: var(--coral-d); background: #FFE9E6; }
+
+  .regionTabContainer { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
+  .regionTabBtn { background: var(--cream); border: 2px solid #EADFC5; border-radius: 12px; padding: 6px 14px; font-family: 'Fredoka'; font-weight: 600; cursor: pointer; font-size: 14px; }
+  .regionTabBtn.active { background: var(--peru); color: #fff; border-color: var(--peru-d); }
+
+  .confetti-piece { position: fixed; top: -20px; width: 10px; height: 14px; z-index: 50; pointer-events: none; animation: fall linear forwards; }
+  @keyframes fall { to { transform: translateY(105vh) rotate(400deg); opacity: 0.9; } }
+</style>
+</head>
+<body>
+
+<svg class="hill" viewBox="0 0 1440 200" preserveAspectRatio="none">
+  <path fill="#CFF3E4" d="M0,120 C240,60 420,180 720,110 C1000,50 1220,150 1440,90 L1440,200 L0,200 Z"></path>
+  <path fill="#B7EAD1" d="M0,160 C260,120 480,190 760,150 C1040,110 1240,190 1440,150 L1440,200 L0,200 Z"></path>
+</svg>
+
+<!-- HOME SCREEN -->
+<div class="screen active" id="screen-home">
+  <div class="topbar">
+    <a class="backBtn" href="../index.html">🏠 Inicio</a>
+    <div class="starCounter">⭐ <span id="starCountHome">0</span></div>
+  </div>
+  <div class="homeHeader">
+    <div class="mascotWrap" id="mascotHome"></div>
+    <h1>Personal Social 🇵🇪</h1>
+    <p>Natural Regions of Peru</p>
+    <div class="unitTag">Unit 6 · Social Studies · 1° grade</div>
+  </div>
+  <div class="menuGrid">
+    <button class="card c1" onclick="startTopic('regions')">
+      <svg viewBox="0 0 64 64"><circle cx="47" cy="15" r="6" fill="#fff" opacity=".75"/><path d="M4 44 L20 18 L30 36 L38 24 L58 44 Z" fill="#fff"/><path d="M14 28 L26 28 L20 18 Z" fill="#F7C9CD"/><path d="M4 52 Q14 46 24 52 T44 52 T62 52" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M4 60 Q14 54 24 60 T44 60 T62 60" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/></svg>
+      <span>Topic 1: The 4 Natural Regions</span>
+    </button>
+
+    <button class="card c2" onclick="startTopic('floraFauna')">
+      <svg viewBox="0 0 64 64"><path d="M20 54 L20 30" stroke="#fff" stroke-width="4" stroke-linecap="round"/><path d="M20 36 Q6 32 5 16 Q19 18 20 36 Z" fill="#fff"/><path d="M20 42 Q34 38 35 22 Q21 24 20 42 Z" fill="#fff" opacity=".8"/><ellipse cx="48" cy="44" rx="10" ry="8" fill="#fff"/><circle cx="39" cy="30" r="4" fill="#fff"/><circle cx="49" cy="26" r="4.5" fill="#fff"/><circle cx="59" cy="32" r="4" fill="#fff"/></svg>
+      <span>Topic 2: Flora &amp; Fauna</span>
+    </button>
+
+    <button class="card c3" onclick="startTopic('coast')">
+      <svg viewBox="0 0 64 64"><circle cx="46" cy="18" r="8" fill="#fff"/><path d="M4 44 Q14 36 24 44 T44 44 T64 44 L64 56 L4 56 Z" fill="#fff" opacity=".85"/><path d="M6 34 L22 34" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg>
+      <span>Topic 3: The Coast</span>
+    </button>
+
+    <button class="card c4" onclick="startTopic('highlands')">
+      <svg viewBox="0 0 64 64"><path d="M6 50 L22 20 L34 42 L42 28 L58 50 Z" fill="#fff"/><path d="M18 30 L26 30 L22 20 Z" fill="#D9E8F5"/><circle cx="50" cy="16" r="6" fill="#fff" opacity=".8"/></svg>
+      <span>Topic 4: The Highlands</span>
+    </button>
+
+    <button class="card c5" onclick="startTopic('jungle')">
+      <svg viewBox="0 0 64 64"><path d="M30 58 Q30 36 34 22" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M34 22 Q18 16 8 26 Q22 22 33 27 Z" fill="#fff"/><path d="M34 22 Q50 14 60 24 Q46 21 35 27 Z" fill="#fff" opacity=".85"/><path d="M34 22 Q30 8 16 6 Q28 12 32 24 Z" fill="#fff" opacity=".7"/><path d="M34 22 Q42 8 56 8 Q42 14 36 25 Z" fill="#fff" opacity=".7"/><circle cx="34" cy="22" r="4" fill="#fff"/><path d="M18 58 L46 58" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".6"/></svg>
+      <span>Topic 5: The Jungle</span>
+    </button>
+
+    <button class="card c6" onclick="startTopic('sea')">
+      <svg viewBox="0 0 64 64"><path d="M4 26 Q14 18 24 26 T44 26 T64 26" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M4 38 Q14 30 24 38 T44 38 T64 38" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M4 50 Q14 42 24 50 T44 50 T64 50" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+      <span>Topic 6: The Peruvian Sea</span>
+    </button>
+
+    <button class="card c7" onclick="startTopic('classify')">
+      <svg viewBox="0 0 64 64"><rect x="8" y="10" width="20" height="20" rx="4" fill="#fff"/><rect x="36" y="10" width="20" height="20" rx="4" fill="#fff" opacity=".7"/><rect x="8" y="36" width="20" height="20" rx="4" fill="#fff" opacity=".7"/><rect x="36" y="36" width="20" height="20" rx="4" fill="#fff"/></svg>
+      <span>Classify by Region</span>
+    </button>
+
+    <button class="card c8" onclick="startTopic('memory')">
+      <svg viewBox="0 0 64 64"><rect x="12" y="14" width="18" height="26" fill="#fff" rx="4"/><rect x="34" y="24" width="18" height="26" fill="#fff" rx="4" opacity=".85"/><text x="21" y="32" font-size="14" fill="#E8557F" font-weight="bold">?</text><text x="43" y="42" font-size="14" fill="#E8557F" font-weight="bold">?</text></svg>
+      <span>Memory Game</span>
+    </button>
+
+    <button class="card c9" onclick="startTopic('wordsearch')">
+      <svg viewBox="0 0 64 64"><rect x="12" y="12" width="40" height="40" fill="none" stroke="#fff" stroke-width="3" rx="6"/><path d="M18 24 L46 24 M18 36 L46 36 M28 16 L28 48 M40 16 L40 48" stroke="#fff" stroke-width="2"/></svg>
+      <span>Word Search</span>
+    </button>
+  </div>
+</div>
+
+<!-- EXERCISE SCREEN -->
+<div class="screen" id="screen-exercise">
+  <div class="topbar">
+    <button class="backBtn" onclick="goHome()">🏠 Menú</button>
+    <div class="starCounter">⭐ <span id="starCount">0</span></div>
+  </div>
+  <div class="exWrap">
+    <div class="progressBar"><div class="progressFill" id="progressFill"></div></div>
+    <h2 class="exTitle" id="exTitle">Título</h2>
+    <p class="exSub" id="exSub">Instrucción</p>
+    <div class="stageBox" id="stageBox"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="continueBtn" id="continueBtn" onclick="nextQuestion()">Siguiente ➜</button>
+  </div>
+</div>
+
+<!-- END SCREEN -->
+<div class="screen" id="screen-end">
+  <div class="topbar"><div></div><div class="starCounter">⭐ <span id="starCountEnd">0</span></div></div>
+  <div class="exWrap">
+    <div class="mascotWrap" id="mascotEnd"></div>
+    <h2>¡Excelente trabajo, Emilia! 🎉</h2>
+    <p id="endMsg">Completaste esta sección de Personal Social.</p>
+    <button class="optBtn correct" style="margin-top:14px; width: auto;" onclick="goHome()">Volver al Menú Principal 🏠</button>
+  </div>
+</div>
+
+<script>
+/* ===== MASCOT: llama with a chullo ===== */
+const mascotSVG = `<svg viewBox="0 0 160 160" width="100%"><ellipse cx="80" cy="148" rx="36" ry="8" fill="rgba(43,36,64,0.15)"/><ellipse cx="76" cy="112" rx="34" ry="28" fill="#FFF3DC"/><rect x="52" y="128" width="9" height="20" rx="4" fill="#E8D8B8"/><rect x="92" y="128" width="9" height="20" rx="4" fill="#E8D8B8"/><path d="M96 96 Q100 66 104 50" stroke="#FFF3DC" stroke-width="20" stroke-linecap="round" fill="none"/><ellipse cx="107" cy="44" rx="21" ry="18" fill="#FFF8EC"/><ellipse cx="120" cy="52" rx="9" ry="7" fill="#F0DCBB"/><circle cx="101" cy="40" r="3.2" fill="#2B2440"/><circle cx="115" cy="43" r="3.2" fill="#2B2440"/><path d="M117 54 Q120 57 123 54" stroke="#8A6A48" stroke-width="2" fill="none"/><path d="M92 30 Q107 18 122 30 Q122 20 107 14 Q92 20 92 30 Z" fill="#D91023"/><path d="M92 30 Q107 22 122 30 L122 34 Q107 26 92 34 Z" fill="#FFF8EC"/><path d="M107 14 L107 6" stroke="#D91023" stroke-width="3"/><circle cx="107" cy="5" r="4" fill="#FFC93C"/><path d="M44 100 Q30 92 32 78 Q44 86 48 96 Z" fill="#4CAF6D"/><rect x="48" y="96" width="46" height="16" rx="6" fill="#D91023"/><path d="M48 100 L94 100 M48 108 L94 108" stroke="#FFC93C" stroke-width="3"/></svg>`;
+document.getElementById('mascotHome').innerHTML = mascotSVG;
+document.getElementById('mascotEnd').innerHTML = mascotSVG;
+
+/* ===== MAP OF PERU (4 natural regions) ===== */
+const peruMapSVG = `<svg viewBox="0 0 200 200" width="100%"><rect x="0" y="0" width="200" height="200" rx="14" fill="#EAF6FB"/>
+<path d="M40 18 L26 92 L70 178 L14 188 L2 56 Z" fill="#3AC7E0"/>
+<path d="M40 18 L26 92 L70 178 L86 168 L48 88 L58 22 Z" fill="#FFD34D"/>
+<path d="M58 22 L48 88 L86 168 L108 155 L78 80 L84 28 Z" fill="#A5764B"/>
+<path d="M84 28 L78 80 L108 155 L152 152 L172 58 Z" fill="#4CAF6D"/>
+<path d="M40 18 L172 58 L152 152 L70 178 L26 92 Z" fill="none" stroke="#2B2440" stroke-width="2.5" stroke-linejoin="round"/>
+<circle cx="52" cy="60" r="11" fill="#fff" stroke="#2B2440" stroke-width="2"/><text x="52" y="65" text-anchor="middle" font-size="13" font-family="Fredoka,sans-serif" font-weight="700" fill="#2B2440">1</text>
+<circle cx="78" cy="96" r="11" fill="#fff" stroke="#2B2440" stroke-width="2"/><text x="78" y="101" text-anchor="middle" font-size="13" font-family="Fredoka,sans-serif" font-weight="700" fill="#2B2440">2</text>
+<circle cx="126" cy="96" r="11" fill="#fff" stroke="#2B2440" stroke-width="2"/><text x="126" y="101" text-anchor="middle" font-size="13" font-family="Fredoka,sans-serif" font-weight="700" fill="#2B2440">3</text>
+<circle cx="26" cy="128" r="11" fill="#fff" stroke="#2B2440" stroke-width="2"/><text x="26" y="133" text-anchor="middle" font-size="13" font-family="Fredoka,sans-serif" font-weight="700" fill="#2B2440">4</text>
+</svg>`;
+
+/* ===== FLORA & FAUNA ILLUSTRATIONS ===== */
+/* Coast flora */
+const cottonSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M50 92 L50 56" stroke="#6E5233" stroke-width="4" stroke-linecap="round"/><path d="M50 70 L28 58 M50 74 L72 62" stroke="#6E5233" stroke-width="3" stroke-linecap="round"/><path d="M30 84 Q18 80 22 70 Q30 68 34 74 Z" fill="#4CAF6D"/><path d="M70 86 Q82 82 78 72 Q70 70 66 76 Z" fill="#4CAF6D"/><circle cx="50" cy="30" r="15" fill="#FFFDF7" stroke="#E3D9C4" stroke-width="2"/><circle cx="28" cy="46" r="12" fill="#FFFDF7" stroke="#E3D9C4" stroke-width="2"/><circle cx="72" cy="48" r="12" fill="#FFFDF7" stroke="#E3D9C4" stroke-width="2"/><circle cx="43" cy="46" r="9" fill="#FFF8EC" stroke="#E3D9C4" stroke-width="2"/><circle cx="58" cy="47" r="9" fill="#FFF8EC" stroke="#E3D9C4" stroke-width="2"/><path d="M40 28 L60 32 M46 22 L54 40" stroke="#EFE6D4" stroke-width="2"/></svg>`;
+
+const sugarCaneSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><rect x="0" y="86" width="100" height="14" fill="#C8A870"/><g stroke="#2E9450" stroke-width="7" stroke-linecap="round"><path d="M26 90 L22 30"/><path d="M50 92 L50 22"/><path d="M74 90 L78 32"/></g><g stroke="#7ED09A" stroke-width="2"><path d="M20 46 L27 46 M20 58 L27 58 M20 70 L27 70 M46 40 L54 40 M46 54 L54 54 M46 68 L54 68 M74 48 L81 48 M74 60 L81 60 M74 72 L81 72"/></g><path d="M22 30 Q10 20 6 6 Q20 12 24 26 Z" fill="#4CAF6D"/><path d="M22 30 Q34 18 42 8 Q30 10 22 24 Z" fill="#63C286"/><path d="M50 22 Q38 12 32 0 Q48 4 52 18 Z" fill="#4CAF6D"/><path d="M50 22 Q64 10 72 2 Q58 2 50 16 Z" fill="#63C286"/><path d="M78 32 Q68 20 64 8 Q78 12 80 28 Z" fill="#4CAF6D"/><path d="M78 32 Q90 20 96 10 Q84 12 78 26 Z" fill="#63C286"/></svg>`;
+
+/* Coast fauna */
+const peruvianHorseSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M18 60 Q6 56 4 42 Q16 48 22 56 Z" fill="#7C4A22"/><ellipse cx="48" cy="56" rx="28" ry="19" fill="#9C5B29"/><path d="M34 72 L32 92 M46 74 L44 92 M58 72 L60 92 M70 68 L74 90" stroke="#7C4A22" stroke-width="6" stroke-linecap="round"/><path d="M66 46 Q76 28 78 14" stroke="#9C5B29" stroke-width="15" stroke-linecap="round" fill="none"/><path d="M70 40 Q62 26 62 12 Q74 20 78 34 Z" fill="#4A2A12"/><ellipse cx="82" cy="16" rx="12" ry="9" transform="rotate(-24 82 16)" fill="#A8632D"/><path d="M76 6 L74 -1 M86 5 L90 -1" stroke="#A8632D" stroke-width="5" stroke-linecap="round"/><circle cx="80" cy="12" r="2.6" fill="#2B2440"/><ellipse cx="91" cy="22" rx="4" ry="3" fill="#6E4525"/><path d="M28 52 Q44 44 62 48" stroke="#B87A42" stroke-width="2" fill="none"/></svg>`;
+
+const hairlessDogSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M16 62 Q4 54 8 42 Q18 50 22 60 Z" fill="#6B6270"/><ellipse cx="46" cy="60" rx="26" ry="17" fill="#7A7180"/><path d="M32 74 L30 92 M44 76 L42 92 M58 74 L60 92 M68 70 L72 90" stroke="#655C6E" stroke-width="6" stroke-linecap="round"/><path d="M68 50 Q76 36 78 24" stroke="#7A7180" stroke-width="12" stroke-linecap="round" fill="none"/><ellipse cx="82" cy="24" rx="13" ry="10" transform="rotate(-16 82 24)" fill="#857C8C"/><path d="M74 14 Q70 0 80 6 Q84 10 82 16 Z" fill="#655C6E"/><path d="M90 12 Q96 0 96 12 Q94 18 89 18 Z" fill="#655C6E"/><circle cx="80" cy="22" r="2.6" fill="#2B2440"/><ellipse cx="93" cy="30" rx="4" ry="3" fill="#3E3746"/><path d="M62 22 Q70 12 76 12" stroke="#B7ADC2" stroke-width="3" stroke-linecap="round" fill="none"/></svg>`;
+
+const sechuraFoxSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M12 76 Q0 62 8 52 Q20 62 24 72 Z" fill="#D8C4A2"/><ellipse cx="46" cy="64" rx="27" ry="17" fill="#C4A97F"/><path d="M34 78 L32 92 M46 80 L44 92 M58 78 L60 92 M68 74 L72 90" stroke="#A88C63" stroke-width="5" stroke-linecap="round"/><path d="M62 36 L58 16 L74 32 Z" fill="#C4A97F"/><path d="M86 34 L92 15 L76 30 Z" fill="#C4A97F"/><path d="M64 34 L62 22 L72 32 Z" fill="#EBD8BA"/><path d="M84 33 L88 21 L79 30 Z" fill="#EBD8BA"/><circle cx="75" cy="48" r="16" fill="#CDB48A"/><path d="M67 52 Q75 68 88 56 Q83 49 76 48 Z" fill="#FFF3DC"/><circle cx="69" cy="45" r="2.6" fill="#2B2440"/><circle cx="82" cy="47" r="2.6" fill="#2B2440"/><circle cx="88" cy="54" r="3" fill="#2B2440"/></svg>`;
+
+/* Highlands flora */
+const ichuSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><rect x="0" y="88" width="100" height="12" fill="#B79A6B"/><g stroke="#E0A83A" stroke-width="3" stroke-linecap="round" fill="none"><path d="M50 90 Q46 60 34 34"/><path d="M50 90 Q50 58 44 26"/><path d="M50 90 Q54 58 58 24"/><path d="M50 90 Q58 60 70 32"/><path d="M50 90 Q40 62 22 44"/><path d="M50 90 Q62 62 80 46"/><path d="M50 90 Q38 66 16 58"/><path d="M50 90 Q64 66 86 60"/></g><g stroke="#F5C462" stroke-width="2.4" stroke-linecap="round" fill="none"><path d="M50 90 Q44 66 30 48"/><path d="M50 90 Q56 64 68 46"/><path d="M50 90 Q49 66 50 40"/></g><ellipse cx="50" cy="90" rx="16" ry="5" fill="#C98F2E"/></svg>`;
+
+const puyaSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><rect x="0" y="88" width="100" height="12" fill="#9CB08A"/><path d="M50 88 L50 26" stroke="#4C7A3E" stroke-width="9" stroke-linecap="round"/><g fill="#3E6B33"><path d="M50 30 L44 16 L50 20 L56 16 Z"/><path d="M50 42 L40 30 L50 34 L60 30 Z"/><path d="M50 54 L38 42 L50 46 L62 42 Z"/><path d="M50 66 L36 54 L50 58 L64 54 Z"/></g><g stroke="#6EA35C" stroke-width="5" stroke-linecap="round"><path d="M50 86 L22 74"/><path d="M50 86 L28 62"/><path d="M50 86 L78 74"/><path d="M50 86 L72 62"/><path d="M50 86 L40 60"/><path d="M50 86 L60 60"/></g><ellipse cx="50" cy="86" rx="17" ry="6" fill="#4C7A3E"/></svg>`;
+
+/* Highlands fauna */
+const pumaSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M24 30 L20 12 L38 26 Z" fill="#C79459"/><path d="M76 30 L80 12 L62 26 Z" fill="#C79459"/><path d="M27 28 L26 18 L34 26 Z" fill="#EFD3AE"/><path d="M73 28 L74 18 L66 26 Z" fill="#EFD3AE"/><ellipse cx="50" cy="56" rx="30" ry="28" fill="#C79459"/><ellipse cx="50" cy="66" rx="19" ry="17" fill="#F2DFC2"/><circle cx="38" cy="48" r="5" fill="#FFF"/><circle cx="62" cy="48" r="5" fill="#FFF"/><circle cx="38" cy="48" r="2.8" fill="#2B2440"/><circle cx="62" cy="48" r="2.8" fill="#2B2440"/><path d="M44 62 L50 68 L56 62 Z" fill="#8A5A34"/><path d="M50 68 L50 74 M50 73 Q42 78 37 73 M50 73 Q58 78 63 73" stroke="#8A5A34" stroke-width="2.4" fill="none"/><path d="M34 66 L14 62 M34 70 L14 72 M66 66 L86 62 M66 70 L86 72" stroke="#FFF" stroke-width="1.6"/></svg>`;
+
+const spectacledBearSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><circle cx="24" cy="24" r="11" fill="#2B2440"/><circle cx="76" cy="24" r="11" fill="#2B2440"/><circle cx="24" cy="24" r="5" fill="#4A4356"/><circle cx="76" cy="24" r="5" fill="#4A4356"/><ellipse cx="50" cy="58" rx="30" ry="30" fill="#2B2440"/><ellipse cx="38" cy="50" rx="11" ry="12" fill="#E8C88A"/><ellipse cx="62" cy="50" rx="11" ry="12" fill="#E8C88A"/><circle cx="38" cy="50" r="4.4" fill="#12101A"/><circle cx="62" cy="50" r="4.4" fill="#12101A"/><ellipse cx="50" cy="72" rx="15" ry="12" fill="#E8C88A"/><ellipse cx="50" cy="66" rx="6" ry="4.4" fill="#12101A"/><path d="M50 70 Q44 78 39 74 M50 70 Q56 78 61 74" stroke="#12101A" stroke-width="2.2" fill="none"/></svg>`;
+
+const llamaSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><ellipse cx="42" cy="66" rx="28" ry="21" fill="#FFF3DC"/><rect x="24" y="82" width="8" height="16" rx="4" fill="#E8D8B8"/><rect x="38" y="84" width="8" height="14" rx="4" fill="#E8D8B8"/><rect x="52" y="84" width="8" height="14" rx="4" fill="#E8D8B8"/><path d="M16 58 Q6 48 12 40 Q20 48 22 58 Z" fill="#FFF8EC"/><path d="M64 52 Q72 30 74 18" stroke="#FFF3DC" stroke-width="16" stroke-linecap="round" fill="none"/><ellipse cx="78" cy="16" rx="15" ry="12" fill="#FFF8EC"/><ellipse cx="88" cy="22" rx="6" ry="5" fill="#EFDCBB"/><path d="M70 6 Q68 -4 75 3 Z" fill="#FFF8EC"/><path d="M84 5 Q88 -4 88 5 Z" fill="#FFF8EC"/><circle cx="74" cy="13" r="2.6" fill="#2B2440"/><circle cx="85" cy="15" r="2.6" fill="#2B2440"/><path d="M86 24 Q89 27 92 24" stroke="#8A6A48" stroke-width="1.8" fill="none"/><path d="M20 62 Q40 54 60 60" stroke="#EFDCBB" stroke-width="2.4" fill="none"/></svg>`;
+
+const condorSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M4 48 Q28 22 46 46 Q26 42 8 56 Z" fill="#2B2440"/><path d="M96 48 Q72 22 54 46 Q74 42 92 56 Z" fill="#2B2440"/><path d="M6 50 L20 56 M16 44 L28 52 M94 50 L80 56 M84 44 L72 52" stroke="#4A4356" stroke-width="2"/><ellipse cx="50" cy="56" rx="14" ry="20" fill="#2B2440"/><ellipse cx="50" cy="42" rx="14" ry="7" fill="#FFF8EC"/><circle cx="50" cy="28" r="11" fill="#3E3746"/><circle cx="46" cy="26" r="2.4" fill="#FFC93C"/><path d="M50 18 Q56 10 58 20 Q54 22 50 22 Z" fill="#8A6A48"/><path d="M50 30 Q58 30 56 38 Q52 36 50 34 Z" fill="#E8C88A"/><path d="M42 74 L38 88 M58 74 L62 88" stroke="#8A6A48" stroke-width="3.4" stroke-linecap="round"/></svg>`;
+
+const cockOfRocksSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M20 84 L74 30" stroke="#8A6A48" stroke-width="7" stroke-linecap="round"/><ellipse cx="48" cy="52" rx="24" ry="19" fill="#E8503F"/><path d="M30 62 Q14 74 8 66 Q20 58 28 54 Z" fill="#2B2440"/><path d="M32 44 Q22 36 24 30 Q34 34 38 42 Z" fill="#2B2440"/><circle cx="66" cy="38" r="14" fill="#FF6B5B"/><path d="M56 30 Q60 12 76 16 Q84 22 78 30 Q70 26 60 34 Z" fill="#E8503F"/><circle cx="70" cy="35" r="2.8" fill="#FFF"/><circle cx="70" cy="35" r="1.5" fill="#2B2440"/><path d="M78 42 L90 45 L78 49 Z" fill="#FFC93C"/><path d="M44 70 L42 84 M56 68 L58 84" stroke="#FFC93C" stroke-width="3.4" stroke-linecap="round"/></svg>`;
+
+/* Jungle flora */
+const waterLilySVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><rect x="0" y="0" width="100" height="100" fill="#CFEFF5"/><path d="M14 74 a20 20 0 1 1 34 6 L30 78 Z" fill="#4CAF6D"/><path d="M62 82 a17 17 0 1 1 30 4 L74 86 Z" fill="#3FA96B"/><g><path d="M50 44 L50 20 M50 44 L34 26 M50 44 L66 26 M50 44 L28 40 M50 44 L72 40 M50 44 L32 58 M50 44 L68 58" stroke="#E86FA0" stroke-width="7" stroke-linecap="round"/><path d="M50 44 L42 22 M50 44 L58 22 M50 44 L30 50 M50 44 L70 50" stroke="#F79CC0" stroke-width="6" stroke-linecap="round"/><circle cx="50" cy="44" r="9" fill="#FFC93C"/></g><path d="M18 60 a26 26 0 0 1 30 -14" stroke="#2E9450" stroke-width="2" fill="none"/></svg>`;
+
+const elephantEarSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><rect x="0" y="86" width="100" height="14" fill="#7C5632"/><path d="M50 92 L50 58" stroke="#3E6B33" stroke-width="5" stroke-linecap="round"/><path d="M50 62 L28 46 M50 66 L74 50" stroke="#3E6B33" stroke-width="4" stroke-linecap="round"/><path d="M28 46 Q6 40 10 20 Q30 14 40 30 Q44 42 28 46 Z" fill="#4CAF6D"/><path d="M74 50 Q94 42 88 24 Q70 20 62 34 Q58 46 74 50 Z" fill="#63C286"/><path d="M50 58 Q34 44 44 24 Q62 20 66 38 Q66 52 50 58 Z" fill="#3FA96B"/><g stroke="#2E7A48" stroke-width="1.6" fill="none"><path d="M28 46 Q22 34 14 24 M28 46 Q28 34 30 22 M74 50 Q80 38 86 28 M74 50 Q72 38 70 26 M50 58 Q48 44 46 28 M50 58 Q56 46 62 34"/></g></svg>`;
+
+/* Jungle fauna */
+const jaguarSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M22 28 L18 12 L36 24 Z" fill="#E8A83F"/><path d="M78 28 L82 12 L64 24 Z" fill="#E8A83F"/><ellipse cx="50" cy="56" rx="31" ry="29" fill="#E8A83F"/><ellipse cx="50" cy="66" rx="19" ry="17" fill="#FFF1D6"/><g fill="none" stroke="#2B2440" stroke-width="2.4"><circle cx="26" cy="42" r="4.6"/><circle cx="74" cy="42" r="4.6"/><circle cx="22" cy="62" r="4.6"/><circle cx="78" cy="62" r="4.6"/><circle cx="30" cy="78" r="4.2"/><circle cx="70" cy="78" r="4.2"/><circle cx="44" cy="32" r="4"/><circle cx="58" cy="32" r="4"/></g><circle cx="38" cy="48" r="5.4" fill="#FFF"/><circle cx="62" cy="48" r="5.4" fill="#FFF"/><circle cx="38" cy="48" r="3" fill="#2B2440"/><circle cx="62" cy="48" r="3" fill="#2B2440"/><path d="M44 62 L50 68 L56 62 Z" fill="#2B2440"/><path d="M50 68 L50 74 M50 73 Q42 79 37 73 M50 73 Q58 79 63 73" stroke="#2B2440" stroke-width="2.4" fill="none"/></svg>`;
+
+const toucanSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M14 92 L44 56" stroke="#8A6A48" stroke-width="8" stroke-linecap="round"/><ellipse cx="46" cy="52" rx="24" ry="21" fill="#2B2440"/><path d="M30 64 Q12 78 8 68 Q22 60 30 56 Z" fill="#12101A"/><circle cx="62" cy="38" r="15" fill="#2B2440"/><ellipse cx="60" cy="42" rx="10" ry="8" fill="#FFF8EC"/><circle cx="64" cy="33" r="4" fill="#FFF"/><circle cx="65" cy="33" r="2.2" fill="#2B2440"/><path d="M72 32 Q96 30 96 44 Q84 52 72 46 Z" fill="#F5A623"/><path d="M72 34 Q92 32 94 40 L74 40 Z" fill="#FFC93C"/><path d="M74 46 Q86 50 94 44" stroke="#E8503F" stroke-width="3" fill="none"/><path d="M42 72 L40 86 M54 70 L56 86" stroke="#5A6E82" stroke-width="3.4" stroke-linecap="round"/></svg>`;
+
+const anacondaSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><g fill="none" stroke="#4C7A3E" stroke-width="11" stroke-linecap="round"><path d="M18 78 Q50 96 82 78 Q96 66 82 58 Q52 44 26 56 Q12 64 24 70 Q48 80 68 68"/></g><g fill="none" stroke="#2E5A26" stroke-width="3"><path d="M24 80 L26 88 M40 88 L40 96 M58 88 L58 96 M74 80 L78 88 M86 68 L94 70 M84 56 L90 50 M62 46 L62 38 M44 46 L42 38 M28 52 L22 46"/></g><circle cx="72" cy="66" r="9" fill="#5C8F4C"/><circle cx="75" cy="63" r="2.4" fill="#FFC93C"/><circle cx="75" cy="63" r="1.1" fill="#2B2440"/><path d="M80 68 L92 72" stroke="#E8503F" stroke-width="2.4" stroke-linecap="round"/><path d="M92 72 L96 69 M92 72 L96 75" stroke="#E8503F" stroke-width="2.4" stroke-linecap="round"/></svg>`;
+
+const pinkDolphinSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><rect x="0" y="0" width="100" height="100" fill="#CFEFF5"/><path d="M8 42 Q28 20 56 34 Q78 44 92 34 Q86 52 66 52 Q40 52 8 42 Z" fill="#F2A8C6"/><path d="M52 30 Q56 12 68 22 Q60 26 56 34 Z" fill="#E88BB0"/><path d="M40 48 Q42 66 56 60 Q46 56 44 46 Z" fill="#E88BB0"/><path d="M88 30 Q98 22 96 42 Q90 40 86 36 Z" fill="#E88BB0"/><path d="M8 42 Q0 38 4 34 Q10 36 14 38 Z" fill="#F2A8C6"/><circle cx="24" cy="38" r="2.8" fill="#2B2440"/><path d="M12 44 Q18 48 26 47" stroke="#D97BA4" stroke-width="2" fill="none"/><g stroke="#9FDDEA" stroke-width="3" fill="none" stroke-linecap="round"><path d="M6 76 Q20 68 34 76 T62 76 T92 76"/><path d="M6 88 Q20 80 34 88 T62 88 T92 88"/></g></svg>`;
+
+/* Peruvian sea */
+const seaweedSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><rect x="0" y="0" width="100" height="100" fill="#BFE6EE"/><rect x="0" y="88" width="100" height="12" fill="#C8B48A"/><g fill="#7C5632"><path d="M28 90 Q14 66 24 40 Q30 22 26 6 Q40 24 34 46 Q30 68 34 90 Z"/><path d="M62 90 Q78 68 70 42 Q64 24 70 8 Q54 26 60 48 Q64 70 58 90 Z"/></g><g fill="#4C7A3E"><path d="M46 90 Q38 66 46 44 Q52 26 48 12 Q60 30 54 50 Q50 70 52 90 Z"/></g><g fill="#8A6A48"><ellipse cx="20" cy="46" rx="7" ry="4" transform="rotate(-30 20 46)"/><ellipse cx="40" cy="34" rx="7" ry="4" transform="rotate(24 40 34)"/><ellipse cx="76" cy="44" rx="7" ry="4" transform="rotate(28 76 44)"/><ellipse cx="58" cy="30" rx="6" ry="3.6" transform="rotate(-20 58 30)"/></g></svg>`;
+
+const humboldtPenguinSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><ellipse cx="50" cy="57" rx="26" ry="35" fill="#2B2440"/><ellipse cx="50" cy="63" rx="17" ry="26" fill="#FFF8EC"/><path d="M33 46 Q50 40 67 46" stroke="#2B2440" stroke-width="4" fill="none"/><path d="M34 24 Q50 8 66 24 Q66 41 50 43 Q34 41 34 24 Z" fill="#2B2440"/><path d="M37 22 Q34 40 44 44 Q38 32 40 22 Z" fill="#FFF8EC"/><path d="M63 22 Q66 40 56 44 Q62 32 60 22 Z" fill="#FFF8EC"/><circle cx="42" cy="26" r="2.6" fill="#FFF"/><circle cx="58" cy="26" r="2.6" fill="#FFF"/><path d="M45 33 Q50 43 55 33 Z" fill="#3E3746"/><path d="M28 52 Q18 66 26 78 Q32 66 32 54 Z" fill="#12101A"/><path d="M72 52 Q82 66 74 78 Q68 66 68 54 Z" fill="#12101A"/><path d="M40 90 Q30 97 44 96 M60 90 Q70 97 56 96" fill="#F5A623"/></svg>`;
+
+const pelicanSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><rect x="0" y="0" width="100" height="100" fill="#CFEFF5"/><ellipse cx="42" cy="62" rx="30" ry="18" fill="#B7ADA0"/><path d="M18 58 Q6 48 12 42 Q26 48 34 56 Z" fill="#8A8175"/><path d="M62 50 Q70 34 72 26" stroke="#C8BFB2" stroke-width="11" stroke-linecap="round" fill="none"/><circle cx="74" cy="24" r="12" fill="#EFE6D8"/><circle cx="78" cy="20" r="2.6" fill="#2B2440"/><path d="M84 26 Q98 30 96 40 Q86 42 82 32 Z" fill="#F5A623"/><path d="M82 32 Q92 36 96 40 Q86 46 80 38 Z" fill="#E8A83F"/><path d="M14 74 Q30 82 54 78" stroke="#8A8175" stroke-width="2" fill="none"/><g stroke="#9FDDEA" stroke-width="3" fill="none" stroke-linecap="round"><path d="M4 88 Q18 80 32 88 T60 88 T96 88"/></g></svg>`;
+
+const sealSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><ellipse cx="46" cy="62" rx="32" ry="20" fill="#9AA3AC"/><path d="M14 62 Q2 52 6 44 Q18 50 24 58 Z" fill="#7C858E"/><path d="M78 62 Q92 54 96 66 Q88 74 76 70 Z" fill="#7C858E"/><circle cx="34" cy="42" r="17" fill="#AEB7C0"/><circle cx="28" cy="38" r="3.2" fill="#2B2440"/><circle cx="40" cy="38" r="3.2" fill="#2B2440"/><ellipse cx="34" cy="48" rx="4" ry="3" fill="#3E3746"/><path d="M30 50 L14 48 M30 53 L14 56 M38 50 L54 48 M38 53 L54 56" stroke="#FFF" stroke-width="1.4"/><ellipse cx="52" cy="58" rx="4" ry="3" fill="#7C858E"/><ellipse cx="66" cy="66" rx="4" ry="3" fill="#7C858E"/><ellipse cx="40" cy="72" rx="4" ry="3" fill="#7C858E"/><path d="M50 78 Q60 88 46 88 Q40 84 42 78 Z" fill="#7C858E"/></svg>`;
+
+const fishSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><rect x="0" y="0" width="100" height="100" fill="#CFEFF5"/><path d="M78 50 Q96 32 96 68 Z" fill="#F5A623"/><ellipse cx="46" cy="50" rx="34" ry="22" fill="#3AC7E0"/><path d="M30 50 Q46 24 62 50 Q46 76 30 50 Z" fill="#FFC93C"/><path d="M46 28 Q52 14 62 30 Z" fill="#E8503F"/><path d="M46 72 Q52 86 62 70 Z" fill="#E8503F"/><circle cx="22" cy="44" r="6" fill="#FFF"/><circle cx="21" cy="44" r="3" fill="#2B2440"/><path d="M14 54 Q20 58 26 55" stroke="#1E9FBF" stroke-width="2.4" fill="none"/><g stroke="#1E9FBF" stroke-width="2" fill="none"><path d="M52 36 Q58 50 52 64 M64 40 Q68 50 64 60"/></g></svg>`;
+
+const seaTurtleSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><rect x="0" y="0" width="100" height="100" fill="#CFEFF5"/><ellipse cx="24" cy="34" rx="12" ry="10" fill="#7ED09A"/><circle cx="18" cy="32" r="2.6" fill="#2B2440"/><path d="M14 38 Q20 42 26 39" stroke="#4CAF6D" stroke-width="2" fill="none"/><ellipse cx="56" cy="54" rx="30" ry="26" fill="#4CAF6D"/><g fill="#2E7A48"><path d="M56 34 L68 42 L64 56 L48 56 L44 42 Z"/><circle cx="36" cy="44" r="6"/><circle cx="76" cy="44" r="6"/><circle cx="34" cy="66" r="6"/><circle cx="78" cy="66" r="6"/><circle cx="56" cy="74" r="6"/></g><path d="M34 34 Q18 26 16 44 Q28 46 36 42 Z" fill="#7ED09A"/><path d="M34 74 Q20 84 34 90 Q42 82 42 74 Z" fill="#7ED09A"/><path d="M80 36 Q94 28 94 46 Q84 46 78 42 Z" fill="#7ED09A"/><path d="M78 74 Q92 82 78 90 Q70 82 70 74 Z" fill="#7ED09A"/></svg>`;
+
+const crabSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><rect x="0" y="0" width="100" height="100" fill="#CFEFF5"/><g stroke="#C4321F" stroke-width="5" stroke-linecap="round" fill="none"><path d="M28 62 L12 70 L8 84"/><path d="M32 70 L18 82 L20 94"/><path d="M72 62 L88 70 L92 84"/><path d="M68 70 L82 82 L80 94"/></g><ellipse cx="50" cy="60" rx="30" ry="21" fill="#E8503F"/><path d="M26 50 Q10 38 6 46 Q4 56 18 56 Q10 50 14 46 Q22 46 26 50 Z" fill="#D93B27"/><path d="M74 50 Q90 38 94 46 Q96 56 82 56 Q90 50 86 46 Q78 46 74 50 Z" fill="#D93B27"/><path d="M38 42 L34 28 M62 42 L66 28" stroke="#C4321F" stroke-width="4" stroke-linecap="round"/><circle cx="34" cy="26" r="7" fill="#FFF"/><circle cx="66" cy="26" r="7" fill="#FFF"/><circle cx="34" cy="26" r="3.4" fill="#2B2440"/><circle cx="66" cy="26" r="3.4" fill="#2B2440"/><path d="M40 66 Q50 74 60 66" stroke="#A5281A" stroke-width="2.6" fill="none"/></svg>`;
+
+/* ===== SOUND ===== */
+let audioCtx = null;
+function ctx(){ if(!audioCtx){ audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } return audioCtx; }
+function tone(f, s, d, t='sine', g=0.18){
+  try {
+    const c = ctx(); const o = c.createOscillator(); const gn = c.createGain();
+    o.type = t; o.frequency.value = f; gn.gain.value = g; o.connect(gn); gn.connect(c.destination);
+    o.start(c.currentTime + s); gn.gain.setValueAtTime(g, c.currentTime + s);
+    gn.gain.exponentialRampToValueAtTime(0.001, c.currentTime + s + d); o.stop(c.currentTime + s + d + 0.02);
+  } catch(e){}
+}
+function playCorrect(){ tone(523,0,0.12); tone(659,0.1,0.12); tone(784,0.2,0.22); spawnConfetti(); }
+function playWrong(){ tone(220,0,0.18,'sawtooth',0.12); tone(160,0.15,0.25,'sawtooth',0.12); }
+function playTap(){ tone(400,0,0.06,'triangle',0.08); }
+
+/* ===== TTS ===== */
+function speakText(text) {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-US';
+    u.rate = 0.9;
+    window.speechSynthesis.speak(u);
+  }
+}
+function getSpeakBtnHtml(text) {
+  const safeText = text.replace(/'/g, "\\'");
+  return `<button class="speakBtn" onclick="speakText('${safeText}')" title="Escuchar en inglés">🔊</button>`;
+}
+
+/* ===== STATE ===== */
+let totalStars = parseInt(localStorage.getItem('emilia_personalsocial_stars') || '0', 10);
+let currentTopic = '';
+let currentQIndex = 0;
+let questions = [];
+
+function updateStars() {
+  localStorage.setItem('emilia_personalsocial_stars', totalStars);
+  document.getElementById('starCountHome').innerText = totalStars;
+  document.getElementById('starCount').innerText = totalStars;
+  document.getElementById('starCountEnd').innerText = totalStars;
+}
+updateStars();
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function goHome() { showScreen('screen-home'); }
+
+function spawnConfetti(){
+  const colors = ['#D91023','#FFFFFF','#4CAF6D','#FFC93C','#3AC7E0'];
+  for (let i = 0; i < 24; i++){
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.style.left = Math.random()*100 + 'vw';
+    el.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+    el.style.animationDuration = (1.5 + Math.random()*1.5) + 's';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 3000);
+  }
+}
+
+/* ===== THEORY TABS ===== */
+const REGION_TABS = {
+  coast: `<p><strong>1️⃣ The Coast 🏖️ (yellow)</strong></p><p>It is a narrow strip of land next to the Peruvian Sea. It is warm, dry and has many deserts and valleys.</p><p><em>Flora:</em> cotton, sugar cane. <em>Fauna:</em> Peruvian horse, hairless dog, Sechura fox.</p>`,
+  highlands: `<p><strong>2️⃣ The Highlands ⛰️ (brown)</strong></p><p>It is the region of the Andes mountains. It is very high and cold, with big mountains and lakes.</p><p><em>Flora:</em> ichu, puyas. <em>Fauna:</em> puma, spectacled bear, llamas, alpacas, vicuñas, guanacos, Andean condor, Andean cock of the rocks.</p>`,
+  jungle: `<p><strong>3️⃣ The Jungle 🌴 (green)</strong></p><p>It is the biggest region. It is hot and rainy, with a big forest and many rivers.</p><p><em>Flora:</em> water lily, elephant ear. <em>Fauna:</em> jaguar, toucan, anaconda, pink dolphin.</p>`,
+  sea: `<p><strong>4️⃣ The Peruvian Sea 🌊 (blue)</strong></p><p>It is the ocean water next to the Coast. It is cold and full of fish.</p><p><em>Flora:</em> seaweed. <em>Fauna:</em> Humboldt penguin, Peruvian pelican, seal, fish, dolphin, sea turtle, crab.</p>`
+};
+function switchRegionTab(key, btn) {
+  document.querySelectorAll('.regionTabBtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('regionTabContent').innerHTML = REGION_TABS[key];
+}
+
+const FF_TABS = {
+  fauna: `<p><strong>🐾 What is Fauna?</strong></p><p>Fauna refers to the <strong>animal life</strong> that can be found in a specific area or time.</p><p><em>Example:</em> the puma and the toucan are part of the fauna of Peru.</p>`,
+  flora: `<p><strong>🌿 What is Flora?</strong></p><p>Flora refers to the <strong>plant life</strong> that can be found in a specific area or time.</p><p><em>Example:</em> the ichu and the water lily are part of the flora of Peru.</p>`
+};
+function switchFFTab(key, btn) {
+  document.querySelectorAll('.regionTabBtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('ffTabContent').innerHTML = FF_TABS[key];
+}
+
+/* ===== TOPICS ===== */
+function startTopic(topicKey) {
+  currentTopic = topicKey;
+  currentQIndex = 0;
+
+  if (topicKey === 'regions') {
+    questions = [
+      {
+        type: 'study',
+        title: 'Natural Regions of Peru 🗺️',
+        sub: 'Lee el mapa y cada tarjeta antes de practicar:',
+        html: `
+          <div class="mapContainer">${peruMapSVG}</div>
+          <div class="regionTabContainer">
+            <button class="regionTabBtn active" onclick="switchRegionTab('coast', this)">1. Coast 🏖️</button>
+            <button class="regionTabBtn" onclick="switchRegionTab('highlands', this)">2. Highlands ⛰️</button>
+            <button class="regionTabBtn" onclick="switchRegionTab('jungle', this)">3. Jungle 🌴</button>
+            <button class="regionTabBtn" onclick="switchRegionTab('sea', this)">4. Peruvian Sea 🌊</button>
+          </div>
+          <div class="questionCard" id="regionTabContent">${REGION_TABS.coast}</div>
+        `
+      },
+      {
+        type: 'mc',
+        title: 'How many regions? 🔢',
+        sub: 'Choose the correct answer:',
+        q: 'How many natural regions does Peru have?',
+        opts: ['Two regions.', 'Four regions.', 'Seven regions.'],
+        ans: 'Four regions.'
+      },
+      {
+        type: 'mc',
+        title: 'Which region is it? 🏖️',
+        sub: 'Choose the correct region:',
+        q: 'It is a narrow strip of land next to the ocean. It is warm and dry.',
+        opts: ['The Coast.', 'The Highlands.', 'The Jungle.'],
+        ans: 'The Coast.'
+      },
+      {
+        type: 'mc',
+        title: 'Which region is it? ⛰️',
+        sub: 'Choose the correct region:',
+        q: 'It is the region of the Andes mountains. It is very high and cold.',
+        opts: ['The Highlands.', 'The Jungle.', 'The Peruvian Sea.'],
+        ans: 'The Highlands.'
+      },
+      {
+        type: 'mc',
+        title: 'Which region is it? 🌴',
+        sub: 'Choose the correct region:',
+        q: 'It is a big green forest. It is hot and rainy and it has many rivers.',
+        opts: ['The Jungle.', 'The Coast.', 'The Highlands.'],
+        ans: 'The Jungle.'
+      },
+      {
+        type: 'partmatch',
+        title: 'Label the map 🗺️',
+        sub: 'Look at the numbers on the map and choose the correct name:',
+        placeholder: '--Seleccionar región--',
+        mapTop: true,
+        items: [
+          { part: 'Number 1 (yellow strip)', select: ['Coast', 'Highlands', 'Jungle', 'Peruvian Sea'], ans: 'Coast' },
+          { part: 'Number 2 (brown mountains)', select: ['Coast', 'Highlands', 'Jungle', 'Peruvian Sea'], ans: 'Highlands' },
+          { part: 'Number 3 (green forest)', select: ['Coast', 'Highlands', 'Jungle', 'Peruvian Sea'], ans: 'Jungle' },
+          { part: 'Number 4 (blue water)', select: ['Coast', 'Highlands', 'Jungle', 'Peruvian Sea'], ans: 'Peruvian Sea' }
+        ]
+      },
+      {
+        type: 'write',
+        title: 'Write the regions ✏️',
+        sub: 'Escribe el nombre de cada región usando el Word Bank:',
+        bank: ['coast', 'highlands', 'jungle', 'peruvian sea'],
+        items: [
+          { svg: sugarCaneSVG, label: 'Warm and dry, next to the sea', ans: 'coast', alt: ['the coast'] },
+          { svg: ichuSVG, label: 'Cold, with the Andes mountains', ans: 'highlands', alt: ['the highlands'] },
+          { svg: elephantEarSVG, label: 'Hot and rainy, a big forest', ans: 'jungle', alt: ['the jungle'] },
+          { svg: seaweedSVG, label: 'Cold ocean water full of fish', ans: 'peruvian sea', alt: ['the peruvian sea', 'sea'] }
+        ]
+      },
+      {
+        type: 'yesno',
+        title: 'Yes or No ❓',
+        sub: 'Read each sentence. Is it correct?',
+        items: [
+          { q: '1. Peru has four natural regions.', ans: 'YES' },
+          { q: '2. The Highlands is next to the ocean.', ans: 'NO' },
+          { q: '3. The Jungle is hot and it has many rivers.', ans: 'YES' },
+          { q: '4. The Peruvian Sea is a big mountain.', ans: 'NO' },
+          { q: '5. The Coast is a narrow strip of land.', ans: 'YES' }
+        ]
+      }
+    ];
+    showQuestion();
+
+  } else if (topicKey === 'floraFauna') {
+    questions = [
+      {
+        type: 'study',
+        title: 'Peru: Flora and Fauna 🌿🐾',
+        sub: 'Lee las dos definiciones antes de practicar:',
+        html: `
+          <div class="regionTabContainer">
+            <button class="regionTabBtn active" onclick="switchFFTab('fauna', this)">Fauna 🐾</button>
+            <button class="regionTabBtn" onclick="switchFFTab('flora', this)">Flora 🌿</button>
+          </div>
+          <div class="questionCard" id="ffTabContent">${FF_TABS.fauna}</div>
+          <div class="svgRow">
+            <div class="svgRowItem"><div>${jaguarSVG}</div><span>Fauna 🐾</span></div>
+            <div class="svgRowItem"><div>${waterLilySVG}</div><span>Flora 🌿</span></div>
+          </div>
+        `
+      },
+      {
+        type: 'fill',
+        title: 'Complete the definitions ✏️',
+        sub: 'Select the word strictly from the Word Bank:',
+        bank: ['animal', 'plant', 'area', 'time'],
+        items: [
+          { prefix: '1. Fauna refers to the ', select: ['animal', 'plant'], suffix: ' life that can be found in a specific ', select2: ['area', 'time'], suffix2: ' or time.', ans1: 'animal', ans2: 'area' },
+          { prefix: '2. Flora refers to the ', select: ['plant', 'animal'], suffix: ' life that can be found in a specific area or ', select2: ['time', 'area'], suffix2: '.', ans1: 'plant', ans2: 'time' }
+        ]
+      },
+      {
+        type: 'mc',
+        title: 'Flora or Fauna? 🌿',
+        sub: 'Choose the correct answer:',
+        svg: cottonSVG,
+        q: 'Cotton is a plant from the Coast. Cotton is part of the...',
+        opts: ['flora.', 'fauna.'],
+        ans: 'flora.'
+      },
+      {
+        type: 'mc',
+        title: 'Flora or Fauna? 🐾',
+        sub: 'Choose the correct answer:',
+        svg: condorSVG,
+        q: 'The Andean condor is a bird from the Highlands. It is part of the...',
+        opts: ['fauna.', 'flora.'],
+        ans: 'fauna.'
+      },
+      {
+        type: 'yesno',
+        title: 'Flora or Fauna? 🌿🐾',
+        sub: 'Choose FLORA for plants and FAUNA for animals:',
+        labels: ['FLORA', 'FAUNA'],
+        items: [
+          { q: '1. Cotton', ans: 'FLORA' },
+          { q: '2. Puma', ans: 'FAUNA' },
+          { q: '3. Ichu', ans: 'FLORA' },
+          { q: '4. Toucan', ans: 'FAUNA' },
+          { q: '5. Water lily', ans: 'FLORA' },
+          { q: '6. Anaconda', ans: 'FAUNA' },
+          { q: '7. Seaweed', ans: 'FLORA' },
+          { q: '8. Humboldt penguin', ans: 'FAUNA' }
+        ]
+      }
+    ];
+    showQuestion();
+
+  } else if (topicKey === 'coast') {
+    questions = [
+      {
+        type: 'study',
+        title: 'The Coast: Flora and Fauna 🏖️',
+        sub: 'Observa la flora y la fauna de la Costa:',
+        html: `
+          <div class="questionCard">
+            <p><strong>🌿 Flora from the Coast:</strong> cotton and sugar cane.</p>
+            <p><strong>🐾 Fauna from the Coast:</strong> Peruvian horse, hairless dog and Sechura fox.</p>
+          </div>
+          <div class="svgRow">
+            <div class="svgRowItem"><div>${cottonSVG}</div><span>Cotton</span></div>
+            <div class="svgRowItem"><div>${sugarCaneSVG}</div><span>Sugar cane</span></div>
+            <div class="svgRowItem"><div>${peruvianHorseSVG}</div><span>Peruvian horse</span></div>
+            <div class="svgRowItem"><div>${hairlessDogSVG}</div><span>Hairless dog</span></div>
+            <div class="svgRowItem"><div>${sechuraFoxSVG}</div><span>Sechura fox</span></div>
+          </div>
+        `
+      },
+      {
+        type: 'mc',
+        title: 'What plant is this? 🌿',
+        sub: 'Choose the correct name for the plant:',
+        svg: cottonSVG,
+        q: 'Look at the plant from the Coast:',
+        opts: ['Cotton.', 'Sugar cane.', 'Ichu.'],
+        ans: 'Cotton.'
+      },
+      {
+        type: 'mc',
+        title: 'What plant is this? 🌿',
+        sub: 'Choose the correct name for the plant:',
+        svg: sugarCaneSVG,
+        q: 'Look at the plant from the Coast:',
+        opts: ['Sugar cane.', 'Puyas.', 'Elephant ear.'],
+        ans: 'Sugar cane.'
+      },
+      {
+        type: 'mc',
+        title: 'What animal is this? 🐎',
+        sub: 'Choose the correct name for the animal:',
+        svg: peruvianHorseSVG,
+        q: 'Look at the animal from the Coast:',
+        opts: ['Peruvian horse.', 'Sechura fox.', 'Puma.'],
+        ans: 'Peruvian horse.'
+      },
+      {
+        type: 'write',
+        title: 'Write the names ✏️',
+        sub: 'Escribe el nombre de la flora y fauna de la Costa:',
+        bank: ['cotton', 'sugar cane', 'peruvian horse', 'hairless dog', 'sechura fox'],
+        items: [
+          { svg: cottonSVG, label: 'Flora 🌿', ans: 'cotton' },
+          { svg: sugarCaneSVG, label: 'Flora 🌿', ans: 'sugar cane', alt: ['sugarcane'] },
+          { svg: peruvianHorseSVG, label: 'Fauna 🐾', ans: 'peruvian horse', alt: ['horse'] },
+          { svg: hairlessDogSVG, label: 'Fauna 🐾', ans: 'hairless dog' },
+          { svg: sechuraFoxSVG, label: 'Fauna 🐾', ans: 'sechura fox', alt: ['fox'] }
+        ]
+      },
+      {
+        type: 'partmatch',
+        title: 'Match the description 🔗',
+        sub: 'Select the correct description for each one:',
+        placeholder: '--Seleccionar descripción--',
+        svgRow: [
+          { svg: cottonSVG, label: 'Cotton' },
+          { svg: sugarCaneSVG, label: 'Sugar cane' },
+          { svg: hairlessDogSVG, label: 'Hairless dog' },
+          { svg: sechuraFoxSVG, label: 'Sechura fox' }
+        ],
+        items: [
+          { part: '1. Cotton', select: ['A soft white plant used to make clothes.', 'A tall sweet plant used to make sugar.', 'A dog with no hair on its body.', 'A small wild fox from the northern desert.'], ans: 'A soft white plant used to make clothes.' },
+          { part: '2. Sugar cane', select: ['A tall sweet plant used to make sugar.', 'A soft white plant used to make clothes.', 'A dog with no hair on its body.', 'A small wild fox from the northern desert.'], ans: 'A tall sweet plant used to make sugar.' },
+          { part: '3. Hairless dog', select: ['A dog with no hair on its body.', 'A tall sweet plant used to make sugar.', 'A soft white plant used to make clothes.', 'A small wild fox from the northern desert.'], ans: 'A dog with no hair on its body.' },
+          { part: '4. Sechura fox', select: ['A small wild fox from the northern desert.', 'A dog with no hair on its body.', 'A tall sweet plant used to make sugar.', 'A soft white plant used to make clothes.'], ans: 'A small wild fox from the northern desert.' }
+        ]
+      },
+      {
+        type: 'yesno',
+        title: 'Yes or No ❓',
+        sub: 'Read each sentence about the Coast. Is it correct?',
+        items: [
+          { q: '1. Cotton and sugar cane are flora from the Coast.', ans: 'YES' },
+          { q: '2. The jaguar lives in the Coast.', ans: 'NO' },
+          { q: '3. The Peruvian horse is fauna from the Coast.', ans: 'YES' },
+          { q: '4. The hairless dog has a lot of hair.', ans: 'NO' }
+        ]
+      }
+    ];
+    showQuestion();
+
+  } else if (topicKey === 'highlands') {
+    questions = [
+      {
+        type: 'study',
+        title: 'The Highlands: Flora and Fauna ⛰️',
+        sub: 'Observa la flora y la fauna de la Sierra:',
+        html: `
+          <div class="questionCard">
+            <p><strong>🌿 Flora from the Highlands:</strong> ichu and puyas.</p>
+            <p><strong>🐾 Fauna from the Highlands:</strong> puma, spectacled bear, llamas, alpacas, vicuñas, guanacos, Andean condor and Andean cock of the rocks.</p>
+          </div>
+          <div class="svgRow">
+            <div class="svgRowItem"><div>${ichuSVG}</div><span>Ichu</span></div>
+            <div class="svgRowItem"><div>${puyaSVG}</div><span>Puyas</span></div>
+            <div class="svgRowItem"><div>${pumaSVG}</div><span>Puma</span></div>
+            <div class="svgRowItem"><div>${spectacledBearSVG}</div><span>Spectacled bear</span></div>
+            <div class="svgRowItem"><div>${llamaSVG}</div><span>Llamas &amp; alpacas</span></div>
+            <div class="svgRowItem"><div>${condorSVG}</div><span>Andean condor</span></div>
+            <div class="svgRowItem"><div>${cockOfRocksSVG}</div><span>Cock of the rocks</span></div>
+          </div>
+        `
+      },
+      {
+        type: 'mc',
+        title: 'What plant is this? 🌿',
+        sub: 'Choose the correct name for the plant:',
+        svg: ichuSVG,
+        q: 'Look at the yellow grass from the Highlands:',
+        opts: ['Ichu.', 'Cotton.', 'Water lily.'],
+        ans: 'Ichu.'
+      },
+      {
+        type: 'mc',
+        title: 'What plant is this? 🌿',
+        sub: 'Choose the correct name for the plant:',
+        svg: puyaSVG,
+        q: 'Look at the tall spiky plant from the Highlands:',
+        opts: ['Puyas.', 'Sugar cane.', 'Elephant ear.'],
+        ans: 'Puyas.'
+      },
+      {
+        type: 'mc',
+        title: 'What animal is this? 🐦',
+        sub: 'Choose the correct name for the bird:',
+        svg: condorSVG,
+        q: 'Look at the big black bird with a white collar:',
+        opts: ['Andean condor.', 'Toucan.', 'Peruvian pelican.'],
+        ans: 'Andean condor.'
+      },
+      {
+        type: 'write',
+        title: 'Write the names ✏️',
+        sub: 'Escribe el nombre de la flora y fauna de la Sierra:',
+        bank: ['ichu', 'puyas', 'puma', 'condor', 'llama', 'spectacled bear'],
+        items: [
+          { svg: ichuSVG, label: 'Flora 🌿', ans: 'ichu' },
+          { svg: puyaSVG, label: 'Flora 🌿', ans: 'puyas', alt: ['puya'] },
+          { svg: pumaSVG, label: 'Fauna 🐾', ans: 'puma' },
+          { svg: condorSVG, label: 'Fauna 🐾', ans: 'condor', alt: ['andean condor'] },
+          { svg: llamaSVG, label: 'Fauna 🐾', ans: 'llama', alt: ['llamas', 'alpaca', 'vicuna', 'vicuña'] },
+          { svg: spectacledBearSVG, label: 'Fauna 🐾', ans: 'spectacled bear', alt: ['bear'] }
+        ]
+      },
+      {
+        type: 'partmatch',
+        title: 'Match the description 🔗',
+        sub: 'Select the correct description for each one:',
+        placeholder: '--Seleccionar descripción--',
+        svgRow: [
+          { svg: ichuSVG, label: 'Ichu' },
+          { svg: pumaSVG, label: 'Puma' },
+          { svg: condorSVG, label: 'Condor' },
+          { svg: llamaSVG, label: 'Llama' }
+        ],
+        items: [
+          { part: '1. Ichu', select: ['A yellow grass that grows very high in the mountains.', 'A big wild cat with brown fur.', 'A very big black bird with a white collar.', 'An animal with soft wool used to make sweaters.'], ans: 'A yellow grass that grows very high in the mountains.' },
+          { part: '2. Puma', select: ['A big wild cat with brown fur.', 'A yellow grass that grows very high in the mountains.', 'A very big black bird with a white collar.', 'An animal with soft wool used to make sweaters.'], ans: 'A big wild cat with brown fur.' },
+          { part: '3. Andean condor', select: ['A very big black bird with a white collar.', 'A big wild cat with brown fur.', 'A yellow grass that grows very high in the mountains.', 'An animal with soft wool used to make sweaters.'], ans: 'A very big black bird with a white collar.' },
+          { part: '4. Llamas and alpacas', select: ['An animal with soft wool used to make sweaters.', 'A very big black bird with a white collar.', 'A big wild cat with brown fur.', 'A yellow grass that grows very high in the mountains.'], ans: 'An animal with soft wool used to make sweaters.' }
+        ]
+      },
+      {
+        type: 'yesno',
+        title: 'Yes or No ❓',
+        sub: 'Read each sentence about the Highlands. Is it correct?',
+        items: [
+          { q: '1. Ichu and puyas are flora from the Highlands.', ans: 'YES' },
+          { q: '2. The Andean condor is a very small bird.', ans: 'NO' },
+          { q: '3. Llamas, alpacas, vicuñas and guanacos live in the Highlands.', ans: 'YES' },
+          { q: '4. The spectacled bear lives in the Peruvian Sea.', ans: 'NO' },
+          { q: '5. The Andean cock of the rocks is a red and orange bird.', ans: 'YES' }
+        ]
+      }
+    ];
+    showQuestion();
+
+  } else if (topicKey === 'jungle') {
+    questions = [
+      {
+        type: 'study',
+        title: 'The Jungle: Flora and Fauna 🌴',
+        sub: 'Observa la flora y la fauna de la Selva:',
+        html: `
+          <div class="questionCard">
+            <p><strong>🌿 Flora from the Jungle:</strong> water lily and elephant ear.</p>
+            <p><strong>🐾 Fauna from the Jungle:</strong> jaguar, toucan, anaconda and pink dolphin.</p>
+          </div>
+          <div class="svgRow">
+            <div class="svgRowItem"><div>${waterLilySVG}</div><span>Water lily</span></div>
+            <div class="svgRowItem"><div>${elephantEarSVG}</div><span>Elephant ear</span></div>
+            <div class="svgRowItem"><div>${jaguarSVG}</div><span>Jaguar</span></div>
+            <div class="svgRowItem"><div>${toucanSVG}</div><span>Toucan</span></div>
+            <div class="svgRowItem"><div>${anacondaSVG}</div><span>Anaconda</span></div>
+            <div class="svgRowItem"><div>${pinkDolphinSVG}</div><span>Pink dolphin</span></div>
+          </div>
+        `
+      },
+      {
+        type: 'mc',
+        title: 'What plant is this? 🌸',
+        sub: 'Choose the correct name for the plant:',
+        svg: waterLilySVG,
+        q: 'Look at the pink flower that floats on the water:',
+        opts: ['Water lily.', 'Elephant ear.', 'Ichu.'],
+        ans: 'Water lily.'
+      },
+      {
+        type: 'mc',
+        title: 'What plant is this? 🍃',
+        sub: 'Choose the correct name for the plant:',
+        svg: elephantEarSVG,
+        q: 'Look at the plant with very big green leaves:',
+        opts: ['Elephant ear.', 'Puyas.', 'Cotton.'],
+        ans: 'Elephant ear.'
+      },
+      {
+        type: 'mc',
+        title: 'What animal is this? 🦜',
+        sub: 'Choose the correct name for the bird:',
+        svg: toucanSVG,
+        q: 'Look at the black bird with a very big orange beak:',
+        opts: ['Toucan.', 'Andean condor.', 'Humboldt penguin.'],
+        ans: 'Toucan.'
+      },
+      {
+        type: 'write',
+        title: 'Write the names ✏️',
+        sub: 'Escribe el nombre de la flora y fauna de la Selva:',
+        bank: ['water lily', 'elephant ear', 'jaguar', 'toucan', 'anaconda', 'pink dolphin'],
+        items: [
+          { svg: waterLilySVG, label: 'Flora 🌿', ans: 'water lily' },
+          { svg: elephantEarSVG, label: 'Flora 🌿', ans: 'elephant ear' },
+          { svg: jaguarSVG, label: 'Fauna 🐾', ans: 'jaguar' },
+          { svg: toucanSVG, label: 'Fauna 🐾', ans: 'toucan' },
+          { svg: anacondaSVG, label: 'Fauna 🐾', ans: 'anaconda' },
+          { svg: pinkDolphinSVG, label: 'Fauna 🐾', ans: 'pink dolphin' }
+        ]
+      },
+      {
+        type: 'partmatch',
+        title: 'Match the description 🔗',
+        sub: 'Select the correct description for each one:',
+        placeholder: '--Seleccionar descripción--',
+        svgRow: [
+          { svg: jaguarSVG, label: 'Jaguar' },
+          { svg: anacondaSVG, label: 'Anaconda' },
+          { svg: pinkDolphinSVG, label: 'Pink dolphin' },
+          { svg: waterLilySVG, label: 'Water lily' }
+        ],
+        items: [
+          { part: '1. Jaguar', select: ['A big spotted cat that lives in the forest.', 'A very long green snake that lives in the rivers.', 'A pink animal that swims in the Amazon river.', 'A pink flower that floats on the water.'], ans: 'A big spotted cat that lives in the forest.' },
+          { part: '2. Anaconda', select: ['A very long green snake that lives in the rivers.', 'A big spotted cat that lives in the forest.', 'A pink animal that swims in the Amazon river.', 'A pink flower that floats on the water.'], ans: 'A very long green snake that lives in the rivers.' },
+          { part: '3. Pink dolphin', select: ['A pink animal that swims in the Amazon river.', 'A very long green snake that lives in the rivers.', 'A big spotted cat that lives in the forest.', 'A pink flower that floats on the water.'], ans: 'A pink animal that swims in the Amazon river.' },
+          { part: '4. Water lily', select: ['A pink flower that floats on the water.', 'A pink animal that swims in the Amazon river.', 'A very long green snake that lives in the rivers.', 'A big spotted cat that lives in the forest.'], ans: 'A pink flower that floats on the water.' }
+        ]
+      },
+      {
+        type: 'yesno',
+        title: 'Yes or No ❓',
+        sub: 'Read each sentence about the Jungle. Is it correct?',
+        items: [
+          { q: '1. The water lily and the elephant ear are flora from the Jungle.', ans: 'YES' },
+          { q: '2. The toucan has a very big colorful beak.', ans: 'YES' },
+          { q: '3. The anaconda is a small bird.', ans: 'NO' },
+          { q: '4. The pink dolphin lives in the rivers of the Jungle.', ans: 'YES' },
+          { q: '5. The jaguar is a plant.', ans: 'NO' }
+        ]
+      }
+    ];
+    showQuestion();
+
+  } else if (topicKey === 'sea') {
+    questions = [
+      {
+        type: 'study',
+        title: 'The Peruvian Sea: Flora and Fauna 🌊',
+        sub: 'Observa la flora y la fauna del Mar Peruano:',
+        html: `
+          <div class="questionCard">
+            <p><strong>🌿 Flora from the Peruvian Sea:</strong> different types of seaweed.</p>
+            <p><strong>🐾 Fauna from the Peruvian Sea:</strong> Humboldt penguin, Peruvian pelican, seal, fish, dolphin, sea turtle and crab.</p>
+          </div>
+          <div class="svgRow">
+            <div class="svgRowItem"><div>${seaweedSVG}</div><span>Seaweed</span></div>
+            <div class="svgRowItem"><div>${humboldtPenguinSVG}</div><span>Humboldt penguin</span></div>
+            <div class="svgRowItem"><div>${pelicanSVG}</div><span>Peruvian pelican</span></div>
+            <div class="svgRowItem"><div>${sealSVG}</div><span>Seal</span></div>
+            <div class="svgRowItem"><div>${fishSVG}</div><span>Fish</span></div>
+            <div class="svgRowItem"><div>${seaTurtleSVG}</div><span>Sea turtle</span></div>
+            <div class="svgRowItem"><div>${crabSVG}</div><span>Crab</span></div>
+          </div>
+        `
+      },
+      {
+        type: 'mc',
+        title: 'What plant is this? 🌿',
+        sub: 'Choose the correct name for the plant:',
+        svg: seaweedSVG,
+        q: 'Look at the plant that grows inside the sea:',
+        opts: ['Seaweed.', 'Ichu.', 'Cotton.'],
+        ans: 'Seaweed.'
+      },
+      {
+        type: 'mc',
+        title: 'What animal is this? 🐧',
+        sub: 'Choose the correct name for the bird:',
+        svg: humboldtPenguinSVG,
+        q: 'Look at the black and white bird that swims in the cold sea:',
+        opts: ['Humboldt penguin.', 'Toucan.', 'Andean condor.'],
+        ans: 'Humboldt penguin.'
+      },
+      {
+        type: 'mc',
+        title: 'What animal is this? 🦤',
+        sub: 'Choose the correct name for the bird:',
+        svg: pelicanSVG,
+        q: 'Look at the big bird with a long beak and a bag under it:',
+        opts: ['Peruvian pelican.', 'Andean cock of the rocks.', 'Sechura fox.'],
+        ans: 'Peruvian pelican.'
+      },
+      {
+        type: 'write',
+        title: 'Write the names ✏️',
+        sub: 'Escribe el nombre de los animales del mar:',
+        bank: ['seal', 'fish', 'dolphin', 'sea turtle', 'crab', 'seaweed'],
+        items: [
+          { svg: sealSVG, label: 'Fauna 🐾', ans: 'seal' },
+          { svg: fishSVG, label: 'Fauna 🐾', ans: 'fish' },
+          { svg: pinkDolphinSVG, label: 'Fauna 🐾', ans: 'dolphin', alt: ['pink dolphin'] },
+          { svg: seaTurtleSVG, label: 'Fauna 🐾', ans: 'sea turtle', alt: ['turtle'] },
+          { svg: crabSVG, label: 'Fauna 🐾', ans: 'crab' },
+          { svg: seaweedSVG, label: 'Flora 🌿', ans: 'seaweed' }
+        ]
+      },
+      {
+        type: 'partmatch',
+        title: 'Match the description 🔗',
+        sub: 'Select the correct description for each one:',
+        placeholder: '--Seleccionar descripción--',
+        svgRow: [
+          { svg: humboldtPenguinSVG, label: 'Penguin' },
+          { svg: pelicanSVG, label: 'Pelican' },
+          { svg: sealSVG, label: 'Seal' },
+          { svg: crabSVG, label: 'Crab' }
+        ],
+        items: [
+          { part: '1. Humboldt penguin', select: ['A black and white bird that cannot fly but swims very well.', 'A big bird with a bag under its long beak to catch fish.', 'A grey animal with flippers that rests on the rocks.', 'A red animal with ten legs and two big claws.'], ans: 'A black and white bird that cannot fly but swims very well.' },
+          { part: '2. Peruvian pelican', select: ['A big bird with a bag under its long beak to catch fish.', 'A black and white bird that cannot fly but swims very well.', 'A grey animal with flippers that rests on the rocks.', 'A red animal with ten legs and two big claws.'], ans: 'A big bird with a bag under its long beak to catch fish.' },
+          { part: '3. Seal', select: ['A grey animal with flippers that rests on the rocks.', 'A big bird with a bag under its long beak to catch fish.', 'A black and white bird that cannot fly but swims very well.', 'A red animal with ten legs and two big claws.'], ans: 'A grey animal with flippers that rests on the rocks.' },
+          { part: '4. Crab', select: ['A red animal with ten legs and two big claws.', 'A grey animal with flippers that rests on the rocks.', 'A big bird with a bag under its long beak to catch fish.', 'A black and white bird that cannot fly but swims very well.'], ans: 'A red animal with ten legs and two big claws.' }
+        ]
+      },
+      {
+        type: 'yesno',
+        title: 'Yes or No ❓',
+        sub: 'Read each sentence about the Peruvian Sea. Is it correct?',
+        items: [
+          { q: '1. Seaweed is flora from the Peruvian Sea.', ans: 'YES' },
+          { q: '2. The Humboldt penguin lives in the Jungle.', ans: 'NO' },
+          { q: '3. Seals, fish, sea turtles and crabs live in the sea.', ans: 'YES' },
+          { q: '4. The Peruvian pelican uses its beak to catch fish.', ans: 'YES' }
+        ]
+      }
+    ];
+    showQuestion();
+
+  } else if (topicKey === 'classify') {
+    const REG = ['Coast', 'Highlands', 'Jungle', 'Peruvian Sea'];
+    questions = [
+      {
+        type: 'partmatch',
+        title: 'Classify the flora 🌿',
+        sub: 'Choose the region where each plant grows:',
+        placeholder: '--Seleccionar región--',
+        svgRow: [
+          { svg: cottonSVG, label: 'Cotton' },
+          { svg: ichuSVG, label: 'Ichu' },
+          { svg: waterLilySVG, label: 'Water lily' },
+          { svg: seaweedSVG, label: 'Seaweed' }
+        ],
+        items: [
+          { part: '1. Cotton', select: REG, ans: 'Coast' },
+          { part: '2. Sugar cane', select: REG, ans: 'Coast' },
+          { part: '3. Ichu', select: REG, ans: 'Highlands' },
+          { part: '4. Puyas', select: REG, ans: 'Highlands' },
+          { part: '5. Water lily', select: REG, ans: 'Jungle' },
+          { part: '6. Elephant ear', select: REG, ans: 'Jungle' },
+          { part: '7. Seaweed', select: REG, ans: 'Peruvian Sea' }
+        ]
+      },
+      {
+        type: 'partmatch',
+        title: 'Classify the fauna 🐾',
+        sub: 'Choose the region where each animal lives:',
+        placeholder: '--Seleccionar región--',
+        svgRow: [
+          { svg: peruvianHorseSVG, label: 'Peruvian horse' },
+          { svg: pumaSVG, label: 'Puma' },
+          { svg: jaguarSVG, label: 'Jaguar' },
+          { svg: humboldtPenguinSVG, label: 'Penguin' }
+        ],
+        items: [
+          { part: '1. Peruvian horse', select: REG, ans: 'Coast' },
+          { part: '2. Hairless dog', select: REG, ans: 'Coast' },
+          { part: '3. Puma', select: REG, ans: 'Highlands' },
+          { part: '4. Andean condor', select: REG, ans: 'Highlands' },
+          { part: '5. Jaguar', select: REG, ans: 'Jungle' },
+          { part: '6. Toucan', select: REG, ans: 'Jungle' },
+          { part: '7. Humboldt penguin', select: REG, ans: 'Peruvian Sea' },
+          { part: '8. Peruvian pelican', select: REG, ans: 'Peruvian Sea' }
+        ]
+      },
+      {
+        type: 'partmatch',
+        title: 'Classify: more fauna 🐾',
+        sub: 'Choose the region where each animal lives:',
+        placeholder: '--Seleccionar región--',
+        svgRow: [
+          { svg: sechuraFoxSVG, label: 'Sechura fox' },
+          { svg: llamaSVG, label: 'Llamas' },
+          { svg: anacondaSVG, label: 'Anaconda' },
+          { svg: crabSVG, label: 'Crab' }
+        ],
+        items: [
+          { part: '1. Sechura fox', select: REG, ans: 'Coast' },
+          { part: '2. Llamas and alpacas', select: REG, ans: 'Highlands' },
+          { part: '3. Spectacled bear', select: REG, ans: 'Highlands' },
+          { part: '4. Anaconda', select: REG, ans: 'Jungle' },
+          { part: '5. Pink dolphin', select: REG, ans: 'Jungle' },
+          { part: '6. Seal', select: REG, ans: 'Peruvian Sea' },
+          { part: '7. Crab', select: REG, ans: 'Peruvian Sea' },
+          { part: '8. Sea turtle', select: REG, ans: 'Peruvian Sea' }
+        ]
+      },
+      {
+        type: 'write',
+        title: 'My notebook 📓',
+        sub: 'Escribe una flora y una fauna de cada región:',
+        bank: ['cotton', 'peruvian horse', 'ichu', 'llama', 'water lily', 'pink dolphin', 'seaweed', 'humboldt penguin'],
+        items: [
+          { svg: cottonSVG, label: 'The Coast · Flora', ans: 'cotton', alt: ['sugar cane'] },
+          { svg: peruvianHorseSVG, label: 'The Coast · Fauna', ans: 'peruvian horse', alt: ['horse', 'hairless dog', 'sechura fox'] },
+          { svg: ichuSVG, label: 'The Highlands · Flora', ans: 'ichu', alt: ['puyas', 'puya'] },
+          { svg: llamaSVG, label: 'The Highlands · Fauna', ans: 'llama', alt: ['llamas', 'alpaca', 'puma', 'condor', 'vicuna', 'vicuña'] },
+          { svg: waterLilySVG, label: 'The Jungle · Flora', ans: 'water lily', alt: ['elephant ear'] },
+          { svg: pinkDolphinSVG, label: 'The Jungle · Fauna', ans: 'pink dolphin', alt: ['jaguar', 'toucan', 'anaconda', 'dolphin'] },
+          { svg: seaweedSVG, label: 'The Peruvian Sea · Flora', ans: 'seaweed' },
+          { svg: humboldtPenguinSVG, label: 'The Peruvian Sea · Fauna', ans: 'humboldt penguin', alt: ['penguin', 'pelican', 'seal', 'crab', 'fish', 'sea turtle'] }
+        ]
+      }
+    ];
+    showQuestion();
+
+  } else if (topicKey === 'memory') {
+    setupMemoryGame();
+  } else if (topicKey === 'wordsearch') {
+    setupWordSearch();
+  }
+}
+
+/* ===== QUESTION RENDERER ===== */
+function showQuestion() {
+  showScreen('screen-exercise');
+  const q = questions[currentQIndex];
+
+  const pct = Math.round((currentQIndex / questions.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+
+  document.getElementById('exTitle').innerText = q.title;
+  document.getElementById('exSub').innerText = q.sub;
+  document.getElementById('feedback').innerText = '';
+  document.getElementById('continueBtn').style.display = 'none';
+  ynScore = 0;
+
+  const box = document.getElementById('stageBox');
+  box.innerHTML = '';
+
+  if (q.type === 'mc') {
+    let optsHtml = q.opts.map(o => `<button class="optBtn" onclick="checkMC('${o}', '${q.ans}', this)">${o}</button>`).join('');
+    box.innerHTML = `
+      <div class="questionCard">${q.q} ${getSpeakBtnHtml(q.q)}</div>
+      ${q.svg ? `<div class="svgContainer">${q.svg}</div>` : ''}
+      <div class="optionsRow" style="display:flex; flex-direction:column; gap:10px; width:100%; align-items:center;">
+        ${optsHtml}
+      </div>
+    `;
+  } else if (q.type === 'study') {
+    box.innerHTML = q.html;
+    document.getElementById('continueBtn').style.display = 'block';
+  } else if (q.type === 'fill') {
+    let bankHtml = '<div class="wordBankList">' + q.bank.map(b => `<div class="wbItem">${b}</div>`).join('') + '</div>';
+    let fillHtml = q.items.map((it, idx) => `
+      <div class="questionCard">
+        ${it.prefix}
+        <select class="fillSelect" id="sel1_${idx}">
+          <option value="">--elegir--</option>
+          ${it.select.map(s => `<option value="${s}">${s}</option>`).join('')}
+        </select>
+        ${it.suffix}
+        <select class="fillSelect" id="sel2_${idx}">
+          <option value="">--elegir--</option>
+          ${it.select2.map(s => `<option value="${s}">${s}</option>`).join('')}
+        </select>
+        ${it.suffix2}
+      </div>
+    `).join('');
+    box.innerHTML = `
+      ${bankHtml}
+      <div style="width:100%;">${fillHtml}</div>
+      <button class="optBtn correct" style="margin-top:10px;" onclick="checkFillAnswers()">Comprobar Respuestas ✔️</button>
+    `;
+  } else if (q.type === 'yesno') {
+    const labels = q.labels || ['YES', 'NO'];
+    let ynHtml = q.items.map((it, idx) => `
+      <div class="questionCard" style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+        <span>${it.q}</span>
+        <div style="display:flex; gap:8px;">
+          <button class="optBtn" style="min-width:60px; padding:6px 12px;" onclick="checkYN(${idx}, '${labels[0]}', '${it.ans}', this)">${labels[0]}</button>
+          <button class="optBtn" style="min-width:60px; padding:6px 12px;" onclick="checkYN(${idx}, '${labels[1]}', '${it.ans}', this)">${labels[1]}</button>
+        </div>
+      </div>
+    `).join('');
+    box.innerHTML = `<div style="width:100%;">${ynHtml}</div>`;
+  } else if (q.type === 'write') {
+    let bankHtml = q.bank ? '<div class="wordBankList">' + q.bank.map(b => `<div class="wbItem">${b}</div>`).join('') + '</div>' : '';
+    let itemsHtml = q.items.map((it, idx) => `
+      <div class="writeItem">
+        ${it.svg ? `<div class="svgContainer">${it.svg}</div>` : ''}
+        <div class="writeLabel">${idx + 1}. ${it.label || ''}</div>
+        <input type="text" class="writeInput" id="wr_${idx}" placeholder="..." autocomplete="off" autocapitalize="none" spellcheck="false">
+      </div>
+    `).join('');
+    box.innerHTML = `
+      ${bankHtml}
+      <div class="writeGrid">${itemsHtml}</div>
+      <button class="optBtn correct" style="margin-top:10px;" onclick="checkWriteAnswers()">Comprobar Respuestas ✔️</button>
+    `;
+  } else if (q.type === 'partmatch') {
+    let mapHtml = q.mapTop ? `<div class="mapContainer">${peruMapSVG}</div>` : '';
+    let rowHtml = q.svgRow ? '<div class="svgRow">' + q.svgRow.map(s => `
+      <div class="svgRowItem"><div>${s.svg}</div><span>${s.label}</span></div>
+    `).join('') + '</div>' : '';
+    let pmHtml = q.items.map((it, idx) => `
+      <div class="questionCard" style="display:flex; flex-direction:column; gap:6px;">
+        <span><strong>${it.part}${/[.?!:]$/.test(it.part) ? '' : ':'}</strong></span>
+        <select class="fillSelect" id="pmSel_${idx}">
+          <option value="">${q.placeholder || '--Seleccionar--'}</option>
+          ${it.select.map(s => `<option value="${s}">${s}</option>`).join('')}
+        </select>
+      </div>
+    `).join('');
+    box.innerHTML = `
+      ${mapHtml}
+      ${rowHtml}
+      <div style="width:100%;">${pmHtml}</div>
+      <button class="optBtn correct" style="margin-top:10px;" onclick="checkPartMatchAnswers()">Comprobar Emparejamiento ✔️</button>
+    `;
+  }
+}
+
+/* ===== CHECK HANDLERS ===== */
+function checkMC(chosen, correct, btn) {
+  if (chosen === correct) {
+    btn.classList.add('correct');
+    playCorrect();
+    totalStars += 5;
+    updateStars();
+    document.getElementById('feedback').className = 'feedback ok';
+    document.getElementById('feedback').innerText = '¡Muy bien! +5 ⭐';
+    document.getElementById('continueBtn').style.display = 'block';
+  } else {
+    btn.classList.add('wrong');
+    playWrong();
+    document.getElementById('feedback').className = 'feedback bad';
+    document.getElementById('feedback').innerText = 'Incorrecto, prueba de nuevo';
+  }
+}
+
+function checkFillAnswers() {
+  const q = questions[currentQIndex];
+  let allGood = true;
+  q.items.forEach((it, idx) => {
+    const s1 = document.getElementById(`sel1_${idx}`).value;
+    const s2 = document.getElementById(`sel2_${idx}`).value;
+    if (s1 !== it.ans1 || s2 !== it.ans2) allGood = false;
+  });
+  if (allGood) {
+    playCorrect();
+    totalStars += 15;
+    updateStars();
+    document.getElementById('feedback').className = 'feedback ok';
+    document.getElementById('feedback').innerText = '¡Excelente! Todas las respuestas son correctas +15 ⭐';
+    document.getElementById('continueBtn').style.display = 'block';
+  } else {
+    playWrong();
+    document.getElementById('feedback').className = 'feedback bad';
+    document.getElementById('feedback').innerText = 'Revisa algunas respuestas e inténtalo de nuevo.';
+  }
+}
+
+function checkPartMatchAnswers() {
+  const q = questions[currentQIndex];
+  let allGood = true;
+  q.items.forEach((it, idx) => {
+    const val = document.getElementById(`pmSel_${idx}`).value;
+    if (val !== it.ans) allGood = false;
+  });
+  if (allGood) {
+    playCorrect();
+    totalStars += 20;
+    updateStars();
+    document.getElementById('feedback').className = 'feedback ok';
+    document.getElementById('feedback').innerText = '¡Excelente! Emparejaste todo correctamente +20 ⭐';
+    document.getElementById('continueBtn').style.display = 'block';
+  } else {
+    playWrong();
+    document.getElementById('feedback').className = 'feedback bad';
+    document.getElementById('feedback').innerText = 'Revisa algunas de las opciones seleccionadas.';
+  }
+}
+
+function normWrite(s) {
+  return (s || '').trim().toLowerCase().replace(/\s+/g, ' ');
+}
+
+function checkWriteAnswers() {
+  const q = questions[currentQIndex];
+  let allGood = true;
+  q.items.forEach((it, idx) => {
+    const el = document.getElementById(`wr_${idx}`);
+    const val = normWrite(el.value);
+    const ok = val !== '' && (val === normWrite(it.ans) || (it.alt || []).some(a => normWrite(a) === val));
+    el.classList.remove('okIn', 'badIn');
+    el.classList.add(ok ? 'okIn' : 'badIn');
+    if (!ok) allGood = false;
+  });
+  if (allGood) {
+    playCorrect();
+    totalStars += 20;
+    updateStars();
+    document.getElementById('feedback').className = 'feedback ok';
+    document.getElementById('feedback').innerText = '¡Excelente! Escribiste todos los nombres +20 ⭐';
+    document.getElementById('continueBtn').style.display = 'block';
+  } else {
+    playWrong();
+    document.getElementById('feedback').className = 'feedback bad';
+    document.getElementById('feedback').innerText = 'Revisa las casillas en rojo e inténtalo de nuevo.';
+  }
+}
+
+let ynScore = 0;
+function checkYN(idx, chosen, correct, btn) {
+  if (chosen === correct) {
+    btn.classList.add('correct');
+    playCorrect();
+    totalStars += 5;
+    updateStars();
+    ynScore++;
+    const total = questions[currentQIndex].items.length;
+    if (ynScore >= total) {
+      document.getElementById('feedback').className = 'feedback ok';
+      document.getElementById('feedback').innerText = `¡Completaste las ${total} preguntas! +${total * 5} ⭐`;
+      document.getElementById('continueBtn').style.display = 'block';
+    }
+  } else {
+    btn.classList.add('wrong');
+    playWrong();
+  }
+}
+
+function nextQuestion() {
+  currentQIndex++;
+  if (currentQIndex < questions.length) {
+    showQuestion();
+  } else {
+    showScreen('screen-end');
+  }
+}
+
+/* ===== MEMORY GAME: species and their region ===== */
+function setupMemoryGame() {
+  showScreen('screen-exercise');
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('exTitle').innerText = 'Regions Memory Game 🃏';
+  document.getElementById('exSub').innerText = 'Empareja cada planta o animal con su región:';
+  document.getElementById('feedback').innerText = '';
+  document.getElementById('continueBtn').style.display = 'none';
+
+  const cardsData = [
+    { name: 'Cotton 🌿', id: 1 }, { name: 'Coast 🏖️', id: 1 },
+    { name: 'Sechura fox 🦊', id: 2 }, { name: 'Coast 🏖️', id: 2 },
+    { name: 'Ichu 🌾', id: 3 }, { name: 'Highlands ⛰️', id: 3 },
+    { name: 'Condor 🦅', id: 4 }, { name: 'Highlands ⛰️', id: 4 },
+    { name: 'Toucan 🦜', id: 5 }, { name: 'Jungle 🌴', id: 5 },
+    { name: 'Anaconda 🐍', id: 6 }, { name: 'Jungle 🌴', id: 6 },
+    { name: 'Penguin 🐧', id: 7 }, { name: 'Peruvian Sea 🌊', id: 7 },
+    { name: 'Seaweed 🌱', id: 8 }, { name: 'Peruvian Sea 🌊', id: 8 }
+  ];
+  const totalPairs = 8;
+  cardsData.sort(() => 0.5 - Math.random());
+
+  let flippedCards = [];
+  let matchedCount = 0;
+
+  const box = document.getElementById('stageBox');
+  let gridHtml = '<div class="memGrid">';
+  cardsData.forEach((c, i) => {
+    gridHtml += `<div class="memCard" id="mc_${i}" onclick="flipMemCard(${i}, '${c.name}', ${c.id})">?</div>`;
+  });
+  gridHtml += '</div>';
+  box.innerHTML = gridHtml;
+
+  window.flipMemCard = function(idx, name, id) {
+    const cardEl = document.getElementById(`mc_${idx}`);
+    if (cardEl.classList.contains('flipped') || cardEl.classList.contains('matched') || flippedCards.length >= 2) return;
+
+    cardEl.classList.add('flipped');
+    cardEl.innerText = name;
+    playTap();
+    flippedCards.push({ idx, name, id, cardEl });
+
+    if (flippedCards.length === 2) {
+      if (flippedCards[0].id === flippedCards[1].id && flippedCards[0].idx !== flippedCards[1].idx) {
+        playCorrect();
+        flippedCards[0].cardEl.classList.add('matched');
+        flippedCards[1].cardEl.classList.add('matched');
+        flippedCards = [];
+        matchedCount++;
+        totalStars += 5;
+        updateStars();
+        if (matchedCount === totalPairs) {
+          document.getElementById('feedback').className = 'feedback ok';
+          document.getElementById('feedback').innerText = `¡Felicidades! Encontraste todas las parejas 🏆 +${totalPairs * 5} ⭐`;
+          document.getElementById('continueBtn').style.display = 'block';
+        }
+      } else {
+        playWrong();
+        setTimeout(() => {
+          flippedCards[0].cardEl.classList.remove('flipped');
+          flippedCards[0].cardEl.innerText = '?';
+          flippedCards[1].cardEl.classList.remove('flipped');
+          flippedCards[1].cardEl.innerText = '?';
+          flippedCards = [];
+        }, 1000);
+      }
+    }
+  };
+}
+
+/* ===== WORD SEARCH ===== */
+const WS_PUZZLE = {
+  matrix: [
+    ['P','U','M','A','Z','O','M','E','E','X','W','C'],
+    ['T','V','Z','T','O','U','C','A','N','R','Q','S'],
+    ['D','H','F','O','P','A','J','U','N','G','L','E'],
+    ['Z','I','M','G','J','N','C','O','S','Q','X','A'],
+    ['E','G','P','T','A','A','Q','O','P','F','G','W'],
+    ['W','H','Z','L','X','C','P','J','T','Y','C','E'],
+    ['M','L','G','L','Q','O','R','A','W','T','R','E'],
+    ['C','A','S','A','M','N','Z','G','J','W','O','D'],
+    ['O','N','W','M','Z','D','V','U','H','F','V','N'],
+    ['A','D','P','A','Z','A','E','A','S','R','H','C'],
+    ['S','S','I','C','H','U','D','R','W','J','N','R'],
+    ['T','C','O','N','D','O','R','C','R','M','W','J']
+  ],
+  solutionCoords: {
+    'COAST': [[7,0],[8,0],[9,0],[10,0],[11,0]],
+    'HIGHLANDS': [[2,1],[3,1],[4,1],[5,1],[6,1],[7,1],[8,1],[9,1],[10,1]],
+    'JUNGLE': [[2,6],[2,7],[2,8],[2,9],[2,10],[2,11]],
+    'SEAWEED': [[1,11],[2,11],[3,11],[4,11],[5,11],[6,11],[7,11]],
+    'COTTON': [[3,6],[4,7],[5,8],[6,9],[7,10],[8,11]],
+    'ICHU': [[10,2],[10,3],[10,4],[10,5]],
+    'PUMA': [[0,0],[0,1],[0,2],[0,3]],
+    'CONDOR': [[11,1],[11,2],[11,3],[11,4],[11,5],[11,6]],
+    'LLAMA': [[5,3],[6,3],[7,3],[8,3],[9,3]],
+    'JAGUAR': [[5,7],[6,7],[7,7],[8,7],[9,7],[10,7]],
+    'TOUCAN': [[1,3],[1,4],[1,5],[1,6],[1,7],[1,8]],
+    'ANACONDA': [[2,5],[3,5],[4,5],[5,5],[6,5],[7,5],[8,5],[9,5]]
+  },
+  words: ['COAST', 'HIGHLANDS', 'JUNGLE', 'SEAWEED', 'COTTON', 'ICHU', 'PUMA', 'CONDOR', 'LLAMA', 'JAGUAR', 'TOUCAN', 'ANACONDA']
+};
+
+function setupWordSearch() {
+  showScreen('screen-exercise');
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('exTitle').innerText = 'Find the Words! 🔍';
+  document.getElementById('exSub').innerText = 'Busca las regiones, la flora y la fauna del Perú:';
+  document.getElementById('feedback').innerText = '';
+  document.getElementById('continueBtn').style.display = 'none';
+  renderWordSearch(WS_PUZZLE, document.getElementById('stageBox'));
+}
+
+function renderWordSearch(cfg, box) {
+  const matrix = cfg.matrix;
+  const solutionCoords = cfg.solutionCoords;
+  const targetWords = cfg.words;
+  const rows = matrix.length;
+  const cols = matrix[0].length;
+  let foundWords = new Set();
+
+  let wbHtml = '<div class="wordBankList">';
+  targetWords.forEach((w, i) => {
+    wbHtml += `<div class="wbItem" id="wbi_${i}">${i+1}. ${w.toLowerCase()}</div>`;
+  });
+  wbHtml += '</div>';
+
+  let gridHtml = `<div class="wsGrid" style="grid-template-columns: repeat(${cols}, 1fr);">`;
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      gridHtml += `<div class="wsCell" id="ws_${r}_${c}" onclick="clickWsCell(${r},${c})">${matrix[r][c]}</div>`;
+    }
+  }
+  gridHtml += '</div>';
+
+  let actionHtml = `
+    <div class="wsActionRow">
+      <button class="btnSolution" onclick="showWordSearchSolution()">Solución 💡</button>
+      <button class="btnReset" onclick="resetWordSearch()">Reiniciar Ejercicio 🔄</button>
+    </div>
+  `;
+
+  box.innerHTML = wbHtml + gridHtml + actionHtml;
+
+  window.clickWsCell = function(r, c) {
+    const cellEl = document.getElementById(`ws_${r}_${c}`);
+    cellEl.classList.toggle('selected');
+    playTap();
+    checkAutomaticWordMatch();
+  };
+
+  function checkAutomaticWordMatch() {
+    targetWords.forEach((w, i) => {
+      if (foundWords.has(w)) return;
+      const coords = solutionCoords[w];
+      let allSelected = coords.every(([r,c]) => {
+        const el = document.getElementById(`ws_${r}_${c}`);
+        return el.classList.contains('selected') || el.classList.contains('found');
+      });
+      if (allSelected) {
+        foundWords.add(w);
+        coords.forEach(([r,c]) => {
+          const el = document.getElementById(`ws_${r}_${c}`);
+          el.classList.remove('selected');
+          el.classList.add('found');
+        });
+        document.getElementById(`wbi_${i}`).classList.add('done');
+        playCorrect();
+        totalStars += 5;
+        updateStars();
+      }
+    });
+
+    if (foundWords.size === targetWords.length) {
+      document.getElementById('feedback').className = 'feedback ok';
+      document.getElementById('feedback').innerText = `¡Felicidades! Encontraste todas las palabras 🏆 +${targetWords.length * 5} ⭐`;
+      document.getElementById('continueBtn').style.display = 'block';
+    }
+  }
+
+  window.showWordSearchSolution = function() {
+    targetWords.forEach((w, i) => {
+      foundWords.add(w);
+      solutionCoords[w].forEach(([r,c]) => {
+        const el = document.getElementById(`ws_${r}_${c}`);
+        el.classList.remove('selected');
+        el.classList.add('found');
+      });
+      document.getElementById(`wbi_${i}`).classList.add('done');
+    });
+    playCorrect();
+    document.getElementById('feedback').className = 'feedback ok';
+    document.getElementById('feedback').innerText = '¡Solución mostrada correctamente!';
+    document.getElementById('continueBtn').style.display = 'block';
+  };
+
+  window.resetWordSearch = function() {
+    foundWords.clear();
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        document.getElementById(`ws_${r}_${c}`).classList.remove('selected', 'found');
+      }
+    }
+    targetWords.forEach((w, i) => {
+      document.getElementById(`wbi_${i}`).classList.remove('done');
+    });
+    document.getElementById('feedback').innerText = '';
+    document.getElementById('continueBtn').style.display = 'none';
+  };
+}
+</script>
+</body>
+</html>
