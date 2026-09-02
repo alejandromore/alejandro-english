@@ -168,6 +168,9 @@
   }
   .memCard.flipped, .memCard.matched { background: var(--cream); color: var(--ink); border: 3px solid #EADFC5; }
   .memCard.matched { background: #E2F7EB; border-color: var(--leaf); color: var(--leaf-d); }
+  .memImg { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+  .memImg svg { width: 100%; height: 100%; }
+  .memWord { font-family: 'Fredoka'; font-weight: 700; font-size: clamp(13px, 3.6vw, 17px); line-height: 1.15; }
 
   /* Fill-in-the-blanks */
   .fillSelect {
@@ -309,6 +312,14 @@ document.getElementById('mascotEnd').innerHTML=mascotSVG;
 const octopusSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><circle cx="50" cy="40" r="28" fill="#FF6B5B"/><circle cx="40" cy="34" r="5" fill="#fff"/><circle cx="40" cy="34" r="2.5" fill="#2B2440"/><circle cx="60" cy="34" r="5" fill="#fff"/><circle cx="60" cy="34" r="2.5" fill="#2B2440"/><path d="M42 46 Q50 52 58 46" stroke="#2B2440" stroke-width="2.5" fill="none"/><path d="M25 60 Q15 75 30 85 M35 64 Q30 82 45 86 M50 65 Q50 85 55 88 M65 64 Q70 82 80 82 M75 60 Q85 75 75 88" stroke="#FF6B5B" stroke-width="6" stroke-linecap="round" fill="none"/></svg>`;
 
 const eagleSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M20 50 Q50 15 80 50 Q60 45 50 65 Q40 45 20 50 Z" fill="#7C4FE0"/><circle cx="50" cy="30" r="16" fill="#fff"/><circle cx="54" cy="28" r="3" fill="#2B2440"/><path d="M58 30 L74 34 L60 40 Z" fill="#FFC93C"/></svg>`;
+
+const batSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M50 42 Q30 20 7 30 Q17 41 12 54 Q27 47 35 58 Z" fill="#3F3A5C"/><path d="M50 42 Q70 20 93 30 Q83 41 88 54 Q73 47 65 58 Z" fill="#3F3A5C"/><ellipse cx="50" cy="53" rx="13" ry="18" fill="#2B2440"/><path d="M41 36 L38 18 L49 31 Z" fill="#2B2440"/><path d="M59 36 L62 18 L51 31 Z" fill="#2B2440"/><circle cx="45" cy="47" r="3.4" fill="#FFC93C"/><circle cx="55" cy="47" r="3.4" fill="#FFC93C"/><path d="M45 59 L47 65 L50 60 L53 65 L55 59" fill="none" stroke="#fff" stroke-width="2"/></svg>`;
+
+const snakeSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M20 80 Q8 58 30 53 Q54 48 51 34 Q49 23 66 23" fill="none" stroke="#4CAF6D" stroke-width="14" stroke-linecap="round"/><path d="M20 80 Q8 58 30 53 Q54 48 51 34 Q49 23 66 23" fill="none" stroke="#8ED9A8" stroke-width="5" stroke-dasharray="5 9" stroke-linecap="round"/><circle cx="70" cy="23" r="11" fill="#2E9450"/><circle cx="74" cy="19" r="2.8" fill="#fff"/><circle cx="74" cy="19" r="1.4" fill="#2B2440"/><path d="M80 26 L93 30 M93 30 L86 26 M93 30 L86 33" stroke="#FF6B5B" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>`;
+
+const fennecFoxSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M14 82 Q2 68 12 57 Q25 67 28 78 Z" fill="#F0D9AE"/><ellipse cx="49" cy="70" rx="25" ry="16" fill="#E8CFA0"/><ellipse cx="29" cy="30" rx="11" ry="22" fill="#E8CFA0" transform="rotate(-20 29 30)"/><ellipse cx="29" cy="32" rx="6" ry="15" fill="#F5C0B8" transform="rotate(-20 29 32)"/><ellipse cx="71" cy="30" rx="11" ry="22" fill="#E8CFA0" transform="rotate(20 71 30)"/><ellipse cx="71" cy="32" rx="6" ry="15" fill="#F5C0B8" transform="rotate(20 71 32)"/><circle cx="50" cy="53" r="21" fill="#F2DDB4"/><path d="M50 57 Q39 71 50 76 Q61 71 50 57 Z" fill="#FFF6E4"/><circle cx="42" cy="50" r="3.2" fill="#2B2440"/><circle cx="58" cy="50" r="3.2" fill="#2B2440"/><circle cx="50" cy="63" r="3.2" fill="#2B2440"/></svg>`;
+
+const mosquitoSVG = `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M47 42 Q27 24 13 33 Q26 44 43 50 Z" fill="#BFD8E8" opacity=".8"/><path d="M55 42 Q75 24 89 33 Q76 44 59 50 Z" fill="#BFD8E8" opacity=".8"/><path d="M40 60 L26 68 M40 53 L24 51 M57 62 L72 70 M57 54 L74 52" stroke="#4A4360" stroke-width="2.6" fill="none" stroke-linecap="round"/><ellipse cx="52" cy="60" rx="11" ry="19" fill="#6B6285" transform="rotate(16 52 60)"/><circle cx="46" cy="35" r="10" fill="#4A4360"/><circle cx="43" cy="32" r="2.4" fill="#fff"/><path d="M43 43 L34 66" stroke="#4A4360" stroke-width="3" stroke-linecap="round"/><path d="M40 27 L33 14 M51 27 L56 13" stroke="#4A4360" stroke-width="2" fill="none" stroke-linecap="round"/></svg>`;
 
 const elephantSVG = `<svg viewBox="0 0 120 100" width="100%" height="100%"><ellipse cx="60" cy="55" rx="35" ry="25" fill="#9B6BFF"/><circle cx="40" cy="45" r="20" fill="#9B6BFF"/><circle cx="24" cy="42" r="14" fill="#7C4FE0"/><circle cx="36" cy="40" r="3" fill="#fff"/><circle cx="36" cy="40" r="1.5" fill="#2B2440"/><path d="M30 52 Q20 60 15 75 Q20 78 24 70 Q28 62 34 56 Z" fill="#FFC93C"/><path d="M38 55 Q25 65 30 85 Q36 85 36 72 Q34 65 42 58 Z" fill="#9B6BFF"/><rect x="45" y="70" width="8" height="20" fill="#7C4FE0" rx="3"/><rect x="68" y="70" width="8" height="20" fill="#7C4FE0" rx="3"/><rect x="80" y="70" width="8" height="20" fill="#7C4FE0" rx="3"/></svg>`;
 
@@ -1094,18 +1105,26 @@ function setupMemoryGame() {
   showScreen('screen-exercise');
   document.getElementById('progressFill').style.width = '100%';
   document.getElementById('exTitle').innerText = 'Animal Memory Game 🃏';
-  document.getElementById('exSub').innerText = 'Find matching pairs of animals:';
+  document.getElementById('exSub').innerText = 'Match each animal picture with its English word:';
   document.getElementById('feedback').innerText = '';
   document.getElementById('continueBtn').style.display = 'none';
 
-  const cardsData = [
-    { name: 'Eagle 🦅', id: 1 }, { name: 'Eagle 🦅', id: 1 },
-    { name: 'Bat 🦇', id: 2 }, { name: 'Bat 🦇', id: 2 },
-    { name: 'Snake 🐍', id: 3 }, { name: 'Snake 🐍', id: 3 },
-    { name: 'Octopus 🐙', id: 4 }, { name: 'Octopus 🐙', id: 4 },
-    { name: 'Fennec Fox 🦊', id: 5 }, { name: 'Fennec Fox 🦊', id: 5 },
-    { name: 'Mosquito 🦟', id: 6 }, { name: 'Mosquito 🦟', id: 6 }
+  // Each pair is one picture card + one word card, so the child has to
+  // recognise the animal instead of matching two identical labels.
+  const memoryPairs = [
+    { id: 1, name: 'Eagle',      svg: eagleSVG },
+    { id: 2, name: 'Bat',        svg: batSVG },
+    { id: 3, name: 'Snake',      svg: snakeSVG },
+    { id: 4, name: 'Octopus',    svg: octopusSVG },
+    { id: 5, name: 'Fennec Fox', svg: fennecFoxSVG },
+    { id: 6, name: 'Mosquito',   svg: mosquitoSVG }
   ];
+
+  const cardsData = [];
+  memoryPairs.forEach(p => {
+    cardsData.push({ id: p.id, name: p.name, face: `<div class="memImg">${p.svg}</div>` });
+    cardsData.push({ id: p.id, name: p.name, face: `<span class="memWord">${p.name}</span>` });
+  });
   cardsData.sort(() => 0.5 - Math.random());
 
   let flippedCards = [];
@@ -1114,41 +1133,47 @@ function setupMemoryGame() {
   const box = document.getElementById('stageBox');
   let gridHtml = '<div class="memGrid">';
   cardsData.forEach((c, i) => {
-    gridHtml += `<div class="memCard" id="mc_${i}" onclick="flipMemCard(${i}, '${c.name}', ${c.id})">?</div>`;
+    gridHtml += `<div class="memCard" id="mc_${i}" onclick="flipMemCard(${i})">?</div>`;
   });
   gridHtml += '</div>';
   box.innerHTML = gridHtml;
 
-  window.flipMemCard = function(idx, name, id) {
+  window.flipMemCard = function(idx) {
+    const card = cardsData[idx];
     const cardEl = document.getElementById(`mc_${idx}`);
     if (cardEl.classList.contains('flipped') || cardEl.classList.contains('matched') || flippedCards.length >= 2) return;
 
     cardEl.classList.add('flipped');
-    cardEl.innerText = name;
+    cardEl.innerHTML = card.face;
     playTap();
-    flippedCards.push({ idx, name, id, cardEl });
+    flippedCards.push({ idx, name: card.name, id: card.id, cardEl });
 
     if (flippedCards.length === 2) {
       if (flippedCards[0].id === flippedCards[1].id) {
         playCorrect();
+        const matchedName = flippedCards[0].name;
         flippedCards[0].cardEl.classList.add('matched');
         flippedCards[1].cardEl.classList.add('matched');
         flippedCards = [];
         matchedCount++;
         totalStars += 5;
         updateStars();
-        if (matchedCount === 6) {
+        speakText(matchedName);
+        if (matchedCount === memoryPairs.length) {
           document.getElementById('feedback').className = 'feedback ok';
-          document.getElementById('feedback').innerText = '¡Felicidades! Encontraste todas las parejas 🏆 +30 ⭐';
+          document.getElementById('feedback').innerText = `¡Felicidades! Encontraste todas las parejas 🏆 +${memoryPairs.length * 5} ⭐`;
           document.getElementById('continueBtn').style.display = 'block';
+        } else {
+          document.getElementById('feedback').className = 'feedback ok';
+          document.getElementById('feedback').innerText = `¡${matchedName}! +5 ⭐`;
         }
       } else {
         playWrong();
         setTimeout(() => {
           flippedCards[0].cardEl.classList.remove('flipped');
-          flippedCards[0].cardEl.innerText = '?';
+          flippedCards[0].cardEl.innerHTML = '?';
           flippedCards[1].cardEl.classList.remove('flipped');
-          flippedCards[1].cardEl.innerText = '?';
+          flippedCards[1].cardEl.innerHTML = '?';
           flippedCards = [];
         }, 1000);
       }
