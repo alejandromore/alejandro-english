@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -31,6 +31,21 @@
     <div class="ms-head"><span class="ms-title">Estado de los modelos</span><button class="ms-close" aria-label="Cerrar">×</button></div>
     <div class="ms-list"></div>
     <div class="ms-note">Se descargan la 1ra vez y quedan en cache. Si uno falla (p. ej. sin senal), toca el boton para recargarlo.</div>
+  </div>
+
+  <!-- coach: modos de práctica (Take an Interview · Listen & Repeat · Historial) -->
+  <div class="coach-panel">
+    <div class="coach-modebar">
+      <span class="topbar-lbl">Modo</span>
+      <div class="seg" id="modeSeg">
+        <button data-mode="free" aria-pressed="true">Libre</button>
+        <button data-mode="interview" aria-pressed="false">🎤 Take an Interview</button>
+        <button data-mode="repeat" aria-pressed="false">🔁 Listen &amp; Repeat</button>
+        <button data-mode="history" aria-pressed="false">📈 Historial</button>
+      </div>
+      <span class="streak-chip" id="streakChip" data-on="false">🔥 0 días</span>
+    </div>
+    <div id="coachArea" style="display:none"></div>
   </div>
 
   <!-- practice prompt -->
@@ -235,5 +250,6 @@
 </div>
 
 <script type="module" src="js/app.js"></script>
+<script type="module" src="js/coach.js"></script>
 </body>
 </html>

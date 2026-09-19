@@ -316,8 +316,8 @@ export async function analyze(blob){
   try{
     setStatus("Decoding audio…"); showBar(false); setBar(8);
     const { audio, duration } = await decodeTo16k(blob);
-    if(audio.length < 1600){ setStatus("That clip was too short to analyze. Try a few seconds of speech.", true); hideBar(); setBusy(false); if(cancelBtn) cancelBtn.style.display="none"; return; }
-    if(state.analyzeCanceled){ if(cancelBtn) cancelBtn.style.display="none"; return; }
+    if(audio.length < 1600){ setStatus("That clip was too short to analyze. Try a few seconds of speech.", true); hideBar(); setBusy(false); if(cancelBtn) cancelBtn.style.display="none"; document.dispatchEvent(new CustomEvent("vc:analyze-failed",{detail:{error:"too short"}})); return; }
+    if(state.analyzeCanceled){ if(cancelBtn) cancelBtn.style.display="none"; document.dispatchEvent(new CustomEvent("vc:analyze-failed",{detail:{error:"canceled"}})); return; }
 
     setStatus("Transcribing…"); showBar(); setBar(20);
     const asrOpts = {
@@ -354,8 +354,8 @@ export async function analyze(blob){
     text = text.replace(/\((?:speaking[^)]*|inaudible|music|applause|foreign[^)]*|silence|no audio)\)/gi,"")
                .replace(/\[[^\]]{0,40}\]/g,"")
                .replace(/\s{2,}/g," ").trim();
-    if(!text){ setStatus("No speech was detected in that audio.", true); hideBar(); setBusy(false); if(cancelBtn) cancelBtn.style.display="none"; return; }
-    if(state.analyzeCanceled){ if(cancelBtn) cancelBtn.style.display="none"; return; }
+    if(!text){ setStatus("No speech was detected in that audio.", true); hideBar(); setBusy(false); if(cancelBtn) cancelBtn.style.display="none"; document.dispatchEvent(new CustomEvent("vc:analyze-failed",{detail:{error:"no speech"}})); return; }
+    if(state.analyzeCanceled){ if(cancelBtn) cancelBtn.style.display="none"; document.dispatchEvent(new CustomEvent("vc:analyze-failed",{detail:{error:"canceled"}})); return; }
 
     const sentences = splitSentences(text);
     let scored;
@@ -377,8 +377,11 @@ export async function analyze(blob){
              compareRead: state.compareRead, promptTarget: $("promptText").value });
     setStatus(`Done — analyzed ${duration.toFixed(1)}s of audio.`);
     hideBar();
+    // aviso para los modos del coach (coach.js): el análisis terminó y state.last ya está listo
+    document.dispatchEvent(new CustomEvent("vc:analyzed", { detail:{ text, duration, timedWords, promptTarget: $("promptText").value, compareRead: state.compareRead } }));
   }catch(err){
     console.error(err);
+    document.dispatchEvent(new CustomEvent("vc:analyze-failed", { detail:{ error:(err&&err.message)||String(err) } }));
     const decodeFail = /decode|EncodingError|Unable to decode|decodeAudioData/i.test((err&&err.message)||"") || (err&&err.name==="EncodingError");
     if(decodeFail){
       setStatus(state.lang==="spanish"

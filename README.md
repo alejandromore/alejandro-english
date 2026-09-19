@@ -107,6 +107,22 @@ Cada app tiene un botón **"💾 Save Results to .txt"** que:
 2. Actualizar `index.html` raíz: cambiar el drill de "Pending" a "Active" con el link
 3. Git commit + push
 
+## 🎯 Voice Coach — modos de entrenamiento (sept 2026)
+
+El voice coach tiene ahora tres modos encima del flujo original (que se mantiene intacto como modo **Libre**):
+
+| Modo | Qué es | Qué mide |
+|------|--------|----------|
+| 🎤 **Take an Interview** | Tarea 2 del TOEFL iBT 2026 = entrevista de trabajo. Pregunta → preparación (0/15/30 s) → respuesta cronometrada (45/60/90 s) con corte automático → transcripción → **corrección** | Banda 1–6, errores de forma (dijiste → mejor → regla), estructura (afirmación/razón/ejemplo/cierre), tu respuesta reescrita en ≈45 s, 3 frases para repetir, un foco para la siguiente |
+| 🔁 **Listen & Repeat** | Tarea 1 del TOEFL iBT 2026. Texto oculto → escuchar → repetir → alinear palabra por palabra. Tres fuentes: **Trampas** (consonantes finales y auxiliar *be*), **Frases TOEFL**, **Textos TOEFL** (párrafos académicos, oración por oración) | % de palabras correctas y **trampas acertadas** (`components`, `are`, `being`…) |
+| 📈 **Historial** | Cada sesión se guarda en `localStorage` | Racha de días, plan de hoy (4 ítems), sesiones en 14 días, tendencia de banda y de precisión, exportar/importar JSON |
+
+**Corrección con Claude.** Con una API key de Anthropic (botón ⚙ Clave / modelo; se guarda solo en el navegador) la corrección es automática, modelo por defecto `claude-opus-5`. Sin clave, el botón **Copiar prompt de corrección** copia transcripción + instrucciones para pegarlas en Claude.
+
+**Limitación conocida.** Whisper normaliza lo que oye: en habla libre puede transcribir "we going" como "we're going" y "replace" como "replaced". Por eso los errores de forma se cazan mejor en **Listen & Repeat** (texto conocido) y la coherencia en **Take an Interview** (corrección por LLM). Los `-ed` finales se le escapan al modelo; las `-s` finales y el auxiliar *be* sí se detectan.
+
+Banco de preguntas y frases: `voice-coach/js/banks.js`. Lógica de los modos: `voice-coach/js/coach.js`. Gancho con el flujo original: evento `vc:analyzed` al final de `analyze()` en `analysis.js`.
+
 ## 🛠️ Tecnologías
 
 - HTML5 + CSS3 + JavaScript (vanilla, sin frameworks)
